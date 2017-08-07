@@ -136,9 +136,9 @@ message PresentationSpec {
     int32 deviceNumber = 1;    
 
     enum VolumeReadiness {
-        UNKNOWN = 0;
-        PENDING = 1;
-        READY = 2;
+        READINESS_UNKNOWN = 0;
+        READINESS_PENDING = 1;
+        READINESS_READY = 2;
     }
     
     // Volume readiness is used to inform dataplane when volume should start letting 
