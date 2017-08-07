@@ -2,6 +2,15 @@ syntax = "proto3";
 package dataplane;
 import "google/protobuf/timestamp.proto";
 
+
+message NodeConfiguration {
+    // Computed host ID, unique for each Host. Is used to
+    // send data through virtual volumes.
+    uint32 host = 4;
+
+    // TODO: add cache configuration
+}
+
 // ObjectMeta is metadata that all persisted resources must have, which includes all objects
 // users must create.
 message ObjectMeta {
@@ -184,5 +193,5 @@ message VolumeSpec {
     // Computed host ID, unique for each Host. Is used to
     // send data through virtual volumes.
     uint32 host = 4;
-
 }
+
