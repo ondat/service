@@ -130,16 +130,16 @@ message Volume {
     repeated VolumeSpec replicas = 5;
 }
 
-enum VolumeReadiness {
-    UNKNOWN = 0;
-    PENDING = 1;
-    READY = 2;
-}
-
 message PresentationSpec {    
 
     // Device number, used to distinguish NBD devices
     int32 deviceNumber = 1;    
+
+    enum VolumeReadiness {
+        UNKNOWN = 0;
+        PENDING = 1;
+        READY = 2;
+    }
     
     // Volume readiness is used to inform dataplane when volume should start letting 
     // data through. If the volume is active but readiness is not READY - volume
