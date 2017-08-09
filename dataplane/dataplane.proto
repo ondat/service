@@ -133,7 +133,7 @@ message Volume {
 message PresentationSpec {    
 
     // Device number, used to distinguish NBD devices
-    int32 deviceNumber = 1;    
+    uint32 deviceNumber = 1;    
 
     enum VolumeReadiness {
         READINESS_UNKNOWN = 0;
@@ -156,7 +156,7 @@ message PresentationSpec {
 message VolumeSpec {
 
     // Volume ID also known as Inode.
-    int32 id = 1;
+    uint32 id = 1;
 
     // Note that enum values use C++ scoping rules, meaning that enum values are
     // siblings of their type, not children of it.  Therefore, "UNKNOWN" must be unique 
