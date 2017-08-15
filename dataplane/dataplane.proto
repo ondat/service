@@ -132,8 +132,11 @@ message Volume {
 
 message PresentationSpec {    
 
+     // Volume ID also known as Inode.
+     uint32 id = 1;
+
     // Device number, used to distinguish NBD devices
-    uint32 deviceNumber = 1;    
+    uint32 deviceNumber = 2;    
 
     enum VolumeReadiness {
         READINESS_UNKNOWN = 0;
@@ -150,7 +153,7 @@ message PresentationSpec {
     // Number of mounts this volume had. It increases with
     // every single mount through the StorageOS API and the main reason
     // behind it as resetting cache.
-    int32 mounts = 5;
+    int32 mounts = 4;
 }
 
 message VolumeSpec {
