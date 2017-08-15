@@ -36,7 +36,7 @@ clean: protobuf_cpp_clean protobuf_go_clean protobuf_python_clean
 
 # Make Python protobuf implemenation. Requires SRC_DIR and DST_DIR set.
 %_pb2.py: %.proto
-	protoc -I ${SRC_DIR} --python_out=${DST_DIR} $<
+	protoc -I ${SRC_DIR} --python_out=plugins=grpc:${DST_DIR} $<
 
 #############################################################################
 
