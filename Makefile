@@ -20,7 +20,15 @@ all: protobuf
 
 protobuf: protobuf_cpp protobuf_go protobuf_python
 
-clean: protobuf_cpp_clean protobuf_go_clean protobuf_python_clean
+clean: protobuf_clean vis_clean
+
+protobuf_clean: protobuf_cpp_clean protobuf_go_clean protobuf_python_clean
+
+vis:
+	cd visualiser && $(MAKE)
+
+vis_clean:
+	cd visualiser && $(MAKE) clean
 
 #############################################################################
 
@@ -42,6 +50,8 @@ clean: protobuf_cpp_clean protobuf_go_clean protobuf_python_clean
 
 ## C++ targets.
 
+CLEAN_TARGETS	+= protobuf_cpp_clean
+
 protobuf_cpp: ${DST_DIR}/${CPP_PB_OBJ} ${DST_DIR}/${CPP_PB_HDR}
 
 protobuf_cpp_clean:
@@ -50,6 +60,8 @@ protobuf_cpp_clean:
 #############################################################################
 
 ## Go targets.
+
+CLEAN_TARGETS	+= protobuf_go_clean
 
 # Historical alias.
 go: protobuf_go
@@ -62,6 +74,8 @@ protobuf_go_clean:
 #############################################################################
 
 ## Python targets.
+
+CLEAN_TARGETS	+= protobuf_python_clean
 
 protobuf_python: ${DST_DIR}/${PYTHON_PB_OBJ}
 
