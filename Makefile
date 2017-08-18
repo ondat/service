@@ -30,6 +30,10 @@ vis:
 vis_clean:
 	cd visualiser && $(MAKE) clean
 
+docker:
+	docker build --rm -t service:latest .
+	docker run -v $(PWD):/src service:latest clean all
+
 #############################################################################
 
 ## Pattern rules.
