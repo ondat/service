@@ -6,7 +6,7 @@ echo "** Input"
 ls -lR /proto
 
 echo "** Running svg generator plugin"
-protoc --plugin=protoc-gen-custom=/protobuf-uml.py --custom_out=/output -I/proto /proto/dataplane.proto
+protoc --plugin=protoc-gen-custom=/protobuf-uml.py --custom_out=/output -I/proto "$@"
 cd /output
 for f in *.svg; do
 	fp="$(basename $f .svg)"
