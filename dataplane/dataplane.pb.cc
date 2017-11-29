@@ -18,21 +18,45 @@
 // @@protoc_insertion_point(includes)
 
 namespace dataplane {
-class NodeConfigurationDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<NodeConfiguration> {
+class NodeConfigurationDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<NodeConfiguration>
+     _instance;
 } _NodeConfiguration_default_instance_;
-class ObjectMeta_LabelsEntryDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta::ObjectMeta_LabelsEntry> {
+class ObjectMeta_LabelsEntryDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta::ObjectMeta_LabelsEntry>
+     _instance;
 } _ObjectMeta_LabelsEntry_default_instance_;
-class ObjectMeta_AnnotationsEntryDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta::ObjectMeta_AnnotationsEntry> {
+class ObjectMeta_AnnotationsEntryDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta::ObjectMeta_AnnotationsEntry>
+     _instance;
 } _ObjectMeta_AnnotationsEntry_default_instance_;
-class ObjectMetaDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta> {
+class ObjectMetaDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<ObjectMeta>
+     _instance;
 } _ObjectMeta_default_instance_;
-class HostDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Host> {
+class HostDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<Host>
+     _instance;
 } _Host_default_instance_;
-class VolumeDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Volume> {
+class VolumeDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<Volume>
+     _instance;
 } _Volume_default_instance_;
-class PresentationSpecDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<PresentationSpec> {
+class PresentationSpecDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<PresentationSpec>
+     _instance;
 } _PresentationSpec_default_instance_;
-class VolumeSpecDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<VolumeSpec> {
+class VolumeSpecDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<VolumeSpec>
+     _instance;
 } _VolumeSpec_default_instance_;
 
 namespace protobuf_dataplane_2eproto {
@@ -46,27 +70,27 @@ const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[3];
 }  // namespace
 
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTableField
-    const TableStruct::entries[] = {
+    const TableStruct::entries[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   {0, 0, 0, ::google::protobuf::internal::kInvalidMask, 0, 0},
 };
 
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
-    const TableStruct::aux[] = {
+    const TableStruct::aux[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ::google::protobuf::internal::AuxillaryParseTableField(),
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
-    TableStruct::schema[] = {
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
-  { NULL, NULL, 0, -1, -1, false },
+    TableStruct::schema[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
 };
 
-const ::google::protobuf::uint32 TableStruct::offsets[] = {
+const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(NodeConfiguration, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -125,8 +149,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VolumeSpec, health_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VolumeSpec, host_),
 };
-
-static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(NodeConfiguration)},
   { 6, -1, sizeof(ObjectMeta)},
   { 19, -1, sizeof(Host)},
@@ -154,8 +177,8 @@ void protobuf_AssignDescriptors() {
   AssignDescriptors(
       "dataplane.proto", schemas, file_default_instances, TableStruct::offsets, factory,
       file_level_metadata, file_level_enum_descriptors, NULL);
-file_level_metadata[1].reflection = ObjectMeta::ObjectMeta_LabelsEntry::CreateReflection(file_level_metadata[1].descriptor, _ObjectMeta_LabelsEntry_default_instance_.get_mutable());
-file_level_metadata[2].reflection = ObjectMeta::ObjectMeta_AnnotationsEntry::CreateReflection(file_level_metadata[2].descriptor, _ObjectMeta_AnnotationsEntry_default_instance_.get_mutable());
+file_level_metadata[1].reflection = ObjectMeta::ObjectMeta_LabelsEntry::CreateReflection(file_level_metadata[1].descriptor, _ObjectMeta_LabelsEntry_default_instance_._instance.get_mutable());
+file_level_metadata[2].reflection = ObjectMeta::ObjectMeta_AnnotationsEntry::CreateReflection(file_level_metadata[2].descriptor, _ObjectMeta_AnnotationsEntry_default_instance_._instance.get_mutable());
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -170,52 +193,42 @@ void protobuf_RegisterTypes(const ::std::string&) {
 }
 
 }  // namespace
-
-void TableStruct::Shutdown() {
-  _NodeConfiguration_default_instance_.Shutdown();
-  delete file_level_metadata[0].reflection;
-  _ObjectMeta_default_instance_.Shutdown();
-  delete file_level_metadata[3].reflection;
-  _Host_default_instance_.Shutdown();
-  delete file_level_metadata[4].reflection;
-  _Volume_default_instance_.Shutdown();
-  delete file_level_metadata[5].reflection;
-  _PresentationSpec_default_instance_.Shutdown();
-  delete file_level_metadata[6].reflection;
-  _VolumeSpec_default_instance_.Shutdown();
-  delete file_level_metadata[7].reflection;
-  delete file_level_metadata[1].reflection;
-  delete file_level_metadata[2].reflection;
-}
-
 void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
   ::google::protobuf::protobuf_google_2fprotobuf_2ftimestamp_2eproto::InitDefaults();
-  _NodeConfiguration_default_instance_.DefaultConstruct();
-  _ObjectMeta_LabelsEntry_default_instance_.DefaultConstruct();
-  _ObjectMeta_AnnotationsEntry_default_instance_.DefaultConstruct();
-  _ObjectMeta_default_instance_.DefaultConstruct();
-  _Host_default_instance_.DefaultConstruct();
-  _Volume_default_instance_.DefaultConstruct();
-  _PresentationSpec_default_instance_.DefaultConstruct();
-  _VolumeSpec_default_instance_.DefaultConstruct();
-  _ObjectMeta_LabelsEntry_default_instance_.get_mutable()->set_default_instance(_ObjectMeta_LabelsEntry_default_instance_.get_mutable());
-  _ObjectMeta_LabelsEntry_default_instance_.get_mutable()->InitAsDefaultInstance();
-  _ObjectMeta_AnnotationsEntry_default_instance_.get_mutable()->set_default_instance(_ObjectMeta_AnnotationsEntry_default_instance_.get_mutable());
-  _ObjectMeta_AnnotationsEntry_default_instance_.get_mutable()->InitAsDefaultInstance();
-  _ObjectMeta_default_instance_.get_mutable()->creationtimestamp_ = const_cast< ::google::protobuf::Timestamp*>(
+  _NodeConfiguration_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_NodeConfiguration_default_instance_);_ObjectMeta_LabelsEntry_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_ObjectMeta_LabelsEntry_default_instance_);_ObjectMeta_AnnotationsEntry_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_ObjectMeta_AnnotationsEntry_default_instance_);_ObjectMeta_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_ObjectMeta_default_instance_);_Host_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_Host_default_instance_);_Volume_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_Volume_default_instance_);_PresentationSpec_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_PresentationSpec_default_instance_);_VolumeSpec_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_VolumeSpec_default_instance_);_ObjectMeta_LabelsEntry_default_instance_._instance.get_mutable()->set_default_instance(_ObjectMeta_LabelsEntry_default_instance_._instance.get_mutable());
+  _ObjectMeta_LabelsEntry_default_instance_._instance.get_mutable()->InitAsDefaultInstance();
+  _ObjectMeta_AnnotationsEntry_default_instance_._instance.get_mutable()->set_default_instance(_ObjectMeta_AnnotationsEntry_default_instance_._instance.get_mutable());
+  _ObjectMeta_AnnotationsEntry_default_instance_._instance.get_mutable()->InitAsDefaultInstance();
+  _ObjectMeta_default_instance_._instance.get_mutable()->creationtimestamp_ = const_cast< ::google::protobuf::Timestamp*>(
       ::google::protobuf::Timestamp::internal_default_instance());
-  _ObjectMeta_default_instance_.get_mutable()->deletiontimestamp_ = const_cast< ::google::protobuf::Timestamp*>(
+  _ObjectMeta_default_instance_._instance.get_mutable()->deletiontimestamp_ = const_cast< ::google::protobuf::Timestamp*>(
       ::google::protobuf::Timestamp::internal_default_instance());
-  _Host_default_instance_.get_mutable()->metadata_ = const_cast< ::dataplane::ObjectMeta*>(
+  _Host_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dataplane::ObjectMeta*>(
       ::dataplane::ObjectMeta::internal_default_instance());
-  _Volume_default_instance_.get_mutable()->metadata_ = const_cast< ::dataplane::ObjectMeta*>(
+  _Volume_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dataplane::ObjectMeta*>(
       ::dataplane::ObjectMeta::internal_default_instance());
-  _Volume_default_instance_.get_mutable()->presentation_ = const_cast< ::dataplane::PresentationSpec*>(
+  _Volume_default_instance_._instance.get_mutable()->presentation_ = const_cast< ::dataplane::PresentationSpec*>(
       ::dataplane::PresentationSpec::internal_default_instance());
-  _Volume_default_instance_.get_mutable()->master_ = const_cast< ::dataplane::VolumeSpec*>(
+  _Volume_default_instance_._instance.get_mutable()->master_ = const_cast< ::dataplane::VolumeSpec*>(
       ::dataplane::VolumeSpec::internal_default_instance());
 }
 
@@ -223,9 +236,10 @@ void InitDefaults() {
   static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
   ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
 }
+namespace {
 void AddDescriptorsImpl() {
   InitDefaults();
-  static const char descriptor[] = {
+  static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\017dataplane.proto\022\tdataplane\032\037google/pro"
       "tobuf/timestamp.proto\"!\n\021NodeConfigurati"
       "on\022\014\n\004host\030\004 \001(\r\"\245\003\n\nObjectMeta\022\014\n\004name\030"
@@ -270,14 +284,14 @@ void AddDescriptorsImpl() {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dataplane.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_google_2fprotobuf_2ftimestamp_2eproto::AddDescriptors();
-  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
 }
+} // anonymous namespace
 
 void AddDescriptors() {
   static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
   ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
 }
-// Force AddDescriptors() to be called at static initialization time.
+// Force AddDescriptors() to be called at dynamic initialization time.
 struct StaticDescriptorInitializer {
   StaticDescriptorInitializer() {
     AddDescriptors();
@@ -429,7 +443,12 @@ NodeConfiguration* NodeConfiguration::New(::google::protobuf::Arena* arena) cons
 
 void NodeConfiguration::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.NodeConfiguration)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   host_ = 0u;
+  _internal_metadata_.Clear();
 }
 
 bool NodeConfiguration::MergePartialFromCodedStream(
@@ -445,7 +464,7 @@ bool NodeConfiguration::MergePartialFromCodedStream(
       // uint32 host = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u)) {
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -458,12 +477,11 @@ bool NodeConfiguration::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -488,6 +506,10 @@ void NodeConfiguration::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->host(), output);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.NodeConfiguration)
 }
 
@@ -503,6 +525,10 @@ void NodeConfiguration::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->host(), target);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.NodeConfiguration)
   return target;
 }
@@ -511,6 +537,11 @@ size_t NodeConfiguration::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.NodeConfiguration)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // uint32 host = 4;
   if (this->host() != 0) {
     total_size += 1 +
@@ -575,8 +606,10 @@ void NodeConfiguration::Swap(NodeConfiguration* other) {
   InternalSwap(other);
 }
 void NodeConfiguration::InternalSwap(NodeConfiguration* other) {
-  std::swap(host_, other->host_);
-  std::swap(_cached_size_, other->_cached_size_);
+  using std::swap;
+  swap(host_, other->host_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata NodeConfiguration::GetMetadata() const {
@@ -699,8 +732,9 @@ void ObjectMeta::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   uid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   resourceversion_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&creationtimestamp_, 0, reinterpret_cast<char*>(&deletiongraceperiodseconds_) -
-    reinterpret_cast<char*>(&creationtimestamp_) + sizeof(deletiongraceperiodseconds_));
+  ::memset(&creationtimestamp_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&deletiongraceperiodseconds_) -
+      reinterpret_cast<char*>(&creationtimestamp_)) + sizeof(deletiongraceperiodseconds_));
   _cached_size_ = 0;
 }
 
@@ -713,12 +747,8 @@ void ObjectMeta::SharedDtor() {
   name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   uid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   resourceversion_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) {
-    delete creationtimestamp_;
-  }
-  if (this != internal_default_instance()) {
-    delete deletiontimestamp_;
-  }
+  if (this != internal_default_instance()) delete creationtimestamp_;
+  if (this != internal_default_instance()) delete deletiontimestamp_;
 }
 
 void ObjectMeta::SetCachedSize(int size) const {
@@ -746,6 +776,10 @@ ObjectMeta* ObjectMeta::New(::google::protobuf::Arena* arena) const {
 
 void ObjectMeta::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.ObjectMeta)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   labels_.Clear();
   annotations_.Clear();
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -760,6 +794,7 @@ void ObjectMeta::Clear() {
   }
   deletiontimestamp_ = NULL;
   deletiongraceperiodseconds_ = GOOGLE_LONGLONG(0);
+  _internal_metadata_.Clear();
 }
 
 bool ObjectMeta::MergePartialFromCodedStream(
@@ -775,11 +810,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // string name = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u)) {
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->name().data(), this->name().length(),
+            this->name().data(), static_cast<int>(this->name().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.name"));
         } else {
@@ -791,11 +826,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // string uid = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u)) {
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_uid()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->uid().data(), this->uid().length(),
+            this->uid().data(), static_cast<int>(this->uid().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.uid"));
         } else {
@@ -807,11 +842,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // string resourceVersion = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u)) {
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_resourceversion()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->resourceversion().data(), this->resourceversion().length(),
+            this->resourceversion().data(), static_cast<int>(this->resourceversion().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.resourceVersion"));
         } else {
@@ -823,7 +858,7 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // .google.protobuf.Timestamp creationTimestamp = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u)) {
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_creationtimestamp()));
         } else {
@@ -835,7 +870,7 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // .google.protobuf.Timestamp deletionTimestamp = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u)) {
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_deletiontimestamp()));
         } else {
@@ -847,7 +882,7 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // int64 deletionGracePeriodSeconds = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(48u)) {
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
@@ -861,7 +896,7 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // map<string, string> labels = 7;
       case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(58u)) {
+            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
           ObjectMeta_LabelsEntry::Parser< ::google::protobuf::internal::MapField<
               ObjectMeta_LabelsEntry,
               ::std::string, ::std::string,
@@ -872,11 +907,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
               input, &parser));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            parser.key().data(), parser.key().length(),
+            parser.key().data(), static_cast<int>(parser.key().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.LabelsEntry.key"));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            parser.value().data(), parser.value().length(),
+            parser.value().data(), static_cast<int>(parser.value().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.LabelsEntry.value"));
         } else {
@@ -888,7 +923,7 @@ bool ObjectMeta::MergePartialFromCodedStream(
       // map<string, string> annotations = 8;
       case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(66u)) {
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
           ObjectMeta_AnnotationsEntry::Parser< ::google::protobuf::internal::MapField<
               ObjectMeta_AnnotationsEntry,
               ::std::string, ::std::string,
@@ -899,11 +934,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
               input, &parser));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            parser.key().data(), parser.key().length(),
+            parser.key().data(), static_cast<int>(parser.key().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.AnnotationsEntry.key"));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            parser.value().data(), parser.value().length(),
+            parser.value().data(), static_cast<int>(parser.value().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.ObjectMeta.AnnotationsEntry.value"));
         } else {
@@ -914,12 +949,11 @@ bool ObjectMeta::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -942,7 +976,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), this->name().length(),
+      this->name().data(), static_cast<int>(this->name().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
@@ -952,7 +986,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string uid = 2;
   if (this->uid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uid().data(), this->uid().length(),
+      this->uid().data(), static_cast<int>(this->uid().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.uid");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
@@ -962,7 +996,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string resourceVersion = 3;
   if (this->resourceversion().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->resourceversion().data(), this->resourceversion().length(),
+      this->resourceversion().data(), static_cast<int>(this->resourceversion().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.resourceVersion");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
@@ -995,11 +1029,11 @@ void ObjectMeta::SerializeWithCachedSizes(
     struct Utf8Check {
       static void Check(ConstPtr p) {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), p->first.length(),
+          p->first.data(), static_cast<int>(p->first.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.LabelsEntry.key");
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->second.data(), p->second.length(),
+          p->second.data(), static_cast<int>(p->second.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.LabelsEntry.value");
       }
@@ -1014,16 +1048,16 @@ void ObjectMeta::SerializeWithCachedSizes(
       for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
           it = this->labels().begin();
           it != this->labels().end(); ++it, ++n) {
-        items[n] = SortItem(&*it);
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
-      ::std::sort(&items[0], &items[n], Less());
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
       ::google::protobuf::scoped_ptr<ObjectMeta_LabelsEntry> entry;
       for (size_type i = 0; i < n; i++) {
         entry.reset(labels_.NewEntryWrapper(
-            items[i]->first, items[i]->second));
+            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
             7, *entry, output);
-        Utf8Check::Check(items[i]);
+        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
     } else {
       ::google::protobuf::scoped_ptr<ObjectMeta_LabelsEntry> entry;
@@ -1048,11 +1082,11 @@ void ObjectMeta::SerializeWithCachedSizes(
     struct Utf8Check {
       static void Check(ConstPtr p) {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), p->first.length(),
+          p->first.data(), static_cast<int>(p->first.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.AnnotationsEntry.key");
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->second.data(), p->second.length(),
+          p->second.data(), static_cast<int>(p->second.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.AnnotationsEntry.value");
       }
@@ -1067,16 +1101,16 @@ void ObjectMeta::SerializeWithCachedSizes(
       for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
           it = this->annotations().begin();
           it != this->annotations().end(); ++it, ++n) {
-        items[n] = SortItem(&*it);
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
-      ::std::sort(&items[0], &items[n], Less());
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
       ::google::protobuf::scoped_ptr<ObjectMeta_AnnotationsEntry> entry;
       for (size_type i = 0; i < n; i++) {
         entry.reset(annotations_.NewEntryWrapper(
-            items[i]->first, items[i]->second));
+            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
             8, *entry, output);
-        Utf8Check::Check(items[i]);
+        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
     } else {
       ::google::protobuf::scoped_ptr<ObjectMeta_AnnotationsEntry> entry;
@@ -1092,6 +1126,10 @@ void ObjectMeta::SerializeWithCachedSizes(
     }
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.ObjectMeta)
 }
 
@@ -1105,7 +1143,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->name().data(), this->name().length(),
+      this->name().data(), static_cast<int>(this->name().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.name");
     target =
@@ -1116,7 +1154,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string uid = 2;
   if (this->uid().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->uid().data(), this->uid().length(),
+      this->uid().data(), static_cast<int>(this->uid().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.uid");
     target =
@@ -1127,7 +1165,7 @@ void ObjectMeta::SerializeWithCachedSizes(
   // string resourceVersion = 3;
   if (this->resourceversion().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->resourceversion().data(), this->resourceversion().length(),
+      this->resourceversion().data(), static_cast<int>(this->resourceversion().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.ObjectMeta.resourceVersion");
     target =
@@ -1163,11 +1201,11 @@ void ObjectMeta::SerializeWithCachedSizes(
     struct Utf8Check {
       static void Check(ConstPtr p) {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), p->first.length(),
+          p->first.data(), static_cast<int>(p->first.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.LabelsEntry.key");
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->second.data(), p->second.length(),
+          p->second.data(), static_cast<int>(p->second.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.LabelsEntry.value");
       }
@@ -1182,18 +1220,18 @@ void ObjectMeta::SerializeWithCachedSizes(
       for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
           it = this->labels().begin();
           it != this->labels().end(); ++it, ++n) {
-        items[n] = SortItem(&*it);
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
-      ::std::sort(&items[0], &items[n], Less());
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
       ::google::protobuf::scoped_ptr<ObjectMeta_LabelsEntry> entry;
       for (size_type i = 0; i < n; i++) {
         entry.reset(labels_.NewEntryWrapper(
-            items[i]->first, items[i]->second));
+            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         target = ::google::protobuf::internal::WireFormatLite::
                    InternalWriteMessageNoVirtualToArray(
                        7, *entry, deterministic, target);
 ;
-        Utf8Check::Check(items[i]);
+        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
     } else {
       ::google::protobuf::scoped_ptr<ObjectMeta_LabelsEntry> entry;
@@ -1220,11 +1258,11 @@ void ObjectMeta::SerializeWithCachedSizes(
     struct Utf8Check {
       static void Check(ConstPtr p) {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->first.data(), p->first.length(),
+          p->first.data(), static_cast<int>(p->first.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.AnnotationsEntry.key");
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          p->second.data(), p->second.length(),
+          p->second.data(), static_cast<int>(p->second.length()),
           ::google::protobuf::internal::WireFormatLite::SERIALIZE,
           "dataplane.ObjectMeta.AnnotationsEntry.value");
       }
@@ -1239,18 +1277,18 @@ void ObjectMeta::SerializeWithCachedSizes(
       for (::google::protobuf::Map< ::std::string, ::std::string >::const_iterator
           it = this->annotations().begin();
           it != this->annotations().end(); ++it, ++n) {
-        items[n] = SortItem(&*it);
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
       }
-      ::std::sort(&items[0], &items[n], Less());
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
       ::google::protobuf::scoped_ptr<ObjectMeta_AnnotationsEntry> entry;
       for (size_type i = 0; i < n; i++) {
         entry.reset(annotations_.NewEntryWrapper(
-            items[i]->first, items[i]->second));
+            items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         target = ::google::protobuf::internal::WireFormatLite::
                    InternalWriteMessageNoVirtualToArray(
                        8, *entry, deterministic, target);
 ;
-        Utf8Check::Check(items[i]);
+        Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
     } else {
       ::google::protobuf::scoped_ptr<ObjectMeta_AnnotationsEntry> entry;
@@ -1268,6 +1306,10 @@ void ObjectMeta::SerializeWithCachedSizes(
     }
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.ObjectMeta)
   return target;
 }
@@ -1276,6 +1318,11 @@ size_t ObjectMeta::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.ObjectMeta)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // map<string, string> labels = 7;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->labels_size());
@@ -1423,15 +1470,17 @@ void ObjectMeta::Swap(ObjectMeta* other) {
   InternalSwap(other);
 }
 void ObjectMeta::InternalSwap(ObjectMeta* other) {
+  using std::swap;
   labels_.Swap(&other->labels_);
   annotations_.Swap(&other->annotations_);
   name_.Swap(&other->name_);
   uid_.Swap(&other->uid_);
   resourceversion_.Swap(&other->resourceversion_);
-  std::swap(creationtimestamp_, other->creationtimestamp_);
-  std::swap(deletiontimestamp_, other->deletiontimestamp_);
-  std::swap(deletiongraceperiodseconds_, other->deletiongraceperiodseconds_);
-  std::swap(_cached_size_, other->_cached_size_);
+  swap(creationtimestamp_, other->creationtimestamp_);
+  swap(deletiontimestamp_, other->deletiontimestamp_);
+  swap(deletiongraceperiodseconds_, other->deletiongraceperiodseconds_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata ObjectMeta::GetMetadata() const {
@@ -1610,9 +1659,10 @@ void ObjectMeta::clear_creationtimestamp() {
   creationtimestamp_ = NULL;
 }
 const ::google::protobuf::Timestamp& ObjectMeta::creationtimestamp() const {
+  const ::google::protobuf::Timestamp* p = creationtimestamp_;
   // @@protoc_insertion_point(field_get:dataplane.ObjectMeta.creationTimestamp)
-  return creationtimestamp_ != NULL ? *creationtimestamp_
-                         : *::google::protobuf::Timestamp::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::google::protobuf::Timestamp*>(
+      &::google::protobuf::_Timestamp_default_instance_);
 }
 ::google::protobuf::Timestamp* ObjectMeta::mutable_creationtimestamp() {
   
@@ -1654,9 +1704,10 @@ void ObjectMeta::clear_deletiontimestamp() {
   deletiontimestamp_ = NULL;
 }
 const ::google::protobuf::Timestamp& ObjectMeta::deletiontimestamp() const {
+  const ::google::protobuf::Timestamp* p = deletiontimestamp_;
   // @@protoc_insertion_point(field_get:dataplane.ObjectMeta.deletionTimestamp)
-  return deletiontimestamp_ != NULL ? *deletiontimestamp_
-                         : *::google::protobuf::Timestamp::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::google::protobuf::Timestamp*>(
+      &::google::protobuf::_Timestamp_default_instance_);
 }
 ::google::protobuf::Timestamp* ObjectMeta::mutable_deletiontimestamp() {
   
@@ -1774,15 +1825,16 @@ Host::Host(const Host& from)
     metadata_ = NULL;
   }
   ::memcpy(&id_, &from.id_,
-    reinterpret_cast<char*>(&port_) -
-    reinterpret_cast<char*>(&id_) + sizeof(port_));
+    static_cast<size_t>(reinterpret_cast<char*>(&port_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(port_));
   // @@protoc_insertion_point(copy_constructor:dataplane.Host)
 }
 
 void Host::SharedCtor() {
   address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&metadata_, 0, reinterpret_cast<char*>(&port_) -
-    reinterpret_cast<char*>(&metadata_) + sizeof(port_));
+  ::memset(&metadata_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&port_) -
+      reinterpret_cast<char*>(&metadata_)) + sizeof(port_));
   _cached_size_ = 0;
 }
 
@@ -1793,9 +1845,7 @@ Host::~Host() {
 
 void Host::SharedDtor() {
   address_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) {
-    delete metadata_;
-  }
+  if (this != internal_default_instance()) delete metadata_;
 }
 
 void Host::SetCachedSize(int size) const {
@@ -1823,13 +1873,19 @@ Host* Host::New(::google::protobuf::Arena* arena) const {
 
 void Host::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.Host)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == NULL && metadata_ != NULL) {
     delete metadata_;
   }
   metadata_ = NULL;
-  ::memset(&id_, 0, reinterpret_cast<char*>(&port_) -
-    reinterpret_cast<char*>(&id_) + sizeof(port_));
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&port_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(port_));
+  _internal_metadata_.Clear();
 }
 
 bool Host::MergePartialFromCodedStream(
@@ -1845,7 +1901,7 @@ bool Host::MergePartialFromCodedStream(
       // .dataplane.ObjectMeta metadata = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u)) {
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_metadata()));
         } else {
@@ -1857,7 +1913,7 @@ bool Host::MergePartialFromCodedStream(
       // uint32 id = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u)) {
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -1871,7 +1927,7 @@ bool Host::MergePartialFromCodedStream(
       // bool active = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
@@ -1885,11 +1941,11 @@ bool Host::MergePartialFromCodedStream(
       // string address = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u)) {
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_address()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->address().data(), this->address().length(),
+            this->address().data(), static_cast<int>(this->address().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "dataplane.Host.address"));
         } else {
@@ -1901,7 +1957,7 @@ bool Host::MergePartialFromCodedStream(
       // int32 port = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u)) {
+            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -1914,12 +1970,11 @@ bool Host::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -1958,7 +2013,7 @@ void Host::SerializeWithCachedSizes(
   // string address = 4;
   if (this->address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->address().data(), this->address().length(),
+      this->address().data(), static_cast<int>(this->address().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.Host.address");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
@@ -1970,6 +2025,10 @@ void Host::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->port(), output);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.Host)
 }
 
@@ -2000,7 +2059,7 @@ void Host::SerializeWithCachedSizes(
   // string address = 4;
   if (this->address().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->address().data(), this->address().length(),
+      this->address().data(), static_cast<int>(this->address().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "dataplane.Host.address");
     target =
@@ -2013,6 +2072,10 @@ void Host::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->port(), target);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.Host)
   return target;
 }
@@ -2021,6 +2084,11 @@ size_t Host::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.Host)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // string address = 4;
   if (this->address().size() > 0) {
     total_size += 1 +
@@ -2124,12 +2192,14 @@ void Host::Swap(Host* other) {
   InternalSwap(other);
 }
 void Host::InternalSwap(Host* other) {
+  using std::swap;
   address_.Swap(&other->address_);
-  std::swap(metadata_, other->metadata_);
-  std::swap(id_, other->id_);
-  std::swap(active_, other->active_);
-  std::swap(port_, other->port_);
-  std::swap(_cached_size_, other->_cached_size_);
+  swap(metadata_, other->metadata_);
+  swap(id_, other->id_);
+  swap(active_, other->active_);
+  swap(port_, other->port_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Host::GetMetadata() const {
@@ -2149,9 +2219,10 @@ void Host::clear_metadata() {
   metadata_ = NULL;
 }
 const ::dataplane::ObjectMeta& Host::metadata() const {
+  const ::dataplane::ObjectMeta* p = metadata_;
   // @@protoc_insertion_point(field_get:dataplane.Host.metadata)
-  return metadata_ != NULL ? *metadata_
-                         : *::dataplane::ObjectMeta::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::dataplane::ObjectMeta*>(
+      &::dataplane::_ObjectMeta_default_instance_);
 }
 ::dataplane::ObjectMeta* Host::mutable_metadata() {
   
@@ -2320,8 +2391,9 @@ Volume::Volume(const Volume& from)
 }
 
 void Volume::SharedCtor() {
-  ::memset(&metadata_, 0, reinterpret_cast<char*>(&size_) -
-    reinterpret_cast<char*>(&metadata_) + sizeof(size_));
+  ::memset(&metadata_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&size_) -
+      reinterpret_cast<char*>(&metadata_)) + sizeof(size_));
   _cached_size_ = 0;
 }
 
@@ -2331,15 +2403,9 @@ Volume::~Volume() {
 }
 
 void Volume::SharedDtor() {
-  if (this != internal_default_instance()) {
-    delete metadata_;
-  }
-  if (this != internal_default_instance()) {
-    delete presentation_;
-  }
-  if (this != internal_default_instance()) {
-    delete master_;
-  }
+  if (this != internal_default_instance()) delete metadata_;
+  if (this != internal_default_instance()) delete presentation_;
+  if (this != internal_default_instance()) delete master_;
 }
 
 void Volume::SetCachedSize(int size) const {
@@ -2367,6 +2433,10 @@ Volume* Volume::New(::google::protobuf::Arena* arena) const {
 
 void Volume::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.Volume)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   replicas_.Clear();
   if (GetArenaNoVirtual() == NULL && metadata_ != NULL) {
     delete metadata_;
@@ -2381,6 +2451,7 @@ void Volume::Clear() {
   }
   master_ = NULL;
   size_ = GOOGLE_ULONGLONG(0);
+  _internal_metadata_.Clear();
 }
 
 bool Volume::MergePartialFromCodedStream(
@@ -2396,7 +2467,7 @@ bool Volume::MergePartialFromCodedStream(
       // .dataplane.ObjectMeta metadata = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u)) {
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_metadata()));
         } else {
@@ -2408,7 +2479,7 @@ bool Volume::MergePartialFromCodedStream(
       // uint64 size = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u)) {
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
@@ -2422,7 +2493,7 @@ bool Volume::MergePartialFromCodedStream(
       // .dataplane.PresentationSpec presentation = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u)) {
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_presentation()));
         } else {
@@ -2434,7 +2505,7 @@ bool Volume::MergePartialFromCodedStream(
       // .dataplane.VolumeSpec master = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u)) {
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_master()));
         } else {
@@ -2446,7 +2517,7 @@ bool Volume::MergePartialFromCodedStream(
       // repeated .dataplane.VolumeSpec replicas = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u)) {
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                 input, add_replicas()));
         } else {
@@ -2457,12 +2528,11 @@ bool Volume::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -2506,11 +2576,16 @@ void Volume::SerializeWithCachedSizes(
   }
 
   // repeated .dataplane.VolumeSpec replicas = 5;
-  for (unsigned int i = 0, n = this->replicas_size(); i < n; i++) {
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->replicas_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, this->replicas(i), output);
+      5, this->replicas(static_cast<int>(i)), output);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.Volume)
 }
 
@@ -2548,12 +2623,17 @@ void Volume::SerializeWithCachedSizes(
   }
 
   // repeated .dataplane.VolumeSpec replicas = 5;
-  for (unsigned int i = 0, n = this->replicas_size(); i < n; i++) {
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->replicas_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        5, this->replicas(i), deterministic, target);
+        5, this->replicas(static_cast<int>(i)), deterministic, target);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.Volume)
   return target;
 }
@@ -2562,14 +2642,19 @@ size_t Volume::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.Volume)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // repeated .dataplane.VolumeSpec replicas = 5;
   {
-    unsigned int count = this->replicas_size();
+    unsigned int count = static_cast<unsigned int>(this->replicas_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->replicas(i));
+          this->replicas(static_cast<int>(i)));
     }
   }
 
@@ -2668,12 +2753,14 @@ void Volume::Swap(Volume* other) {
   InternalSwap(other);
 }
 void Volume::InternalSwap(Volume* other) {
+  using std::swap;
   replicas_.InternalSwap(&other->replicas_);
-  std::swap(metadata_, other->metadata_);
-  std::swap(presentation_, other->presentation_);
-  std::swap(master_, other->master_);
-  std::swap(size_, other->size_);
-  std::swap(_cached_size_, other->_cached_size_);
+  swap(metadata_, other->metadata_);
+  swap(presentation_, other->presentation_);
+  swap(master_, other->master_);
+  swap(size_, other->size_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Volume::GetMetadata() const {
@@ -2693,9 +2780,10 @@ void Volume::clear_metadata() {
   metadata_ = NULL;
 }
 const ::dataplane::ObjectMeta& Volume::metadata() const {
+  const ::dataplane::ObjectMeta* p = metadata_;
   // @@protoc_insertion_point(field_get:dataplane.Volume.metadata)
-  return metadata_ != NULL ? *metadata_
-                         : *::dataplane::ObjectMeta::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::dataplane::ObjectMeta*>(
+      &::dataplane::_ObjectMeta_default_instance_);
 }
 ::dataplane::ObjectMeta* Volume::mutable_metadata() {
   
@@ -2746,9 +2834,10 @@ void Volume::clear_presentation() {
   presentation_ = NULL;
 }
 const ::dataplane::PresentationSpec& Volume::presentation() const {
+  const ::dataplane::PresentationSpec* p = presentation_;
   // @@protoc_insertion_point(field_get:dataplane.Volume.presentation)
-  return presentation_ != NULL ? *presentation_
-                         : *::dataplane::PresentationSpec::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::dataplane::PresentationSpec*>(
+      &::dataplane::_PresentationSpec_default_instance_);
 }
 ::dataplane::PresentationSpec* Volume::mutable_presentation() {
   
@@ -2785,9 +2874,10 @@ void Volume::clear_master() {
   master_ = NULL;
 }
 const ::dataplane::VolumeSpec& Volume::master() const {
+  const ::dataplane::VolumeSpec* p = master_;
   // @@protoc_insertion_point(field_get:dataplane.Volume.master)
-  return master_ != NULL ? *master_
-                         : *::dataplane::VolumeSpec::internal_default_instance();
+  return p != NULL ? *p : *reinterpret_cast<const ::dataplane::VolumeSpec*>(
+      &::dataplane::_VolumeSpec_default_instance_);
 }
 ::dataplane::VolumeSpec* Volume::mutable_master() {
   
@@ -2870,14 +2960,15 @@ PresentationSpec::PresentationSpec(const PresentationSpec& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&id_, &from.id_,
-    reinterpret_cast<char*>(&mounts_) -
-    reinterpret_cast<char*>(&id_) + sizeof(mounts_));
+    static_cast<size_t>(reinterpret_cast<char*>(&mounts_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(mounts_));
   // @@protoc_insertion_point(copy_constructor:dataplane.PresentationSpec)
 }
 
 void PresentationSpec::SharedCtor() {
-  ::memset(&id_, 0, reinterpret_cast<char*>(&mounts_) -
-    reinterpret_cast<char*>(&id_) + sizeof(mounts_));
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&mounts_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(mounts_));
   _cached_size_ = 0;
 }
 
@@ -2914,8 +3005,14 @@ PresentationSpec* PresentationSpec::New(::google::protobuf::Arena* arena) const 
 
 void PresentationSpec::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.PresentationSpec)
-  ::memset(&id_, 0, reinterpret_cast<char*>(&mounts_) -
-    reinterpret_cast<char*>(&id_) + sizeof(mounts_));
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&mounts_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(mounts_));
+  _internal_metadata_.Clear();
 }
 
 bool PresentationSpec::MergePartialFromCodedStream(
@@ -2931,7 +3028,7 @@ bool PresentationSpec::MergePartialFromCodedStream(
       // uint32 id = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u)) {
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -2945,7 +3042,7 @@ bool PresentationSpec::MergePartialFromCodedStream(
       // uint32 deviceNumber = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u)) {
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -2959,7 +3056,7 @@ bool PresentationSpec::MergePartialFromCodedStream(
       // .dataplane.PresentationSpec.VolumeReadiness readiness = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -2974,7 +3071,7 @@ bool PresentationSpec::MergePartialFromCodedStream(
       // int32 mounts = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u)) {
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -2987,12 +3084,11 @@ bool PresentationSpec::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3033,6 +3129,10 @@ void PresentationSpec::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->mounts(), output);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.PresentationSpec)
 }
 
@@ -3064,6 +3164,10 @@ void PresentationSpec::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->mounts(), target);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.PresentationSpec)
   return target;
 }
@@ -3072,6 +3176,11 @@ size_t PresentationSpec::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.PresentationSpec)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // uint32 id = 1;
   if (this->id() != 0) {
     total_size += 1 +
@@ -3165,11 +3274,13 @@ void PresentationSpec::Swap(PresentationSpec* other) {
   InternalSwap(other);
 }
 void PresentationSpec::InternalSwap(PresentationSpec* other) {
-  std::swap(id_, other->id_);
-  std::swap(devicenumber_, other->devicenumber_);
-  std::swap(readiness_, other->readiness_);
-  std::swap(mounts_, other->mounts_);
-  std::swap(_cached_size_, other->_cached_size_);
+  using std::swap;
+  swap(id_, other->id_);
+  swap(devicenumber_, other->devicenumber_);
+  swap(readiness_, other->readiness_);
+  swap(mounts_, other->mounts_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata PresentationSpec::GetMetadata() const {
@@ -3261,14 +3372,15 @@ VolumeSpec::VolumeSpec(const VolumeSpec& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&id_, &from.id_,
-    reinterpret_cast<char*>(&host_) -
-    reinterpret_cast<char*>(&id_) + sizeof(host_));
+    static_cast<size_t>(reinterpret_cast<char*>(&host_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(host_));
   // @@protoc_insertion_point(copy_constructor:dataplane.VolumeSpec)
 }
 
 void VolumeSpec::SharedCtor() {
-  ::memset(&id_, 0, reinterpret_cast<char*>(&host_) -
-    reinterpret_cast<char*>(&id_) + sizeof(host_));
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&host_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(host_));
   _cached_size_ = 0;
 }
 
@@ -3305,8 +3417,14 @@ VolumeSpec* VolumeSpec::New(::google::protobuf::Arena* arena) const {
 
 void VolumeSpec::Clear() {
 // @@protoc_insertion_point(message_clear_start:dataplane.VolumeSpec)
-  ::memset(&id_, 0, reinterpret_cast<char*>(&host_) -
-    reinterpret_cast<char*>(&id_) + sizeof(host_));
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&host_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(host_));
+  _internal_metadata_.Clear();
 }
 
 bool VolumeSpec::MergePartialFromCodedStream(
@@ -3322,7 +3440,7 @@ bool VolumeSpec::MergePartialFromCodedStream(
       // uint32 id = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u)) {
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -3336,7 +3454,7 @@ bool VolumeSpec::MergePartialFromCodedStream(
       // .dataplane.VolumeSpec.VolumeStatus status = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u)) {
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -3351,7 +3469,7 @@ bool VolumeSpec::MergePartialFromCodedStream(
       // .dataplane.VolumeSpec.VolumeHealth health = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u)) {
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -3366,7 +3484,7 @@ bool VolumeSpec::MergePartialFromCodedStream(
       // uint32 host = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(32u)) {
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
@@ -3379,12 +3497,11 @@ bool VolumeSpec::MergePartialFromCodedStream(
 
       default: {
       handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+        if (tag == 0) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
         break;
       }
     }
@@ -3426,6 +3543,10 @@ void VolumeSpec::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->host(), output);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
   // @@protoc_insertion_point(serialize_end:dataplane.VolumeSpec)
 }
 
@@ -3458,6 +3579,10 @@ void VolumeSpec::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->host(), target);
   }
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:dataplane.VolumeSpec)
   return target;
 }
@@ -3466,6 +3591,11 @@ size_t VolumeSpec::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:dataplane.VolumeSpec)
   size_t total_size = 0;
 
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // uint32 id = 1;
   if (this->id() != 0) {
     total_size += 1 +
@@ -3558,11 +3688,13 @@ void VolumeSpec::Swap(VolumeSpec* other) {
   InternalSwap(other);
 }
 void VolumeSpec::InternalSwap(VolumeSpec* other) {
-  std::swap(id_, other->id_);
-  std::swap(status_, other->status_);
-  std::swap(health_, other->health_);
-  std::swap(host_, other->host_);
-  std::swap(_cached_size_, other->_cached_size_);
+  using std::swap;
+  swap(id_, other->id_);
+  swap(status_, other->status_);
+  swap(health_, other->health_);
+  swap(host_, other->host_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata VolumeSpec::GetMetadata() const {
