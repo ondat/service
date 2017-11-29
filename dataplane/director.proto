@@ -1,0 +1,54 @@
+syntax = "proto3";
+package storageos_rpc;
+
+import "common.proto";
+
+service DirectorConfig {
+    rpc VolumeConfigure(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeUnconfigure(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeList(DirectorVolumeListQuery) returns (stream DirectorVolume) {}
+    rpc RedirectConfigure(DirectorRedirect) returns (RpcResult) {}
+    rpc RedirectUnconfigure(DirectorRedirect) returns (RpcResult) {}
+    rpc RedirectList(DirectorRedirectListQuery) returns (stream DirectorRedirect) {}
+}
+
+message DirectorVolumeListQuery {
+    // Null for now.
+}
+
+// Volume information.
+message DirectorVolume {
+    // The volume ID.
+    uint32 volume_id = 1;
+
+    // The write_pipe (identifies the plugin).
+    uint32 write_pipe = 2;
+    // The read pipe (should be write_pipe + 1 in all current plugins).
+    uint32 read_pipe = 3;
+
+    // Arbitrary labels for this volume.
+    map<string, string> labels = 4;
+
+    // Quality of service indicator.
+    uint64 qos = 5;
+
+    // List of replica inodes.
+    repeated uint32 replica_id = 6;
+
+    // Status indicators for this volume.
+    map<string, string> status = 7;
+
+}
+
+message DirectorRedirectListQuery {
+    // Null for now.
+}
+
+// Redirect volume information. Just enough information to point at a DirectorVolume.
+message DirectorRedirect {
+    // The inode the user mounts or opens.
+    uint32 source_id = 1;
+
+    // The underlying inode of the StorageOS volume.
+    uint32 target_id = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package storageos_rpc;
+
+message RpcResult {
+    // Whether or not the operation was successful.
+    bool success = 1;
+    // If the operation was not successful, this is an explanatory message.
+    string reason = 2;
+}

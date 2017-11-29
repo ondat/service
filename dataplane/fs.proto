@@ -1,0 +1,42 @@
+syntax = "proto3";
+package storageos_rpc;
+
+import "common.proto";
+
+service FsConfig {
+    rpc VolumeConfigure(FsVolume) returns (RpcResult) {}
+    rpc VolumeUnconfigure(FsVolume) returns (RpcResult) {}
+    rpc VolumeList(FsVolumeListQuery) returns (stream FsVolume) {}
+}
+
+message FsVolumeListQuery {
+    // Null for now.
+}
+
+message FsVolume {
+    // The volume ID to represent.
+    uint32 volume_id = 1;
+
+    enum VolumeDeviceType {
+        FILE = 0;           // A regular file (backed by FUSE).
+        NBD_BLOCK = 1;      // An nbd-backed block device node.
+    }
+
+    // The type for this volume.
+    VolumeDeviceType node_type = 2;
+
+    // An opaque value interpreted based on node_type.
+    uint32 device_number = 3;
+
+    // The name of the volume to present in the filesystem.
+    string filename = 4;
+
+    // True if this volume should be backed by another volume.
+    bool linked_volume = 5;
+
+    // If linked_volume is true, this is the volume to which we link.
+    uint32 target_volume_id = 6;
+
+    // The volume size in bytes.
+    uint64 volume_size_bytes = 7;
+}
