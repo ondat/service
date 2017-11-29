@@ -3,14 +3,23 @@
 SRC_DIR	= dataplane
 DST_DIR = dataplane
 
-MSGSRC		= dataplane
+# MSGSRC		= dataplane
 
-CPP_PB_OBJ	= dataplane.pb.cc
-CPP_PB_HDR	= dataplane.pb.h
+## Automate generation of source and object lists.
 
-GO_PB_OBJ	= dataplane.pb.go
+# List .proto files in SRC_DIR.
+PB_SRC_FULL		= $(wildcard $(SRC_DIR)/*.proto)
+# Strip the path, then strip the .proto suffix, from the list of files in PB_SRC_FULL.
+PB_SRC			= $(foreach src,$(PB_SRC_FULL),$(shell basename $(shell basename $(src)) .proto))
 
-PYTHON_PB_OBJ	= dataplane_pb2.py
+## Autogenerate target file lists for each source.
+# C++: One .pb.cc and one .pb.h per source.
+CPP_PB_OBJ		= $(foreach src,$(PB_SRC),${DST_DIR}/$(src).pb.cc)
+CPP_PB_HDR		= $(foreach src,$(PB_SRC),${DST_DIR}/$(src).pb.h)
+# Golang: One .pb.go per source.
+GO_PB_OBJ 		= $(foreach src,$(PB_SRC),${DST_DIR}/$(src).pb.go)
+# Python: One _pb2.py per source.
+PYTHON_PB_OBJ	= $(foreach src,$(PB_SRC),${DST_DIR}/$(src)_pb2.py)
 
 #############################################################################
 
@@ -52,10 +61,10 @@ vis_clean:
 
 CLEAN_TARGETS	+= protobuf_cpp_clean
 
-protobuf_cpp: ${DST_DIR}/${CPP_PB_OBJ} ${DST_DIR}/${CPP_PB_HDR}
+protobuf_cpp: ${CPP_PB_OBJ} ${CPP_PB_HDR}
 
 protobuf_cpp_clean:
-	cd ${DST_DIR} && rm -f ${CPP_PB_OBJ} ${CPP_PB_HDR}
+	rm -f ${CPP_PB_OBJ} ${CPP_PB_HDR}
 
 #############################################################################
 
@@ -66,10 +75,10 @@ CLEAN_TARGETS	+= protobuf_go_clean
 # Historical alias.
 go: protobuf_go
 
-protobuf_go: ${DST_DIR}/${GO_PB_OBJ}
+protobuf_go: ${GO_PB_OBJ}
 
 protobuf_go_clean:
-	cd ${DST_DIR} && rm -f ${GO_PB_OBJ}
+	rm -f ${GO_PB_OBJ}
 
 #############################################################################
 
@@ -77,9 +86,9 @@ protobuf_go_clean:
 
 CLEAN_TARGETS	+= protobuf_python_clean
 
-protobuf_python: ${DST_DIR}/${PYTHON_PB_OBJ}
+protobuf_python: ${PYTHON_PB_OBJ}
 
 protobuf_python_clean:
-	cd ${DST_DIR} && rm -f ${PYTHON_PB_OBJ}
+	rm -f ${PYTHON_PB_OBJ}
 
 #############################################################################
