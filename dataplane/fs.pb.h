@@ -36,6 +36,9 @@ namespace storageos_rpc {
 class FsVolume;
 class FsVolumeDefaultTypeInternal;
 extern FsVolumeDefaultTypeInternal _FsVolume_default_instance_;
+class FsVolumeList;
+class FsVolumeListDefaultTypeInternal;
+extern FsVolumeListDefaultTypeInternal _FsVolumeList_default_instance_;
 class FsVolumeListQuery;
 class FsVolumeListQueryDefaultTypeInternal;
 extern FsVolumeListQueryDefaultTypeInternal _FsVolumeListQuery_default_instance_;
@@ -469,6 +472,109 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   mutable int _cached_size_;
   friend struct protobuf_fs_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class FsVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.FsVolumeList) */ {
+ public:
+  FsVolumeList();
+  virtual ~FsVolumeList();
+
+  FsVolumeList(const FsVolumeList& from);
+
+  inline FsVolumeList& operator=(const FsVolumeList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  FsVolumeList(FsVolumeList&& from) noexcept
+    : FsVolumeList() {
+    *this = ::std::move(from);
+  }
+
+  inline FsVolumeList& operator=(FsVolumeList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FsVolumeList& default_instance();
+
+  static inline const FsVolumeList* internal_default_instance() {
+    return reinterpret_cast<const FsVolumeList*>(
+               &_FsVolumeList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(FsVolumeList* other);
+  friend void swap(FsVolumeList& a, FsVolumeList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FsVolumeList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  FsVolumeList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const FsVolumeList& from);
+  void MergeFrom(const FsVolumeList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(FsVolumeList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.FsVolume volumes = 1;
+  int volumes_size() const;
+  void clear_volumes();
+  static const int kVolumesFieldNumber = 1;
+  const ::storageos_rpc::FsVolume& volumes(int index) const;
+  ::storageos_rpc::FsVolume* mutable_volumes(int index);
+  ::storageos_rpc::FsVolume* add_volumes();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >*
+      mutable_volumes();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >&
+      volumes() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.FsVolumeList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume > volumes_;
+  mutable int _cached_size_;
+  friend struct protobuf_fs_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -736,10 +842,46 @@ inline void FsVolume::set_allocated_stats(::storageos_rpc::FsVolumeStats* stats)
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.FsVolume.stats)
 }
 
+// -------------------------------------------------------------------
+
+// FsVolumeList
+
+// repeated .storageos_rpc.FsVolume volumes = 1;
+inline int FsVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+inline void FsVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+inline const ::storageos_rpc::FsVolume& FsVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Get(index);
+}
+inline ::storageos_rpc::FsVolume* FsVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+inline ::storageos_rpc::FsVolume* FsVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >*
+FsVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.FsVolumeList.volumes)
+  return &volumes_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >&
+FsVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.FsVolumeList.volumes)
+  return volumes_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

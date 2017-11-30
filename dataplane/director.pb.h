@@ -35,12 +35,18 @@ namespace storageos_rpc {
 class DirectorRedirect;
 class DirectorRedirectDefaultTypeInternal;
 extern DirectorRedirectDefaultTypeInternal _DirectorRedirect_default_instance_;
+class DirectorRedirectList;
+class DirectorRedirectListDefaultTypeInternal;
+extern DirectorRedirectListDefaultTypeInternal _DirectorRedirectList_default_instance_;
 class DirectorRedirectListQuery;
 class DirectorRedirectListQueryDefaultTypeInternal;
 extern DirectorRedirectListQueryDefaultTypeInternal _DirectorRedirectListQuery_default_instance_;
 class DirectorVolume;
 class DirectorVolumeDefaultTypeInternal;
 extern DirectorVolumeDefaultTypeInternal _DirectorVolume_default_instance_;
+class DirectorVolumeList;
+class DirectorVolumeListDefaultTypeInternal;
+extern DirectorVolumeListDefaultTypeInternal _DirectorVolumeList_default_instance_;
 class DirectorVolumeListQuery;
 class DirectorVolumeListQueryDefaultTypeInternal;
 extern DirectorVolumeListQueryDefaultTypeInternal _DirectorVolumeListQuery_default_instance_;
@@ -414,6 +420,109 @@ class DirectorVolume : public ::google::protobuf::Message /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
+class DirectorVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DirectorVolumeList) */ {
+ public:
+  DirectorVolumeList();
+  virtual ~DirectorVolumeList();
+
+  DirectorVolumeList(const DirectorVolumeList& from);
+
+  inline DirectorVolumeList& operator=(const DirectorVolumeList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DirectorVolumeList(DirectorVolumeList&& from) noexcept
+    : DirectorVolumeList() {
+    *this = ::std::move(from);
+  }
+
+  inline DirectorVolumeList& operator=(DirectorVolumeList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DirectorVolumeList& default_instance();
+
+  static inline const DirectorVolumeList* internal_default_instance() {
+    return reinterpret_cast<const DirectorVolumeList*>(
+               &_DirectorVolumeList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(DirectorVolumeList* other);
+  friend void swap(DirectorVolumeList& a, DirectorVolumeList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DirectorVolumeList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DirectorVolumeList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DirectorVolumeList& from);
+  void MergeFrom(const DirectorVolumeList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DirectorVolumeList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.DirectorVolume volumes = 1;
+  int volumes_size() const;
+  void clear_volumes();
+  static const int kVolumesFieldNumber = 1;
+  const ::storageos_rpc::DirectorVolume& volumes(int index) const;
+  ::storageos_rpc::DirectorVolume* mutable_volumes(int index);
+  ::storageos_rpc::DirectorVolume* add_volumes();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >*
+      mutable_volumes();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >&
+      volumes() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DirectorVolumeList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume > volumes_;
+  mutable int _cached_size_;
+  friend struct protobuf_director_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class DirectorRedirectListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DirectorRedirectListQuery) */ {
  public:
   DirectorRedirectListQuery();
@@ -448,7 +557,7 @@ class DirectorRedirectListQuery : public ::google::protobuf::Message /* @@protoc
                &_DirectorRedirectListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(DirectorRedirectListQuery* other);
   friend void swap(DirectorRedirectListQuery& a, DirectorRedirectListQuery& b) {
@@ -552,7 +661,7 @@ class DirectorRedirect : public ::google::protobuf::Message /* @@protoc_insertio
                &_DirectorRedirect_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(DirectorRedirect* other);
   friend void swap(DirectorRedirect& a, DirectorRedirect& b) {
@@ -627,6 +736,109 @@ class DirectorRedirect : public ::google::protobuf::Message /* @@protoc_insertio
   ::storageos_rpc::DataplaneCommonConfig* cc_;
   ::google::protobuf::uint32 source_id_;
   ::google::protobuf::uint32 target_id_;
+  mutable int _cached_size_;
+  friend struct protobuf_director_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class DirectorRedirectList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DirectorRedirectList) */ {
+ public:
+  DirectorRedirectList();
+  virtual ~DirectorRedirectList();
+
+  DirectorRedirectList(const DirectorRedirectList& from);
+
+  inline DirectorRedirectList& operator=(const DirectorRedirectList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DirectorRedirectList(DirectorRedirectList&& from) noexcept
+    : DirectorRedirectList() {
+    *this = ::std::move(from);
+  }
+
+  inline DirectorRedirectList& operator=(DirectorRedirectList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DirectorRedirectList& default_instance();
+
+  static inline const DirectorRedirectList* internal_default_instance() {
+    return reinterpret_cast<const DirectorRedirectList*>(
+               &_DirectorRedirectList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    6;
+
+  void Swap(DirectorRedirectList* other);
+  friend void swap(DirectorRedirectList& a, DirectorRedirectList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DirectorRedirectList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DirectorRedirectList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DirectorRedirectList& from);
+  void MergeFrom(const DirectorRedirectList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DirectorRedirectList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.DirectorRedirect redirects = 1;
+  int redirects_size() const;
+  void clear_redirects();
+  static const int kRedirectsFieldNumber = 1;
+  const ::storageos_rpc::DirectorRedirect& redirects(int index) const;
+  ::storageos_rpc::DirectorRedirect* mutable_redirects(int index);
+  ::storageos_rpc::DirectorRedirect* add_redirects();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >*
+      mutable_redirects();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >&
+      redirects() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DirectorRedirectList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect > redirects_;
   mutable int _cached_size_;
   friend struct protobuf_director_2eproto::TableStruct;
 };
@@ -848,6 +1060,40 @@ inline void DirectorVolume::set_allocated_stats(::storageos_rpc::DirectorVolumeS
 
 // -------------------------------------------------------------------
 
+// DirectorVolumeList
+
+// repeated .storageos_rpc.DirectorVolume volumes = 1;
+inline int DirectorVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+inline void DirectorVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+inline const ::storageos_rpc::DirectorVolume& DirectorVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Get(index);
+}
+inline ::storageos_rpc::DirectorVolume* DirectorVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+inline ::storageos_rpc::DirectorVolume* DirectorVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >*
+DirectorVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DirectorVolumeList.volumes)
+  return &volumes_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >&
+DirectorVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_;
+}
+
+// -------------------------------------------------------------------
+
 // DirectorRedirectListQuery
 
 // repeated uint32 query_id = 1;
@@ -952,10 +1198,48 @@ inline void DirectorRedirect::set_target_id(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:storageos_rpc.DirectorRedirect.target_id)
 }
 
+// -------------------------------------------------------------------
+
+// DirectorRedirectList
+
+// repeated .storageos_rpc.DirectorRedirect redirects = 1;
+inline int DirectorRedirectList::redirects_size() const {
+  return redirects_.size();
+}
+inline void DirectorRedirectList::clear_redirects() {
+  redirects_.Clear();
+}
+inline const ::storageos_rpc::DirectorRedirect& DirectorRedirectList::redirects(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Get(index);
+}
+inline ::storageos_rpc::DirectorRedirect* DirectorRedirectList::mutable_redirects(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Mutable(index);
+}
+inline ::storageos_rpc::DirectorRedirect* DirectorRedirectList::add_redirects() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >*
+DirectorRedirectList::mutable_redirects() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DirectorRedirectList.redirects)
+  return &redirects_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >&
+DirectorRedirectList::redirects() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

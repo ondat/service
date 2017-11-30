@@ -11,8 +11,10 @@ It has these top-level messages:
 	DirectorVolumeListQuery
 	DirectorVolumeStats
 	DirectorVolume
+	DirectorVolumeList
 	DirectorRedirectListQuery
 	DirectorRedirect
+	DirectorRedirectList
 */
 package storageos_rpc
 
@@ -137,6 +139,22 @@ func (m *DirectorVolume) GetStats() *DirectorVolumeStats {
 	return nil
 }
 
+type DirectorVolumeList struct {
+	Volumes []*DirectorVolume `protobuf:"bytes,1,rep,name=volumes" json:"volumes,omitempty"`
+}
+
+func (m *DirectorVolumeList) Reset()                    { *m = DirectorVolumeList{} }
+func (m *DirectorVolumeList) String() string            { return proto.CompactTextString(m) }
+func (*DirectorVolumeList) ProtoMessage()               {}
+func (*DirectorVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *DirectorVolumeList) GetVolumes() []*DirectorVolume {
+	if m != nil {
+		return m.Volumes
+	}
+	return nil
+}
+
 type DirectorRedirectListQuery struct {
 	// A possibly-empty list of volume IDs to query.
 	QueryId []uint32 `protobuf:"varint,1,rep,packed,name=query_id,json=queryId" json:"query_id,omitempty"`
@@ -145,7 +163,7 @@ type DirectorRedirectListQuery struct {
 func (m *DirectorRedirectListQuery) Reset()                    { *m = DirectorRedirectListQuery{} }
 func (m *DirectorRedirectListQuery) String() string            { return proto.CompactTextString(m) }
 func (*DirectorRedirectListQuery) ProtoMessage()               {}
-func (*DirectorRedirectListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*DirectorRedirectListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 func (m *DirectorRedirectListQuery) GetQueryId() []uint32 {
 	if m != nil {
@@ -171,7 +189,7 @@ type DirectorRedirect struct {
 func (m *DirectorRedirect) Reset()                    { *m = DirectorRedirect{} }
 func (m *DirectorRedirect) String() string            { return proto.CompactTextString(m) }
 func (*DirectorRedirect) ProtoMessage()               {}
-func (*DirectorRedirect) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*DirectorRedirect) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
 
 func (m *DirectorRedirect) GetCc() *storageos_rpc1.DataplaneCommonConfig {
 	if m != nil {
@@ -194,12 +212,30 @@ func (m *DirectorRedirect) GetTargetId() uint32 {
 	return 0
 }
 
+type DirectorRedirectList struct {
+	Redirects []*DirectorRedirect `protobuf:"bytes,1,rep,name=redirects" json:"redirects,omitempty"`
+}
+
+func (m *DirectorRedirectList) Reset()                    { *m = DirectorRedirectList{} }
+func (m *DirectorRedirectList) String() string            { return proto.CompactTextString(m) }
+func (*DirectorRedirectList) ProtoMessage()               {}
+func (*DirectorRedirectList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *DirectorRedirectList) GetRedirects() []*DirectorRedirect {
+	if m != nil {
+		return m.Redirects
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*DirectorVolumeListQuery)(nil), "storageos_rpc.DirectorVolumeListQuery")
 	proto.RegisterType((*DirectorVolumeStats)(nil), "storageos_rpc.DirectorVolumeStats")
 	proto.RegisterType((*DirectorVolume)(nil), "storageos_rpc.DirectorVolume")
+	proto.RegisterType((*DirectorVolumeList)(nil), "storageos_rpc.DirectorVolumeList")
 	proto.RegisterType((*DirectorRedirectListQuery)(nil), "storageos_rpc.DirectorRedirectListQuery")
 	proto.RegisterType((*DirectorRedirect)(nil), "storageos_rpc.DirectorRedirect")
+	proto.RegisterType((*DirectorRedirectList)(nil), "storageos_rpc.DirectorRedirectList")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -227,8 +263,9 @@ type DirectorConfigClient interface {
 	// List configured volumes, optionally filtered using a DirectorVolumeListQuery
 	// message.
 	//
-	// returns  A stream of DirectorVolume objects, if any are found matching the filter
-	VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (DirectorConfig_VolumeListClient, error)
+	// returns  A DirectorVolumeList message containing DirectorVolume objects,
+	//          if any are found matching the filter
+	VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (*DirectorVolumeList, error)
 	// *
 	// Add configuration for a redirection volume specified in the DirectorRedirect message.
 	//
@@ -243,8 +280,9 @@ type DirectorConfigClient interface {
 	// List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
 	// message.
 	//
-	// returns a stream of DirectorRedirect mesages, if any are found matching the filter.
-	RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (DirectorConfig_RedirectListClient, error)
+	// returns A DirectorRedirectList message containing DirectorRedirect mesages,
+	//         if any are found matching the filter.
+	RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (*DirectorRedirectList, error)
 }
 
 type directorConfigClient struct {
@@ -273,36 +311,13 @@ func (c *directorConfigClient) VolumeUnconfigure(ctx context.Context, in *Direct
 	return out, nil
 }
 
-func (c *directorConfigClient) VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (DirectorConfig_VolumeListClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_DirectorConfig_serviceDesc.Streams[0], c.cc, "/storageos_rpc.DirectorConfig/VolumeList", opts...)
+func (c *directorConfigClient) VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (*DirectorVolumeList, error) {
+	out := new(DirectorVolumeList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &directorConfigVolumeListClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type DirectorConfig_VolumeListClient interface {
-	Recv() (*DirectorVolume, error)
-	grpc.ClientStream
-}
-
-type directorConfigVolumeListClient struct {
-	grpc.ClientStream
-}
-
-func (x *directorConfigVolumeListClient) Recv() (*DirectorVolume, error) {
-	m := new(DirectorVolume)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *directorConfigClient) RedirectConfigure(ctx context.Context, in *DirectorRedirect, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
@@ -323,36 +338,13 @@ func (c *directorConfigClient) RedirectUnconfigure(ctx context.Context, in *Dire
 	return out, nil
 }
 
-func (c *directorConfigClient) RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (DirectorConfig_RedirectListClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_DirectorConfig_serviceDesc.Streams[1], c.cc, "/storageos_rpc.DirectorConfig/RedirectList", opts...)
+func (c *directorConfigClient) RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (*DirectorRedirectList, error) {
+	out := new(DirectorRedirectList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/RedirectList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &directorConfigRedirectListClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type DirectorConfig_RedirectListClient interface {
-	Recv() (*DirectorRedirect, error)
-	grpc.ClientStream
-}
-
-type directorConfigRedirectListClient struct {
-	grpc.ClientStream
-}
-
-func (x *directorConfigRedirectListClient) Recv() (*DirectorRedirect, error) {
-	m := new(DirectorRedirect)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // Server API for DirectorConfig service
@@ -372,8 +364,9 @@ type DirectorConfigServer interface {
 	// List configured volumes, optionally filtered using a DirectorVolumeListQuery
 	// message.
 	//
-	// returns  A stream of DirectorVolume objects, if any are found matching the filter
-	VolumeList(*DirectorVolumeListQuery, DirectorConfig_VolumeListServer) error
+	// returns  A DirectorVolumeList message containing DirectorVolume objects,
+	//          if any are found matching the filter
+	VolumeList(context.Context, *DirectorVolumeListQuery) (*DirectorVolumeList, error)
 	// *
 	// Add configuration for a redirection volume specified in the DirectorRedirect message.
 	//
@@ -388,8 +381,9 @@ type DirectorConfigServer interface {
 	// List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
 	// message.
 	//
-	// returns a stream of DirectorRedirect mesages, if any are found matching the filter.
-	RedirectList(*DirectorRedirectListQuery, DirectorConfig_RedirectListServer) error
+	// returns A DirectorRedirectList message containing DirectorRedirect mesages,
+	//         if any are found matching the filter.
+	RedirectList(context.Context, *DirectorRedirectListQuery) (*DirectorRedirectList, error)
 }
 
 func RegisterDirectorConfigServer(s *grpc.Server, srv DirectorConfigServer) {
@@ -432,25 +426,22 @@ func _DirectorConfig_VolumeUnconfigure_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_VolumeList_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DirectorVolumeListQuery)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _DirectorConfig_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorVolumeListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(DirectorConfigServer).VolumeList(m, &directorConfigVolumeListServer{stream})
-}
-
-type DirectorConfig_VolumeListServer interface {
-	Send(*DirectorVolume) error
-	grpc.ServerStream
-}
-
-type directorConfigVolumeListServer struct {
-	grpc.ServerStream
-}
-
-func (x *directorConfigVolumeListServer) Send(m *DirectorVolume) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(DirectorConfigServer).VolumeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.DirectorConfig/VolumeList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectorConfigServer).VolumeList(ctx, req.(*DirectorVolumeListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DirectorConfig_RedirectConfigure_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -489,25 +480,22 @@ func _DirectorConfig_RedirectUnconfigure_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_RedirectList_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DirectorRedirectListQuery)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _DirectorConfig_RedirectList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorRedirectListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(DirectorConfigServer).RedirectList(m, &directorConfigRedirectListServer{stream})
-}
-
-type DirectorConfig_RedirectListServer interface {
-	Send(*DirectorRedirect) error
-	grpc.ServerStream
-}
-
-type directorConfigRedirectListServer struct {
-	grpc.ServerStream
-}
-
-func (x *directorConfigRedirectListServer) Send(m *DirectorRedirect) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(DirectorConfigServer).RedirectList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.DirectorConfig/RedirectList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectorConfigServer).RedirectList(ctx, req.(*DirectorRedirectListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _DirectorConfig_serviceDesc = grpc.ServiceDesc{
@@ -523,6 +511,10 @@ var _DirectorConfig_serviceDesc = grpc.ServiceDesc{
 			Handler:    _DirectorConfig_VolumeUnconfigure_Handler,
 		},
 		{
+			MethodName: "VolumeList",
+			Handler:    _DirectorConfig_VolumeList_Handler,
+		},
+		{
 			MethodName: "RedirectConfigure",
 			Handler:    _DirectorConfig_RedirectConfigure_Handler,
 		},
@@ -530,52 +522,47 @@ var _DirectorConfig_serviceDesc = grpc.ServiceDesc{
 			MethodName: "RedirectUnconfigure",
 			Handler:    _DirectorConfig_RedirectUnconfigure_Handler,
 		},
-	},
-	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "VolumeList",
-			Handler:       _DirectorConfig_VolumeList_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "RedirectList",
-			Handler:       _DirectorConfig_RedirectList_Handler,
-			ServerStreams: true,
+			MethodName: "RedirectList",
+			Handler:    _DirectorConfig_RedirectList_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "director.proto",
 }
 
 func init() { proto.RegisterFile("director.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 437 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xcf, 0x6b, 0x14, 0x31,
-	0x18, 0xed, 0xec, 0x6e, 0xdb, 0xdd, 0xaf, 0xdd, 0xda, 0xa6, 0x88, 0xd3, 0x95, 0xd2, 0x21, 0x88,
-	0xcc, 0x69, 0x91, 0x2a, 0xd2, 0x7b, 0x7b, 0x19, 0x28, 0x52, 0x23, 0xea, 0x49, 0x96, 0x98, 0xc4,
-	0x25, 0x30, 0x3b, 0x49, 0x93, 0x8c, 0xe2, 0xd5, 0x73, 0xff, 0x68, 0x49, 0xd2, 0xe9, 0xec, 0xae,
-	0x38, 0x0b, 0xda, 0x5b, 0xf2, 0xde, 0xf7, 0xeb, 0xbd, 0x2f, 0x04, 0x0e, 0xb8, 0x34, 0x82, 0x39,
-	0x65, 0xa6, 0xda, 0x28, 0xa7, 0xd0, 0xd8, 0x3a, 0x65, 0xe8, 0x5c, 0x28, 0x3b, 0x33, 0x9a, 0x4d,
-	0xf6, 0x99, 0x5a, 0x2c, 0x54, 0x15, 0x49, 0x7c, 0x01, 0xcf, 0xae, 0xee, 0xc3, 0x3f, 0xa9, 0xb2,
-	0x5e, 0x88, 0x6b, 0x69, 0xdd, 0xfb, 0x5a, 0x98, 0x9f, 0xe8, 0x14, 0xe0, 0x7b, 0x80, 0x66, 0x92,
-	0xdb, 0x34, 0xc9, 0xfa, 0xf9, 0x98, 0x8c, 0x22, 0x52, 0x70, 0x8b, 0x9f, 0xc2, 0xf1, 0x6a, 0xe6,
-	0x07, 0x47, 0x9d, 0xc5, 0x77, 0x3d, 0x38, 0x58, 0xc5, 0xd1, 0x1b, 0xe8, 0x31, 0x96, 0x26, 0x59,
-	0x92, 0xef, 0x9d, 0xbf, 0x98, 0xae, 0x4c, 0x33, 0xbd, 0xa2, 0x8e, 0xea, 0x92, 0x56, 0xe2, 0x32,
-	0x4c, 0x75, 0xa9, 0xaa, 0x6f, 0x72, 0x4e, 0x7a, 0x8c, 0xa1, 0xe7, 0x30, 0x7a, 0x68, 0x9f, 0xf6,
-	0xb2, 0x24, 0x1f, 0x93, 0x61, 0xd3, 0xdd, 0xcf, 0xf6, 0xc3, 0x48, 0x27, 0x66, 0x5a, 0x6a, 0x91,
-	0xf6, 0x03, 0x3b, 0x0a, 0xc8, 0x8d, 0xd4, 0xc2, 0xe7, 0x1a, 0x41, 0x79, 0x64, 0x07, 0x31, 0xd7,
-	0x03, 0x81, 0x3c, 0x84, 0xfe, 0xad, 0xb2, 0xe9, 0x76, 0x96, 0xe4, 0x03, 0xe2, 0x8f, 0xe8, 0x0c,
-	0xf6, 0x8c, 0xd0, 0xa5, 0x64, 0x34, 0x48, 0xdd, 0x09, 0x52, 0xe1, 0x1e, 0x2a, 0xb8, 0x45, 0x17,
-	0xb0, 0x6d, 0xbd, 0xba, 0x74, 0x37, 0x88, 0xc0, 0xeb, 0x22, 0xfe, 0xf4, 0x81, 0xc4, 0x04, 0xfc,
-	0x16, 0x4e, 0x1a, 0x96, 0x88, 0xb8, 0x98, 0xd6, 0xe1, 0x13, 0x18, 0xde, 0xfa, 0x83, 0x57, 0x18,
-	0xfd, 0xdd, 0x0d, 0xf7, 0x82, 0xe3, 0x5f, 0x09, 0x1c, 0xae, 0x27, 0xfe, 0xbb, 0x91, 0x56, 0xd5,
-	0x86, 0x2d, 0x1b, 0x19, 0x81, 0x82, 0x7b, 0xd2, 0x51, 0x33, 0x17, 0xce, 0x93, 0xd1, 0xc7, 0x61,
-	0x04, 0x0a, 0x7e, 0x7e, 0x37, 0x68, 0x77, 0x19, 0x0b, 0xa2, 0x6b, 0x78, 0x12, 0x55, 0xc6, 0x7b,
-	0x6d, 0x04, 0x3a, 0xed, 0x74, 0x63, 0x92, 0xae, 0xd1, 0x44, 0x33, 0x22, 0x6c, 0x5d, 0x3a, 0xbc,
-	0x85, 0xde, 0xc1, 0x51, 0x8c, 0xfa, 0x58, 0xb1, 0xc7, 0xa8, 0xf7, 0x19, 0xa0, 0x7d, 0xc5, 0xe8,
-	0x65, 0x67, 0xa1, 0x87, 0x35, 0x4c, 0xba, 0x1b, 0xe2, 0xad, 0x57, 0x09, 0xba, 0x81, 0xa3, 0x66,
-	0x0b, 0xad, 0xf0, 0xb3, 0xbf, 0xe4, 0x35, 0x91, 0x9d, 0xa3, 0x12, 0x38, 0x6e, 0xe2, 0x96, 0xc5,
-	0xff, 0x57, 0xcd, 0x2f, 0xb0, 0xbf, 0xfc, 0xc8, 0x50, 0xbe, 0xa1, 0x58, 0x6b, 0xc1, 0xa6, 0xb6,
-	0xde, 0x84, 0xaf, 0x3b, 0xe1, 0xcb, 0x78, 0xfd, 0x3b, 0x00, 0x00, 0xff, 0xff, 0xbd, 0x14, 0xf7,
-	0x51, 0x61, 0x04, 0x00, 0x00,
+	// 478 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xc1, 0x6e, 0x13, 0x31,
+	0x10, 0xcd, 0x26, 0x69, 0x93, 0x4c, 0x9a, 0xd2, 0xba, 0x20, 0xb6, 0x41, 0x55, 0x83, 0x41, 0x68,
+	0x4f, 0x39, 0x04, 0x04, 0xbd, 0x70, 0x6a, 0x2f, 0x2b, 0x15, 0x54, 0x8c, 0x8a, 0xc4, 0x29, 0x5a,
+	0xbc, 0x26, 0xb2, 0x94, 0xc4, 0xae, 0xed, 0x05, 0x71, 0xe5, 0xcc, 0x81, 0x4f, 0x46, 0xf6, 0x74,
+	0xbb, 0x49, 0x0a, 0x09, 0x82, 0xde, 0xd6, 0xef, 0xcd, 0x8c, 0xe7, 0xbd, 0x67, 0x2d, 0xec, 0xe6,
+	0xd2, 0x08, 0xee, 0x94, 0x19, 0x6a, 0xa3, 0x9c, 0x22, 0x3d, 0xeb, 0x94, 0xc9, 0x26, 0x42, 0xd9,
+	0xb1, 0xd1, 0xbc, 0xbf, 0xc3, 0xd5, 0x6c, 0xa6, 0xe6, 0x48, 0xd2, 0x13, 0x78, 0x78, 0x76, 0x5d,
+	0xfe, 0x41, 0x4d, 0x8b, 0x99, 0x38, 0x97, 0xd6, 0xbd, 0x2b, 0x84, 0xf9, 0x46, 0x8e, 0x00, 0xbe,
+	0x04, 0x68, 0x2c, 0x73, 0x1b, 0x47, 0x83, 0x46, 0xd2, 0x63, 0x1d, 0x44, 0xd2, 0xdc, 0xd2, 0x07,
+	0x70, 0xb0, 0xdc, 0xf9, 0xde, 0x65, 0xce, 0xd2, 0x1f, 0x75, 0xd8, 0x5d, 0xc6, 0xc9, 0x0b, 0xa8,
+	0x73, 0x1e, 0x47, 0x83, 0x28, 0xe9, 0x8e, 0x9e, 0x0e, 0x97, 0xb6, 0x19, 0x9e, 0x65, 0x2e, 0xd3,
+	0xd3, 0x6c, 0x2e, 0x4e, 0xc3, 0x56, 0xa7, 0x6a, 0xfe, 0x59, 0x4e, 0x58, 0x9d, 0x73, 0xf2, 0x08,
+	0x3a, 0x37, 0xd7, 0xc7, 0xf5, 0x41, 0x94, 0xf4, 0x58, 0xbb, 0xbc, 0xdd, 0xef, 0xf6, 0xd5, 0x48,
+	0x27, 0xc6, 0x5a, 0x6a, 0x11, 0x37, 0x02, 0xdb, 0x09, 0xc8, 0x85, 0xd4, 0xc2, 0xf7, 0x1a, 0x91,
+	0xe5, 0xc8, 0x36, 0xb1, 0xd7, 0x03, 0x81, 0xdc, 0x83, 0xc6, 0x95, 0xb2, 0xf1, 0xd6, 0x20, 0x4a,
+	0x9a, 0xcc, 0x7f, 0x92, 0x63, 0xe8, 0x1a, 0xa1, 0xa7, 0x92, 0x67, 0x41, 0xea, 0x76, 0x90, 0x0a,
+	0xd7, 0x50, 0x9a, 0x5b, 0x72, 0x02, 0x5b, 0xd6, 0xab, 0x8b, 0x5b, 0x41, 0x04, 0x5d, 0x15, 0x71,
+	0xdb, 0x07, 0x86, 0x0d, 0xf4, 0x0d, 0x90, 0xdb, 0xfe, 0x92, 0x57, 0xd0, 0x42, 0x29, 0xe8, 0x6b,
+	0x77, 0x74, 0xb4, 0x76, 0x22, 0x2b, 0xab, 0xe9, 0x4b, 0x38, 0x2c, 0x29, 0x26, 0x30, 0xe7, 0x2a,
+	0xb0, 0x43, 0x68, 0x5f, 0xf9, 0x0f, 0x6f, 0x18, 0xc6, 0xd5, 0x0a, 0xe7, 0x34, 0xa7, 0xdf, 0x23,
+	0xd8, 0x5b, 0x6d, 0xfc, 0xf7, 0x5c, 0xac, 0x2a, 0x0c, 0x5f, 0xcc, 0x05, 0x81, 0x34, 0xf7, 0xa4,
+	0xcb, 0xcc, 0x44, 0x38, 0x4f, 0x62, 0x2c, 0x6d, 0x04, 0xd2, 0x9c, 0x5e, 0xc2, 0xfd, 0xdf, 0x2d,
+	0x4f, 0x5e, 0xfb, 0xb4, 0xf0, 0x5c, 0xfa, 0x71, 0xfc, 0x07, 0x3f, 0xca, 0x3e, 0x56, 0x75, 0x8c,
+	0x7e, 0x36, 0xab, 0x17, 0x87, 0x7b, 0x92, 0x73, 0xb8, 0x87, 0xce, 0xe1, 0xb9, 0x30, 0x82, 0xac,
+	0x77, 0xb8, 0x1f, 0xaf, 0xd0, 0x4c, 0x73, 0x26, 0x6c, 0x31, 0x75, 0xb4, 0x46, 0xde, 0xc2, 0x3e,
+	0x56, 0x5d, 0xce, 0xf9, 0x5d, 0xcc, 0xfb, 0x08, 0xb0, 0xf0, 0x16, 0x9e, 0xad, 0x1d, 0x74, 0x93,
+	0x6e, 0xff, 0xf1, 0xc6, 0x3a, 0x5a, 0x23, 0x17, 0xb0, 0x5f, 0x5a, 0x54, 0x49, 0xdf, 0x64, 0xe6,
+	0xda, 0x65, 0x19, 0x1c, 0x94, 0x75, 0x8b, 0xf2, 0xff, 0x6b, 0xe6, 0x18, 0x76, 0x96, 0x1e, 0x40,
+	0xb2, 0x61, 0x58, 0x65, 0xc2, 0x93, 0xbf, 0xa8, 0xa4, 0xb5, 0x4f, 0xdb, 0xe1, 0xe7, 0xf6, 0xfc,
+	0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x7a, 0x05, 0x24, 0xa2, 0x0b, 0x05, 0x00, 0x00,
 }

@@ -33,6 +33,11 @@ public:
  ::google::protobuf::internal::ExplicitlyConstructed<DirectorVolume>
      _instance;
 } _DirectorVolume_default_instance_;
+class DirectorVolumeListDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DirectorVolumeList>
+     _instance;
+} _DirectorVolumeList_default_instance_;
 class DirectorRedirectListQueryDefaultTypeInternal {
 public:
  ::google::protobuf::internal::ExplicitlyConstructed<DirectorRedirectListQuery>
@@ -43,13 +48,18 @@ public:
  ::google::protobuf::internal::ExplicitlyConstructed<DirectorRedirect>
      _instance;
 } _DirectorRedirect_default_instance_;
+class DirectorRedirectListDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DirectorRedirectList>
+     _instance;
+} _DirectorRedirectList_default_instance_;
 
 namespace protobuf_director_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[5];
+::google::protobuf::Metadata file_level_metadata[7];
 
 }  // namespace
 
@@ -64,6 +74,8 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
@@ -96,6 +108,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorVolume, replica_ids_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorVolume, stats_),
   ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorVolumeList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorVolumeList, volumes_),
+  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirectListQuery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -109,21 +127,31 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirect, cc_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirect, source_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirect, target_id_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirectList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorRedirectList, redirects_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(DirectorVolumeListQuery)},
   { 6, -1, sizeof(DirectorVolumeStats)},
   { 11, -1, sizeof(DirectorVolume)},
-  { 23, -1, sizeof(DirectorRedirectListQuery)},
-  { 29, -1, sizeof(DirectorRedirect)},
+  { 23, -1, sizeof(DirectorVolumeList)},
+  { 29, -1, sizeof(DirectorRedirectListQuery)},
+  { 35, -1, sizeof(DirectorRedirect)},
+  { 43, -1, sizeof(DirectorRedirectList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeStats_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolume_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeList_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorRedirectListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorRedirect_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorRedirectList_default_instance_),
 };
 
 namespace {
@@ -144,7 +172,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 5);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 7);
 }
 
 }  // namespace
@@ -159,11 +187,15 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DirectorVolumeStats_default_instance_);_DirectorVolume_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_DirectorVolume_default_instance_);_DirectorRedirectListQuery_default_instance_._instance.DefaultConstruct();
+      &_DirectorVolume_default_instance_);_DirectorVolumeList_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DirectorVolumeList_default_instance_);_DirectorRedirectListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DirectorRedirectListQuery_default_instance_);_DirectorRedirect_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_DirectorRedirect_default_instance_);_DirectorVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
+      &_DirectorRedirect_default_instance_);_DirectorRedirectList_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DirectorRedirectList_default_instance_);_DirectorVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
       ::storageos_rpc::DataplaneCommonConfig::internal_default_instance());
   _DirectorVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::storageos_rpc::DirectorVolumeStats*>(
       ::storageos_rpc::DirectorVolumeStats::internal_default_instance());
@@ -187,27 +219,31 @@ void AddDescriptorsImpl() {
       "\001(\r\022\022\n\nwrite_pipe\030\003 \001(\r\022\021\n\tread_pipe\030\004 \001"
       "(\r\022\013\n\003qos\030\005 \001(\004\022\023\n\013replica_ids\030\006 \003(\r\0221\n\005"
       "stats\030\007 \001(\0132\".storageos_rpc.DirectorVolu"
-      "meStats\"-\n\031DirectorRedirectListQuery\022\020\n\010"
-      "query_id\030\001 \003(\r\"j\n\020DirectorRedirect\0220\n\002cc"
-      "\030\001 \001(\0132$.storageos_rpc.DataplaneCommonCo"
-      "nfig\022\021\n\tsource_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001"
-      "(\r2\214\004\n\016DirectorConfig\022L\n\017VolumeConfigure"
-      "\022\035.storageos_rpc.DirectorVolume\032\030.storag"
-      "eos_rpc.RpcResult\"\000\022N\n\021VolumeUnconfigure"
-      "\022\035.storageos_rpc.DirectorVolume\032\030.storag"
-      "eos_rpc.RpcResult\"\000\022W\n\nVolumeList\022&.stor"
-      "ageos_rpc.DirectorVolumeListQuery\032\035.stor"
-      "ageos_rpc.DirectorVolume\"\0000\001\022P\n\021Redirect"
-      "Configure\022\037.storageos_rpc.DirectorRedire"
-      "ct\032\030.storageos_rpc.RpcResult\"\000\022R\n\023Redire"
-      "ctUnconfigure\022\037.storageos_rpc.DirectorRe"
-      "direct\032\030.storageos_rpc.RpcResult\"\000\022]\n\014Re"
-      "directList\022(.storageos_rpc.DirectorRedir"
-      "ectListQuery\032\037.storageos_rpc.DirectorRed"
-      "irect\"\0000\001b\006proto3"
+      "meStats\"D\n\022DirectorVolumeList\022.\n\007volumes"
+      "\030\001 \003(\0132\035.storageos_rpc.DirectorVolume\"-\n"
+      "\031DirectorRedirectListQuery\022\020\n\010query_id\030\001"
+      " \003(\r\"j\n\020DirectorRedirect\0220\n\002cc\030\001 \001(\0132$.s"
+      "torageos_rpc.DataplaneCommonConfig\022\021\n\tso"
+      "urce_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\"J\n\024Dire"
+      "ctorRedirectList\0222\n\tredirects\030\001 \003(\0132\037.st"
+      "orageos_rpc.DirectorRedirect2\220\004\n\016Directo"
+      "rConfig\022L\n\017VolumeConfigure\022\035.storageos_r"
+      "pc.DirectorVolume\032\030.storageos_rpc.RpcRes"
+      "ult\"\000\022N\n\021VolumeUnconfigure\022\035.storageos_r"
+      "pc.DirectorVolume\032\030.storageos_rpc.RpcRes"
+      "ult\"\000\022Y\n\nVolumeList\022&.storageos_rpc.Dire"
+      "ctorVolumeListQuery\032!.storageos_rpc.Dire"
+      "ctorVolumeList\"\000\022P\n\021RedirectConfigure\022\037."
+      "storageos_rpc.DirectorRedirect\032\030.storage"
+      "os_rpc.RpcResult\"\000\022R\n\023RedirectUnconfigur"
+      "e\022\037.storageos_rpc.DirectorRedirect\032\030.sto"
+      "rageos_rpc.RpcResult\"\000\022_\n\014RedirectList\022("
+      ".storageos_rpc.DirectorRedirectListQuery"
+      "\032#.storageos_rpc.DirectorRedirectList\"\000b"
+      "\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1017);
+      descriptor, 1167);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "director.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();
@@ -1400,6 +1436,280 @@ void DirectorVolume::set_allocated_stats(::storageos_rpc::DirectorVolumeStats* s
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DirectorVolumeList::kVolumesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DirectorVolumeList::DirectorVolumeList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_director_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:storageos_rpc.DirectorVolumeList)
+}
+DirectorVolumeList::DirectorVolumeList(const DirectorVolumeList& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      volumes_(from.volumes_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:storageos_rpc.DirectorVolumeList)
+}
+
+void DirectorVolumeList::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+DirectorVolumeList::~DirectorVolumeList() {
+  // @@protoc_insertion_point(destructor:storageos_rpc.DirectorVolumeList)
+  SharedDtor();
+}
+
+void DirectorVolumeList::SharedDtor() {
+}
+
+void DirectorVolumeList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DirectorVolumeList::descriptor() {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DirectorVolumeList& DirectorVolumeList::default_instance() {
+  protobuf_director_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DirectorVolumeList* DirectorVolumeList::New(::google::protobuf::Arena* arena) const {
+  DirectorVolumeList* n = new DirectorVolumeList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DirectorVolumeList::Clear() {
+// @@protoc_insertion_point(message_clear_start:storageos_rpc.DirectorVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  volumes_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool DirectorVolumeList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:storageos_rpc.DirectorVolumeList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .storageos_rpc.DirectorVolume volumes = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_volumes()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:storageos_rpc.DirectorVolumeList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:storageos_rpc.DirectorVolumeList)
+  return false;
+#undef DO_
+}
+
+void DirectorVolumeList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:storageos_rpc.DirectorVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.DirectorVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->volumes(static_cast<int>(i)), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:storageos_rpc.DirectorVolumeList)
+}
+
+::google::protobuf::uint8* DirectorVolumeList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:storageos_rpc.DirectorVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.DirectorVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->volumes(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:storageos_rpc.DirectorVolumeList)
+  return target;
+}
+
+size_t DirectorVolumeList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:storageos_rpc.DirectorVolumeList)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .storageos_rpc.DirectorVolume volumes = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->volumes_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->volumes(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DirectorVolumeList::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:storageos_rpc.DirectorVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DirectorVolumeList* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DirectorVolumeList>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:storageos_rpc.DirectorVolumeList)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:storageos_rpc.DirectorVolumeList)
+    MergeFrom(*source);
+  }
+}
+
+void DirectorVolumeList::MergeFrom(const DirectorVolumeList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:storageos_rpc.DirectorVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  volumes_.MergeFrom(from.volumes_);
+}
+
+void DirectorVolumeList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:storageos_rpc.DirectorVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DirectorVolumeList::CopyFrom(const DirectorVolumeList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:storageos_rpc.DirectorVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DirectorVolumeList::IsInitialized() const {
+  return true;
+}
+
+void DirectorVolumeList::Swap(DirectorVolumeList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DirectorVolumeList::InternalSwap(DirectorVolumeList* other) {
+  using std::swap;
+  volumes_.InternalSwap(&other->volumes_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DirectorVolumeList::GetMetadata() const {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DirectorVolumeList
+
+// repeated .storageos_rpc.DirectorVolume volumes = 1;
+int DirectorVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+void DirectorVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+const ::storageos_rpc::DirectorVolume& DirectorVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Get(index);
+}
+::storageos_rpc::DirectorVolume* DirectorVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+::storageos_rpc::DirectorVolume* DirectorVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >*
+DirectorVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DirectorVolumeList.volumes)
+  return &volumes_;
+}
+const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorVolume >&
+DirectorVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DirectorVolumeList.volumes)
+  return volumes_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int DirectorRedirectListQuery::kQueryIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -2085,6 +2395,280 @@ void DirectorRedirect::set_target_id(::google::protobuf::uint32 value) {
   
   target_id_ = value;
   // @@protoc_insertion_point(field_set:storageos_rpc.DirectorRedirect.target_id)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DirectorRedirectList::kRedirectsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DirectorRedirectList::DirectorRedirectList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_director_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:storageos_rpc.DirectorRedirectList)
+}
+DirectorRedirectList::DirectorRedirectList(const DirectorRedirectList& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      redirects_(from.redirects_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:storageos_rpc.DirectorRedirectList)
+}
+
+void DirectorRedirectList::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+DirectorRedirectList::~DirectorRedirectList() {
+  // @@protoc_insertion_point(destructor:storageos_rpc.DirectorRedirectList)
+  SharedDtor();
+}
+
+void DirectorRedirectList::SharedDtor() {
+}
+
+void DirectorRedirectList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DirectorRedirectList::descriptor() {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DirectorRedirectList& DirectorRedirectList::default_instance() {
+  protobuf_director_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DirectorRedirectList* DirectorRedirectList::New(::google::protobuf::Arena* arena) const {
+  DirectorRedirectList* n = new DirectorRedirectList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DirectorRedirectList::Clear() {
+// @@protoc_insertion_point(message_clear_start:storageos_rpc.DirectorRedirectList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  redirects_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool DirectorRedirectList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:storageos_rpc.DirectorRedirectList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .storageos_rpc.DirectorRedirect redirects = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_redirects()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:storageos_rpc.DirectorRedirectList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:storageos_rpc.DirectorRedirectList)
+  return false;
+#undef DO_
+}
+
+void DirectorRedirectList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:storageos_rpc.DirectorRedirectList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.DirectorRedirect redirects = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->redirects_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->redirects(static_cast<int>(i)), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:storageos_rpc.DirectorRedirectList)
+}
+
+::google::protobuf::uint8* DirectorRedirectList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:storageos_rpc.DirectorRedirectList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.DirectorRedirect redirects = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->redirects_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->redirects(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:storageos_rpc.DirectorRedirectList)
+  return target;
+}
+
+size_t DirectorRedirectList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:storageos_rpc.DirectorRedirectList)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .storageos_rpc.DirectorRedirect redirects = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->redirects_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->redirects(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DirectorRedirectList::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:storageos_rpc.DirectorRedirectList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DirectorRedirectList* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DirectorRedirectList>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:storageos_rpc.DirectorRedirectList)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:storageos_rpc.DirectorRedirectList)
+    MergeFrom(*source);
+  }
+}
+
+void DirectorRedirectList::MergeFrom(const DirectorRedirectList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:storageos_rpc.DirectorRedirectList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  redirects_.MergeFrom(from.redirects_);
+}
+
+void DirectorRedirectList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:storageos_rpc.DirectorRedirectList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DirectorRedirectList::CopyFrom(const DirectorRedirectList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:storageos_rpc.DirectorRedirectList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DirectorRedirectList::IsInitialized() const {
+  return true;
+}
+
+void DirectorRedirectList::Swap(DirectorRedirectList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DirectorRedirectList::InternalSwap(DirectorRedirectList* other) {
+  using std::swap;
+  redirects_.InternalSwap(&other->redirects_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DirectorRedirectList::GetMetadata() const {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DirectorRedirectList
+
+// repeated .storageos_rpc.DirectorRedirect redirects = 1;
+int DirectorRedirectList::redirects_size() const {
+  return redirects_.size();
+}
+void DirectorRedirectList::clear_redirects() {
+  redirects_.Clear();
+}
+const ::storageos_rpc::DirectorRedirect& DirectorRedirectList::redirects(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Get(index);
+}
+::storageos_rpc::DirectorRedirect* DirectorRedirectList::mutable_redirects(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Mutable(index);
+}
+::storageos_rpc::DirectorRedirect* DirectorRedirectList::add_redirects() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >*
+DirectorRedirectList::mutable_redirects() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DirectorRedirectList.redirects)
+  return &redirects_;
+}
+const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DirectorRedirect >&
+DirectorRedirectList::redirects() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DirectorRedirectList.redirects)
+  return redirects_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

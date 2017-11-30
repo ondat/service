@@ -38,6 +38,9 @@ extern DfsHostDefaultTypeInternal _DfsHost_default_instance_;
 class DfsHostCredentials;
 class DfsHostCredentialsDefaultTypeInternal;
 extern DfsHostCredentialsDefaultTypeInternal _DfsHostCredentials_default_instance_;
+class DfsHostList;
+class DfsHostListDefaultTypeInternal;
+extern DfsHostListDefaultTypeInternal _DfsHostList_default_instance_;
 class DfsHostListQuery;
 class DfsHostListQueryDefaultTypeInternal;
 extern DfsHostListQueryDefaultTypeInternal _DfsHostListQuery_default_instance_;
@@ -47,6 +50,9 @@ extern DfsVolumeDefaultTypeInternal _DfsVolume_default_instance_;
 class DfsVolumeCredentials;
 class DfsVolumeCredentialsDefaultTypeInternal;
 extern DfsVolumeCredentialsDefaultTypeInternal _DfsVolumeCredentials_default_instance_;
+class DfsVolumeList;
+class DfsVolumeListDefaultTypeInternal;
+extern DfsVolumeListDefaultTypeInternal _DfsVolumeList_default_instance_;
 class DfsVolumeListQuery;
 class DfsVolumeListQueryDefaultTypeInternal;
 extern DfsVolumeListQueryDefaultTypeInternal _DfsVolumeListQuery_default_instance_;
@@ -303,6 +309,109 @@ class DfsHost : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 };
 // -------------------------------------------------------------------
 
+class DfsHostList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsHostList) */ {
+ public:
+  DfsHostList();
+  virtual ~DfsHostList();
+
+  DfsHostList(const DfsHostList& from);
+
+  inline DfsHostList& operator=(const DfsHostList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DfsHostList(DfsHostList&& from) noexcept
+    : DfsHostList() {
+    *this = ::std::move(from);
+  }
+
+  inline DfsHostList& operator=(DfsHostList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DfsHostList& default_instance();
+
+  static inline const DfsHostList* internal_default_instance() {
+    return reinterpret_cast<const DfsHostList*>(
+               &_DfsHostList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    2;
+
+  void Swap(DfsHostList* other);
+  friend void swap(DfsHostList& a, DfsHostList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DfsHostList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DfsHostList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DfsHostList& from);
+  void MergeFrom(const DfsHostList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DfsHostList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.DfsHost hosts = 1;
+  int hosts_size() const;
+  void clear_hosts();
+  static const int kHostsFieldNumber = 1;
+  const ::storageos_rpc::DfsHost& hosts(int index) const;
+  ::storageos_rpc::DfsHost* mutable_hosts(int index);
+  ::storageos_rpc::DfsHost* add_hosts();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsHost >*
+      mutable_hosts();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsHost >&
+      hosts() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DfsHostList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsHost > hosts_;
+  mutable int _cached_size_;
+  friend struct protobuf_directfs_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class DfsHostListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsHostListQuery) */ {
  public:
   DfsHostListQuery();
@@ -337,7 +446,7 @@ class DfsHostListQuery : public ::google::protobuf::Message /* @@protoc_insertio
                &_DfsHostListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(DfsHostListQuery* other);
   friend void swap(DfsHostListQuery& a, DfsHostListQuery& b) {
@@ -440,7 +549,7 @@ class DfsVolumeCredentials : public ::google::protobuf::Message /* @@protoc_inse
                &_DfsVolumeCredentials_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(DfsVolumeCredentials* other);
   friend void swap(DfsVolumeCredentials& a, DfsVolumeCredentials& b) {
@@ -530,7 +639,7 @@ class DfsVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
                &_DfsVolumeStats_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(DfsVolumeStats* other);
   friend void swap(DfsVolumeStats& a, DfsVolumeStats& b) {
@@ -620,7 +729,7 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_DfsVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    6;
 
   void Swap(DfsVolume* other);
   friend void swap(DfsVolume& a, DfsVolume& b) {
@@ -720,6 +829,109 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
 };
 // -------------------------------------------------------------------
 
+class DfsVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsVolumeList) */ {
+ public:
+  DfsVolumeList();
+  virtual ~DfsVolumeList();
+
+  DfsVolumeList(const DfsVolumeList& from);
+
+  inline DfsVolumeList& operator=(const DfsVolumeList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DfsVolumeList(DfsVolumeList&& from) noexcept
+    : DfsVolumeList() {
+    *this = ::std::move(from);
+  }
+
+  inline DfsVolumeList& operator=(DfsVolumeList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DfsVolumeList& default_instance();
+
+  static inline const DfsVolumeList* internal_default_instance() {
+    return reinterpret_cast<const DfsVolumeList*>(
+               &_DfsVolumeList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    7;
+
+  void Swap(DfsVolumeList* other);
+  friend void swap(DfsVolumeList& a, DfsVolumeList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DfsVolumeList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DfsVolumeList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DfsVolumeList& from);
+  void MergeFrom(const DfsVolumeList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DfsVolumeList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.DfsVolumeList volumes = 1;
+  int volumes_size() const;
+  void clear_volumes();
+  static const int kVolumesFieldNumber = 1;
+  const ::storageos_rpc::DfsVolumeList& volumes(int index) const;
+  ::storageos_rpc::DfsVolumeList* mutable_volumes(int index);
+  ::storageos_rpc::DfsVolumeList* add_volumes();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsVolumeList >*
+      mutable_volumes();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsVolumeList >&
+      volumes() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsVolumeList > volumes_;
+  mutable int _cached_size_;
+  friend struct protobuf_directfs_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class DfsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsVolumeListQuery) */ {
  public:
   DfsVolumeListQuery();
@@ -754,7 +966,7 @@ class DfsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insert
                &_DfsVolumeListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    6;
+    8;
 
   void Swap(DfsVolumeListQuery* other);
   friend void swap(DfsVolumeListQuery& a, DfsVolumeListQuery& b) {
@@ -1000,6 +1212,40 @@ inline void DfsHost::set_allocated_credentials(::storageos_rpc::DfsHostCredentia
 
 // -------------------------------------------------------------------
 
+// DfsHostList
+
+// repeated .storageos_rpc.DfsHost hosts = 1;
+inline int DfsHostList::hosts_size() const {
+  return hosts_.size();
+}
+inline void DfsHostList::clear_hosts() {
+  hosts_.Clear();
+}
+inline const ::storageos_rpc::DfsHost& DfsHostList::hosts(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsHostList.hosts)
+  return hosts_.Get(index);
+}
+inline ::storageos_rpc::DfsHost* DfsHostList::mutable_hosts(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsHostList.hosts)
+  return hosts_.Mutable(index);
+}
+inline ::storageos_rpc::DfsHost* DfsHostList::add_hosts() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DfsHostList.hosts)
+  return hosts_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsHost >*
+DfsHostList::mutable_hosts() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DfsHostList.hosts)
+  return &hosts_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsHost >&
+DfsHostList::hosts() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DfsHostList.hosts)
+  return hosts_;
+}
+
+// -------------------------------------------------------------------
+
 // DfsHostListQuery
 
 // repeated .storageos_rpc.DfsHost host_ids = 1;
@@ -1194,6 +1440,40 @@ inline void DfsVolume::set_allocated_stats(::storageos_rpc::DfsVolumeStats* stat
 
 // -------------------------------------------------------------------
 
+// DfsVolumeList
+
+// repeated .storageos_rpc.DfsVolumeList volumes = 1;
+inline int DfsVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+inline void DfsVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+inline const ::storageos_rpc::DfsVolumeList& DfsVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolumeList.volumes)
+  return volumes_.Get(index);
+}
+inline ::storageos_rpc::DfsVolumeList* DfsVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+inline ::storageos_rpc::DfsVolumeList* DfsVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.DfsVolumeList.volumes)
+  return volumes_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsVolumeList >*
+DfsVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.DfsVolumeList.volumes)
+  return &volumes_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::DfsVolumeList >&
+DfsVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.DfsVolumeList.volumes)
+  return volumes_;
+}
+
+// -------------------------------------------------------------------
+
 // DfsVolumeListQuery
 
 // repeated .storageos_rpc.DfsVolume volume_ids = 1;
@@ -1230,6 +1510,10 @@ DfsVolumeListQuery::volume_ids() const {
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

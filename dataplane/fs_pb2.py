@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='fs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x0f\n\rFsVolumeStats\"\xdb\x02\n\x08\x46sVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12+\n\x05stats\x18\t \x01(\x0b\x32\x1c.storageos_rpc.FsVolumeStats\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\x32\xe9\x01\n\x08\x46sConfig\x12\x46\n\x0fVolumeConfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12H\n\x11VolumeUnconfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x17.storageos_rpc.FsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x0f\n\rFsVolumeStats\"\xdb\x02\n\x08\x46sVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12+\n\x05stats\x18\t \x01(\x0b\x32\x1c.storageos_rpc.FsVolumeStats\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.storageos_rpc.FsVolume2\xeb\x01\n\x08\x46sConfig\x12\x46\n\x0fVolumeConfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12H\n\x11VolumeUnconfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x1b.storageos_rpc.FsVolumeList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -191,13 +191,46 @@ _FSVOLUME = _descriptor.Descriptor(
   serialized_end=447,
 )
 
+
+_FSVOLUMELIST = _descriptor.Descriptor(
+  name='FsVolumeList',
+  full_name='storageos_rpc.FsVolumeList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='volumes', full_name='storageos_rpc.FsVolumeList.volumes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=449,
+  serialized_end=505,
+)
+
 _FSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
 _FSVOLUME.fields_by_name['node_type'].enum_type = _FSVOLUME_VOLUMEDEVICETYPE
 _FSVOLUME.fields_by_name['stats'].message_type = _FSVOLUMESTATS
 _FSVOLUME_VOLUMEDEVICETYPE.containing_type = _FSVOLUME
+_FSVOLUMELIST.fields_by_name['volumes'].message_type = _FSVOLUME
 DESCRIPTOR.message_types_by_name['FsVolumeListQuery'] = _FSVOLUMELISTQUERY
 DESCRIPTOR.message_types_by_name['FsVolumeStats'] = _FSVOLUMESTATS
 DESCRIPTOR.message_types_by_name['FsVolume'] = _FSVOLUME
+DESCRIPTOR.message_types_by_name['FsVolumeList'] = _FSVOLUMELIST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 FsVolumeListQuery = _reflection.GeneratedProtocolMessageType('FsVolumeListQuery', (_message.Message,), dict(
@@ -221,6 +254,13 @@ FsVolume = _reflection.GeneratedProtocolMessageType('FsVolume', (_message.Messag
   ))
 _sym_db.RegisterMessage(FsVolume)
 
+FsVolumeList = _reflection.GeneratedProtocolMessageType('FsVolumeList', (_message.Message,), dict(
+  DESCRIPTOR = _FSVOLUMELIST,
+  __module__ = 'fs_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.FsVolumeList)
+  ))
+_sym_db.RegisterMessage(FsVolumeList)
+
 
 
 _FSCONFIG = _descriptor.ServiceDescriptor(
@@ -229,8 +269,8 @@ _FSCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=450,
-  serialized_end=683,
+  serialized_start=508,
+  serialized_end=743,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeConfigure',
@@ -256,7 +296,7 @@ _FSCONFIG = _descriptor.ServiceDescriptor(
     index=2,
     containing_service=None,
     input_type=_FSVOLUMELISTQUERY,
-    output_type=_FSVOLUME,
+    output_type=_FSVOLUMELIST,
     options=None,
   ),
 ])

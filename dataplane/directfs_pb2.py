@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='directfs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\xa4\x01\n\x07\x44\x66sHost\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x10\n\x0e\x44\x66sVolumeStats\"\xc9\x01\n\tDfsVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.DfsVolumeStats\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xd4\x03\n\x14\x44irectfsClientConfig\x12\x45\n\x0fServerConfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12G\n\x11ServerUnconfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x16.storageos_rpc.DfsHost\"\x00\x30\x01\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x32\xf9\x01\n\x14\x44irectfsServerConfig\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\xa4\x01\n\x07\x44\x66sHost\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"4\n\x0b\x44\x66sHostList\x12%\n\x05hosts\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x10\n\x0e\x44\x66sVolumeStats\"\xc9\x01\n\tDfsVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.DfsVolumeStats\">\n\rDfsVolumeList\x12-\n\x07volumes\x18\x01 \x03(\x0b\x32\x1c.storageos_rpc.DfsVolumeList\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xd8\x03\n\x14\x44irectfsClientConfig\x12\x45\n\x0fServerConfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12G\n\x11ServerUnconfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x1a.storageos_rpc.DfsHostList\"\x00\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x1c.storageos_rpc.DfsVolumeList\"\x00\x32\xf9\x01\n\x14\x44irectfsServerConfig\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -110,6 +110,37 @@ _DFSHOST = _descriptor.Descriptor(
 )
 
 
+_DFSHOSTLIST = _descriptor.Descriptor(
+  name='DfsHostList',
+  full_name='storageos_rpc.DfsHostList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='hosts', full_name='storageos_rpc.DfsHostList.hosts', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=236,
+  serialized_end=288,
+)
+
+
 _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   name='DfsHostListQuery',
   full_name='storageos_rpc.DfsHostListQuery',
@@ -136,8 +167,8 @@ _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=296,
+  serialized_start=290,
+  serialized_end=350,
 )
 
 
@@ -160,8 +191,8 @@ _DFSVOLUMECREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=298,
-  serialized_end=320,
+  serialized_start=352,
+  serialized_end=374,
 )
 
 
@@ -184,8 +215,8 @@ _DFSVOLUMESTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=322,
-  serialized_end=338,
+  serialized_start=376,
+  serialized_end=392,
 )
 
 
@@ -243,8 +274,39 @@ _DFSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=341,
-  serialized_end=542,
+  serialized_start=395,
+  serialized_end=596,
+)
+
+
+_DFSVOLUMELIST = _descriptor.Descriptor(
+  name='DfsVolumeList',
+  full_name='storageos_rpc.DfsVolumeList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='volumes', full_name='storageos_rpc.DfsVolumeList.volumes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=598,
+  serialized_end=660,
 )
 
 
@@ -274,23 +336,27 @@ _DFSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=544,
-  serialized_end=610,
+  serialized_start=662,
+  serialized_end=728,
 )
 
 _DFSHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
 _DFSHOST.fields_by_name['credentials'].message_type = _DFSHOSTCREDENTIALS
+_DFSHOSTLIST.fields_by_name['hosts'].message_type = _DFSHOST
 _DFSHOSTLISTQUERY.fields_by_name['host_ids'].message_type = _DFSHOST
 _DFSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
 _DFSVOLUME.fields_by_name['credentials'].message_type = _DFSVOLUMECREDENTIALS
 _DFSVOLUME.fields_by_name['stats'].message_type = _DFSVOLUMESTATS
+_DFSVOLUMELIST.fields_by_name['volumes'].message_type = _DFSVOLUMELIST
 _DFSVOLUMELISTQUERY.fields_by_name['volume_ids'].message_type = _DFSVOLUME
 DESCRIPTOR.message_types_by_name['DfsHostCredentials'] = _DFSHOSTCREDENTIALS
 DESCRIPTOR.message_types_by_name['DfsHost'] = _DFSHOST
+DESCRIPTOR.message_types_by_name['DfsHostList'] = _DFSHOSTLIST
 DESCRIPTOR.message_types_by_name['DfsHostListQuery'] = _DFSHOSTLISTQUERY
 DESCRIPTOR.message_types_by_name['DfsVolumeCredentials'] = _DFSVOLUMECREDENTIALS
 DESCRIPTOR.message_types_by_name['DfsVolumeStats'] = _DFSVOLUMESTATS
 DESCRIPTOR.message_types_by_name['DfsVolume'] = _DFSVOLUME
+DESCRIPTOR.message_types_by_name['DfsVolumeList'] = _DFSVOLUMELIST
 DESCRIPTOR.message_types_by_name['DfsVolumeListQuery'] = _DFSVOLUMELISTQUERY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -307,6 +373,13 @@ DfsHost = _reflection.GeneratedProtocolMessageType('DfsHost', (_message.Message,
   # @@protoc_insertion_point(class_scope:storageos_rpc.DfsHost)
   ))
 _sym_db.RegisterMessage(DfsHost)
+
+DfsHostList = _reflection.GeneratedProtocolMessageType('DfsHostList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSHOSTLIST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DfsHostList)
+  ))
+_sym_db.RegisterMessage(DfsHostList)
 
 DfsHostListQuery = _reflection.GeneratedProtocolMessageType('DfsHostListQuery', (_message.Message,), dict(
   DESCRIPTOR = _DFSHOSTLISTQUERY,
@@ -336,6 +409,13 @@ DfsVolume = _reflection.GeneratedProtocolMessageType('DfsVolume', (_message.Mess
   ))
 _sym_db.RegisterMessage(DfsVolume)
 
+DfsVolumeList = _reflection.GeneratedProtocolMessageType('DfsVolumeList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSVOLUMELIST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeList)
+  ))
+_sym_db.RegisterMessage(DfsVolumeList)
+
 DfsVolumeListQuery = _reflection.GeneratedProtocolMessageType('DfsVolumeListQuery', (_message.Message,), dict(
   DESCRIPTOR = _DFSVOLUMELISTQUERY,
   __module__ = 'directfs_pb2'
@@ -351,8 +431,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=613,
-  serialized_end=1081,
+  serialized_start=731,
+  serialized_end=1203,
   methods=[
   _descriptor.MethodDescriptor(
     name='ServerConfigure',
@@ -378,7 +458,7 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     index=2,
     containing_service=None,
     input_type=_DFSHOSTLISTQUERY,
-    output_type=_DFSHOST,
+    output_type=_DFSHOSTLIST,
     options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -405,7 +485,7 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     index=5,
     containing_service=None,
     input_type=_DFSVOLUMELISTQUERY,
-    output_type=_DFSVOLUME,
+    output_type=_DFSVOLUMELIST,
     options=None,
   ),
 ])
@@ -420,8 +500,8 @@ _DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   options=None,
-  serialized_start=1084,
-  serialized_end=1333,
+  serialized_start=1206,
+  serialized_end=1455,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeConfigure',

@@ -33,13 +33,18 @@ public:
  ::google::protobuf::internal::ExplicitlyConstructed<FsVolume>
      _instance;
 } _FsVolume_default_instance_;
+class FsVolumeListDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<FsVolumeList>
+     _instance;
+} _FsVolumeList_default_instance_;
 
 namespace protobuf_fs_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[3];
+::google::protobuf::Metadata file_level_metadata[4];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 }  // namespace
@@ -55,6 +60,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
@@ -86,17 +92,25 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, target_volume_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, volume_size_bytes_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, stats_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolumeList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolumeList, volumes_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(FsVolumeListQuery)},
   { 6, -1, sizeof(FsVolumeStats)},
   { 11, -1, sizeof(FsVolume)},
+  { 25, -1, sizeof(FsVolumeList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeStats_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolume_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeList_default_instance_),
 };
 
 namespace {
@@ -117,7 +131,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 3);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
 }
 
 }  // namespace
@@ -132,7 +146,9 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_FsVolumeStats_default_instance_);_FsVolume_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_FsVolume_default_instance_);_FsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
+      &_FsVolume_default_instance_);_FsVolumeList_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_FsVolumeList_default_instance_);_FsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
       ::storageos_rpc::DataplaneCommonConfig::internal_default_instance());
   _FsVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::storageos_rpc::FsVolumeStats*>(
       ::storageos_rpc::FsVolumeStats::internal_default_instance());
@@ -157,16 +173,17 @@ void AddDescriptorsImpl() {
       "e_id\030\007 \001(\r\022\031\n\021volume_size_bytes\030\010 \001(\004\022+\n"
       "\005stats\030\t \001(\0132\034.storageos_rpc.FsVolumeSta"
       "ts\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_"
-      "BLOCK\020\0012\351\001\n\010FsConfig\022F\n\017VolumeConfigure\022"
-      "\027.storageos_rpc.FsVolume\032\030.storageos_rpc"
-      ".RpcResult\"\000\022H\n\021VolumeUnconfigure\022\027.stor"
-      "ageos_rpc.FsVolume\032\030.storageos_rpc.RpcRe"
-      "sult\"\000\022K\n\nVolumeList\022 .storageos_rpc.FsV"
-      "olumeListQuery\032\027.storageos_rpc.FsVolume\""
-      "\0000\001b\006proto3"
+      "BLOCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\013"
+      "2\027.storageos_rpc.FsVolume2\353\001\n\010FsConfig\022F"
+      "\n\017VolumeConfigure\022\027.storageos_rpc.FsVolu"
+      "me\032\030.storageos_rpc.RpcResult\"\000\022H\n\021Volume"
+      "Unconfigure\022\027.storageos_rpc.FsVolume\032\030.s"
+      "torageos_rpc.RpcResult\"\000\022M\n\nVolumeList\022 "
+      ".storageos_rpc.FsVolumeListQuery\032\033.stora"
+      "geos_rpc.FsVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 691);
+      descriptor, 751);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "fs.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();
@@ -1489,6 +1506,280 @@ void FsVolume::set_allocated_stats(::storageos_rpc::FsVolumeStats* stats) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.FsVolume.stats)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int FsVolumeList::kVolumesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+FsVolumeList::FsVolumeList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_fs_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:storageos_rpc.FsVolumeList)
+}
+FsVolumeList::FsVolumeList(const FsVolumeList& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      volumes_(from.volumes_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:storageos_rpc.FsVolumeList)
+}
+
+void FsVolumeList::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+FsVolumeList::~FsVolumeList() {
+  // @@protoc_insertion_point(destructor:storageos_rpc.FsVolumeList)
+  SharedDtor();
+}
+
+void FsVolumeList::SharedDtor() {
+}
+
+void FsVolumeList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* FsVolumeList::descriptor() {
+  protobuf_fs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_fs_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const FsVolumeList& FsVolumeList::default_instance() {
+  protobuf_fs_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+FsVolumeList* FsVolumeList::New(::google::protobuf::Arena* arena) const {
+  FsVolumeList* n = new FsVolumeList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void FsVolumeList::Clear() {
+// @@protoc_insertion_point(message_clear_start:storageos_rpc.FsVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  volumes_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool FsVolumeList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:storageos_rpc.FsVolumeList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .storageos_rpc.FsVolume volumes = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_volumes()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:storageos_rpc.FsVolumeList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:storageos_rpc.FsVolumeList)
+  return false;
+#undef DO_
+}
+
+void FsVolumeList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:storageos_rpc.FsVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.FsVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->volumes(static_cast<int>(i)), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:storageos_rpc.FsVolumeList)
+}
+
+::google::protobuf::uint8* FsVolumeList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:storageos_rpc.FsVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.FsVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->volumes(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:storageos_rpc.FsVolumeList)
+  return target;
+}
+
+size_t FsVolumeList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:storageos_rpc.FsVolumeList)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .storageos_rpc.FsVolume volumes = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->volumes_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->volumes(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void FsVolumeList::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:storageos_rpc.FsVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const FsVolumeList* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const FsVolumeList>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:storageos_rpc.FsVolumeList)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:storageos_rpc.FsVolumeList)
+    MergeFrom(*source);
+  }
+}
+
+void FsVolumeList::MergeFrom(const FsVolumeList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:storageos_rpc.FsVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  volumes_.MergeFrom(from.volumes_);
+}
+
+void FsVolumeList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:storageos_rpc.FsVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void FsVolumeList::CopyFrom(const FsVolumeList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:storageos_rpc.FsVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FsVolumeList::IsInitialized() const {
+  return true;
+}
+
+void FsVolumeList::Swap(FsVolumeList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void FsVolumeList::InternalSwap(FsVolumeList* other) {
+  using std::swap;
+  volumes_.InternalSwap(&other->volumes_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata FsVolumeList::GetMetadata() const {
+  protobuf_fs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_fs_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// FsVolumeList
+
+// repeated .storageos_rpc.FsVolume volumes = 1;
+int FsVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+void FsVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+const ::storageos_rpc::FsVolume& FsVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Get(index);
+}
+::storageos_rpc::FsVolume* FsVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+::storageos_rpc::FsVolume* FsVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.FsVolumeList.volumes)
+  return volumes_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >*
+FsVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.FsVolumeList.volumes)
+  return &volumes_;
+}
+const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::FsVolume >&
+FsVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.FsVolumeList.volumes)
+  return volumes_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

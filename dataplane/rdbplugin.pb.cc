@@ -38,13 +38,18 @@ public:
  ::google::protobuf::internal::ExplicitlyConstructed<RdbVolume>
      _instance;
 } _RdbVolume_default_instance_;
+class RdbVolumeListDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<RdbVolumeList>
+     _instance;
+} _RdbVolumeList_default_instance_;
 
 namespace protobuf_rdbplugin_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[4];
+::google::protobuf::Metadata file_level_metadata[5];
 
 }  // namespace
 
@@ -59,6 +64,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
@@ -92,12 +98,19 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolume, volume_size_bytes_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolume, credentials_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolume, stats_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolumeList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolumeList, volumes_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(RdbVolumeListQuery)},
   { 6, -1, sizeof(RdbVolumeCredentials)},
   { 11, -1, sizeof(RdbVolumeStats)},
   { 16, -1, sizeof(RdbVolume)},
+  { 26, -1, sizeof(RdbVolumeList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -105,6 +118,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeCredentials_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeStats_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolume_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeList_default_instance_),
 };
 
 namespace {
@@ -125,7 +139,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 5);
 }
 
 }  // namespace
@@ -142,7 +156,9 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_RdbVolumeStats_default_instance_);_RdbVolume_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_RdbVolume_default_instance_);_RdbVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
+      &_RdbVolume_default_instance_);_RdbVolumeList_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_RdbVolumeList_default_instance_);_RdbVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommonConfig*>(
       ::storageos_rpc::DataplaneCommonConfig::internal_default_instance());
   _RdbVolume_default_instance_._instance.get_mutable()->credentials_ = const_cast< ::storageos_rpc::RdbVolumeCredentials*>(
       ::storageos_rpc::RdbVolumeCredentials::internal_default_instance());
@@ -167,18 +183,19 @@ void AddDescriptorsImpl() {
       "\031\n\021volume_size_bytes\030\003 \001(\004\0228\n\013credential"
       "s\030\004 \001(\0132#.storageos_rpc.RdbVolumeCredent"
       "ials\022,\n\005stats\030\005 \001(\0132\035.storageos_rpc.RdbV"
-      "olumeStats2\272\002\n\017RdbPluginConfig\022G\n\017Volume"
-      "Configure\022\030.storageos_rpc.RdbVolume\032\030.st"
-      "orageos_rpc.RpcResult\"\000\022I\n\021VolumeUnconfi"
-      "gure\022\030.storageos_rpc.RdbVolume\032\030.storage"
-      "os_rpc.RpcResult\"\000\022D\n\014VolumeDelete\022\030.sto"
-      "rageos_rpc.RdbVolume\032\030.storageos_rpc.Rpc"
-      "Result\"\000\022M\n\nVolumeList\022!.storageos_rpc.R"
-      "dbVolumeListQuery\032\030.storageos_rpc.RdbVol"
-      "ume\"\0000\001b\006proto3"
+      "olumeStats\":\n\rRdbVolumeList\022)\n\007volumes\030\001"
+      " \003(\0132\030.storageos_rpc.RdbVolume2\274\002\n\017RdbPl"
+      "uginConfig\022G\n\017VolumeConfigure\022\030.storageo"
+      "s_rpc.RdbVolume\032\030.storageos_rpc.RpcResul"
+      "t\"\000\022I\n\021VolumeUnconfigure\022\030.storageos_rpc"
+      ".RdbVolume\032\030.storageos_rpc.RpcResult\"\000\022D"
+      "\n\014VolumeDelete\022\030.storageos_rpc.RdbVolume"
+      "\032\030.storageos_rpc.RpcResult\"\000\022O\n\nVolumeLi"
+      "st\022!.storageos_rpc.RdbVolumeListQuery\032\034."
+      "storageos_rpc.RdbVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 695);
+      descriptor, 757);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rdbplugin.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();
@@ -1432,6 +1449,280 @@ void RdbVolume::set_allocated_stats(::storageos_rpc::RdbVolumeStats* stats) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RdbVolume.stats)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int RdbVolumeList::kVolumesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+RdbVolumeList::RdbVolumeList()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_rdbplugin_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:storageos_rpc.RdbVolumeList)
+}
+RdbVolumeList::RdbVolumeList(const RdbVolumeList& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      volumes_(from.volumes_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:storageos_rpc.RdbVolumeList)
+}
+
+void RdbVolumeList::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+RdbVolumeList::~RdbVolumeList() {
+  // @@protoc_insertion_point(destructor:storageos_rpc.RdbVolumeList)
+  SharedDtor();
+}
+
+void RdbVolumeList::SharedDtor() {
+}
+
+void RdbVolumeList::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* RdbVolumeList::descriptor() {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const RdbVolumeList& RdbVolumeList::default_instance() {
+  protobuf_rdbplugin_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+RdbVolumeList* RdbVolumeList::New(::google::protobuf::Arena* arena) const {
+  RdbVolumeList* n = new RdbVolumeList;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void RdbVolumeList::Clear() {
+// @@protoc_insertion_point(message_clear_start:storageos_rpc.RdbVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  volumes_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool RdbVolumeList::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:storageos_rpc.RdbVolumeList)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .storageos_rpc.RdbVolume volumes = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_volumes()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:storageos_rpc.RdbVolumeList)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:storageos_rpc.RdbVolumeList)
+  return false;
+#undef DO_
+}
+
+void RdbVolumeList::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:storageos_rpc.RdbVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.RdbVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->volumes(static_cast<int>(i)), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:storageos_rpc.RdbVolumeList)
+}
+
+::google::protobuf::uint8* RdbVolumeList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:storageos_rpc.RdbVolumeList)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .storageos_rpc.RdbVolume volumes = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        1, this->volumes(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:storageos_rpc.RdbVolumeList)
+  return target;
+}
+
+size_t RdbVolumeList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:storageos_rpc.RdbVolumeList)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .storageos_rpc.RdbVolume volumes = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->volumes_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->volumes(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void RdbVolumeList::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:storageos_rpc.RdbVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RdbVolumeList* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const RdbVolumeList>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:storageos_rpc.RdbVolumeList)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:storageos_rpc.RdbVolumeList)
+    MergeFrom(*source);
+  }
+}
+
+void RdbVolumeList::MergeFrom(const RdbVolumeList& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:storageos_rpc.RdbVolumeList)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  volumes_.MergeFrom(from.volumes_);
+}
+
+void RdbVolumeList::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:storageos_rpc.RdbVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RdbVolumeList::CopyFrom(const RdbVolumeList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:storageos_rpc.RdbVolumeList)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RdbVolumeList::IsInitialized() const {
+  return true;
+}
+
+void RdbVolumeList::Swap(RdbVolumeList* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void RdbVolumeList::InternalSwap(RdbVolumeList* other) {
+  using std::swap;
+  volumes_.InternalSwap(&other->volumes_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata RdbVolumeList::GetMetadata() const {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// RdbVolumeList
+
+// repeated .storageos_rpc.RdbVolume volumes = 1;
+int RdbVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+void RdbVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+const ::storageos_rpc::RdbVolume& RdbVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Get(index);
+}
+::storageos_rpc::RdbVolume* RdbVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+::storageos_rpc::RdbVolume* RdbVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >*
+RdbVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.RdbVolumeList.volumes)
+  return &volumes_;
+}
+const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >&
+RdbVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

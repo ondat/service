@@ -10,10 +10,12 @@ It is generated from these files:
 It has these top-level messages:
 	DfsHostCredentials
 	DfsHost
+	DfsHostList
 	DfsHostListQuery
 	DfsVolumeCredentials
 	DfsVolumeStats
 	DfsVolume
+	DfsVolumeList
 	DfsVolumeListQuery
 */
 package storageos_rpc
@@ -101,6 +103,22 @@ func (m *DfsHost) GetCredentials() *DfsHostCredentials {
 	return nil
 }
 
+type DfsHostList struct {
+	Hosts []*DfsHost `protobuf:"bytes,1,rep,name=hosts" json:"hosts,omitempty"`
+}
+
+func (m *DfsHostList) Reset()                    { *m = DfsHostList{} }
+func (m *DfsHostList) String() string            { return proto.CompactTextString(m) }
+func (*DfsHostList) ProtoMessage()               {}
+func (*DfsHostList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *DfsHostList) GetHosts() []*DfsHost {
+	if m != nil {
+		return m.Hosts
+	}
+	return nil
+}
+
 type DfsHostListQuery struct {
 	// An optional list of hosts to query.
 	HostIds []*DfsHost `protobuf:"bytes,1,rep,name=host_ids,json=hostIds" json:"host_ids,omitempty"`
@@ -109,7 +127,7 @@ type DfsHostListQuery struct {
 func (m *DfsHostListQuery) Reset()                    { *m = DfsHostListQuery{} }
 func (m *DfsHostListQuery) String() string            { return proto.CompactTextString(m) }
 func (*DfsHostListQuery) ProtoMessage()               {}
-func (*DfsHostListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*DfsHostListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
 func (m *DfsHostListQuery) GetHostIds() []*DfsHost {
 	if m != nil {
@@ -124,7 +142,7 @@ type DfsVolumeCredentials struct {
 func (m *DfsVolumeCredentials) Reset()                    { *m = DfsVolumeCredentials{} }
 func (m *DfsVolumeCredentials) String() string            { return proto.CompactTextString(m) }
 func (*DfsVolumeCredentials) ProtoMessage()               {}
-func (*DfsVolumeCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*DfsVolumeCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 type DfsVolumeStats struct {
 }
@@ -132,7 +150,7 @@ type DfsVolumeStats struct {
 func (m *DfsVolumeStats) Reset()                    { *m = DfsVolumeStats{} }
 func (m *DfsVolumeStats) String() string            { return proto.CompactTextString(m) }
 func (*DfsVolumeStats) ProtoMessage()               {}
-func (*DfsVolumeStats) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*DfsVolumeStats) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
 
 // *
 // A volume used by DirectFS.
@@ -158,7 +176,7 @@ type DfsVolume struct {
 func (m *DfsVolume) Reset()                    { *m = DfsVolume{} }
 func (m *DfsVolume) String() string            { return proto.CompactTextString(m) }
 func (*DfsVolume) ProtoMessage()               {}
-func (*DfsVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*DfsVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
 func (m *DfsVolume) GetCc() *storageos_rpc1.DataplaneCommonConfig {
 	if m != nil {
@@ -195,6 +213,22 @@ func (m *DfsVolume) GetStats() *DfsVolumeStats {
 	return nil
 }
 
+type DfsVolumeList struct {
+	Volumes []*DfsVolumeList `protobuf:"bytes,1,rep,name=volumes" json:"volumes,omitempty"`
+}
+
+func (m *DfsVolumeList) Reset()                    { *m = DfsVolumeList{} }
+func (m *DfsVolumeList) String() string            { return proto.CompactTextString(m) }
+func (*DfsVolumeList) ProtoMessage()               {}
+func (*DfsVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *DfsVolumeList) GetVolumes() []*DfsVolumeList {
+	if m != nil {
+		return m.Volumes
+	}
+	return nil
+}
+
 type DfsVolumeListQuery struct {
 	// An optional list of volumes to query.
 	VolumeIds []*DfsVolume `protobuf:"bytes,1,rep,name=volume_ids,json=volumeIds" json:"volume_ids,omitempty"`
@@ -203,7 +237,7 @@ type DfsVolumeListQuery struct {
 func (m *DfsVolumeListQuery) Reset()                    { *m = DfsVolumeListQuery{} }
 func (m *DfsVolumeListQuery) String() string            { return proto.CompactTextString(m) }
 func (*DfsVolumeListQuery) ProtoMessage()               {}
-func (*DfsVolumeListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (*DfsVolumeListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
 
 func (m *DfsVolumeListQuery) GetVolumeIds() []*DfsVolume {
 	if m != nil {
@@ -215,10 +249,12 @@ func (m *DfsVolumeListQuery) GetVolumeIds() []*DfsVolume {
 func init() {
 	proto.RegisterType((*DfsHostCredentials)(nil), "storageos_rpc.DfsHostCredentials")
 	proto.RegisterType((*DfsHost)(nil), "storageos_rpc.DfsHost")
+	proto.RegisterType((*DfsHostList)(nil), "storageos_rpc.DfsHostList")
 	proto.RegisterType((*DfsHostListQuery)(nil), "storageos_rpc.DfsHostListQuery")
 	proto.RegisterType((*DfsVolumeCredentials)(nil), "storageos_rpc.DfsVolumeCredentials")
 	proto.RegisterType((*DfsVolumeStats)(nil), "storageos_rpc.DfsVolumeStats")
 	proto.RegisterType((*DfsVolume)(nil), "storageos_rpc.DfsVolume")
+	proto.RegisterType((*DfsVolumeList)(nil), "storageos_rpc.DfsVolumeList")
 	proto.RegisterType((*DfsVolumeListQuery)(nil), "storageos_rpc.DfsVolumeListQuery")
 }
 
@@ -250,8 +286,9 @@ type DirectfsClientConfigClient interface {
 	// List configured host entries, optionally filtered via a DfsHostListQuery
 	// message.
 	//
-	// returns a stream of DfsHost messages, if any are available matching the filter.
-	ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (DirectfsClientConfig_ServerListClient, error)
+	// returns A DfsHostList message containing DfsHost messages,
+	//         if any are available matching the filter.
+	ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (*DfsHostList, error)
 	// *
 	// Configure a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
@@ -268,8 +305,9 @@ type DirectfsClientConfigClient interface {
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
-	// returns a stream of DfsVolume messages, if any are available matching the filter.
-	VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (DirectfsClientConfig_VolumeListClient, error)
+	// returns A DfsVolumeList message containing DfsVolume messages,
+	//         if any are available matching the filter.
+	VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error)
 }
 
 type directfsClientConfigClient struct {
@@ -298,36 +336,13 @@ func (c *directfsClientConfigClient) ServerUnconfigure(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *directfsClientConfigClient) ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (DirectfsClientConfig_ServerListClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_DirectfsClientConfig_serviceDesc.Streams[0], c.cc, "/storageos_rpc.DirectfsClientConfig/ServerList", opts...)
+func (c *directfsClientConfigClient) ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (*DfsHostList, error) {
+	out := new(DfsHostList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.DirectfsClientConfig/ServerList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &directfsClientConfigServerListClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type DirectfsClientConfig_ServerListClient interface {
-	Recv() (*DfsHost, error)
-	grpc.ClientStream
-}
-
-type directfsClientConfigServerListClient struct {
-	grpc.ClientStream
-}
-
-func (x *directfsClientConfigServerListClient) Recv() (*DfsHost, error) {
-	m := new(DfsHost)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *directfsClientConfigClient) VolumeConfigure(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
@@ -348,36 +363,13 @@ func (c *directfsClientConfigClient) VolumeUnconfigure(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *directfsClientConfigClient) VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (DirectfsClientConfig_VolumeListClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_DirectfsClientConfig_serviceDesc.Streams[1], c.cc, "/storageos_rpc.DirectfsClientConfig/VolumeList", opts...)
+func (c *directfsClientConfigClient) VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error) {
+	out := new(DfsVolumeList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.DirectfsClientConfig/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &directfsClientConfigVolumeListClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type DirectfsClientConfig_VolumeListClient interface {
-	Recv() (*DfsVolume, error)
-	grpc.ClientStream
-}
-
-type directfsClientConfigVolumeListClient struct {
-	grpc.ClientStream
-}
-
-func (x *directfsClientConfigVolumeListClient) Recv() (*DfsVolume, error) {
-	m := new(DfsVolume)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // Server API for DirectfsClientConfig service
@@ -400,8 +392,9 @@ type DirectfsClientConfigServer interface {
 	// List configured host entries, optionally filtered via a DfsHostListQuery
 	// message.
 	//
-	// returns a stream of DfsHost messages, if any are available matching the filter.
-	ServerList(*DfsHostListQuery, DirectfsClientConfig_ServerListServer) error
+	// returns A DfsHostList message containing DfsHost messages,
+	//         if any are available matching the filter.
+	ServerList(context.Context, *DfsHostListQuery) (*DfsHostList, error)
 	// *
 	// Configure a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
@@ -418,8 +411,9 @@ type DirectfsClientConfigServer interface {
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
-	// returns a stream of DfsVolume messages, if any are available matching the filter.
-	VolumeList(*DfsVolumeListQuery, DirectfsClientConfig_VolumeListServer) error
+	// returns A DfsVolumeList message containing DfsVolume messages,
+	//         if any are available matching the filter.
+	VolumeList(context.Context, *DfsVolumeListQuery) (*DfsVolumeList, error)
 }
 
 func RegisterDirectfsClientConfigServer(s *grpc.Server, srv DirectfsClientConfigServer) {
@@ -462,25 +456,22 @@ func _DirectfsClientConfig_ServerUnconfigure_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectfsClientConfig_ServerList_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DfsHostListQuery)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _DirectfsClientConfig_ServerList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsHostListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(DirectfsClientConfigServer).ServerList(m, &directfsClientConfigServerListServer{stream})
-}
-
-type DirectfsClientConfig_ServerListServer interface {
-	Send(*DfsHost) error
-	grpc.ServerStream
-}
-
-type directfsClientConfigServerListServer struct {
-	grpc.ServerStream
-}
-
-func (x *directfsClientConfigServerListServer) Send(m *DfsHost) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(DirectfsClientConfigServer).ServerList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.DirectfsClientConfig/ServerList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectfsClientConfigServer).ServerList(ctx, req.(*DfsHostListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DirectfsClientConfig_VolumeConfigure_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -519,25 +510,22 @@ func _DirectfsClientConfig_VolumeUnconfigure_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectfsClientConfig_VolumeList_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DfsVolumeListQuery)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _DirectfsClientConfig_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsVolumeListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(DirectfsClientConfigServer).VolumeList(m, &directfsClientConfigVolumeListServer{stream})
-}
-
-type DirectfsClientConfig_VolumeListServer interface {
-	Send(*DfsVolume) error
-	grpc.ServerStream
-}
-
-type directfsClientConfigVolumeListServer struct {
-	grpc.ServerStream
-}
-
-func (x *directfsClientConfigVolumeListServer) Send(m *DfsVolume) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(DirectfsClientConfigServer).VolumeList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.DirectfsClientConfig/VolumeList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectfsClientConfigServer).VolumeList(ctx, req.(*DfsVolumeListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _DirectfsClientConfig_serviceDesc = grpc.ServiceDesc{
@@ -553,6 +541,10 @@ var _DirectfsClientConfig_serviceDesc = grpc.ServiceDesc{
 			Handler:    _DirectfsClientConfig_ServerUnconfigure_Handler,
 		},
 		{
+			MethodName: "ServerList",
+			Handler:    _DirectfsClientConfig_ServerList_Handler,
+		},
+		{
 			MethodName: "VolumeConfigure",
 			Handler:    _DirectfsClientConfig_VolumeConfigure_Handler,
 		},
@@ -560,19 +552,12 @@ var _DirectfsClientConfig_serviceDesc = grpc.ServiceDesc{
 			MethodName: "VolumeUnconfigure",
 			Handler:    _DirectfsClientConfig_VolumeUnconfigure_Handler,
 		},
-	},
-	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ServerList",
-			Handler:       _DirectfsClientConfig_ServerList_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "VolumeList",
-			Handler:       _DirectfsClientConfig_VolumeList_Handler,
-			ServerStreams: true,
+			MethodName: "VolumeList",
+			Handler:    _DirectfsClientConfig_VolumeList_Handler,
 		},
 	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "directfs.proto",
 }
 
@@ -767,35 +752,38 @@ var _DirectfsServerConfig_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("directfs.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 472 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x94, 0x4f, 0x6f, 0xd3, 0x30,
-	0x18, 0xc6, 0xe7, 0xb6, 0x5b, 0xd7, 0xb7, 0xec, 0xdf, 0xab, 0x6a, 0x44, 0x45, 0x88, 0xce, 0x70,
-	0xe8, 0xa9, 0x82, 0x0e, 0x89, 0x0f, 0x90, 0x56, 0xa3, 0x12, 0x3b, 0xe0, 0x09, 0xae, 0x55, 0x70,
-	0xdc, 0x11, 0x29, 0x8d, 0x23, 0xdb, 0x9d, 0xc4, 0x87, 0xe4, 0xc6, 0x37, 0xe1, 0xc4, 0x0d, 0xc5,
-	0xce, 0xf2, 0x67, 0x5d, 0x84, 0x54, 0x8e, 0xbb, 0xc5, 0xaf, 0xed, 0xe7, 0x7d, 0x9e, 0xdf, 0x6b,
-	0x05, 0x8e, 0xc3, 0x48, 0x09, 0x6e, 0x56, 0x7a, 0x92, 0x2a, 0x69, 0x24, 0x1e, 0x69, 0x23, 0x55,
-	0x70, 0x2b, 0xa4, 0x5e, 0xaa, 0x94, 0x0f, 0x9f, 0x71, 0xb9, 0x5e, 0xcb, 0xc4, 0x6d, 0xd2, 0x01,
-	0xe0, 0x6c, 0xa5, 0x3f, 0x4a, 0x6d, 0x7c, 0x25, 0x42, 0x91, 0x98, 0x28, 0x88, 0x35, 0xfd, 0x49,
-	0xa0, 0x9b, 0x97, 0xf1, 0x3d, 0xb4, 0x38, 0xf7, 0xc8, 0x88, 0x8c, 0xfb, 0xd3, 0x37, 0x93, 0x9a,
-	0xd6, 0x64, 0x16, 0x98, 0x20, 0x8d, 0x83, 0x44, 0xf8, 0x56, 0xd3, 0x97, 0xc9, 0x2a, 0xba, 0x65,
-	0x2d, 0xce, 0xf1, 0x39, 0x74, 0xbf, 0x4b, 0x6d, 0x96, 0x51, 0xe8, 0xb5, 0x46, 0x64, 0x7c, 0xc4,
-	0x0e, 0xb2, 0xe5, 0x22, 0xc4, 0x21, 0x1c, 0x66, 0x5f, 0x49, 0xb0, 0x16, 0x5e, 0x7b, 0x44, 0xc6,
-	0x3d, 0x56, 0xac, 0x11, 0xa1, 0x93, 0x4a, 0x65, 0xbc, 0x8e, 0xbd, 0x61, 0xbf, 0xd1, 0x87, 0x3e,
-	0x2f, 0x9d, 0x79, 0xfb, 0xd6, 0xc7, 0xc5, 0x43, 0x1f, 0x5b, 0x11, 0x58, 0xf5, 0x16, 0x9d, 0xc3,
-	0x69, 0x7e, 0xe4, 0x53, 0xa4, 0xcd, 0xe7, 0x8d, 0x50, 0x3f, 0xf0, 0x9d, 0x33, 0xb2, 0x8c, 0x42,
-	0xed, 0x91, 0x51, 0x7b, 0xdc, 0x9f, 0x9e, 0x3f, 0xae, 0xca, 0xba, 0xce, 0xba, 0xa6, 0xe7, 0x30,
-	0x98, 0xad, 0xf4, 0x57, 0x19, 0x6f, 0xd6, 0xa2, 0x8a, 0xeb, 0x14, 0x8e, 0x8b, 0xfa, 0x8d, 0x09,
-	0x8c, 0xa6, 0xbf, 0x09, 0xf4, 0x8a, 0xd2, 0x8e, 0x08, 0x5f, 0x40, 0xef, 0xce, 0xde, 0x2f, 0x21,
-	0x1e, 0xba, 0xc2, 0x22, 0xac, 0xf2, 0x6d, 0xd7, 0xf8, 0xce, 0xeb, 0xbc, 0x3a, 0xb6, 0xe9, 0xeb,
-	0xed, 0x64, 0x5b, 0x29, 0x6a, 0xc4, 0xf0, 0x12, 0xf6, 0x75, 0x96, 0x24, 0x07, 0xfe, 0xb2, 0x49,
-	0xc0, 0xc6, 0x65, 0xee, 0x2c, 0xbd, 0xb6, 0x8f, 0xc9, 0x6d, 0x94, 0xa0, 0x3f, 0x00, 0x14, 0x39,
-	0xee, 0x51, 0x7b, 0x4d, 0x7a, 0xac, 0x77, 0x1f, 0x51, 0x4f, 0x7f, 0xb5, 0x61, 0x30, 0xcb, 0xdf,
-	0xb2, 0x1f, 0x47, 0x22, 0x31, 0x8e, 0x0e, 0xce, 0xe1, 0xe4, 0x46, 0xa8, 0x3b, 0xa1, 0xdc, 0x7a,
-	0xa3, 0x04, 0x36, 0xcc, 0x6e, 0xf8, 0xb0, 0x11, 0x4b, 0x39, 0x13, 0x7a, 0x13, 0x1b, 0xba, 0x87,
-	0x57, 0x70, 0xe6, 0x64, 0xbe, 0x24, 0xfc, 0xbf, 0x84, 0x16, 0x00, 0x4e, 0x28, 0x0b, 0x8d, 0xaf,
-	0x1e, 0x57, 0x28, 0x80, 0x0c, 0x1b, 0x5a, 0xd0, 0xbd, 0xb7, 0x04, 0xaf, 0xe0, 0x24, 0x9f, 0x4c,
-	0xe1, 0xa8, 0x91, 0xd5, 0x3f, 0x3c, 0x9d, 0xb9, 0x53, 0xd5, 0x70, 0xbb, 0x49, 0x5d, 0x03, 0x94,
-	0x33, 0xc5, 0x8b, 0x26, 0x8d, 0x32, 0x60, 0x63, 0x9b, 0x2c, 0xe2, 0xf4, 0x0f, 0x29, 0xc7, 0x5a,
-	0x1d, 0xe3, 0x13, 0xc8, 0xfe, 0xed, 0xc0, 0xfe, 0x75, 0x2f, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff,
-	0x3e, 0x61, 0x61, 0x23, 0xa4, 0x05, 0x00, 0x00,
+	// 516 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x54, 0x4d, 0x8f, 0xd3, 0x30,
+	0x10, 0xad, 0xfb, 0xb1, 0xdd, 0x4e, 0xe9, 0x7e, 0x58, 0xd5, 0x12, 0x05, 0x10, 0x5d, 0xc3, 0xa1,
+	0x07, 0x54, 0x41, 0x17, 0xc1, 0x81, 0x63, 0x5a, 0x2d, 0x15, 0xac, 0x10, 0x5e, 0xc1, 0xb5, 0x0a,
+	0x8e, 0xbb, 0x44, 0x4a, 0xe3, 0xc8, 0x76, 0x57, 0xe2, 0x47, 0x72, 0xe7, 0x7f, 0x70, 0xe2, 0x86,
+	0x62, 0xa7, 0x69, 0xb2, 0xdd, 0x14, 0xb1, 0x5c, 0xb8, 0xd9, 0xe3, 0x99, 0x37, 0xf3, 0xde, 0x9b,
+	0x04, 0x0e, 0x82, 0x50, 0x72, 0xa6, 0x17, 0x6a, 0x94, 0x48, 0xa1, 0x05, 0xee, 0x29, 0x2d, 0xa4,
+	0x7f, 0xc5, 0x85, 0x9a, 0xcb, 0x84, 0xb9, 0xf7, 0x98, 0x58, 0x2e, 0x45, 0x6c, 0x1f, 0x49, 0x1f,
+	0xf0, 0x64, 0xa1, 0xde, 0x0a, 0xa5, 0x3d, 0xc9, 0x03, 0x1e, 0xeb, 0xd0, 0x8f, 0x14, 0xf9, 0x8e,
+	0xa0, 0x9d, 0x85, 0xf1, 0x4b, 0xa8, 0x33, 0xe6, 0xa0, 0x01, 0x1a, 0x76, 0xc7, 0x4f, 0x47, 0x25,
+	0xac, 0xd1, 0xc4, 0xd7, 0x7e, 0x12, 0xf9, 0x31, 0xf7, 0x0c, 0xa6, 0x27, 0xe2, 0x45, 0x78, 0x45,
+	0xeb, 0x8c, 0xe1, 0xfb, 0xd0, 0xfe, 0x2a, 0x94, 0x9e, 0x87, 0x81, 0x53, 0x1f, 0xa0, 0x61, 0x8f,
+	0xee, 0xa5, 0xd7, 0x59, 0x80, 0x5d, 0xd8, 0x4f, 0x4f, 0xb1, 0xbf, 0xe4, 0x4e, 0x63, 0x80, 0x86,
+	0x1d, 0x9a, 0xdf, 0x31, 0x86, 0x66, 0x22, 0xa4, 0x76, 0x9a, 0xa6, 0xc2, 0x9c, 0xb1, 0x07, 0x5d,
+	0xb6, 0x99, 0xcc, 0x69, 0x99, 0x39, 0x4e, 0x6f, 0xce, 0xb1, 0x45, 0x81, 0x16, 0xab, 0xc8, 0x1b,
+	0xe8, 0x66, 0x29, 0xef, 0x43, 0xa5, 0xf1, 0x33, 0x68, 0xa5, 0x3d, 0x95, 0x83, 0x06, 0x8d, 0x61,
+	0x77, 0x7c, 0x72, 0x3b, 0x1a, 0xb5, 0x49, 0x64, 0x0a, 0x47, 0x85, 0xe2, 0x8f, 0x2b, 0x2e, 0xbf,
+	0xe1, 0x17, 0x96, 0xc5, 0x3c, 0x0c, 0xfe, 0x04, 0xd2, 0xb6, 0xbc, 0x15, 0x39, 0x81, 0xfe, 0x64,
+	0xa1, 0x3e, 0x8b, 0x68, 0xb5, 0xe4, 0x45, 0xad, 0x8f, 0xe0, 0x20, 0x8f, 0x5f, 0x6a, 0x5f, 0x2b,
+	0xf2, 0x13, 0x41, 0x27, 0x0f, 0xdd, 0x51, 0xff, 0x07, 0xd0, 0xb9, 0x36, 0xf5, 0x1b, 0x07, 0xf6,
+	0x6d, 0x60, 0x16, 0x14, 0xcd, 0x69, 0x94, 0xcc, 0x99, 0x96, 0xc5, 0x6e, 0x9a, 0xa6, 0x4f, 0xb6,
+	0x99, 0x6d, 0xb1, 0x28, 0xc9, 0x8d, 0xcf, 0xa0, 0xa5, 0x52, 0x26, 0x99, 0x5b, 0x8f, 0xaa, 0x00,
+	0x0c, 0x5d, 0x6a, 0x73, 0xc9, 0x39, 0xf4, 0xf2, 0x07, 0xe3, 0xd2, 0x2b, 0x68, 0xdb, 0x89, 0xd7,
+	0x12, 0x3f, 0xac, 0xc2, 0x49, 0xd3, 0xe9, 0x3a, 0x99, 0x5c, 0x98, 0x95, 0xde, 0xbc, 0x58, 0xc7,
+	0x5e, 0x03, 0xe4, 0x82, 0xac, 0x01, 0x9d, 0x2a, 0x40, 0xda, 0x59, 0x6b, 0xa5, 0xc6, 0x3f, 0x1a,
+	0xd0, 0x9f, 0x64, 0x5f, 0x94, 0x17, 0x85, 0x3c, 0xd6, 0x56, 0x66, 0x3c, 0x85, 0xc3, 0x4b, 0x2e,
+	0xaf, 0xb9, 0xb4, 0xf7, 0x95, 0xe4, 0xb8, 0x62, 0x09, 0xdc, 0x9b, 0x8d, 0x68, 0xc2, 0x28, 0x57,
+	0xab, 0x48, 0x93, 0x1a, 0x3e, 0x87, 0x63, 0x0b, 0xf3, 0x29, 0x66, 0xff, 0x04, 0xf4, 0x0e, 0xc0,
+	0x02, 0x19, 0xf5, 0x1e, 0xdf, 0x8e, 0x90, 0x0b, 0xe2, 0xba, 0xd5, 0x09, 0x66, 0xaa, 0xc3, 0xcc,
+	0xe4, 0x7c, 0xa6, 0x4a, 0xb5, 0x76, 0x4e, 0x35, 0x83, 0x63, 0x9b, 0x55, 0xa4, 0x77, 0x37, 0xa8,
+	0x0f, 0x00, 0x85, 0xf5, 0x38, 0xdd, 0xb5, 0x0d, 0x96, 0xe2, 0xce, 0x85, 0x21, 0xb5, 0xf1, 0x2f,
+	0xb4, 0xb1, 0xb6, 0x68, 0xe5, 0x7f, 0xc9, 0xfe, 0xe2, 0x6f, 0xd9, 0x57, 0xb6, 0x21, 0xb5, 0xe7,
+	0xe8, 0xcb, 0x9e, 0xf9, 0xff, 0x9f, 0xfd, 0x0e, 0x00, 0x00, 0xff, 0xff, 0x5d, 0xa6, 0x1c, 0xb8,
+	0x2e, 0x06, 0x00, 0x00,
 }

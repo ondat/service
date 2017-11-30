@@ -38,6 +38,9 @@ extern RdbVolumeDefaultTypeInternal _RdbVolume_default_instance_;
 class RdbVolumeCredentials;
 class RdbVolumeCredentialsDefaultTypeInternal;
 extern RdbVolumeCredentialsDefaultTypeInternal _RdbVolumeCredentials_default_instance_;
+class RdbVolumeList;
+class RdbVolumeListDefaultTypeInternal;
+extern RdbVolumeListDefaultTypeInternal _RdbVolumeList_default_instance_;
 class RdbVolumeListQuery;
 class RdbVolumeListQueryDefaultTypeInternal;
 extern RdbVolumeListQueryDefaultTypeInternal _RdbVolumeListQuery_default_instance_;
@@ -480,6 +483,109 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
   mutable int _cached_size_;
   friend struct protobuf_rdbplugin_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class RdbVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.RdbVolumeList) */ {
+ public:
+  RdbVolumeList();
+  virtual ~RdbVolumeList();
+
+  RdbVolumeList(const RdbVolumeList& from);
+
+  inline RdbVolumeList& operator=(const RdbVolumeList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RdbVolumeList(RdbVolumeList&& from) noexcept
+    : RdbVolumeList() {
+    *this = ::std::move(from);
+  }
+
+  inline RdbVolumeList& operator=(RdbVolumeList&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RdbVolumeList& default_instance();
+
+  static inline const RdbVolumeList* internal_default_instance() {
+    return reinterpret_cast<const RdbVolumeList*>(
+               &_RdbVolumeList_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    4;
+
+  void Swap(RdbVolumeList* other);
+  friend void swap(RdbVolumeList& a, RdbVolumeList& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RdbVolumeList* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RdbVolumeList* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RdbVolumeList& from);
+  void MergeFrom(const RdbVolumeList& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RdbVolumeList* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .storageos_rpc.RdbVolume volumes = 1;
+  int volumes_size() const;
+  void clear_volumes();
+  static const int kVolumesFieldNumber = 1;
+  const ::storageos_rpc::RdbVolume& volumes(int index) const;
+  ::storageos_rpc::RdbVolume* mutable_volumes(int index);
+  ::storageos_rpc::RdbVolume* add_volumes();
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >*
+      mutable_volumes();
+  const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >&
+      volumes() const;
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.RdbVolumeList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume > volumes_;
+  mutable int _cached_size_;
+  friend struct protobuf_rdbplugin_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -682,10 +788,46 @@ inline void RdbVolume::set_allocated_stats(::storageos_rpc::RdbVolumeStats* stat
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RdbVolume.stats)
 }
 
+// -------------------------------------------------------------------
+
+// RdbVolumeList
+
+// repeated .storageos_rpc.RdbVolume volumes = 1;
+inline int RdbVolumeList::volumes_size() const {
+  return volumes_.size();
+}
+inline void RdbVolumeList::clear_volumes() {
+  volumes_.Clear();
+}
+inline const ::storageos_rpc::RdbVolume& RdbVolumeList::volumes(int index) const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Get(index);
+}
+inline ::storageos_rpc::RdbVolume* RdbVolumeList::mutable_volumes(int index) {
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Mutable(index);
+}
+inline ::storageos_rpc::RdbVolume* RdbVolumeList::add_volumes() {
+  // @@protoc_insertion_point(field_add:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >*
+RdbVolumeList::mutable_volumes() {
+  // @@protoc_insertion_point(field_mutable_list:storageos_rpc.RdbVolumeList.volumes)
+  return &volumes_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::storageos_rpc::RdbVolume >&
+RdbVolumeList::volumes() const {
+  // @@protoc_insertion_point(field_list:storageos_rpc.RdbVolumeList.volumes)
+  return volumes_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
