@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='common.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\rstorageos_rpc\",\n\tRpcResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06reason\x18\x02 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\rstorageos_rpc\",\n\tRpcResult\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0e\n\x06reason\x18\x02 \x01(\t\"\x9c\x02\n\x15\x44\x61taplaneCommonConfig\x12@\n\x06labels\x18\x01 \x03(\x0b\x32\x30.storageos_rpc.DataplaneCommonConfig.LabelsEntry\x12@\n\x06status\x18\x02 \x03(\x0b\x32\x30.storageos_rpc.DataplaneCommonConfig.StatusEntry\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x0c\n\x04uuid\x18\x04 \x01(\t\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a-\n\x0bStatusEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x62\x06proto3')
 )
 
 
@@ -62,7 +62,138 @@ _RPCRESULT = _descriptor.Descriptor(
   serialized_end=75,
 )
 
+
+_DATAPLANECOMMONCONFIG_LABELSENTRY = _descriptor.Descriptor(
+  name='LabelsEntry',
+  full_name='storageos_rpc.DataplaneCommonConfig.LabelsEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='storageos_rpc.DataplaneCommonConfig.LabelsEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='storageos_rpc.DataplaneCommonConfig.LabelsEntry.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=270,
+  serialized_end=315,
+)
+
+_DATAPLANECOMMONCONFIG_STATUSENTRY = _descriptor.Descriptor(
+  name='StatusEntry',
+  full_name='storageos_rpc.DataplaneCommonConfig.StatusEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='storageos_rpc.DataplaneCommonConfig.StatusEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='storageos_rpc.DataplaneCommonConfig.StatusEntry.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=317,
+  serialized_end=362,
+)
+
+_DATAPLANECOMMONCONFIG = _descriptor.Descriptor(
+  name='DataplaneCommonConfig',
+  full_name='storageos_rpc.DataplaneCommonConfig',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='labels', full_name='storageos_rpc.DataplaneCommonConfig.labels', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='storageos_rpc.DataplaneCommonConfig.status', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='storageos_rpc.DataplaneCommonConfig.description', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='uuid', full_name='storageos_rpc.DataplaneCommonConfig.uuid', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[_DATAPLANECOMMONCONFIG_LABELSENTRY, _DATAPLANECOMMONCONFIG_STATUSENTRY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=78,
+  serialized_end=362,
+)
+
+_DATAPLANECOMMONCONFIG_LABELSENTRY.containing_type = _DATAPLANECOMMONCONFIG
+_DATAPLANECOMMONCONFIG_STATUSENTRY.containing_type = _DATAPLANECOMMONCONFIG
+_DATAPLANECOMMONCONFIG.fields_by_name['labels'].message_type = _DATAPLANECOMMONCONFIG_LABELSENTRY
+_DATAPLANECOMMONCONFIG.fields_by_name['status'].message_type = _DATAPLANECOMMONCONFIG_STATUSENTRY
 DESCRIPTOR.message_types_by_name['RpcResult'] = _RPCRESULT
+DESCRIPTOR.message_types_by_name['DataplaneCommonConfig'] = _DATAPLANECOMMONCONFIG
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 RpcResult = _reflection.GeneratedProtocolMessageType('RpcResult', (_message.Message,), dict(
@@ -72,5 +203,32 @@ RpcResult = _reflection.GeneratedProtocolMessageType('RpcResult', (_message.Mess
   ))
 _sym_db.RegisterMessage(RpcResult)
 
+DataplaneCommonConfig = _reflection.GeneratedProtocolMessageType('DataplaneCommonConfig', (_message.Message,), dict(
 
+  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
+    DESCRIPTOR = _DATAPLANECOMMONCONFIG_LABELSENTRY,
+    __module__ = 'common_pb2'
+    # @@protoc_insertion_point(class_scope:storageos_rpc.DataplaneCommonConfig.LabelsEntry)
+    ))
+  ,
+
+  StatusEntry = _reflection.GeneratedProtocolMessageType('StatusEntry', (_message.Message,), dict(
+    DESCRIPTOR = _DATAPLANECOMMONCONFIG_STATUSENTRY,
+    __module__ = 'common_pb2'
+    # @@protoc_insertion_point(class_scope:storageos_rpc.DataplaneCommonConfig.StatusEntry)
+    ))
+  ,
+  DESCRIPTOR = _DATAPLANECOMMONCONFIG,
+  __module__ = 'common_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DataplaneCommonConfig)
+  ))
+_sym_db.RegisterMessage(DataplaneCommonConfig)
+_sym_db.RegisterMessage(DataplaneCommonConfig.LabelsEntry)
+_sym_db.RegisterMessage(DataplaneCommonConfig.StatusEntry)
+
+
+_DATAPLANECOMMONCONFIG_LABELSENTRY.has_options = True
+_DATAPLANECOMMONCONFIG_LABELSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
+_DATAPLANECOMMONCONFIG_STATUSENTRY.has_options = True
+_DATAPLANECOMMONCONFIG_STATUSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 # @@protoc_insertion_point(module_scope)

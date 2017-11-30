@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='director.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irector.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x19\n\x17\x44irectorVolumeListQuery\"\xbf\x02\n\x0e\x44irectorVolume\x12\x11\n\tvolume_id\x18\x01 \x01(\r\x12\x12\n\nwrite_pipe\x18\x02 \x01(\r\x12\x11\n\tread_pipe\x18\x03 \x01(\r\x12\x39\n\x06labels\x18\x04 \x03(\x0b\x32).storageos_rpc.DirectorVolume.LabelsEntry\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x12\n\nreplica_id\x18\x06 \x03(\r\x12\x39\n\x06status\x18\x07 \x03(\x0b\x32).storageos_rpc.DirectorVolume.StatusEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a-\n\x0bStatusEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x1b\n\x19\x44irectorRedirectListQuery\"8\n\x10\x44irectorRedirect\x12\x11\n\tsource_id\x18\x01 \x01(\r\x12\x11\n\ttarget_id\x18\x02 \x01(\r2\x8c\x04\n\x0e\x44irectorConfig\x12L\n\x0fVolumeConfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12N\n\x11VolumeUnconfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12W\n\nVolumeList\x12&.storageos_rpc.DirectorVolumeListQuery\x1a\x1d.storageos_rpc.DirectorVolume\"\x00\x30\x01\x12P\n\x11RedirectConfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12R\n\x13RedirectUnconfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12]\n\x0cRedirectList\x12(.storageos_rpc.DirectorRedirectListQuery\x1a\x1f.storageos_rpc.DirectorRedirect\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irector.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x15\n\x13\x44irectorVolumeStats\"\xd1\x01\n\x0e\x44irectorVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x31\n\x05stats\x18\x07 \x01(\x0b\x32\".storageos_rpc.DirectorVolumeStats\"-\n\x19\x44irectorRedirectListQuery\x12\x10\n\x08query_id\x18\x01 \x03(\r\"j\n\x10\x44irectorRedirect\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r2\x8c\x04\n\x0e\x44irectorConfig\x12L\n\x0fVolumeConfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12N\n\x11VolumeUnconfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12W\n\nVolumeList\x12&.storageos_rpc.DirectorVolumeListQuery\x1a\x1d.storageos_rpc.DirectorVolume\"\x00\x30\x01\x12P\n\x11RedirectConfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12R\n\x13RedirectUnconfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12]\n\x0cRedirectList\x12(.storageos_rpc.DirectorRedirectListQuery\x1a\x1f.storageos_rpc.DirectorRedirect\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -34,6 +34,13 @@ _DIRECTORVOLUMELISTQUERY = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='volume_ids', full_name='storageos_rpc.DirectorVolumeListQuery.volume_ids', index=0,
+      number=1, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -47,83 +54,33 @@ _DIRECTORVOLUMELISTQUERY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=47,
-  serialized_end=72,
+  serialized_end=92,
 )
 
 
-_DIRECTORVOLUME_LABELSENTRY = _descriptor.Descriptor(
-  name='LabelsEntry',
-  full_name='storageos_rpc.DirectorVolume.LabelsEntry',
+_DIRECTORVOLUMESTATS = _descriptor.Descriptor(
+  name='DirectorVolumeStats',
+  full_name='storageos_rpc.DirectorVolumeStats',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='storageos_rpc.DirectorVolume.LabelsEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='storageos_rpc.DirectorVolume.LabelsEntry.value', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
   ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=302,
-  serialized_end=347,
+  serialized_start=94,
+  serialized_end=115,
 )
 
-_DIRECTORVOLUME_STATUSENTRY = _descriptor.Descriptor(
-  name='StatusEntry',
-  full_name='storageos_rpc.DirectorVolume.StatusEntry',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='key', full_name='storageos_rpc.DirectorVolume.StatusEntry.key', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='storageos_rpc.DirectorVolume.StatusEntry.value', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=349,
-  serialized_end=394,
-)
 
 _DIRECTORVOLUME = _descriptor.Descriptor(
   name='DirectorVolume',
@@ -133,30 +90,30 @@ _DIRECTORVOLUME = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='volume_id', full_name='storageos_rpc.DirectorVolume.volume_id', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='cc', full_name='storageos_rpc.DirectorVolume.cc', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='write_pipe', full_name='storageos_rpc.DirectorVolume.write_pipe', index=1,
+      name='volume_id', full_name='storageos_rpc.DirectorVolume.volume_id', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='read_pipe', full_name='storageos_rpc.DirectorVolume.read_pipe', index=2,
+      name='write_pipe', full_name='storageos_rpc.DirectorVolume.write_pipe', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='labels', full_name='storageos_rpc.DirectorVolume.labels', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      name='read_pipe', full_name='storageos_rpc.DirectorVolume.read_pipe', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -168,43 +125,19 @@ _DIRECTORVOLUME = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='replica_id', full_name='storageos_rpc.DirectorVolume.replica_id', index=5,
+      name='replica_ids', full_name='storageos_rpc.DirectorVolume.replica_ids', index=5,
       number=6, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='storageos_rpc.DirectorVolume.status', index=6,
-      number=7, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      name='stats', full_name='storageos_rpc.DirectorVolume.stats', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[_DIRECTORVOLUME_LABELSENTRY, _DIRECTORVOLUME_STATUSENTRY, ],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=75,
-  serialized_end=394,
-)
-
-
-_DIRECTORREDIRECTLISTQUERY = _descriptor.Descriptor(
-  name='DirectorRedirectListQuery',
-  full_name='storageos_rpc.DirectorRedirectListQuery',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
   ],
   extensions=[
   ],
@@ -217,8 +150,39 @@ _DIRECTORREDIRECTLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=396,
-  serialized_end=423,
+  serialized_start=118,
+  serialized_end=327,
+)
+
+
+_DIRECTORREDIRECTLISTQUERY = _descriptor.Descriptor(
+  name='DirectorRedirectListQuery',
+  full_name='storageos_rpc.DirectorRedirectListQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='query_id', full_name='storageos_rpc.DirectorRedirectListQuery.query_id', index=0,
+      number=1, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=329,
+  serialized_end=374,
 )
 
 
@@ -230,15 +194,22 @@ _DIRECTORREDIRECT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='source_id', full_name='storageos_rpc.DirectorRedirect.source_id', index=0,
-      number=1, type=13, cpp_type=3, label=1,
+      name='cc', full_name='storageos_rpc.DirectorRedirect.cc', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='source_id', full_name='storageos_rpc.DirectorRedirect.source_id', index=1,
+      number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='target_id', full_name='storageos_rpc.DirectorRedirect.target_id', index=1,
-      number=2, type=13, cpp_type=3, label=1,
+      name='target_id', full_name='storageos_rpc.DirectorRedirect.target_id', index=2,
+      number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -255,15 +226,15 @@ _DIRECTORREDIRECT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=425,
-  serialized_end=481,
+  serialized_start=376,
+  serialized_end=482,
 )
 
-_DIRECTORVOLUME_LABELSENTRY.containing_type = _DIRECTORVOLUME
-_DIRECTORVOLUME_STATUSENTRY.containing_type = _DIRECTORVOLUME
-_DIRECTORVOLUME.fields_by_name['labels'].message_type = _DIRECTORVOLUME_LABELSENTRY
-_DIRECTORVOLUME.fields_by_name['status'].message_type = _DIRECTORVOLUME_STATUSENTRY
+_DIRECTORVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
+_DIRECTORVOLUME.fields_by_name['stats'].message_type = _DIRECTORVOLUMESTATS
+_DIRECTORREDIRECT.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
 DESCRIPTOR.message_types_by_name['DirectorVolumeListQuery'] = _DIRECTORVOLUMELISTQUERY
+DESCRIPTOR.message_types_by_name['DirectorVolumeStats'] = _DIRECTORVOLUMESTATS
 DESCRIPTOR.message_types_by_name['DirectorVolume'] = _DIRECTORVOLUME
 DESCRIPTOR.message_types_by_name['DirectorRedirectListQuery'] = _DIRECTORREDIRECTLISTQUERY
 DESCRIPTOR.message_types_by_name['DirectorRedirect'] = _DIRECTORREDIRECT
@@ -276,28 +247,19 @@ DirectorVolumeListQuery = _reflection.GeneratedProtocolMessageType('DirectorVolu
   ))
 _sym_db.RegisterMessage(DirectorVolumeListQuery)
 
+DirectorVolumeStats = _reflection.GeneratedProtocolMessageType('DirectorVolumeStats', (_message.Message,), dict(
+  DESCRIPTOR = _DIRECTORVOLUMESTATS,
+  __module__ = 'director_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DirectorVolumeStats)
+  ))
+_sym_db.RegisterMessage(DirectorVolumeStats)
+
 DirectorVolume = _reflection.GeneratedProtocolMessageType('DirectorVolume', (_message.Message,), dict(
-
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _DIRECTORVOLUME_LABELSENTRY,
-    __module__ = 'director_pb2'
-    # @@protoc_insertion_point(class_scope:storageos_rpc.DirectorVolume.LabelsEntry)
-    ))
-  ,
-
-  StatusEntry = _reflection.GeneratedProtocolMessageType('StatusEntry', (_message.Message,), dict(
-    DESCRIPTOR = _DIRECTORVOLUME_STATUSENTRY,
-    __module__ = 'director_pb2'
-    # @@protoc_insertion_point(class_scope:storageos_rpc.DirectorVolume.StatusEntry)
-    ))
-  ,
   DESCRIPTOR = _DIRECTORVOLUME,
   __module__ = 'director_pb2'
   # @@protoc_insertion_point(class_scope:storageos_rpc.DirectorVolume)
   ))
 _sym_db.RegisterMessage(DirectorVolume)
-_sym_db.RegisterMessage(DirectorVolume.LabelsEntry)
-_sym_db.RegisterMessage(DirectorVolume.StatusEntry)
 
 DirectorRedirectListQuery = _reflection.GeneratedProtocolMessageType('DirectorRedirectListQuery', (_message.Message,), dict(
   DESCRIPTOR = _DIRECTORREDIRECTLISTQUERY,
@@ -314,10 +276,6 @@ DirectorRedirect = _reflection.GeneratedProtocolMessageType('DirectorRedirect', 
 _sym_db.RegisterMessage(DirectorRedirect)
 
 
-_DIRECTORVOLUME_LABELSENTRY.has_options = True
-_DIRECTORVOLUME_LABELSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-_DIRECTORVOLUME_STATUSENTRY.has_options = True
-_DIRECTORVOLUME_STATUSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 
 _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
   name='DirectorConfig',
@@ -325,8 +283,8 @@ _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=484,
-  serialized_end=1008,
+  serialized_start=485,
+  serialized_end=1009,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeConfigure',

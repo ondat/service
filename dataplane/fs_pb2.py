@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='fs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x13\n\x11\x46sVolumeListQuery\"\xfc\x01\n\x08\x46sVolume\x12\x11\n\tvolume_id\x18\x01 \x01(\r\x12;\n\tnode_type\x18\x02 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x03 \x01(\r\x12\x10\n\x08\x66ilename\x18\x04 \x01(\t\x12\x15\n\rlinked_volume\x18\x05 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x06 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x07 \x01(\x04\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\x32\xe9\x01\n\x08\x46sConfig\x12\x46\n\x0fVolumeConfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12H\n\x11VolumeUnconfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x17.storageos_rpc.FsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x0f\n\rFsVolumeStats\"\xdb\x02\n\x08\x46sVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12+\n\x05stats\x18\t \x01(\x0b\x32\x1c.storageos_rpc.FsVolumeStats\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\x32\xe9\x01\n\x08\x46sConfig\x12\x46\n\x0fVolumeConfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12H\n\x11VolumeUnconfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x17.storageos_rpc.FsVolume\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -43,8 +43,8 @@ _FSVOLUME_VOLUMEDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=272,
-  serialized_end=315,
+  serialized_start=404,
+  serialized_end=447,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMEDEVICETYPE)
 
@@ -52,6 +52,37 @@ _sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMEDEVICETYPE)
 _FSVOLUMELISTQUERY = _descriptor.Descriptor(
   name='FsVolumeListQuery',
   full_name='storageos_rpc.FsVolumeListQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='volume_ids', full_name='storageos_rpc.FsVolumeListQuery.volume_ids', index=0,
+      number=1, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=41,
+  serialized_end=80,
+)
+
+
+_FSVOLUMESTATS = _descriptor.Descriptor(
+  name='FsVolumeStats',
+  full_name='storageos_rpc.FsVolumeStats',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -68,8 +99,8 @@ _FSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=41,
-  serialized_end=60,
+  serialized_start=82,
+  serialized_end=97,
 )
 
 
@@ -81,51 +112,65 @@ _FSVOLUME = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='volume_id', full_name='storageos_rpc.FsVolume.volume_id', index=0,
-      number=1, type=13, cpp_type=3, label=1,
+      name='cc', full_name='storageos_rpc.FsVolume.cc', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='volume_id', full_name='storageos_rpc.FsVolume.volume_id', index=1,
+      number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='node_type', full_name='storageos_rpc.FsVolume.node_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
+      name='node_type', full_name='storageos_rpc.FsVolume.node_type', index=2,
+      number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='device_number', full_name='storageos_rpc.FsVolume.device_number', index=2,
-      number=3, type=13, cpp_type=3, label=1,
+      name='device_number', full_name='storageos_rpc.FsVolume.device_number', index=3,
+      number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='filename', full_name='storageos_rpc.FsVolume.filename', index=3,
-      number=4, type=9, cpp_type=9, label=1,
+      name='filename', full_name='storageos_rpc.FsVolume.filename', index=4,
+      number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='linked_volume', full_name='storageos_rpc.FsVolume.linked_volume', index=4,
-      number=5, type=8, cpp_type=7, label=1,
+      name='linked_volume', full_name='storageos_rpc.FsVolume.linked_volume', index=5,
+      number=6, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='target_volume_id', full_name='storageos_rpc.FsVolume.target_volume_id', index=5,
-      number=6, type=13, cpp_type=3, label=1,
+      name='target_volume_id', full_name='storageos_rpc.FsVolume.target_volume_id', index=6,
+      number=7, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='volume_size_bytes', full_name='storageos_rpc.FsVolume.volume_size_bytes', index=6,
-      number=7, type=4, cpp_type=4, label=1,
+      name='volume_size_bytes', full_name='storageos_rpc.FsVolume.volume_size_bytes', index=7,
+      number=8, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stats', full_name='storageos_rpc.FsVolume.stats', index=8,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -142,13 +187,16 @@ _FSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=63,
-  serialized_end=315,
+  serialized_start=100,
+  serialized_end=447,
 )
 
+_FSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
 _FSVOLUME.fields_by_name['node_type'].enum_type = _FSVOLUME_VOLUMEDEVICETYPE
+_FSVOLUME.fields_by_name['stats'].message_type = _FSVOLUMESTATS
 _FSVOLUME_VOLUMEDEVICETYPE.containing_type = _FSVOLUME
 DESCRIPTOR.message_types_by_name['FsVolumeListQuery'] = _FSVOLUMELISTQUERY
+DESCRIPTOR.message_types_by_name['FsVolumeStats'] = _FSVOLUMESTATS
 DESCRIPTOR.message_types_by_name['FsVolume'] = _FSVOLUME
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -158,6 +206,13 @@ FsVolumeListQuery = _reflection.GeneratedProtocolMessageType('FsVolumeListQuery'
   # @@protoc_insertion_point(class_scope:storageos_rpc.FsVolumeListQuery)
   ))
 _sym_db.RegisterMessage(FsVolumeListQuery)
+
+FsVolumeStats = _reflection.GeneratedProtocolMessageType('FsVolumeStats', (_message.Message,), dict(
+  DESCRIPTOR = _FSVOLUMESTATS,
+  __module__ = 'fs_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.FsVolumeStats)
+  ))
+_sym_db.RegisterMessage(FsVolumeStats)
 
 FsVolume = _reflection.GeneratedProtocolMessageType('FsVolume', (_message.Message,), dict(
   DESCRIPTOR = _FSVOLUME,
@@ -174,8 +229,8 @@ _FSCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=318,
-  serialized_end=551,
+  serialized_start=450,
+  serialized_end=683,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeConfigure',

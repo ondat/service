@@ -28,9 +28,21 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 namespace storageos_rpc {
+class DataplaneCommonConfig;
+class DataplaneCommonConfigDefaultTypeInternal;
+extern DataplaneCommonConfigDefaultTypeInternal _DataplaneCommonConfig_default_instance_;
+class DataplaneCommonConfig_LabelsEntry;
+class DataplaneCommonConfig_LabelsEntryDefaultTypeInternal;
+extern DataplaneCommonConfig_LabelsEntryDefaultTypeInternal _DataplaneCommonConfig_LabelsEntry_default_instance_;
+class DataplaneCommonConfig_StatusEntry;
+class DataplaneCommonConfig_StatusEntryDefaultTypeInternal;
+extern DataplaneCommonConfig_StatusEntryDefaultTypeInternal _DataplaneCommonConfig_StatusEntry_default_instance_;
 class RpcResult;
 class RpcResultDefaultTypeInternal;
 extern RpcResultDefaultTypeInternal _RpcResult_default_instance_;
@@ -165,6 +177,205 @@ class RpcResult : public ::google::protobuf::Message /* @@protoc_insertion_point
   mutable int _cached_size_;
   friend struct protobuf_common_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------
+
+class DataplaneCommonConfig : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DataplaneCommonConfig) */ {
+ public:
+  DataplaneCommonConfig();
+  virtual ~DataplaneCommonConfig();
+
+  DataplaneCommonConfig(const DataplaneCommonConfig& from);
+
+  inline DataplaneCommonConfig& operator=(const DataplaneCommonConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DataplaneCommonConfig(DataplaneCommonConfig&& from) noexcept
+    : DataplaneCommonConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline DataplaneCommonConfig& operator=(DataplaneCommonConfig&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DataplaneCommonConfig& default_instance();
+
+  static inline const DataplaneCommonConfig* internal_default_instance() {
+    return reinterpret_cast<const DataplaneCommonConfig*>(
+               &_DataplaneCommonConfig_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(DataplaneCommonConfig* other);
+  friend void swap(DataplaneCommonConfig& a, DataplaneCommonConfig& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DataplaneCommonConfig* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DataplaneCommonConfig* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DataplaneCommonConfig& from);
+  void MergeFrom(const DataplaneCommonConfig& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DataplaneCommonConfig* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  // map<string, string> labels = 1;
+  int labels_size() const;
+  void clear_labels();
+  static const int kLabelsFieldNumber = 1;
+  const ::google::protobuf::Map< ::std::string, ::std::string >&
+      labels() const;
+  ::google::protobuf::Map< ::std::string, ::std::string >*
+      mutable_labels();
+
+  // map<string, string> status = 2;
+  int status_size() const;
+  void clear_status();
+  static const int kStatusFieldNumber = 2;
+  const ::google::protobuf::Map< ::std::string, ::std::string >&
+      status() const;
+  ::google::protobuf::Map< ::std::string, ::std::string >*
+      mutable_status();
+
+  // string description = 3;
+  void clear_description();
+  static const int kDescriptionFieldNumber = 3;
+  const ::std::string& description() const;
+  void set_description(const ::std::string& value);
+  #if LANG_CXX11
+  void set_description(::std::string&& value);
+  #endif
+  void set_description(const char* value);
+  void set_description(const char* value, size_t size);
+  ::std::string* mutable_description();
+  ::std::string* release_description();
+  void set_allocated_description(::std::string* description);
+
+  // string uuid = 4;
+  void clear_uuid();
+  static const int kUuidFieldNumber = 4;
+  const ::std::string& uuid() const;
+  void set_uuid(const ::std::string& value);
+  #if LANG_CXX11
+  void set_uuid(::std::string&& value);
+  #endif
+  void set_uuid(const char* value);
+  void set_uuid(const char* value, size_t size);
+  ::std::string* mutable_uuid();
+  ::std::string* release_uuid();
+  void set_allocated_uuid(::std::string* uuid);
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DataplaneCommonConfig)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  public:
+  class DataplaneCommonConfig_LabelsEntry : public ::google::protobuf::internal::MapEntry<DataplaneCommonConfig_LabelsEntry, 
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > {
+  public:
+    typedef ::google::protobuf::internal::MapEntry<DataplaneCommonConfig_LabelsEntry, 
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > SuperType;
+    DataplaneCommonConfig_LabelsEntry();
+    DataplaneCommonConfig_LabelsEntry(::google::protobuf::Arena* arena);
+    void MergeFrom(const ::google::protobuf::Message& other) PROTOBUF_FINAL;
+    void MergeFrom(const DataplaneCommonConfig_LabelsEntry& other);
+    static const Message* internal_default_instance() { return reinterpret_cast<const Message*>(&_DataplaneCommonConfig_LabelsEntry_default_instance_); }
+    ::google::protobuf::Metadata GetMetadata() const;
+  };
+  private:
+  ::google::protobuf::internal::MapField<
+      DataplaneCommonConfig_LabelsEntry,
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > labels_;
+  private:
+  public:
+  class DataplaneCommonConfig_StatusEntry : public ::google::protobuf::internal::MapEntry<DataplaneCommonConfig_StatusEntry, 
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > {
+  public:
+    typedef ::google::protobuf::internal::MapEntry<DataplaneCommonConfig_StatusEntry, 
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > SuperType;
+    DataplaneCommonConfig_StatusEntry();
+    DataplaneCommonConfig_StatusEntry(::google::protobuf::Arena* arena);
+    void MergeFrom(const ::google::protobuf::Message& other) PROTOBUF_FINAL;
+    void MergeFrom(const DataplaneCommonConfig_StatusEntry& other);
+    static const Message* internal_default_instance() { return reinterpret_cast<const Message*>(&_DataplaneCommonConfig_StatusEntry_default_instance_); }
+    ::google::protobuf::Metadata GetMetadata() const;
+  };
+  private:
+  ::google::protobuf::internal::MapField<
+      DataplaneCommonConfig_StatusEntry,
+      ::std::string, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > status_;
+  private:
+  ::google::protobuf::internal::ArenaStringPtr description_;
+  ::google::protobuf::internal::ArenaStringPtr uuid_;
+  mutable int _cached_size_;
+  friend struct protobuf_common_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -244,10 +455,166 @@ inline void RpcResult::set_allocated_reason(::std::string* reason) {
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RpcResult.reason)
 }
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// DataplaneCommonConfig
+
+// map<string, string> labels = 1;
+inline int DataplaneCommonConfig::labels_size() const {
+  return labels_.size();
+}
+inline void DataplaneCommonConfig::clear_labels() {
+  labels_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::std::string >&
+DataplaneCommonConfig::labels() const {
+  // @@protoc_insertion_point(field_map:storageos_rpc.DataplaneCommonConfig.labels)
+  return labels_.GetMap();
+}
+inline ::google::protobuf::Map< ::std::string, ::std::string >*
+DataplaneCommonConfig::mutable_labels() {
+  // @@protoc_insertion_point(field_mutable_map:storageos_rpc.DataplaneCommonConfig.labels)
+  return labels_.MutableMap();
+}
+
+// map<string, string> status = 2;
+inline int DataplaneCommonConfig::status_size() const {
+  return status_.size();
+}
+inline void DataplaneCommonConfig::clear_status() {
+  status_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::std::string >&
+DataplaneCommonConfig::status() const {
+  // @@protoc_insertion_point(field_map:storageos_rpc.DataplaneCommonConfig.status)
+  return status_.GetMap();
+}
+inline ::google::protobuf::Map< ::std::string, ::std::string >*
+DataplaneCommonConfig::mutable_status() {
+  // @@protoc_insertion_point(field_mutable_map:storageos_rpc.DataplaneCommonConfig.status)
+  return status_.MutableMap();
+}
+
+// string description = 3;
+inline void DataplaneCommonConfig::clear_description() {
+  description_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& DataplaneCommonConfig::description() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DataplaneCommonConfig.description)
+  return description_.GetNoArena();
+}
+inline void DataplaneCommonConfig::set_description(const ::std::string& value) {
+  
+  description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:storageos_rpc.DataplaneCommonConfig.description)
+}
+#if LANG_CXX11
+inline void DataplaneCommonConfig::set_description(::std::string&& value) {
+  
+  description_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:storageos_rpc.DataplaneCommonConfig.description)
+}
+#endif
+inline void DataplaneCommonConfig::set_description(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:storageos_rpc.DataplaneCommonConfig.description)
+}
+inline void DataplaneCommonConfig::set_description(const char* value, size_t size) {
+  
+  description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:storageos_rpc.DataplaneCommonConfig.description)
+}
+inline ::std::string* DataplaneCommonConfig::mutable_description() {
+  
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DataplaneCommonConfig.description)
+  return description_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* DataplaneCommonConfig::release_description() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.DataplaneCommonConfig.description)
+  
+  return description_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void DataplaneCommonConfig::set_allocated_description(::std::string* description) {
+  if (description != NULL) {
+    
+  } else {
+    
+  }
+  description_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), description);
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DataplaneCommonConfig.description)
+}
+
+// string uuid = 4;
+inline void DataplaneCommonConfig::clear_uuid() {
+  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& DataplaneCommonConfig::uuid() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DataplaneCommonConfig.uuid)
+  return uuid_.GetNoArena();
+}
+inline void DataplaneCommonConfig::set_uuid(const ::std::string& value) {
+  
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:storageos_rpc.DataplaneCommonConfig.uuid)
+}
+#if LANG_CXX11
+inline void DataplaneCommonConfig::set_uuid(::std::string&& value) {
+  
+  uuid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:storageos_rpc.DataplaneCommonConfig.uuid)
+}
+#endif
+inline void DataplaneCommonConfig::set_uuid(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:storageos_rpc.DataplaneCommonConfig.uuid)
+}
+inline void DataplaneCommonConfig::set_uuid(const char* value, size_t size) {
+  
+  uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:storageos_rpc.DataplaneCommonConfig.uuid)
+}
+inline ::std::string* DataplaneCommonConfig::mutable_uuid() {
+  
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DataplaneCommonConfig.uuid)
+  return uuid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* DataplaneCommonConfig::release_uuid() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.DataplaneCommonConfig.uuid)
+  
+  return uuid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void DataplaneCommonConfig::set_allocated_uuid(::std::string* uuid) {
+  if (uuid != NULL) {
+    
+  } else {
+    
+  }
+  uuid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), uuid);
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DataplaneCommonConfig.uuid)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
