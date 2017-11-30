@@ -1,0 +1,162 @@
+syntax = "proto3";
+package storageos_rpc;
+
+import "common.proto";
+
+/**
+ * DirectFS client configuration and status service.
+ */
+service DirectfsClientConfig {
+    /**
+     * Add a remote host entry to be used by volumes.
+     *
+     * returns RpcResult
+     */
+    rpc ServerConfigure(DfsHost) returns (RpcResult) {}
+
+    /**
+     * Remove a remote host entry.
+     *
+     * This will likely result in any volumes using this host to
+     * become unconfigured. That has serious consequences.
+     *
+     * returns RpcResult
+     */
+    rpc ServerUnconfigure(DfsHost) returns (RpcResult) {}
+
+    /**
+     * List configured host entries, optionally filtered via a DfsHostListQuery
+     * message.
+     *
+     * returns a stream of DfsHost messages, if any are available matching the filter.
+     */
+    rpc ServerList(DfsHostListQuery) returns (stream DfsHost) {}
+
+    /**
+     * Configure a volume on a remote host. The DfsHost matching the host id
+     * in the DfsVolume message must be configured for the volume to actually
+     * be configured on the DirectFS client.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeConfigure(DfsVolume) returns (RpcResult) {}
+
+    /**
+     * Unconfigure a volume previously configured by VolumeConfigure.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeUnconfigure(DfsVolume) returns (RpcResult) {}
+
+    /**
+     * List configured volume entries, optionally filtered via a DfsVolumeListQuery
+     * message.
+     *
+     * returns a stream of DfsVolume messages, if any are available matching the filter.
+     */
+    rpc VolumeList(DfsVolumeListQuery) returns (stream DfsVolume) {}
+}
+
+/**
+ * DirectFS server configuration and status service.
+ */
+service DirectfsServerConfig {
+    /**
+     * Configure a volume to be served via DFS. Currently does nothing, but should still
+     * be performed as in the near future it will certainly be required.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeConfigure(DfsVolume) returns (RpcResult) {}
+
+    /**
+     * Unconfigure a volume to be served via DFS. Currently does nothing, but should still
+     * be performed as in the near future it will certainly be required.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeUnconfigure(DfsVolume) returns (RpcResult) {}
+
+    /**
+     * List configured volume entries, optionally filtered via a DfsVolumeListQuery
+     * message.
+     *
+     * returns a stream of DfsVolume messages, if any are available matching the filter.
+     */
+    rpc VolumeList(DfsVolumeListQuery) returns (stream DfsVolume) {}
+}
+
+
+message DfsHostCredentials {
+    // Empty for now.
+    // Could be used for:
+    // - (server) tls creds (if per-host)
+    // - (client) tls creds (if per-host)
+}
+
+/**
+ * A host used by DirectFS.
+ */
+message DfsHost {
+    DataplaneCommonConfig cc = 1;
+
+    // The unique host identifier.
+    uint32 host_id = 2;
+
+    // The remote hostname.
+    string hostname = 3;
+
+    // The remote port.
+    uint32 port = 4;
+
+    // Host credentials.
+    DfsHostCredentials credentials = 5;
+}
+
+message DfsHostListQuery {
+    // An optional list of hosts to query.
+    repeated DfsHost host_ids = 1;
+}
+
+message DfsVolumeCredentials {
+    // Empty for now.
+    // Could be used for:
+    // - (server) tls creds (if per-volume), valid client IPs
+    // - (client) tls creds (if per-volume)
+}
+
+message DfsVolumeStats {
+    // Empty for now.
+}
+
+/**
+ * A volume used by DirectFS.
+ *
+ * The remote host (for the client) isn't directly included here. However, the
+ * client clearly can't connect without a properly configured host_id item.
+ *
+ * The split between host and volume objects was decided based on now-irrelevant
+ * implementation details of ConfigFS v1. However, there's still some logic to
+ * it if the authentication (especially TLS) is per-host rather than per-volume.
+ */
+message DfsVolume {
+    DataplaneCommonConfig cc = 1;
+
+    // The volume ID.
+    uint32 volume_id = 2;
+
+    // The host for this volume.
+    uint32 host_id = 3;
+
+    // Volume credentials.
+    DfsVolumeCredentials credentials = 4;
+
+    // Volume statistics.
+    DfsVolumeStats stats = 5;
+}
+
+
+message DfsVolumeListQuery {
+    // An optional list of volumes to query.
+    repeated DfsVolume volume_ids = 1;
+}

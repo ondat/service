@@ -7,3 +7,18 @@ message RpcResult {
     // If the operation was not successful, this is an explanatory message.
     string reason = 2;
 }
+
+message DataplaneCommonConfig {
+    // Item labels.
+    map<string, string> labels = 1;
+
+    // Item status.
+    map<string, string> status = 2;
+
+    // Human-readable info.
+    string description = 3;
+
+    // UUID. Not currently used.
+    string uuid = 4;
+
+}

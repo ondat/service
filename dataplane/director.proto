@@ -3,52 +3,109 @@ package storageos_rpc;
 
 import "common.proto";
 
+/**
+ * Director configuration and status service.
+ */
 service DirectorConfig {
+    /**
+     * Add configuration for the given DirectorVolume message.
+     *
+     * @return  RpcResult
+     */
     rpc VolumeConfigure(DirectorVolume) returns (RpcResult) {}
+
+    /**
+     * Remove configuration for the given DirectorVolume message.
+     *
+     * returns RpcResult
+     */
     rpc VolumeUnconfigure(DirectorVolume) returns (RpcResult) {}
+
+    /**
+     * List configured volumes, optionally filtered using a DirectorVolumeListQuery
+     * message.
+     *
+     * returns  A stream of DirectorVolume objects, if any are found matching the filter
+     */
     rpc VolumeList(DirectorVolumeListQuery) returns (stream DirectorVolume) {}
+
+    /**
+     * Add configuration for a redirection volume specified in the DirectorRedirect message.
+     *
+     * returns RpcResult
+     */
     rpc RedirectConfigure(DirectorRedirect) returns (RpcResult) {}
+
+    /**
+     * Remove configuration for the redirection volume specified in the DirectorRedirect message.
+     *
+     * returns RpcResult
+     */
     rpc RedirectUnconfigure(DirectorRedirect) returns (RpcResult) {}
+
+    /**
+     * List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
+     * message.
+     *
+     * returns a stream of DirectorRedirect mesages, if any are found matching the filter.
+     */
     rpc RedirectList(DirectorRedirectListQuery) returns (stream DirectorRedirect) {}
 }
 
 message DirectorVolumeListQuery {
-    // Null for now.
+    // A possibly-empty list of volume IDs to query.
+    repeated uint32 volume_ids = 1;
 }
 
-// Volume information.
+message DirectorVolumeStats {
+    // Empty for now.
+}
+
+/**
+ * Volume message for Director RPCs.
+ *
+ * Note this does should not be used to configure redirect inodes, volumes that point
+ * at other volumes. Use DirectorRedirect for that.
+ */
 message DirectorVolume {
+    DataplaneCommonConfig cc = 1;
+
     // The volume ID.
-    uint32 volume_id = 1;
+    uint32 volume_id = 2;
 
     // The write_pipe (identifies the plugin).
-    uint32 write_pipe = 2;
+    uint32 write_pipe = 3;
     // The read pipe (should be write_pipe + 1 in all current plugins).
-    uint32 read_pipe = 3;
-
-    // Arbitrary labels for this volume.
-    map<string, string> labels = 4;
+    uint32 read_pipe = 4;
 
     // Quality of service indicator.
     uint64 qos = 5;
 
     // List of replica inodes.
-    repeated uint32 replica_id = 6;
+    repeated uint32 replica_ids = 6;
 
-    // Status indicators for this volume.
-    map<string, string> status = 7;
-
+    // Volume statistics.
+    DirectorVolumeStats stats = 7;
 }
 
 message DirectorRedirectListQuery {
-    // Null for now.
+    // A possibly-empty list of volume IDs to query.
+    repeated uint32 query_id = 1;
 }
 
-// Redirect volume information. Just enough information to point at a DirectorVolume.
+/**
+ * Redirect volume message for Director RPCs.
+ *
+ * The minimum amount of information required to specify the 'presentation' or source volume,
+ * the volume that is presented to the user and (usually) mounted. All actual work
+ * is done on the target volume, which has actual storage associated with it.
+ */
 message DirectorRedirect {
+    DataplaneCommonConfig cc = 1;
+
     // The inode the user mounts or opens.
-    uint32 source_id = 1;
+    uint32 source_id = 2;
 
     // The underlying inode of the StorageOS volume.
-    uint32 target_id = 2;
+    uint32 target_id = 3;
 }

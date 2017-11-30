@@ -1,0 +1,70 @@
+syntax = "proto3";
+package storageos_rpc;
+
+import "common.proto";
+
+/**
+ * RDB Plugin configuration and status service.
+ */
+service RdbPluginConfig {
+
+    /**
+     * Configure a volume. Currently has no actual effect other authentication
+     * to add an entry reporting that the volume is 'configured', and so will
+     * have results returned by VolumeList.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeConfigure(RdbVolume) returns (RpcResult) {}
+
+    /**
+     * Unconfigure a volume. As for VolumeConfigure, this has no direct on-disk
+     * effect at the moment, and only removes the volume from the list of
+     * 'configured' items returned by VolumeList.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeUnconfigure(RdbVolume) returns (RpcResult) {}
+
+    rpc VolumeDelete(RdbVolume) returns (RpcResult) {}
+
+    rpc VolumeList(RdbVolumeListQuery) returns (stream RdbVolume) {}
+}
+
+message RdbVolumeListQuery {
+    // Optional list of volume IDs to query.
+    repeated RdbVolume volume_ids = 1;
+}
+
+message RdbVolumeCredentials {
+    // Empty for now.
+}
+
+message RdbVolumeStats {
+    // Empty for now.
+}
+
+/**
+ * A volume used by the RDB plugin.
+ *
+ * Currently there's no clear merit to adding and removing a volume here,
+ * as the RDB plugin doesn't read ConfigFS and doesn't really do anything.
+ *
+ * However, the control plane should still configure a volume - it's likely
+ * to be useful. At the very least we can create blob resources ahead of time.
+ */
+message RdbVolume {
+    DataplaneCommonConfig cc = 1;
+
+    // The volume ID.
+    uint32 volume_id = 2;
+
+    // The volume size in bytes.
+    uint64 volume_size_bytes = 3;
+
+    // Volume credentials.
+    RdbVolumeCredentials credentials = 4;
+
+    // Volume statistics.
+    RdbVolumeStats stats = 5;
+}

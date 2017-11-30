@@ -3,19 +3,51 @@ package storageos_rpc;
 
 import "common.proto";
 
+/**
+ * Filesystem configuration and status service.
+ */
 service FsConfig {
+
+    /**
+     * Configure the specified FsVolume.
+     *
+     * returns RpcResult
+     */
     rpc VolumeConfigure(FsVolume) returns (RpcResult) {}
+
+    /**
+     * Unconfigure the specified FsVolume.
+     *
+     * returns RpcResult
+     */
     rpc VolumeUnconfigure(FsVolume) returns (RpcResult) {}
+
+    /**
+     * Return a list of FsVolume messages, optionally filtered using the supplied
+     * FsVolumeListQuery message.
+     *
+     * returns a stream of FsVolume objects, if any are found that match the filter.
+     */
     rpc VolumeList(FsVolumeListQuery) returns (stream FsVolume) {}
 }
 
 message FsVolumeListQuery {
-    // Null for now.
+    // A possibly-empty list of volume IDs to query.
+    repeated uint32 volume_ids = 1;
 }
 
+message FsVolumeStats {
+    // Empty for now.
+}
+
+/**
+ * A StorageOS volume to be presented via the FUSE filesystem.
+ */
 message FsVolume {
+    DataplaneCommonConfig cc = 1;
+
     // The volume ID to represent.
-    uint32 volume_id = 1;
+    uint32 volume_id = 2;
 
     enum VolumeDeviceType {
         FILE = 0;           // A regular file (backed by FUSE).
@@ -23,20 +55,23 @@ message FsVolume {
     }
 
     // The type for this volume.
-    VolumeDeviceType node_type = 2;
+    VolumeDeviceType node_type = 3;
 
     // An opaque value interpreted based on node_type.
-    uint32 device_number = 3;
+    uint32 device_number = 4;
 
     // The name of the volume to present in the filesystem.
-    string filename = 4;
+    string filename = 5;
 
     // True if this volume should be backed by another volume.
-    bool linked_volume = 5;
+    bool linked_volume = 6;
 
     // If linked_volume is true, this is the volume to which we link.
-    uint32 target_volume_id = 6;
+    uint32 target_volume_id = 7;
 
     // The volume size in bytes.
-    uint64 volume_size_bytes = 7;
+    uint64 volume_size_bytes = 8;
+
+    // Volume statistics.
+    FsVolumeStats stats = 9;
 }
