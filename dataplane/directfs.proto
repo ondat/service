@@ -28,9 +28,10 @@ service DirectfsClientConfig {
      * List configured host entries, optionally filtered via a DfsHostListQuery
      * message.
      *
-     * returns a stream of DfsHost messages, if any are available matching the filter.
+     * returns A DfsHostList message containing DfsHost messages,
+     *         if any are available matching the filter.
      */
-    rpc ServerList(DfsHostListQuery) returns (stream DfsHost) {}
+    rpc ServerList(DfsHostListQuery) returns (DfsHostList) {}
 
     /**
      * Configure a volume on a remote host. The DfsHost matching the host id
@@ -52,9 +53,10 @@ service DirectfsClientConfig {
      * List configured volume entries, optionally filtered via a DfsVolumeListQuery
      * message.
      *
-     * returns a stream of DfsVolume messages, if any are available matching the filter.
+     * returns A DfsVolumeList message containing DfsVolume messages,
+     *         if any are available matching the filter.
      */
-    rpc VolumeList(DfsVolumeListQuery) returns (stream DfsVolume) {}
+    rpc VolumeList(DfsVolumeListQuery) returns (DfsVolumeList) {}
 }
 
 /**
@@ -113,6 +115,10 @@ message DfsHost {
     DfsHostCredentials credentials = 5;
 }
 
+message DfsHostList {
+    repeated DfsHost hosts = 1;
+}
+
 message DfsHostListQuery {
     // An optional list of hosts to query.
     repeated DfsHost host_ids = 1;
@@ -155,6 +161,9 @@ message DfsVolume {
     DfsVolumeStats stats = 5;
 }
 
+message DfsVolumeList {
+    repeated DfsVolumeList volumes = 1;
+}
 
 message DfsVolumeListQuery {
     // An optional list of volumes to query.

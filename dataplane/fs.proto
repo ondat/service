@@ -26,9 +26,10 @@ service FsConfig {
      * Return a list of FsVolume messages, optionally filtered using the supplied
      * FsVolumeListQuery message.
      *
-     * returns a stream of FsVolume objects, if any are found that match the filter.
+     * returns A FsVolumeList message containing FsVolume objects,
+     *         if any are found that match the filter.
      */
-    rpc VolumeList(FsVolumeListQuery) returns (stream FsVolume) {}
+    rpc VolumeList(FsVolumeListQuery) returns (FsVolumeList) {}
 }
 
 message FsVolumeListQuery {
@@ -74,4 +75,8 @@ message FsVolume {
 
     // Volume statistics.
     FsVolumeStats stats = 9;
+}
+
+message FsVolumeList {
+    repeated FsVolume volumes = 1;
 }

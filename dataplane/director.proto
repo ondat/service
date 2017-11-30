@@ -25,9 +25,10 @@ service DirectorConfig {
      * List configured volumes, optionally filtered using a DirectorVolumeListQuery
      * message.
      *
-     * returns  A stream of DirectorVolume objects, if any are found matching the filter
+     * returns  A DirectorVolumeList message containing DirectorVolume objects,
+     *          if any are found matching the filter
      */
-    rpc VolumeList(DirectorVolumeListQuery) returns (stream DirectorVolume) {}
+    rpc VolumeList(DirectorVolumeListQuery) returns (DirectorVolumeList) {}
 
     /**
      * Add configuration for a redirection volume specified in the DirectorRedirect message.
@@ -47,9 +48,10 @@ service DirectorConfig {
      * List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
      * message.
      *
-     * returns a stream of DirectorRedirect mesages, if any are found matching the filter.
+     * returns A DirectorRedirectList message containing DirectorRedirect mesages,
+     *         if any are found matching the filter.
      */
-    rpc RedirectList(DirectorRedirectListQuery) returns (stream DirectorRedirect) {}
+    rpc RedirectList(DirectorRedirectListQuery) returns (DirectorRedirectList) {}
 }
 
 message DirectorVolumeListQuery {
@@ -88,6 +90,11 @@ message DirectorVolume {
     DirectorVolumeStats stats = 7;
 }
 
+message DirectorVolumeList {
+    repeated DirectorVolume volumes = 1;
+}
+
+
 message DirectorRedirectListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 query_id = 1;
@@ -108,4 +115,8 @@ message DirectorRedirect {
 
     // The underlying inode of the StorageOS volume.
     uint32 target_id = 3;
+}
+
+message DirectorRedirectList {
+    repeated DirectorRedirect redirects = 1;
 }

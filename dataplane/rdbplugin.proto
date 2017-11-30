@@ -26,9 +26,23 @@ service RdbPluginConfig {
      */
     rpc VolumeUnconfigure(RdbVolume) returns (RpcResult) {}
 
+    /**
+     * Delete the storage allocated for a volume.
+     *
+     * Deletion can take some time, this call starts the deletion process then
+     * returns. Operation status must be obtained elsewhere.
+     *
+     * returns RpcResult
+     */
     rpc VolumeDelete(RdbVolume) returns (RpcResult) {}
 
-    rpc VolumeList(RdbVolumeListQuery) returns (stream RdbVolume) {}
+    /**
+     * Return a list of configured volumes. Optionally filter using the RdbVolumeListQuery message.
+
+     * returns An RdbVolumeList message containing RdbVolume messages,
+     *         if any are found matching the filter.
+     */
+    rpc VolumeList(RdbVolumeListQuery) returns (RdbVolumeList) {}
 }
 
 message RdbVolumeListQuery {
@@ -67,4 +81,8 @@ message RdbVolume {
 
     // Volume statistics.
     RdbVolumeStats stats = 5;
+}
+
+message RdbVolumeList {
+    repeated RdbVolume volumes = 1;
 }
