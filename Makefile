@@ -16,13 +16,20 @@ GRPC_SRC	+= rdbplugin/v1/rdbplugin.proto
 
 # As horrendous as these look, they just loop over the list of .proto files and synthesise
 # the relevant target filenames in the same directory in the source. It saves on repetition.
-GRPC_CPP_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.cc)
-GRPC_CPP_HDR	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.h)
+PBUF_CPP_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.cc)
+PBUF_CPP_HDR	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.h)
+PBUF_PY_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto)_pb2.py)
+GRPC_CPP_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).grpc.pb.cc)
+GRPC_CPP_HDR	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).grpc.pb.h)
 GRPC_GO_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.go)
-GRPC_PY_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto)_pb2.py)
+GRPC_PY_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto)_pb2_grpc.py)
 
-# All gRPC object files.
-GRPC_OBJ	= $(GRPC_CPP_OBJ) $(GRPC_CPP_HDR) $(GRPC_GO_OBJ) $(GRPC_PY_OBJ)
+# All gRPC object file targets.
+GRPC_OBJ	=  $(GRPC_CPP_OBJ) $(GRPC_CPP_HDR) $(GRPC_GO_OBJ) $(GRPC_PY_OBJ)
+GRPC_OBJ	+= $(PBUF_CPP_OBJ) $(PBUF_CPP_HDR)
+
+# All gRPC object files. This includes a files that are implicitly generated for Go and Python.
+GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ) $(PBUF_PY_OBJ)
 
 #############################################################################
 
@@ -35,7 +42,7 @@ clean: grpc_clean vis_clean
 grpc: $(GRPC_OBJ)
 
 grpc_clean:
-	rm -f $(GRPC_OBJ)
+	rm -f $(GRPC_ALLOBJ)
 
 vis:
 	cd visualiser && $(MAKE)
@@ -57,17 +64,29 @@ vis_clean:
 ## Using the directory manipulation functions means we can just specify a list of source
 ## files and have the fussy protoc command line generated automatically.
 
+
 # Make Golang protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %.pb.go: %.proto
 	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(<D) $(<F)
 
-# Make C++ protobuf implementation and declartions. Target source files go in the same directory
+# Make C++ gRPC implementation and declarations. Target source files go in the same directory
+# as the .proto source.
+%.grpc.pb.cc %grpc.pb.h: %.proto
+	protoc $(PROTOC_OPT) -I $(<D) --grpc_out=$(<D) --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` $(<F)
+
+# Make C++ protobuf implementation and declarations. Target source files go in the same directory
 # as the .proto source.
 %.pb.cc %.pb.h: %.proto
 	protoc $(PROTOC_OPT) -I $(<D) --cpp_out=$(<D) $(<F)
 
-# Make Python protobuf implemenation. Target source files go in the same directory
+# Make Python protobuf implementation. Target source files go in the same directory
+# as the .proto source.
+%_pb2_grpc.py: %.proto
+	# protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --plugin=protoc-gen-grpc=`which grpc_python_plugin` $(<F)
+	python -m grpc_tools.protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --grpc_python_out=$(<D) $(<F)
+
+# Make Python protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %_pb2.py: %.proto
 	protoc $(PROTOC_OPT) -I $(<D) --python_out=plugins=grpc:$(<D) $(<F)
