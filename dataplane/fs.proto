@@ -78,8 +78,14 @@ message FsVolumeStatistics {
     // Empty for now.
 }
 
+enum FsVolumeState {
+    NONE = 0;       // Volume is not available in the filesystem.
+    READY = 1;    // Volume can be read from the filesystem.
+}
+
 message FsVolumeStatus {
-    // Empty for now.
+    // State of the volume device node (file/block device).
+    FsVolumeState node_state = 1;
 }
 
 /**
@@ -146,6 +152,9 @@ message FsPresentation {
 
     // The underlying inode of the StorageOS volume.
     uint32 target_id = 3;
+
+    // Presentation inode status, e.g. readiness.
+    FsVolumeStatus status = 5;
 }
 
 message FsPresentationList {
