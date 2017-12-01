@@ -6,13 +6,20 @@ import "common.proto";
 /**
  * Director configuration and status service.
  */
-service DirectorConfig {
+service Director {
     /**
      * Add configuration for the given DirectorVolume message.
      *
      * @return  RpcResult
      */
     rpc VolumeCreate(DirectorVolume) returns (RpcResult) {}
+
+    /**
+     * Update configuration for the given DirectorVolume message.
+     *
+     * @return  RpcResult
+     */
+    rpc VolumeUpdate(DirectorVolume) returns (RpcResult) {}
 
     /**
      * Remove configuration for the given DirectorVolume message.
@@ -38,6 +45,13 @@ service DirectorConfig {
     rpc RedirectCreate(DirectorRedirect) returns (RpcResult) {}
 
     /**
+     * Update configuration for a redirection volume specified in the DirectorRedirect message.
+     *
+     * returns RpcResult
+     */
+    rpc RedirectUpdate(DirectorRedirect) returns (RpcResult) {}
+
+    /**
      * Remove configuration for the redirection volume specified in the DirectorRedirect message.
      *
      * returns RpcResult
@@ -59,7 +73,11 @@ message DirectorVolumeListQuery {
     repeated uint32 volume_ids = 1;
 }
 
-message DirectorVolumeStats {
+message DirectorVolumeStatistics {
+    // Empty for now.
+}
+
+message DirectorVolumeStatus {
     // Empty for now.
 }
 
@@ -70,7 +88,7 @@ message DirectorVolumeStats {
  * at other volumes. Use DirectorRedirect for that.
  */
 message DirectorVolume {
-    DataplaneCommonConfig cc = 1;
+    DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;
@@ -87,7 +105,10 @@ message DirectorVolume {
     repeated uint32 replica_ids = 6;
 
     // Volume statistics.
-    DirectorVolumeStats stats = 7;
+    DirectorVolumeStatistics stats = 7;
+
+    // Volume status, e.g. retry condition.
+    DirectorVolumeStatus status = 8;
 }
 
 message DirectorVolumeList {
@@ -97,7 +118,7 @@ message DirectorVolumeList {
 
 message DirectorRedirectListQuery {
     // A possibly-empty list of volume IDs to query.
-    repeated uint32 query_id = 1;
+    repeated uint32 redirect_id = 1;
 }
 
 /**
@@ -108,7 +129,7 @@ message DirectorRedirectListQuery {
  * is done on the target volume, which has actual storage associated with it.
  */
 message DirectorRedirect {
-    DataplaneCommonConfig cc = 1;
+    DataplaneCommon cc = 1;
 
     // The inode the user mounts or opens.
     uint32 source_id = 2;

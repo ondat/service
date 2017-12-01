@@ -6,7 +6,7 @@ import "common.proto";
 /**
  * Filesystem configuration and status service.
  */
-service FsConfig {
+service Fs {
 
     /**
      * Create the specified FsVolume.
@@ -14,6 +14,13 @@ service FsConfig {
      * returns RpcResult
      */
     rpc VolumeCreate(FsVolume) returns (RpcResult) {}
+
+    /**
+     * Update the specified FsVolume.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeUpdate(FsVolume) returns (RpcResult) {}
 
     /**
      * Delete the specified FsVolume.
@@ -30,6 +37,36 @@ service FsConfig {
      *         if any are found that match the filter.
      */
     rpc VolumeList(FsVolumeListQuery) returns (FsVolumeList) {}
+
+    /**
+     * Add configuration for a redirection volume specified in the FsRedirect message.
+     *
+     * returns RpcResult
+     */
+    rpc RedirectCreate(FsRedirect) returns (RpcResult) {}
+
+    /**
+     * Update configuration for a redirection volume specified in the FsRedirect message.
+     *
+     * returns RpcResult
+     */
+    rpc RedirectUpdate(FsRedirect) returns (RpcResult) {}
+
+    /**
+     * Remove configuration for the redirection volume specified in the FsRedirect message.
+     *
+     * returns RpcResult
+     */
+    rpc RedirectDelete(FsRedirect) returns (RpcResult) {}
+
+    /**
+     * List configured redirection volumes, optionally filtered using a FsRedirectListQuery
+     * message.
+     *
+     * returns A FsRedirectList message containing FsRedirect mesages,
+     *         if any are found matching the filter.
+     */
+    rpc RedirectList(FsRedirectListQuery) returns (FsRedirectList) {}
 }
 
 message FsVolumeListQuery {
@@ -37,7 +74,11 @@ message FsVolumeListQuery {
     repeated uint32 volume_ids = 1;
 }
 
-message FsVolumeStats {
+message FsVolumeStatistics {
+    // Empty for now.
+}
+
+message FsVolumeStatus {
     // Empty for now.
 }
 
@@ -45,7 +86,7 @@ message FsVolumeStats {
  * A StorageOS volume to be presented via the FUSE filesystem.
  */
 message FsVolume {
-    DataplaneCommonConfig cc = 1;
+    DataplaneCommon cc = 1;
 
     // The volume ID to represent.
     uint32 volume_id = 2;
@@ -74,9 +115,39 @@ message FsVolume {
     uint64 volume_size_bytes = 8;
 
     // Volume statistics.
-    FsVolumeStats stats = 9;
+    FsVolumeStatistics stats = 9;
+
+    // Volume status, e.g. readiness.
+    FsVolumeStatus status = 10;
 }
 
 message FsVolumeList {
     repeated FsVolume volumes = 1;
+}
+
+
+message FsRedirectListQuery {
+    // A possibly-empty list of volume IDs to query.
+    repeated uint32 redirect_id = 1;
+}
+
+/**
+ * Redirect volume message for Fs RPCs.
+ *
+ * The minimum amount of information required to specify the 'presentation' or source volume,
+ * the volume that is presented to the user and (usually) mounted. All actual work
+ * is done on the target volume, which has actual storage associated with it.
+ */
+message FsRedirect {
+    DataplaneCommon cc = 1;
+
+    // The inode the user mounts or opens.
+    uint32 source_id = 2;
+
+    // The underlying inode of the StorageOS volume.
+    uint32 target_id = 3;
+}
+
+message FsRedirectList {
+    repeated FsRedirect redirects = 1;
 }

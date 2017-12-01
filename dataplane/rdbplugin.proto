@@ -6,16 +6,25 @@ import "common.proto";
 /**
  * RDB Plugin configuration and status service.
  */
-service RdbPluginConfig {
+service RdbPlugin  {
 
     /**
-     * Create a volume. Currently has no actual effect other authentication
+     * Create a volume. Currently has no actual effect other than
      * to add an entry reporting that the volume is 'configured', and so will
      * have results returned by VolumeList.
      *
      * returns RpcResult
      */
     rpc VolumeCreate(RdbVolume) returns (RpcResult) {}
+
+    /**
+     * Create a volume. Currently has no actual effect other than
+     * to update the entry reporting that the volume is 'configured', and so will
+     * have results returned by VolumeList.
+     *
+     * returns RpcResult
+     */
+    rpc VolumeUpdate(RdbVolume) returns (RpcResult) {}
 
     /**
      * Delete the storage allocated for a volume.
@@ -45,7 +54,11 @@ message RdbVolumeCredentials {
     // Empty for now.
 }
 
-message RdbVolumeStats {
+message RdbVolumeStatistics {
+    // Empty for now.
+}
+
+message RdbVolumeStatus {
     // Empty for now.
 }
 
@@ -59,7 +72,7 @@ message RdbVolumeStats {
  * to be useful. At the very least we can create blob resources ahead of time.
  */
 message RdbVolume {
-    DataplaneCommonConfig cc = 1;
+    DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;
@@ -71,7 +84,10 @@ message RdbVolume {
     RdbVolumeCredentials credentials = 4;
 
     // Volume statistics.
-    RdbVolumeStats stats = 5;
+    RdbVolumeStatistics stats = 5;
+
+    // Volume status.
+    RdbVolumeStatus status = 6;
 }
 
 message RdbVolumeList {
