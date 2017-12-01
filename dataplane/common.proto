@@ -1,5 +1,4 @@
 syntax = "proto3";
-package storageos_rpc;
 
 message RpcResult {
     // Whether or not the operation was successful.

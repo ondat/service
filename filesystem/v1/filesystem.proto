@@ -1,5 +1,5 @@
 syntax = "proto3";
-package storageos_rpc;
+package filesystem.v1;
 
 import "common.proto";
 
