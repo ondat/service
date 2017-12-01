@@ -38,34 +38,34 @@ service Director {
     rpc VolumeList(DirectorVolumeListQuery) returns (DirectorVolumeList) {}
 
     /**
-     * Add configuration for a redirection volume specified in the DirectorRedirect message.
+     * Add configuration for a Presentation volume specified in the DirectorPresentation message.
      *
      * returns RpcResult
      */
-    rpc RedirectCreate(DirectorRedirect) returns (RpcResult) {}
+    rpc PresentationCreate(DirectorPresentation) returns (RpcResult) {}
 
     /**
-     * Update configuration for a redirection volume specified in the DirectorRedirect message.
+     * Update configuration for a Presentation volume specified in the DirectorPresentation message.
      *
      * returns RpcResult
      */
-    rpc RedirectUpdate(DirectorRedirect) returns (RpcResult) {}
+    rpc PresentationUpdate(DirectorPresentation) returns (RpcResult) {}
 
     /**
-     * Remove configuration for the redirection volume specified in the DirectorRedirect message.
+     * Remove configuration for the Presentation volume specified in the DirectorPresentation message.
      *
      * returns RpcResult
      */
-    rpc RedirectDelete(DirectorRedirect) returns (RpcResult) {}
+    rpc PresentationDelete(DirectorPresentation) returns (RpcResult) {}
 
     /**
-     * List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
+     * List configured Presentation volumes, optionally filtered using a DirectorPresentationListQuery
      * message.
      *
-     * returns A DirectorRedirectList message containing DirectorRedirect mesages,
+     * returns A DirectorPresentationList message containing DirectorPresentation mesages,
      *         if any are found matching the filter.
      */
-    rpc RedirectList(DirectorRedirectListQuery) returns (DirectorRedirectList) {}
+    rpc PresentationList(DirectorPresentationListQuery) returns (DirectorPresentationList) {}
 }
 
 message DirectorVolumeListQuery {
@@ -84,8 +84,8 @@ message DirectorVolumeStatus {
 /**
  * Volume message for Director RPCs.
  *
- * Note this does should not be used to configure redirect inodes, volumes that point
- * at other volumes. Use DirectorRedirect for that.
+ * Note this does should not be used to configure Presentation inodes, volumes that point
+ * at other volumes. Use DirectorPresentation for that.
  */
 message DirectorVolume {
     DataplaneCommon cc = 1;
@@ -116,19 +116,19 @@ message DirectorVolumeList {
 }
 
 
-message DirectorRedirectListQuery {
+message DirectorPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
-    repeated uint32 redirect_id = 1;
+    repeated uint32 presentation_id = 1;
 }
 
 /**
- * Redirect volume message for Director RPCs.
+ * Presentation volume message for Director RPCs.
  *
  * The minimum amount of information required to specify the 'presentation' or source volume,
  * the volume that is presented to the user and (usually) mounted. All actual work
  * is done on the target volume, which has actual storage associated with it.
  */
-message DirectorRedirect {
+message DirectorPresentation {
     DataplaneCommon cc = 1;
 
     // The inode the user mounts or opens.
@@ -138,6 +138,6 @@ message DirectorRedirect {
     uint32 target_id = 3;
 }
 
-message DirectorRedirectList {
-    repeated DirectorRedirect redirects = 1;
+message DirectorPresentationList {
+    repeated DirectorPresentation presentations = 1;
 }
