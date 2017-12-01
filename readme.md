@@ -19,32 +19,31 @@ To use this software, you must:
   defaulting to $GOPATH/bin.  It must be in your $PATH for the protocol
   compiler, protoc, to find it.
 
+
 This software has two parts: a 'protocol compiler plugin' that
 generates Go source files that, once compiled, can access and manage
 protocol buffers; and a library that implements run-time support for
 encoding (marshaling), decoding (unmarshaling), and accessing protocol
-buffers. 
+buffers.
 
-There is support for gRPC in Go using protocol buffers.
-See the note at the bottom of this file for details.
+## Generate protobuf and gRPC source files
 
-## Generate Go package
-
-To generate a Go package:
+To generate the code to implement the protobuf messages and gRPC services, run:
 
 ```
-make go
+$ make
+protoc -Icommon/v1 -I dataplane --cpp_out=dataplane dataplane.proto
+protoc -Icommon/v1 -I common/v1 --cpp_out=common/v1 common.proto
+... etc ...
+protoc -Icommon/v1 -I rdbplugin/v1 --python_out=plugins=grpc:rdbplugin/v1 rdbplugin.proto
+$
 ```
 
-The generated files will be suffixed .pb.go. See the `dataplane/dataplane.pb.go` code.
+The generated files will be generated in the same directory as the `.proto` source files,
+and will have language-specific suffixes:
 
-## gRPC Support
-
-If a proto file specifies RPC services, protoc-gen-go can be instructed to
-generate code compatible with gRPC (http://www.grpc.io/). To do this, pass
-the `plugins` parameter to protoc-gen-go; the usual way is to insert it into
-the --go_out argument to protoc:
-
-	protoc --go_out=plugins=grpc:. *.proto
-
-> *Note that currently dataplane.proto file doesn't have service definitions.*
+| Target | Suffix(es) |
+|--------|------------|
+| Go | `.pb.go` |
+| C++ | `.cc`, `.h` |
+| Python | `_pb2.py` |
