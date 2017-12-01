@@ -1,10 +1,10 @@
 
-PROTO_SRC	= ../dataplane
+PROTO_SRC	= ..
 PROTO_DIR	= $(CURDIR)/proto
 OUT_DIR		= $(CURDIR)/output
 
 # List the protobuf files in the PROTO_SRC directory.
-protofiles	= $(wildcard $(PROTO_SRC)/*.proto)
+protofiles	= $(shell find $(PROTO_SRC) -name *.proto -print)
 # For each proto file in PROTO_SRC, prepend the container's /proto/ prefix.
 # $(srcs) will be /proto/file1.proto /proto/file2.proto, useful when we can't
 # use globs, e.g. when starting a container.
@@ -25,7 +25,7 @@ shell: clean prep build
 	docker run $(DOCKER_RUNOPT) --entrypoint /bin/sh -ti $(IMG)
 
 prep:
-	cp $(PROTO_SRC)/*.proto $(PROTO_DIR)/
+	cp $(protofiles) $(PROTO_DIR)/
 
 build:
 	docker build --rm -t vis:latest .
