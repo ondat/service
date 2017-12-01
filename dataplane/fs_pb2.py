@@ -3,6 +3,7 @@
 
 import sys
 _b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -20,10 +21,35 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='fs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"\x10\n\x0e\x46sVolumeStatus\"\x89\x03\n\x08\x46sVolume\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12\x30\n\x05stats\x18\t \x01(\x0b\x32!.storageos_rpc.FsVolumeStatistics\x12-\n\x06status\x18\n \x01(\x0b\x32\x1d.storageos_rpc.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.storageos_rpc.FsVolume\"2\n\x17\x46sPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"b\n\x0e\x46sPresentation\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.storageos_rpc.FsPresentation2\xf6\x04\n\x02\x46s\x12\x43\n\x0cVolumeCreate\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x43\n\x0cVolumeUpdate\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x1b.storageos_rpc.FsVolumeList\"\x00\x12O\n\x12PresentationCreate\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\x12PresentationUpdate\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\x12PresentationDelete\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.storageos_rpc.FsPresentationListQuery\x1a!.storageos_rpc.FsPresentationList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"B\n\x0e\x46sVolumeStatus\x12\x30\n\nnode_state\x18\x01 \x01(\x0e\x32\x1c.storageos_rpc.FsVolumeState\"\x89\x03\n\x08\x46sVolume\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12\x30\n\x05stats\x18\t \x01(\x0b\x32!.storageos_rpc.FsVolumeStatistics\x12-\n\x06status\x18\n \x01(\x0b\x32\x1d.storageos_rpc.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.storageos_rpc.FsVolume\"2\n\x17\x46sPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"\x91\x01\n\x0e\x46sPresentation\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\x12-\n\x06status\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.FsVolumeStatus\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.storageos_rpc.FsPresentation*$\n\rFsVolumeState\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05READY\x10\x01\x32\xf6\x04\n\x02\x46s\x12\x43\n\x0cVolumeCreate\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x43\n\x0cVolumeUpdate\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x1b.storageos_rpc.FsVolumeList\"\x00\x12O\n\x12PresentationCreate\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\x12PresentationUpdate\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\x12PresentationDelete\x12\x1d.storageos_rpc.FsPresentation\x1a\x18.storageos_rpc.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.storageos_rpc.FsPresentationListQuery\x1a!.storageos_rpc.FsPresentationList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
+_FSVOLUMESTATE = _descriptor.EnumDescriptor(
+  name='FsVolumeState',
+  full_name='storageos_rpc.FsVolumeState',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='READY', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=902,
+  serialized_end=938,
+)
+_sym_db.RegisterEnumDescriptor(_FSVOLUMESTATE)
+
+FsVolumeState = enum_type_wrapper.EnumTypeWrapper(_FSVOLUMESTATE)
+NONE = 0
+READY = 1
 
 
 _FSVOLUME_VOLUMEDEVICETYPE = _descriptor.EnumDescriptor(
@@ -43,8 +69,8 @@ _FSVOLUME_VOLUMEDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=473,
-  serialized_end=516,
+  serialized_start=523,
+  serialized_end=566,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMEDEVICETYPE)
 
@@ -111,6 +137,13 @@ _FSVOLUMESTATUS = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='node_state', full_name='storageos_rpc.FsVolumeStatus.node_state', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -124,7 +157,7 @@ _FSVOLUMESTATUS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=104,
-  serialized_end=120,
+  serialized_end=170,
 )
 
 
@@ -218,8 +251,8 @@ _FSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=123,
-  serialized_end=516,
+  serialized_start=173,
+  serialized_end=566,
 )
 
 
@@ -249,8 +282,8 @@ _FSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=518,
-  serialized_end=574,
+  serialized_start=568,
+  serialized_end=624,
 )
 
 
@@ -280,8 +313,8 @@ _FSPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=576,
-  serialized_end=626,
+  serialized_start=626,
+  serialized_end=676,
 )
 
 
@@ -313,6 +346,13 @@ _FSPRESENTATION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='storageos_rpc.FsPresentation.status', index=3,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -325,8 +365,8 @@ _FSPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=628,
-  serialized_end=726,
+  serialized_start=679,
+  serialized_end=824,
 )
 
 
@@ -356,10 +396,11 @@ _FSPRESENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=728,
-  serialized_end=802,
+  serialized_start=826,
+  serialized_end=900,
 )
 
+_FSVOLUMESTATUS.fields_by_name['node_state'].enum_type = _FSVOLUMESTATE
 _FSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _FSVOLUME.fields_by_name['node_type'].enum_type = _FSVOLUME_VOLUMEDEVICETYPE
 _FSVOLUME.fields_by_name['stats'].message_type = _FSVOLUMESTATISTICS
@@ -367,6 +408,7 @@ _FSVOLUME.fields_by_name['status'].message_type = _FSVOLUMESTATUS
 _FSVOLUME_VOLUMEDEVICETYPE.containing_type = _FSVOLUME
 _FSVOLUMELIST.fields_by_name['volumes'].message_type = _FSVOLUME
 _FSPRESENTATION.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
+_FSPRESENTATION.fields_by_name['status'].message_type = _FSVOLUMESTATUS
 _FSPRESENTATIONLIST.fields_by_name['presentations'].message_type = _FSPRESENTATION
 DESCRIPTOR.message_types_by_name['FsVolumeListQuery'] = _FSVOLUMELISTQUERY
 DESCRIPTOR.message_types_by_name['FsVolumeStatistics'] = _FSVOLUMESTATISTICS
@@ -376,6 +418,7 @@ DESCRIPTOR.message_types_by_name['FsVolumeList'] = _FSVOLUMELIST
 DESCRIPTOR.message_types_by_name['FsPresentationListQuery'] = _FSPRESENTATIONLISTQUERY
 DESCRIPTOR.message_types_by_name['FsPresentation'] = _FSPRESENTATION
 DESCRIPTOR.message_types_by_name['FsPresentationList'] = _FSPRESENTATIONLIST
+DESCRIPTOR.enum_types_by_name['FsVolumeState'] = _FSVOLUMESTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 FsVolumeListQuery = _reflection.GeneratedProtocolMessageType('FsVolumeListQuery', (_message.Message,), dict(
@@ -442,8 +485,8 @@ _FS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=805,
-  serialized_end=1435,
+  serialized_start=941,
+  serialized_end=1571,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeCreate',

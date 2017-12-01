@@ -97,6 +97,27 @@ inline bool FsVolume_VolumeDeviceType_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<FsVolume_VolumeDeviceType>(
     FsVolume_VolumeDeviceType_descriptor(), name, value);
 }
+enum FsVolumeState {
+  NONE = 0,
+  READY = 1,
+  FsVolumeState_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  FsVolumeState_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool FsVolumeState_IsValid(int value);
+const FsVolumeState FsVolumeState_MIN = NONE;
+const FsVolumeState FsVolumeState_MAX = READY;
+const int FsVolumeState_ARRAYSIZE = FsVolumeState_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* FsVolumeState_descriptor();
+inline const ::std::string& FsVolumeState_Name(FsVolumeState value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    FsVolumeState_descriptor(), value);
+}
+inline bool FsVolumeState_Parse(
+    const ::std::string& name, FsVolumeState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<FsVolumeState>(
+    FsVolumeState_descriptor(), name, value);
+}
 // ===================================================================
 
 class FsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.FsVolumeListQuery) */ {
@@ -374,10 +395,17 @@ class FsVolumeStatus : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
+  // .storageos_rpc.FsVolumeState node_state = 1;
+  void clear_node_state();
+  static const int kNodeStateFieldNumber = 1;
+  ::storageos_rpc::FsVolumeState node_state() const;
+  void set_node_state(::storageos_rpc::FsVolumeState value);
+
   // @@protoc_insertion_point(class_scope:storageos_rpc.FsVolumeStatus)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  int node_state_;
   mutable int _cached_size_;
   friend struct protobuf_fs_2eproto::TableStruct;
 };
@@ -883,6 +911,15 @@ class FsPresentation : public ::google::protobuf::Message /* @@protoc_insertion_
   ::storageos_rpc::DataplaneCommon* release_cc();
   void set_allocated_cc(::storageos_rpc::DataplaneCommon* cc);
 
+  // .storageos_rpc.FsVolumeStatus status = 5;
+  bool has_status() const;
+  void clear_status();
+  static const int kStatusFieldNumber = 5;
+  const ::storageos_rpc::FsVolumeStatus& status() const;
+  ::storageos_rpc::FsVolumeStatus* mutable_status();
+  ::storageos_rpc::FsVolumeStatus* release_status();
+  void set_allocated_status(::storageos_rpc::FsVolumeStatus* status);
+
   // uint32 source_id = 2;
   void clear_source_id();
   static const int kSourceIdFieldNumber = 2;
@@ -900,6 +937,7 @@ class FsPresentation : public ::google::protobuf::Message /* @@protoc_insertion_
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::storageos_rpc::DataplaneCommon* cc_;
+  ::storageos_rpc::FsVolumeStatus* status_;
   ::google::protobuf::uint32 source_id_;
   ::google::protobuf::uint32 target_id_;
   mutable int _cached_size_;
@@ -1057,6 +1095,20 @@ FsVolumeListQuery::mutable_volume_ids() {
 // -------------------------------------------------------------------
 
 // FsVolumeStatus
+
+// .storageos_rpc.FsVolumeState node_state = 1;
+inline void FsVolumeStatus::clear_node_state() {
+  node_state_ = 0;
+}
+inline ::storageos_rpc::FsVolumeState FsVolumeStatus::node_state() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsVolumeStatus.node_state)
+  return static_cast< ::storageos_rpc::FsVolumeState >(node_state_);
+}
+inline void FsVolumeStatus::set_node_state(::storageos_rpc::FsVolumeState value) {
+  
+  node_state_ = value;
+  // @@protoc_insertion_point(field_set:storageos_rpc.FsVolumeStatus.node_state)
+}
 
 // -------------------------------------------------------------------
 
@@ -1459,6 +1511,46 @@ inline void FsPresentation::set_target_id(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:storageos_rpc.FsPresentation.target_id)
 }
 
+// .storageos_rpc.FsVolumeStatus status = 5;
+inline bool FsPresentation::has_status() const {
+  return this != internal_default_instance() && status_ != NULL;
+}
+inline void FsPresentation::clear_status() {
+  if (GetArenaNoVirtual() == NULL && status_ != NULL) delete status_;
+  status_ = NULL;
+}
+inline const ::storageos_rpc::FsVolumeStatus& FsPresentation::status() const {
+  const ::storageos_rpc::FsVolumeStatus* p = status_;
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsPresentation.status)
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::FsVolumeStatus*>(
+      &::storageos_rpc::_FsVolumeStatus_default_instance_);
+}
+inline ::storageos_rpc::FsVolumeStatus* FsPresentation::mutable_status() {
+  
+  if (status_ == NULL) {
+    status_ = new ::storageos_rpc::FsVolumeStatus;
+  }
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.FsPresentation.status)
+  return status_;
+}
+inline ::storageos_rpc::FsVolumeStatus* FsPresentation::release_status() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.FsPresentation.status)
+  
+  ::storageos_rpc::FsVolumeStatus* temp = status_;
+  status_ = NULL;
+  return temp;
+}
+inline void FsPresentation::set_allocated_status(::storageos_rpc::FsVolumeStatus* status) {
+  delete status_;
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.FsPresentation.status)
+}
+
 // -------------------------------------------------------------------
 
 // FsPresentationList
@@ -1524,6 +1616,11 @@ template <> struct is_proto_enum< ::storageos_rpc::FsVolume_VolumeDeviceType> : 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::storageos_rpc::FsVolume_VolumeDeviceType>() {
   return ::storageos_rpc::FsVolume_VolumeDeviceType_descriptor();
+}
+template <> struct is_proto_enum< ::storageos_rpc::FsVolumeState> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::storageos_rpc::FsVolumeState>() {
+  return ::storageos_rpc::FsVolumeState_descriptor();
 }
 
 }  // namespace protobuf

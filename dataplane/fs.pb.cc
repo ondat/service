@@ -65,7 +65,7 @@ namespace protobuf_fs_2eproto {
 namespace {
 
 ::google::protobuf::Metadata file_level_metadata[8];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 }  // namespace
 
@@ -107,6 +107,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolumeStatus, node_state_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -142,6 +143,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentation, cc_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentation, source_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentation, target_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentation, status_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentationList, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -153,11 +155,11 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTR
   { 0, -1, sizeof(FsVolumeListQuery)},
   { 6, -1, sizeof(FsVolumeStatistics)},
   { 11, -1, sizeof(FsVolumeStatus)},
-  { 16, -1, sizeof(FsVolume)},
-  { 31, -1, sizeof(FsVolumeList)},
-  { 37, -1, sizeof(FsPresentationListQuery)},
-  { 43, -1, sizeof(FsPresentation)},
-  { 51, -1, sizeof(FsPresentationList)},
+  { 17, -1, sizeof(FsVolume)},
+  { 32, -1, sizeof(FsVolumeList)},
+  { 38, -1, sizeof(FsPresentationListQuery)},
+  { 44, -1, sizeof(FsPresentation)},
+  { 53, -1, sizeof(FsPresentationList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -222,6 +224,8 @@ void TableStruct::InitDefaultsImpl() {
       ::storageos_rpc::FsVolumeStatus::internal_default_instance());
   _FsPresentation_default_instance_._instance.get_mutable()->cc_ = const_cast< ::storageos_rpc::DataplaneCommon*>(
       ::storageos_rpc::DataplaneCommon::internal_default_instance());
+  _FsPresentation_default_instance_._instance.get_mutable()->status_ = const_cast< ::storageos_rpc::FsVolumeStatus*>(
+      ::storageos_rpc::FsVolumeStatus::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -234,44 +238,47 @@ void AddDescriptorsImpl() {
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\010fs.proto\022\rstorageos_rpc\032\014common.proto\""
       "\'\n\021FsVolumeListQuery\022\022\n\nvolume_ids\030\001 \003(\r"
-      "\"\024\n\022FsVolumeStatistics\"\020\n\016FsVolumeStatus"
-      "\"\211\003\n\010FsVolume\022*\n\002cc\030\001 \001(\0132\036.storageos_rp"
-      "c.DataplaneCommon\022\021\n\tvolume_id\030\002 \001(\r\022;\n\t"
-      "node_type\030\003 \001(\0162(.storageos_rpc.FsVolume"
-      ".VolumeDeviceType\022\025\n\rdevice_number\030\004 \001(\r"
-      "\022\020\n\010filename\030\005 \001(\t\022\025\n\rlinked_volume\030\006 \001("
-      "\010\022\030\n\020target_volume_id\030\007 \001(\r\022\031\n\021volume_si"
-      "ze_bytes\030\010 \001(\004\0220\n\005stats\030\t \001(\0132!.storageo"
-      "s_rpc.FsVolumeStatistics\022-\n\006status\030\n \001(\013"
-      "2\035.storageos_rpc.FsVolumeStatus\"+\n\020Volum"
-      "eDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_BLOCK\020\001\"8\n\014"
-      "FsVolumeList\022(\n\007volumes\030\001 \003(\0132\027.storageo"
-      "s_rpc.FsVolume\"2\n\027FsPresentationListQuer"
-      "y\022\027\n\017presentation_id\030\001 \003(\r\"b\n\016FsPresenta"
-      "tion\022*\n\002cc\030\001 \001(\0132\036.storageos_rpc.Datapla"
-      "neCommon\022\021\n\tsource_id\030\002 \001(\r\022\021\n\ttarget_id"
-      "\030\003 \001(\r\"J\n\022FsPresentationList\0224\n\rpresenta"
-      "tions\030\001 \003(\0132\035.storageos_rpc.FsPresentati"
-      "on2\366\004\n\002Fs\022C\n\014VolumeCreate\022\027.storageos_rp"
-      "c.FsVolume\032\030.storageos_rpc.RpcResult\"\000\022C"
-      "\n\014VolumeUpdate\022\027.storageos_rpc.FsVolume\032"
-      "\030.storageos_rpc.RpcResult\"\000\022C\n\014VolumeDel"
-      "ete\022\027.storageos_rpc.FsVolume\032\030.storageos"
-      "_rpc.RpcResult\"\000\022M\n\nVolumeList\022 .storage"
-      "os_rpc.FsVolumeListQuery\032\033.storageos_rpc"
-      ".FsVolumeList\"\000\022O\n\022PresentationCreate\022\035."
-      "storageos_rpc.FsPresentation\032\030.storageos"
-      "_rpc.RpcResult\"\000\022O\n\022PresentationUpdate\022\035"
-      ".storageos_rpc.FsPresentation\032\030.storageo"
-      "s_rpc.RpcResult\"\000\022O\n\022PresentationDelete\022"
-      "\035.storageos_rpc.FsPresentation\032\030.storage"
-      "os_rpc.RpcResult\"\000\022_\n\020PresentationList\022&"
-      ".storageos_rpc.FsPresentationListQuery\032!"
-      ".storageos_rpc.FsPresentationList\"\000b\006pro"
-      "to3"
+      "\"\024\n\022FsVolumeStatistics\"B\n\016FsVolumeStatus"
+      "\0220\n\nnode_state\030\001 \001(\0162\034.storageos_rpc.FsV"
+      "olumeState\"\211\003\n\010FsVolume\022*\n\002cc\030\001 \001(\0132\036.st"
+      "orageos_rpc.DataplaneCommon\022\021\n\tvolume_id"
+      "\030\002 \001(\r\022;\n\tnode_type\030\003 \001(\0162(.storageos_rp"
+      "c.FsVolume.VolumeDeviceType\022\025\n\rdevice_nu"
+      "mber\030\004 \001(\r\022\020\n\010filename\030\005 \001(\t\022\025\n\rlinked_v"
+      "olume\030\006 \001(\010\022\030\n\020target_volume_id\030\007 \001(\r\022\031\n"
+      "\021volume_size_bytes\030\010 \001(\004\0220\n\005stats\030\t \001(\0132"
+      "!.storageos_rpc.FsVolumeStatistics\022-\n\006st"
+      "atus\030\n \001(\0132\035.storageos_rpc.FsVolumeStatu"
+      "s\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_B"
+      "LOCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\0132"
+      "\027.storageos_rpc.FsVolume\"2\n\027FsPresentati"
+      "onListQuery\022\027\n\017presentation_id\030\001 \003(\r\"\221\001\n"
+      "\016FsPresentation\022*\n\002cc\030\001 \001(\0132\036.storageos_"
+      "rpc.DataplaneCommon\022\021\n\tsource_id\030\002 \001(\r\022\021"
+      "\n\ttarget_id\030\003 \001(\r\022-\n\006status\030\005 \001(\0132\035.stor"
+      "ageos_rpc.FsVolumeStatus\"J\n\022FsPresentati"
+      "onList\0224\n\rpresentations\030\001 \003(\0132\035.storageo"
+      "s_rpc.FsPresentation*$\n\rFsVolumeState\022\010\n"
+      "\004NONE\020\000\022\t\n\005READY\020\0012\366\004\n\002Fs\022C\n\014VolumeCreat"
+      "e\022\027.storageos_rpc.FsVolume\032\030.storageos_r"
+      "pc.RpcResult\"\000\022C\n\014VolumeUpdate\022\027.storage"
+      "os_rpc.FsVolume\032\030.storageos_rpc.RpcResul"
+      "t\"\000\022C\n\014VolumeDelete\022\027.storageos_rpc.FsVo"
+      "lume\032\030.storageos_rpc.RpcResult\"\000\022M\n\nVolu"
+      "meList\022 .storageos_rpc.FsVolumeListQuery"
+      "\032\033.storageos_rpc.FsVolumeList\"\000\022O\n\022Prese"
+      "ntationCreate\022\035.storageos_rpc.FsPresenta"
+      "tion\032\030.storageos_rpc.RpcResult\"\000\022O\n\022Pres"
+      "entationUpdate\022\035.storageos_rpc.FsPresent"
+      "ation\032\030.storageos_rpc.RpcResult\"\000\022O\n\022Pre"
+      "sentationDelete\022\035.storageos_rpc.FsPresen"
+      "tation\032\030.storageos_rpc.RpcResult\"\000\022_\n\020Pr"
+      "esentationList\022&.storageos_rpc.FsPresent"
+      "ationListQuery\032!.storageos_rpc.FsPresent"
+      "ationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1443);
+      descriptor, 1579);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "fs.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();
@@ -312,6 +319,20 @@ const FsVolume_VolumeDeviceType FsVolume::VolumeDeviceType_MIN;
 const FsVolume_VolumeDeviceType FsVolume::VolumeDeviceType_MAX;
 const int FsVolume::VolumeDeviceType_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const ::google::protobuf::EnumDescriptor* FsVolumeState_descriptor() {
+  protobuf_fs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_fs_2eproto::file_level_enum_descriptors[1];
+}
+bool FsVolumeState_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -807,6 +828,7 @@ void FsVolumeStatistics::InternalSwap(FsVolumeStatistics* other) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int FsVolumeStatus::kNodeStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 FsVolumeStatus::FsVolumeStatus()
@@ -822,10 +844,12 @@ FsVolumeStatus::FsVolumeStatus(const FsVolumeStatus& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  node_state_ = from.node_state_;
   // @@protoc_insertion_point(copy_constructor:storageos_rpc.FsVolumeStatus)
 }
 
 void FsVolumeStatus::SharedCtor() {
+  node_state_ = 0;
   _cached_size_ = 0;
 }
 
@@ -866,6 +890,7 @@ void FsVolumeStatus::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  node_state_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -878,12 +903,32 @@ bool FsVolumeStatus::MergePartialFromCodedStream(
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
-  handle_unusual:
-    if (tag == 0) {
-      goto success;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .storageos_rpc.FsVolumeState node_state = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_node_state(static_cast< ::storageos_rpc::FsVolumeState >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
     }
-    DO_(::google::protobuf::internal::WireFormat::SkipField(
-          input, tag, _internal_metadata_.mutable_unknown_fields()));
   }
 success:
   // @@protoc_insertion_point(parse_success:storageos_rpc.FsVolumeStatus)
@@ -900,6 +945,12 @@ void FsVolumeStatus::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  // .storageos_rpc.FsVolumeState node_state = 1;
+  if (this->node_state() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->node_state(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -913,6 +964,12 @@ void FsVolumeStatus::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_to_array_start:storageos_rpc.FsVolumeStatus)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // .storageos_rpc.FsVolumeState node_state = 1;
+  if (this->node_state() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->node_state(), target);
+  }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
@@ -931,6 +988,12 @@ size_t FsVolumeStatus::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
+  // .storageos_rpc.FsVolumeState node_state = 1;
+  if (this->node_state() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->node_state());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -960,6 +1023,9 @@ void FsVolumeStatus::MergeFrom(const FsVolumeStatus& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.node_state() != 0) {
+    set_node_state(from.node_state());
+  }
 }
 
 void FsVolumeStatus::CopyFrom(const ::google::protobuf::Message& from) {
@@ -986,6 +1052,7 @@ void FsVolumeStatus::Swap(FsVolumeStatus* other) {
 }
 void FsVolumeStatus::InternalSwap(FsVolumeStatus* other) {
   using std::swap;
+  swap(node_state_, other->node_state_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -997,6 +1064,20 @@ void FsVolumeStatus::InternalSwap(FsVolumeStatus* other) {
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // FsVolumeStatus
+
+// .storageos_rpc.FsVolumeState node_state = 1;
+void FsVolumeStatus::clear_node_state() {
+  node_state_ = 0;
+}
+::storageos_rpc::FsVolumeState FsVolumeStatus::node_state() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsVolumeStatus.node_state)
+  return static_cast< ::storageos_rpc::FsVolumeState >(node_state_);
+}
+void FsVolumeStatus::set_node_state(::storageos_rpc::FsVolumeState value) {
+  
+  node_state_ = value;
+  // @@protoc_insertion_point(field_set:storageos_rpc.FsVolumeStatus.node_state)
+}
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
@@ -2456,6 +2537,7 @@ FsPresentationListQuery::mutable_presentation_id() {
 const int FsPresentation::kCcFieldNumber;
 const int FsPresentation::kSourceIdFieldNumber;
 const int FsPresentation::kTargetIdFieldNumber;
+const int FsPresentation::kStatusFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 FsPresentation::FsPresentation()
@@ -2475,6 +2557,11 @@ FsPresentation::FsPresentation(const FsPresentation& from)
     cc_ = new ::storageos_rpc::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
+  }
+  if (from.has_status()) {
+    status_ = new ::storageos_rpc::FsVolumeStatus(*from.status_);
+  } else {
+    status_ = NULL;
   }
   ::memcpy(&source_id_, &from.source_id_,
     static_cast<size_t>(reinterpret_cast<char*>(&target_id_) -
@@ -2496,6 +2583,7 @@ FsPresentation::~FsPresentation() {
 
 void FsPresentation::SharedDtor() {
   if (this != internal_default_instance()) delete cc_;
+  if (this != internal_default_instance()) delete status_;
 }
 
 void FsPresentation::SetCachedSize(int size) const {
@@ -2531,6 +2619,10 @@ void FsPresentation::Clear() {
     delete cc_;
   }
   cc_ = NULL;
+  if (GetArenaNoVirtual() == NULL && status_ != NULL) {
+    delete status_;
+  }
+  status_ = NULL;
   ::memset(&source_id_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&target_id_) -
       reinterpret_cast<char*>(&source_id_)) + sizeof(target_id_));
@@ -2587,6 +2679,18 @@ bool FsPresentation::MergePartialFromCodedStream(
         break;
       }
 
+      // .storageos_rpc.FsVolumeStatus status = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_status()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -2629,6 +2733,12 @@ void FsPresentation::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->target_id(), output);
   }
 
+  // .storageos_rpc.FsVolumeStatus status = 5;
+  if (this->has_status()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, *this->status_, output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -2660,6 +2770,13 @@ void FsPresentation::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->target_id(), target);
   }
 
+  // .storageos_rpc.FsVolumeStatus status = 5;
+  if (this->has_status()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        5, *this->status_, deterministic, target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -2682,6 +2799,13 @@ size_t FsPresentation::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->cc_);
+  }
+
+  // .storageos_rpc.FsVolumeStatus status = 5;
+  if (this->has_status()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->status_);
   }
 
   // uint32 source_id = 2;
@@ -2730,6 +2854,9 @@ void FsPresentation::MergeFrom(const FsPresentation& from) {
   if (from.has_cc()) {
     mutable_cc()->::storageos_rpc::DataplaneCommon::MergeFrom(from.cc());
   }
+  if (from.has_status()) {
+    mutable_status()->::storageos_rpc::FsVolumeStatus::MergeFrom(from.status());
+  }
   if (from.source_id() != 0) {
     set_source_id(from.source_id());
   }
@@ -2763,6 +2890,7 @@ void FsPresentation::Swap(FsPresentation* other) {
 void FsPresentation::InternalSwap(FsPresentation* other) {
   using std::swap;
   swap(cc_, other->cc_);
+  swap(status_, other->status_);
   swap(source_id_, other->source_id_);
   swap(target_id_, other->target_id_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
@@ -2843,6 +2971,46 @@ void FsPresentation::set_target_id(::google::protobuf::uint32 value) {
   
   target_id_ = value;
   // @@protoc_insertion_point(field_set:storageos_rpc.FsPresentation.target_id)
+}
+
+// .storageos_rpc.FsVolumeStatus status = 5;
+bool FsPresentation::has_status() const {
+  return this != internal_default_instance() && status_ != NULL;
+}
+void FsPresentation::clear_status() {
+  if (GetArenaNoVirtual() == NULL && status_ != NULL) delete status_;
+  status_ = NULL;
+}
+const ::storageos_rpc::FsVolumeStatus& FsPresentation::status() const {
+  const ::storageos_rpc::FsVolumeStatus* p = status_;
+  // @@protoc_insertion_point(field_get:storageos_rpc.FsPresentation.status)
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::FsVolumeStatus*>(
+      &::storageos_rpc::_FsVolumeStatus_default_instance_);
+}
+::storageos_rpc::FsVolumeStatus* FsPresentation::mutable_status() {
+  
+  if (status_ == NULL) {
+    status_ = new ::storageos_rpc::FsVolumeStatus;
+  }
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.FsPresentation.status)
+  return status_;
+}
+::storageos_rpc::FsVolumeStatus* FsPresentation::release_status() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.FsPresentation.status)
+  
+  ::storageos_rpc::FsVolumeStatus* temp = status_;
+  status_ = NULL;
+  return temp;
+}
+void FsPresentation::set_allocated_status(::storageos_rpc::FsVolumeStatus* status) {
+  delete status_;
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.FsPresentation.status)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
