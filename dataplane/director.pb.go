@@ -9,12 +9,13 @@ It is generated from these files:
 
 It has these top-level messages:
 	DirectorVolumeListQuery
-	DirectorVolumeStats
+	DirectorVolumeStatistics
+	DirectorVolumeStatus
 	DirectorVolume
 	DirectorVolumeList
-	DirectorRedirectListQuery
-	DirectorRedirect
-	DirectorRedirectList
+	DirectorPresentationListQuery
+	DirectorPresentation
+	DirectorPresentationList
 */
 package storageos_rpc
 
@@ -56,21 +57,29 @@ func (m *DirectorVolumeListQuery) GetVolumeIds() []uint32 {
 	return nil
 }
 
-type DirectorVolumeStats struct {
+type DirectorVolumeStatistics struct {
 }
 
-func (m *DirectorVolumeStats) Reset()                    { *m = DirectorVolumeStats{} }
-func (m *DirectorVolumeStats) String() string            { return proto.CompactTextString(m) }
-func (*DirectorVolumeStats) ProtoMessage()               {}
-func (*DirectorVolumeStats) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *DirectorVolumeStatistics) Reset()                    { *m = DirectorVolumeStatistics{} }
+func (m *DirectorVolumeStatistics) String() string            { return proto.CompactTextString(m) }
+func (*DirectorVolumeStatistics) ProtoMessage()               {}
+func (*DirectorVolumeStatistics) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+type DirectorVolumeStatus struct {
+}
+
+func (m *DirectorVolumeStatus) Reset()                    { *m = DirectorVolumeStatus{} }
+func (m *DirectorVolumeStatus) String() string            { return proto.CompactTextString(m) }
+func (*DirectorVolumeStatus) ProtoMessage()               {}
+func (*DirectorVolumeStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 // *
 // Volume message for Director RPCs.
 //
-// Note this does should not be used to configure redirect inodes, volumes that point
-// at other volumes. Use DirectorRedirect for that.
+// Note this does should not be used to configure Presentation inodes, volumes that point
+// at other volumes. Use DirectorPresentation for that.
 type DirectorVolume struct {
-	Cc *storageos_rpc1.DataplaneCommonConfig `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+	Cc *storageos_rpc1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
 	// The volume ID.
 	VolumeId uint32 `protobuf:"varint,2,opt,name=volume_id,json=volumeId" json:"volume_id,omitempty"`
 	// The write_pipe (identifies the plugin).
@@ -82,15 +91,17 @@ type DirectorVolume struct {
 	// List of replica inodes.
 	ReplicaIds []uint32 `protobuf:"varint,6,rep,packed,name=replica_ids,json=replicaIds" json:"replica_ids,omitempty"`
 	// Volume statistics.
-	Stats *DirectorVolumeStats `protobuf:"bytes,7,opt,name=stats" json:"stats,omitempty"`
+	Stats *DirectorVolumeStatistics `protobuf:"bytes,7,opt,name=stats" json:"stats,omitempty"`
+	// Volume status, e.g. retry condition.
+	Status *DirectorVolumeStatus `protobuf:"bytes,8,opt,name=status" json:"status,omitempty"`
 }
 
 func (m *DirectorVolume) Reset()                    { *m = DirectorVolume{} }
 func (m *DirectorVolume) String() string            { return proto.CompactTextString(m) }
 func (*DirectorVolume) ProtoMessage()               {}
-func (*DirectorVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*DirectorVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
-func (m *DirectorVolume) GetCc() *storageos_rpc1.DataplaneCommonConfig {
+func (m *DirectorVolume) GetCc() *storageos_rpc1.DataplaneCommon {
 	if m != nil {
 		return m.Cc
 	}
@@ -132,9 +143,16 @@ func (m *DirectorVolume) GetReplicaIds() []uint32 {
 	return nil
 }
 
-func (m *DirectorVolume) GetStats() *DirectorVolumeStats {
+func (m *DirectorVolume) GetStats() *DirectorVolumeStatistics {
 	if m != nil {
 		return m.Stats
+	}
+	return nil
+}
+
+func (m *DirectorVolume) GetStatus() *DirectorVolumeStatus {
+	if m != nil {
+		return m.Status
 	}
 	return nil
 }
@@ -146,7 +164,7 @@ type DirectorVolumeList struct {
 func (m *DirectorVolumeList) Reset()                    { *m = DirectorVolumeList{} }
 func (m *DirectorVolumeList) String() string            { return proto.CompactTextString(m) }
 func (*DirectorVolumeList) ProtoMessage()               {}
-func (*DirectorVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*DirectorVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 func (m *DirectorVolumeList) GetVolumes() []*DirectorVolume {
 	if m != nil {
@@ -155,87 +173,88 @@ func (m *DirectorVolumeList) GetVolumes() []*DirectorVolume {
 	return nil
 }
 
-type DirectorRedirectListQuery struct {
+type DirectorPresentationListQuery struct {
 	// A possibly-empty list of volume IDs to query.
-	QueryId []uint32 `protobuf:"varint,1,rep,packed,name=query_id,json=queryId" json:"query_id,omitempty"`
+	PresentationId []uint32 `protobuf:"varint,1,rep,packed,name=presentation_id,json=presentationId" json:"presentation_id,omitempty"`
 }
 
-func (m *DirectorRedirectListQuery) Reset()                    { *m = DirectorRedirectListQuery{} }
-func (m *DirectorRedirectListQuery) String() string            { return proto.CompactTextString(m) }
-func (*DirectorRedirectListQuery) ProtoMessage()               {}
-func (*DirectorRedirectListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (m *DirectorPresentationListQuery) Reset()                    { *m = DirectorPresentationListQuery{} }
+func (m *DirectorPresentationListQuery) String() string            { return proto.CompactTextString(m) }
+func (*DirectorPresentationListQuery) ProtoMessage()               {}
+func (*DirectorPresentationListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
 
-func (m *DirectorRedirectListQuery) GetQueryId() []uint32 {
+func (m *DirectorPresentationListQuery) GetPresentationId() []uint32 {
 	if m != nil {
-		return m.QueryId
+		return m.PresentationId
 	}
 	return nil
 }
 
 // *
-// Redirect volume message for Director RPCs.
+// Presentation volume message for Director RPCs.
 //
 // The minimum amount of information required to specify the 'presentation' or source volume,
 // the volume that is presented to the user and (usually) mounted. All actual work
 // is done on the target volume, which has actual storage associated with it.
-type DirectorRedirect struct {
-	Cc *storageos_rpc1.DataplaneCommonConfig `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+type DirectorPresentation struct {
+	Cc *storageos_rpc1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
 	// The inode the user mounts or opens.
 	SourceId uint32 `protobuf:"varint,2,opt,name=source_id,json=sourceId" json:"source_id,omitempty"`
 	// The underlying inode of the StorageOS volume.
 	TargetId uint32 `protobuf:"varint,3,opt,name=target_id,json=targetId" json:"target_id,omitempty"`
 }
 
-func (m *DirectorRedirect) Reset()                    { *m = DirectorRedirect{} }
-func (m *DirectorRedirect) String() string            { return proto.CompactTextString(m) }
-func (*DirectorRedirect) ProtoMessage()               {}
-func (*DirectorRedirect) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (m *DirectorPresentation) Reset()                    { *m = DirectorPresentation{} }
+func (m *DirectorPresentation) String() string            { return proto.CompactTextString(m) }
+func (*DirectorPresentation) ProtoMessage()               {}
+func (*DirectorPresentation) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
-func (m *DirectorRedirect) GetCc() *storageos_rpc1.DataplaneCommonConfig {
+func (m *DirectorPresentation) GetCc() *storageos_rpc1.DataplaneCommon {
 	if m != nil {
 		return m.Cc
 	}
 	return nil
 }
 
-func (m *DirectorRedirect) GetSourceId() uint32 {
+func (m *DirectorPresentation) GetSourceId() uint32 {
 	if m != nil {
 		return m.SourceId
 	}
 	return 0
 }
 
-func (m *DirectorRedirect) GetTargetId() uint32 {
+func (m *DirectorPresentation) GetTargetId() uint32 {
 	if m != nil {
 		return m.TargetId
 	}
 	return 0
 }
 
-type DirectorRedirectList struct {
-	Redirects []*DirectorRedirect `protobuf:"bytes,1,rep,name=redirects" json:"redirects,omitempty"`
+type DirectorPresentationList struct {
+	Presentations []*DirectorPresentation `protobuf:"bytes,1,rep,name=presentations" json:"presentations,omitempty"`
 }
 
-func (m *DirectorRedirectList) Reset()                    { *m = DirectorRedirectList{} }
-func (m *DirectorRedirectList) String() string            { return proto.CompactTextString(m) }
-func (*DirectorRedirectList) ProtoMessage()               {}
-func (*DirectorRedirectList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (m *DirectorPresentationList) Reset()                    { *m = DirectorPresentationList{} }
+func (m *DirectorPresentationList) String() string            { return proto.CompactTextString(m) }
+func (*DirectorPresentationList) ProtoMessage()               {}
+func (*DirectorPresentationList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
 
-func (m *DirectorRedirectList) GetRedirects() []*DirectorRedirect {
+func (m *DirectorPresentationList) GetPresentations() []*DirectorPresentation {
 	if m != nil {
-		return m.Redirects
+		return m.Presentations
 	}
 	return nil
 }
 
 func init() {
 	proto.RegisterType((*DirectorVolumeListQuery)(nil), "storageos_rpc.DirectorVolumeListQuery")
-	proto.RegisterType((*DirectorVolumeStats)(nil), "storageos_rpc.DirectorVolumeStats")
+	proto.RegisterType((*DirectorVolumeStatistics)(nil), "storageos_rpc.DirectorVolumeStatistics")
+	proto.RegisterType((*DirectorVolumeStatus)(nil), "storageos_rpc.DirectorVolumeStatus")
 	proto.RegisterType((*DirectorVolume)(nil), "storageos_rpc.DirectorVolume")
 	proto.RegisterType((*DirectorVolumeList)(nil), "storageos_rpc.DirectorVolumeList")
-	proto.RegisterType((*DirectorRedirectListQuery)(nil), "storageos_rpc.DirectorRedirectListQuery")
-	proto.RegisterType((*DirectorRedirect)(nil), "storageos_rpc.DirectorRedirect")
-	proto.RegisterType((*DirectorRedirectList)(nil), "storageos_rpc.DirectorRedirectList")
+	proto.RegisterType((*DirectorPresentationListQuery)(nil), "storageos_rpc.DirectorPresentationListQuery")
+	proto.RegisterType((*DirectorPresentation)(nil), "storageos_rpc.DirectorPresentation")
+	proto.RegisterType((*DirectorPresentationList)(nil), "storageos_rpc.DirectorPresentationList")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -246,14 +265,19 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// Client API for DirectorConfig service
+// Client API for Director service
 
-type DirectorConfigClient interface {
+type DirectorClient interface {
 	// *
 	// Add configuration for the given DirectorVolume message.
 	//
 	// @return  RpcResult
 	VolumeCreate(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update configuration for the given DirectorVolume message.
+	//
+	// @return  RpcResult
+	VolumeUpdate(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
 	// *
 	// Remove configuration for the given DirectorVolume message.
 	//
@@ -267,94 +291,122 @@ type DirectorConfigClient interface {
 	//          if any are found matching the filter
 	VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (*DirectorVolumeList, error)
 	// *
-	// Add configuration for a redirection volume specified in the DirectorRedirect message.
+	// Add configuration for a Presentation volume specified in the DirectorPresentation message.
 	//
 	// returns RpcResult
-	RedirectCreate(ctx context.Context, in *DirectorRedirect, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	PresentationCreate(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
 	// *
-	// Remove configuration for the redirection volume specified in the DirectorRedirect message.
+	// Update configuration for a Presentation volume specified in the DirectorPresentation message.
 	//
 	// returns RpcResult
-	RedirectDelete(ctx context.Context, in *DirectorRedirect, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	PresentationUpdate(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
 	// *
-	// List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
+	// Remove configuration for the Presentation volume specified in the DirectorPresentation message.
+	//
+	// returns RpcResult
+	PresentationDelete(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// List configured Presentation volumes, optionally filtered using a DirectorPresentationListQuery
 	// message.
 	//
-	// returns A DirectorRedirectList message containing DirectorRedirect mesages,
+	// returns A DirectorPresentationList message containing DirectorPresentation mesages,
 	//         if any are found matching the filter.
-	RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (*DirectorRedirectList, error)
+	PresentationList(ctx context.Context, in *DirectorPresentationListQuery, opts ...grpc.CallOption) (*DirectorPresentationList, error)
 }
 
-type directorConfigClient struct {
+type directorClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewDirectorConfigClient(cc *grpc.ClientConn) DirectorConfigClient {
-	return &directorConfigClient{cc}
+func NewDirectorClient(cc *grpc.ClientConn) DirectorClient {
+	return &directorClient{cc}
 }
 
-func (c *directorConfigClient) VolumeCreate(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *directorClient) VolumeCreate(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/VolumeCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/VolumeCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directorConfigClient) VolumeDelete(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *directorClient) VolumeUpdate(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/VolumeDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/VolumeUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directorConfigClient) VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (*DirectorVolumeList, error) {
+func (c *directorClient) VolumeDelete(ctx context.Context, in *DirectorVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/VolumeDelete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *directorClient) VolumeList(ctx context.Context, in *DirectorVolumeListQuery, opts ...grpc.CallOption) (*DirectorVolumeList, error) {
 	out := new(DirectorVolumeList)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/VolumeList", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directorConfigClient) RedirectCreate(ctx context.Context, in *DirectorRedirect, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *directorClient) PresentationCreate(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/RedirectCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/PresentationCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directorConfigClient) RedirectDelete(ctx context.Context, in *DirectorRedirect, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *directorClient) PresentationUpdate(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/RedirectDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/PresentationUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *directorConfigClient) RedirectList(ctx context.Context, in *DirectorRedirectListQuery, opts ...grpc.CallOption) (*DirectorRedirectList, error) {
-	out := new(DirectorRedirectList)
-	err := grpc.Invoke(ctx, "/storageos_rpc.DirectorConfig/RedirectList", in, out, c.cc, opts...)
+func (c *directorClient) PresentationDelete(ctx context.Context, in *DirectorPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/PresentationDelete", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for DirectorConfig service
+func (c *directorClient) PresentationList(ctx context.Context, in *DirectorPresentationListQuery, opts ...grpc.CallOption) (*DirectorPresentationList, error) {
+	out := new(DirectorPresentationList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Director/PresentationList", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
-type DirectorConfigServer interface {
+// Server API for Director service
+
+type DirectorServer interface {
 	// *
 	// Add configuration for the given DirectorVolume message.
 	//
 	// @return  RpcResult
 	VolumeCreate(context.Context, *DirectorVolume) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update configuration for the given DirectorVolume message.
+	//
+	// @return  RpcResult
+	VolumeUpdate(context.Context, *DirectorVolume) (*storageos_rpc1.RpcResult, error)
 	// *
 	// Remove configuration for the given DirectorVolume message.
 	//
@@ -368,163 +420,212 @@ type DirectorConfigServer interface {
 	//          if any are found matching the filter
 	VolumeList(context.Context, *DirectorVolumeListQuery) (*DirectorVolumeList, error)
 	// *
-	// Add configuration for a redirection volume specified in the DirectorRedirect message.
+	// Add configuration for a Presentation volume specified in the DirectorPresentation message.
 	//
 	// returns RpcResult
-	RedirectCreate(context.Context, *DirectorRedirect) (*storageos_rpc1.RpcResult, error)
+	PresentationCreate(context.Context, *DirectorPresentation) (*storageos_rpc1.RpcResult, error)
 	// *
-	// Remove configuration for the redirection volume specified in the DirectorRedirect message.
+	// Update configuration for a Presentation volume specified in the DirectorPresentation message.
 	//
 	// returns RpcResult
-	RedirectDelete(context.Context, *DirectorRedirect) (*storageos_rpc1.RpcResult, error)
+	PresentationUpdate(context.Context, *DirectorPresentation) (*storageos_rpc1.RpcResult, error)
 	// *
-	// List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery
+	// Remove configuration for the Presentation volume specified in the DirectorPresentation message.
+	//
+	// returns RpcResult
+	PresentationDelete(context.Context, *DirectorPresentation) (*storageos_rpc1.RpcResult, error)
+	// *
+	// List configured Presentation volumes, optionally filtered using a DirectorPresentationListQuery
 	// message.
 	//
-	// returns A DirectorRedirectList message containing DirectorRedirect mesages,
+	// returns A DirectorPresentationList message containing DirectorPresentation mesages,
 	//         if any are found matching the filter.
-	RedirectList(context.Context, *DirectorRedirectListQuery) (*DirectorRedirectList, error)
+	PresentationList(context.Context, *DirectorPresentationListQuery) (*DirectorPresentationList, error)
 }
 
-func RegisterDirectorConfigServer(s *grpc.Server, srv DirectorConfigServer) {
-	s.RegisterService(&_DirectorConfig_serviceDesc, srv)
+func RegisterDirectorServer(s *grpc.Server, srv DirectorServer) {
+	s.RegisterService(&_Director_serviceDesc, srv)
 }
 
-func _DirectorConfig_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Director_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DirectorVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).VolumeCreate(ctx, in)
+		return srv.(DirectorServer).VolumeCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/VolumeCreate",
+		FullMethod: "/storageos_rpc.Director/VolumeCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).VolumeCreate(ctx, req.(*DirectorVolume))
+		return srv.(DirectorServer).VolumeCreate(ctx, req.(*DirectorVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Director_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DirectorVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).VolumeDelete(ctx, in)
+		return srv.(DirectorServer).VolumeUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/VolumeDelete",
+		FullMethod: "/storageos_rpc.Director/VolumeUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).VolumeDelete(ctx, req.(*DirectorVolume))
+		return srv.(DirectorServer).VolumeUpdate(ctx, req.(*DirectorVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Director_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorVolume)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DirectorServer).VolumeDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Director/VolumeDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectorServer).VolumeDelete(ctx, req.(*DirectorVolume))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Director_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DirectorVolumeListQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).VolumeList(ctx, in)
+		return srv.(DirectorServer).VolumeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/VolumeList",
+		FullMethod: "/storageos_rpc.Director/VolumeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).VolumeList(ctx, req.(*DirectorVolumeListQuery))
+		return srv.(DirectorServer).VolumeList(ctx, req.(*DirectorVolumeListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_RedirectCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DirectorRedirect)
+func _Director_PresentationCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorPresentation)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).RedirectCreate(ctx, in)
+		return srv.(DirectorServer).PresentationCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/RedirectCreate",
+		FullMethod: "/storageos_rpc.Director/PresentationCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).RedirectCreate(ctx, req.(*DirectorRedirect))
+		return srv.(DirectorServer).PresentationCreate(ctx, req.(*DirectorPresentation))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_RedirectDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DirectorRedirect)
+func _Director_PresentationUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorPresentation)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).RedirectDelete(ctx, in)
+		return srv.(DirectorServer).PresentationUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/RedirectDelete",
+		FullMethod: "/storageos_rpc.Director/PresentationUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).RedirectDelete(ctx, req.(*DirectorRedirect))
+		return srv.(DirectorServer).PresentationUpdate(ctx, req.(*DirectorPresentation))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DirectorConfig_RedirectList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DirectorRedirectListQuery)
+func _Director_PresentationDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorPresentation)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DirectorConfigServer).RedirectList(ctx, in)
+		return srv.(DirectorServer).PresentationDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.DirectorConfig/RedirectList",
+		FullMethod: "/storageos_rpc.Director/PresentationDelete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DirectorConfigServer).RedirectList(ctx, req.(*DirectorRedirectListQuery))
+		return srv.(DirectorServer).PresentationDelete(ctx, req.(*DirectorPresentation))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _DirectorConfig_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "storageos_rpc.DirectorConfig",
-	HandlerType: (*DirectorConfigServer)(nil),
+func _Director_PresentationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DirectorPresentationListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DirectorServer).PresentationList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Director/PresentationList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DirectorServer).PresentationList(ctx, req.(*DirectorPresentationListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Director_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "storageos_rpc.Director",
+	HandlerType: (*DirectorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "VolumeCreate",
-			Handler:    _DirectorConfig_VolumeCreate_Handler,
+			Handler:    _Director_VolumeCreate_Handler,
+		},
+		{
+			MethodName: "VolumeUpdate",
+			Handler:    _Director_VolumeUpdate_Handler,
 		},
 		{
 			MethodName: "VolumeDelete",
-			Handler:    _DirectorConfig_VolumeDelete_Handler,
+			Handler:    _Director_VolumeDelete_Handler,
 		},
 		{
 			MethodName: "VolumeList",
-			Handler:    _DirectorConfig_VolumeList_Handler,
+			Handler:    _Director_VolumeList_Handler,
 		},
 		{
-			MethodName: "RedirectCreate",
-			Handler:    _DirectorConfig_RedirectCreate_Handler,
+			MethodName: "PresentationCreate",
+			Handler:    _Director_PresentationCreate_Handler,
 		},
 		{
-			MethodName: "RedirectDelete",
-			Handler:    _DirectorConfig_RedirectDelete_Handler,
+			MethodName: "PresentationUpdate",
+			Handler:    _Director_PresentationUpdate_Handler,
 		},
 		{
-			MethodName: "RedirectList",
-			Handler:    _DirectorConfig_RedirectList_Handler,
+			MethodName: "PresentationDelete",
+			Handler:    _Director_PresentationDelete_Handler,
+		},
+		{
+			MethodName: "PresentationList",
+			Handler:    _Director_PresentationList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -534,35 +635,37 @@ var _DirectorConfig_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("director.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 471 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0x4d, 0x8f, 0xd3, 0x30,
-	0x10, 0x6d, 0xda, 0xee, 0xb6, 0x9d, 0x7e, 0x68, 0x65, 0x40, 0x64, 0x8b, 0x56, 0x5b, 0x0c, 0x42,
-	0x39, 0xf5, 0x50, 0x10, 0xec, 0x85, 0x53, 0x7b, 0x89, 0xc4, 0x4a, 0x60, 0x04, 0x12, 0xa7, 0xca,
-	0x38, 0x43, 0x15, 0x29, 0xad, 0xb3, 0xb6, 0x0b, 0xe2, 0x86, 0x38, 0xf3, 0xa3, 0x91, 0xed, 0x66,
-	0xd3, 0x76, 0x21, 0x45, 0xf4, 0x16, 0xbf, 0x37, 0x33, 0x9e, 0xf7, 0x9e, 0x15, 0x18, 0x24, 0xa9,
-	0x42, 0x61, 0xa4, 0x1a, 0xe7, 0x4a, 0x1a, 0x49, 0xfa, 0xda, 0x48, 0xc5, 0x17, 0x28, 0xf5, 0x5c,
-	0xe5, 0x62, 0xd8, 0x13, 0x72, 0xb9, 0x94, 0x2b, 0x4f, 0xd2, 0x2b, 0x78, 0x38, 0xdb, 0x94, 0x7f,
-	0x94, 0xd9, 0x7a, 0x89, 0x6f, 0x52, 0x6d, 0xde, 0xad, 0x51, 0x7d, 0x27, 0x17, 0x00, 0x5f, 0x1d,
-	0x34, 0x4f, 0x13, 0x1d, 0x06, 0xa3, 0x46, 0xd4, 0x67, 0x1d, 0x8f, 0xc4, 0x89, 0xa6, 0x0f, 0xe0,
-	0xde, 0x6e, 0xe7, 0x7b, 0xc3, 0x8d, 0xa6, 0xbf, 0xea, 0x30, 0xd8, 0xc5, 0xc9, 0x0b, 0xa8, 0x0b,
-	0x11, 0x06, 0xa3, 0x20, 0xea, 0x4e, 0x9e, 0x8e, 0x77, 0xb6, 0x19, 0xcf, 0xb8, 0xe1, 0x79, 0xc6,
-	0x57, 0x38, 0x75, 0x5b, 0x4d, 0xe5, 0xea, 0x4b, 0xba, 0x60, 0x75, 0x21, 0xc8, 0x23, 0xe8, 0xdc,
-	0x5e, 0x1f, 0xd6, 0x47, 0x41, 0xd4, 0x67, 0xed, 0xe2, 0x76, 0xbb, 0xdb, 0x37, 0x95, 0x1a, 0x9c,
-	0xe7, 0x69, 0x8e, 0x61, 0xc3, 0xb1, 0x1d, 0x87, 0xbc, 0x4d, 0x73, 0xb4, 0xbd, 0x0a, 0x79, 0xe2,
-	0xd9, 0xa6, 0xef, 0xb5, 0x80, 0x23, 0xcf, 0xa0, 0x71, 0x23, 0x75, 0x78, 0x32, 0x0a, 0xa2, 0x26,
-	0xb3, 0x9f, 0xe4, 0x12, 0xba, 0x0a, 0xf3, 0x2c, 0x15, 0xdc, 0x49, 0x3d, 0x75, 0x52, 0x61, 0x03,
-	0xc5, 0x89, 0x26, 0x57, 0x70, 0xa2, 0xad, 0xba, 0xb0, 0xe5, 0x44, 0xd0, 0x7d, 0x11, 0x77, 0x7d,
-	0x60, 0xbe, 0x81, 0x5e, 0x03, 0xb9, 0xeb, 0x2f, 0x79, 0x05, 0x2d, 0x2f, 0xc5, 0xfb, 0xda, 0x9d,
-	0x5c, 0x54, 0x4e, 0x64, 0x45, 0x35, 0x7d, 0x09, 0xe7, 0x05, 0xc5, 0xd0, 0xe7, 0x5c, 0x06, 0x76,
-	0x0e, 0xed, 0x1b, 0xfb, 0x61, 0x0d, 0xf3, 0x71, 0xb5, 0xdc, 0x39, 0x4e, 0xe8, 0xcf, 0x00, 0xce,
-	0xf6, 0x1b, 0xff, 0x3f, 0x17, 0x2d, 0xd7, 0x4a, 0x6c, 0xe7, 0xe2, 0x81, 0x38, 0xb1, 0xa4, 0xe1,
-	0x6a, 0x81, 0xc6, 0x92, 0x3e, 0x96, 0xb6, 0x07, 0xe2, 0x84, 0x7e, 0x80, 0xfb, 0x7f, 0x5a, 0x9e,
-	0xbc, 0xb6, 0x69, 0xf9, 0x73, 0xe1, 0xc7, 0xe5, 0x5f, 0xfc, 0x28, 0xfa, 0x58, 0xd9, 0x31, 0xf9,
-	0xd1, 0x2c, 0x5f, 0x9c, 0xdf, 0x93, 0xc4, 0xd0, 0xf3, 0xce, 0x4d, 0x15, 0x72, 0x83, 0xa4, 0xda,
-	0xde, 0x61, 0xb8, 0x47, 0xb3, 0x5c, 0x30, 0xd4, 0xeb, 0xcc, 0xd0, 0x5a, 0x39, 0x6a, 0x86, 0x19,
-	0x1e, 0x37, 0xea, 0x13, 0xc0, 0xd6, 0x1b, 0x78, 0x56, 0x39, 0xe8, 0x36, 0xd5, 0xe1, 0xe3, 0x83,
-	0x75, 0xb4, 0x46, 0xae, 0x61, 0x50, 0x58, 0xb3, 0x91, 0x7c, 0xc8, 0xc1, 0xca, 0x4d, 0xb7, 0xc6,
-	0x6d, 0x64, 0x1f, 0x35, 0x6e, 0x0e, 0xbd, 0x9d, 0xc0, 0xa3, 0x03, 0xc3, 0x4a, 0xf1, 0x4f, 0xfe,
-	0xa1, 0x92, 0xd6, 0x3e, 0x9f, 0xba, 0x9f, 0xd9, 0xf3, 0xdf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x7a,
-	0x02, 0x5d, 0xb5, 0xfb, 0x04, 0x00, 0x00,
+	// 508 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xc1, 0x8a, 0x13, 0x41,
+	0x14, 0xcc, 0x24, 0x9b, 0x6c, 0xf2, 0xb2, 0x89, 0x4b, 0x23, 0x3a, 0x44, 0xa2, 0xb1, 0x05, 0x93,
+	0x83, 0xe4, 0x10, 0x0f, 0x0a, 0xe2, 0x69, 0x73, 0x70, 0x40, 0x61, 0x6d, 0x59, 0xc1, 0x53, 0x68,
+	0x7b, 0x1e, 0xcb, 0x60, 0x92, 0x6e, 0xbb, 0x7b, 0x14, 0x6f, 0x7e, 0x96, 0x9f, 0xe0, 0x67, 0xc9,
+	0x74, 0xcf, 0xec, 0x4c, 0x12, 0x36, 0x1b, 0xdc, 0xbd, 0x0d, 0x55, 0xaf, 0x8a, 0x9a, 0x7a, 0x8f,
+	0x86, 0x7e, 0x9c, 0x68, 0x14, 0x56, 0xea, 0xa9, 0xd2, 0xd2, 0x4a, 0xd2, 0x33, 0x56, 0x6a, 0x7e,
+	0x89, 0xd2, 0x2c, 0xb4, 0x12, 0x83, 0x13, 0x21, 0x57, 0x2b, 0xb9, 0xf6, 0x24, 0x7d, 0x0d, 0x0f,
+	0xe7, 0xf9, 0xf8, 0x67, 0xb9, 0x4c, 0x57, 0xf8, 0x3e, 0x31, 0xf6, 0x63, 0x8a, 0xfa, 0x17, 0x19,
+	0x02, 0xfc, 0x70, 0xd0, 0x22, 0x89, 0x4d, 0x18, 0x8c, 0x1a, 0x93, 0x1e, 0xeb, 0x78, 0x24, 0x8a,
+	0x0d, 0x1d, 0x40, 0xb8, 0xa9, 0xfc, 0x64, 0xb9, 0x4d, 0x8c, 0x4d, 0x84, 0xa1, 0x0f, 0xe0, 0xfe,
+	0x2e, 0x97, 0x1a, 0xfa, 0xb7, 0x0e, 0xfd, 0x4d, 0x82, 0x4c, 0xa1, 0x2e, 0x44, 0x18, 0x8c, 0x82,
+	0x49, 0x77, 0xf6, 0x78, 0xba, 0x11, 0x75, 0x3a, 0xe7, 0x96, 0xab, 0x25, 0x5f, 0xe3, 0x99, 0x8b,
+	0xcc, 0xea, 0x42, 0x90, 0x47, 0xd0, 0xb9, 0x4a, 0x15, 0xd6, 0x47, 0xc1, 0xa4, 0xc7, 0xda, 0x45,
+	0xa8, 0x2c, 0xf2, 0x4f, 0x9d, 0x58, 0x5c, 0xa8, 0x44, 0x61, 0xd8, 0x70, 0x6c, 0xc7, 0x21, 0xe7,
+	0x89, 0xc2, 0x4c, 0xab, 0x91, 0xc7, 0x9e, 0x3d, 0xf2, 0xda, 0x0c, 0x70, 0xe4, 0x29, 0x34, 0xbe,
+	0x4b, 0x13, 0x36, 0x47, 0xc1, 0xe4, 0x88, 0x65, 0x9f, 0xe4, 0x09, 0x74, 0x35, 0xaa, 0x65, 0x22,
+	0xb8, 0x6b, 0xa0, 0xe5, 0x1a, 0x80, 0x1c, 0x8a, 0x62, 0x43, 0xde, 0x42, 0xd3, 0x58, 0x6e, 0x4d,
+	0x78, 0xec, 0xe2, 0x8f, 0xb7, 0xe3, 0x5f, 0x53, 0x0f, 0xf3, 0x2a, 0xf2, 0x06, 0x5a, 0xc6, 0xf5,
+	0x12, 0xb6, 0x9d, 0xfe, 0xd9, 0x8d, 0xfa, 0xd4, 0xb0, 0x5c, 0x42, 0x3f, 0x00, 0xd9, 0x5d, 0x1c,
+	0x79, 0x05, 0xc7, 0xbe, 0x0c, 0xbf, 0xb0, 0xee, 0x6c, 0xb8, 0xd7, 0x93, 0x15, 0xd3, 0xf4, 0x1d,
+	0x0c, 0x0b, 0xea, 0x5c, 0xa3, 0xc1, 0x75, 0x96, 0x56, 0xae, 0xcb, 0x6b, 0x18, 0xc3, 0x3d, 0x55,
+	0x21, 0xb2, 0xf6, 0xfd, 0x49, 0xf4, 0xab, 0x70, 0x14, 0xd3, 0xdf, 0x41, 0xb9, 0xfc, 0xaa, 0xd5,
+	0xff, 0x6c, 0xda, 0xc8, 0x54, 0x8b, 0xea, 0xa6, 0x3d, 0x10, 0xc5, 0x19, 0x69, 0xb9, 0xbe, 0x44,
+	0x9b, 0x91, 0x7e, 0xd1, 0x6d, 0x0f, 0x44, 0x31, 0xc5, 0xf2, 0x34, 0xb7, 0x7f, 0x86, 0x44, 0xd0,
+	0xab, 0x06, 0x2e, 0x7a, 0xba, 0xae, 0xfb, 0xaa, 0x9e, 0x6d, 0x2a, 0x67, 0x7f, 0x9a, 0xd0, 0x2e,
+	0xe6, 0x48, 0x04, 0x27, 0xbe, 0xd3, 0x33, 0x8d, 0xdc, 0x22, 0xd9, 0x5f, 0xfc, 0x20, 0xdc, 0xa2,
+	0x99, 0x12, 0x0c, 0x4d, 0xba, 0xb4, 0xb4, 0x56, 0x5a, 0x5d, 0xa8, 0xf8, 0xae, 0xac, 0xe6, 0xb8,
+	0xc4, 0xdb, 0x59, 0x7d, 0x01, 0xa8, 0x1c, 0xda, 0xf3, 0xbd, 0x46, 0x57, 0x67, 0x33, 0x78, 0x7a,
+	0xe3, 0x1c, 0xad, 0x91, 0x0b, 0x20, 0xd5, 0x9e, 0xf3, 0x06, 0x0f, 0x59, 0xc9, 0xde, 0xc4, 0x5b,
+	0xb6, 0x79, 0x9b, 0x77, 0x6d, 0x9b, 0x37, 0x7b, 0x6b, 0xdb, 0x6f, 0x70, 0xba, 0x73, 0xac, 0x2f,
+	0x0e, 0x30, 0x2d, 0xbb, 0x1e, 0x1f, 0x38, 0x4d, 0x6b, 0x5f, 0x5b, 0xee, 0xf5, 0x7f, 0xf9, 0x2f,
+	0x00, 0x00, 0xff, 0xff, 0xc3, 0xc1, 0xec, 0x8a, 0x2c, 0x06, 0x00, 0x00,
 }

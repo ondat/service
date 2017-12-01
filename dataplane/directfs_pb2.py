@@ -20,11 +20,67 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='directfs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\xa4\x01\n\x07\x44\x66sHost\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"4\n\x0b\x44\x66sHostList\x12%\n\x05hosts\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x10\n\x0e\x44\x66sVolumeStats\"\xc9\x01\n\tDfsVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.DfsVolumeStats\">\n\rDfsVolumeList\x12-\n\x07volumes\x18\x01 \x03(\x0b\x32\x1c.storageos_rpc.DfsVolumeList\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xc8\x03\n\x14\x44irectfsClientConfig\x12\x42\n\x0cServerCreate\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x42\n\x0cServerDelete\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x1a.storageos_rpc.DfsHostList\"\x00\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x1c.storageos_rpc.DfsVolumeList\"\x00\x32\xf1\x01\n\x14\x44irectfsServerConfig\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\x9e\x01\n\x07\x44\x66sHost\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"4\n\x0b\x44\x66sHostList\x12%\n\x05hosts\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x15\n\x13\x44\x66sVolumeStatistics\"\xb9\x02\n\x0f\x44\x66sVolumeStatus\x12\x45\n\nconn_state\x18\x01 \x01(\x0e\x32\x31.storageos_rpc.DfsVolumeStatus.DfsConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12@\n\x07peer_af\x18\x03 \x01(\x0e\x32/.storageos_rpc.DfsVolumeStatus.DfsAddressFamily\"b\n\x12\x44\x66sConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"&\n\x10\x44\x66sAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\xf8\x01\n\tDfsVolume\x12*\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1e.storageos_rpc.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12\x31\n\x05stats\x18\x05 \x01(\x0b\x32\".storageos_rpc.DfsVolumeStatistics\x12.\n\x06status\x18\x06 \x01(\x0b\x32\x1e.storageos_rpc.DfsVolumeStatus\">\n\rDfsVolumeList\x12-\n\x07volumes\x18\x01 \x03(\x0b\x32\x1c.storageos_rpc.DfsVolumeList\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xc6\x04\n\x08\x46sClient\x12\x42\n\x0cServerCreate\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x42\n\x0cServerUpdate\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x42\n\x0cServerDelete\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x1a.storageos_rpc.DfsHostList\"\x00\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeUpdate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x1c.storageos_rpc.DfsVolumeList\"\x00\x32\xab\x02\n\x08\x46sServer\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeUpdate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
 
+
+_DFSVOLUMESTATUS_DFSCONNECTIONSTATE = _descriptor.EnumDescriptor(
+  name='DfsConnectionState',
+  full_name='storageos_rpc.DfsVolumeStatus.DfsConnectionState',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CONNECTING', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CONNECTED', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DISCONNECTING', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DISCONNECTED', index=4, number=4,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=569,
+  serialized_end=667,
+)
+_sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSCONNECTIONSTATE)
+
+_DFSVOLUMESTATUS_DFSADDRESSFAMILY = _descriptor.EnumDescriptor(
+  name='DfsAddressFamily',
+  full_name='storageos_rpc.DfsVolumeStatus.DfsAddressFamily',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='IPV4', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='IPV6', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=669,
+  serialized_end=707,
+)
+_sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSADDRESSFAMILY)
 
 
 _DFSHOSTCREDENTIALS = _descriptor.Descriptor(
@@ -106,7 +162,7 @@ _DFSHOST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=70,
-  serialized_end=234,
+  serialized_end=228,
 )
 
 
@@ -136,8 +192,8 @@ _DFSHOSTLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=236,
-  serialized_end=288,
+  serialized_start=230,
+  serialized_end=282,
 )
 
 
@@ -167,8 +223,8 @@ _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=290,
-  serialized_end=350,
+  serialized_start=284,
+  serialized_end=344,
 )
 
 
@@ -191,14 +247,14 @@ _DFSVOLUMECREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=352,
-  serialized_end=374,
+  serialized_start=346,
+  serialized_end=368,
 )
 
 
-_DFSVOLUMESTATS = _descriptor.Descriptor(
-  name='DfsVolumeStats',
-  full_name='storageos_rpc.DfsVolumeStats',
+_DFSVOLUMESTATISTICS = _descriptor.Descriptor(
+  name='DfsVolumeStatistics',
+  full_name='storageos_rpc.DfsVolumeStatistics',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -215,8 +271,55 @@ _DFSVOLUMESTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=376,
-  serialized_end=392,
+  serialized_start=370,
+  serialized_end=391,
+)
+
+
+_DFSVOLUMESTATUS = _descriptor.Descriptor(
+  name='DfsVolumeStatus',
+  full_name='storageos_rpc.DfsVolumeStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='conn_state', full_name='storageos_rpc.DfsVolumeStatus.conn_state', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='peer_name', full_name='storageos_rpc.DfsVolumeStatus.peer_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='peer_af', full_name='storageos_rpc.DfsVolumeStatus.peer_af', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _DFSVOLUMESTATUS_DFSCONNECTIONSTATE,
+    _DFSVOLUMESTATUS_DFSADDRESSFAMILY,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=394,
+  serialized_end=707,
 )
 
 
@@ -262,6 +365,13 @@ _DFSVOLUME = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='storageos_rpc.DfsVolume.status', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -274,8 +384,8 @@ _DFSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=395,
-  serialized_end=596,
+  serialized_start=710,
+  serialized_end=958,
 )
 
 
@@ -305,8 +415,8 @@ _DFSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=598,
-  serialized_end=660,
+  serialized_start=960,
+  serialized_end=1022,
 )
 
 
@@ -336,17 +446,22 @@ _DFSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=662,
-  serialized_end=728,
+  serialized_start=1024,
+  serialized_end=1090,
 )
 
-_DFSHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
+_DFSHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _DFSHOST.fields_by_name['credentials'].message_type = _DFSHOSTCREDENTIALS
 _DFSHOSTLIST.fields_by_name['hosts'].message_type = _DFSHOST
 _DFSHOSTLISTQUERY.fields_by_name['host_ids'].message_type = _DFSHOST
-_DFSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMONCONFIG
+_DFSVOLUMESTATUS.fields_by_name['conn_state'].enum_type = _DFSVOLUMESTATUS_DFSCONNECTIONSTATE
+_DFSVOLUMESTATUS.fields_by_name['peer_af'].enum_type = _DFSVOLUMESTATUS_DFSADDRESSFAMILY
+_DFSVOLUMESTATUS_DFSCONNECTIONSTATE.containing_type = _DFSVOLUMESTATUS
+_DFSVOLUMESTATUS_DFSADDRESSFAMILY.containing_type = _DFSVOLUMESTATUS
+_DFSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _DFSVOLUME.fields_by_name['credentials'].message_type = _DFSVOLUMECREDENTIALS
-_DFSVOLUME.fields_by_name['stats'].message_type = _DFSVOLUMESTATS
+_DFSVOLUME.fields_by_name['stats'].message_type = _DFSVOLUMESTATISTICS
+_DFSVOLUME.fields_by_name['status'].message_type = _DFSVOLUMESTATUS
 _DFSVOLUMELIST.fields_by_name['volumes'].message_type = _DFSVOLUMELIST
 _DFSVOLUMELISTQUERY.fields_by_name['volume_ids'].message_type = _DFSVOLUME
 DESCRIPTOR.message_types_by_name['DfsHostCredentials'] = _DFSHOSTCREDENTIALS
@@ -354,7 +469,8 @@ DESCRIPTOR.message_types_by_name['DfsHost'] = _DFSHOST
 DESCRIPTOR.message_types_by_name['DfsHostList'] = _DFSHOSTLIST
 DESCRIPTOR.message_types_by_name['DfsHostListQuery'] = _DFSHOSTLISTQUERY
 DESCRIPTOR.message_types_by_name['DfsVolumeCredentials'] = _DFSVOLUMECREDENTIALS
-DESCRIPTOR.message_types_by_name['DfsVolumeStats'] = _DFSVOLUMESTATS
+DESCRIPTOR.message_types_by_name['DfsVolumeStatistics'] = _DFSVOLUMESTATISTICS
+DESCRIPTOR.message_types_by_name['DfsVolumeStatus'] = _DFSVOLUMESTATUS
 DESCRIPTOR.message_types_by_name['DfsVolume'] = _DFSVOLUME
 DESCRIPTOR.message_types_by_name['DfsVolumeList'] = _DFSVOLUMELIST
 DESCRIPTOR.message_types_by_name['DfsVolumeListQuery'] = _DFSVOLUMELISTQUERY
@@ -395,12 +511,19 @@ DfsVolumeCredentials = _reflection.GeneratedProtocolMessageType('DfsVolumeCreden
   ))
 _sym_db.RegisterMessage(DfsVolumeCredentials)
 
-DfsVolumeStats = _reflection.GeneratedProtocolMessageType('DfsVolumeStats', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMESTATS,
+DfsVolumeStatistics = _reflection.GeneratedProtocolMessageType('DfsVolumeStatistics', (_message.Message,), dict(
+  DESCRIPTOR = _DFSVOLUMESTATISTICS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStats)
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStatistics)
   ))
-_sym_db.RegisterMessage(DfsVolumeStats)
+_sym_db.RegisterMessage(DfsVolumeStatistics)
+
+DfsVolumeStatus = _reflection.GeneratedProtocolMessageType('DfsVolumeStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSVOLUMESTATUS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStatus)
+  ))
+_sym_db.RegisterMessage(DfsVolumeStatus)
 
 DfsVolume = _reflection.GeneratedProtocolMessageType('DfsVolume', (_message.Message,), dict(
   DESCRIPTOR = _DFSVOLUME,
@@ -425,19 +548,28 @@ _sym_db.RegisterMessage(DfsVolumeListQuery)
 
 
 
-_DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
-  name='DirectfsClientConfig',
-  full_name='storageos_rpc.DirectfsClientConfig',
+_FSCLIENT = _descriptor.ServiceDescriptor(
+  name='FsClient',
+  full_name='storageos_rpc.FsClient',
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=731,
-  serialized_end=1187,
+  serialized_start=1093,
+  serialized_end=1675,
   methods=[
   _descriptor.MethodDescriptor(
     name='ServerCreate',
-    full_name='storageos_rpc.DirectfsClientConfig.ServerCreate',
+    full_name='storageos_rpc.FsClient.ServerCreate',
     index=0,
+    containing_service=None,
+    input_type=_DFSHOST,
+    output_type=common__pb2._RPCRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ServerUpdate',
+    full_name='storageos_rpc.FsClient.ServerUpdate',
+    index=1,
     containing_service=None,
     input_type=_DFSHOST,
     output_type=common__pb2._RPCRESULT,
@@ -445,8 +577,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='ServerDelete',
-    full_name='storageos_rpc.DirectfsClientConfig.ServerDelete',
-    index=1,
+    full_name='storageos_rpc.FsClient.ServerDelete',
+    index=2,
     containing_service=None,
     input_type=_DFSHOST,
     output_type=common__pb2._RPCRESULT,
@@ -454,8 +586,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='ServerList',
-    full_name='storageos_rpc.DirectfsClientConfig.ServerList',
-    index=2,
+    full_name='storageos_rpc.FsClient.ServerList',
+    index=3,
     containing_service=None,
     input_type=_DFSHOSTLISTQUERY,
     output_type=_DFSHOSTLIST,
@@ -463,16 +595,7 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
-    full_name='storageos_rpc.DirectfsClientConfig.VolumeCreate',
-    index=3,
-    containing_service=None,
-    input_type=_DFSVOLUME,
-    output_type=common__pb2._RPCRESULT,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='VolumeDelete',
-    full_name='storageos_rpc.DirectfsClientConfig.VolumeDelete',
+    full_name='storageos_rpc.FsClient.VolumeCreate',
     index=4,
     containing_service=None,
     input_type=_DFSVOLUME,
@@ -480,33 +603,9 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeList',
-    full_name='storageos_rpc.DirectfsClientConfig.VolumeList',
+    name='VolumeUpdate',
+    full_name='storageos_rpc.FsClient.VolumeUpdate',
     index=5,
-    containing_service=None,
-    input_type=_DFSVOLUMELISTQUERY,
-    output_type=_DFSVOLUMELIST,
-    options=None,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_DIRECTFSCLIENTCONFIG)
-
-DESCRIPTOR.services_by_name['DirectfsClientConfig'] = _DIRECTFSCLIENTCONFIG
-
-
-_DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
-  name='DirectfsServerConfig',
-  full_name='storageos_rpc.DirectfsServerConfig',
-  file=DESCRIPTOR,
-  index=1,
-  options=None,
-  serialized_start=1190,
-  serialized_end=1431,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='VolumeCreate',
-    full_name='storageos_rpc.DirectfsServerConfig.VolumeCreate',
-    index=0,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -514,8 +613,8 @@ _DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
-    full_name='storageos_rpc.DirectfsServerConfig.VolumeDelete',
-    index=1,
+    full_name='storageos_rpc.FsClient.VolumeDelete',
+    index=6,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -523,16 +622,67 @@ _DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='VolumeList',
-    full_name='storageos_rpc.DirectfsServerConfig.VolumeList',
+    full_name='storageos_rpc.FsClient.VolumeList',
+    index=7,
+    containing_service=None,
+    input_type=_DFSVOLUMELISTQUERY,
+    output_type=_DFSVOLUMELIST,
+    options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_FSCLIENT)
+
+DESCRIPTOR.services_by_name['FsClient'] = _FSCLIENT
+
+
+_FSSERVER = _descriptor.ServiceDescriptor(
+  name='FsServer',
+  full_name='storageos_rpc.FsServer',
+  file=DESCRIPTOR,
+  index=1,
+  options=None,
+  serialized_start=1678,
+  serialized_end=1977,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='VolumeCreate',
+    full_name='storageos_rpc.FsServer.VolumeCreate',
+    index=0,
+    containing_service=None,
+    input_type=_DFSVOLUME,
+    output_type=common__pb2._RPCRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='VolumeUpdate',
+    full_name='storageos_rpc.FsServer.VolumeUpdate',
+    index=1,
+    containing_service=None,
+    input_type=_DFSVOLUME,
+    output_type=common__pb2._RPCRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='VolumeDelete',
+    full_name='storageos_rpc.FsServer.VolumeDelete',
     index=2,
+    containing_service=None,
+    input_type=_DFSVOLUME,
+    output_type=common__pb2._RPCRESULT,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='VolumeList',
+    full_name='storageos_rpc.FsServer.VolumeList',
+    index=3,
     containing_service=None,
     input_type=_DFSVOLUMELISTQUERY,
     output_type=_DFSVOLUME,
     options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_DIRECTFSSERVERCONFIG)
+_sym_db.RegisterServiceDescriptor(_FSSERVER)
 
-DESCRIPTOR.services_by_name['DirectfsServerConfig'] = _DIRECTFSSERVERCONFIG
+DESCRIPTOR.services_by_name['FsServer'] = _FSSERVER
 
 # @@protoc_insertion_point(module_scope)

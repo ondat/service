@@ -28,6 +28,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "common.pb.h"
 // @@protoc_insertion_point(includes)
@@ -56,9 +57,12 @@ extern DfsVolumeListDefaultTypeInternal _DfsVolumeList_default_instance_;
 class DfsVolumeListQuery;
 class DfsVolumeListQueryDefaultTypeInternal;
 extern DfsVolumeListQueryDefaultTypeInternal _DfsVolumeListQuery_default_instance_;
-class DfsVolumeStats;
-class DfsVolumeStatsDefaultTypeInternal;
-extern DfsVolumeStatsDefaultTypeInternal _DfsVolumeStats_default_instance_;
+class DfsVolumeStatistics;
+class DfsVolumeStatisticsDefaultTypeInternal;
+extern DfsVolumeStatisticsDefaultTypeInternal _DfsVolumeStatistics_default_instance_;
+class DfsVolumeStatus;
+class DfsVolumeStatusDefaultTypeInternal;
+extern DfsVolumeStatusDefaultTypeInternal _DfsVolumeStatus_default_instance_;
 }  // namespace storageos_rpc
 
 namespace storageos_rpc {
@@ -78,6 +82,51 @@ void AddDescriptors();
 void InitDefaults();
 }  // namespace protobuf_directfs_2eproto
 
+enum DfsVolumeStatus_DfsConnectionState {
+  DfsVolumeStatus_DfsConnectionState_NONE = 0,
+  DfsVolumeStatus_DfsConnectionState_CONNECTING = 1,
+  DfsVolumeStatus_DfsConnectionState_CONNECTED = 2,
+  DfsVolumeStatus_DfsConnectionState_DISCONNECTING = 3,
+  DfsVolumeStatus_DfsConnectionState_DISCONNECTED = 4,
+  DfsVolumeStatus_DfsConnectionState_DfsVolumeStatus_DfsConnectionState_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  DfsVolumeStatus_DfsConnectionState_DfsVolumeStatus_DfsConnectionState_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool DfsVolumeStatus_DfsConnectionState_IsValid(int value);
+const DfsVolumeStatus_DfsConnectionState DfsVolumeStatus_DfsConnectionState_DfsConnectionState_MIN = DfsVolumeStatus_DfsConnectionState_NONE;
+const DfsVolumeStatus_DfsConnectionState DfsVolumeStatus_DfsConnectionState_DfsConnectionState_MAX = DfsVolumeStatus_DfsConnectionState_DISCONNECTED;
+const int DfsVolumeStatus_DfsConnectionState_DfsConnectionState_ARRAYSIZE = DfsVolumeStatus_DfsConnectionState_DfsConnectionState_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* DfsVolumeStatus_DfsConnectionState_descriptor();
+inline const ::std::string& DfsVolumeStatus_DfsConnectionState_Name(DfsVolumeStatus_DfsConnectionState value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    DfsVolumeStatus_DfsConnectionState_descriptor(), value);
+}
+inline bool DfsVolumeStatus_DfsConnectionState_Parse(
+    const ::std::string& name, DfsVolumeStatus_DfsConnectionState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<DfsVolumeStatus_DfsConnectionState>(
+    DfsVolumeStatus_DfsConnectionState_descriptor(), name, value);
+}
+enum DfsVolumeStatus_DfsAddressFamily {
+  DfsVolumeStatus_DfsAddressFamily_IPV4 = 0,
+  DfsVolumeStatus_DfsAddressFamily_IPV6 = 1,
+  DfsVolumeStatus_DfsAddressFamily_DfsVolumeStatus_DfsAddressFamily_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  DfsVolumeStatus_DfsAddressFamily_DfsVolumeStatus_DfsAddressFamily_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool DfsVolumeStatus_DfsAddressFamily_IsValid(int value);
+const DfsVolumeStatus_DfsAddressFamily DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_MIN = DfsVolumeStatus_DfsAddressFamily_IPV4;
+const DfsVolumeStatus_DfsAddressFamily DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_MAX = DfsVolumeStatus_DfsAddressFamily_IPV6;
+const int DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_ARRAYSIZE = DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* DfsVolumeStatus_DfsAddressFamily_descriptor();
+inline const ::std::string& DfsVolumeStatus_DfsAddressFamily_Name(DfsVolumeStatus_DfsAddressFamily value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    DfsVolumeStatus_DfsAddressFamily_descriptor(), value);
+}
+inline bool DfsVolumeStatus_DfsAddressFamily_Parse(
+    const ::std::string& name, DfsVolumeStatus_DfsAddressFamily* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<DfsVolumeStatus_DfsAddressFamily>(
+    DfsVolumeStatus_DfsAddressFamily_descriptor(), name, value);
+}
 // ===================================================================
 
 class DfsHostCredentials : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsHostCredentials) */ {
@@ -265,14 +314,14 @@ class DfsHost : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_hostname();
   void set_allocated_hostname(::std::string* hostname);
 
-  // .storageos_rpc.DataplaneCommonConfig cc = 1;
+  // .storageos_rpc.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::storageos_rpc::DataplaneCommonConfig& cc() const;
-  ::storageos_rpc::DataplaneCommonConfig* mutable_cc();
-  ::storageos_rpc::DataplaneCommonConfig* release_cc();
-  void set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc);
+  const ::storageos_rpc::DataplaneCommon& cc() const;
+  ::storageos_rpc::DataplaneCommon* mutable_cc();
+  ::storageos_rpc::DataplaneCommon* release_cc();
+  void set_allocated_cc(::storageos_rpc::DataplaneCommon* cc);
 
   // .storageos_rpc.DfsHostCredentials credentials = 5;
   bool has_credentials() const;
@@ -300,7 +349,7 @@ class DfsHost : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr hostname_;
-  ::storageos_rpc::DataplaneCommonConfig* cc_;
+  ::storageos_rpc::DataplaneCommon* cc_;
   ::storageos_rpc::DfsHostCredentials* credentials_;
   ::google::protobuf::uint32 host_id_;
   ::google::protobuf::uint32 port_;
@@ -605,24 +654,24 @@ class DfsVolumeCredentials : public ::google::protobuf::Message /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class DfsVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsVolumeStats) */ {
+class DfsVolumeStatistics : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsVolumeStatistics) */ {
  public:
-  DfsVolumeStats();
-  virtual ~DfsVolumeStats();
+  DfsVolumeStatistics();
+  virtual ~DfsVolumeStatistics();
 
-  DfsVolumeStats(const DfsVolumeStats& from);
+  DfsVolumeStatistics(const DfsVolumeStatistics& from);
 
-  inline DfsVolumeStats& operator=(const DfsVolumeStats& from) {
+  inline DfsVolumeStatistics& operator=(const DfsVolumeStatistics& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  DfsVolumeStats(DfsVolumeStats&& from) noexcept
-    : DfsVolumeStats() {
+  DfsVolumeStatistics(DfsVolumeStatistics&& from) noexcept
+    : DfsVolumeStatistics() {
     *this = ::std::move(from);
   }
 
-  inline DfsVolumeStats& operator=(DfsVolumeStats&& from) noexcept {
+  inline DfsVolumeStatistics& operator=(DfsVolumeStatistics&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -632,29 +681,29 @@ class DfsVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
   }
   #endif
   static const ::google::protobuf::Descriptor* descriptor();
-  static const DfsVolumeStats& default_instance();
+  static const DfsVolumeStatistics& default_instance();
 
-  static inline const DfsVolumeStats* internal_default_instance() {
-    return reinterpret_cast<const DfsVolumeStats*>(
-               &_DfsVolumeStats_default_instance_);
+  static inline const DfsVolumeStatistics* internal_default_instance() {
+    return reinterpret_cast<const DfsVolumeStatistics*>(
+               &_DfsVolumeStatistics_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     5;
 
-  void Swap(DfsVolumeStats* other);
-  friend void swap(DfsVolumeStats& a, DfsVolumeStats& b) {
+  void Swap(DfsVolumeStatistics* other);
+  friend void swap(DfsVolumeStatistics& a, DfsVolumeStatistics& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline DfsVolumeStats* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline DfsVolumeStatistics* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  DfsVolumeStats* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  DfsVolumeStatistics* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const DfsVolumeStats& from);
-  void MergeFrom(const DfsVolumeStats& from);
+  void CopyFrom(const DfsVolumeStatistics& from);
+  void MergeFrom(const DfsVolumeStatistics& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -670,7 +719,7 @@ class DfsVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(DfsVolumeStats* other);
+  void InternalSwap(DfsVolumeStatistics* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -686,10 +735,187 @@ class DfsVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStats)
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStatistics)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_directfs_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class DfsVolumeStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.DfsVolumeStatus) */ {
+ public:
+  DfsVolumeStatus();
+  virtual ~DfsVolumeStatus();
+
+  DfsVolumeStatus(const DfsVolumeStatus& from);
+
+  inline DfsVolumeStatus& operator=(const DfsVolumeStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DfsVolumeStatus(DfsVolumeStatus&& from) noexcept
+    : DfsVolumeStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline DfsVolumeStatus& operator=(DfsVolumeStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DfsVolumeStatus& default_instance();
+
+  static inline const DfsVolumeStatus* internal_default_instance() {
+    return reinterpret_cast<const DfsVolumeStatus*>(
+               &_DfsVolumeStatus_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    6;
+
+  void Swap(DfsVolumeStatus* other);
+  friend void swap(DfsVolumeStatus& a, DfsVolumeStatus& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DfsVolumeStatus* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DfsVolumeStatus* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DfsVolumeStatus& from);
+  void MergeFrom(const DfsVolumeStatus& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DfsVolumeStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef DfsVolumeStatus_DfsConnectionState DfsConnectionState;
+  static const DfsConnectionState NONE =
+    DfsVolumeStatus_DfsConnectionState_NONE;
+  static const DfsConnectionState CONNECTING =
+    DfsVolumeStatus_DfsConnectionState_CONNECTING;
+  static const DfsConnectionState CONNECTED =
+    DfsVolumeStatus_DfsConnectionState_CONNECTED;
+  static const DfsConnectionState DISCONNECTING =
+    DfsVolumeStatus_DfsConnectionState_DISCONNECTING;
+  static const DfsConnectionState DISCONNECTED =
+    DfsVolumeStatus_DfsConnectionState_DISCONNECTED;
+  static inline bool DfsConnectionState_IsValid(int value) {
+    return DfsVolumeStatus_DfsConnectionState_IsValid(value);
+  }
+  static const DfsConnectionState DfsConnectionState_MIN =
+    DfsVolumeStatus_DfsConnectionState_DfsConnectionState_MIN;
+  static const DfsConnectionState DfsConnectionState_MAX =
+    DfsVolumeStatus_DfsConnectionState_DfsConnectionState_MAX;
+  static const int DfsConnectionState_ARRAYSIZE =
+    DfsVolumeStatus_DfsConnectionState_DfsConnectionState_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  DfsConnectionState_descriptor() {
+    return DfsVolumeStatus_DfsConnectionState_descriptor();
+  }
+  static inline const ::std::string& DfsConnectionState_Name(DfsConnectionState value) {
+    return DfsVolumeStatus_DfsConnectionState_Name(value);
+  }
+  static inline bool DfsConnectionState_Parse(const ::std::string& name,
+      DfsConnectionState* value) {
+    return DfsVolumeStatus_DfsConnectionState_Parse(name, value);
+  }
+
+  typedef DfsVolumeStatus_DfsAddressFamily DfsAddressFamily;
+  static const DfsAddressFamily IPV4 =
+    DfsVolumeStatus_DfsAddressFamily_IPV4;
+  static const DfsAddressFamily IPV6 =
+    DfsVolumeStatus_DfsAddressFamily_IPV6;
+  static inline bool DfsAddressFamily_IsValid(int value) {
+    return DfsVolumeStatus_DfsAddressFamily_IsValid(value);
+  }
+  static const DfsAddressFamily DfsAddressFamily_MIN =
+    DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_MIN;
+  static const DfsAddressFamily DfsAddressFamily_MAX =
+    DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_MAX;
+  static const int DfsAddressFamily_ARRAYSIZE =
+    DfsVolumeStatus_DfsAddressFamily_DfsAddressFamily_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  DfsAddressFamily_descriptor() {
+    return DfsVolumeStatus_DfsAddressFamily_descriptor();
+  }
+  static inline const ::std::string& DfsAddressFamily_Name(DfsAddressFamily value) {
+    return DfsVolumeStatus_DfsAddressFamily_Name(value);
+  }
+  static inline bool DfsAddressFamily_Parse(const ::std::string& name,
+      DfsAddressFamily* value) {
+    return DfsVolumeStatus_DfsAddressFamily_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // string peer_name = 2;
+  void clear_peer_name();
+  static const int kPeerNameFieldNumber = 2;
+  const ::std::string& peer_name() const;
+  void set_peer_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_peer_name(::std::string&& value);
+  #endif
+  void set_peer_name(const char* value);
+  void set_peer_name(const char* value, size_t size);
+  ::std::string* mutable_peer_name();
+  ::std::string* release_peer_name();
+  void set_allocated_peer_name(::std::string* peer_name);
+
+  // .storageos_rpc.DfsVolumeStatus.DfsConnectionState conn_state = 1;
+  void clear_conn_state();
+  static const int kConnStateFieldNumber = 1;
+  ::storageos_rpc::DfsVolumeStatus_DfsConnectionState conn_state() const;
+  void set_conn_state(::storageos_rpc::DfsVolumeStatus_DfsConnectionState value);
+
+  // .storageos_rpc.DfsVolumeStatus.DfsAddressFamily peer_af = 3;
+  void clear_peer_af();
+  static const int kPeerAfFieldNumber = 3;
+  ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily peer_af() const;
+  void set_peer_af(::storageos_rpc::DfsVolumeStatus_DfsAddressFamily value);
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.DfsVolumeStatus)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr peer_name_;
+  int conn_state_;
+  int peer_af_;
   mutable int _cached_size_;
   friend struct protobuf_directfs_2eproto::TableStruct;
 };
@@ -729,7 +955,7 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_DfsVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    6;
+    7;
 
   void Swap(DfsVolume* other);
   friend void swap(DfsVolume& a, DfsVolume& b) {
@@ -776,14 +1002,14 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // .storageos_rpc.DataplaneCommonConfig cc = 1;
+  // .storageos_rpc.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::storageos_rpc::DataplaneCommonConfig& cc() const;
-  ::storageos_rpc::DataplaneCommonConfig* mutable_cc();
-  ::storageos_rpc::DataplaneCommonConfig* release_cc();
-  void set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc);
+  const ::storageos_rpc::DataplaneCommon& cc() const;
+  ::storageos_rpc::DataplaneCommon* mutable_cc();
+  ::storageos_rpc::DataplaneCommon* release_cc();
+  void set_allocated_cc(::storageos_rpc::DataplaneCommon* cc);
 
   // .storageos_rpc.DfsVolumeCredentials credentials = 4;
   bool has_credentials() const;
@@ -794,14 +1020,23 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::storageos_rpc::DfsVolumeCredentials* release_credentials();
   void set_allocated_credentials(::storageos_rpc::DfsVolumeCredentials* credentials);
 
-  // .storageos_rpc.DfsVolumeStats stats = 5;
+  // .storageos_rpc.DfsVolumeStatistics stats = 5;
   bool has_stats() const;
   void clear_stats();
   static const int kStatsFieldNumber = 5;
-  const ::storageos_rpc::DfsVolumeStats& stats() const;
-  ::storageos_rpc::DfsVolumeStats* mutable_stats();
-  ::storageos_rpc::DfsVolumeStats* release_stats();
-  void set_allocated_stats(::storageos_rpc::DfsVolumeStats* stats);
+  const ::storageos_rpc::DfsVolumeStatistics& stats() const;
+  ::storageos_rpc::DfsVolumeStatistics* mutable_stats();
+  ::storageos_rpc::DfsVolumeStatistics* release_stats();
+  void set_allocated_stats(::storageos_rpc::DfsVolumeStatistics* stats);
+
+  // .storageos_rpc.DfsVolumeStatus status = 6;
+  bool has_status() const;
+  void clear_status();
+  static const int kStatusFieldNumber = 6;
+  const ::storageos_rpc::DfsVolumeStatus& status() const;
+  ::storageos_rpc::DfsVolumeStatus* mutable_status();
+  ::storageos_rpc::DfsVolumeStatus* release_status();
+  void set_allocated_status(::storageos_rpc::DfsVolumeStatus* status);
 
   // uint32 volume_id = 2;
   void clear_volume_id();
@@ -819,9 +1054,10 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::storageos_rpc::DataplaneCommonConfig* cc_;
+  ::storageos_rpc::DataplaneCommon* cc_;
   ::storageos_rpc::DfsVolumeCredentials* credentials_;
-  ::storageos_rpc::DfsVolumeStats* stats_;
+  ::storageos_rpc::DfsVolumeStatistics* stats_;
+  ::storageos_rpc::DfsVolumeStatus* status_;
   ::google::protobuf::uint32 volume_id_;
   ::google::protobuf::uint32 host_id_;
   mutable int _cached_size_;
@@ -863,7 +1099,7 @@ class DfsVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_DfsVolumeList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(DfsVolumeList* other);
   friend void swap(DfsVolumeList& a, DfsVolumeList& b) {
@@ -966,7 +1202,7 @@ class DfsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insert
                &_DfsVolumeListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(DfsVolumeListQuery* other);
   friend void swap(DfsVolumeListQuery& a, DfsVolumeListQuery& b) {
@@ -1049,7 +1285,7 @@ class DfsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insert
 
 // DfsHost
 
-// .storageos_rpc.DataplaneCommonConfig cc = 1;
+// .storageos_rpc.DataplaneCommon cc = 1;
 inline bool DfsHost::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1057,28 +1293,28 @@ inline void DfsHost::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::storageos_rpc::DataplaneCommonConfig& DfsHost::cc() const {
-  const ::storageos_rpc::DataplaneCommonConfig* p = cc_;
+inline const ::storageos_rpc::DataplaneCommon& DfsHost::cc() const {
+  const ::storageos_rpc::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:storageos_rpc.DfsHost.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommonConfig*>(
-      &::storageos_rpc::_DataplaneCommonConfig_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommon*>(
+      &::storageos_rpc::_DataplaneCommon_default_instance_);
 }
-inline ::storageos_rpc::DataplaneCommonConfig* DfsHost::mutable_cc() {
+inline ::storageos_rpc::DataplaneCommon* DfsHost::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::storageos_rpc::DataplaneCommonConfig;
+    cc_ = new ::storageos_rpc::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsHost.cc)
   return cc_;
 }
-inline ::storageos_rpc::DataplaneCommonConfig* DfsHost::release_cc() {
+inline ::storageos_rpc::DataplaneCommon* DfsHost::release_cc() {
   // @@protoc_insertion_point(field_release:storageos_rpc.DfsHost.cc)
   
-  ::storageos_rpc::DataplaneCommonConfig* temp = cc_;
+  ::storageos_rpc::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DfsHost::set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc) {
+inline void DfsHost::set_allocated_cc(::storageos_rpc::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -1284,13 +1520,98 @@ DfsHostListQuery::host_ids() const {
 
 // -------------------------------------------------------------------
 
-// DfsVolumeStats
+// DfsVolumeStatistics
+
+// -------------------------------------------------------------------
+
+// DfsVolumeStatus
+
+// .storageos_rpc.DfsVolumeStatus.DfsConnectionState conn_state = 1;
+inline void DfsVolumeStatus::clear_conn_state() {
+  conn_state_ = 0;
+}
+inline ::storageos_rpc::DfsVolumeStatus_DfsConnectionState DfsVolumeStatus::conn_state() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolumeStatus.conn_state)
+  return static_cast< ::storageos_rpc::DfsVolumeStatus_DfsConnectionState >(conn_state_);
+}
+inline void DfsVolumeStatus::set_conn_state(::storageos_rpc::DfsVolumeStatus_DfsConnectionState value) {
+  
+  conn_state_ = value;
+  // @@protoc_insertion_point(field_set:storageos_rpc.DfsVolumeStatus.conn_state)
+}
+
+// string peer_name = 2;
+inline void DfsVolumeStatus::clear_peer_name() {
+  peer_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& DfsVolumeStatus::peer_name() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolumeStatus.peer_name)
+  return peer_name_.GetNoArena();
+}
+inline void DfsVolumeStatus::set_peer_name(const ::std::string& value) {
+  
+  peer_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:storageos_rpc.DfsVolumeStatus.peer_name)
+}
+#if LANG_CXX11
+inline void DfsVolumeStatus::set_peer_name(::std::string&& value) {
+  
+  peer_name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:storageos_rpc.DfsVolumeStatus.peer_name)
+}
+#endif
+inline void DfsVolumeStatus::set_peer_name(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  peer_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:storageos_rpc.DfsVolumeStatus.peer_name)
+}
+inline void DfsVolumeStatus::set_peer_name(const char* value, size_t size) {
+  
+  peer_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:storageos_rpc.DfsVolumeStatus.peer_name)
+}
+inline ::std::string* DfsVolumeStatus::mutable_peer_name() {
+  
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsVolumeStatus.peer_name)
+  return peer_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* DfsVolumeStatus::release_peer_name() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.DfsVolumeStatus.peer_name)
+  
+  return peer_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void DfsVolumeStatus::set_allocated_peer_name(::std::string* peer_name) {
+  if (peer_name != NULL) {
+    
+  } else {
+    
+  }
+  peer_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), peer_name);
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DfsVolumeStatus.peer_name)
+}
+
+// .storageos_rpc.DfsVolumeStatus.DfsAddressFamily peer_af = 3;
+inline void DfsVolumeStatus::clear_peer_af() {
+  peer_af_ = 0;
+}
+inline ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily DfsVolumeStatus::peer_af() const {
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolumeStatus.peer_af)
+  return static_cast< ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily >(peer_af_);
+}
+inline void DfsVolumeStatus::set_peer_af(::storageos_rpc::DfsVolumeStatus_DfsAddressFamily value) {
+  
+  peer_af_ = value;
+  // @@protoc_insertion_point(field_set:storageos_rpc.DfsVolumeStatus.peer_af)
+}
 
 // -------------------------------------------------------------------
 
 // DfsVolume
 
-// .storageos_rpc.DataplaneCommonConfig cc = 1;
+// .storageos_rpc.DataplaneCommon cc = 1;
 inline bool DfsVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1298,28 +1619,28 @@ inline void DfsVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::storageos_rpc::DataplaneCommonConfig& DfsVolume::cc() const {
-  const ::storageos_rpc::DataplaneCommonConfig* p = cc_;
+inline const ::storageos_rpc::DataplaneCommon& DfsVolume::cc() const {
+  const ::storageos_rpc::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommonConfig*>(
-      &::storageos_rpc::_DataplaneCommonConfig_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommon*>(
+      &::storageos_rpc::_DataplaneCommon_default_instance_);
 }
-inline ::storageos_rpc::DataplaneCommonConfig* DfsVolume::mutable_cc() {
+inline ::storageos_rpc::DataplaneCommon* DfsVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::storageos_rpc::DataplaneCommonConfig;
+    cc_ = new ::storageos_rpc::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsVolume.cc)
   return cc_;
 }
-inline ::storageos_rpc::DataplaneCommonConfig* DfsVolume::release_cc() {
+inline ::storageos_rpc::DataplaneCommon* DfsVolume::release_cc() {
   // @@protoc_insertion_point(field_release:storageos_rpc.DfsVolume.cc)
   
-  ::storageos_rpc::DataplaneCommonConfig* temp = cc_;
+  ::storageos_rpc::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DfsVolume::set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc) {
+inline void DfsVolume::set_allocated_cc(::storageos_rpc::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -1398,7 +1719,7 @@ inline void DfsVolume::set_allocated_credentials(::storageos_rpc::DfsVolumeCrede
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DfsVolume.credentials)
 }
 
-// .storageos_rpc.DfsVolumeStats stats = 5;
+// .storageos_rpc.DfsVolumeStatistics stats = 5;
 inline bool DfsVolume::has_stats() const {
   return this != internal_default_instance() && stats_ != NULL;
 }
@@ -1406,28 +1727,28 @@ inline void DfsVolume::clear_stats() {
   if (GetArenaNoVirtual() == NULL && stats_ != NULL) delete stats_;
   stats_ = NULL;
 }
-inline const ::storageos_rpc::DfsVolumeStats& DfsVolume::stats() const {
-  const ::storageos_rpc::DfsVolumeStats* p = stats_;
+inline const ::storageos_rpc::DfsVolumeStatistics& DfsVolume::stats() const {
+  const ::storageos_rpc::DfsVolumeStatistics* p = stats_;
   // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolume.stats)
-  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DfsVolumeStats*>(
-      &::storageos_rpc::_DfsVolumeStats_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DfsVolumeStatistics*>(
+      &::storageos_rpc::_DfsVolumeStatistics_default_instance_);
 }
-inline ::storageos_rpc::DfsVolumeStats* DfsVolume::mutable_stats() {
+inline ::storageos_rpc::DfsVolumeStatistics* DfsVolume::mutable_stats() {
   
   if (stats_ == NULL) {
-    stats_ = new ::storageos_rpc::DfsVolumeStats;
+    stats_ = new ::storageos_rpc::DfsVolumeStatistics;
   }
   // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsVolume.stats)
   return stats_;
 }
-inline ::storageos_rpc::DfsVolumeStats* DfsVolume::release_stats() {
+inline ::storageos_rpc::DfsVolumeStatistics* DfsVolume::release_stats() {
   // @@protoc_insertion_point(field_release:storageos_rpc.DfsVolume.stats)
   
-  ::storageos_rpc::DfsVolumeStats* temp = stats_;
+  ::storageos_rpc::DfsVolumeStatistics* temp = stats_;
   stats_ = NULL;
   return temp;
 }
-inline void DfsVolume::set_allocated_stats(::storageos_rpc::DfsVolumeStats* stats) {
+inline void DfsVolume::set_allocated_stats(::storageos_rpc::DfsVolumeStatistics* stats) {
   delete stats_;
   stats_ = stats;
   if (stats) {
@@ -1436,6 +1757,46 @@ inline void DfsVolume::set_allocated_stats(::storageos_rpc::DfsVolumeStats* stat
     
   }
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DfsVolume.stats)
+}
+
+// .storageos_rpc.DfsVolumeStatus status = 6;
+inline bool DfsVolume::has_status() const {
+  return this != internal_default_instance() && status_ != NULL;
+}
+inline void DfsVolume::clear_status() {
+  if (GetArenaNoVirtual() == NULL && status_ != NULL) delete status_;
+  status_ = NULL;
+}
+inline const ::storageos_rpc::DfsVolumeStatus& DfsVolume::status() const {
+  const ::storageos_rpc::DfsVolumeStatus* p = status_;
+  // @@protoc_insertion_point(field_get:storageos_rpc.DfsVolume.status)
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DfsVolumeStatus*>(
+      &::storageos_rpc::_DfsVolumeStatus_default_instance_);
+}
+inline ::storageos_rpc::DfsVolumeStatus* DfsVolume::mutable_status() {
+  
+  if (status_ == NULL) {
+    status_ = new ::storageos_rpc::DfsVolumeStatus;
+  }
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.DfsVolume.status)
+  return status_;
+}
+inline ::storageos_rpc::DfsVolumeStatus* DfsVolume::release_status() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.DfsVolume.status)
+  
+  ::storageos_rpc::DfsVolumeStatus* temp = status_;
+  status_ = NULL;
+  return temp;
+}
+inline void DfsVolume::set_allocated_status(::storageos_rpc::DfsVolumeStatus* status) {
+  delete status_;
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.DfsVolume.status)
 }
 
 // -------------------------------------------------------------------
@@ -1526,11 +1887,30 @@ DfsVolumeListQuery::volume_ids() const {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
 
 }  // namespace storageos_rpc
+
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::storageos_rpc::DfsVolumeStatus_DfsConnectionState> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::storageos_rpc::DfsVolumeStatus_DfsConnectionState>() {
+  return ::storageos_rpc::DfsVolumeStatus_DfsConnectionState_descriptor();
+}
+template <> struct is_proto_enum< ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily>() {
+  return ::storageos_rpc::DfsVolumeStatus_DfsAddressFamily_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

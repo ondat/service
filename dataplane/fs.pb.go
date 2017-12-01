@@ -9,9 +9,13 @@ It is generated from these files:
 
 It has these top-level messages:
 	FsVolumeListQuery
-	FsVolumeStats
+	FsVolumeStatistics
+	FsVolumeStatus
 	FsVolume
 	FsVolumeList
+	FsPresentationListQuery
+	FsPresentation
+	FsPresentationList
 */
 package storageos_rpc
 
@@ -55,7 +59,7 @@ var FsVolume_VolumeDeviceType_value = map[string]int32{
 func (x FsVolume_VolumeDeviceType) String() string {
 	return proto.EnumName(FsVolume_VolumeDeviceType_name, int32(x))
 }
-func (FsVolume_VolumeDeviceType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2, 0} }
+func (FsVolume_VolumeDeviceType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{3, 0} }
 
 type FsVolumeListQuery struct {
 	// A possibly-empty list of volume IDs to query.
@@ -74,18 +78,26 @@ func (m *FsVolumeListQuery) GetVolumeIds() []uint32 {
 	return nil
 }
 
-type FsVolumeStats struct {
+type FsVolumeStatistics struct {
 }
 
-func (m *FsVolumeStats) Reset()                    { *m = FsVolumeStats{} }
-func (m *FsVolumeStats) String() string            { return proto.CompactTextString(m) }
-func (*FsVolumeStats) ProtoMessage()               {}
-func (*FsVolumeStats) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *FsVolumeStatistics) Reset()                    { *m = FsVolumeStatistics{} }
+func (m *FsVolumeStatistics) String() string            { return proto.CompactTextString(m) }
+func (*FsVolumeStatistics) ProtoMessage()               {}
+func (*FsVolumeStatistics) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+type FsVolumeStatus struct {
+}
+
+func (m *FsVolumeStatus) Reset()                    { *m = FsVolumeStatus{} }
+func (m *FsVolumeStatus) String() string            { return proto.CompactTextString(m) }
+func (*FsVolumeStatus) ProtoMessage()               {}
+func (*FsVolumeStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 // *
 // A StorageOS volume to be presented via the FUSE filesystem.
 type FsVolume struct {
-	Cc *storageos_rpc1.DataplaneCommonConfig `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+	Cc *storageos_rpc1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
 	// The volume ID to represent.
 	VolumeId uint32 `protobuf:"varint,2,opt,name=volume_id,json=volumeId" json:"volume_id,omitempty"`
 	// The type for this volume.
@@ -101,15 +113,17 @@ type FsVolume struct {
 	// The volume size in bytes.
 	VolumeSizeBytes uint64 `protobuf:"varint,8,opt,name=volume_size_bytes,json=volumeSizeBytes" json:"volume_size_bytes,omitempty"`
 	// Volume statistics.
-	Stats *FsVolumeStats `protobuf:"bytes,9,opt,name=stats" json:"stats,omitempty"`
+	Stats *FsVolumeStatistics `protobuf:"bytes,9,opt,name=stats" json:"stats,omitempty"`
+	// Volume status, e.g. readiness.
+	Status *FsVolumeStatus `protobuf:"bytes,10,opt,name=status" json:"status,omitempty"`
 }
 
 func (m *FsVolume) Reset()                    { *m = FsVolume{} }
 func (m *FsVolume) String() string            { return proto.CompactTextString(m) }
 func (*FsVolume) ProtoMessage()               {}
-func (*FsVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*FsVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
-func (m *FsVolume) GetCc() *storageos_rpc1.DataplaneCommonConfig {
+func (m *FsVolume) GetCc() *storageos_rpc1.DataplaneCommon {
 	if m != nil {
 		return m.Cc
 	}
@@ -165,9 +179,16 @@ func (m *FsVolume) GetVolumeSizeBytes() uint64 {
 	return 0
 }
 
-func (m *FsVolume) GetStats() *FsVolumeStats {
+func (m *FsVolume) GetStats() *FsVolumeStatistics {
 	if m != nil {
 		return m.Stats
+	}
+	return nil
+}
+
+func (m *FsVolume) GetStatus() *FsVolumeStatus {
+	if m != nil {
+		return m.Status
 	}
 	return nil
 }
@@ -179,7 +200,7 @@ type FsVolumeList struct {
 func (m *FsVolumeList) Reset()                    { *m = FsVolumeList{} }
 func (m *FsVolumeList) String() string            { return proto.CompactTextString(m) }
 func (*FsVolumeList) ProtoMessage()               {}
-func (*FsVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*FsVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 func (m *FsVolumeList) GetVolumes() []*FsVolume {
 	if m != nil {
@@ -188,11 +209,88 @@ func (m *FsVolumeList) GetVolumes() []*FsVolume {
 	return nil
 }
 
+type FsPresentationListQuery struct {
+	// A possibly-empty list of volume IDs to query.
+	PresentationId []uint32 `protobuf:"varint,1,rep,packed,name=presentation_id,json=presentationId" json:"presentation_id,omitempty"`
+}
+
+func (m *FsPresentationListQuery) Reset()                    { *m = FsPresentationListQuery{} }
+func (m *FsPresentationListQuery) String() string            { return proto.CompactTextString(m) }
+func (*FsPresentationListQuery) ProtoMessage()               {}
+func (*FsPresentationListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *FsPresentationListQuery) GetPresentationId() []uint32 {
+	if m != nil {
+		return m.PresentationId
+	}
+	return nil
+}
+
+// *
+// Presentation volume message for Fs RPCs.
+//
+// The minimum amount of information required to specify the 'presentation' or source volume,
+// the volume that is presented to the user and (usually) mounted. All actual work
+// is done on the target volume, which has actual storage associated with it.
+type FsPresentation struct {
+	Cc *storageos_rpc1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+	// The inode the user mounts or opens.
+	SourceId uint32 `protobuf:"varint,2,opt,name=source_id,json=sourceId" json:"source_id,omitempty"`
+	// The underlying inode of the StorageOS volume.
+	TargetId uint32 `protobuf:"varint,3,opt,name=target_id,json=targetId" json:"target_id,omitempty"`
+}
+
+func (m *FsPresentation) Reset()                    { *m = FsPresentation{} }
+func (m *FsPresentation) String() string            { return proto.CompactTextString(m) }
+func (*FsPresentation) ProtoMessage()               {}
+func (*FsPresentation) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *FsPresentation) GetCc() *storageos_rpc1.DataplaneCommon {
+	if m != nil {
+		return m.Cc
+	}
+	return nil
+}
+
+func (m *FsPresentation) GetSourceId() uint32 {
+	if m != nil {
+		return m.SourceId
+	}
+	return 0
+}
+
+func (m *FsPresentation) GetTargetId() uint32 {
+	if m != nil {
+		return m.TargetId
+	}
+	return 0
+}
+
+type FsPresentationList struct {
+	Presentations []*FsPresentation `protobuf:"bytes,1,rep,name=presentations" json:"presentations,omitempty"`
+}
+
+func (m *FsPresentationList) Reset()                    { *m = FsPresentationList{} }
+func (m *FsPresentationList) String() string            { return proto.CompactTextString(m) }
+func (*FsPresentationList) ProtoMessage()               {}
+func (*FsPresentationList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *FsPresentationList) GetPresentations() []*FsPresentation {
+	if m != nil {
+		return m.Presentations
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*FsVolumeListQuery)(nil), "storageos_rpc.FsVolumeListQuery")
-	proto.RegisterType((*FsVolumeStats)(nil), "storageos_rpc.FsVolumeStats")
+	proto.RegisterType((*FsVolumeStatistics)(nil), "storageos_rpc.FsVolumeStatistics")
+	proto.RegisterType((*FsVolumeStatus)(nil), "storageos_rpc.FsVolumeStatus")
 	proto.RegisterType((*FsVolume)(nil), "storageos_rpc.FsVolume")
 	proto.RegisterType((*FsVolumeList)(nil), "storageos_rpc.FsVolumeList")
+	proto.RegisterType((*FsPresentationListQuery)(nil), "storageos_rpc.FsPresentationListQuery")
+	proto.RegisterType((*FsPresentation)(nil), "storageos_rpc.FsPresentation")
+	proto.RegisterType((*FsPresentationList)(nil), "storageos_rpc.FsPresentationList")
 	proto.RegisterEnum("storageos_rpc.FsVolume_VolumeDeviceType", FsVolume_VolumeDeviceType_name, FsVolume_VolumeDeviceType_value)
 }
 
@@ -204,14 +302,19 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// Client API for FsConfig service
+// Client API for Fs service
 
-type FsConfigClient interface {
+type FsClient interface {
 	// *
 	// Create the specified FsVolume.
 	//
 	// returns RpcResult
 	VolumeCreate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update the specified FsVolume.
+	//
+	// returns RpcResult
+	VolumeUpdate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
 	// *
 	// Delete the specified FsVolume.
 	//
@@ -224,51 +327,123 @@ type FsConfigClient interface {
 	// returns A FsVolumeList message containing FsVolume objects,
 	//         if any are found that match the filter.
 	VolumeList(ctx context.Context, in *FsVolumeListQuery, opts ...grpc.CallOption) (*FsVolumeList, error)
+	// *
+	// Add configuration for a Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationCreate(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update configuration for a Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationUpdate(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Remove configuration for the Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationDelete(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error)
+	// *
+	// List configured Presentation volumes, optionally filtered using a FsPresentationListQuery
+	// message.
+	//
+	// returns A FsPresentationList message containing FsPresentation mesages,
+	//         if any are found matching the filter.
+	PresentationList(ctx context.Context, in *FsPresentationListQuery, opts ...grpc.CallOption) (*FsPresentationList, error)
 }
 
-type fsConfigClient struct {
+type fsClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewFsConfigClient(cc *grpc.ClientConn) FsConfigClient {
-	return &fsConfigClient{cc}
+func NewFsClient(cc *grpc.ClientConn) FsClient {
+	return &fsClient{cc}
 }
 
-func (c *fsConfigClient) VolumeCreate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *fsClient) VolumeCreate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.FsConfig/VolumeCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/VolumeCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fsConfigClient) VolumeDelete(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+func (c *fsClient) VolumeUpdate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
 	out := new(storageos_rpc1.RpcResult)
-	err := grpc.Invoke(ctx, "/storageos_rpc.FsConfig/VolumeDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/VolumeUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fsConfigClient) VolumeList(ctx context.Context, in *FsVolumeListQuery, opts ...grpc.CallOption) (*FsVolumeList, error) {
+func (c *fsClient) VolumeDelete(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/VolumeDelete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fsClient) VolumeList(ctx context.Context, in *FsVolumeListQuery, opts ...grpc.CallOption) (*FsVolumeList, error) {
 	out := new(FsVolumeList)
-	err := grpc.Invoke(ctx, "/storageos_rpc.FsConfig/VolumeList", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for FsConfig service
+func (c *fsClient) PresentationCreate(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/PresentationCreate", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
-type FsConfigServer interface {
+func (c *fsClient) PresentationUpdate(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/PresentationUpdate", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fsClient) PresentationDelete(ctx context.Context, in *FsPresentation, opts ...grpc.CallOption) (*storageos_rpc1.RpcResult, error) {
+	out := new(storageos_rpc1.RpcResult)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/PresentationDelete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fsClient) PresentationList(ctx context.Context, in *FsPresentationListQuery, opts ...grpc.CallOption) (*FsPresentationList, error) {
+	out := new(FsPresentationList)
+	err := grpc.Invoke(ctx, "/storageos_rpc.Fs/PresentationList", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Fs service
+
+type FsServer interface {
 	// *
 	// Create the specified FsVolume.
 	//
 	// returns RpcResult
 	VolumeCreate(context.Context, *FsVolume) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update the specified FsVolume.
+	//
+	// returns RpcResult
+	VolumeUpdate(context.Context, *FsVolume) (*storageos_rpc1.RpcResult, error)
 	// *
 	// Delete the specified FsVolume.
 	//
@@ -281,81 +456,213 @@ type FsConfigServer interface {
 	// returns A FsVolumeList message containing FsVolume objects,
 	//         if any are found that match the filter.
 	VolumeList(context.Context, *FsVolumeListQuery) (*FsVolumeList, error)
+	// *
+	// Add configuration for a Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationCreate(context.Context, *FsPresentation) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Update configuration for a Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationUpdate(context.Context, *FsPresentation) (*storageos_rpc1.RpcResult, error)
+	// *
+	// Remove configuration for the Presentation volume specified in the FsPresentation message.
+	//
+	// returns RpcResult
+	PresentationDelete(context.Context, *FsPresentation) (*storageos_rpc1.RpcResult, error)
+	// *
+	// List configured Presentation volumes, optionally filtered using a FsPresentationListQuery
+	// message.
+	//
+	// returns A FsPresentationList message containing FsPresentation mesages,
+	//         if any are found matching the filter.
+	PresentationList(context.Context, *FsPresentationListQuery) (*FsPresentationList, error)
 }
 
-func RegisterFsConfigServer(s *grpc.Server, srv FsConfigServer) {
-	s.RegisterService(&_FsConfig_serviceDesc, srv)
+func RegisterFsServer(s *grpc.Server, srv FsServer) {
+	s.RegisterService(&_Fs_serviceDesc, srv)
 }
 
-func _FsConfig_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Fs_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FsVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FsConfigServer).VolumeCreate(ctx, in)
+		return srv.(FsServer).VolumeCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.FsConfig/VolumeCreate",
+		FullMethod: "/storageos_rpc.Fs/VolumeCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsConfigServer).VolumeCreate(ctx, req.(*FsVolume))
+		return srv.(FsServer).VolumeCreate(ctx, req.(*FsVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FsConfig_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Fs_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FsVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FsConfigServer).VolumeDelete(ctx, in)
+		return srv.(FsServer).VolumeUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.FsConfig/VolumeDelete",
+		FullMethod: "/storageos_rpc.Fs/VolumeUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsConfigServer).VolumeDelete(ctx, req.(*FsVolume))
+		return srv.(FsServer).VolumeUpdate(ctx, req.(*FsVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FsConfig_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Fs_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FsVolume)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FsServer).VolumeDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Fs/VolumeDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FsServer).VolumeDelete(ctx, req.(*FsVolume))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Fs_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FsVolumeListQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FsConfigServer).VolumeList(ctx, in)
+		return srv.(FsServer).VolumeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/storageos_rpc.FsConfig/VolumeList",
+		FullMethod: "/storageos_rpc.Fs/VolumeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsConfigServer).VolumeList(ctx, req.(*FsVolumeListQuery))
+		return srv.(FsServer).VolumeList(ctx, req.(*FsVolumeListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _FsConfig_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "storageos_rpc.FsConfig",
-	HandlerType: (*FsConfigServer)(nil),
+func _Fs_PresentationCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FsPresentation)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FsServer).PresentationCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Fs/PresentationCreate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FsServer).PresentationCreate(ctx, req.(*FsPresentation))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Fs_PresentationUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FsPresentation)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FsServer).PresentationUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Fs/PresentationUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FsServer).PresentationUpdate(ctx, req.(*FsPresentation))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Fs_PresentationDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FsPresentation)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FsServer).PresentationDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Fs/PresentationDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FsServer).PresentationDelete(ctx, req.(*FsPresentation))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Fs_PresentationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FsPresentationListQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FsServer).PresentationList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/storageos_rpc.Fs/PresentationList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FsServer).PresentationList(ctx, req.(*FsPresentationListQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Fs_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "storageos_rpc.Fs",
+	HandlerType: (*FsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "VolumeCreate",
-			Handler:    _FsConfig_VolumeCreate_Handler,
+			Handler:    _Fs_VolumeCreate_Handler,
+		},
+		{
+			MethodName: "VolumeUpdate",
+			Handler:    _Fs_VolumeUpdate_Handler,
 		},
 		{
 			MethodName: "VolumeDelete",
-			Handler:    _FsConfig_VolumeDelete_Handler,
+			Handler:    _Fs_VolumeDelete_Handler,
 		},
 		{
 			MethodName: "VolumeList",
-			Handler:    _FsConfig_VolumeList_Handler,
+			Handler:    _Fs_VolumeList_Handler,
+		},
+		{
+			MethodName: "PresentationCreate",
+			Handler:    _Fs_PresentationCreate_Handler,
+		},
+		{
+			MethodName: "PresentationUpdate",
+			Handler:    _Fs_PresentationUpdate_Handler,
+		},
+		{
+			MethodName: "PresentationDelete",
+			Handler:    _Fs_PresentationDelete_Handler,
+		},
+		{
+			MethodName: "PresentationList",
+			Handler:    _Fs_PresentationList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -365,34 +672,43 @@ var _FsConfig_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("fs.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 454 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0xc1, 0x6e, 0x9b, 0x40,
-	0x10, 0xf5, 0xda, 0x4e, 0x02, 0x13, 0x48, 0x9c, 0xbd, 0x74, 0xe5, 0xb4, 0x12, 0xa2, 0x3d, 0xa0,
-	0x56, 0xb2, 0x54, 0xda, 0x1f, 0xa8, 0x71, 0x22, 0x45, 0x75, 0x53, 0x75, 0x53, 0xe5, 0x8a, 0x30,
-	0x8c, 0x2d, 0x54, 0x60, 0x11, 0xbb, 0x8e, 0xe4, 0xfc, 0x5d, 0xbf, 0xa5, 0x3f, 0x52, 0xb1, 0x1b,
-	0x1c, 0xd7, 0x92, 0x7b, 0xc8, 0x09, 0x78, 0x33, 0xf3, 0xde, 0xbc, 0x99, 0x01, 0xac, 0xa5, 0x9c,
-	0xd4, 0x8d, 0x50, 0x82, 0xba, 0x52, 0x89, 0x26, 0x59, 0xa1, 0x90, 0x71, 0x53, 0xa7, 0x63, 0x27,
-	0x15, 0x65, 0x29, 0x2a, 0x13, 0xf4, 0x43, 0xb8, 0xb8, 0x96, 0xf7, 0xa2, 0x58, 0x97, 0x38, 0xcf,
-	0xa5, 0xfa, 0xb1, 0xc6, 0x66, 0x43, 0xdf, 0x00, 0x3c, 0x68, 0x28, 0xce, 0x33, 0xc9, 0x88, 0x37,
-	0x08, 0x5c, 0x6e, 0x1b, 0xe4, 0x26, 0x93, 0xfe, 0x39, 0xb8, 0x5d, 0xcd, 0x9d, 0x4a, 0x94, 0xf4,
-	0x7f, 0x0f, 0xc0, 0xea, 0x10, 0xfa, 0x19, 0xfa, 0x69, 0xca, 0x88, 0x47, 0x82, 0xd3, 0xf0, 0xdd,
-	0xe4, 0x1f, 0xed, 0xc9, 0x2c, 0x51, 0x49, 0x5d, 0x24, 0x15, 0x46, 0xba, 0x87, 0x48, 0x54, 0xcb,
-	0x7c, 0xc5, 0xfb, 0x69, 0x4a, 0x2f, 0xc1, 0xde, 0x4a, 0xb2, 0xbe, 0x47, 0x02, 0x97, 0x5b, 0x9d,
-	0x22, 0xbd, 0x02, 0xbb, 0x12, 0x19, 0xc6, 0x6a, 0x53, 0x23, 0x1b, 0x78, 0x24, 0x38, 0x0b, 0x83,
-	0x3d, 0xe6, 0x4e, 0x7e, 0x62, 0x1e, 0x33, 0x7c, 0xc8, 0x53, 0xfc, 0xb9, 0xa9, 0x91, 0x5b, 0x6d,
-	0x69, 0xfb, 0x46, 0xdf, 0x82, 0x9b, 0x69, 0x3c, 0xae, 0xd6, 0xe5, 0x02, 0x1b, 0x36, 0xd4, 0x3a,
-	0x8e, 0x01, 0x6f, 0x35, 0x46, 0xc7, 0x60, 0x2d, 0xf3, 0x02, 0xab, 0xa4, 0x44, 0x76, 0xe4, 0x91,
-	0xc0, 0xe6, 0xdb, 0xef, 0x96, 0xa0, 0xc8, 0xab, 0x5f, 0x98, 0xc5, 0xa6, 0x35, 0x76, 0xec, 0x91,
-	0xc0, 0xe2, 0x8e, 0x01, 0x9f, 0xfc, 0x07, 0x30, 0x52, 0x49, 0xb3, 0x42, 0x15, 0x3f, 0x1b, 0x3a,
-	0xd1, 0x42, 0x67, 0x06, 0xbf, 0xef, 0x6c, 0xbd, 0x87, 0x8b, 0xa7, 0x14, 0x99, 0x3f, 0x62, 0xbc,
-	0xd8, 0x28, 0x94, 0xcc, 0xf2, 0x48, 0x30, 0xe4, 0xe7, 0x26, 0x70, 0x97, 0x3f, 0xe2, 0xb4, 0x85,
-	0x69, 0x08, 0x47, 0xb2, 0x9d, 0x35, 0xb3, 0xf5, 0x60, 0x5f, 0x1f, 0xb0, 0xaf, 0xf7, 0xc1, 0x4d,
-	0xaa, 0xff, 0x01, 0x46, 0xfb, 0xd3, 0xa0, 0x16, 0x0c, 0xaf, 0x6f, 0xe6, 0x57, 0xa3, 0x1e, 0x75,
-	0xc1, 0xbe, 0x9d, 0xce, 0xe2, 0xe9, 0xfc, 0x7b, 0xf4, 0x75, 0x44, 0xfc, 0x2f, 0xe0, 0xec, 0x1e,
-	0x02, 0xfd, 0x08, 0x27, 0xa6, 0x07, 0x73, 0x00, 0xa7, 0xe1, 0xab, 0x03, 0x92, 0xbc, 0xcb, 0x0b,
-	0xff, 0x90, 0xf6, 0x0c, 0xcc, 0x52, 0x69, 0x04, 0x8e, 0x89, 0x47, 0x0d, 0x26, 0x0a, 0xe9, 0xa1,
-	0xf2, 0x31, 0xdb, 0x0b, 0xf0, 0x3a, 0xe5, 0x28, 0xd7, 0x85, 0xf2, 0x7b, 0xcf, 0x24, 0x33, 0x2c,
-	0xf0, 0xa5, 0x24, 0xdf, 0x00, 0x76, 0x7c, 0x79, 0x07, 0x28, 0xb6, 0xd7, 0x3f, 0xbe, 0xfc, 0x4f,
-	0x86, 0xdf, 0x5b, 0x1c, 0xeb, 0x1f, 0xe7, 0xd3, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0xca, 0x8d,
-	0x0d, 0x9b, 0x61, 0x03, 0x00, 0x00,
+	// 602 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x55, 0xe1, 0x6b, 0x9b, 0x5e,
+	0x14, 0x8d, 0x69, 0xda, 0xea, 0x6d, 0x4c, 0xed, 0xe3, 0x07, 0x95, 0x94, 0xfe, 0xb0, 0x6f, 0xb0,
+	0xc9, 0x06, 0x81, 0x65, 0x8c, 0x7d, 0x5e, 0x92, 0x06, 0xc2, 0xba, 0x76, 0x7b, 0xdd, 0x0a, 0xfb,
+	0x24, 0x46, 0x6f, 0x8b, 0xcc, 0xa8, 0xf8, 0x9e, 0x85, 0xe4, 0x0f, 0xdf, 0xbe, 0x0e, 0x7d, 0x9a,
+	0xd8, 0x94, 0x64, 0xd0, 0xee, 0x53, 0xe2, 0xb9, 0xf7, 0x9e, 0x77, 0xee, 0x79, 0x47, 0x04, 0xf5,
+	0x96, 0xf7, 0x92, 0x34, 0x16, 0x31, 0xd1, 0xb9, 0x88, 0x53, 0xf7, 0x0e, 0x63, 0xee, 0xa4, 0x89,
+	0xd7, 0x6d, 0x7b, 0xf1, 0x6c, 0x16, 0x47, 0xb2, 0x48, 0xfb, 0x70, 0x34, 0xe6, 0x37, 0x71, 0x98,
+	0xcd, 0xf0, 0x22, 0xe0, 0xe2, 0x6b, 0x86, 0xe9, 0x9c, 0x9c, 0x02, 0xdc, 0x17, 0x90, 0x13, 0xf8,
+	0xdc, 0x54, 0xac, 0x1d, 0x5b, 0x67, 0x9a, 0x44, 0x26, 0x3e, 0xa7, 0xff, 0x01, 0xa9, 0x66, 0xae,
+	0x85, 0x2b, 0x02, 0x2e, 0x02, 0x8f, 0x53, 0x03, 0x3a, 0x75, 0x34, 0xe3, 0xf4, 0xf7, 0x0e, 0xa8,
+	0x15, 0x44, 0x7a, 0xd0, 0xf4, 0x3c, 0x53, 0xb1, 0x14, 0xfb, 0xa0, 0xff, 0x7f, 0xef, 0x81, 0xa4,
+	0xde, 0xc8, 0x15, 0x6e, 0x12, 0xba, 0x11, 0x0e, 0x0b, 0x69, 0xac, 0xe9, 0x79, 0xe4, 0x04, 0xb4,
+	0xa5, 0x06, 0xb3, 0x69, 0x29, 0xb6, 0xce, 0xd4, 0x4a, 0x02, 0x39, 0x07, 0x2d, 0x8a, 0x7d, 0x74,
+	0xc4, 0x3c, 0x41, 0x73, 0xc7, 0x52, 0xec, 0x4e, 0xdf, 0x5e, 0xe3, 0xac, 0x0e, 0xee, 0xc9, 0x9f,
+	0x11, 0xde, 0x07, 0x1e, 0x7e, 0x9b, 0x27, 0xc8, 0xd4, 0x7c, 0x34, 0xff, 0x47, 0x5e, 0x80, 0xee,
+	0x17, 0xb8, 0x13, 0x65, 0xb3, 0x29, 0xa6, 0x66, 0xab, 0x38, 0xa7, 0x2d, 0xc1, 0xcb, 0x02, 0x23,
+	0x5d, 0x50, 0x6f, 0x83, 0x10, 0x23, 0x77, 0x86, 0xe6, 0xae, 0xa5, 0xd8, 0x1a, 0x5b, 0x3e, 0xe7,
+	0x04, 0x61, 0x10, 0xfd, 0x44, 0xdf, 0x91, 0xd2, 0xcc, 0x3d, 0x4b, 0xb1, 0x55, 0xd6, 0x96, 0x60,
+	0xb9, 0xb9, 0x0d, 0x86, 0x70, 0xd3, 0x3b, 0x14, 0xce, 0x6a, 0xa1, 0xfd, 0xe2, 0xa0, 0x8e, 0xc4,
+	0x6f, 0xaa, 0xb5, 0x5e, 0xc3, 0x51, 0xd9, 0xc2, 0x83, 0x05, 0x3a, 0xd3, 0xb9, 0x40, 0x6e, 0xaa,
+	0x96, 0x62, 0xb7, 0xd8, 0xa1, 0x2c, 0x5c, 0x07, 0x0b, 0x1c, 0xe4, 0x30, 0xf9, 0x00, 0xbb, 0x5c,
+	0xb8, 0x82, 0x9b, 0x5a, 0x61, 0xe9, 0xd9, 0x86, 0xf5, 0x57, 0x17, 0xc4, 0x64, 0x3f, 0x79, 0x0f,
+	0x7b, 0xbc, 0xb8, 0x1f, 0x13, 0x8a, 0xc9, 0xd3, 0x2d, 0x93, 0x19, 0x67, 0x65, 0x33, 0x7d, 0x03,
+	0xc6, 0xba, 0x93, 0x44, 0x85, 0xd6, 0x78, 0x72, 0x71, 0x6e, 0x34, 0x88, 0x0e, 0xda, 0xe5, 0x60,
+	0xe4, 0x0c, 0x2e, 0xae, 0x86, 0x9f, 0x0c, 0x85, 0x7e, 0x84, 0x76, 0x3d, 0x55, 0xe4, 0x2d, 0xec,
+	0x4b, 0xfd, 0x32, 0x4d, 0x07, 0xfd, 0xe3, 0x0d, 0x87, 0xb2, 0xaa, 0x8f, 0x0e, 0xe0, 0x78, 0xcc,
+	0xbf, 0xa4, 0xc8, 0x31, 0xca, 0x57, 0x88, 0xa3, 0x55, 0x3c, 0x5f, 0xc1, 0x61, 0x52, 0x2b, 0xe4,
+	0x7e, 0xca, 0x8c, 0x76, 0xea, 0xf0, 0xc4, 0xa7, 0x8b, 0x3c, 0x92, 0x75, 0x8e, 0xa7, 0xa4, 0x90,
+	0xc7, 0x59, 0xea, 0xd5, 0x53, 0x28, 0x81, 0x89, 0x9f, 0x17, 0xcb, 0x8b, 0x0d, 0xfc, 0x22, 0x85,
+	0x3a, 0x53, 0x25, 0x30, 0xf1, 0xe9, 0x8f, 0xfc, 0x25, 0x59, 0xd7, 0x4f, 0x86, 0xa0, 0xd7, 0x35,
+	0x56, 0x76, 0x3c, 0xbe, 0x83, 0xfa, 0x24, 0x7b, 0x38, 0xd3, 0xff, 0xd5, 0x82, 0xe6, 0x98, 0x93,
+	0x21, 0xb4, 0xa5, 0x69, 0xc3, 0x14, 0x5d, 0x81, 0x64, 0x93, 0xa7, 0x5d, 0x73, 0xad, 0xc0, 0x12,
+	0x8f, 0x21, 0xcf, 0x42, 0x41, 0x1b, 0x2b, 0x92, 0xef, 0x89, 0xff, 0x7c, 0x92, 0x11, 0x86, 0xf8,
+	0x54, 0x92, 0xcf, 0x00, 0xb5, 0xc4, 0x58, 0x1b, 0x28, 0x96, 0x29, 0xe8, 0x9e, 0x6c, 0xe9, 0xa0,
+	0x0d, 0x72, 0x05, 0xa4, 0xee, 0x61, 0xe9, 0xd1, 0x76, 0xa3, 0xb7, 0xea, 0x5b, 0x23, 0x2c, 0xfd,
+	0xfa, 0x77, 0x84, 0xa5, 0x77, 0xcf, 0x20, 0x74, 0xc0, 0x78, 0x14, 0xb8, 0x97, 0x5b, 0xe9, 0x56,
+	0x6e, 0x9e, 0xfd, 0xb5, 0x8f, 0x36, 0xa6, 0x7b, 0xc5, 0x37, 0xe3, 0xdd, 0x9f, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xe3, 0x5d, 0x17, 0xa9, 0x5c, 0x06, 0x00, 0x00,
 }

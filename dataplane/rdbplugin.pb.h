@@ -44,9 +44,12 @@ extern RdbVolumeListDefaultTypeInternal _RdbVolumeList_default_instance_;
 class RdbVolumeListQuery;
 class RdbVolumeListQueryDefaultTypeInternal;
 extern RdbVolumeListQueryDefaultTypeInternal _RdbVolumeListQuery_default_instance_;
-class RdbVolumeStats;
-class RdbVolumeStatsDefaultTypeInternal;
-extern RdbVolumeStatsDefaultTypeInternal _RdbVolumeStats_default_instance_;
+class RdbVolumeStatistics;
+class RdbVolumeStatisticsDefaultTypeInternal;
+extern RdbVolumeStatisticsDefaultTypeInternal _RdbVolumeStatistics_default_instance_;
+class RdbVolumeStatus;
+class RdbVolumeStatusDefaultTypeInternal;
+extern RdbVolumeStatusDefaultTypeInternal _RdbVolumeStatus_default_instance_;
 }  // namespace storageos_rpc
 
 namespace storageos_rpc {
@@ -261,24 +264,24 @@ class RdbVolumeCredentials : public ::google::protobuf::Message /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class RdbVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.RdbVolumeStats) */ {
+class RdbVolumeStatistics : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.RdbVolumeStatistics) */ {
  public:
-  RdbVolumeStats();
-  virtual ~RdbVolumeStats();
+  RdbVolumeStatistics();
+  virtual ~RdbVolumeStatistics();
 
-  RdbVolumeStats(const RdbVolumeStats& from);
+  RdbVolumeStatistics(const RdbVolumeStatistics& from);
 
-  inline RdbVolumeStats& operator=(const RdbVolumeStats& from) {
+  inline RdbVolumeStatistics& operator=(const RdbVolumeStatistics& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  RdbVolumeStats(RdbVolumeStats&& from) noexcept
-    : RdbVolumeStats() {
+  RdbVolumeStatistics(RdbVolumeStatistics&& from) noexcept
+    : RdbVolumeStatistics() {
     *this = ::std::move(from);
   }
 
-  inline RdbVolumeStats& operator=(RdbVolumeStats&& from) noexcept {
+  inline RdbVolumeStatistics& operator=(RdbVolumeStatistics&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -288,29 +291,29 @@ class RdbVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
   }
   #endif
   static const ::google::protobuf::Descriptor* descriptor();
-  static const RdbVolumeStats& default_instance();
+  static const RdbVolumeStatistics& default_instance();
 
-  static inline const RdbVolumeStats* internal_default_instance() {
-    return reinterpret_cast<const RdbVolumeStats*>(
-               &_RdbVolumeStats_default_instance_);
+  static inline const RdbVolumeStatistics* internal_default_instance() {
+    return reinterpret_cast<const RdbVolumeStatistics*>(
+               &_RdbVolumeStatistics_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
     2;
 
-  void Swap(RdbVolumeStats* other);
-  friend void swap(RdbVolumeStats& a, RdbVolumeStats& b) {
+  void Swap(RdbVolumeStatistics* other);
+  friend void swap(RdbVolumeStatistics& a, RdbVolumeStatistics& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline RdbVolumeStats* New() const PROTOBUF_FINAL { return New(NULL); }
+  inline RdbVolumeStatistics* New() const PROTOBUF_FINAL { return New(NULL); }
 
-  RdbVolumeStats* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  RdbVolumeStatistics* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
   void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
   void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const RdbVolumeStats& from);
-  void MergeFrom(const RdbVolumeStats& from);
+  void CopyFrom(const RdbVolumeStatistics& from);
+  void MergeFrom(const RdbVolumeStatistics& from);
   void Clear() PROTOBUF_FINAL;
   bool IsInitialized() const PROTOBUF_FINAL;
 
@@ -326,7 +329,7 @@ class RdbVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(RdbVolumeStats* other);
+  void InternalSwap(RdbVolumeStatistics* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -342,7 +345,97 @@ class RdbVolumeStats : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:storageos_rpc.RdbVolumeStats)
+  // @@protoc_insertion_point(class_scope:storageos_rpc.RdbVolumeStatistics)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_rdbplugin_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class RdbVolumeStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:storageos_rpc.RdbVolumeStatus) */ {
+ public:
+  RdbVolumeStatus();
+  virtual ~RdbVolumeStatus();
+
+  RdbVolumeStatus(const RdbVolumeStatus& from);
+
+  inline RdbVolumeStatus& operator=(const RdbVolumeStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RdbVolumeStatus(RdbVolumeStatus&& from) noexcept
+    : RdbVolumeStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline RdbVolumeStatus& operator=(RdbVolumeStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RdbVolumeStatus& default_instance();
+
+  static inline const RdbVolumeStatus* internal_default_instance() {
+    return reinterpret_cast<const RdbVolumeStatus*>(
+               &_RdbVolumeStatus_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    3;
+
+  void Swap(RdbVolumeStatus* other);
+  friend void swap(RdbVolumeStatus& a, RdbVolumeStatus& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RdbVolumeStatus* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RdbVolumeStatus* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RdbVolumeStatus& from);
+  void MergeFrom(const RdbVolumeStatus& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RdbVolumeStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:storageos_rpc.RdbVolumeStatus)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -385,7 +478,7 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_RdbVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(RdbVolume* other);
   friend void swap(RdbVolume& a, RdbVolume& b) {
@@ -432,14 +525,14 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // .storageos_rpc.DataplaneCommonConfig cc = 1;
+  // .storageos_rpc.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::storageos_rpc::DataplaneCommonConfig& cc() const;
-  ::storageos_rpc::DataplaneCommonConfig* mutable_cc();
-  ::storageos_rpc::DataplaneCommonConfig* release_cc();
-  void set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc);
+  const ::storageos_rpc::DataplaneCommon& cc() const;
+  ::storageos_rpc::DataplaneCommon* mutable_cc();
+  ::storageos_rpc::DataplaneCommon* release_cc();
+  void set_allocated_cc(::storageos_rpc::DataplaneCommon* cc);
 
   // .storageos_rpc.RdbVolumeCredentials credentials = 4;
   bool has_credentials() const;
@@ -450,14 +543,23 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::storageos_rpc::RdbVolumeCredentials* release_credentials();
   void set_allocated_credentials(::storageos_rpc::RdbVolumeCredentials* credentials);
 
-  // .storageos_rpc.RdbVolumeStats stats = 5;
+  // .storageos_rpc.RdbVolumeStatistics stats = 5;
   bool has_stats() const;
   void clear_stats();
   static const int kStatsFieldNumber = 5;
-  const ::storageos_rpc::RdbVolumeStats& stats() const;
-  ::storageos_rpc::RdbVolumeStats* mutable_stats();
-  ::storageos_rpc::RdbVolumeStats* release_stats();
-  void set_allocated_stats(::storageos_rpc::RdbVolumeStats* stats);
+  const ::storageos_rpc::RdbVolumeStatistics& stats() const;
+  ::storageos_rpc::RdbVolumeStatistics* mutable_stats();
+  ::storageos_rpc::RdbVolumeStatistics* release_stats();
+  void set_allocated_stats(::storageos_rpc::RdbVolumeStatistics* stats);
+
+  // .storageos_rpc.RdbVolumeStatus status = 6;
+  bool has_status() const;
+  void clear_status();
+  static const int kStatusFieldNumber = 6;
+  const ::storageos_rpc::RdbVolumeStatus& status() const;
+  ::storageos_rpc::RdbVolumeStatus* mutable_status();
+  ::storageos_rpc::RdbVolumeStatus* release_status();
+  void set_allocated_status(::storageos_rpc::RdbVolumeStatus* status);
 
   // uint64 volume_size_bytes = 3;
   void clear_volume_size_bytes();
@@ -475,9 +577,10 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::storageos_rpc::DataplaneCommonConfig* cc_;
+  ::storageos_rpc::DataplaneCommon* cc_;
   ::storageos_rpc::RdbVolumeCredentials* credentials_;
-  ::storageos_rpc::RdbVolumeStats* stats_;
+  ::storageos_rpc::RdbVolumeStatistics* stats_;
+  ::storageos_rpc::RdbVolumeStatus* status_;
   ::google::protobuf::uint64 volume_size_bytes_;
   ::google::protobuf::uint32 volume_id_;
   mutable int _cached_size_;
@@ -519,7 +622,7 @@ class RdbVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_RdbVolumeList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(RdbVolumeList* other);
   friend void swap(RdbVolumeList& a, RdbVolumeList& b) {
@@ -634,13 +737,17 @@ RdbVolumeListQuery::volume_ids() const {
 
 // -------------------------------------------------------------------
 
-// RdbVolumeStats
+// RdbVolumeStatistics
+
+// -------------------------------------------------------------------
+
+// RdbVolumeStatus
 
 // -------------------------------------------------------------------
 
 // RdbVolume
 
-// .storageos_rpc.DataplaneCommonConfig cc = 1;
+// .storageos_rpc.DataplaneCommon cc = 1;
 inline bool RdbVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -648,28 +755,28 @@ inline void RdbVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::storageos_rpc::DataplaneCommonConfig& RdbVolume::cc() const {
-  const ::storageos_rpc::DataplaneCommonConfig* p = cc_;
+inline const ::storageos_rpc::DataplaneCommon& RdbVolume::cc() const {
+  const ::storageos_rpc::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:storageos_rpc.RdbVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommonConfig*>(
-      &::storageos_rpc::_DataplaneCommonConfig_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::DataplaneCommon*>(
+      &::storageos_rpc::_DataplaneCommon_default_instance_);
 }
-inline ::storageos_rpc::DataplaneCommonConfig* RdbVolume::mutable_cc() {
+inline ::storageos_rpc::DataplaneCommon* RdbVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::storageos_rpc::DataplaneCommonConfig;
+    cc_ = new ::storageos_rpc::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:storageos_rpc.RdbVolume.cc)
   return cc_;
 }
-inline ::storageos_rpc::DataplaneCommonConfig* RdbVolume::release_cc() {
+inline ::storageos_rpc::DataplaneCommon* RdbVolume::release_cc() {
   // @@protoc_insertion_point(field_release:storageos_rpc.RdbVolume.cc)
   
-  ::storageos_rpc::DataplaneCommonConfig* temp = cc_;
+  ::storageos_rpc::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void RdbVolume::set_allocated_cc(::storageos_rpc::DataplaneCommonConfig* cc) {
+inline void RdbVolume::set_allocated_cc(::storageos_rpc::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -748,7 +855,7 @@ inline void RdbVolume::set_allocated_credentials(::storageos_rpc::RdbVolumeCrede
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RdbVolume.credentials)
 }
 
-// .storageos_rpc.RdbVolumeStats stats = 5;
+// .storageos_rpc.RdbVolumeStatistics stats = 5;
 inline bool RdbVolume::has_stats() const {
   return this != internal_default_instance() && stats_ != NULL;
 }
@@ -756,28 +863,28 @@ inline void RdbVolume::clear_stats() {
   if (GetArenaNoVirtual() == NULL && stats_ != NULL) delete stats_;
   stats_ = NULL;
 }
-inline const ::storageos_rpc::RdbVolumeStats& RdbVolume::stats() const {
-  const ::storageos_rpc::RdbVolumeStats* p = stats_;
+inline const ::storageos_rpc::RdbVolumeStatistics& RdbVolume::stats() const {
+  const ::storageos_rpc::RdbVolumeStatistics* p = stats_;
   // @@protoc_insertion_point(field_get:storageos_rpc.RdbVolume.stats)
-  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::RdbVolumeStats*>(
-      &::storageos_rpc::_RdbVolumeStats_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::RdbVolumeStatistics*>(
+      &::storageos_rpc::_RdbVolumeStatistics_default_instance_);
 }
-inline ::storageos_rpc::RdbVolumeStats* RdbVolume::mutable_stats() {
+inline ::storageos_rpc::RdbVolumeStatistics* RdbVolume::mutable_stats() {
   
   if (stats_ == NULL) {
-    stats_ = new ::storageos_rpc::RdbVolumeStats;
+    stats_ = new ::storageos_rpc::RdbVolumeStatistics;
   }
   // @@protoc_insertion_point(field_mutable:storageos_rpc.RdbVolume.stats)
   return stats_;
 }
-inline ::storageos_rpc::RdbVolumeStats* RdbVolume::release_stats() {
+inline ::storageos_rpc::RdbVolumeStatistics* RdbVolume::release_stats() {
   // @@protoc_insertion_point(field_release:storageos_rpc.RdbVolume.stats)
   
-  ::storageos_rpc::RdbVolumeStats* temp = stats_;
+  ::storageos_rpc::RdbVolumeStatistics* temp = stats_;
   stats_ = NULL;
   return temp;
 }
-inline void RdbVolume::set_allocated_stats(::storageos_rpc::RdbVolumeStats* stats) {
+inline void RdbVolume::set_allocated_stats(::storageos_rpc::RdbVolumeStatistics* stats) {
   delete stats_;
   stats_ = stats;
   if (stats) {
@@ -786,6 +893,46 @@ inline void RdbVolume::set_allocated_stats(::storageos_rpc::RdbVolumeStats* stat
     
   }
   // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RdbVolume.stats)
+}
+
+// .storageos_rpc.RdbVolumeStatus status = 6;
+inline bool RdbVolume::has_status() const {
+  return this != internal_default_instance() && status_ != NULL;
+}
+inline void RdbVolume::clear_status() {
+  if (GetArenaNoVirtual() == NULL && status_ != NULL) delete status_;
+  status_ = NULL;
+}
+inline const ::storageos_rpc::RdbVolumeStatus& RdbVolume::status() const {
+  const ::storageos_rpc::RdbVolumeStatus* p = status_;
+  // @@protoc_insertion_point(field_get:storageos_rpc.RdbVolume.status)
+  return p != NULL ? *p : *reinterpret_cast<const ::storageos_rpc::RdbVolumeStatus*>(
+      &::storageos_rpc::_RdbVolumeStatus_default_instance_);
+}
+inline ::storageos_rpc::RdbVolumeStatus* RdbVolume::mutable_status() {
+  
+  if (status_ == NULL) {
+    status_ = new ::storageos_rpc::RdbVolumeStatus;
+  }
+  // @@protoc_insertion_point(field_mutable:storageos_rpc.RdbVolume.status)
+  return status_;
+}
+inline ::storageos_rpc::RdbVolumeStatus* RdbVolume::release_status() {
+  // @@protoc_insertion_point(field_release:storageos_rpc.RdbVolume.status)
+  
+  ::storageos_rpc::RdbVolumeStatus* temp = status_;
+  status_ = NULL;
+  return temp;
+}
+inline void RdbVolume::set_allocated_status(::storageos_rpc::RdbVolumeStatus* status) {
+  delete status_;
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:storageos_rpc.RdbVolume.status)
 }
 
 // -------------------------------------------------------------------
@@ -826,6 +973,8 @@ RdbVolumeList::volumes() const {
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
