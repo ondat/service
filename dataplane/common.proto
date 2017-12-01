@@ -8,17 +8,14 @@ message RpcResult {
     string reason = 2;
 }
 
-message DataplaneCommonConfig {
+message DataplaneCommon {
     // Item labels.
     map<string, string> labels = 1;
 
-    // Item status.
-    map<string, string> status = 2;
-
     // Human-readable info.
-    string description = 3;
+    string description = 2;
 
     // UUID. Not currently used.
-    string uuid = 4;
+    string uuid = 3;
 
 }
