@@ -226,24 +226,23 @@ void AddDescriptorsImpl() {
       "torageos_rpc.DataplaneCommonConfig\022\021\n\tso"
       "urce_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\"J\n\024Dire"
       "ctorRedirectList\0222\n\tredirects\030\001 \003(\0132\037.st"
-      "orageos_rpc.DirectorRedirect2\220\004\n\016Directo"
-      "rConfig\022L\n\017VolumeConfigure\022\035.storageos_r"
-      "pc.DirectorVolume\032\030.storageos_rpc.RpcRes"
-      "ult\"\000\022N\n\021VolumeUnconfigure\022\035.storageos_r"
-      "pc.DirectorVolume\032\030.storageos_rpc.RpcRes"
-      "ult\"\000\022Y\n\nVolumeList\022&.storageos_rpc.Dire"
-      "ctorVolumeListQuery\032!.storageos_rpc.Dire"
-      "ctorVolumeList\"\000\022P\n\021RedirectConfigure\022\037."
-      "storageos_rpc.DirectorRedirect\032\030.storage"
-      "os_rpc.RpcResult\"\000\022R\n\023RedirectUnconfigur"
-      "e\022\037.storageos_rpc.DirectorRedirect\032\030.sto"
-      "rageos_rpc.RpcResult\"\000\022_\n\014RedirectList\022("
-      ".storageos_rpc.DirectorRedirectListQuery"
-      "\032#.storageos_rpc.DirectorRedirectList\"\000b"
-      "\006proto3"
+      "orageos_rpc.DirectorRedirect2\200\004\n\016Directo"
+      "rConfig\022I\n\014VolumeCreate\022\035.storageos_rpc."
+      "DirectorVolume\032\030.storageos_rpc.RpcResult"
+      "\"\000\022I\n\014VolumeDelete\022\035.storageos_rpc.Direc"
+      "torVolume\032\030.storageos_rpc.RpcResult\"\000\022Y\n"
+      "\nVolumeList\022&.storageos_rpc.DirectorVolu"
+      "meListQuery\032!.storageos_rpc.DirectorVolu"
+      "meList\"\000\022M\n\016RedirectCreate\022\037.storageos_r"
+      "pc.DirectorRedirect\032\030.storageos_rpc.RpcR"
+      "esult\"\000\022M\n\016RedirectDelete\022\037.storageos_rp"
+      "c.DirectorRedirect\032\030.storageos_rpc.RpcRe"
+      "sult\"\000\022_\n\014RedirectList\022(.storageos_rpc.D"
+      "irectorRedirectListQuery\032#.storageos_rpc"
+      ".DirectorRedirectList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1167);
+      descriptor, 1151);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "director.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();

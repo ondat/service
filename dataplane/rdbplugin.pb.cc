@@ -184,18 +184,16 @@ void AddDescriptorsImpl() {
       "s\030\004 \001(\0132#.storageos_rpc.RdbVolumeCredent"
       "ials\022,\n\005stats\030\005 \001(\0132\035.storageos_rpc.RdbV"
       "olumeStats\":\n\rRdbVolumeList\022)\n\007volumes\030\001"
-      " \003(\0132\030.storageos_rpc.RdbVolume2\274\002\n\017RdbPl"
-      "uginConfig\022G\n\017VolumeConfigure\022\030.storageo"
-      "s_rpc.RdbVolume\032\030.storageos_rpc.RpcResul"
-      "t\"\000\022I\n\021VolumeUnconfigure\022\030.storageos_rpc"
-      ".RdbVolume\032\030.storageos_rpc.RpcResult\"\000\022D"
-      "\n\014VolumeDelete\022\030.storageos_rpc.RdbVolume"
-      "\032\030.storageos_rpc.RpcResult\"\000\022O\n\nVolumeLi"
-      "st\022!.storageos_rpc.RdbVolumeListQuery\032\034."
-      "storageos_rpc.RdbVolumeList\"\000b\006proto3"
+      " \003(\0132\030.storageos_rpc.RdbVolume2\356\001\n\017RdbPl"
+      "uginConfig\022D\n\014VolumeCreate\022\030.storageos_r"
+      "pc.RdbVolume\032\030.storageos_rpc.RpcResult\"\000"
+      "\022D\n\014VolumeDelete\022\030.storageos_rpc.RdbVolu"
+      "me\032\030.storageos_rpc.RpcResult\"\000\022O\n\nVolume"
+      "List\022!.storageos_rpc.RdbVolumeListQuery\032"
+      "\034.storageos_rpc.RdbVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 757);
+      descriptor, 679);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rdbplugin.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();

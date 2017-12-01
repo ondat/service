@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='directfs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\xa4\x01\n\x07\x44\x66sHost\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"4\n\x0b\x44\x66sHostList\x12%\n\x05hosts\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x10\n\x0e\x44\x66sVolumeStats\"\xc9\x01\n\tDfsVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.DfsVolumeStats\">\n\rDfsVolumeList\x12-\n\x07volumes\x18\x01 \x03(\x0b\x32\x1c.storageos_rpc.DfsVolumeList\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xd8\x03\n\x14\x44irectfsClientConfig\x12\x45\n\x0fServerConfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12G\n\x11ServerUnconfigure\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x1a.storageos_rpc.DfsHostList\"\x00\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x1c.storageos_rpc.DfsVolumeList\"\x00\x32\xf9\x01\n\x14\x44irectfsServerConfig\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\xa4\x01\n\x07\x44\x66sHost\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32!.storageos_rpc.DfsHostCredentials\"4\n\x0b\x44\x66sHostList\x12%\n\x05hosts\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"<\n\x10\x44\x66sHostListQuery\x12(\n\x08host_ids\x18\x01 \x03(\x0b\x32\x16.storageos_rpc.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x10\n\x0e\x44\x66sVolumeStats\"\xc9\x01\n\tDfsVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.DfsVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.DfsVolumeStats\">\n\rDfsVolumeList\x12-\n\x07volumes\x18\x01 \x03(\x0b\x32\x1c.storageos_rpc.DfsVolumeList\"B\n\x12\x44\x66sVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.DfsVolume2\xc8\x03\n\x14\x44irectfsClientConfig\x12\x42\n\x0cServerCreate\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x42\n\x0cServerDelete\x12\x16.storageos_rpc.DfsHost\x1a\x18.storageos_rpc.RpcResult\"\x00\x12K\n\nServerList\x12\x1f.storageos_rpc.DfsHostListQuery\x1a\x1a.storageos_rpc.DfsHostList\"\x00\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x1c.storageos_rpc.DfsVolumeList\"\x00\x32\xf1\x01\n\x14\x44irectfsServerConfig\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.DfsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12!.storageos_rpc.DfsVolumeListQuery\x1a\x18.storageos_rpc.DfsVolume\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -432,11 +432,11 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=731,
-  serialized_end=1203,
+  serialized_end=1187,
   methods=[
   _descriptor.MethodDescriptor(
-    name='ServerConfigure',
-    full_name='storageos_rpc.DirectfsClientConfig.ServerConfigure',
+    name='ServerCreate',
+    full_name='storageos_rpc.DirectfsClientConfig.ServerCreate',
     index=0,
     containing_service=None,
     input_type=_DFSHOST,
@@ -444,8 +444,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='ServerUnconfigure',
-    full_name='storageos_rpc.DirectfsClientConfig.ServerUnconfigure',
+    name='ServerDelete',
+    full_name='storageos_rpc.DirectfsClientConfig.ServerDelete',
     index=1,
     containing_service=None,
     input_type=_DFSHOST,
@@ -462,8 +462,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeConfigure',
-    full_name='storageos_rpc.DirectfsClientConfig.VolumeConfigure',
+    name='VolumeCreate',
+    full_name='storageos_rpc.DirectfsClientConfig.VolumeCreate',
     index=3,
     containing_service=None,
     input_type=_DFSVOLUME,
@@ -471,8 +471,8 @@ _DIRECTFSCLIENTCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeUnconfigure',
-    full_name='storageos_rpc.DirectfsClientConfig.VolumeUnconfigure',
+    name='VolumeDelete',
+    full_name='storageos_rpc.DirectfsClientConfig.VolumeDelete',
     index=4,
     containing_service=None,
     input_type=_DFSVOLUME,
@@ -500,12 +500,12 @@ _DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   options=None,
-  serialized_start=1206,
-  serialized_end=1455,
+  serialized_start=1190,
+  serialized_end=1431,
   methods=[
   _descriptor.MethodDescriptor(
-    name='VolumeConfigure',
-    full_name='storageos_rpc.DirectfsServerConfig.VolumeConfigure',
+    name='VolumeCreate',
+    full_name='storageos_rpc.DirectfsServerConfig.VolumeCreate',
     index=0,
     containing_service=None,
     input_type=_DFSVOLUME,
@@ -513,8 +513,8 @@ _DIRECTFSSERVERCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeUnconfigure',
-    full_name='storageos_rpc.DirectfsServerConfig.VolumeUnconfigure',
+    name='VolumeDelete',
+    full_name='storageos_rpc.DirectfsServerConfig.VolumeDelete',
     index=1,
     containing_service=None,
     input_type=_DFSVOLUME,

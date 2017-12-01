@@ -174,16 +174,16 @@ void AddDescriptorsImpl() {
       "\005stats\030\t \001(\0132\034.storageos_rpc.FsVolumeSta"
       "ts\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_"
       "BLOCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\013"
-      "2\027.storageos_rpc.FsVolume2\353\001\n\010FsConfig\022F"
-      "\n\017VolumeConfigure\022\027.storageos_rpc.FsVolu"
-      "me\032\030.storageos_rpc.RpcResult\"\000\022H\n\021Volume"
-      "Unconfigure\022\027.storageos_rpc.FsVolume\032\030.s"
-      "torageos_rpc.RpcResult\"\000\022M\n\nVolumeList\022 "
-      ".storageos_rpc.FsVolumeListQuery\032\033.stora"
-      "geos_rpc.FsVolumeList\"\000b\006proto3"
+      "2\027.storageos_rpc.FsVolume2\343\001\n\010FsConfig\022C"
+      "\n\014VolumeCreate\022\027.storageos_rpc.FsVolume\032"
+      "\030.storageos_rpc.RpcResult\"\000\022C\n\014VolumeDel"
+      "ete\022\027.storageos_rpc.FsVolume\032\030.storageos"
+      "_rpc.RpcResult\"\000\022M\n\nVolumeList\022 .storage"
+      "os_rpc.FsVolumeListQuery\032\033.storageos_rpc"
+      ".FsVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 751);
+      descriptor, 743);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "fs.proto", &protobuf_RegisterTypes);
   ::storageos_rpc::protobuf_common_2eproto::AddDescriptors();

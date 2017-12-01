@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='rdbplugin.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0frdbplugin.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"B\n\x12RdbVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.RdbVolume\"\x16\n\x14RdbVolumeCredentials\"\x10\n\x0eRdbVolumeStats\"\xd3\x01\n\tRdbVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x03 \x01(\x04\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.RdbVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.RdbVolumeStats\":\n\rRdbVolumeList\x12)\n\x07volumes\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.RdbVolume2\xbc\x02\n\x0fRdbPluginConfig\x12G\n\x0fVolumeConfigure\x12\x18.storageos_rpc.RdbVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x11VolumeUnconfigure\x12\x18.storageos_rpc.RdbVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.RdbVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.RdbVolumeListQuery\x1a\x1c.storageos_rpc.RdbVolumeList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0frdbplugin.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"B\n\x12RdbVolumeListQuery\x12,\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.RdbVolume\"\x16\n\x14RdbVolumeCredentials\"\x10\n\x0eRdbVolumeStats\"\xd3\x01\n\tRdbVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x03 \x01(\x04\x12\x38\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32#.storageos_rpc.RdbVolumeCredentials\x12,\n\x05stats\x18\x05 \x01(\x0b\x32\x1d.storageos_rpc.RdbVolumeStats\":\n\rRdbVolumeList\x12)\n\x07volumes\x18\x01 \x03(\x0b\x32\x18.storageos_rpc.RdbVolume2\xee\x01\n\x0fRdbPluginConfig\x12\x44\n\x0cVolumeCreate\x12\x18.storageos_rpc.RdbVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x44\n\x0cVolumeDelete\x12\x18.storageos_rpc.RdbVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12O\n\nVolumeList\x12!.storageos_rpc.RdbVolumeListQuery\x1a\x1c.storageos_rpc.RdbVolumeList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -251,21 +251,12 @@ _RDBPLUGINCONFIG = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=433,
-  serialized_end=749,
+  serialized_end=671,
   methods=[
   _descriptor.MethodDescriptor(
-    name='VolumeConfigure',
-    full_name='storageos_rpc.RdbPluginConfig.VolumeConfigure',
+    name='VolumeCreate',
+    full_name='storageos_rpc.RdbPluginConfig.VolumeCreate',
     index=0,
-    containing_service=None,
-    input_type=_RDBVOLUME,
-    output_type=common__pb2._RPCRESULT,
-    options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='VolumeUnconfigure',
-    full_name='storageos_rpc.RdbPluginConfig.VolumeUnconfigure',
-    index=1,
     containing_service=None,
     input_type=_RDBVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -274,7 +265,7 @@ _RDBPLUGINCONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
     full_name='storageos_rpc.RdbPluginConfig.VolumeDelete',
-    index=2,
+    index=1,
     containing_service=None,
     input_type=_RDBVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -283,7 +274,7 @@ _RDBPLUGINCONFIG = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeList',
     full_name='storageos_rpc.RdbPluginConfig.VolumeList',
-    index=3,
+    index=2,
     containing_service=None,
     input_type=_RDBVOLUMELISTQUERY,
     output_type=_RDBVOLUMELIST,

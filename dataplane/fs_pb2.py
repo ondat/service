@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='fs.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x0f\n\rFsVolumeStats\"\xdb\x02\n\x08\x46sVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12+\n\x05stats\x18\t \x01(\x0b\x32\x1c.storageos_rpc.FsVolumeStats\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.storageos_rpc.FsVolume2\xeb\x01\n\x08\x46sConfig\x12\x46\n\x0fVolumeConfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12H\n\x11VolumeUnconfigure\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x1b.storageos_rpc.FsVolumeList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x08\x66s.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x0f\n\rFsVolumeStats\"\xdb\x02\n\x08\x46sVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.storageos_rpc.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12+\n\x05stats\x18\t \x01(\x0b\x32\x1c.storageos_rpc.FsVolumeStats\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.storageos_rpc.FsVolume2\xe3\x01\n\x08\x46sConfig\x12\x43\n\x0cVolumeCreate\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x17.storageos_rpc.FsVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\nVolumeList\x12 .storageos_rpc.FsVolumeListQuery\x1a\x1b.storageos_rpc.FsVolumeList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -270,11 +270,11 @@ _FSCONFIG = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=508,
-  serialized_end=743,
+  serialized_end=735,
   methods=[
   _descriptor.MethodDescriptor(
-    name='VolumeConfigure',
-    full_name='storageos_rpc.FsConfig.VolumeConfigure',
+    name='VolumeCreate',
+    full_name='storageos_rpc.FsConfig.VolumeCreate',
     index=0,
     containing_service=None,
     input_type=_FSVOLUME,
@@ -282,8 +282,8 @@ _FSCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeUnconfigure',
-    full_name='storageos_rpc.FsConfig.VolumeUnconfigure',
+    name='VolumeDelete',
+    full_name='storageos_rpc.FsConfig.VolumeDelete',
     index=1,
     containing_service=None,
     input_type=_FSVOLUME,

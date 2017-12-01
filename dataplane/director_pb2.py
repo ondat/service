@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='director.proto',
   package='storageos_rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irector.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x15\n\x13\x44irectorVolumeStats\"\xd1\x01\n\x0e\x44irectorVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x31\n\x05stats\x18\x07 \x01(\x0b\x32\".storageos_rpc.DirectorVolumeStats\"D\n\x12\x44irectorVolumeList\x12.\n\x07volumes\x18\x01 \x03(\x0b\x32\x1d.storageos_rpc.DirectorVolume\"-\n\x19\x44irectorRedirectListQuery\x12\x10\n\x08query_id\x18\x01 \x03(\r\"j\n\x10\x44irectorRedirect\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"J\n\x14\x44irectorRedirectList\x12\x32\n\tredirects\x18\x01 \x03(\x0b\x32\x1f.storageos_rpc.DirectorRedirect2\x90\x04\n\x0e\x44irectorConfig\x12L\n\x0fVolumeConfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12N\n\x11VolumeUnconfigure\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12Y\n\nVolumeList\x12&.storageos_rpc.DirectorVolumeListQuery\x1a!.storageos_rpc.DirectorVolumeList\"\x00\x12P\n\x11RedirectConfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12R\n\x13RedirectUnconfigure\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12_\n\x0cRedirectList\x12(.storageos_rpc.DirectorRedirectListQuery\x1a#.storageos_rpc.DirectorRedirectList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irector.proto\x12\rstorageos_rpc\x1a\x0c\x63ommon.proto\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x15\n\x13\x44irectorVolumeStats\"\xd1\x01\n\x0e\x44irectorVolume\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x31\n\x05stats\x18\x07 \x01(\x0b\x32\".storageos_rpc.DirectorVolumeStats\"D\n\x12\x44irectorVolumeList\x12.\n\x07volumes\x18\x01 \x03(\x0b\x32\x1d.storageos_rpc.DirectorVolume\"-\n\x19\x44irectorRedirectListQuery\x12\x10\n\x08query_id\x18\x01 \x03(\r\"j\n\x10\x44irectorRedirect\x12\x30\n\x02\x63\x63\x18\x01 \x01(\x0b\x32$.storageos_rpc.DataplaneCommonConfig\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"J\n\x14\x44irectorRedirectList\x12\x32\n\tredirects\x18\x01 \x03(\x0b\x32\x1f.storageos_rpc.DirectorRedirect2\x80\x04\n\x0e\x44irectorConfig\x12I\n\x0cVolumeCreate\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12I\n\x0cVolumeDelete\x12\x1d.storageos_rpc.DirectorVolume\x1a\x18.storageos_rpc.RpcResult\"\x00\x12Y\n\nVolumeList\x12&.storageos_rpc.DirectorVolumeListQuery\x1a!.storageos_rpc.DirectorVolumeList\"\x00\x12M\n\x0eRedirectCreate\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12M\n\x0eRedirectDelete\x12\x1f.storageos_rpc.DirectorRedirect\x1a\x18.storageos_rpc.RpcResult\"\x00\x12_\n\x0cRedirectList\x12(.storageos_rpc.DirectorRedirectListQuery\x1a#.storageos_rpc.DirectorRedirectList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -364,11 +364,11 @@ _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=631,
-  serialized_end=1159,
+  serialized_end=1143,
   methods=[
   _descriptor.MethodDescriptor(
-    name='VolumeConfigure',
-    full_name='storageos_rpc.DirectorConfig.VolumeConfigure',
+    name='VolumeCreate',
+    full_name='storageos_rpc.DirectorConfig.VolumeCreate',
     index=0,
     containing_service=None,
     input_type=_DIRECTORVOLUME,
@@ -376,8 +376,8 @@ _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='VolumeUnconfigure',
-    full_name='storageos_rpc.DirectorConfig.VolumeUnconfigure',
+    name='VolumeDelete',
+    full_name='storageos_rpc.DirectorConfig.VolumeDelete',
     index=1,
     containing_service=None,
     input_type=_DIRECTORVOLUME,
@@ -394,8 +394,8 @@ _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='RedirectConfigure',
-    full_name='storageos_rpc.DirectorConfig.RedirectConfigure',
+    name='RedirectCreate',
+    full_name='storageos_rpc.DirectorConfig.RedirectCreate',
     index=3,
     containing_service=None,
     input_type=_DIRECTORREDIRECT,
@@ -403,8 +403,8 @@ _DIRECTORCONFIG = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='RedirectUnconfigure',
-    full_name='storageos_rpc.DirectorConfig.RedirectUnconfigure',
+    name='RedirectDelete',
+    full_name='storageos_rpc.DirectorConfig.RedirectDelete',
     index=4,
     containing_service=None,
     input_type=_DIRECTORREDIRECT,
