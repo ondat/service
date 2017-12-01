@@ -12,14 +12,14 @@ service FsClient {
      *
      * returns RpcResult
      */
-    rpc ServerCreate(DfsHost) returns (RpcResult) {}
+    rpc ServerCreate(DfsHost) returns (common.v1.RpcResult) {}
 
     /**
      * Update a remote host entry to be used by volumes.
      *
      * returns RpcResult
      */
-    rpc ServerUpdate(DfsHost) returns (RpcResult) {}
+    rpc ServerUpdate(DfsHost) returns (common.v1.RpcResult) {}
 
     /**
      * Remove a remote host entry.
@@ -29,7 +29,7 @@ service FsClient {
      *
      * returns RpcResult
      */
-    rpc ServerDelete(DfsHost) returns (RpcResult) {}
+    rpc ServerDelete(DfsHost) returns (common.v1.RpcResult) {}
 
     /**
      * List configured host entries, optionally filtered via a DfsHostListQuery
@@ -47,7 +47,7 @@ service FsClient {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(DfsVolume) returns (RpcResult) {}
+    rpc VolumeCreate(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update a volume on a remote host. The DfsHost matching the host id
@@ -56,14 +56,14 @@ service FsClient {
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(DfsVolume) returns (RpcResult) {}
+    rpc VolumeUpdate(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete a volume previously configured by VolumeCreate.
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(DfsVolume) returns (RpcResult) {}
+    rpc VolumeDelete(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * List configured volume entries, optionally filtered via a DfsVolumeListQuery
@@ -85,7 +85,7 @@ service FsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(DfsVolume) returns (RpcResult) {}
+    rpc VolumeCreate(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update a volume to be served via DFS. Currently does nothing, but should still
@@ -93,7 +93,7 @@ service FsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(DfsVolume) returns (RpcResult) {}
+    rpc VolumeUpdate(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete a volume to be served via DFS. Currently does nothing, but should still
@@ -101,7 +101,7 @@ service FsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(DfsVolume) returns (RpcResult) {}
+    rpc VolumeDelete(DfsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * List configured volume entries, optionally filtered via a DfsVolumeListQuery
@@ -124,7 +124,7 @@ message DfsHostCredentials {
  * A host used by DirectFS.
  */
 message DfsHost {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The unique host identifier.
     uint32 host_id = 2;
@@ -194,7 +194,7 @@ message DfsVolumeStatus {
  * it if the authentication (especially TLS) is per-host rather than per-volume.
  */
 message DfsVolume {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;

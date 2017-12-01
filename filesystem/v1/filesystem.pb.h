@@ -535,14 +535,14 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_filename();
   void set_allocated_filename(::std::string* filename);
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .filesystem.v1.FsVolumeStatistics stats = 9;
   bool has_stats() const;
@@ -603,7 +603,7 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr filename_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::filesystem::v1::FsVolumeStatistics* stats_;
   ::filesystem::v1::FsVolumeStatus* status_;
   ::google::protobuf::uint32 volume_id_;
@@ -905,14 +905,14 @@ class FsPresentation : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .filesystem.v1.FsVolumeStatus status = 5;
   bool has_status() const;
@@ -939,7 +939,7 @@ class FsPresentation : public ::google::protobuf::Message /* @@protoc_insertion_
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::filesystem::v1::FsVolumeStatus* status_;
   ::google::protobuf::uint32 source_id_;
   ::google::protobuf::uint32 target_id_;
@@ -1117,7 +1117,7 @@ inline void FsVolumeStatus::set_node_state(::filesystem::v1::FsVolumeState value
 
 // FsVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool FsVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1125,28 +1125,28 @@ inline void FsVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& FsVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& FsVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* FsVolume::mutable_cc() {
+inline ::common::v1::DataplaneCommon* FsVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:filesystem.v1.FsVolume.cc)
   return cc_;
 }
-inline ::DataplaneCommon* FsVolume::release_cc() {
+inline ::common::v1::DataplaneCommon* FsVolume::release_cc() {
   // @@protoc_insertion_point(field_release:filesystem.v1.FsVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void FsVolume::set_allocated_cc(::DataplaneCommon* cc) {
+inline void FsVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -1446,7 +1446,7 @@ FsPresentationListQuery::mutable_presentation_id() {
 
 // FsPresentation
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool FsPresentation::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1454,28 +1454,28 @@ inline void FsPresentation::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& FsPresentation::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& FsPresentation::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:filesystem.v1.FsPresentation.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* FsPresentation::mutable_cc() {
+inline ::common::v1::DataplaneCommon* FsPresentation::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:filesystem.v1.FsPresentation.cc)
   return cc_;
 }
-inline ::DataplaneCommon* FsPresentation::release_cc() {
+inline ::common::v1::DataplaneCommon* FsPresentation::release_cc() {
   // @@protoc_insertion_point(field_release:filesystem.v1.FsPresentation.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void FsPresentation::set_allocated_cc(::DataplaneCommon* cc) {
+inline void FsPresentation::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

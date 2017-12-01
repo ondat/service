@@ -457,14 +457,14 @@ class DirectorVolume : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_replica_ids();
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .director.v1.DirectorVolumeStatistics stats = 7;
   bool has_stats() const;
@@ -514,7 +514,7 @@ class DirectorVolume : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > replica_ids_;
   mutable int _replica_ids_cached_byte_size_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::director::v1::DirectorVolumeStatistics* stats_;
   ::director::v1::DirectorVolumeStatus* status_;
   ::google::protobuf::uint32 volume_id_;
@@ -814,14 +814,14 @@ class DirectorPresentation : public ::google::protobuf::Message /* @@protoc_inse
 
   // accessors -------------------------------------------------------
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // uint32 source_id = 2;
   void clear_source_id();
@@ -839,7 +839,7 @@ class DirectorPresentation : public ::google::protobuf::Message /* @@protoc_inse
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::google::protobuf::uint32 source_id_;
   ::google::protobuf::uint32 target_id_;
   mutable int _cached_size_;
@@ -1002,7 +1002,7 @@ DirectorVolumeListQuery::mutable_volume_ids() {
 
 // DirectorVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool DirectorVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1010,28 +1010,28 @@ inline void DirectorVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& DirectorVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& DirectorVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:director.v1.DirectorVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* DirectorVolume::mutable_cc() {
+inline ::common::v1::DataplaneCommon* DirectorVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:director.v1.DirectorVolume.cc)
   return cc_;
 }
-inline ::DataplaneCommon* DirectorVolume::release_cc() {
+inline ::common::v1::DataplaneCommon* DirectorVolume::release_cc() {
   // @@protoc_insertion_point(field_release:director.v1.DirectorVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DirectorVolume::set_allocated_cc(::DataplaneCommon* cc) {
+inline void DirectorVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -1280,7 +1280,7 @@ DirectorPresentationListQuery::mutable_presentation_id() {
 
 // DirectorPresentation
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool DirectorPresentation::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1288,28 +1288,28 @@ inline void DirectorPresentation::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& DirectorPresentation::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& DirectorPresentation::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:director.v1.DirectorPresentation.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* DirectorPresentation::mutable_cc() {
+inline ::common::v1::DataplaneCommon* DirectorPresentation::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:director.v1.DirectorPresentation.cc)
   return cc_;
 }
-inline ::DataplaneCommon* DirectorPresentation::release_cc() {
+inline ::common::v1::DataplaneCommon* DirectorPresentation::release_cc() {
   // @@protoc_insertion_point(field_release:director.v1.DirectorPresentation.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DirectorPresentation::set_allocated_cc(::DataplaneCommon* cc) {
+inline void DirectorPresentation::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

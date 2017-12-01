@@ -15,7 +15,7 @@ service RdbPlugin  {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(RdbVolume) returns (RpcResult) {}
+    rpc VolumeCreate(RdbVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Create a volume. Currently has no actual effect other than
@@ -24,7 +24,7 @@ service RdbPlugin  {
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(RdbVolume) returns (RpcResult) {}
+    rpc VolumeUpdate(RdbVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete the storage allocated for a volume.
@@ -34,7 +34,7 @@ service RdbPlugin  {
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(RdbVolume) returns (RpcResult) {}
+    rpc VolumeDelete(RdbVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Return a list of configured volumes. Optionally filter using the RdbVolumeListQuery message.
@@ -72,7 +72,7 @@ message RdbVolumeStatus {
  * to be useful. At the very least we can create blob resources ahead of time.
  */
 message RdbVolume {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;

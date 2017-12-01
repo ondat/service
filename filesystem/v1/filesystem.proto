@@ -13,21 +13,21 @@ service Fs {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(FsVolume) returns (RpcResult) {}
+    rpc VolumeCreate(FsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update the specified FsVolume.
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(FsVolume) returns (RpcResult) {}
+    rpc VolumeUpdate(FsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete the specified FsVolume.
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(FsVolume) returns (RpcResult) {}
+    rpc VolumeDelete(FsVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Return a list of FsVolume messages, optionally filtered using the supplied
@@ -43,21 +43,21 @@ service Fs {
      *
      * returns RpcResult
      */
-    rpc PresentationCreate(FsPresentation) returns (RpcResult) {}
+    rpc PresentationCreate(FsPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * Update configuration for a Presentation volume specified in the FsPresentation message.
      *
      * returns RpcResult
      */
-    rpc PresentationUpdate(FsPresentation) returns (RpcResult) {}
+    rpc PresentationUpdate(FsPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * Remove configuration for the Presentation volume specified in the FsPresentation message.
      *
      * returns RpcResult
      */
-    rpc PresentationDelete(FsPresentation) returns (RpcResult) {}
+    rpc PresentationDelete(FsPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * List configured Presentation volumes, optionally filtered using a FsPresentationListQuery
@@ -92,7 +92,7 @@ message FsVolumeStatus {
  * A StorageOS volume to be presented via the FUSE filesystem.
  */
 message FsVolume {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The volume ID to represent.
     uint32 volume_id = 2;
@@ -145,7 +145,7 @@ message FsPresentationListQuery {
  * is done on the target volume, which has actual storage associated with it.
  */
 message FsPresentation {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The inode the user mounts or opens.
     uint32 source_id = 2;

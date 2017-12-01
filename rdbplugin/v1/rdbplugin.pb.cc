@@ -162,7 +162,7 @@ void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
-  ::protobuf_common_2eproto::InitDefaults();
+  ::common::v1::protobuf_common_2eproto::InitDefaults();
   _RdbVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_RdbVolumeListQuery_default_instance_);_RdbVolumeCredentials_default_instance_._instance.DefaultConstruct();
@@ -175,8 +175,8 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_RdbVolume_default_instance_);_RdbVolumeList_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_RdbVolumeList_default_instance_);_RdbVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+      &_RdbVolumeList_default_instance_);_RdbVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _RdbVolume_default_instance_._instance.get_mutable()->credentials_ = const_cast< ::rdbplugin::v1::RdbVolumeCredentials*>(
       ::rdbplugin::v1::RdbVolumeCredentials::internal_default_instance());
   _RdbVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::rdbplugin::v1::RdbVolumeStatistics*>(
@@ -197,27 +197,28 @@ void AddDescriptorsImpl() {
       "proto\"A\n\022RdbVolumeListQuery\022+\n\nvolume_id"
       "s\030\001 \003(\0132\027.rdbplugin.v1.RdbVolume\"\026\n\024RdbV"
       "olumeCredentials\"\025\n\023RdbVolumeStatistics\""
-      "\021\n\017RdbVolumeStatus\"\361\001\n\tRdbVolume\022\034\n\002cc\030\001"
-      " \001(\0132\020.DataplaneCommon\022\021\n\tvolume_id\030\002 \001("
-      "\r\022\031\n\021volume_size_bytes\030\003 \001(\004\0227\n\013credenti"
-      "als\030\004 \001(\0132\".rdbplugin.v1.RdbVolumeCreden"
-      "tials\0220\n\005stats\030\005 \001(\0132!.rdbplugin.v1.RdbV"
-      "olumeStatistics\022-\n\006status\030\006 \001(\0132\035.rdbplu"
-      "gin.v1.RdbVolumeStatus\"9\n\rRdbVolumeList\022"
-      "(\n\007volumes\030\001 \003(\0132\027.rdbplugin.v1.RdbVolum"
-      "e2\377\001\n\tRdbPlugin\0225\n\014VolumeCreate\022\027.rdbplu"
-      "gin.v1.RdbVolume\032\n.RpcResult\"\000\0225\n\014Volume"
-      "Update\022\027.rdbplugin.v1.RdbVolume\032\n.RpcRes"
-      "ult\"\000\0225\n\014VolumeDelete\022\027.rdbplugin.v1.Rdb"
-      "Volume\032\n.RpcResult\"\000\022M\n\nVolumeList\022 .rdb"
+      "\021\n\017RdbVolumeStatus\"\373\001\n\tRdbVolume\022&\n\002cc\030\001"
+      " \001(\0132\032.common.v1.DataplaneCommon\022\021\n\tvolu"
+      "me_id\030\002 \001(\r\022\031\n\021volume_size_bytes\030\003 \001(\004\0227"
+      "\n\013credentials\030\004 \001(\0132\".rdbplugin.v1.RdbVo"
+      "lumeCredentials\0220\n\005stats\030\005 \001(\0132!.rdbplug"
+      "in.v1.RdbVolumeStatistics\022-\n\006status\030\006 \001("
+      "\0132\035.rdbplugin.v1.RdbVolumeStatus\"9\n\rRdbV"
+      "olumeList\022(\n\007volumes\030\001 \003(\0132\027.rdbplugin.v"
+      "1.RdbVolume2\235\002\n\tRdbPlugin\022\?\n\014VolumeCreat"
+      "e\022\027.rdbplugin.v1.RdbVolume\032\024.common.v1.R"
+      "pcResult\"\000\022\?\n\014VolumeUpdate\022\027.rdbplugin.v"
+      "1.RdbVolume\032\024.common.v1.RpcResult\"\000\022\?\n\014V"
+      "olumeDelete\022\027.rdbplugin.v1.RdbVolume\032\024.c"
+      "ommon.v1.RpcResult\"\000\022M\n\nVolumeList\022 .rdb"
       "plugin.v1.RdbVolumeListQuery\032\033.rdbplugin"
       ".v1.RdbVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 747);
+      descriptor, 787);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rdbplugin.proto", &protobuf_RegisterTypes);
-  ::protobuf_common_2eproto::AddDescriptors();
+  ::common::v1::protobuf_common_2eproto::AddDescriptors();
 }
 } // anonymous namespace
 
@@ -1122,7 +1123,7 @@ RdbVolume::RdbVolume(const RdbVolume& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -1227,7 +1228,7 @@ bool RdbVolume::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -1329,7 +1330,7 @@ void RdbVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -1377,7 +1378,7 @@ void RdbVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -1432,7 +1433,7 @@ size_t RdbVolume::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1504,7 +1505,7 @@ void RdbVolume::MergeFrom(const RdbVolume& from) {
   (void) cached_has_bits;
 
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_credentials()) {
     mutable_credentials()->::rdbplugin::v1::RdbVolumeCredentials::MergeFrom(from.credentials());
@@ -1565,7 +1566,7 @@ void RdbVolume::InternalSwap(RdbVolume* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // RdbVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool RdbVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1573,28 +1574,28 @@ void RdbVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& RdbVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& RdbVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:rdbplugin.v1.RdbVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* RdbVolume::mutable_cc() {
+::common::v1::DataplaneCommon* RdbVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:rdbplugin.v1.RdbVolume.cc)
   return cc_;
 }
-::DataplaneCommon* RdbVolume::release_cc() {
+::common::v1::DataplaneCommon* RdbVolume::release_cc() {
   // @@protoc_insertion_point(field_release:rdbplugin.v1.RdbVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void RdbVolume::set_allocated_cc(::DataplaneCommon* cc) {
+void RdbVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

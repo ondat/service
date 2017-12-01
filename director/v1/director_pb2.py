@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='director.proto',
   package='director.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irector.proto\x12\x0b\x64irector.v1\x1a\x0c\x63ommon.proto\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x1a\n\x18\x44irectorVolumeStatistics\"\x16\n\x14\x44irectorVolumeStatus\"\xf3\x01\n\x0e\x44irectorVolume\x12\x1c\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x10.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x34\n\x05stats\x18\x07 \x01(\x0b\x32%.director.v1.DirectorVolumeStatistics\x12\x31\n\x06status\x18\x08 \x01(\x0b\x32!.director.v1.DirectorVolumeStatus\"B\n\x12\x44irectorVolumeList\x12,\n\x07volumes\x18\x01 \x03(\x0b\x32\x1b.director.v1.DirectorVolume\"8\n\x1d\x44irectorPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"Z\n\x14\x44irectorPresentation\x12\x1c\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x10.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"T\n\x18\x44irectorPresentationList\x12\x38\n\rpresentations\x18\x01 \x03(\x0b\x32!.director.v1.DirectorPresentation2\xd0\x04\n\x08\x44irector\x12\x39\n\x0cVolumeCreate\x12\x1b.director.v1.DirectorVolume\x1a\n.RpcResult\"\x00\x12\x39\n\x0cVolumeUpdate\x12\x1b.director.v1.DirectorVolume\x1a\n.RpcResult\"\x00\x12\x39\n\x0cVolumeDelete\x12\x1b.director.v1.DirectorVolume\x1a\n.RpcResult\"\x00\x12U\n\nVolumeList\x12$.director.v1.DirectorVolumeListQuery\x1a\x1f.director.v1.DirectorVolumeList\"\x00\x12\x45\n\x12PresentationCreate\x12!.director.v1.DirectorPresentation\x1a\n.RpcResult\"\x00\x12\x45\n\x12PresentationUpdate\x12!.director.v1.DirectorPresentation\x1a\n.RpcResult\"\x00\x12\x45\n\x12PresentationDelete\x12!.director.v1.DirectorPresentation\x1a\n.RpcResult\"\x00\x12g\n\x10PresentationList\x12*.director.v1.DirectorPresentationListQuery\x1a%.director.v1.DirectorPresentationList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irector.proto\x12\x0b\x64irector.v1\x1a\x0c\x63ommon.proto\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x1a\n\x18\x44irectorVolumeStatistics\"\x16\n\x14\x44irectorVolumeStatus\"\xfd\x01\n\x0e\x44irectorVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x34\n\x05stats\x18\x07 \x01(\x0b\x32%.director.v1.DirectorVolumeStatistics\x12\x31\n\x06status\x18\x08 \x01(\x0b\x32!.director.v1.DirectorVolumeStatus\"B\n\x12\x44irectorVolumeList\x12,\n\x07volumes\x18\x01 \x03(\x0b\x32\x1b.director.v1.DirectorVolume\"8\n\x1d\x44irectorPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"d\n\x14\x44irectorPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"T\n\x18\x44irectorPresentationList\x12\x38\n\rpresentations\x18\x01 \x03(\x0b\x32!.director.v1.DirectorPresentation2\x8c\x05\n\x08\x44irector\x12\x43\n\x0cVolumeCreate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeUpdate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12U\n\nVolumeList\x12$.director.v1.DirectorVolumeListQuery\x1a\x1f.director.v1.DirectorVolumeList\"\x00\x12O\n\x12PresentationCreate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationUpdate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationDelete\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12g\n\x10PresentationList\x12*.director.v1.DirectorPresentationListQuery\x1a%.director.v1.DirectorPresentationList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -182,7 +182,7 @@ _DIRECTORVOLUME = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=145,
-  serialized_end=388,
+  serialized_end=398,
 )
 
 
@@ -212,8 +212,8 @@ _DIRECTORVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=390,
-  serialized_end=456,
+  serialized_start=400,
+  serialized_end=466,
 )
 
 
@@ -243,8 +243,8 @@ _DIRECTORPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=458,
-  serialized_end=514,
+  serialized_start=468,
+  serialized_end=524,
 )
 
 
@@ -288,8 +288,8 @@ _DIRECTORPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=516,
-  serialized_end=606,
+  serialized_start=526,
+  serialized_end=626,
 )
 
 
@@ -319,8 +319,8 @@ _DIRECTORPRESENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=608,
-  serialized_end=692,
+  serialized_start=628,
+  serialized_end=712,
 )
 
 _DIRECTORVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
@@ -403,8 +403,8 @@ _DIRECTOR = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=695,
-  serialized_end=1287,
+  serialized_start=715,
+  serialized_end=1367,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeCreate',

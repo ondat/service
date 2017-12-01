@@ -12,21 +12,21 @@ service Director {
      *
      * @return  RpcResult
      */
-    rpc VolumeCreate(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeCreate(DirectorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update configuration for the given DirectorVolume message.
      *
      * @return  RpcResult
      */
-    rpc VolumeUpdate(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeUpdate(DirectorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Remove configuration for the given DirectorVolume message.
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeDelete(DirectorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * List configured volumes, optionally filtered using a DirectorVolumeListQuery
@@ -42,21 +42,21 @@ service Director {
      *
      * returns RpcResult
      */
-    rpc PresentationCreate(DirectorPresentation) returns (RpcResult) {}
+    rpc PresentationCreate(DirectorPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * Update configuration for a Presentation volume specified in the DirectorPresentation message.
      *
      * returns RpcResult
      */
-    rpc PresentationUpdate(DirectorPresentation) returns (RpcResult) {}
+    rpc PresentationUpdate(DirectorPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * Remove configuration for the Presentation volume specified in the DirectorPresentation message.
      *
      * returns RpcResult
      */
-    rpc PresentationDelete(DirectorPresentation) returns (RpcResult) {}
+    rpc PresentationDelete(DirectorPresentation) returns (common.v1.RpcResult) {}
 
     /**
      * List configured Presentation volumes, optionally filtered using a DirectorPresentationListQuery
@@ -88,7 +88,7 @@ message DirectorVolumeStatus {
  * at other volumes. Use DirectorPresentation for that.
  */
 message DirectorVolume {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;
@@ -129,7 +129,7 @@ message DirectorPresentationListQuery {
  * is done on the target volume, which has actual storage associated with it.
  */
 message DirectorPresentation {
-    DataplaneCommon cc = 1;
+    common.v1.DataplaneCommon cc = 1;
 
     // The inode the user mounts or opens.
     uint32 source_id = 2;

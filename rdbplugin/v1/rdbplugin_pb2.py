@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='rdbplugin.proto',
   package='rdbplugin.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0frdbplugin.proto\x12\x0crdbplugin.v1\x1a\x0c\x63ommon.proto\"A\n\x12RdbVolumeListQuery\x12+\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x17.rdbplugin.v1.RdbVolume\"\x16\n\x14RdbVolumeCredentials\"\x15\n\x13RdbVolumeStatistics\"\x11\n\x0fRdbVolumeStatus\"\xf1\x01\n\tRdbVolume\x12\x1c\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x10.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x03 \x01(\x04\x12\x37\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32\".rdbplugin.v1.RdbVolumeCredentials\x12\x30\n\x05stats\x18\x05 \x01(\x0b\x32!.rdbplugin.v1.RdbVolumeStatistics\x12-\n\x06status\x18\x06 \x01(\x0b\x32\x1d.rdbplugin.v1.RdbVolumeStatus\"9\n\rRdbVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.rdbplugin.v1.RdbVolume2\xff\x01\n\tRdbPlugin\x12\x35\n\x0cVolumeCreate\x12\x17.rdbplugin.v1.RdbVolume\x1a\n.RpcResult\"\x00\x12\x35\n\x0cVolumeUpdate\x12\x17.rdbplugin.v1.RdbVolume\x1a\n.RpcResult\"\x00\x12\x35\n\x0cVolumeDelete\x12\x17.rdbplugin.v1.RdbVolume\x1a\n.RpcResult\"\x00\x12M\n\nVolumeList\x12 .rdbplugin.v1.RdbVolumeListQuery\x1a\x1b.rdbplugin.v1.RdbVolumeList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0frdbplugin.proto\x12\x0crdbplugin.v1\x1a\x0c\x63ommon.proto\"A\n\x12RdbVolumeListQuery\x12+\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x17.rdbplugin.v1.RdbVolume\"\x16\n\x14RdbVolumeCredentials\"\x15\n\x13RdbVolumeStatistics\"\x11\n\x0fRdbVolumeStatus\"\xfb\x01\n\tRdbVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x03 \x01(\x04\x12\x37\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32\".rdbplugin.v1.RdbVolumeCredentials\x12\x30\n\x05stats\x18\x05 \x01(\x0b\x32!.rdbplugin.v1.RdbVolumeStatistics\x12-\n\x06status\x18\x06 \x01(\x0b\x32\x1d.rdbplugin.v1.RdbVolumeStatus\"9\n\rRdbVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.rdbplugin.v1.RdbVolume2\x9d\x02\n\tRdbPlugin\x12?\n\x0cVolumeCreate\x12\x17.rdbplugin.v1.RdbVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeUpdate\x12\x17.rdbplugin.v1.RdbVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeDelete\x12\x17.rdbplugin.v1.RdbVolume\x1a\x14.common.v1.RpcResult\"\x00\x12M\n\nVolumeList\x12 .rdbplugin.v1.RdbVolumeListQuery\x1a\x1b.rdbplugin.v1.RdbVolumeList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -192,7 +192,7 @@ _RDBVOLUME = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=181,
-  serialized_end=422,
+  serialized_end=432,
 )
 
 
@@ -222,8 +222,8 @@ _RDBVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=424,
-  serialized_end=481,
+  serialized_start=434,
+  serialized_end=491,
 )
 
 _RDBVOLUMELISTQUERY.fields_by_name['volume_ids'].message_type = _RDBVOLUME
@@ -290,8 +290,8 @@ _RDBPLUGIN = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=484,
-  serialized_end=739,
+  serialized_start=494,
+  serialized_end=779,
   methods=[
   _descriptor.MethodDescriptor(
     name='VolumeCreate',

@@ -317,14 +317,14 @@ class DfsHost : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_hostname();
   void set_allocated_hostname(::std::string* hostname);
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .directfs.v1.DfsHostCredentials credentials = 5;
   bool has_credentials() const;
@@ -352,7 +352,7 @@ class DfsHost : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr hostname_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::directfs::v1::DfsHostCredentials* credentials_;
   ::google::protobuf::uint32 host_id_;
   ::google::protobuf::uint32 port_;
@@ -1005,14 +1005,14 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .directfs.v1.DfsVolumeCredentials credentials = 4;
   bool has_credentials() const;
@@ -1057,7 +1057,7 @@ class DfsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::directfs::v1::DfsVolumeCredentials* credentials_;
   ::directfs::v1::DfsVolumeStatistics* stats_;
   ::directfs::v1::DfsVolumeStatus* status_;
@@ -1288,7 +1288,7 @@ class DfsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insert
 
 // DfsHost
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool DfsHost::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1296,28 +1296,28 @@ inline void DfsHost::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& DfsHost::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& DfsHost::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:directfs.v1.DfsHost.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* DfsHost::mutable_cc() {
+inline ::common::v1::DataplaneCommon* DfsHost::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:directfs.v1.DfsHost.cc)
   return cc_;
 }
-inline ::DataplaneCommon* DfsHost::release_cc() {
+inline ::common::v1::DataplaneCommon* DfsHost::release_cc() {
   // @@protoc_insertion_point(field_release:directfs.v1.DfsHost.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DfsHost::set_allocated_cc(::DataplaneCommon* cc) {
+inline void DfsHost::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -1614,7 +1614,7 @@ inline void DfsVolumeStatus::set_peer_af(::directfs::v1::DfsVolumeStatus_DfsAddr
 
 // DfsVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool DfsVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1622,28 +1622,28 @@ inline void DfsVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& DfsVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& DfsVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:directfs.v1.DfsVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* DfsVolume::mutable_cc() {
+inline ::common::v1::DataplaneCommon* DfsVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:directfs.v1.DfsVolume.cc)
   return cc_;
 }
-inline ::DataplaneCommon* DfsVolume::release_cc() {
+inline ::common::v1::DataplaneCommon* DfsVolume::release_cc() {
   // @@protoc_insertion_point(field_release:directfs.v1.DfsVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void DfsVolume::set_allocated_cc(::DataplaneCommon* cc) {
+inline void DfsVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

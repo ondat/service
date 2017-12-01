@@ -195,7 +195,7 @@ void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
-  ::protobuf_common_2eproto::InitDefaults();
+  ::common::v1::protobuf_common_2eproto::InitDefaults();
   _DirectorVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DirectorVolumeListQuery_default_instance_);_DirectorVolumeStatistics_default_instance_._instance.DefaultConstruct();
@@ -212,14 +212,14 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DirectorPresentation_default_instance_);_DirectorPresentationList_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_DirectorPresentationList_default_instance_);_DirectorVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+      &_DirectorPresentationList_default_instance_);_DirectorVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _DirectorVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::director::v1::DirectorVolumeStatistics*>(
       ::director::v1::DirectorVolumeStatistics::internal_default_instance());
   _DirectorVolume_default_instance_._instance.get_mutable()->status_ = const_cast< ::director::v1::DirectorVolumeStatus*>(
       ::director::v1::DirectorVolumeStatus::internal_default_instance());
-  _DirectorPresentation_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+  _DirectorPresentation_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -233,42 +233,44 @@ void AddDescriptorsImpl() {
       "\n\016director.proto\022\013director.v1\032\014common.pr"
       "oto\"-\n\027DirectorVolumeListQuery\022\022\n\nvolume"
       "_ids\030\001 \003(\r\"\032\n\030DirectorVolumeStatistics\"\026"
-      "\n\024DirectorVolumeStatus\"\363\001\n\016DirectorVolum"
-      "e\022\034\n\002cc\030\001 \001(\0132\020.DataplaneCommon\022\021\n\tvolum"
-      "e_id\030\002 \001(\r\022\022\n\nwrite_pipe\030\003 \001(\r\022\021\n\tread_p"
-      "ipe\030\004 \001(\r\022\013\n\003qos\030\005 \001(\004\022\023\n\013replica_ids\030\006 "
-      "\003(\r\0224\n\005stats\030\007 \001(\0132%.director.v1.Directo"
-      "rVolumeStatistics\0221\n\006status\030\010 \001(\0132!.dire"
-      "ctor.v1.DirectorVolumeStatus\"B\n\022Director"
-      "VolumeList\022,\n\007volumes\030\001 \003(\0132\033.director.v"
-      "1.DirectorVolume\"8\n\035DirectorPresentation"
-      "ListQuery\022\027\n\017presentation_id\030\001 \003(\r\"Z\n\024Di"
-      "rectorPresentation\022\034\n\002cc\030\001 \001(\0132\020.Datapla"
-      "neCommon\022\021\n\tsource_id\030\002 \001(\r\022\021\n\ttarget_id"
-      "\030\003 \001(\r\"T\n\030DirectorPresentationList\0228\n\rpr"
-      "esentations\030\001 \003(\0132!.director.v1.Director"
-      "Presentation2\320\004\n\010Director\0229\n\014VolumeCreat"
-      "e\022\033.director.v1.DirectorVolume\032\n.RpcResu"
-      "lt\"\000\0229\n\014VolumeUpdate\022\033.director.v1.Direc"
-      "torVolume\032\n.RpcResult\"\000\0229\n\014VolumeDelete\022"
-      "\033.director.v1.DirectorVolume\032\n.RpcResult"
-      "\"\000\022U\n\nVolumeList\022$.director.v1.DirectorV"
-      "olumeListQuery\032\037.director.v1.DirectorVol"
-      "umeList\"\000\022E\n\022PresentationCreate\022!.direct"
-      "or.v1.DirectorPresentation\032\n.RpcResult\"\000"
-      "\022E\n\022PresentationUpdate\022!.director.v1.Dir"
-      "ectorPresentation\032\n.RpcResult\"\000\022E\n\022Prese"
-      "ntationDelete\022!.director.v1.DirectorPres"
-      "entation\032\n.RpcResult\"\000\022g\n\020PresentationLi"
+      "\n\024DirectorVolumeStatus\"\375\001\n\016DirectorVolum"
+      "e\022&\n\002cc\030\001 \001(\0132\032.common.v1.DataplaneCommo"
+      "n\022\021\n\tvolume_id\030\002 \001(\r\022\022\n\nwrite_pipe\030\003 \001(\r"
+      "\022\021\n\tread_pipe\030\004 \001(\r\022\013\n\003qos\030\005 \001(\004\022\023\n\013repl"
+      "ica_ids\030\006 \003(\r\0224\n\005stats\030\007 \001(\0132%.director."
+      "v1.DirectorVolumeStatistics\0221\n\006status\030\010 "
+      "\001(\0132!.director.v1.DirectorVolumeStatus\"B"
+      "\n\022DirectorVolumeList\022,\n\007volumes\030\001 \003(\0132\033."
+      "director.v1.DirectorVolume\"8\n\035DirectorPr"
+      "esentationListQuery\022\027\n\017presentation_id\030\001"
+      " \003(\r\"d\n\024DirectorPresentation\022&\n\002cc\030\001 \001(\013"
+      "2\032.common.v1.DataplaneCommon\022\021\n\tsource_i"
+      "d\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\"T\n\030DirectorPr"
+      "esentationList\0228\n\rpresentations\030\001 \003(\0132!."
+      "director.v1.DirectorPresentation2\214\005\n\010Dir"
+      "ector\022C\n\014VolumeCreate\022\033.director.v1.Dire"
+      "ctorVolume\032\024.common.v1.RpcResult\"\000\022C\n\014Vo"
+      "lumeUpdate\022\033.director.v1.DirectorVolume\032"
+      "\024.common.v1.RpcResult\"\000\022C\n\014VolumeDelete\022"
+      "\033.director.v1.DirectorVolume\032\024.common.v1"
+      ".RpcResult\"\000\022U\n\nVolumeList\022$.director.v1"
+      ".DirectorVolumeListQuery\032\037.director.v1.D"
+      "irectorVolumeList\"\000\022O\n\022PresentationCreat"
+      "e\022!.director.v1.DirectorPresentation\032\024.c"
+      "ommon.v1.RpcResult\"\000\022O\n\022PresentationUpda"
+      "te\022!.director.v1.DirectorPresentation\032\024."
+      "common.v1.RpcResult\"\000\022O\n\022PresentationDel"
+      "ete\022!.director.v1.DirectorPresentation\032\024"
+      ".common.v1.RpcResult\"\000\022g\n\020PresentationLi"
       "st\022*.director.v1.DirectorPresentationLis"
       "tQuery\032%.director.v1.DirectorPresentatio"
       "nList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1295);
+      descriptor, 1375);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "director.proto", &protobuf_RegisterTypes);
-  ::protobuf_common_2eproto::AddDescriptors();
+  ::common::v1::protobuf_common_2eproto::AddDescriptors();
 }
 } // anonymous namespace
 
@@ -1001,7 +1003,7 @@ DirectorVolume::DirectorVolume(const DirectorVolume& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -1097,7 +1099,7 @@ bool DirectorVolume::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -1234,7 +1236,7 @@ void DirectorVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -1297,7 +1299,7 @@ void DirectorVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -1384,7 +1386,7 @@ size_t DirectorVolume::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1464,7 +1466,7 @@ void DirectorVolume::MergeFrom(const DirectorVolume& from) {
 
   replica_ids_.MergeFrom(from.replica_ids_);
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_stats()) {
     mutable_stats()->::director::v1::DirectorVolumeStatistics::MergeFrom(from.stats());
@@ -1530,7 +1532,7 @@ void DirectorVolume::InternalSwap(DirectorVolume* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DirectorVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool DirectorVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1538,28 +1540,28 @@ void DirectorVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& DirectorVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& DirectorVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:director.v1.DirectorVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* DirectorVolume::mutable_cc() {
+::common::v1::DataplaneCommon* DirectorVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:director.v1.DirectorVolume.cc)
   return cc_;
 }
-::DataplaneCommon* DirectorVolume::release_cc() {
+::common::v1::DataplaneCommon* DirectorVolume::release_cc() {
   // @@protoc_insertion_point(field_release:director.v1.DirectorVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void DirectorVolume::set_allocated_cc(::DataplaneCommon* cc) {
+void DirectorVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -2329,7 +2331,7 @@ DirectorPresentation::DirectorPresentation(const DirectorPresentation& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -2404,7 +2406,7 @@ bool DirectorPresentation::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -2470,7 +2472,7 @@ void DirectorPresentation::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -2500,7 +2502,7 @@ void DirectorPresentation::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -2534,7 +2536,7 @@ size_t DirectorPresentation::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2585,7 +2587,7 @@ void DirectorPresentation::MergeFrom(const DirectorPresentation& from) {
   (void) cached_has_bits;
 
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.source_id() != 0) {
     set_source_id(from.source_id());
@@ -2634,7 +2636,7 @@ void DirectorPresentation::InternalSwap(DirectorPresentation* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DirectorPresentation
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool DirectorPresentation::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -2642,28 +2644,28 @@ void DirectorPresentation::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& DirectorPresentation::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& DirectorPresentation::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:director.v1.DirectorPresentation.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* DirectorPresentation::mutable_cc() {
+::common::v1::DataplaneCommon* DirectorPresentation::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:director.v1.DirectorPresentation.cc)
   return cc_;
 }
-::DataplaneCommon* DirectorPresentation::release_cc() {
+::common::v1::DataplaneCommon* DirectorPresentation::release_cc() {
   // @@protoc_insertion_point(field_release:director.v1.DirectorPresentation.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void DirectorPresentation::set_allocated_cc(::DataplaneCommon* cc) {
+void DirectorPresentation::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

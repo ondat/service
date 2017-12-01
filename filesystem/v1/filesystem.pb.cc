@@ -200,7 +200,7 @@ void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
-  ::protobuf_common_2eproto::InitDefaults();
+  ::common::v1::protobuf_common_2eproto::InitDefaults();
   _FsVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_FsVolumeListQuery_default_instance_);_FsVolumeStatistics_default_instance_._instance.DefaultConstruct();
@@ -217,14 +217,14 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_FsPresentation_default_instance_);_FsPresentationList_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_FsPresentationList_default_instance_);_FsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+      &_FsPresentationList_default_instance_);_FsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _FsVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::filesystem::v1::FsVolumeStatistics*>(
       ::filesystem::v1::FsVolumeStatistics::internal_default_instance());
   _FsVolume_default_instance_._instance.get_mutable()->status_ = const_cast< ::filesystem::v1::FsVolumeStatus*>(
       ::filesystem::v1::FsVolumeStatus::internal_default_instance());
-  _FsPresentation_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+  _FsPresentation_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _FsPresentation_default_instance_._instance.get_mutable()->status_ = const_cast< ::filesystem::v1::FsVolumeStatus*>(
       ::filesystem::v1::FsVolumeStatus::internal_default_instance());
 }
@@ -241,45 +241,47 @@ void AddDescriptorsImpl() {
       "n.proto\"\'\n\021FsVolumeListQuery\022\022\n\nvolume_i"
       "ds\030\001 \003(\r\"\024\n\022FsVolumeStatistics\"B\n\016FsVolu"
       "meStatus\0220\n\nnode_state\030\001 \001(\0162\034.filesyste"
-      "m.v1.FsVolumeState\"\373\002\n\010FsVolume\022\034\n\002cc\030\001 "
-      "\001(\0132\020.DataplaneCommon\022\021\n\tvolume_id\030\002 \001(\r"
-      "\022;\n\tnode_type\030\003 \001(\0162(.filesystem.v1.FsVo"
-      "lume.VolumeDeviceType\022\025\n\rdevice_number\030\004"
-      " \001(\r\022\020\n\010filename\030\005 \001(\t\022\025\n\rlinked_volume\030"
-      "\006 \001(\010\022\030\n\020target_volume_id\030\007 \001(\r\022\031\n\021volum"
-      "e_size_bytes\030\010 \001(\004\0220\n\005stats\030\t \001(\0132!.file"
-      "system.v1.FsVolumeStatistics\022-\n\006status\030\n"
-      " \001(\0132\035.filesystem.v1.FsVolumeStatus\"+\n\020V"
-      "olumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_BLOCK\020\001"
-      "\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\0132\027.file"
-      "system.v1.FsVolume\"2\n\027FsPresentationList"
-      "Query\022\027\n\017presentation_id\030\001 \003(\r\"\203\001\n\016FsPre"
-      "sentation\022\034\n\002cc\030\001 \001(\0132\020.DataplaneCommon\022"
-      "\021\n\tsource_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\022-\n"
-      "\006status\030\005 \001(\0132\035.filesystem.v1.FsVolumeSt"
-      "atus\"J\n\022FsPresentationList\0224\n\rpresentati"
-      "ons\030\001 \003(\0132\035.filesystem.v1.FsPresentation"
-      "*$\n\rFsVolumeState\022\010\n\004NONE\020\000\022\t\n\005READY\020\0012\242"
-      "\004\n\002Fs\0225\n\014VolumeCreate\022\027.filesystem.v1.Fs"
-      "Volume\032\n.RpcResult\"\000\0225\n\014VolumeUpdate\022\027.f"
-      "ilesystem.v1.FsVolume\032\n.RpcResult\"\000\0225\n\014V"
-      "olumeDelete\022\027.filesystem.v1.FsVolume\032\n.R"
-      "pcResult\"\000\022M\n\nVolumeList\022 .filesystem.v1"
-      ".FsVolumeListQuery\032\033.filesystem.v1.FsVol"
-      "umeList\"\000\022A\n\022PresentationCreate\022\035.filesy"
-      "stem.v1.FsPresentation\032\n.RpcResult\"\000\022A\n\022"
-      "PresentationUpdate\022\035.filesystem.v1.FsPre"
-      "sentation\032\n.RpcResult\"\000\022A\n\022PresentationD"
-      "elete\022\035.filesystem.v1.FsPresentation\032\n.R"
+      "m.v1.FsVolumeState\"\205\003\n\010FsVolume\022&\n\002cc\030\001 "
+      "\001(\0132\032.common.v1.DataplaneCommon\022\021\n\tvolum"
+      "e_id\030\002 \001(\r\022;\n\tnode_type\030\003 \001(\0162(.filesyst"
+      "em.v1.FsVolume.VolumeDeviceType\022\025\n\rdevic"
+      "e_number\030\004 \001(\r\022\020\n\010filename\030\005 \001(\t\022\025\n\rlink"
+      "ed_volume\030\006 \001(\010\022\030\n\020target_volume_id\030\007 \001("
+      "\r\022\031\n\021volume_size_bytes\030\010 \001(\004\0220\n\005stats\030\t "
+      "\001(\0132!.filesystem.v1.FsVolumeStatistics\022-"
+      "\n\006status\030\n \001(\0132\035.filesystem.v1.FsVolumeS"
+      "tatus\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tN"
+      "BD_BLOCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 "
+      "\003(\0132\027.filesystem.v1.FsVolume\"2\n\027FsPresen"
+      "tationListQuery\022\027\n\017presentation_id\030\001 \003(\r"
+      "\"\215\001\n\016FsPresentation\022&\n\002cc\030\001 \001(\0132\032.common"
+      ".v1.DataplaneCommon\022\021\n\tsource_id\030\002 \001(\r\022\021"
+      "\n\ttarget_id\030\003 \001(\r\022-\n\006status\030\005 \001(\0132\035.file"
+      "system.v1.FsVolumeStatus\"J\n\022FsPresentati"
+      "onList\0224\n\rpresentations\030\001 \003(\0132\035.filesyst"
+      "em.v1.FsPresentation*$\n\rFsVolumeState\022\010\n"
+      "\004NONE\020\000\022\t\n\005READY\020\0012\336\004\n\002Fs\022\?\n\014VolumeCreat"
+      "e\022\027.filesystem.v1.FsVolume\032\024.common.v1.R"
+      "pcResult\"\000\022\?\n\014VolumeUpdate\022\027.filesystem."
+      "v1.FsVolume\032\024.common.v1.RpcResult\"\000\022\?\n\014V"
+      "olumeDelete\022\027.filesystem.v1.FsVolume\032\024.c"
+      "ommon.v1.RpcResult\"\000\022M\n\nVolumeList\022 .fil"
+      "esystem.v1.FsVolumeListQuery\032\033.filesyste"
+      "m.v1.FsVolumeList\"\000\022K\n\022PresentationCreat"
+      "e\022\035.filesystem.v1.FsPresentation\032\024.commo"
+      "n.v1.RpcResult\"\000\022K\n\022PresentationUpdate\022\035"
+      ".filesystem.v1.FsPresentation\032\024.common.v"
+      "1.RpcResult\"\000\022K\n\022PresentationDelete\022\035.fi"
+      "lesystem.v1.FsPresentation\032\024.common.v1.R"
       "pcResult\"\000\022_\n\020PresentationList\022&.filesys"
       "tem.v1.FsPresentationListQuery\032!.filesys"
       "tem.v1.FsPresentationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1475);
+      descriptor, 1555);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "filesystem.proto", &protobuf_RegisterTypes);
-  ::protobuf_common_2eproto::AddDescriptors();
+  ::common::v1::protobuf_common_2eproto::AddDescriptors();
 }
 } // anonymous namespace
 
@@ -1112,7 +1114,7 @@ FsVolume::FsVolume(const FsVolume& from)
     filename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.filename_);
   }
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -1210,7 +1212,7 @@ bool FsVolume::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -1373,7 +1375,7 @@ void FsVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -1446,7 +1448,7 @@ void FsVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -1533,7 +1535,7 @@ size_t FsVolume::ByteSizeLong() const {
         this->filename());
   }
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1627,7 +1629,7 @@ void FsVolume::MergeFrom(const FsVolume& from) {
     filename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.filename_);
   }
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_stats()) {
     mutable_stats()->::filesystem::v1::FsVolumeStatistics::MergeFrom(from.stats());
@@ -1701,7 +1703,7 @@ void FsVolume::InternalSwap(FsVolume* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // FsVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool FsVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1709,28 +1711,28 @@ void FsVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& FsVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& FsVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* FsVolume::mutable_cc() {
+::common::v1::DataplaneCommon* FsVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:filesystem.v1.FsVolume.cc)
   return cc_;
 }
-::DataplaneCommon* FsVolume::release_cc() {
+::common::v1::DataplaneCommon* FsVolume::release_cc() {
   // @@protoc_insertion_point(field_release:filesystem.v1.FsVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void FsVolume::set_allocated_cc(::DataplaneCommon* cc) {
+void FsVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -2552,7 +2554,7 @@ FsPresentation::FsPresentation(const FsPresentation& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -2637,7 +2639,7 @@ bool FsPresentation::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -2715,7 +2717,7 @@ void FsPresentation::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -2751,7 +2753,7 @@ void FsPresentation::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -2792,7 +2794,7 @@ size_t FsPresentation::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2850,7 +2852,7 @@ void FsPresentation::MergeFrom(const FsPresentation& from) {
   (void) cached_has_bits;
 
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_status()) {
     mutable_status()->::filesystem::v1::FsVolumeStatus::MergeFrom(from.status());
@@ -2903,7 +2905,7 @@ void FsPresentation::InternalSwap(FsPresentation* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // FsPresentation
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool FsPresentation::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -2911,28 +2913,28 @@ void FsPresentation::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& FsPresentation::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& FsPresentation::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:filesystem.v1.FsPresentation.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* FsPresentation::mutable_cc() {
+::common::v1::DataplaneCommon* FsPresentation::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:filesystem.v1.FsPresentation.cc)
   return cc_;
 }
-::DataplaneCommon* FsPresentation::release_cc() {
+::common::v1::DataplaneCommon* FsPresentation::release_cc() {
   // @@protoc_insertion_point(field_release:filesystem.v1.FsPresentation.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void FsPresentation::set_allocated_cc(::DataplaneCommon* cc) {
+void FsPresentation::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

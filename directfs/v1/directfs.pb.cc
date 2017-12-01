@@ -225,7 +225,7 @@ void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
-  ::protobuf_common_2eproto::InitDefaults();
+  ::common::v1::protobuf_common_2eproto::InitDefaults();
   _DfsHostCredentials_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DfsHostCredentials_default_instance_);_DfsHost_default_instance_._instance.DefaultConstruct();
@@ -246,12 +246,12 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DfsVolumeList_default_instance_);_DfsVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_DfsVolumeListQuery_default_instance_);_DfsHost_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+      &_DfsVolumeListQuery_default_instance_);_DfsHost_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _DfsHost_default_instance_._instance.get_mutable()->credentials_ = const_cast< ::directfs::v1::DfsHostCredentials*>(
       ::directfs::v1::DfsHostCredentials::internal_default_instance());
-  _DfsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::DataplaneCommon*>(
-      ::DataplaneCommon::internal_default_instance());
+  _DfsVolume_default_instance_._instance.get_mutable()->cc_ = const_cast< ::common::v1::DataplaneCommon*>(
+      ::common::v1::DataplaneCommon::internal_default_instance());
   _DfsVolume_default_instance_._instance.get_mutable()->credentials_ = const_cast< ::directfs::v1::DfsVolumeCredentials*>(
       ::directfs::v1::DfsVolumeCredentials::internal_default_instance());
   _DfsVolume_default_instance_._instance.get_mutable()->stats_ = const_cast< ::directfs::v1::DfsVolumeStatistics*>(
@@ -269,56 +269,59 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\016directfs.proto\022\013directfs.v1\032\014common.pr"
-      "oto\"\024\n\022DfsHostCredentials\"\216\001\n\007DfsHost\022\034\n"
-      "\002cc\030\001 \001(\0132\020.DataplaneCommon\022\017\n\007host_id\030\002"
-      " \001(\r\022\020\n\010hostname\030\003 \001(\t\022\014\n\004port\030\004 \001(\r\0224\n\013"
-      "credentials\030\005 \001(\0132\037.directfs.v1.DfsHostC"
-      "redentials\"2\n\013DfsHostList\022#\n\005hosts\030\001 \003(\013"
-      "2\024.directfs.v1.DfsHost\":\n\020DfsHostListQue"
-      "ry\022&\n\010host_ids\030\001 \003(\0132\024.directfs.v1.DfsHo"
-      "st\"\026\n\024DfsVolumeCredentials\"\025\n\023DfsVolumeS"
-      "tatistics\"\265\002\n\017DfsVolumeStatus\022C\n\nconn_st"
-      "ate\030\001 \001(\0162/.directfs.v1.DfsVolumeStatus."
-      "DfsConnectionState\022\021\n\tpeer_name\030\002 \001(\t\022>\n"
-      "\007peer_af\030\003 \001(\0162-.directfs.v1.DfsVolumeSt"
-      "atus.DfsAddressFamily\"b\n\022DfsConnectionSt"
-      "ate\022\010\n\004NONE\020\000\022\016\n\nCONNECTING\020\001\022\r\n\tCONNECT"
-      "ED\020\002\022\021\n\rDISCONNECTING\020\003\022\020\n\014DISCONNECTED\020"
-      "\004\"&\n\020DfsAddressFamily\022\010\n\004IPV4\020\000\022\010\n\004IPV6\020"
-      "\001\"\344\001\n\tDfsVolume\022\034\n\002cc\030\001 \001(\0132\020.DataplaneC"
-      "ommon\022\021\n\tvolume_id\030\002 \001(\r\022\017\n\007host_id\030\003 \001("
-      "\r\0226\n\013credentials\030\004 \001(\0132!.directfs.v1.Dfs"
-      "VolumeCredentials\022/\n\005stats\030\005 \001(\0132 .direc"
-      "tfs.v1.DfsVolumeStatistics\022,\n\006status\030\006 \001"
-      "(\0132\034.directfs.v1.DfsVolumeStatus\"<\n\rDfsV"
-      "olumeList\022+\n\007volumes\030\001 \003(\0132\032.directfs.v1"
-      ".DfsVolumeList\"@\n\022DfsVolumeListQuery\022*\n\n"
-      "volume_ids\030\001 \003(\0132\026.directfs.v1.DfsVolume"
-      "2\336\003\n\010FsClient\0222\n\014ServerCreate\022\024.directfs"
-      ".v1.DfsHost\032\n.RpcResult\"\000\0222\n\014ServerUpdat"
-      "e\022\024.directfs.v1.DfsHost\032\n.RpcResult\"\000\0222\n"
-      "\014ServerDelete\022\024.directfs.v1.DfsHost\032\n.Rp"
-      "cResult\"\000\022G\n\nServerList\022\035.directfs.v1.Df"
-      "sHostListQuery\032\030.directfs.v1.DfsHostList"
-      "\"\000\0224\n\014VolumeCreate\022\026.directfs.v1.DfsVolu"
-      "me\032\n.RpcResult\"\000\0224\n\014VolumeUpdate\022\026.direc"
-      "tfs.v1.DfsVolume\032\n.RpcResult\"\000\0224\n\014Volume"
-      "Delete\022\026.directfs.v1.DfsVolume\032\n.RpcResu"
+      "oto\"\024\n\022DfsHostCredentials\"\230\001\n\007DfsHost\022&\n"
+      "\002cc\030\001 \001(\0132\032.common.v1.DataplaneCommon\022\017\n"
+      "\007host_id\030\002 \001(\r\022\020\n\010hostname\030\003 \001(\t\022\014\n\004port"
+      "\030\004 \001(\r\0224\n\013credentials\030\005 \001(\0132\037.directfs.v"
+      "1.DfsHostCredentials\"2\n\013DfsHostList\022#\n\005h"
+      "osts\030\001 \003(\0132\024.directfs.v1.DfsHost\":\n\020DfsH"
+      "ostListQuery\022&\n\010host_ids\030\001 \003(\0132\024.directf"
+      "s.v1.DfsHost\"\026\n\024DfsVolumeCredentials\"\025\n\023"
+      "DfsVolumeStatistics\"\265\002\n\017DfsVolumeStatus\022"
+      "C\n\nconn_state\030\001 \001(\0162/.directfs.v1.DfsVol"
+      "umeStatus.DfsConnectionState\022\021\n\tpeer_nam"
+      "e\030\002 \001(\t\022>\n\007peer_af\030\003 \001(\0162-.directfs.v1.D"
+      "fsVolumeStatus.DfsAddressFamily\"b\n\022DfsCo"
+      "nnectionState\022\010\n\004NONE\020\000\022\016\n\nCONNECTING\020\001\022"
+      "\r\n\tCONNECTED\020\002\022\021\n\rDISCONNECTING\020\003\022\020\n\014DIS"
+      "CONNECTED\020\004\"&\n\020DfsAddressFamily\022\010\n\004IPV4\020"
+      "\000\022\010\n\004IPV6\020\001\"\356\001\n\tDfsVolume\022&\n\002cc\030\001 \001(\0132\032."
+      "common.v1.DataplaneCommon\022\021\n\tvolume_id\030\002"
+      " \001(\r\022\017\n\007host_id\030\003 \001(\r\0226\n\013credentials\030\004 \001"
+      "(\0132!.directfs.v1.DfsVolumeCredentials\022/\n"
+      "\005stats\030\005 \001(\0132 .directfs.v1.DfsVolumeStat"
+      "istics\022,\n\006status\030\006 \001(\0132\034.directfs.v1.Dfs"
+      "VolumeStatus\"<\n\rDfsVolumeList\022+\n\007volumes"
+      "\030\001 \003(\0132\032.directfs.v1.DfsVolumeList\"@\n\022Df"
+      "sVolumeListQuery\022*\n\nvolume_ids\030\001 \003(\0132\026.d"
+      "irectfs.v1.DfsVolume2\232\004\n\010FsClient\022<\n\014Ser"
+      "verCreate\022\024.directfs.v1.DfsHost\032\024.common"
+      ".v1.RpcResult\"\000\022<\n\014ServerUpdate\022\024.direct"
+      "fs.v1.DfsHost\032\024.common.v1.RpcResult\"\000\022<\n"
+      "\014ServerDelete\022\024.directfs.v1.DfsHost\032\024.co"
+      "mmon.v1.RpcResult\"\000\022G\n\nServerList\022\035.dire"
+      "ctfs.v1.DfsHostListQuery\032\030.directfs.v1.D"
+      "fsHostList\"\000\022>\n\014VolumeCreate\022\026.directfs."
+      "v1.DfsVolume\032\024.common.v1.RpcResult\"\000\022>\n\014"
+      "VolumeUpdate\022\026.directfs.v1.DfsVolume\032\024.c"
+      "ommon.v1.RpcResult\"\000\022>\n\014VolumeDelete\022\026.d"
+      "irectfs.v1.DfsVolume\032\024.common.v1.RpcResu"
       "lt\"\000\022K\n\nVolumeList\022\037.directfs.v1.DfsVolu"
       "meListQuery\032\032.directfs.v1.DfsVolumeList\""
-      "\0002\367\001\n\010FsServer\0224\n\014VolumeCreate\022\026.directf"
-      "s.v1.DfsVolume\032\n.RpcResult\"\000\0224\n\014VolumeUp"
-      "date\022\026.directfs.v1.DfsVolume\032\n.RpcResult"
-      "\"\000\0224\n\014VolumeDelete\022\026.directfs.v1.DfsVolu"
-      "me\032\n.RpcResult\"\000\022I\n\nVolumeList\022\037.directf"
-      "s.v1.DfsVolumeListQuery\032\026.directfs.v1.Df"
-      "sVolume\"\0000\001b\006proto3"
+      "\0002\225\002\n\010FsServer\022>\n\014VolumeCreate\022\026.directf"
+      "s.v1.DfsVolume\032\024.common.v1.RpcResult\"\000\022>"
+      "\n\014VolumeUpdate\022\026.directfs.v1.DfsVolume\032\024"
+      ".common.v1.RpcResult\"\000\022>\n\014VolumeDelete\022\026"
+      ".directfs.v1.DfsVolume\032\024.common.v1.RpcRe"
+      "sult\"\000\022I\n\nVolumeList\022\037.directfs.v1.DfsVo"
+      "lumeListQuery\032\026.directfs.v1.DfsVolume\"\0000"
+      "\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1779);
+      descriptor, 1889);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "directfs.proto", &protobuf_RegisterTypes);
-  ::protobuf_common_2eproto::AddDescriptors();
+  ::common::v1::protobuf_common_2eproto::AddDescriptors();
 }
 } // anonymous namespace
 
@@ -608,7 +611,7 @@ DfsHost::DfsHost(const DfsHost& from)
     hostname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.hostname_);
   }
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -696,7 +699,7 @@ bool DfsHost::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -790,7 +793,7 @@ void DfsHost::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -836,7 +839,7 @@ void DfsHost::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -895,7 +898,7 @@ size_t DfsHost::ByteSizeLong() const {
         this->hostname());
   }
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -957,7 +960,7 @@ void DfsHost::MergeFrom(const DfsHost& from) {
     hostname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.hostname_);
   }
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_credentials()) {
     mutable_credentials()->::directfs::v1::DfsHostCredentials::MergeFrom(from.credentials());
@@ -1011,7 +1014,7 @@ void DfsHost::InternalSwap(DfsHost* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DfsHost
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool DfsHost::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -1019,28 +1022,28 @@ void DfsHost::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& DfsHost::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& DfsHost::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:directfs.v1.DfsHost.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* DfsHost::mutable_cc() {
+::common::v1::DataplaneCommon* DfsHost::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:directfs.v1.DfsHost.cc)
   return cc_;
 }
-::DataplaneCommon* DfsHost::release_cc() {
+::common::v1::DataplaneCommon* DfsHost::release_cc() {
   // @@protoc_insertion_point(field_release:directfs.v1.DfsHost.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void DfsHost::set_allocated_cc(::DataplaneCommon* cc) {
+void DfsHost::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
@@ -2563,7 +2566,7 @@ DfsVolume::DfsVolume(const DfsVolume& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_cc()) {
-    cc_ = new ::DataplaneCommon(*from.cc_);
+    cc_ = new ::common::v1::DataplaneCommon(*from.cc_);
   } else {
     cc_ = NULL;
   }
@@ -2668,7 +2671,7 @@ bool DfsVolume::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .DataplaneCommon cc = 1;
+      // .common.v1.DataplaneCommon cc = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -2770,7 +2773,7 @@ void DfsVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->cc_, output);
@@ -2818,7 +2821,7 @@ void DfsVolume::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
@@ -2873,7 +2876,7 @@ size_t DfsVolume::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   if (this->has_cc()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2945,7 +2948,7 @@ void DfsVolume::MergeFrom(const DfsVolume& from) {
   (void) cached_has_bits;
 
   if (from.has_cc()) {
-    mutable_cc()->::DataplaneCommon::MergeFrom(from.cc());
+    mutable_cc()->::common::v1::DataplaneCommon::MergeFrom(from.cc());
   }
   if (from.has_credentials()) {
     mutable_credentials()->::directfs::v1::DfsVolumeCredentials::MergeFrom(from.credentials());
@@ -3006,7 +3009,7 @@ void DfsVolume::InternalSwap(DfsVolume* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DfsVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 bool DfsVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -3014,28 +3017,28 @@ void DfsVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-const ::DataplaneCommon& DfsVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+const ::common::v1::DataplaneCommon& DfsVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:directfs.v1.DfsVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-::DataplaneCommon* DfsVolume::mutable_cc() {
+::common::v1::DataplaneCommon* DfsVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:directfs.v1.DfsVolume.cc)
   return cc_;
 }
-::DataplaneCommon* DfsVolume::release_cc() {
+::common::v1::DataplaneCommon* DfsVolume::release_cc() {
   // @@protoc_insertion_point(field_release:directfs.v1.DfsVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-void DfsVolume::set_allocated_cc(::DataplaneCommon* cc) {
+void DfsVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {

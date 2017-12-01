@@ -528,14 +528,14 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // .DataplaneCommon cc = 1;
+  // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
   static const int kCcFieldNumber = 1;
-  const ::DataplaneCommon& cc() const;
-  ::DataplaneCommon* mutable_cc();
-  ::DataplaneCommon* release_cc();
-  void set_allocated_cc(::DataplaneCommon* cc);
+  const ::common::v1::DataplaneCommon& cc() const;
+  ::common::v1::DataplaneCommon* mutable_cc();
+  ::common::v1::DataplaneCommon* release_cc();
+  void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
   // .rdbplugin.v1.RdbVolumeCredentials credentials = 4;
   bool has_credentials() const;
@@ -580,7 +580,7 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::DataplaneCommon* cc_;
+  ::common::v1::DataplaneCommon* cc_;
   ::rdbplugin::v1::RdbVolumeCredentials* credentials_;
   ::rdbplugin::v1::RdbVolumeStatistics* stats_;
   ::rdbplugin::v1::RdbVolumeStatus* status_;
@@ -750,7 +750,7 @@ RdbVolumeListQuery::volume_ids() const {
 
 // RdbVolume
 
-// .DataplaneCommon cc = 1;
+// .common.v1.DataplaneCommon cc = 1;
 inline bool RdbVolume::has_cc() const {
   return this != internal_default_instance() && cc_ != NULL;
 }
@@ -758,28 +758,28 @@ inline void RdbVolume::clear_cc() {
   if (GetArenaNoVirtual() == NULL && cc_ != NULL) delete cc_;
   cc_ = NULL;
 }
-inline const ::DataplaneCommon& RdbVolume::cc() const {
-  const ::DataplaneCommon* p = cc_;
+inline const ::common::v1::DataplaneCommon& RdbVolume::cc() const {
+  const ::common::v1::DataplaneCommon* p = cc_;
   // @@protoc_insertion_point(field_get:rdbplugin.v1.RdbVolume.cc)
-  return p != NULL ? *p : *reinterpret_cast<const ::DataplaneCommon*>(
-      &::_DataplaneCommon_default_instance_);
+  return p != NULL ? *p : *reinterpret_cast<const ::common::v1::DataplaneCommon*>(
+      &::common::v1::_DataplaneCommon_default_instance_);
 }
-inline ::DataplaneCommon* RdbVolume::mutable_cc() {
+inline ::common::v1::DataplaneCommon* RdbVolume::mutable_cc() {
   
   if (cc_ == NULL) {
-    cc_ = new ::DataplaneCommon;
+    cc_ = new ::common::v1::DataplaneCommon;
   }
   // @@protoc_insertion_point(field_mutable:rdbplugin.v1.RdbVolume.cc)
   return cc_;
 }
-inline ::DataplaneCommon* RdbVolume::release_cc() {
+inline ::common::v1::DataplaneCommon* RdbVolume::release_cc() {
   // @@protoc_insertion_point(field_release:rdbplugin.v1.RdbVolume.cc)
   
-  ::DataplaneCommon* temp = cc_;
+  ::common::v1::DataplaneCommon* temp = cc_;
   cc_ = NULL;
   return temp;
 }
-inline void RdbVolume::set_allocated_cc(::DataplaneCommon* cc) {
+inline void RdbVolume::set_allocated_cc(::common::v1::DataplaneCommon* cc) {
   delete cc_;
   cc_ = cc;
   if (cc) {
