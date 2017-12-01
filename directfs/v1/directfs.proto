@@ -6,7 +6,7 @@ import "common.proto";
 /**
  * DirectFS client configuration and status service.
  */
-service FsClient {
+service DfsClient {
     /**
      * Add a remote host entry to be used by volumes.
      *
@@ -78,7 +78,7 @@ service FsClient {
 /**
  * DirectFS server configuration and status service.
  */
-service FsServer {
+service DfsServer {
     /**
      * Create a volume to be served via DFS. Currently does nothing, but should still
      * be performed as in the near future it will certainly be required.
