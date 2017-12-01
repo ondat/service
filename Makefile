@@ -4,10 +4,11 @@ SRC_DIR	= dataplane
 DST_DIR = dataplane
 
 # Common options to protoc, e.g. import directories.
-PROTOC_OPT	= -Idataplane/
+PROTOC_OPT	= -Icommon/v1
 
 # All the source proto files.
 GRPC_SRC	=  dataplane/dataplane.proto
+GRPC_SRC	+= common/v1/common.proto
 GRPC_SRC 	+= directfs/v1/directfs.proto
 GRPC_SRC	+= director/v1/director.proto
 GRPC_SRC	+= filesystem/v1/filesystem.proto

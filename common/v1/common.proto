@@ -1,4 +1,5 @@
 syntax = "proto3";
+package common.v1;
 
 message RpcResult {
     // Whether or not the operation was successful.
