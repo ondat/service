@@ -9,22 +9,13 @@ import "common.proto";
 service RdbPluginConfig {
 
     /**
-     * Configure a volume. Currently has no actual effect other authentication
+     * Create a volume. Currently has no actual effect other authentication
      * to add an entry reporting that the volume is 'configured', and so will
      * have results returned by VolumeList.
      *
      * returns RpcResult
      */
-    rpc VolumeConfigure(RdbVolume) returns (RpcResult) {}
-
-    /**
-     * Unconfigure a volume. As for VolumeConfigure, this has no direct on-disk
-     * effect at the moment, and only removes the volume from the list of
-     * 'configured' items returned by VolumeList.
-     *
-     * returns RpcResult
-     */
-    rpc VolumeUnconfigure(RdbVolume) returns (RpcResult) {}
+    rpc VolumeCreate(RdbVolume) returns (RpcResult) {}
 
     /**
      * Delete the storage allocated for a volume.

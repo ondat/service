@@ -12,14 +12,14 @@ service DirectorConfig {
      *
      * @return  RpcResult
      */
-    rpc VolumeConfigure(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeCreate(DirectorVolume) returns (RpcResult) {}
 
     /**
      * Remove configuration for the given DirectorVolume message.
      *
      * returns RpcResult
      */
-    rpc VolumeUnconfigure(DirectorVolume) returns (RpcResult) {}
+    rpc VolumeDelete(DirectorVolume) returns (RpcResult) {}
 
     /**
      * List configured volumes, optionally filtered using a DirectorVolumeListQuery
@@ -35,14 +35,14 @@ service DirectorConfig {
      *
      * returns RpcResult
      */
-    rpc RedirectConfigure(DirectorRedirect) returns (RpcResult) {}
+    rpc RedirectCreate(DirectorRedirect) returns (RpcResult) {}
 
     /**
      * Remove configuration for the redirection volume specified in the DirectorRedirect message.
      *
      * returns RpcResult
      */
-    rpc RedirectUnconfigure(DirectorRedirect) returns (RpcResult) {}
+    rpc RedirectDelete(DirectorRedirect) returns (RpcResult) {}
 
     /**
      * List configured redirection volumes, optionally filtered using a DirectorRedirectListQuery

@@ -9,18 +9,18 @@ import "common.proto";
 service FsConfig {
 
     /**
-     * Configure the specified FsVolume.
+     * Create the specified FsVolume.
      *
      * returns RpcResult
      */
-    rpc VolumeConfigure(FsVolume) returns (RpcResult) {}
+    rpc VolumeCreate(FsVolume) returns (RpcResult) {}
 
     /**
-     * Unconfigure the specified FsVolume.
+     * Delete the specified FsVolume.
      *
      * returns RpcResult
      */
-    rpc VolumeUnconfigure(FsVolume) returns (RpcResult) {}
+    rpc VolumeDelete(FsVolume) returns (RpcResult) {}
 
     /**
      * Return a list of FsVolume messages, optionally filtered using the supplied
