@@ -17,6 +17,7 @@ namespace directfs {
 namespace v1 {
 
 static const char* DfsClient_method_names[] = {
+  "/directfs.v1.DfsClient/Status",
   "/directfs.v1.DfsClient/ServerCreate",
   "/directfs.v1.DfsClient/ServerUpdate",
   "/directfs.v1.DfsClient/ServerDelete",
@@ -33,15 +34,24 @@ std::unique_ptr< DfsClient::Stub> DfsClient::NewStub(const std::shared_ptr< ::gr
 }
 
 DfsClient::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_ServerCreate_(DfsClient_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ServerUpdate_(DfsClient_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ServerDelete_(DfsClient_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ServerList_(DfsClient_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeCreate_(DfsClient_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeUpdate_(DfsClient_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeDelete_(DfsClient_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeList_(DfsClient_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Status_(DfsClient_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ServerCreate_(DfsClient_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ServerUpdate_(DfsClient_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ServerDelete_(DfsClient_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ServerList_(DfsClient_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeCreate_(DfsClient_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeUpdate_(DfsClient_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeDelete_(DfsClient_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeList_(DfsClient_method_names[8], ::grpc::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status DfsClient::Stub::Status(::grpc::ClientContext* context, const ::directfs::v1::DfsClientStatusRequest& request, ::directfs::v1::DfsClientStatus* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Status_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsClientStatus>* DfsClient::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsClientStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsClientStatus>::Create(channel_.get(), cq, rpcmethod_Status_, context, request);
+}
 
 ::grpc::Status DfsClient::Stub::ServerCreate(::grpc::ClientContext* context, const ::directfs::v1::DfsHost& request, ::common::v1::RpcResult* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_ServerCreate_, context, request, response);
@@ -111,46 +121,58 @@ DfsClient::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsClient_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsHost, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsClient::Service::ServerCreate), this)));
+      new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsClientStatusRequest, ::directfs::v1::DfsClientStatus>(
+          std::mem_fn(&DfsClient::Service::Status), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsClient_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsHost, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsClient::Service::ServerUpdate), this)));
+          std::mem_fn(&DfsClient::Service::ServerCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsClient_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsHost, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsClient::Service::ServerDelete), this)));
+          std::mem_fn(&DfsClient::Service::ServerUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsClient_method_names[3],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsHost, ::common::v1::RpcResult>(
+          std::mem_fn(&DfsClient::Service::ServerDelete), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      DfsClient_method_names[4],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsHostListQuery, ::directfs::v1::DfsHostList>(
           std::mem_fn(&DfsClient::Service::ServerList), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      DfsClient_method_names[4],
+      DfsClient_method_names[5],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
           std::mem_fn(&DfsClient::Service::VolumeCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      DfsClient_method_names[5],
+      DfsClient_method_names[6],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
           std::mem_fn(&DfsClient::Service::VolumeUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      DfsClient_method_names[6],
+      DfsClient_method_names[7],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
           std::mem_fn(&DfsClient::Service::VolumeDelete), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      DfsClient_method_names[7],
+      DfsClient_method_names[8],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsClient::Service, ::directfs::v1::DfsVolumeListQuery, ::directfs::v1::DfsVolumeList>(
           std::mem_fn(&DfsClient::Service::VolumeList), this)));
 }
 
 DfsClient::Service::~Service() {
+}
+
+::grpc::Status DfsClient::Service::Status(::grpc::ServerContext* context, const ::directfs::v1::DfsClientStatusRequest* request, ::directfs::v1::DfsClientStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status DfsClient::Service::ServerCreate(::grpc::ServerContext* context, const ::directfs::v1::DfsHost* request, ::common::v1::RpcResult* response) {
@@ -211,6 +233,7 @@ DfsClient::Service::~Service() {
 
 
 static const char* DfsServer_method_names[] = {
+  "/directfs.v1.DfsServer/Status",
   "/directfs.v1.DfsServer/VolumeCreate",
   "/directfs.v1.DfsServer/VolumeUpdate",
   "/directfs.v1.DfsServer/VolumeDelete",
@@ -223,11 +246,20 @@ std::unique_ptr< DfsServer::Stub> DfsServer::NewStub(const std::shared_ptr< ::gr
 }
 
 DfsServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_VolumeCreate_(DfsServer_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeUpdate_(DfsServer_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeDelete_(DfsServer_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeList_(DfsServer_method_names[3], ::grpc::RpcMethod::SERVER_STREAMING, channel)
+  : channel_(channel), rpcmethod_Status_(DfsServer_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeCreate_(DfsServer_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeUpdate_(DfsServer_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeDelete_(DfsServer_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeList_(DfsServer_method_names[4], ::grpc::RpcMethod::SERVER_STREAMING, channel)
   {}
+
+::grpc::Status DfsServer::Stub::Status(::grpc::ClientContext* context, const ::directfs::v1::DfsServerStatusRequest& request, ::directfs::v1::DfsServerStatus* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Status_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsServerStatus>* DfsServer::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsServerStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsServerStatus>::Create(channel_.get(), cq, rpcmethod_Status_, context, request);
+}
 
 ::grpc::Status DfsServer::Stub::VolumeCreate(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::common::v1::RpcResult* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_VolumeCreate_, context, request, response);
@@ -265,26 +297,38 @@ DfsServer::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsServer_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< DfsServer::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsServer::Service::VolumeCreate), this)));
+      new ::grpc::RpcMethodHandler< DfsServer::Service, ::directfs::v1::DfsServerStatusRequest, ::directfs::v1::DfsServerStatus>(
+          std::mem_fn(&DfsServer::Service::Status), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsServer_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsServer::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsServer::Service::VolumeUpdate), this)));
+          std::mem_fn(&DfsServer::Service::VolumeCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsServer_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< DfsServer::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&DfsServer::Service::VolumeDelete), this)));
+          std::mem_fn(&DfsServer::Service::VolumeUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       DfsServer_method_names[3],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< DfsServer::Service, ::directfs::v1::DfsVolume, ::common::v1::RpcResult>(
+          std::mem_fn(&DfsServer::Service::VolumeDelete), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      DfsServer_method_names[4],
       ::grpc::RpcMethod::SERVER_STREAMING,
       new ::grpc::ServerStreamingHandler< DfsServer::Service, ::directfs::v1::DfsVolumeListQuery, ::directfs::v1::DfsVolume>(
           std::mem_fn(&DfsServer::Service::VolumeList), this)));
 }
 
 DfsServer::Service::~Service() {
+}
+
+::grpc::Status DfsServer::Service::Status(::grpc::ServerContext* context, const ::directfs::v1::DfsServerStatusRequest* request, ::directfs::v1::DfsServerStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status DfsServer::Service::VolumeCreate(::grpc::ServerContext* context, const ::directfs::v1::DfsVolume* request, ::common::v1::RpcResult* response) {

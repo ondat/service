@@ -19,6 +19,26 @@
 
 namespace directfs {
 namespace v1 {
+class DfsClientStatusRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DfsClientStatusRequest>
+     _instance;
+} _DfsClientStatusRequest_default_instance_;
+class DfsClientStatusDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DfsClientStatus>
+     _instance;
+} _DfsClientStatus_default_instance_;
+class DfsServerStatusRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DfsServerStatusRequest>
+     _instance;
+} _DfsServerStatusRequest_default_instance_;
+class DfsServerStatusDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DfsServerStatus>
+     _instance;
+} _DfsServerStatus_default_instance_;
 class DfsHostCredentialsDefaultTypeInternal {
 public:
  ::google::protobuf::internal::ExplicitlyConstructed<DfsHostCredentials>
@@ -75,7 +95,7 @@ namespace protobuf_directfs_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[10];
+::google::protobuf::Metadata file_level_metadata[14];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 }  // namespace
@@ -101,9 +121,35 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsClientStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsClientStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsClientStatus, version_info_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsServerStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsServerStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsServerStatus, version_info_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsHostCredentials, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -174,19 +220,27 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DfsVolumeListQuery, volume_ids_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(DfsHostCredentials)},
-  { 5, -1, sizeof(DfsHost)},
-  { 15, -1, sizeof(DfsHostList)},
-  { 21, -1, sizeof(DfsHostListQuery)},
-  { 27, -1, sizeof(DfsVolumeCredentials)},
-  { 32, -1, sizeof(DfsVolumeStatistics)},
-  { 37, -1, sizeof(DfsVolumeStatus)},
-  { 45, -1, sizeof(DfsVolume)},
-  { 56, -1, sizeof(DfsVolumeList)},
-  { 62, -1, sizeof(DfsVolumeListQuery)},
+  { 0, -1, sizeof(DfsClientStatusRequest)},
+  { 5, -1, sizeof(DfsClientStatus)},
+  { 11, -1, sizeof(DfsServerStatusRequest)},
+  { 16, -1, sizeof(DfsServerStatus)},
+  { 22, -1, sizeof(DfsHostCredentials)},
+  { 27, -1, sizeof(DfsHost)},
+  { 37, -1, sizeof(DfsHostList)},
+  { 43, -1, sizeof(DfsHostListQuery)},
+  { 49, -1, sizeof(DfsVolumeCredentials)},
+  { 54, -1, sizeof(DfsVolumeStatistics)},
+  { 59, -1, sizeof(DfsVolumeStatus)},
+  { 67, -1, sizeof(DfsVolume)},
+  { 78, -1, sizeof(DfsVolumeList)},
+  { 84, -1, sizeof(DfsVolumeListQuery)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DfsClientStatusRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DfsClientStatus_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DfsServerStatusRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DfsServerStatus_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DfsHostCredentials_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DfsHost_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DfsHostList_default_instance_),
@@ -217,7 +271,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 10);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 14);
 }
 
 }  // namespace
@@ -226,7 +280,15 @@ void TableStruct::InitDefaultsImpl() {
 
   ::google::protobuf::internal::InitProtobufDefaults();
   ::common::v1::protobuf_common_2eproto::InitDefaults();
-  _DfsHostCredentials_default_instance_._instance.DefaultConstruct();
+  _DfsClientStatusRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DfsClientStatusRequest_default_instance_);_DfsClientStatus_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DfsClientStatus_default_instance_);_DfsServerStatusRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DfsServerStatusRequest_default_instance_);_DfsServerStatus_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DfsServerStatus_default_instance_);_DfsHostCredentials_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DfsHostCredentials_default_instance_);_DfsHost_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
@@ -269,56 +331,62 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\016directfs.proto\022\013directfs.v1\032\014common.pr"
-      "oto\"\024\n\022DfsHostCredentials\"\230\001\n\007DfsHost\022&\n"
-      "\002cc\030\001 \001(\0132\032.common.v1.DataplaneCommon\022\017\n"
-      "\007host_id\030\002 \001(\r\022\020\n\010hostname\030\003 \001(\t\022\014\n\004port"
-      "\030\004 \001(\r\0224\n\013credentials\030\005 \001(\0132\037.directfs.v"
-      "1.DfsHostCredentials\"2\n\013DfsHostList\022#\n\005h"
-      "osts\030\001 \003(\0132\024.directfs.v1.DfsHost\":\n\020DfsH"
-      "ostListQuery\022&\n\010host_ids\030\001 \003(\0132\024.directf"
-      "s.v1.DfsHost\"\026\n\024DfsVolumeCredentials\"\025\n\023"
-      "DfsVolumeStatistics\"\265\002\n\017DfsVolumeStatus\022"
-      "C\n\nconn_state\030\001 \001(\0162/.directfs.v1.DfsVol"
-      "umeStatus.DfsConnectionState\022\021\n\tpeer_nam"
-      "e\030\002 \001(\t\022>\n\007peer_af\030\003 \001(\0162-.directfs.v1.D"
-      "fsVolumeStatus.DfsAddressFamily\"b\n\022DfsCo"
-      "nnectionState\022\010\n\004NONE\020\000\022\016\n\nCONNECTING\020\001\022"
-      "\r\n\tCONNECTED\020\002\022\021\n\rDISCONNECTING\020\003\022\020\n\014DIS"
-      "CONNECTED\020\004\"&\n\020DfsAddressFamily\022\010\n\004IPV4\020"
-      "\000\022\010\n\004IPV6\020\001\"\356\001\n\tDfsVolume\022&\n\002cc\030\001 \001(\0132\032."
-      "common.v1.DataplaneCommon\022\021\n\tvolume_id\030\002"
-      " \001(\r\022\017\n\007host_id\030\003 \001(\r\0226\n\013credentials\030\004 \001"
-      "(\0132!.directfs.v1.DfsVolumeCredentials\022/\n"
-      "\005stats\030\005 \001(\0132 .directfs.v1.DfsVolumeStat"
-      "istics\022,\n\006status\030\006 \001(\0132\034.directfs.v1.Dfs"
-      "VolumeStatus\"<\n\rDfsVolumeList\022+\n\007volumes"
-      "\030\001 \003(\0132\032.directfs.v1.DfsVolumeList\"@\n\022Df"
-      "sVolumeListQuery\022*\n\nvolume_ids\030\001 \003(\0132\026.d"
-      "irectfs.v1.DfsVolume2\233\004\n\tDfsClient\022<\n\014Se"
-      "rverCreate\022\024.directfs.v1.DfsHost\032\024.commo"
-      "n.v1.RpcResult\"\000\022<\n\014ServerUpdate\022\024.direc"
-      "tfs.v1.DfsHost\032\024.common.v1.RpcResult\"\000\022<"
-      "\n\014ServerDelete\022\024.directfs.v1.DfsHost\032\024.c"
-      "ommon.v1.RpcResult\"\000\022G\n\nServerList\022\035.dir"
-      "ectfs.v1.DfsHostListQuery\032\030.directfs.v1."
-      "DfsHostList\"\000\022>\n\014VolumeCreate\022\026.directfs"
-      ".v1.DfsVolume\032\024.common.v1.RpcResult\"\000\022>\n"
-      "\014VolumeUpdate\022\026.directfs.v1.DfsVolume\032\024."
-      "common.v1.RpcResult\"\000\022>\n\014VolumeDelete\022\026."
-      "directfs.v1.DfsVolume\032\024.common.v1.RpcRes"
-      "ult\"\000\022K\n\nVolumeList\022\037.directfs.v1.DfsVol"
-      "umeListQuery\032\032.directfs.v1.DfsVolumeList"
-      "\"\0002\226\002\n\tDfsServer\022>\n\014VolumeCreate\022\026.direc"
+      "oto\"\030\n\026DfsClientStatusRequest\"\'\n\017DfsClie"
+      "ntStatus\022\024\n\014version_info\030\001 \001(\t\"\030\n\026DfsSer"
+      "verStatusRequest\"\'\n\017DfsServerStatus\022\024\n\014v"
+      "ersion_info\030\001 \001(\t\"\024\n\022DfsHostCredentials\""
+      "\230\001\n\007DfsHost\022&\n\002cc\030\001 \001(\0132\032.common.v1.Data"
+      "planeCommon\022\017\n\007host_id\030\002 \001(\r\022\020\n\010hostname"
+      "\030\003 \001(\t\022\014\n\004port\030\004 \001(\r\0224\n\013credentials\030\005 \001("
+      "\0132\037.directfs.v1.DfsHostCredentials\"2\n\013Df"
+      "sHostList\022#\n\005hosts\030\001 \003(\0132\024.directfs.v1.D"
+      "fsHost\"$\n\020DfsHostListQuery\022\020\n\010host_ids\030\001"
+      " \003(\r\"\026\n\024DfsVolumeCredentials\"\025\n\023DfsVolum"
+      "eStatistics\"\265\002\n\017DfsVolumeStatus\022C\n\nconn_"
+      "state\030\001 \001(\0162/.directfs.v1.DfsVolumeStatu"
+      "s.DfsConnectionState\022\021\n\tpeer_name\030\002 \001(\t\022"
+      ">\n\007peer_af\030\003 \001(\0162-.directfs.v1.DfsVolume"
+      "Status.DfsAddressFamily\"b\n\022DfsConnection"
+      "State\022\010\n\004NONE\020\000\022\016\n\nCONNECTING\020\001\022\r\n\tCONNE"
+      "CTED\020\002\022\021\n\rDISCONNECTING\020\003\022\020\n\014DISCONNECTE"
+      "D\020\004\"&\n\020DfsAddressFamily\022\010\n\004IPV4\020\000\022\010\n\004IPV"
+      "6\020\001\"\356\001\n\tDfsVolume\022&\n\002cc\030\001 \001(\0132\032.common.v"
+      "1.DataplaneCommon\022\021\n\tvolume_id\030\002 \001(\r\022\017\n\007"
+      "host_id\030\003 \001(\r\0226\n\013credentials\030\004 \001(\0132!.dir"
+      "ectfs.v1.DfsVolumeCredentials\022/\n\005stats\030\005"
+      " \001(\0132 .directfs.v1.DfsVolumeStatistics\022,"
+      "\n\006status\030\006 \001(\0132\034.directfs.v1.DfsVolumeSt"
+      "atus\"8\n\rDfsVolumeList\022\'\n\007volumes\030\001 \003(\0132\026"
+      ".directfs.v1.DfsVolume\"(\n\022DfsVolumeListQ"
+      "uery\022\022\n\nvolume_ids\030\001 \003(\r2\352\004\n\tDfsClient\022M"
+      "\n\006Status\022#.directfs.v1.DfsClientStatusRe"
+      "quest\032\034.directfs.v1.DfsClientStatus\"\000\022<\n"
+      "\014ServerCreate\022\024.directfs.v1.DfsHost\032\024.co"
+      "mmon.v1.RpcResult\"\000\022<\n\014ServerUpdate\022\024.di"
+      "rectfs.v1.DfsHost\032\024.common.v1.RpcResult\""
+      "\000\022<\n\014ServerDelete\022\024.directfs.v1.DfsHost\032"
+      "\024.common.v1.RpcResult\"\000\022G\n\nServerList\022\035."
+      "directfs.v1.DfsHostListQuery\032\030.directfs."
+      "v1.DfsHostList\"\000\022>\n\014VolumeCreate\022\026.direc"
       "tfs.v1.DfsVolume\032\024.common.v1.RpcResult\"\000"
       "\022>\n\014VolumeUpdate\022\026.directfs.v1.DfsVolume"
       "\032\024.common.v1.RpcResult\"\000\022>\n\014VolumeDelete"
       "\022\026.directfs.v1.DfsVolume\032\024.common.v1.Rpc"
-      "Result\"\000\022I\n\nVolumeList\022\037.directfs.v1.Dfs"
-      "VolumeListQuery\032\026.directfs.v1.DfsVolume\""
-      "\0000\001b\006proto3"
+      "Result\"\000\022K\n\nVolumeList\022\037.directfs.v1.Dfs"
+      "VolumeListQuery\032\032.directfs.v1.DfsVolumeL"
+      "ist\"\0002\345\002\n\tDfsServer\022M\n\006Status\022#.directfs"
+      ".v1.DfsServerStatusRequest\032\034.directfs.v1"
+      ".DfsServerStatus\"\000\022>\n\014VolumeCreate\022\026.dir"
+      "ectfs.v1.DfsVolume\032\024.common.v1.RpcResult"
+      "\"\000\022>\n\014VolumeUpdate\022\026.directfs.v1.DfsVolu"
+      "me\032\024.common.v1.RpcResult\"\000\022>\n\014VolumeDele"
+      "te\022\026.directfs.v1.DfsVolume\032\024.common.v1.R"
+      "pcResult\"\000\022I\n\nVolumeList\022\037.directfs.v1.D"
+      "fsVolumeListQuery\032\026.directfs.v1.DfsVolum"
+      "e\"\0000\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1891);
+      descriptor, 2133);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "directfs.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -386,6 +454,1020 @@ const DfsVolumeStatus_DfsAddressFamily DfsVolumeStatus::DfsAddressFamily_MIN;
 const DfsVolumeStatus_DfsAddressFamily DfsVolumeStatus::DfsAddressFamily_MAX;
 const int DfsVolumeStatus::DfsAddressFamily_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DfsClientStatusRequest::DfsClientStatusRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_directfs_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:directfs.v1.DfsClientStatusRequest)
+}
+DfsClientStatusRequest::DfsClientStatusRequest(const DfsClientStatusRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:directfs.v1.DfsClientStatusRequest)
+}
+
+void DfsClientStatusRequest::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+DfsClientStatusRequest::~DfsClientStatusRequest() {
+  // @@protoc_insertion_point(destructor:directfs.v1.DfsClientStatusRequest)
+  SharedDtor();
+}
+
+void DfsClientStatusRequest::SharedDtor() {
+}
+
+void DfsClientStatusRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DfsClientStatusRequest::descriptor() {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DfsClientStatusRequest& DfsClientStatusRequest::default_instance() {
+  protobuf_directfs_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DfsClientStatusRequest* DfsClientStatusRequest::New(::google::protobuf::Arena* arena) const {
+  DfsClientStatusRequest* n = new DfsClientStatusRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DfsClientStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:directfs.v1.DfsClientStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool DfsClientStatusRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:directfs.v1.DfsClientStatusRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:directfs.v1.DfsClientStatusRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:directfs.v1.DfsClientStatusRequest)
+  return false;
+#undef DO_
+}
+
+void DfsClientStatusRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:directfs.v1.DfsClientStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:directfs.v1.DfsClientStatusRequest)
+}
+
+::google::protobuf::uint8* DfsClientStatusRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:directfs.v1.DfsClientStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:directfs.v1.DfsClientStatusRequest)
+  return target;
+}
+
+size_t DfsClientStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:directfs.v1.DfsClientStatusRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DfsClientStatusRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:directfs.v1.DfsClientStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DfsClientStatusRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DfsClientStatusRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:directfs.v1.DfsClientStatusRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:directfs.v1.DfsClientStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void DfsClientStatusRequest::MergeFrom(const DfsClientStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:directfs.v1.DfsClientStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void DfsClientStatusRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:directfs.v1.DfsClientStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DfsClientStatusRequest::CopyFrom(const DfsClientStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:directfs.v1.DfsClientStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DfsClientStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void DfsClientStatusRequest::Swap(DfsClientStatusRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DfsClientStatusRequest::InternalSwap(DfsClientStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DfsClientStatusRequest::GetMetadata() const {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DfsClientStatusRequest
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DfsClientStatus::kVersionInfoFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DfsClientStatus::DfsClientStatus()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_directfs_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:directfs.v1.DfsClientStatus)
+}
+DfsClientStatus::DfsClientStatus(const DfsClientStatus& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_info().size() > 0) {
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+  // @@protoc_insertion_point(copy_constructor:directfs.v1.DfsClientStatus)
+}
+
+void DfsClientStatus::SharedCtor() {
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+DfsClientStatus::~DfsClientStatus() {
+  // @@protoc_insertion_point(destructor:directfs.v1.DfsClientStatus)
+  SharedDtor();
+}
+
+void DfsClientStatus::SharedDtor() {
+  version_info_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void DfsClientStatus::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DfsClientStatus::descriptor() {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DfsClientStatus& DfsClientStatus::default_instance() {
+  protobuf_directfs_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DfsClientStatus* DfsClientStatus::New(::google::protobuf::Arena* arena) const {
+  DfsClientStatus* n = new DfsClientStatus;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DfsClientStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:directfs.v1.DfsClientStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool DfsClientStatus::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:directfs.v1.DfsClientStatus)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string version_info = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_version_info()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->version_info().data(), static_cast<int>(this->version_info().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "directfs.v1.DfsClientStatus.version_info"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:directfs.v1.DfsClientStatus)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:directfs.v1.DfsClientStatus)
+  return false;
+#undef DO_
+}
+
+void DfsClientStatus::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:directfs.v1.DfsClientStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "directfs.v1.DfsClientStatus.version_info");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->version_info(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:directfs.v1.DfsClientStatus)
+}
+
+::google::protobuf::uint8* DfsClientStatus::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:directfs.v1.DfsClientStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "directfs.v1.DfsClientStatus.version_info");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->version_info(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:directfs.v1.DfsClientStatus)
+  return target;
+}
+
+size_t DfsClientStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:directfs.v1.DfsClientStatus)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->version_info());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DfsClientStatus::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:directfs.v1.DfsClientStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DfsClientStatus* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DfsClientStatus>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:directfs.v1.DfsClientStatus)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:directfs.v1.DfsClientStatus)
+    MergeFrom(*source);
+  }
+}
+
+void DfsClientStatus::MergeFrom(const DfsClientStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:directfs.v1.DfsClientStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.version_info().size() > 0) {
+
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+}
+
+void DfsClientStatus::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:directfs.v1.DfsClientStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DfsClientStatus::CopyFrom(const DfsClientStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:directfs.v1.DfsClientStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DfsClientStatus::IsInitialized() const {
+  return true;
+}
+
+void DfsClientStatus::Swap(DfsClientStatus* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DfsClientStatus::InternalSwap(DfsClientStatus* other) {
+  using std::swap;
+  version_info_.Swap(&other->version_info_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DfsClientStatus::GetMetadata() const {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DfsClientStatus
+
+// string version_info = 1;
+void DfsClientStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& DfsClientStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:directfs.v1.DfsClientStatus.version_info)
+  return version_info_.GetNoArena();
+}
+void DfsClientStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:directfs.v1.DfsClientStatus.version_info)
+}
+#if LANG_CXX11
+void DfsClientStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:directfs.v1.DfsClientStatus.version_info)
+}
+#endif
+void DfsClientStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:directfs.v1.DfsClientStatus.version_info)
+}
+void DfsClientStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:directfs.v1.DfsClientStatus.version_info)
+}
+::std::string* DfsClientStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:directfs.v1.DfsClientStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* DfsClientStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:directfs.v1.DfsClientStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void DfsClientStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:directfs.v1.DfsClientStatus.version_info)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DfsServerStatusRequest::DfsServerStatusRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_directfs_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:directfs.v1.DfsServerStatusRequest)
+}
+DfsServerStatusRequest::DfsServerStatusRequest(const DfsServerStatusRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:directfs.v1.DfsServerStatusRequest)
+}
+
+void DfsServerStatusRequest::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+DfsServerStatusRequest::~DfsServerStatusRequest() {
+  // @@protoc_insertion_point(destructor:directfs.v1.DfsServerStatusRequest)
+  SharedDtor();
+}
+
+void DfsServerStatusRequest::SharedDtor() {
+}
+
+void DfsServerStatusRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DfsServerStatusRequest::descriptor() {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DfsServerStatusRequest& DfsServerStatusRequest::default_instance() {
+  protobuf_directfs_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DfsServerStatusRequest* DfsServerStatusRequest::New(::google::protobuf::Arena* arena) const {
+  DfsServerStatusRequest* n = new DfsServerStatusRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DfsServerStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:directfs.v1.DfsServerStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool DfsServerStatusRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:directfs.v1.DfsServerStatusRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:directfs.v1.DfsServerStatusRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:directfs.v1.DfsServerStatusRequest)
+  return false;
+#undef DO_
+}
+
+void DfsServerStatusRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:directfs.v1.DfsServerStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:directfs.v1.DfsServerStatusRequest)
+}
+
+::google::protobuf::uint8* DfsServerStatusRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:directfs.v1.DfsServerStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:directfs.v1.DfsServerStatusRequest)
+  return target;
+}
+
+size_t DfsServerStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:directfs.v1.DfsServerStatusRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DfsServerStatusRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:directfs.v1.DfsServerStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DfsServerStatusRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DfsServerStatusRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:directfs.v1.DfsServerStatusRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:directfs.v1.DfsServerStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void DfsServerStatusRequest::MergeFrom(const DfsServerStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:directfs.v1.DfsServerStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void DfsServerStatusRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:directfs.v1.DfsServerStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DfsServerStatusRequest::CopyFrom(const DfsServerStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:directfs.v1.DfsServerStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DfsServerStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void DfsServerStatusRequest::Swap(DfsServerStatusRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DfsServerStatusRequest::InternalSwap(DfsServerStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DfsServerStatusRequest::GetMetadata() const {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DfsServerStatusRequest
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DfsServerStatus::kVersionInfoFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DfsServerStatus::DfsServerStatus()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_directfs_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:directfs.v1.DfsServerStatus)
+}
+DfsServerStatus::DfsServerStatus(const DfsServerStatus& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_info().size() > 0) {
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+  // @@protoc_insertion_point(copy_constructor:directfs.v1.DfsServerStatus)
+}
+
+void DfsServerStatus::SharedCtor() {
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+DfsServerStatus::~DfsServerStatus() {
+  // @@protoc_insertion_point(destructor:directfs.v1.DfsServerStatus)
+  SharedDtor();
+}
+
+void DfsServerStatus::SharedDtor() {
+  version_info_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void DfsServerStatus::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DfsServerStatus::descriptor() {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DfsServerStatus& DfsServerStatus::default_instance() {
+  protobuf_directfs_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DfsServerStatus* DfsServerStatus::New(::google::protobuf::Arena* arena) const {
+  DfsServerStatus* n = new DfsServerStatus;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DfsServerStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:directfs.v1.DfsServerStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool DfsServerStatus::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:directfs.v1.DfsServerStatus)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string version_info = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_version_info()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->version_info().data(), static_cast<int>(this->version_info().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "directfs.v1.DfsServerStatus.version_info"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:directfs.v1.DfsServerStatus)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:directfs.v1.DfsServerStatus)
+  return false;
+#undef DO_
+}
+
+void DfsServerStatus::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:directfs.v1.DfsServerStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "directfs.v1.DfsServerStatus.version_info");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->version_info(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:directfs.v1.DfsServerStatus)
+}
+
+::google::protobuf::uint8* DfsServerStatus::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:directfs.v1.DfsServerStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "directfs.v1.DfsServerStatus.version_info");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->version_info(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:directfs.v1.DfsServerStatus)
+  return target;
+}
+
+size_t DfsServerStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:directfs.v1.DfsServerStatus)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->version_info());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DfsServerStatus::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:directfs.v1.DfsServerStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DfsServerStatus* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DfsServerStatus>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:directfs.v1.DfsServerStatus)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:directfs.v1.DfsServerStatus)
+    MergeFrom(*source);
+  }
+}
+
+void DfsServerStatus::MergeFrom(const DfsServerStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:directfs.v1.DfsServerStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.version_info().size() > 0) {
+
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+}
+
+void DfsServerStatus::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:directfs.v1.DfsServerStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DfsServerStatus::CopyFrom(const DfsServerStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:directfs.v1.DfsServerStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DfsServerStatus::IsInitialized() const {
+  return true;
+}
+
+void DfsServerStatus::Swap(DfsServerStatus* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DfsServerStatus::InternalSwap(DfsServerStatus* other) {
+  using std::swap;
+  version_info_.Swap(&other->version_info_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DfsServerStatus::GetMetadata() const {
+  protobuf_directfs_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_directfs_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DfsServerStatus
+
+// string version_info = 1;
+void DfsServerStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& DfsServerStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:directfs.v1.DfsServerStatus.version_info)
+  return version_info_.GetNoArena();
+}
+void DfsServerStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:directfs.v1.DfsServerStatus.version_info)
+}
+#if LANG_CXX11
+void DfsServerStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:directfs.v1.DfsServerStatus.version_info)
+}
+#endif
+void DfsServerStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:directfs.v1.DfsServerStatus.version_info)
+}
+void DfsServerStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:directfs.v1.DfsServerStatus.version_info)
+}
+::std::string* DfsServerStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:directfs.v1.DfsServerStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* DfsServerStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:directfs.v1.DfsServerStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void DfsServerStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:directfs.v1.DfsServerStatus.version_info)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 
@@ -1529,12 +2611,19 @@ bool DfsHostListQuery::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .directfs.v1.DfsHost host_ids = 1;
+      // repeated uint32 host_ids = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_host_ids()));
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_host_ids())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 10u, input, this->mutable_host_ids())));
         } else {
           goto handle_unusual;
         }
@@ -1567,11 +2656,15 @@ void DfsHostListQuery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsHost host_ids = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->host_ids_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->host_ids(static_cast<int>(i)), output);
+  // repeated uint32 host_ids = 1;
+  if (this->host_ids_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _host_ids_cached_byte_size_));
+  }
+  for (int i = 0, n = this->host_ids_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
+      this->host_ids(i), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1588,12 +2681,17 @@ void DfsHostListQuery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsHost host_ids = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->host_ids_size()); i < n; i++) {
+  // repeated uint32 host_ids = 1;
+  if (this->host_ids_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::uint32>(
+            _host_ids_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        1, this->host_ids(static_cast<int>(i)), deterministic, target);
+      WriteUInt32NoTagToArray(this->host_ids_, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1613,15 +2711,20 @@ size_t DfsHostListQuery::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .directfs.v1.DfsHost host_ids = 1;
+  // repeated uint32 host_ids = 1;
   {
-    unsigned int count = static_cast<unsigned int>(this->host_ids_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->host_ids(static_cast<int>(i)));
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      UInt32Size(this->host_ids_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
     }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _host_ids_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1693,34 +2796,34 @@ void DfsHostListQuery::InternalSwap(DfsHostListQuery* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DfsHostListQuery
 
-// repeated .directfs.v1.DfsHost host_ids = 1;
+// repeated uint32 host_ids = 1;
 int DfsHostListQuery::host_ids_size() const {
   return host_ids_.size();
 }
 void DfsHostListQuery::clear_host_ids() {
   host_ids_.Clear();
 }
-const ::directfs::v1::DfsHost& DfsHostListQuery::host_ids(int index) const {
+::google::protobuf::uint32 DfsHostListQuery::host_ids(int index) const {
   // @@protoc_insertion_point(field_get:directfs.v1.DfsHostListQuery.host_ids)
   return host_ids_.Get(index);
 }
-::directfs::v1::DfsHost* DfsHostListQuery::mutable_host_ids(int index) {
-  // @@protoc_insertion_point(field_mutable:directfs.v1.DfsHostListQuery.host_ids)
-  return host_ids_.Mutable(index);
+void DfsHostListQuery::set_host_ids(int index, ::google::protobuf::uint32 value) {
+  host_ids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:directfs.v1.DfsHostListQuery.host_ids)
 }
-::directfs::v1::DfsHost* DfsHostListQuery::add_host_ids() {
+void DfsHostListQuery::add_host_ids(::google::protobuf::uint32 value) {
+  host_ids_.Add(value);
   // @@protoc_insertion_point(field_add:directfs.v1.DfsHostListQuery.host_ids)
-  return host_ids_.Add();
 }
-::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsHost >*
-DfsHostListQuery::mutable_host_ids() {
-  // @@protoc_insertion_point(field_mutable_list:directfs.v1.DfsHostListQuery.host_ids)
-  return &host_ids_;
-}
-const ::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsHost >&
+const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 DfsHostListQuery::host_ids() const {
   // @@protoc_insertion_point(field_list:directfs.v1.DfsHostListQuery.host_ids)
   return host_ids_;
+}
+::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+DfsHostListQuery::mutable_host_ids() {
+  // @@protoc_insertion_point(field_mutable_list:directfs.v1.DfsHostListQuery.host_ids)
+  return &host_ids_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3277,7 +4380,7 @@ bool DfsVolumeList::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .directfs.v1.DfsVolumeList volumes = 1;
+      // repeated .directfs.v1.DfsVolume volumes = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
@@ -3315,7 +4418,7 @@ void DfsVolumeList::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsVolumeList volumes = 1;
+  // repeated .directfs.v1.DfsVolume volumes = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -3336,7 +4439,7 @@ void DfsVolumeList::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsVolumeList volumes = 1;
+  // repeated .directfs.v1.DfsVolume volumes = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->volumes_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -3361,7 +4464,7 @@ size_t DfsVolumeList::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .directfs.v1.DfsVolumeList volumes = 1;
+  // repeated .directfs.v1.DfsVolume volumes = 1;
   {
     unsigned int count = static_cast<unsigned int>(this->volumes_size());
     total_size += 1UL * count;
@@ -3441,31 +4544,31 @@ void DfsVolumeList::InternalSwap(DfsVolumeList* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DfsVolumeList
 
-// repeated .directfs.v1.DfsVolumeList volumes = 1;
+// repeated .directfs.v1.DfsVolume volumes = 1;
 int DfsVolumeList::volumes_size() const {
   return volumes_.size();
 }
 void DfsVolumeList::clear_volumes() {
   volumes_.Clear();
 }
-const ::directfs::v1::DfsVolumeList& DfsVolumeList::volumes(int index) const {
+const ::directfs::v1::DfsVolume& DfsVolumeList::volumes(int index) const {
   // @@protoc_insertion_point(field_get:directfs.v1.DfsVolumeList.volumes)
   return volumes_.Get(index);
 }
-::directfs::v1::DfsVolumeList* DfsVolumeList::mutable_volumes(int index) {
+::directfs::v1::DfsVolume* DfsVolumeList::mutable_volumes(int index) {
   // @@protoc_insertion_point(field_mutable:directfs.v1.DfsVolumeList.volumes)
   return volumes_.Mutable(index);
 }
-::directfs::v1::DfsVolumeList* DfsVolumeList::add_volumes() {
+::directfs::v1::DfsVolume* DfsVolumeList::add_volumes() {
   // @@protoc_insertion_point(field_add:directfs.v1.DfsVolumeList.volumes)
   return volumes_.Add();
 }
-::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolumeList >*
+::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolume >*
 DfsVolumeList::mutable_volumes() {
   // @@protoc_insertion_point(field_mutable_list:directfs.v1.DfsVolumeList.volumes)
   return &volumes_;
 }
-const ::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolumeList >&
+const ::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolume >&
 DfsVolumeList::volumes() const {
   // @@protoc_insertion_point(field_list:directfs.v1.DfsVolumeList.volumes)
   return volumes_;
@@ -3551,12 +4654,19 @@ bool DfsVolumeListQuery::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .directfs.v1.DfsVolume volume_ids = 1;
+      // repeated uint32 volume_ids = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_volume_ids()));
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, this->mutable_volume_ids())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 1, 10u, input, this->mutable_volume_ids())));
         } else {
           goto handle_unusual;
         }
@@ -3589,11 +4699,15 @@ void DfsVolumeListQuery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsVolume volume_ids = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->volume_ids_size()); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->volume_ids(static_cast<int>(i)), output);
+  // repeated uint32 volume_ids = 1;
+  if (this->volume_ids_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _volume_ids_cached_byte_size_));
+  }
+  for (int i = 0, n = this->volume_ids_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32NoTag(
+      this->volume_ids(i), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3610,12 +4724,17 @@ void DfsVolumeListQuery::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .directfs.v1.DfsVolume volume_ids = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->volume_ids_size()); i < n; i++) {
+  // repeated uint32 volume_ids = 1;
+  if (this->volume_ids_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      1,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::uint32>(
+            _volume_ids_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        1, this->volume_ids(static_cast<int>(i)), deterministic, target);
+      WriteUInt32NoTagToArray(this->volume_ids_, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3635,15 +4754,20 @@ size_t DfsVolumeListQuery::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .directfs.v1.DfsVolume volume_ids = 1;
+  // repeated uint32 volume_ids = 1;
   {
-    unsigned int count = static_cast<unsigned int>(this->volume_ids_size());
-    total_size += 1UL * count;
-    for (unsigned int i = 0; i < count; i++) {
-      total_size +=
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->volume_ids(static_cast<int>(i)));
+    size_t data_size = ::google::protobuf::internal::WireFormatLite::
+      UInt32Size(this->volume_ids_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
     }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _volume_ids_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -3715,34 +4839,34 @@ void DfsVolumeListQuery::InternalSwap(DfsVolumeListQuery* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DfsVolumeListQuery
 
-// repeated .directfs.v1.DfsVolume volume_ids = 1;
+// repeated uint32 volume_ids = 1;
 int DfsVolumeListQuery::volume_ids_size() const {
   return volume_ids_.size();
 }
 void DfsVolumeListQuery::clear_volume_ids() {
   volume_ids_.Clear();
 }
-const ::directfs::v1::DfsVolume& DfsVolumeListQuery::volume_ids(int index) const {
+::google::protobuf::uint32 DfsVolumeListQuery::volume_ids(int index) const {
   // @@protoc_insertion_point(field_get:directfs.v1.DfsVolumeListQuery.volume_ids)
   return volume_ids_.Get(index);
 }
-::directfs::v1::DfsVolume* DfsVolumeListQuery::mutable_volume_ids(int index) {
-  // @@protoc_insertion_point(field_mutable:directfs.v1.DfsVolumeListQuery.volume_ids)
-  return volume_ids_.Mutable(index);
+void DfsVolumeListQuery::set_volume_ids(int index, ::google::protobuf::uint32 value) {
+  volume_ids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:directfs.v1.DfsVolumeListQuery.volume_ids)
 }
-::directfs::v1::DfsVolume* DfsVolumeListQuery::add_volume_ids() {
+void DfsVolumeListQuery::add_volume_ids(::google::protobuf::uint32 value) {
+  volume_ids_.Add(value);
   // @@protoc_insertion_point(field_add:directfs.v1.DfsVolumeListQuery.volume_ids)
-  return volume_ids_.Add();
 }
-::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolume >*
-DfsVolumeListQuery::mutable_volume_ids() {
-  // @@protoc_insertion_point(field_mutable_list:directfs.v1.DfsVolumeListQuery.volume_ids)
-  return &volume_ids_;
-}
-const ::google::protobuf::RepeatedPtrField< ::directfs::v1::DfsVolume >&
+const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 DfsVolumeListQuery::volume_ids() const {
   // @@protoc_insertion_point(field_list:directfs.v1.DfsVolumeListQuery.volume_ids)
   return volume_ids_;
+}
+::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+DfsVolumeListQuery::mutable_volume_ids() {
+  // @@protoc_insertion_point(field_mutable_list:directfs.v1.DfsVolumeListQuery.volume_ids)
+  return &volume_ids_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

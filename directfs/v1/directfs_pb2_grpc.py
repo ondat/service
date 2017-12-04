@@ -16,6 +16,11 @@ class DfsClientStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Status = channel.unary_unary(
+        '/directfs.v1.DfsClient/Status',
+        request_serializer=directfs__pb2.DfsClientStatusRequest.SerializeToString,
+        response_deserializer=directfs__pb2.DfsClientStatus.FromString,
+        )
     self.ServerCreate = channel.unary_unary(
         '/directfs.v1.DfsClient/ServerCreate',
         request_serializer=directfs__pb2.DfsHost.SerializeToString,
@@ -62,6 +67,14 @@ class DfsClientServicer(object):
   """*
   DirectFS client configuration and status service.
   """
+
+  def Status(self, request, context):
+    """*
+    Get program status.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def ServerCreate(self, request, context):
     """*
@@ -157,6 +170,11 @@ class DfsClientServicer(object):
 
 def add_DfsClientServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=directfs__pb2.DfsClientStatusRequest.FromString,
+          response_serializer=directfs__pb2.DfsClientStatus.SerializeToString,
+      ),
       'ServerCreate': grpc.unary_unary_rpc_method_handler(
           servicer.ServerCreate,
           request_deserializer=directfs__pb2.DfsHost.FromString,
@@ -214,6 +232,11 @@ class DfsServerStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Status = channel.unary_unary(
+        '/directfs.v1.DfsServer/Status',
+        request_serializer=directfs__pb2.DfsServerStatusRequest.SerializeToString,
+        response_deserializer=directfs__pb2.DfsServerStatus.FromString,
+        )
     self.VolumeCreate = channel.unary_unary(
         '/directfs.v1.DfsServer/VolumeCreate',
         request_serializer=directfs__pb2.DfsVolume.SerializeToString,
@@ -240,6 +263,14 @@ class DfsServerServicer(object):
   """*
   DirectFS server configuration and status service.
   """
+
+  def Status(self, request, context):
+    """*
+    Get program status.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def VolumeCreate(self, request, context):
     """*
@@ -288,6 +319,11 @@ class DfsServerServicer(object):
 
 def add_DfsServerServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=directfs__pb2.DfsServerStatusRequest.FromString,
+          response_serializer=directfs__pb2.DfsServerStatus.SerializeToString,
+      ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
           request_deserializer=directfs__pb2.DfsVolume.FromString,

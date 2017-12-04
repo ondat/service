@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='directfs.proto',
   package='directfs.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\x0b\x64irectfs.v1\x1a\x0c\x63ommon.proto\"\x14\n\x12\x44\x66sHostCredentials\"\x98\x01\n\x07\x44\x66sHost\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x34\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32\x1f.directfs.v1.DfsHostCredentials\"2\n\x0b\x44\x66sHostList\x12#\n\x05hosts\x18\x01 \x03(\x0b\x32\x14.directfs.v1.DfsHost\":\n\x10\x44\x66sHostListQuery\x12&\n\x08host_ids\x18\x01 \x03(\x0b\x32\x14.directfs.v1.DfsHost\"\x16\n\x14\x44\x66sVolumeCredentials\"\x15\n\x13\x44\x66sVolumeStatistics\"\xb5\x02\n\x0f\x44\x66sVolumeStatus\x12\x43\n\nconn_state\x18\x01 \x01(\x0e\x32/.directfs.v1.DfsVolumeStatus.DfsConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12>\n\x07peer_af\x18\x03 \x01(\x0e\x32-.directfs.v1.DfsVolumeStatus.DfsAddressFamily\"b\n\x12\x44\x66sConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"&\n\x10\x44\x66sAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\xee\x01\n\tDfsVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32!.directfs.v1.DfsVolumeCredentials\x12/\n\x05stats\x18\x05 \x01(\x0b\x32 .directfs.v1.DfsVolumeStatistics\x12,\n\x06status\x18\x06 \x01(\x0b\x32\x1c.directfs.v1.DfsVolumeStatus\"<\n\rDfsVolumeList\x12+\n\x07volumes\x18\x01 \x03(\x0b\x32\x1a.directfs.v1.DfsVolumeList\"@\n\x12\x44\x66sVolumeListQuery\x12*\n\nvolume_ids\x18\x01 \x03(\x0b\x32\x16.directfs.v1.DfsVolume2\x9b\x04\n\tDfsClient\x12<\n\x0cServerCreate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerUpdate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerDelete\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\nServerList\x12\x1d.directfs.v1.DfsHostListQuery\x1a\x18.directfs.v1.DfsHostList\"\x00\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x1a.directfs.v1.DfsVolumeList\"\x00\x32\x96\x02\n\tDfsServer\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12I\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x16.directfs.v1.DfsVolume\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\x0b\x64irectfs.v1\x1a\x0c\x63ommon.proto\"\x18\n\x16\x44\x66sClientStatusRequest\"\'\n\x0f\x44\x66sClientStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x18\n\x16\x44\x66sServerStatusRequest\"\'\n\x0f\x44\x66sServerStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x14\n\x12\x44\x66sHostCredentials\"\x98\x01\n\x07\x44\x66sHost\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x34\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32\x1f.directfs.v1.DfsHostCredentials\"2\n\x0b\x44\x66sHostList\x12#\n\x05hosts\x18\x01 \x03(\x0b\x32\x14.directfs.v1.DfsHost\"$\n\x10\x44\x66sHostListQuery\x12\x10\n\x08host_ids\x18\x01 \x03(\r\"\x16\n\x14\x44\x66sVolumeCredentials\"\x15\n\x13\x44\x66sVolumeStatistics\"\xb5\x02\n\x0f\x44\x66sVolumeStatus\x12\x43\n\nconn_state\x18\x01 \x01(\x0e\x32/.directfs.v1.DfsVolumeStatus.DfsConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12>\n\x07peer_af\x18\x03 \x01(\x0e\x32-.directfs.v1.DfsVolumeStatus.DfsAddressFamily\"b\n\x12\x44\x66sConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"&\n\x10\x44\x66sAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\xee\x01\n\tDfsVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32!.directfs.v1.DfsVolumeCredentials\x12/\n\x05stats\x18\x05 \x01(\x0b\x32 .directfs.v1.DfsVolumeStatistics\x12,\n\x06status\x18\x06 \x01(\x0b\x32\x1c.directfs.v1.DfsVolumeStatus\"8\n\rDfsVolumeList\x12\'\n\x07volumes\x18\x01 \x03(\x0b\x32\x16.directfs.v1.DfsVolume\"(\n\x12\x44\x66sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r2\xea\x04\n\tDfsClient\x12M\n\x06Status\x12#.directfs.v1.DfsClientStatusRequest\x1a\x1c.directfs.v1.DfsClientStatus\"\x00\x12<\n\x0cServerCreate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerUpdate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerDelete\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\nServerList\x12\x1d.directfs.v1.DfsHostListQuery\x1a\x18.directfs.v1.DfsHostList\"\x00\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x1a.directfs.v1.DfsVolumeList\"\x00\x32\xe5\x02\n\tDfsServer\x12M\n\x06Status\x12#.directfs.v1.DfsServerStatusRequest\x1a\x1c.directfs.v1.DfsServerStatus\"\x00\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12I\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x16.directfs.v1.DfsVolume\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -55,8 +55,8 @@ _DFSVOLUMESTATUS_DFSCONNECTIONSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=553,
-  serialized_end=651,
+  serialized_start=665,
+  serialized_end=763,
 )
 _sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSCONNECTIONSTATE)
 
@@ -77,10 +77,120 @@ _DFSVOLUMESTATUS_DFSADDRESSFAMILY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=653,
-  serialized_end=691,
+  serialized_start=765,
+  serialized_end=803,
 )
 _sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSADDRESSFAMILY)
+
+
+_DFSCLIENTSTATUSREQUEST = _descriptor.Descriptor(
+  name='DfsClientStatusRequest',
+  full_name='directfs.v1.DfsClientStatusRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=45,
+  serialized_end=69,
+)
+
+
+_DFSCLIENTSTATUS = _descriptor.Descriptor(
+  name='DfsClientStatus',
+  full_name='directfs.v1.DfsClientStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version_info', full_name='directfs.v1.DfsClientStatus.version_info', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=71,
+  serialized_end=110,
+)
+
+
+_DFSSERVERSTATUSREQUEST = _descriptor.Descriptor(
+  name='DfsServerStatusRequest',
+  full_name='directfs.v1.DfsServerStatusRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=112,
+  serialized_end=136,
+)
+
+
+_DFSSERVERSTATUS = _descriptor.Descriptor(
+  name='DfsServerStatus',
+  full_name='directfs.v1.DfsServerStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version_info', full_name='directfs.v1.DfsServerStatus.version_info', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=138,
+  serialized_end=177,
+)
 
 
 _DFSHOSTCREDENTIALS = _descriptor.Descriptor(
@@ -102,8 +212,8 @@ _DFSHOSTCREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=45,
-  serialized_end=65,
+  serialized_start=179,
+  serialized_end=199,
 )
 
 
@@ -161,8 +271,8 @@ _DFSHOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=68,
-  serialized_end=220,
+  serialized_start=202,
+  serialized_end=354,
 )
 
 
@@ -192,8 +302,8 @@ _DFSHOSTLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=222,
-  serialized_end=272,
+  serialized_start=356,
+  serialized_end=406,
 )
 
 
@@ -206,7 +316,7 @@ _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='host_ids', full_name='directfs.v1.DfsHostListQuery.host_ids', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      number=1, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -223,8 +333,8 @@ _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=274,
-  serialized_end=332,
+  serialized_start=408,
+  serialized_end=444,
 )
 
 
@@ -247,8 +357,8 @@ _DFSVOLUMECREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=334,
-  serialized_end=356,
+  serialized_start=446,
+  serialized_end=468,
 )
 
 
@@ -271,8 +381,8 @@ _DFSVOLUMESTATISTICS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=358,
-  serialized_end=379,
+  serialized_start=470,
+  serialized_end=491,
 )
 
 
@@ -318,8 +428,8 @@ _DFSVOLUMESTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=382,
-  serialized_end=691,
+  serialized_start=494,
+  serialized_end=803,
 )
 
 
@@ -384,8 +494,8 @@ _DFSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=694,
-  serialized_end=932,
+  serialized_start=806,
+  serialized_end=1044,
 )
 
 
@@ -415,8 +525,8 @@ _DFSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=934,
-  serialized_end=994,
+  serialized_start=1046,
+  serialized_end=1102,
 )
 
 
@@ -429,7 +539,7 @@ _DFSVOLUMELISTQUERY = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='volume_ids', full_name='directfs.v1.DfsVolumeListQuery.volume_ids', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      number=1, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -446,14 +556,13 @@ _DFSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=996,
-  serialized_end=1060,
+  serialized_start=1104,
+  serialized_end=1144,
 )
 
 _DFSHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _DFSHOST.fields_by_name['credentials'].message_type = _DFSHOSTCREDENTIALS
 _DFSHOSTLIST.fields_by_name['hosts'].message_type = _DFSHOST
-_DFSHOSTLISTQUERY.fields_by_name['host_ids'].message_type = _DFSHOST
 _DFSVOLUMESTATUS.fields_by_name['conn_state'].enum_type = _DFSVOLUMESTATUS_DFSCONNECTIONSTATE
 _DFSVOLUMESTATUS.fields_by_name['peer_af'].enum_type = _DFSVOLUMESTATUS_DFSADDRESSFAMILY
 _DFSVOLUMESTATUS_DFSCONNECTIONSTATE.containing_type = _DFSVOLUMESTATUS
@@ -462,8 +571,11 @@ _DFSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _DFSVOLUME.fields_by_name['credentials'].message_type = _DFSVOLUMECREDENTIALS
 _DFSVOLUME.fields_by_name['stats'].message_type = _DFSVOLUMESTATISTICS
 _DFSVOLUME.fields_by_name['status'].message_type = _DFSVOLUMESTATUS
-_DFSVOLUMELIST.fields_by_name['volumes'].message_type = _DFSVOLUMELIST
-_DFSVOLUMELISTQUERY.fields_by_name['volume_ids'].message_type = _DFSVOLUME
+_DFSVOLUMELIST.fields_by_name['volumes'].message_type = _DFSVOLUME
+DESCRIPTOR.message_types_by_name['DfsClientStatusRequest'] = _DFSCLIENTSTATUSREQUEST
+DESCRIPTOR.message_types_by_name['DfsClientStatus'] = _DFSCLIENTSTATUS
+DESCRIPTOR.message_types_by_name['DfsServerStatusRequest'] = _DFSSERVERSTATUSREQUEST
+DESCRIPTOR.message_types_by_name['DfsServerStatus'] = _DFSSERVERSTATUS
 DESCRIPTOR.message_types_by_name['DfsHostCredentials'] = _DFSHOSTCREDENTIALS
 DESCRIPTOR.message_types_by_name['DfsHost'] = _DFSHOST
 DESCRIPTOR.message_types_by_name['DfsHostList'] = _DFSHOSTLIST
@@ -475,6 +587,34 @@ DESCRIPTOR.message_types_by_name['DfsVolume'] = _DFSVOLUME
 DESCRIPTOR.message_types_by_name['DfsVolumeList'] = _DFSVOLUMELIST
 DESCRIPTOR.message_types_by_name['DfsVolumeListQuery'] = _DFSVOLUMELISTQUERY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+DfsClientStatusRequest = _reflection.GeneratedProtocolMessageType('DfsClientStatusRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DFSCLIENTSTATUSREQUEST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsClientStatusRequest)
+  ))
+_sym_db.RegisterMessage(DfsClientStatusRequest)
+
+DfsClientStatus = _reflection.GeneratedProtocolMessageType('DfsClientStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSCLIENTSTATUS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsClientStatus)
+  ))
+_sym_db.RegisterMessage(DfsClientStatus)
+
+DfsServerStatusRequest = _reflection.GeneratedProtocolMessageType('DfsServerStatusRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DFSSERVERSTATUSREQUEST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsServerStatusRequest)
+  ))
+_sym_db.RegisterMessage(DfsServerStatusRequest)
+
+DfsServerStatus = _reflection.GeneratedProtocolMessageType('DfsServerStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSSERVERSTATUS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsServerStatus)
+  ))
+_sym_db.RegisterMessage(DfsServerStatus)
 
 DfsHostCredentials = _reflection.GeneratedProtocolMessageType('DfsHostCredentials', (_message.Message,), dict(
   DESCRIPTOR = _DFSHOSTCREDENTIALS,
@@ -554,13 +694,22 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1063,
-  serialized_end=1602,
+  serialized_start=1147,
+  serialized_end=1765,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Status',
+    full_name='directfs.v1.DfsClient.Status',
+    index=0,
+    containing_service=None,
+    input_type=_DFSCLIENTSTATUSREQUEST,
+    output_type=_DFSCLIENTSTATUS,
+    options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='ServerCreate',
     full_name='directfs.v1.DfsClient.ServerCreate',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_DFSHOST,
     output_type=common__pb2._RPCRESULT,
@@ -569,7 +718,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ServerUpdate',
     full_name='directfs.v1.DfsClient.ServerUpdate',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_DFSHOST,
     output_type=common__pb2._RPCRESULT,
@@ -578,7 +727,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ServerDelete',
     full_name='directfs.v1.DfsClient.ServerDelete',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_DFSHOST,
     output_type=common__pb2._RPCRESULT,
@@ -587,7 +736,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ServerList',
     full_name='directfs.v1.DfsClient.ServerList',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_DFSHOSTLISTQUERY,
     output_type=_DFSHOSTLIST,
@@ -596,7 +745,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
     full_name='directfs.v1.DfsClient.VolumeCreate',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -605,7 +754,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeUpdate',
     full_name='directfs.v1.DfsClient.VolumeUpdate',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -614,7 +763,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
     full_name='directfs.v1.DfsClient.VolumeDelete',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -623,7 +772,7 @@ _DFSCLIENT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeList',
     full_name='directfs.v1.DfsClient.VolumeList',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_DFSVOLUMELISTQUERY,
     output_type=_DFSVOLUMELIST,
@@ -641,13 +790,22 @@ _DFSSERVER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   options=None,
-  serialized_start=1605,
-  serialized_end=1883,
+  serialized_start=1768,
+  serialized_end=2125,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Status',
+    full_name='directfs.v1.DfsServer.Status',
+    index=0,
+    containing_service=None,
+    input_type=_DFSSERVERSTATUSREQUEST,
+    output_type=_DFSSERVERSTATUS,
+    options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
     full_name='directfs.v1.DfsServer.VolumeCreate',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -656,7 +814,7 @@ _DFSSERVER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeUpdate',
     full_name='directfs.v1.DfsServer.VolumeUpdate',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -665,7 +823,7 @@ _DFSSERVER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
     full_name='directfs.v1.DfsServer.VolumeDelete',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_DFSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -674,7 +832,7 @@ _DFSSERVER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeList',
     full_name='directfs.v1.DfsServer.VolumeList',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_DFSVOLUMELISTQUERY,
     output_type=_DFSVOLUME,
