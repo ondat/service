@@ -7,6 +7,12 @@ import "common.proto";
  * DirectFS client configuration and status service.
  */
 service DfsClient {
+
+    /**
+     * Get program status.
+     */
+    rpc Status(DfsClientStatusRequest) returns (DfsClientStatus) {}
+
     /**
      * Add a remote host entry to be used by volumes.
      *
@@ -80,6 +86,11 @@ service DfsClient {
  */
 service DfsServer {
     /**
+     * Get program status.
+     */
+    rpc Status(DfsServerStatusRequest) returns (DfsServerStatus) {}
+
+    /**
      * Create a volume to be served via DFS. Currently does nothing, but should still
      * be performed as in the near future it will certainly be required.
      *
@@ -110,6 +121,23 @@ service DfsServer {
      * returns a stream of DfsVolume messages, if any are available matching the filter.
      */
     rpc VolumeList(DfsVolumeListQuery) returns (stream DfsVolume) {}
+}
+
+
+message DfsClientStatusRequest {
+    // Empty for now.
+}
+
+message DfsClientStatus {
+    string version_info = 1;
+}
+
+message DfsServerStatusRequest {
+    // Empty for now.
+}
+
+message DfsServerStatus {
+    string version_info = 1;
 }
 
 
@@ -145,7 +173,7 @@ message DfsHostList {
 
 message DfsHostListQuery {
     // An optional list of hosts to query.
-    repeated DfsHost host_ids = 1;
+    repeated uint32 host_ids = 1;
 }
 
 message DfsVolumeCredentials {
@@ -213,10 +241,10 @@ message DfsVolume {
 }
 
 message DfsVolumeList {
-    repeated DfsVolumeList volumes = 1;
+    repeated DfsVolume volumes = 1;
 }
 
 message DfsVolumeListQuery {
     // An optional list of volumes to query.
-    repeated DfsVolume volume_ids = 1;
+    repeated uint32 volume_ids = 1;
 }
