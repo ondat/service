@@ -16,6 +16,11 @@ class FsStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Status = channel.unary_unary(
+        '/filesystem.v1.Fs/Status',
+        request_serializer=filesystem__pb2.FsStatusRequest.SerializeToString,
+        response_deserializer=filesystem__pb2.FsStatus.FromString,
+        )
     self.VolumeCreate = channel.unary_unary(
         '/filesystem.v1.Fs/VolumeCreate',
         request_serializer=filesystem__pb2.FsVolume.SerializeToString,
@@ -62,6 +67,14 @@ class FsServicer(object):
   """*
   Filesystem configuration and status service.
   """
+
+  def Status(self, request, context):
+    """*
+    Get program status.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def VolumeCreate(self, request, context):
     """*
@@ -150,6 +163,11 @@ class FsServicer(object):
 
 def add_FsServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=filesystem__pb2.FsStatusRequest.FromString,
+          response_serializer=filesystem__pb2.FsStatus.SerializeToString,
+      ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
           request_deserializer=filesystem__pb2.FsVolume.FromString,

@@ -19,6 +19,16 @@
 
 namespace filesystem {
 namespace v1 {
+class FsStatusRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<FsStatusRequest>
+     _instance;
+} _FsStatusRequest_default_instance_;
+class FsStatusDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<FsStatus>
+     _instance;
+} _FsStatus_default_instance_;
 class FsVolumeListQueryDefaultTypeInternal {
 public:
  ::google::protobuf::internal::ExplicitlyConstructed<FsVolumeListQuery>
@@ -65,7 +75,7 @@ namespace protobuf_filesystem_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[8];
+::google::protobuf::Metadata file_level_metadata[10];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 }  // namespace
@@ -89,9 +99,22 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsStatus, version_info_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolumeListQuery, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -153,17 +176,21 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsPresentationList, presentations_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(FsVolumeListQuery)},
-  { 6, -1, sizeof(FsVolumeStatistics)},
-  { 11, -1, sizeof(FsVolumeStatus)},
-  { 17, -1, sizeof(FsVolume)},
-  { 32, -1, sizeof(FsVolumeList)},
-  { 38, -1, sizeof(FsPresentationListQuery)},
-  { 44, -1, sizeof(FsPresentation)},
-  { 53, -1, sizeof(FsPresentationList)},
+  { 0, -1, sizeof(FsStatusRequest)},
+  { 5, -1, sizeof(FsStatus)},
+  { 11, -1, sizeof(FsVolumeListQuery)},
+  { 17, -1, sizeof(FsVolumeStatistics)},
+  { 22, -1, sizeof(FsVolumeStatus)},
+  { 28, -1, sizeof(FsVolume)},
+  { 43, -1, sizeof(FsVolumeList)},
+  { 49, -1, sizeof(FsPresentationListQuery)},
+  { 55, -1, sizeof(FsPresentation)},
+  { 64, -1, sizeof(FsPresentationList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_FsStatusRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_FsStatus_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeStatistics_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FsVolumeStatus_default_instance_),
@@ -192,7 +219,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 10);
 }
 
 }  // namespace
@@ -201,7 +228,11 @@ void TableStruct::InitDefaultsImpl() {
 
   ::google::protobuf::internal::InitProtobufDefaults();
   ::common::v1::protobuf_common_2eproto::InitDefaults();
-  _FsVolumeListQuery_default_instance_._instance.DefaultConstruct();
+  _FsStatusRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_FsStatusRequest_default_instance_);_FsStatus_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_FsStatus_default_instance_);_FsVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_FsVolumeListQuery_default_instance_);_FsVolumeStatistics_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
@@ -238,47 +269,50 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\020filesystem.proto\022\rfilesystem.v1\032\014commo"
-      "n.proto\"\'\n\021FsVolumeListQuery\022\022\n\nvolume_i"
-      "ds\030\001 \003(\r\"\024\n\022FsVolumeStatistics\"B\n\016FsVolu"
-      "meStatus\0220\n\nnode_state\030\001 \001(\0162\034.filesyste"
-      "m.v1.FsVolumeState\"\205\003\n\010FsVolume\022&\n\002cc\030\001 "
-      "\001(\0132\032.common.v1.DataplaneCommon\022\021\n\tvolum"
-      "e_id\030\002 \001(\r\022;\n\tnode_type\030\003 \001(\0162(.filesyst"
-      "em.v1.FsVolume.VolumeDeviceType\022\025\n\rdevic"
-      "e_number\030\004 \001(\r\022\020\n\010filename\030\005 \001(\t\022\025\n\rlink"
-      "ed_volume\030\006 \001(\010\022\030\n\020target_volume_id\030\007 \001("
-      "\r\022\031\n\021volume_size_bytes\030\010 \001(\004\0220\n\005stats\030\t "
-      "\001(\0132!.filesystem.v1.FsVolumeStatistics\022-"
-      "\n\006status\030\n \001(\0132\035.filesystem.v1.FsVolumeS"
-      "tatus\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tN"
-      "BD_BLOCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 "
-      "\003(\0132\027.filesystem.v1.FsVolume\"2\n\027FsPresen"
-      "tationListQuery\022\027\n\017presentation_id\030\001 \003(\r"
-      "\"\215\001\n\016FsPresentation\022&\n\002cc\030\001 \001(\0132\032.common"
-      ".v1.DataplaneCommon\022\021\n\tsource_id\030\002 \001(\r\022\021"
-      "\n\ttarget_id\030\003 \001(\r\022-\n\006status\030\005 \001(\0132\035.file"
-      "system.v1.FsVolumeStatus\"J\n\022FsPresentati"
-      "onList\0224\n\rpresentations\030\001 \003(\0132\035.filesyst"
-      "em.v1.FsPresentation*$\n\rFsVolumeState\022\010\n"
-      "\004NONE\020\000\022\t\n\005READY\020\0012\336\004\n\002Fs\022\?\n\014VolumeCreat"
-      "e\022\027.filesystem.v1.FsVolume\032\024.common.v1.R"
-      "pcResult\"\000\022\?\n\014VolumeUpdate\022\027.filesystem."
-      "v1.FsVolume\032\024.common.v1.RpcResult\"\000\022\?\n\014V"
-      "olumeDelete\022\027.filesystem.v1.FsVolume\032\024.c"
-      "ommon.v1.RpcResult\"\000\022M\n\nVolumeList\022 .fil"
-      "esystem.v1.FsVolumeListQuery\032\033.filesyste"
-      "m.v1.FsVolumeList\"\000\022K\n\022PresentationCreat"
-      "e\022\035.filesystem.v1.FsPresentation\032\024.commo"
-      "n.v1.RpcResult\"\000\022K\n\022PresentationUpdate\022\035"
-      ".filesystem.v1.FsPresentation\032\024.common.v"
-      "1.RpcResult\"\000\022K\n\022PresentationDelete\022\035.fi"
-      "lesystem.v1.FsPresentation\032\024.common.v1.R"
-      "pcResult\"\000\022_\n\020PresentationList\022&.filesys"
-      "tem.v1.FsPresentationListQuery\032!.filesys"
-      "tem.v1.FsPresentationList\"\000b\006proto3"
+      "n.proto\"\021\n\017FsStatusRequest\" \n\010FsStatus\022\024"
+      "\n\014version_info\030\001 \001(\t\"\'\n\021FsVolumeListQuer"
+      "y\022\022\n\nvolume_ids\030\001 \003(\r\"\024\n\022FsVolumeStatist"
+      "ics\"B\n\016FsVolumeStatus\0220\n\nnode_state\030\001 \001("
+      "\0162\034.filesystem.v1.FsVolumeState\"\205\003\n\010FsVo"
+      "lume\022&\n\002cc\030\001 \001(\0132\032.common.v1.DataplaneCo"
+      "mmon\022\021\n\tvolume_id\030\002 \001(\r\022;\n\tnode_type\030\003 \001"
+      "(\0162(.filesystem.v1.FsVolume.VolumeDevice"
+      "Type\022\025\n\rdevice_number\030\004 \001(\r\022\020\n\010filename\030"
+      "\005 \001(\t\022\025\n\rlinked_volume\030\006 \001(\010\022\030\n\020target_v"
+      "olume_id\030\007 \001(\r\022\031\n\021volume_size_bytes\030\010 \001("
+      "\004\0220\n\005stats\030\t \001(\0132!.filesystem.v1.FsVolum"
+      "eStatistics\022-\n\006status\030\n \001(\0132\035.filesystem"
+      ".v1.FsVolumeStatus\"+\n\020VolumeDeviceType\022\010"
+      "\n\004FILE\020\000\022\r\n\tNBD_BLOCK\020\001\"8\n\014FsVolumeList\022"
+      "(\n\007volumes\030\001 \003(\0132\027.filesystem.v1.FsVolum"
+      "e\"2\n\027FsPresentationListQuery\022\027\n\017presenta"
+      "tion_id\030\001 \003(\r\"\215\001\n\016FsPresentation\022&\n\002cc\030\001"
+      " \001(\0132\032.common.v1.DataplaneCommon\022\021\n\tsour"
+      "ce_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\022-\n\006status"
+      "\030\005 \001(\0132\035.filesystem.v1.FsVolumeStatus\"J\n"
+      "\022FsPresentationList\0224\n\rpresentations\030\001 \003"
+      "(\0132\035.filesystem.v1.FsPresentation*$\n\rFsV"
+      "olumeState\022\010\n\004NONE\020\000\022\t\n\005READY\020\0012\243\005\n\002Fs\022C"
+      "\n\006Status\022\036.filesystem.v1.FsStatusRequest"
+      "\032\027.filesystem.v1.FsStatus\"\000\022\?\n\014VolumeCre"
+      "ate\022\027.filesystem.v1.FsVolume\032\024.common.v1"
+      ".RpcResult\"\000\022\?\n\014VolumeUpdate\022\027.filesyste"
+      "m.v1.FsVolume\032\024.common.v1.RpcResult\"\000\022\?\n"
+      "\014VolumeDelete\022\027.filesystem.v1.FsVolume\032\024"
+      ".common.v1.RpcResult\"\000\022M\n\nVolumeList\022 .f"
+      "ilesystem.v1.FsVolumeListQuery\032\033.filesys"
+      "tem.v1.FsVolumeList\"\000\022K\n\022PresentationCre"
+      "ate\022\035.filesystem.v1.FsPresentation\032\024.com"
+      "mon.v1.RpcResult\"\000\022K\n\022PresentationUpdate"
+      "\022\035.filesystem.v1.FsPresentation\032\024.common"
+      ".v1.RpcResult\"\000\022K\n\022PresentationDelete\022\035."
+      "filesystem.v1.FsPresentation\032\024.common.v1"
+      ".RpcResult\"\000\022_\n\020PresentationList\022&.files"
+      "ystem.v1.FsPresentationListQuery\032!.files"
+      "ystem.v1.FsPresentationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1555);
+      descriptor, 1677);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "filesystem.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -333,6 +367,513 @@ bool FsVolumeState_IsValid(int value) {
   }
 }
 
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+FsStatusRequest::FsStatusRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_filesystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:filesystem.v1.FsStatusRequest)
+}
+FsStatusRequest::FsStatusRequest(const FsStatusRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:filesystem.v1.FsStatusRequest)
+}
+
+void FsStatusRequest::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+FsStatusRequest::~FsStatusRequest() {
+  // @@protoc_insertion_point(destructor:filesystem.v1.FsStatusRequest)
+  SharedDtor();
+}
+
+void FsStatusRequest::SharedDtor() {
+}
+
+void FsStatusRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* FsStatusRequest::descriptor() {
+  protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_filesystem_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const FsStatusRequest& FsStatusRequest::default_instance() {
+  protobuf_filesystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+FsStatusRequest* FsStatusRequest::New(::google::protobuf::Arena* arena) const {
+  FsStatusRequest* n = new FsStatusRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void FsStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:filesystem.v1.FsStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool FsStatusRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:filesystem.v1.FsStatusRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:filesystem.v1.FsStatusRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:filesystem.v1.FsStatusRequest)
+  return false;
+#undef DO_
+}
+
+void FsStatusRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:filesystem.v1.FsStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:filesystem.v1.FsStatusRequest)
+}
+
+::google::protobuf::uint8* FsStatusRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:filesystem.v1.FsStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:filesystem.v1.FsStatusRequest)
+  return target;
+}
+
+size_t FsStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:filesystem.v1.FsStatusRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void FsStatusRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:filesystem.v1.FsStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const FsStatusRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const FsStatusRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:filesystem.v1.FsStatusRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:filesystem.v1.FsStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void FsStatusRequest::MergeFrom(const FsStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:filesystem.v1.FsStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void FsStatusRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:filesystem.v1.FsStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void FsStatusRequest::CopyFrom(const FsStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:filesystem.v1.FsStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FsStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void FsStatusRequest::Swap(FsStatusRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void FsStatusRequest::InternalSwap(FsStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata FsStatusRequest::GetMetadata() const {
+  protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_filesystem_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// FsStatusRequest
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int FsStatus::kVersionInfoFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+FsStatus::FsStatus()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_filesystem_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:filesystem.v1.FsStatus)
+}
+FsStatus::FsStatus(const FsStatus& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_info().size() > 0) {
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+  // @@protoc_insertion_point(copy_constructor:filesystem.v1.FsStatus)
+}
+
+void FsStatus::SharedCtor() {
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+FsStatus::~FsStatus() {
+  // @@protoc_insertion_point(destructor:filesystem.v1.FsStatus)
+  SharedDtor();
+}
+
+void FsStatus::SharedDtor() {
+  version_info_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void FsStatus::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* FsStatus::descriptor() {
+  protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_filesystem_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const FsStatus& FsStatus::default_instance() {
+  protobuf_filesystem_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+FsStatus* FsStatus::New(::google::protobuf::Arena* arena) const {
+  FsStatus* n = new FsStatus;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void FsStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:filesystem.v1.FsStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool FsStatus::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:filesystem.v1.FsStatus)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string version_info = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_version_info()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->version_info().data(), static_cast<int>(this->version_info().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "filesystem.v1.FsStatus.version_info"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:filesystem.v1.FsStatus)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:filesystem.v1.FsStatus)
+  return false;
+#undef DO_
+}
+
+void FsStatus::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:filesystem.v1.FsStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "filesystem.v1.FsStatus.version_info");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->version_info(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:filesystem.v1.FsStatus)
+}
+
+::google::protobuf::uint8* FsStatus::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:filesystem.v1.FsStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "filesystem.v1.FsStatus.version_info");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->version_info(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:filesystem.v1.FsStatus)
+  return target;
+}
+
+size_t FsStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:filesystem.v1.FsStatus)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->version_info());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void FsStatus::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:filesystem.v1.FsStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const FsStatus* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const FsStatus>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:filesystem.v1.FsStatus)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:filesystem.v1.FsStatus)
+    MergeFrom(*source);
+  }
+}
+
+void FsStatus::MergeFrom(const FsStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:filesystem.v1.FsStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.version_info().size() > 0) {
+
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+}
+
+void FsStatus::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:filesystem.v1.FsStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void FsStatus::CopyFrom(const FsStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:filesystem.v1.FsStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FsStatus::IsInitialized() const {
+  return true;
+}
+
+void FsStatus::Swap(FsStatus* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void FsStatus::InternalSwap(FsStatus* other) {
+  using std::swap;
+  version_info_.Swap(&other->version_info_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata FsStatus::GetMetadata() const {
+  protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_filesystem_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// FsStatus
+
+// string version_info = 1;
+void FsStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& FsStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:filesystem.v1.FsStatus.version_info)
+  return version_info_.GetNoArena();
+}
+void FsStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:filesystem.v1.FsStatus.version_info)
+}
+#if LANG_CXX11
+void FsStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:filesystem.v1.FsStatus.version_info)
+}
+#endif
+void FsStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:filesystem.v1.FsStatus.version_info)
+}
+void FsStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:filesystem.v1.FsStatus.version_info)
+}
+::std::string* FsStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:filesystem.v1.FsStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* FsStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:filesystem.v1.FsStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void FsStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsStatus.version_info)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 

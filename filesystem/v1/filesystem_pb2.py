@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='filesystem.proto',
   package='filesystem.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x10\x66ilesystem.proto\x12\rfilesystem.v1\x1a\x0c\x63ommon.proto\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"B\n\x0e\x46sVolumeStatus\x12\x30\n\nnode_state\x18\x01 \x01(\x0e\x32\x1c.filesystem.v1.FsVolumeState\"\x85\x03\n\x08\x46sVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.filesystem.v1.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12\x30\n\x05stats\x18\t \x01(\x0b\x32!.filesystem.v1.FsVolumeStatistics\x12-\n\x06status\x18\n \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.filesystem.v1.FsVolume\"2\n\x17\x46sPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"\x8d\x01\n\x0e\x46sPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\x12-\n\x06status\x18\x05 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.filesystem.v1.FsPresentation*$\n\rFsVolumeState\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05READY\x10\x01\x32\xde\x04\n\x02\x46s\x12?\n\x0cVolumeCreate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeUpdate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeDelete\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12M\n\nVolumeList\x12 .filesystem.v1.FsVolumeListQuery\x1a\x1b.filesystem.v1.FsVolumeList\"\x00\x12K\n\x12PresentationCreate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationUpdate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationDelete\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.filesystem.v1.FsPresentationListQuery\x1a!.filesystem.v1.FsPresentationList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x10\x66ilesystem.proto\x12\rfilesystem.v1\x1a\x0c\x63ommon.proto\"\x11\n\x0f\x46sStatusRequest\" \n\x08\x46sStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"B\n\x0e\x46sVolumeStatus\x12\x30\n\nnode_state\x18\x01 \x01(\x0e\x32\x1c.filesystem.v1.FsVolumeState\"\x85\x03\n\x08\x46sVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.filesystem.v1.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x15\n\rlinked_volume\x18\x06 \x01(\x08\x12\x18\n\x10target_volume_id\x18\x07 \x01(\r\x12\x19\n\x11volume_size_bytes\x18\x08 \x01(\x04\x12\x30\n\x05stats\x18\t \x01(\x0b\x32!.filesystem.v1.FsVolumeStatistics\x12-\n\x06status\x18\n \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.filesystem.v1.FsVolume\"2\n\x17\x46sPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"\x8d\x01\n\x0e\x46sPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\x12-\n\x06status\x18\x05 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.filesystem.v1.FsPresentation*$\n\rFsVolumeState\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05READY\x10\x01\x32\xa3\x05\n\x02\x46s\x12\x43\n\x06Status\x12\x1e.filesystem.v1.FsStatusRequest\x1a\x17.filesystem.v1.FsStatus\"\x00\x12?\n\x0cVolumeCreate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeUpdate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeDelete\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12M\n\nVolumeList\x12 .filesystem.v1.FsVolumeListQuery\x1a\x1b.filesystem.v1.FsVolumeList\"\x00\x12K\n\x12PresentationCreate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationUpdate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationDelete\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.filesystem.v1.FsPresentationListQuery\x1a!.filesystem.v1.FsPresentationList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -42,8 +42,8 @@ _FSVOLUMESTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=902,
-  serialized_end=938,
+  serialized_start=955,
+  serialized_end=991,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUMESTATE)
 
@@ -69,10 +69,65 @@ _FSVOLUME_VOLUMEDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=527,
-  serialized_end=570,
+  serialized_start=580,
+  serialized_end=623,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMEDEVICETYPE)
+
+
+_FSSTATUSREQUEST = _descriptor.Descriptor(
+  name='FsStatusRequest',
+  full_name='filesystem.v1.FsStatusRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=49,
+  serialized_end=66,
+)
+
+
+_FSSTATUS = _descriptor.Descriptor(
+  name='FsStatus',
+  full_name='filesystem.v1.FsStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version_info', full_name='filesystem.v1.FsStatus.version_info', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=68,
+  serialized_end=100,
+)
 
 
 _FSVOLUMELISTQUERY = _descriptor.Descriptor(
@@ -101,8 +156,8 @@ _FSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=49,
-  serialized_end=88,
+  serialized_start=102,
+  serialized_end=141,
 )
 
 
@@ -125,8 +180,8 @@ _FSVOLUMESTATISTICS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=90,
-  serialized_end=110,
+  serialized_start=143,
+  serialized_end=163,
 )
 
 
@@ -156,8 +211,8 @@ _FSVOLUMESTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=112,
-  serialized_end=178,
+  serialized_start=165,
+  serialized_end=231,
 )
 
 
@@ -251,8 +306,8 @@ _FSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=181,
-  serialized_end=570,
+  serialized_start=234,
+  serialized_end=623,
 )
 
 
@@ -282,8 +337,8 @@ _FSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=572,
-  serialized_end=628,
+  serialized_start=625,
+  serialized_end=681,
 )
 
 
@@ -313,8 +368,8 @@ _FSPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=630,
-  serialized_end=680,
+  serialized_start=683,
+  serialized_end=733,
 )
 
 
@@ -365,8 +420,8 @@ _FSPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=683,
-  serialized_end=824,
+  serialized_start=736,
+  serialized_end=877,
 )
 
 
@@ -396,8 +451,8 @@ _FSPRESENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=826,
-  serialized_end=900,
+  serialized_start=879,
+  serialized_end=953,
 )
 
 _FSVOLUMESTATUS.fields_by_name['node_state'].enum_type = _FSVOLUMESTATE
@@ -410,6 +465,8 @@ _FSVOLUMELIST.fields_by_name['volumes'].message_type = _FSVOLUME
 _FSPRESENTATION.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _FSPRESENTATION.fields_by_name['status'].message_type = _FSVOLUMESTATUS
 _FSPRESENTATIONLIST.fields_by_name['presentations'].message_type = _FSPRESENTATION
+DESCRIPTOR.message_types_by_name['FsStatusRequest'] = _FSSTATUSREQUEST
+DESCRIPTOR.message_types_by_name['FsStatus'] = _FSSTATUS
 DESCRIPTOR.message_types_by_name['FsVolumeListQuery'] = _FSVOLUMELISTQUERY
 DESCRIPTOR.message_types_by_name['FsVolumeStatistics'] = _FSVOLUMESTATISTICS
 DESCRIPTOR.message_types_by_name['FsVolumeStatus'] = _FSVOLUMESTATUS
@@ -420,6 +477,20 @@ DESCRIPTOR.message_types_by_name['FsPresentation'] = _FSPRESENTATION
 DESCRIPTOR.message_types_by_name['FsPresentationList'] = _FSPRESENTATIONLIST
 DESCRIPTOR.enum_types_by_name['FsVolumeState'] = _FSVOLUMESTATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+FsStatusRequest = _reflection.GeneratedProtocolMessageType('FsStatusRequest', (_message.Message,), dict(
+  DESCRIPTOR = _FSSTATUSREQUEST,
+  __module__ = 'filesystem_pb2'
+  # @@protoc_insertion_point(class_scope:filesystem.v1.FsStatusRequest)
+  ))
+_sym_db.RegisterMessage(FsStatusRequest)
+
+FsStatus = _reflection.GeneratedProtocolMessageType('FsStatus', (_message.Message,), dict(
+  DESCRIPTOR = _FSSTATUS,
+  __module__ = 'filesystem_pb2'
+  # @@protoc_insertion_point(class_scope:filesystem.v1.FsStatus)
+  ))
+_sym_db.RegisterMessage(FsStatus)
 
 FsVolumeListQuery = _reflection.GeneratedProtocolMessageType('FsVolumeListQuery', (_message.Message,), dict(
   DESCRIPTOR = _FSVOLUMELISTQUERY,
@@ -485,13 +556,22 @@ _FS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=941,
-  serialized_end=1547,
+  serialized_start=994,
+  serialized_end=1669,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Status',
+    full_name='filesystem.v1.Fs.Status',
+    index=0,
+    containing_service=None,
+    input_type=_FSSTATUSREQUEST,
+    output_type=_FSSTATUS,
+    options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
     full_name='filesystem.v1.Fs.VolumeCreate',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_FSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -500,7 +580,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeUpdate',
     full_name='filesystem.v1.Fs.VolumeUpdate',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_FSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -509,7 +589,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
     full_name='filesystem.v1.Fs.VolumeDelete',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_FSVOLUME,
     output_type=common__pb2._RPCRESULT,
@@ -518,7 +598,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='VolumeList',
     full_name='filesystem.v1.Fs.VolumeList',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_FSVOLUMELISTQUERY,
     output_type=_FSVOLUMELIST,
@@ -527,7 +607,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='PresentationCreate',
     full_name='filesystem.v1.Fs.PresentationCreate',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_FSPRESENTATION,
     output_type=common__pb2._RPCRESULT,
@@ -536,7 +616,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='PresentationUpdate',
     full_name='filesystem.v1.Fs.PresentationUpdate',
-    index=5,
+    index=6,
     containing_service=None,
     input_type=_FSPRESENTATION,
     output_type=common__pb2._RPCRESULT,
@@ -545,7 +625,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='PresentationDelete',
     full_name='filesystem.v1.Fs.PresentationDelete',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_FSPRESENTATION,
     output_type=common__pb2._RPCRESULT,
@@ -554,7 +634,7 @@ _FS = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='PresentationList',
     full_name='filesystem.v1.Fs.PresentationList',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_FSPRESENTATIONLISTQUERY,
     output_type=_FSPRESENTATIONLIST,

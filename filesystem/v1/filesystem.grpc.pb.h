@@ -38,6 +38,12 @@ class Fs final {
    public:
     virtual ~StubInterface() {}
     // *
+    // Get program status.
+    virtual ::grpc::Status Status(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::filesystem::v1::FsStatus* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::filesystem::v1::FsStatus>> AsyncStatus(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::filesystem::v1::FsStatus>>(AsyncStatusRaw(context, request, cq));
+    }
+    // *
     // Create the specified FsVolume.
     //
     // returns RpcResult
@@ -106,6 +112,7 @@ class Fs final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::filesystem::v1::FsPresentationList>>(AsyncPresentationListRaw(context, request, cq));
     }
   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::filesystem::v1::FsStatus>* AsyncStatusRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) = 0;
@@ -118,6 +125,10 @@ class Fs final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    ::grpc::Status Status(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::filesystem::v1::FsStatus* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsStatus>> AsyncStatus(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsStatus>>(AsyncStatusRaw(context, request, cq));
+    }
     ::grpc::Status VolumeCreate(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::common::v1::RpcResult* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>> AsyncVolumeCreate(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>>(AsyncVolumeCreateRaw(context, request, cq));
@@ -153,6 +164,7 @@ class Fs final {
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    ::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsStatus>* AsyncStatusRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::grpc::CompletionQueue* cq) override;
@@ -161,6 +173,7 @@ class Fs final {
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncPresentationUpdateRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsPresentation& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncPresentationDeleteRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsPresentation& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsPresentationList>* AsyncPresentationListRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsPresentationListQuery& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::RpcMethod rpcmethod_Status_;
     const ::grpc::RpcMethod rpcmethod_VolumeCreate_;
     const ::grpc::RpcMethod rpcmethod_VolumeUpdate_;
     const ::grpc::RpcMethod rpcmethod_VolumeDelete_;
@@ -176,6 +189,9 @@ class Fs final {
    public:
     Service();
     virtual ~Service();
+    // *
+    // Get program status.
+    virtual ::grpc::Status Status(::grpc::ServerContext* context, const ::filesystem::v1::FsStatusRequest* request, ::filesystem::v1::FsStatus* response);
     // *
     // Create the specified FsVolume.
     //
@@ -222,12 +238,32 @@ class Fs final {
     virtual ::grpc::Status PresentationList(::grpc::ServerContext* context, const ::filesystem::v1::FsPresentationListQuery* request, ::filesystem::v1::FsPresentationList* response);
   };
   template <class BaseClass>
+  class WithAsyncMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_Status() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::filesystem::v1::FsStatusRequest* request, ::filesystem::v1::FsStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatus(::grpc::ServerContext* context, ::filesystem::v1::FsStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::filesystem::v1::FsStatus>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodAsync(0);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_VolumeCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -238,7 +274,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeCreate(::grpc::ServerContext* context, ::filesystem::v1::FsVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -247,7 +283,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_VolumeUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -258,7 +294,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeUpdate(::grpc::ServerContext* context, ::filesystem::v1::FsVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -267,7 +303,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_VolumeDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -278,7 +314,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeDelete(::grpc::ServerContext* context, ::filesystem::v1::FsVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -287,7 +323,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeList() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_VolumeList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -298,7 +334,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeList(::grpc::ServerContext* context, ::filesystem::v1::FsVolumeListQuery* request, ::grpc::ServerAsyncResponseWriter< ::filesystem::v1::FsVolumeList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -307,7 +343,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_PresentationCreate() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_PresentationCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -318,7 +354,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPresentationCreate(::grpc::ServerContext* context, ::filesystem::v1::FsPresentation* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -327,7 +363,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_PresentationUpdate() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_PresentationUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -338,7 +374,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPresentationUpdate(::grpc::ServerContext* context, ::filesystem::v1::FsPresentation* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -347,7 +383,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_PresentationDelete() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_PresentationDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -358,7 +394,7 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPresentationDelete(::grpc::ServerContext* context, ::filesystem::v1::FsPresentation* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -367,7 +403,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_PresentationList() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_PresentationList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -378,17 +414,34 @@ class Fs final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestPresentationList(::grpc::ServerContext* context, ::filesystem::v1::FsPresentationListQuery* request, ::grpc::ServerAsyncResponseWriter< ::filesystem::v1::FsPresentationList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_VolumeCreate<WithAsyncMethod_VolumeUpdate<WithAsyncMethod_VolumeDelete<WithAsyncMethod_VolumeList<WithAsyncMethod_PresentationCreate<WithAsyncMethod_PresentationUpdate<WithAsyncMethod_PresentationDelete<WithAsyncMethod_PresentationList<Service > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Status<WithAsyncMethod_VolumeCreate<WithAsyncMethod_VolumeUpdate<WithAsyncMethod_VolumeDelete<WithAsyncMethod_VolumeList<WithAsyncMethod_PresentationCreate<WithAsyncMethod_PresentationUpdate<WithAsyncMethod_PresentationDelete<WithAsyncMethod_PresentationList<Service > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithGenericMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_Status() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::filesystem::v1::FsStatusRequest* request, ::filesystem::v1::FsStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
   template <class BaseClass>
   class WithGenericMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodGeneric(0);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_VolumeCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -405,7 +458,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_VolumeUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -422,7 +475,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_VolumeDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -439,7 +492,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeList() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_VolumeList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -456,7 +509,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_PresentationCreate() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_PresentationCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -473,7 +526,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_PresentationUpdate() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_PresentationUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -490,7 +543,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_PresentationDelete() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_PresentationDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -507,7 +560,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_PresentationList() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_PresentationList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -519,12 +572,32 @@ class Fs final {
     }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_Status() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsStatusRequest, ::filesystem::v1::FsStatus>(std::bind(&WithStreamedUnaryMethod_Status<BaseClass>::StreamedStatus, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::filesystem::v1::FsStatusRequest* request, ::filesystem::v1::FsStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::filesystem::v1::FsStatusRequest,::filesystem::v1::FsStatus>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodStreamed(0,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeCreate<BaseClass>::StreamedVolumeCreate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeCreate() override {
@@ -544,7 +617,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeUpdate<BaseClass>::StreamedVolumeUpdate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeUpdate() override {
@@ -564,7 +637,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeDelete<BaseClass>::StreamedVolumeDelete, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeDelete() override {
@@ -584,7 +657,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeList() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsVolumeListQuery, ::filesystem::v1::FsVolumeList>(std::bind(&WithStreamedUnaryMethod_VolumeList<BaseClass>::StreamedVolumeList, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeList() override {
@@ -604,7 +677,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_PresentationCreate() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_PresentationCreate<BaseClass>::StreamedPresentationCreate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PresentationCreate() override {
@@ -624,7 +697,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_PresentationUpdate() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_PresentationUpdate<BaseClass>::StreamedPresentationUpdate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PresentationUpdate() override {
@@ -644,7 +717,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_PresentationDelete() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_PresentationDelete<BaseClass>::StreamedPresentationDelete, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PresentationDelete() override {
@@ -664,7 +737,7 @@ class Fs final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_PresentationList() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::StreamedUnaryHandler< ::filesystem::v1::FsPresentationListQuery, ::filesystem::v1::FsPresentationList>(std::bind(&WithStreamedUnaryMethod_PresentationList<BaseClass>::StreamedPresentationList, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_PresentationList() override {
@@ -678,9 +751,9 @@ class Fs final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedPresentationList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::filesystem::v1::FsPresentationListQuery,::filesystem::v1::FsPresentationList>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<WithStreamedUnaryMethod_PresentationCreate<WithStreamedUnaryMethod_PresentationUpdate<WithStreamedUnaryMethod_PresentationDelete<WithStreamedUnaryMethod_PresentationList<Service > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<WithStreamedUnaryMethod_PresentationCreate<WithStreamedUnaryMethod_PresentationUpdate<WithStreamedUnaryMethod_PresentationDelete<WithStreamedUnaryMethod_PresentationList<Service > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<WithStreamedUnaryMethod_PresentationCreate<WithStreamedUnaryMethod_PresentationUpdate<WithStreamedUnaryMethod_PresentationDelete<WithStreamedUnaryMethod_PresentationList<Service > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<WithStreamedUnaryMethod_PresentationCreate<WithStreamedUnaryMethod_PresentationUpdate<WithStreamedUnaryMethod_PresentationDelete<WithStreamedUnaryMethod_PresentationList<Service > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

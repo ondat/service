@@ -42,6 +42,12 @@ extern DirectorPresentationListDefaultTypeInternal _DirectorPresentationList_def
 class DirectorPresentationListQuery;
 class DirectorPresentationListQueryDefaultTypeInternal;
 extern DirectorPresentationListQueryDefaultTypeInternal _DirectorPresentationListQuery_default_instance_;
+class DirectorStatus;
+class DirectorStatusDefaultTypeInternal;
+extern DirectorStatusDefaultTypeInternal _DirectorStatus_default_instance_;
+class DirectorStatusRequest;
+class DirectorStatusRequestDefaultTypeInternal;
+extern DirectorStatusRequestDefaultTypeInternal _DirectorStatusRequest_default_instance_;
 class DirectorVolume;
 class DirectorVolumeDefaultTypeInternal;
 extern DirectorVolumeDefaultTypeInternal _DirectorVolume_default_instance_;
@@ -80,6 +86,201 @@ void InitDefaults();
 
 // ===================================================================
 
+class DirectorStatusRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:director.v1.DirectorStatusRequest) */ {
+ public:
+  DirectorStatusRequest();
+  virtual ~DirectorStatusRequest();
+
+  DirectorStatusRequest(const DirectorStatusRequest& from);
+
+  inline DirectorStatusRequest& operator=(const DirectorStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DirectorStatusRequest(DirectorStatusRequest&& from) noexcept
+    : DirectorStatusRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DirectorStatusRequest& operator=(DirectorStatusRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DirectorStatusRequest& default_instance();
+
+  static inline const DirectorStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const DirectorStatusRequest*>(
+               &_DirectorStatusRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(DirectorStatusRequest* other);
+  friend void swap(DirectorStatusRequest& a, DirectorStatusRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DirectorStatusRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DirectorStatusRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DirectorStatusRequest& from);
+  void MergeFrom(const DirectorStatusRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DirectorStatusRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:director.v1.DirectorStatusRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_director_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class DirectorStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:director.v1.DirectorStatus) */ {
+ public:
+  DirectorStatus();
+  virtual ~DirectorStatus();
+
+  DirectorStatus(const DirectorStatus& from);
+
+  inline DirectorStatus& operator=(const DirectorStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  DirectorStatus(DirectorStatus&& from) noexcept
+    : DirectorStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline DirectorStatus& operator=(DirectorStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DirectorStatus& default_instance();
+
+  static inline const DirectorStatus* internal_default_instance() {
+    return reinterpret_cast<const DirectorStatus*>(
+               &_DirectorStatus_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    1;
+
+  void Swap(DirectorStatus* other);
+  friend void swap(DirectorStatus& a, DirectorStatus& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DirectorStatus* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  DirectorStatus* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const DirectorStatus& from);
+  void MergeFrom(const DirectorStatus& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(DirectorStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string version_info = 1;
+  void clear_version_info();
+  static const int kVersionInfoFieldNumber = 1;
+  const ::std::string& version_info() const;
+  void set_version_info(const ::std::string& value);
+  #if LANG_CXX11
+  void set_version_info(::std::string&& value);
+  #endif
+  void set_version_info(const char* value);
+  void set_version_info(const char* value, size_t size);
+  ::std::string* mutable_version_info();
+  ::std::string* release_version_info();
+  void set_allocated_version_info(::std::string* version_info);
+
+  // @@protoc_insertion_point(class_scope:director.v1.DirectorStatus)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr version_info_;
+  mutable int _cached_size_;
+  friend struct protobuf_director_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class DirectorVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:director.v1.DirectorVolumeListQuery) */ {
  public:
   DirectorVolumeListQuery();
@@ -114,7 +315,7 @@ class DirectorVolumeListQuery : public ::google::protobuf::Message /* @@protoc_i
                &_DirectorVolumeListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    2;
 
   void Swap(DirectorVolumeListQuery* other);
   friend void swap(DirectorVolumeListQuery& a, DirectorVolumeListQuery& b) {
@@ -218,7 +419,7 @@ class DirectorVolumeStatistics : public ::google::protobuf::Message /* @@protoc_
                &_DirectorVolumeStatistics_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
+    3;
 
   void Swap(DirectorVolumeStatistics* other);
   friend void swap(DirectorVolumeStatistics& a, DirectorVolumeStatistics& b) {
@@ -308,7 +509,7 @@ class DirectorVolumeStatus : public ::google::protobuf::Message /* @@protoc_inse
                &_DirectorVolumeStatus_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    4;
 
   void Swap(DirectorVolumeStatus* other);
   friend void swap(DirectorVolumeStatus& a, DirectorVolumeStatus& b) {
@@ -398,7 +599,7 @@ class DirectorVolume : public ::google::protobuf::Message /* @@protoc_insertion_
                &_DirectorVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    5;
 
   void Swap(DirectorVolume* other);
   friend void swap(DirectorVolume& a, DirectorVolume& b) {
@@ -560,7 +761,7 @@ class DirectorVolumeList : public ::google::protobuf::Message /* @@protoc_insert
                &_DirectorVolumeList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    6;
 
   void Swap(DirectorVolumeList* other);
   friend void swap(DirectorVolumeList& a, DirectorVolumeList& b) {
@@ -663,7 +864,7 @@ class DirectorPresentationListQuery : public ::google::protobuf::Message /* @@pr
                &_DirectorPresentationListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    7;
 
   void Swap(DirectorPresentationListQuery* other);
   friend void swap(DirectorPresentationListQuery& a, DirectorPresentationListQuery& b) {
@@ -767,7 +968,7 @@ class DirectorPresentation : public ::google::protobuf::Message /* @@protoc_inse
                &_DirectorPresentation_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    6;
+    8;
 
   void Swap(DirectorPresentation* other);
   friend void swap(DirectorPresentation& a, DirectorPresentation& b) {
@@ -881,7 +1082,7 @@ class DirectorPresentationList : public ::google::protobuf::Message /* @@protoc_
                &_DirectorPresentationList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    9;
 
   void Swap(DirectorPresentationList* other);
   friend void swap(DirectorPresentationList& a, DirectorPresentationList& b) {
@@ -958,6 +1159,67 @@ class DirectorPresentationList : public ::google::protobuf::Message /* @@protoc_
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// DirectorStatusRequest
+
+// -------------------------------------------------------------------
+
+// DirectorStatus
+
+// string version_info = 1;
+inline void DirectorStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& DirectorStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:director.v1.DirectorStatus.version_info)
+  return version_info_.GetNoArena();
+}
+inline void DirectorStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:director.v1.DirectorStatus.version_info)
+}
+#if LANG_CXX11
+inline void DirectorStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:director.v1.DirectorStatus.version_info)
+}
+#endif
+inline void DirectorStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:director.v1.DirectorStatus.version_info)
+}
+inline void DirectorStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:director.v1.DirectorStatus.version_info)
+}
+inline ::std::string* DirectorStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:director.v1.DirectorStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* DirectorStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:director.v1.DirectorStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void DirectorStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:director.v1.DirectorStatus.version_info)
+}
+
+// -------------------------------------------------------------------
+
 // DirectorVolumeListQuery
 
 // repeated uint32 volume_ids = 1;
@@ -1386,6 +1648,10 @@ DirectorPresentationList::presentations() const {
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

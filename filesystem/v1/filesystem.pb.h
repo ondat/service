@@ -43,6 +43,12 @@ extern FsPresentationListDefaultTypeInternal _FsPresentationList_default_instanc
 class FsPresentationListQuery;
 class FsPresentationListQueryDefaultTypeInternal;
 extern FsPresentationListQueryDefaultTypeInternal _FsPresentationListQuery_default_instance_;
+class FsStatus;
+class FsStatusDefaultTypeInternal;
+extern FsStatusDefaultTypeInternal _FsStatus_default_instance_;
+class FsStatusRequest;
+class FsStatusRequestDefaultTypeInternal;
+extern FsStatusRequestDefaultTypeInternal _FsStatusRequest_default_instance_;
 class FsVolume;
 class FsVolumeDefaultTypeInternal;
 extern FsVolumeDefaultTypeInternal _FsVolume_default_instance_;
@@ -123,6 +129,201 @@ inline bool FsVolumeState_Parse(
 }
 // ===================================================================
 
+class FsStatusRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:filesystem.v1.FsStatusRequest) */ {
+ public:
+  FsStatusRequest();
+  virtual ~FsStatusRequest();
+
+  FsStatusRequest(const FsStatusRequest& from);
+
+  inline FsStatusRequest& operator=(const FsStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  FsStatusRequest(FsStatusRequest&& from) noexcept
+    : FsStatusRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline FsStatusRequest& operator=(FsStatusRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FsStatusRequest& default_instance();
+
+  static inline const FsStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const FsStatusRequest*>(
+               &_FsStatusRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(FsStatusRequest* other);
+  friend void swap(FsStatusRequest& a, FsStatusRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FsStatusRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  FsStatusRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const FsStatusRequest& from);
+  void MergeFrom(const FsStatusRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(FsStatusRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:filesystem.v1.FsStatusRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_filesystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class FsStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:filesystem.v1.FsStatus) */ {
+ public:
+  FsStatus();
+  virtual ~FsStatus();
+
+  FsStatus(const FsStatus& from);
+
+  inline FsStatus& operator=(const FsStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  FsStatus(FsStatus&& from) noexcept
+    : FsStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline FsStatus& operator=(FsStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FsStatus& default_instance();
+
+  static inline const FsStatus* internal_default_instance() {
+    return reinterpret_cast<const FsStatus*>(
+               &_FsStatus_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    1;
+
+  void Swap(FsStatus* other);
+  friend void swap(FsStatus& a, FsStatus& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FsStatus* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  FsStatus* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const FsStatus& from);
+  void MergeFrom(const FsStatus& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(FsStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string version_info = 1;
+  void clear_version_info();
+  static const int kVersionInfoFieldNumber = 1;
+  const ::std::string& version_info() const;
+  void set_version_info(const ::std::string& value);
+  #if LANG_CXX11
+  void set_version_info(::std::string&& value);
+  #endif
+  void set_version_info(const char* value);
+  void set_version_info(const char* value, size_t size);
+  ::std::string* mutable_version_info();
+  ::std::string* release_version_info();
+  void set_allocated_version_info(::std::string* version_info);
+
+  // @@protoc_insertion_point(class_scope:filesystem.v1.FsStatus)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr version_info_;
+  mutable int _cached_size_;
+  friend struct protobuf_filesystem_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class FsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:filesystem.v1.FsVolumeListQuery) */ {
  public:
   FsVolumeListQuery();
@@ -157,7 +358,7 @@ class FsVolumeListQuery : public ::google::protobuf::Message /* @@protoc_inserti
                &_FsVolumeListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    2;
 
   void Swap(FsVolumeListQuery* other);
   friend void swap(FsVolumeListQuery& a, FsVolumeListQuery& b) {
@@ -261,7 +462,7 @@ class FsVolumeStatistics : public ::google::protobuf::Message /* @@protoc_insert
                &_FsVolumeStatistics_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
+    3;
 
   void Swap(FsVolumeStatistics* other);
   friend void swap(FsVolumeStatistics& a, FsVolumeStatistics& b) {
@@ -351,7 +552,7 @@ class FsVolumeStatus : public ::google::protobuf::Message /* @@protoc_insertion_
                &_FsVolumeStatus_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    4;
 
   void Swap(FsVolumeStatus* other);
   friend void swap(FsVolumeStatus& a, FsVolumeStatus& b) {
@@ -448,7 +649,7 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
                &_FsVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    5;
 
   void Swap(FsVolume* other);
   friend void swap(FsVolume& a, FsVolume& b) {
@@ -651,7 +852,7 @@ class FsVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_FsVolumeList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    6;
 
   void Swap(FsVolumeList* other);
   friend void swap(FsVolumeList& a, FsVolumeList& b) {
@@ -754,7 +955,7 @@ class FsPresentationListQuery : public ::google::protobuf::Message /* @@protoc_i
                &_FsPresentationListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    7;
 
   void Swap(FsPresentationListQuery* other);
   friend void swap(FsPresentationListQuery& a, FsPresentationListQuery& b) {
@@ -858,7 +1059,7 @@ class FsPresentation : public ::google::protobuf::Message /* @@protoc_insertion_
                &_FsPresentation_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    6;
+    8;
 
   void Swap(FsPresentation* other);
   friend void swap(FsPresentation& a, FsPresentation& b) {
@@ -982,7 +1183,7 @@ class FsPresentationList : public ::google::protobuf::Message /* @@protoc_insert
                &_FsPresentationList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    9;
 
   void Swap(FsPresentationList* other);
   friend void swap(FsPresentationList& a, FsPresentationList& b) {
@@ -1059,6 +1260,67 @@ class FsPresentationList : public ::google::protobuf::Message /* @@protoc_insert
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// FsStatusRequest
+
+// -------------------------------------------------------------------
+
+// FsStatus
+
+// string version_info = 1;
+inline void FsStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& FsStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:filesystem.v1.FsStatus.version_info)
+  return version_info_.GetNoArena();
+}
+inline void FsStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:filesystem.v1.FsStatus.version_info)
+}
+#if LANG_CXX11
+inline void FsStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:filesystem.v1.FsStatus.version_info)
+}
+#endif
+inline void FsStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:filesystem.v1.FsStatus.version_info)
+}
+inline void FsStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:filesystem.v1.FsStatus.version_info)
+}
+inline ::std::string* FsStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:filesystem.v1.FsStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FsStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:filesystem.v1.FsStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FsStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsStatus.version_info)
+}
+
+// -------------------------------------------------------------------
+
 // FsVolumeListQuery
 
 // repeated uint32 volume_ids = 1;
@@ -1592,6 +1854,10 @@ FsPresentationList::presentations() const {
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

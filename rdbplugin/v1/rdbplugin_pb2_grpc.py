@@ -16,6 +16,11 @@ class RdbPluginStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Status = channel.unary_unary(
+        '/rdbplugin.v1.RdbPlugin/Status',
+        request_serializer=rdbplugin__pb2.RdbStatusRequest.SerializeToString,
+        response_deserializer=rdbplugin__pb2.RdbStatus.FromString,
+        )
     self.VolumeCreate = channel.unary_unary(
         '/rdbplugin.v1.RdbPlugin/VolumeCreate',
         request_serializer=rdbplugin__pb2.RdbVolume.SerializeToString,
@@ -42,6 +47,14 @@ class RdbPluginServicer(object):
   """*
   RDB Plugin configuration and status service.
   """
+
+  def Status(self, request, context):
+    """*
+    Get program status.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def VolumeCreate(self, request, context):
     """*
@@ -94,6 +107,11 @@ class RdbPluginServicer(object):
 
 def add_RdbPluginServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=rdbplugin__pb2.RdbStatusRequest.FromString,
+          response_serializer=rdbplugin__pb2.RdbStatus.SerializeToString,
+      ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
           request_deserializer=rdbplugin__pb2.RdbVolume.FromString,

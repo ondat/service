@@ -17,6 +17,7 @@ namespace director {
 namespace v1 {
 
 static const char* Director_method_names[] = {
+  "/director.v1.Director/Status",
   "/director.v1.Director/VolumeCreate",
   "/director.v1.Director/VolumeUpdate",
   "/director.v1.Director/VolumeDelete",
@@ -33,15 +34,24 @@ std::unique_ptr< Director::Stub> Director::NewStub(const std::shared_ptr< ::grpc
 }
 
 Director::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_VolumeCreate_(Director_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeUpdate_(Director_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeDelete_(Director_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeList_(Director_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationCreate_(Director_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationUpdate_(Director_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationDelete_(Director_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationList_(Director_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Status_(Director_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeCreate_(Director_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeUpdate_(Director_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeDelete_(Director_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeList_(Director_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationCreate_(Director_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationUpdate_(Director_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationDelete_(Director_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationList_(Director_method_names[8], ::grpc::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status Director::Stub::Status(::grpc::ClientContext* context, const ::director::v1::DirectorStatusRequest& request, ::director::v1::DirectorStatus* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Status_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::director::v1::DirectorStatus>* Director::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::director::v1::DirectorStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::ClientAsyncResponseReader< ::director::v1::DirectorStatus>::Create(channel_.get(), cq, rpcmethod_Status_, context, request);
+}
 
 ::grpc::Status Director::Stub::VolumeCreate(::grpc::ClientContext* context, const ::director::v1::DirectorVolume& request, ::common::v1::RpcResult* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_VolumeCreate_, context, request, response);
@@ -111,46 +121,58 @@ Director::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       Director_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Director::Service::VolumeCreate), this)));
+      new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorStatusRequest, ::director::v1::DirectorStatus>(
+          std::mem_fn(&Director::Service::Status), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Director_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Director::Service::VolumeUpdate), this)));
+          std::mem_fn(&Director::Service::VolumeCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Director_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Director::Service::VolumeDelete), this)));
+          std::mem_fn(&Director::Service::VolumeUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Director_method_names[3],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorVolume, ::common::v1::RpcResult>(
+          std::mem_fn(&Director::Service::VolumeDelete), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      Director_method_names[4],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorVolumeListQuery, ::director::v1::DirectorVolumeList>(
           std::mem_fn(&Director::Service::VolumeList), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Director_method_names[4],
+      Director_method_names[5],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Director::Service::PresentationCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Director_method_names[5],
+      Director_method_names[6],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Director::Service::PresentationUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Director_method_names[6],
+      Director_method_names[7],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Director::Service::PresentationDelete), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Director_method_names[7],
+      Director_method_names[8],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Director::Service, ::director::v1::DirectorPresentationListQuery, ::director::v1::DirectorPresentationList>(
           std::mem_fn(&Director::Service::PresentationList), this)));
 }
 
 Director::Service::~Service() {
+}
+
+::grpc::Status Director::Service::Status(::grpc::ServerContext* context, const ::director::v1::DirectorStatusRequest* request, ::director::v1::DirectorStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status Director::Service::VolumeCreate(::grpc::ServerContext* context, const ::director::v1::DirectorVolume* request, ::common::v1::RpcResult* response) {

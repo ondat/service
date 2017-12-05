@@ -17,6 +17,7 @@ namespace filesystem {
 namespace v1 {
 
 static const char* Fs_method_names[] = {
+  "/filesystem.v1.Fs/Status",
   "/filesystem.v1.Fs/VolumeCreate",
   "/filesystem.v1.Fs/VolumeUpdate",
   "/filesystem.v1.Fs/VolumeDelete",
@@ -33,15 +34,24 @@ std::unique_ptr< Fs::Stub> Fs::NewStub(const std::shared_ptr< ::grpc::ChannelInt
 }
 
 Fs::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_VolumeCreate_(Fs_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeUpdate_(Fs_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeDelete_(Fs_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeList_(Fs_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationCreate_(Fs_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationUpdate_(Fs_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationDelete_(Fs_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PresentationList_(Fs_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Status_(Fs_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeCreate_(Fs_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeUpdate_(Fs_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeDelete_(Fs_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeList_(Fs_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationCreate_(Fs_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationUpdate_(Fs_method_names[6], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationDelete_(Fs_method_names[7], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PresentationList_(Fs_method_names[8], ::grpc::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status Fs::Stub::Status(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::filesystem::v1::FsStatus* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Status_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsStatus>* Fs::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::filesystem::v1::FsStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::ClientAsyncResponseReader< ::filesystem::v1::FsStatus>::Create(channel_.get(), cq, rpcmethod_Status_, context, request);
+}
 
 ::grpc::Status Fs::Stub::VolumeCreate(::grpc::ClientContext* context, const ::filesystem::v1::FsVolume& request, ::common::v1::RpcResult* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_VolumeCreate_, context, request, response);
@@ -111,46 +121,58 @@ Fs::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       Fs_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Fs::Service::VolumeCreate), this)));
+      new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsStatusRequest, ::filesystem::v1::FsStatus>(
+          std::mem_fn(&Fs::Service::Status), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Fs_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Fs::Service::VolumeUpdate), this)));
+          std::mem_fn(&Fs::Service::VolumeCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Fs_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&Fs::Service::VolumeDelete), this)));
+          std::mem_fn(&Fs::Service::VolumeUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       Fs_method_names[3],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsVolume, ::common::v1::RpcResult>(
+          std::mem_fn(&Fs::Service::VolumeDelete), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      Fs_method_names[4],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsVolumeListQuery, ::filesystem::v1::FsVolumeList>(
           std::mem_fn(&Fs::Service::VolumeList), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Fs_method_names[4],
+      Fs_method_names[5],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Fs::Service::PresentationCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Fs_method_names[5],
+      Fs_method_names[6],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Fs::Service::PresentationUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Fs_method_names[6],
+      Fs_method_names[7],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsPresentation, ::common::v1::RpcResult>(
           std::mem_fn(&Fs::Service::PresentationDelete), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
-      Fs_method_names[7],
+      Fs_method_names[8],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< Fs::Service, ::filesystem::v1::FsPresentationListQuery, ::filesystem::v1::FsPresentationList>(
           std::mem_fn(&Fs::Service::PresentationList), this)));
 }
 
 Fs::Service::~Service() {
+}
+
+::grpc::Status Fs::Service::Status(::grpc::ServerContext* context, const ::filesystem::v1::FsStatusRequest* request, ::filesystem::v1::FsStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status Fs::Service::VolumeCreate(::grpc::ServerContext* context, const ::filesystem::v1::FsVolume* request, ::common::v1::RpcResult* response) {

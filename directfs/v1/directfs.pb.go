@@ -110,6 +110,7 @@ func (*DfsClientStatusRequest) ProtoMessage()               {}
 func (*DfsClientStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
 type DfsClientStatus struct {
+	// The version control info string.
 	VersionInfo string `protobuf:"bytes,1,opt,name=version_info,json=versionInfo" json:"version_info,omitempty"`
 }
 
@@ -134,6 +135,7 @@ func (*DfsServerStatusRequest) ProtoMessage()               {}
 func (*DfsServerStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 type DfsServerStatus struct {
+	// The version control info string.
 	VersionInfo string `protobuf:"bytes,1,opt,name=version_info,json=versionInfo" json:"version_info,omitempty"`
 }
 

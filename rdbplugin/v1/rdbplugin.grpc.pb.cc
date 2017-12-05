@@ -17,6 +17,7 @@ namespace rdbplugin {
 namespace v1 {
 
 static const char* RdbPlugin_method_names[] = {
+  "/rdbplugin.v1.RdbPlugin/Status",
   "/rdbplugin.v1.RdbPlugin/VolumeCreate",
   "/rdbplugin.v1.RdbPlugin/VolumeUpdate",
   "/rdbplugin.v1.RdbPlugin/VolumeDelete",
@@ -29,11 +30,20 @@ std::unique_ptr< RdbPlugin::Stub> RdbPlugin::NewStub(const std::shared_ptr< ::gr
 }
 
 RdbPlugin::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_VolumeCreate_(RdbPlugin_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeUpdate_(RdbPlugin_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeDelete_(RdbPlugin_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_VolumeList_(RdbPlugin_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Status_(RdbPlugin_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeCreate_(RdbPlugin_method_names[1], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeUpdate_(RdbPlugin_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeDelete_(RdbPlugin_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_VolumeList_(RdbPlugin_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status RdbPlugin::Stub::Status(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::rdbplugin::v1::RdbStatus* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Status_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbStatus>* RdbPlugin::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbStatus>::Create(channel_.get(), cq, rpcmethod_Status_, context, request);
+}
 
 ::grpc::Status RdbPlugin::Stub::VolumeCreate(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::common::v1::RpcResult* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_VolumeCreate_, context, request, response);
@@ -71,26 +81,38 @@ RdbPlugin::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       RdbPlugin_method_names[0],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&RdbPlugin::Service::VolumeCreate), this)));
+      new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbStatusRequest, ::rdbplugin::v1::RdbStatus>(
+          std::mem_fn(&RdbPlugin::Service::Status), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       RdbPlugin_method_names[1],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&RdbPlugin::Service::VolumeUpdate), this)));
+          std::mem_fn(&RdbPlugin::Service::VolumeCreate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       RdbPlugin_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(
-          std::mem_fn(&RdbPlugin::Service::VolumeDelete), this)));
+          std::mem_fn(&RdbPlugin::Service::VolumeUpdate), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       RdbPlugin_method_names[3],
+      ::grpc::RpcMethod::NORMAL_RPC,
+      new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(
+          std::mem_fn(&RdbPlugin::Service::VolumeDelete), this)));
+  AddMethod(new ::grpc::RpcServiceMethod(
+      RdbPlugin_method_names[4],
       ::grpc::RpcMethod::NORMAL_RPC,
       new ::grpc::RpcMethodHandler< RdbPlugin::Service, ::rdbplugin::v1::RdbVolumeListQuery, ::rdbplugin::v1::RdbVolumeList>(
           std::mem_fn(&RdbPlugin::Service::VolumeList), this)));
 }
 
 RdbPlugin::Service::~Service() {
+}
+
+::grpc::Status RdbPlugin::Service::Status(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbStatusRequest* request, ::rdbplugin::v1::RdbStatus* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status RdbPlugin::Service::VolumeCreate(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbVolume* request, ::common::v1::RpcResult* response) {

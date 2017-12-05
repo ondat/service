@@ -38,6 +38,12 @@ class RdbPlugin final {
    public:
     virtual ~StubInterface() {}
     // *
+    // Get program status.
+    virtual ::grpc::Status Status(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::rdbplugin::v1::RdbStatus* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rdbplugin::v1::RdbStatus>> AsyncStatus(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rdbplugin::v1::RdbStatus>>(AsyncStatusRaw(context, request, cq));
+    }
+    // *
     // Create a volume. Currently has no actual effect other than
     // to add an entry reporting that the volume is 'configured', and so will
     // have results returned by VolumeList.
@@ -78,6 +84,7 @@ class RdbPlugin final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rdbplugin::v1::RdbVolumeList>>(AsyncVolumeListRaw(context, request, cq));
     }
   private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rdbplugin::v1::RdbStatus>* AsyncStatusRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) = 0;
@@ -86,6 +93,10 @@ class RdbPlugin final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    ::grpc::Status Status(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::rdbplugin::v1::RdbStatus* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbStatus>> AsyncStatus(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbStatus>>(AsyncStatusRaw(context, request, cq));
+    }
     ::grpc::Status VolumeCreate(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::common::v1::RpcResult* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>> AsyncVolumeCreate(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>>(AsyncVolumeCreateRaw(context, request, cq));
@@ -105,10 +116,12 @@ class RdbPlugin final {
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    ::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbStatus>* AsyncStatusRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rdbplugin::v1::RdbVolumeList>* AsyncVolumeListRaw(::grpc::ClientContext* context, const ::rdbplugin::v1::RdbVolumeListQuery& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::RpcMethod rpcmethod_Status_;
     const ::grpc::RpcMethod rpcmethod_VolumeCreate_;
     const ::grpc::RpcMethod rpcmethod_VolumeUpdate_;
     const ::grpc::RpcMethod rpcmethod_VolumeDelete_;
@@ -120,6 +133,9 @@ class RdbPlugin final {
    public:
     Service();
     virtual ~Service();
+    // *
+    // Get program status.
+    virtual ::grpc::Status Status(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbStatusRequest* request, ::rdbplugin::v1::RdbStatus* response);
     // *
     // Create a volume. Currently has no actual effect other than
     // to add an entry reporting that the volume is 'configured', and so will
@@ -150,12 +166,32 @@ class RdbPlugin final {
     virtual ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbVolumeListQuery* request, ::rdbplugin::v1::RdbVolumeList* response);
   };
   template <class BaseClass>
+  class WithAsyncMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_Status() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbStatusRequest* request, ::rdbplugin::v1::RdbStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatus(::grpc::ServerContext* context, ::rdbplugin::v1::RdbStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::rdbplugin::v1::RdbStatus>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodAsync(0);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_VolumeCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -166,7 +202,7 @@ class RdbPlugin final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeCreate(::grpc::ServerContext* context, ::rdbplugin::v1::RdbVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -175,7 +211,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_VolumeUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -186,7 +222,7 @@ class RdbPlugin final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeUpdate(::grpc::ServerContext* context, ::rdbplugin::v1::RdbVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -195,7 +231,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_VolumeDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -206,7 +242,7 @@ class RdbPlugin final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeDelete(::grpc::ServerContext* context, ::rdbplugin::v1::RdbVolume* request, ::grpc::ServerAsyncResponseWriter< ::common::v1::RpcResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -215,7 +251,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_VolumeList() {
-      ::grpc::Service::MarkMethodAsync(3);
+      ::grpc::Service::MarkMethodAsync(4);
     }
     ~WithAsyncMethod_VolumeList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -226,17 +262,34 @@ class RdbPlugin final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestVolumeList(::grpc::ServerContext* context, ::rdbplugin::v1::RdbVolumeListQuery* request, ::grpc::ServerAsyncResponseWriter< ::rdbplugin::v1::RdbVolumeList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_VolumeCreate<WithAsyncMethod_VolumeUpdate<WithAsyncMethod_VolumeDelete<WithAsyncMethod_VolumeList<Service > > > > AsyncService;
+  typedef WithAsyncMethod_Status<WithAsyncMethod_VolumeCreate<WithAsyncMethod_VolumeUpdate<WithAsyncMethod_VolumeDelete<WithAsyncMethod_VolumeList<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithGenericMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_Status() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbStatusRequest* request, ::rdbplugin::v1::RdbStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
   template <class BaseClass>
   class WithGenericMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodGeneric(0);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_VolumeCreate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -253,7 +306,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_VolumeUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -270,7 +323,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_VolumeDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -287,7 +340,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_VolumeList() {
-      ::grpc::Service::MarkMethodGeneric(3);
+      ::grpc::Service::MarkMethodGeneric(4);
     }
     ~WithGenericMethod_VolumeList() override {
       BaseClassMustBeDerivedFromService(this);
@@ -299,12 +352,32 @@ class RdbPlugin final {
     }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_Status : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_Status() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::StreamedUnaryHandler< ::rdbplugin::v1::RdbStatusRequest, ::rdbplugin::v1::RdbStatus>(std::bind(&WithStreamedUnaryMethod_Status<BaseClass>::StreamedStatus, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Status() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Status(::grpc::ServerContext* context, const ::rdbplugin::v1::RdbStatusRequest* request, ::rdbplugin::v1::RdbStatus* response) final override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rdbplugin::v1::RdbStatusRequest,::rdbplugin::v1::RdbStatus>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_VolumeCreate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeCreate() {
-      ::grpc::Service::MarkMethodStreamed(0,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::StreamedUnaryHandler< ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeCreate<BaseClass>::StreamedVolumeCreate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeCreate() override {
@@ -324,7 +397,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeUpdate() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::StreamedUnaryHandler< ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeUpdate<BaseClass>::StreamedVolumeUpdate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeUpdate() override {
@@ -344,7 +417,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeDelete() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::StreamedUnaryHandler< ::rdbplugin::v1::RdbVolume, ::common::v1::RpcResult>(std::bind(&WithStreamedUnaryMethod_VolumeDelete<BaseClass>::StreamedVolumeDelete, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeDelete() override {
@@ -364,7 +437,7 @@ class RdbPlugin final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_VolumeList() {
-      ::grpc::Service::MarkMethodStreamed(3,
+      ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::StreamedUnaryHandler< ::rdbplugin::v1::RdbVolumeListQuery, ::rdbplugin::v1::RdbVolumeList>(std::bind(&WithStreamedUnaryMethod_VolumeList<BaseClass>::StreamedVolumeList, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_VolumeList() override {
@@ -378,9 +451,9 @@ class RdbPlugin final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedVolumeList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rdbplugin::v1::RdbVolumeListQuery,::rdbplugin::v1::RdbVolumeList>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

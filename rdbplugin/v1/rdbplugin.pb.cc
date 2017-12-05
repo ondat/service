@@ -19,6 +19,16 @@
 
 namespace rdbplugin {
 namespace v1 {
+class RdbStatusRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<RdbStatusRequest>
+     _instance;
+} _RdbStatusRequest_default_instance_;
+class RdbStatusDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<RdbStatus>
+     _instance;
+} _RdbStatus_default_instance_;
 class RdbVolumeListQueryDefaultTypeInternal {
 public:
  ::google::protobuf::internal::ExplicitlyConstructed<RdbVolumeListQuery>
@@ -55,7 +65,7 @@ namespace protobuf_rdbplugin_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[6];
+::google::protobuf::Metadata file_level_metadata[8];
 
 }  // namespace
 
@@ -76,9 +86,22 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbStatus, version_info_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolumeListQuery, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -119,15 +142,19 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RdbVolumeList, volumes_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(RdbVolumeListQuery)},
-  { 6, -1, sizeof(RdbVolumeCredentials)},
-  { 11, -1, sizeof(RdbVolumeStatistics)},
-  { 16, -1, sizeof(RdbVolumeStatus)},
-  { 21, -1, sizeof(RdbVolume)},
-  { 32, -1, sizeof(RdbVolumeList)},
+  { 0, -1, sizeof(RdbStatusRequest)},
+  { 5, -1, sizeof(RdbStatus)},
+  { 11, -1, sizeof(RdbVolumeListQuery)},
+  { 17, -1, sizeof(RdbVolumeCredentials)},
+  { 22, -1, sizeof(RdbVolumeStatistics)},
+  { 27, -1, sizeof(RdbVolumeStatus)},
+  { 32, -1, sizeof(RdbVolume)},
+  { 43, -1, sizeof(RdbVolumeList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_RdbStatusRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_RdbStatus_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeCredentials_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_RdbVolumeStatistics_default_instance_),
@@ -154,7 +181,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 6);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
 }
 
 }  // namespace
@@ -163,7 +190,11 @@ void TableStruct::InitDefaultsImpl() {
 
   ::google::protobuf::internal::InitProtobufDefaults();
   ::common::v1::protobuf_common_2eproto::InitDefaults();
-  _RdbVolumeListQuery_default_instance_._instance.DefaultConstruct();
+  _RdbStatusRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_RdbStatusRequest_default_instance_);_RdbStatus_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_RdbStatus_default_instance_);_RdbVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_RdbVolumeListQuery_default_instance_);_RdbVolumeCredentials_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
@@ -194,28 +225,31 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\017rdbplugin.proto\022\014rdbplugin.v1\032\014common."
-      "proto\"A\n\022RdbVolumeListQuery\022+\n\nvolume_id"
-      "s\030\001 \003(\0132\027.rdbplugin.v1.RdbVolume\"\026\n\024RdbV"
-      "olumeCredentials\"\025\n\023RdbVolumeStatistics\""
-      "\021\n\017RdbVolumeStatus\"\373\001\n\tRdbVolume\022&\n\002cc\030\001"
-      " \001(\0132\032.common.v1.DataplaneCommon\022\021\n\tvolu"
-      "me_id\030\002 \001(\r\022\031\n\021volume_size_bytes\030\003 \001(\004\0227"
-      "\n\013credentials\030\004 \001(\0132\".rdbplugin.v1.RdbVo"
-      "lumeCredentials\0220\n\005stats\030\005 \001(\0132!.rdbplug"
-      "in.v1.RdbVolumeStatistics\022-\n\006status\030\006 \001("
-      "\0132\035.rdbplugin.v1.RdbVolumeStatus\"9\n\rRdbV"
-      "olumeList\022(\n\007volumes\030\001 \003(\0132\027.rdbplugin.v"
-      "1.RdbVolume2\235\002\n\tRdbPlugin\022\?\n\014VolumeCreat"
-      "e\022\027.rdbplugin.v1.RdbVolume\032\024.common.v1.R"
-      "pcResult\"\000\022\?\n\014VolumeUpdate\022\027.rdbplugin.v"
-      "1.RdbVolume\032\024.common.v1.RpcResult\"\000\022\?\n\014V"
-      "olumeDelete\022\027.rdbplugin.v1.RdbVolume\032\024.c"
-      "ommon.v1.RpcResult\"\000\022M\n\nVolumeList\022 .rdb"
-      "plugin.v1.RdbVolumeListQuery\032\033.rdbplugin"
-      ".v1.RdbVolumeList\"\000b\006proto3"
+      "proto\"\022\n\020RdbStatusRequest\"!\n\tRdbStatus\022\024"
+      "\n\014version_info\030\001 \001(\t\"A\n\022RdbVolumeListQue"
+      "ry\022+\n\nvolume_ids\030\001 \003(\0132\027.rdbplugin.v1.Rd"
+      "bVolume\"\026\n\024RdbVolumeCredentials\"\025\n\023RdbVo"
+      "lumeStatistics\"\021\n\017RdbVolumeStatus\"\373\001\n\tRd"
+      "bVolume\022&\n\002cc\030\001 \001(\0132\032.common.v1.Dataplan"
+      "eCommon\022\021\n\tvolume_id\030\002 \001(\r\022\031\n\021volume_siz"
+      "e_bytes\030\003 \001(\004\0227\n\013credentials\030\004 \001(\0132\".rdb"
+      "plugin.v1.RdbVolumeCredentials\0220\n\005stats\030"
+      "\005 \001(\0132!.rdbplugin.v1.RdbVolumeStatistics"
+      "\022-\n\006status\030\006 \001(\0132\035.rdbplugin.v1.RdbVolum"
+      "eStatus\"9\n\rRdbVolumeList\022(\n\007volumes\030\001 \003("
+      "\0132\027.rdbplugin.v1.RdbVolume2\342\002\n\tRdbPlugin"
+      "\022C\n\006Status\022\036.rdbplugin.v1.RdbStatusReque"
+      "st\032\027.rdbplugin.v1.RdbStatus\"\000\022\?\n\014VolumeC"
+      "reate\022\027.rdbplugin.v1.RdbVolume\032\024.common."
+      "v1.RpcResult\"\000\022\?\n\014VolumeUpdate\022\027.rdbplug"
+      "in.v1.RdbVolume\032\024.common.v1.RpcResult\"\000\022"
+      "\?\n\014VolumeDelete\022\027.rdbplugin.v1.RdbVolume"
+      "\032\024.common.v1.RpcResult\"\000\022M\n\nVolumeList\022 "
+      ".rdbplugin.v1.RdbVolumeListQuery\032\033.rdbpl"
+      "ugin.v1.RdbVolumeList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 787);
+      descriptor, 911);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rdbplugin.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -235,6 +269,513 @@ struct StaticDescriptorInitializer {
 
 }  // namespace protobuf_rdbplugin_2eproto
 
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+RdbStatusRequest::RdbStatusRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_rdbplugin_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:rdbplugin.v1.RdbStatusRequest)
+}
+RdbStatusRequest::RdbStatusRequest(const RdbStatusRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:rdbplugin.v1.RdbStatusRequest)
+}
+
+void RdbStatusRequest::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+RdbStatusRequest::~RdbStatusRequest() {
+  // @@protoc_insertion_point(destructor:rdbplugin.v1.RdbStatusRequest)
+  SharedDtor();
+}
+
+void RdbStatusRequest::SharedDtor() {
+}
+
+void RdbStatusRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* RdbStatusRequest::descriptor() {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const RdbStatusRequest& RdbStatusRequest::default_instance() {
+  protobuf_rdbplugin_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+RdbStatusRequest* RdbStatusRequest::New(::google::protobuf::Arena* arena) const {
+  RdbStatusRequest* n = new RdbStatusRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void RdbStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:rdbplugin.v1.RdbStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool RdbStatusRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:rdbplugin.v1.RdbStatusRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:rdbplugin.v1.RdbStatusRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:rdbplugin.v1.RdbStatusRequest)
+  return false;
+#undef DO_
+}
+
+void RdbStatusRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:rdbplugin.v1.RdbStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:rdbplugin.v1.RdbStatusRequest)
+}
+
+::google::protobuf::uint8* RdbStatusRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:rdbplugin.v1.RdbStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rdbplugin.v1.RdbStatusRequest)
+  return target;
+}
+
+size_t RdbStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rdbplugin.v1.RdbStatusRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void RdbStatusRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:rdbplugin.v1.RdbStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RdbStatusRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const RdbStatusRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:rdbplugin.v1.RdbStatusRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:rdbplugin.v1.RdbStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void RdbStatusRequest::MergeFrom(const RdbStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:rdbplugin.v1.RdbStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void RdbStatusRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:rdbplugin.v1.RdbStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RdbStatusRequest::CopyFrom(const RdbStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rdbplugin.v1.RdbStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RdbStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void RdbStatusRequest::Swap(RdbStatusRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void RdbStatusRequest::InternalSwap(RdbStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata RdbStatusRequest::GetMetadata() const {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// RdbStatusRequest
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int RdbStatus::kVersionInfoFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+RdbStatus::RdbStatus()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_rdbplugin_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:rdbplugin.v1.RdbStatus)
+}
+RdbStatus::RdbStatus(const RdbStatus& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_info().size() > 0) {
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+  // @@protoc_insertion_point(copy_constructor:rdbplugin.v1.RdbStatus)
+}
+
+void RdbStatus::SharedCtor() {
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+RdbStatus::~RdbStatus() {
+  // @@protoc_insertion_point(destructor:rdbplugin.v1.RdbStatus)
+  SharedDtor();
+}
+
+void RdbStatus::SharedDtor() {
+  version_info_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void RdbStatus::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* RdbStatus::descriptor() {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const RdbStatus& RdbStatus::default_instance() {
+  protobuf_rdbplugin_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+RdbStatus* RdbStatus::New(::google::protobuf::Arena* arena) const {
+  RdbStatus* n = new RdbStatus;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void RdbStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:rdbplugin.v1.RdbStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool RdbStatus::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:rdbplugin.v1.RdbStatus)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string version_info = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_version_info()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->version_info().data(), static_cast<int>(this->version_info().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "rdbplugin.v1.RdbStatus.version_info"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:rdbplugin.v1.RdbStatus)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:rdbplugin.v1.RdbStatus)
+  return false;
+#undef DO_
+}
+
+void RdbStatus::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:rdbplugin.v1.RdbStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "rdbplugin.v1.RdbStatus.version_info");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->version_info(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:rdbplugin.v1.RdbStatus)
+}
+
+::google::protobuf::uint8* RdbStatus::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:rdbplugin.v1.RdbStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "rdbplugin.v1.RdbStatus.version_info");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->version_info(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rdbplugin.v1.RdbStatus)
+  return target;
+}
+
+size_t RdbStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rdbplugin.v1.RdbStatus)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->version_info());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void RdbStatus::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:rdbplugin.v1.RdbStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RdbStatus* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const RdbStatus>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:rdbplugin.v1.RdbStatus)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:rdbplugin.v1.RdbStatus)
+    MergeFrom(*source);
+  }
+}
+
+void RdbStatus::MergeFrom(const RdbStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:rdbplugin.v1.RdbStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.version_info().size() > 0) {
+
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+}
+
+void RdbStatus::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:rdbplugin.v1.RdbStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RdbStatus::CopyFrom(const RdbStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rdbplugin.v1.RdbStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RdbStatus::IsInitialized() const {
+  return true;
+}
+
+void RdbStatus::Swap(RdbStatus* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void RdbStatus::InternalSwap(RdbStatus* other) {
+  using std::swap;
+  version_info_.Swap(&other->version_info_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata RdbStatus::GetMetadata() const {
+  protobuf_rdbplugin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_rdbplugin_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// RdbStatus
+
+// string version_info = 1;
+void RdbStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& RdbStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:rdbplugin.v1.RdbStatus.version_info)
+  return version_info_.GetNoArena();
+}
+void RdbStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:rdbplugin.v1.RdbStatus.version_info)
+}
+#if LANG_CXX11
+void RdbStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:rdbplugin.v1.RdbStatus.version_info)
+}
+#endif
+void RdbStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:rdbplugin.v1.RdbStatus.version_info)
+}
+void RdbStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:rdbplugin.v1.RdbStatus.version_info)
+}
+::std::string* RdbStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:rdbplugin.v1.RdbStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* RdbStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:rdbplugin.v1.RdbStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void RdbStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:rdbplugin.v1.RdbStatus.version_info)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 

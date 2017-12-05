@@ -16,6 +16,11 @@ class DirectorStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.Status = channel.unary_unary(
+        '/director.v1.Director/Status',
+        request_serializer=director__pb2.DirectorStatusRequest.SerializeToString,
+        response_deserializer=director__pb2.DirectorStatus.FromString,
+        )
     self.VolumeCreate = channel.unary_unary(
         '/director.v1.Director/VolumeCreate',
         request_serializer=director__pb2.DirectorVolume.SerializeToString,
@@ -62,6 +67,14 @@ class DirectorServicer(object):
   """*
   Director configuration and status service.
   """
+
+  def Status(self, request, context):
+    """*
+    Get program status.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def VolumeCreate(self, request, context):
     """*
@@ -150,6 +163,11 @@ class DirectorServicer(object):
 
 def add_DirectorServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=director__pb2.DirectorStatusRequest.FromString,
+          response_serializer=director__pb2.DirectorStatus.SerializeToString,
+      ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
           request_deserializer=director__pb2.DirectorVolume.FromString,

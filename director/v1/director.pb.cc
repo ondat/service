@@ -19,6 +19,16 @@
 
 namespace director {
 namespace v1 {
+class DirectorStatusRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DirectorStatusRequest>
+     _instance;
+} _DirectorStatusRequest_default_instance_;
+class DirectorStatusDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<DirectorStatus>
+     _instance;
+} _DirectorStatus_default_instance_;
 class DirectorVolumeListQueryDefaultTypeInternal {
 public:
  ::google::protobuf::internal::ExplicitlyConstructed<DirectorVolumeListQuery>
@@ -65,7 +75,7 @@ namespace protobuf_director_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[8];
+::google::protobuf::Metadata file_level_metadata[10];
 
 }  // namespace
 
@@ -88,9 +98,22 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorStatus, version_info_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorVolumeListQuery, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -148,17 +171,21 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DirectorPresentationList, presentations_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(DirectorVolumeListQuery)},
-  { 6, -1, sizeof(DirectorVolumeStatistics)},
-  { 11, -1, sizeof(DirectorVolumeStatus)},
-  { 16, -1, sizeof(DirectorVolume)},
-  { 29, -1, sizeof(DirectorVolumeList)},
-  { 35, -1, sizeof(DirectorPresentationListQuery)},
-  { 41, -1, sizeof(DirectorPresentation)},
-  { 49, -1, sizeof(DirectorPresentationList)},
+  { 0, -1, sizeof(DirectorStatusRequest)},
+  { 5, -1, sizeof(DirectorStatus)},
+  { 11, -1, sizeof(DirectorVolumeListQuery)},
+  { 17, -1, sizeof(DirectorVolumeStatistics)},
+  { 22, -1, sizeof(DirectorVolumeStatus)},
+  { 27, -1, sizeof(DirectorVolume)},
+  { 40, -1, sizeof(DirectorVolumeList)},
+  { 46, -1, sizeof(DirectorPresentationListQuery)},
+  { 52, -1, sizeof(DirectorPresentation)},
+  { 60, -1, sizeof(DirectorPresentationList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorStatusRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorStatus_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeListQuery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeStatistics_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_DirectorVolumeStatus_default_instance_),
@@ -187,7 +214,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 10);
 }
 
 }  // namespace
@@ -196,7 +223,11 @@ void TableStruct::InitDefaultsImpl() {
 
   ::google::protobuf::internal::InitProtobufDefaults();
   ::common::v1::protobuf_common_2eproto::InitDefaults();
-  _DirectorVolumeListQuery_default_instance_._instance.DefaultConstruct();
+  _DirectorStatusRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DirectorStatusRequest_default_instance_);_DirectorStatus_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_DirectorStatus_default_instance_);_DirectorVolumeListQuery_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_DirectorVolumeListQuery_default_instance_);_DirectorVolumeStatistics_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
@@ -231,43 +262,46 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\016director.proto\022\013director.v1\032\014common.pr"
-      "oto\"-\n\027DirectorVolumeListQuery\022\022\n\nvolume"
-      "_ids\030\001 \003(\r\"\032\n\030DirectorVolumeStatistics\"\026"
-      "\n\024DirectorVolumeStatus\"\375\001\n\016DirectorVolum"
-      "e\022&\n\002cc\030\001 \001(\0132\032.common.v1.DataplaneCommo"
-      "n\022\021\n\tvolume_id\030\002 \001(\r\022\022\n\nwrite_pipe\030\003 \001(\r"
-      "\022\021\n\tread_pipe\030\004 \001(\r\022\013\n\003qos\030\005 \001(\004\022\023\n\013repl"
-      "ica_ids\030\006 \003(\r\0224\n\005stats\030\007 \001(\0132%.director."
-      "v1.DirectorVolumeStatistics\0221\n\006status\030\010 "
-      "\001(\0132!.director.v1.DirectorVolumeStatus\"B"
-      "\n\022DirectorVolumeList\022,\n\007volumes\030\001 \003(\0132\033."
-      "director.v1.DirectorVolume\"8\n\035DirectorPr"
-      "esentationListQuery\022\027\n\017presentation_id\030\001"
-      " \003(\r\"d\n\024DirectorPresentation\022&\n\002cc\030\001 \001(\013"
-      "2\032.common.v1.DataplaneCommon\022\021\n\tsource_i"
-      "d\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\"T\n\030DirectorPr"
-      "esentationList\0228\n\rpresentations\030\001 \003(\0132!."
-      "director.v1.DirectorPresentation2\214\005\n\010Dir"
-      "ector\022C\n\014VolumeCreate\022\033.director.v1.Dire"
-      "ctorVolume\032\024.common.v1.RpcResult\"\000\022C\n\014Vo"
-      "lumeUpdate\022\033.director.v1.DirectorVolume\032"
-      "\024.common.v1.RpcResult\"\000\022C\n\014VolumeDelete\022"
-      "\033.director.v1.DirectorVolume\032\024.common.v1"
-      ".RpcResult\"\000\022U\n\nVolumeList\022$.director.v1"
-      ".DirectorVolumeListQuery\032\037.director.v1.D"
-      "irectorVolumeList\"\000\022O\n\022PresentationCreat"
-      "e\022!.director.v1.DirectorPresentation\032\024.c"
-      "ommon.v1.RpcResult\"\000\022O\n\022PresentationUpda"
-      "te\022!.director.v1.DirectorPresentation\032\024."
-      "common.v1.RpcResult\"\000\022O\n\022PresentationDel"
-      "ete\022!.director.v1.DirectorPresentation\032\024"
-      ".common.v1.RpcResult\"\000\022g\n\020PresentationLi"
-      "st\022*.director.v1.DirectorPresentationLis"
-      "tQuery\032%.director.v1.DirectorPresentatio"
-      "nList\"\000b\006proto3"
+      "oto\"\027\n\025DirectorStatusRequest\"&\n\016Director"
+      "Status\022\024\n\014version_info\030\001 \001(\t\"-\n\027Director"
+      "VolumeListQuery\022\022\n\nvolume_ids\030\001 \003(\r\"\032\n\030D"
+      "irectorVolumeStatistics\"\026\n\024DirectorVolum"
+      "eStatus\"\375\001\n\016DirectorVolume\022&\n\002cc\030\001 \001(\0132\032"
+      ".common.v1.DataplaneCommon\022\021\n\tvolume_id\030"
+      "\002 \001(\r\022\022\n\nwrite_pipe\030\003 \001(\r\022\021\n\tread_pipe\030\004"
+      " \001(\r\022\013\n\003qos\030\005 \001(\004\022\023\n\013replica_ids\030\006 \003(\r\0224"
+      "\n\005stats\030\007 \001(\0132%.director.v1.DirectorVolu"
+      "meStatistics\0221\n\006status\030\010 \001(\0132!.director."
+      "v1.DirectorVolumeStatus\"B\n\022DirectorVolum"
+      "eList\022,\n\007volumes\030\001 \003(\0132\033.director.v1.Dir"
+      "ectorVolume\"8\n\035DirectorPresentationListQ"
+      "uery\022\027\n\017presentation_id\030\001 \003(\r\"d\n\024Directo"
+      "rPresentation\022&\n\002cc\030\001 \001(\0132\032.common.v1.Da"
+      "taplaneCommon\022\021\n\tsource_id\030\002 \001(\r\022\021\n\ttarg"
+      "et_id\030\003 \001(\r\"T\n\030DirectorPresentationList\022"
+      "8\n\rpresentations\030\001 \003(\0132!.director.v1.Dir"
+      "ectorPresentation2\331\005\n\010Director\022K\n\006Status"
+      "\022\".director.v1.DirectorStatusRequest\032\033.d"
+      "irector.v1.DirectorStatus\"\000\022C\n\014VolumeCre"
+      "ate\022\033.director.v1.DirectorVolume\032\024.commo"
+      "n.v1.RpcResult\"\000\022C\n\014VolumeUpdate\022\033.direc"
+      "tor.v1.DirectorVolume\032\024.common.v1.RpcRes"
+      "ult\"\000\022C\n\014VolumeDelete\022\033.director.v1.Dire"
+      "ctorVolume\032\024.common.v1.RpcResult\"\000\022U\n\nVo"
+      "lumeList\022$.director.v1.DirectorVolumeLis"
+      "tQuery\032\037.director.v1.DirectorVolumeList\""
+      "\000\022O\n\022PresentationCreate\022!.director.v1.Di"
+      "rectorPresentation\032\024.common.v1.RpcResult"
+      "\"\000\022O\n\022PresentationUpdate\022!.director.v1.D"
+      "irectorPresentation\032\024.common.v1.RpcResul"
+      "t\"\000\022O\n\022PresentationDelete\022!.director.v1."
+      "DirectorPresentation\032\024.common.v1.RpcResu"
+      "lt\"\000\022g\n\020PresentationList\022*.director.v1.D"
+      "irectorPresentationListQuery\032%.director."
+      "v1.DirectorPresentationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1375);
+      descriptor, 1517);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "director.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -287,6 +321,513 @@ struct StaticDescriptorInitializer {
 
 }  // namespace protobuf_director_2eproto
 
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DirectorStatusRequest::DirectorStatusRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_director_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:director.v1.DirectorStatusRequest)
+}
+DirectorStatusRequest::DirectorStatusRequest(const DirectorStatusRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:director.v1.DirectorStatusRequest)
+}
+
+void DirectorStatusRequest::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+DirectorStatusRequest::~DirectorStatusRequest() {
+  // @@protoc_insertion_point(destructor:director.v1.DirectorStatusRequest)
+  SharedDtor();
+}
+
+void DirectorStatusRequest::SharedDtor() {
+}
+
+void DirectorStatusRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DirectorStatusRequest::descriptor() {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DirectorStatusRequest& DirectorStatusRequest::default_instance() {
+  protobuf_director_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DirectorStatusRequest* DirectorStatusRequest::New(::google::protobuf::Arena* arena) const {
+  DirectorStatusRequest* n = new DirectorStatusRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DirectorStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:director.v1.DirectorStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool DirectorStatusRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:director.v1.DirectorStatusRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:director.v1.DirectorStatusRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:director.v1.DirectorStatusRequest)
+  return false;
+#undef DO_
+}
+
+void DirectorStatusRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:director.v1.DirectorStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:director.v1.DirectorStatusRequest)
+}
+
+::google::protobuf::uint8* DirectorStatusRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:director.v1.DirectorStatusRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:director.v1.DirectorStatusRequest)
+  return target;
+}
+
+size_t DirectorStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:director.v1.DirectorStatusRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DirectorStatusRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:director.v1.DirectorStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DirectorStatusRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DirectorStatusRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:director.v1.DirectorStatusRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:director.v1.DirectorStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void DirectorStatusRequest::MergeFrom(const DirectorStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:director.v1.DirectorStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void DirectorStatusRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:director.v1.DirectorStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DirectorStatusRequest::CopyFrom(const DirectorStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:director.v1.DirectorStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DirectorStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void DirectorStatusRequest::Swap(DirectorStatusRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DirectorStatusRequest::InternalSwap(DirectorStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DirectorStatusRequest::GetMetadata() const {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DirectorStatusRequest
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DirectorStatus::kVersionInfoFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DirectorStatus::DirectorStatus()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_director_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:director.v1.DirectorStatus)
+}
+DirectorStatus::DirectorStatus(const DirectorStatus& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_info().size() > 0) {
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+  // @@protoc_insertion_point(copy_constructor:director.v1.DirectorStatus)
+}
+
+void DirectorStatus::SharedCtor() {
+  version_info_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _cached_size_ = 0;
+}
+
+DirectorStatus::~DirectorStatus() {
+  // @@protoc_insertion_point(destructor:director.v1.DirectorStatus)
+  SharedDtor();
+}
+
+void DirectorStatus::SharedDtor() {
+  version_info_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void DirectorStatus::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DirectorStatus::descriptor() {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const DirectorStatus& DirectorStatus::default_instance() {
+  protobuf_director_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+DirectorStatus* DirectorStatus::New(::google::protobuf::Arena* arena) const {
+  DirectorStatus* n = new DirectorStatus;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DirectorStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:director.v1.DirectorStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+bool DirectorStatus::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:director.v1.DirectorStatus)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // string version_info = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_version_info()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->version_info().data(), static_cast<int>(this->version_info().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "director.v1.DirectorStatus.version_info"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:director.v1.DirectorStatus)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:director.v1.DirectorStatus)
+  return false;
+#undef DO_
+}
+
+void DirectorStatus::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:director.v1.DirectorStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "director.v1.DirectorStatus.version_info");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->version_info(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:director.v1.DirectorStatus)
+}
+
+::google::protobuf::uint8* DirectorStatus::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:director.v1.DirectorStatus)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->version_info().data(), static_cast<int>(this->version_info().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "director.v1.DirectorStatus.version_info");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->version_info(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:director.v1.DirectorStatus)
+  return target;
+}
+
+size_t DirectorStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:director.v1.DirectorStatus)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string version_info = 1;
+  if (this->version_info().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->version_info());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DirectorStatus::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:director.v1.DirectorStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DirectorStatus* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DirectorStatus>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:director.v1.DirectorStatus)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:director.v1.DirectorStatus)
+    MergeFrom(*source);
+  }
+}
+
+void DirectorStatus::MergeFrom(const DirectorStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:director.v1.DirectorStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.version_info().size() > 0) {
+
+    version_info_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_info_);
+  }
+}
+
+void DirectorStatus::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:director.v1.DirectorStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DirectorStatus::CopyFrom(const DirectorStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:director.v1.DirectorStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DirectorStatus::IsInitialized() const {
+  return true;
+}
+
+void DirectorStatus::Swap(DirectorStatus* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DirectorStatus::InternalSwap(DirectorStatus* other) {
+  using std::swap;
+  version_info_.Swap(&other->version_info_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DirectorStatus::GetMetadata() const {
+  protobuf_director_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_director_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DirectorStatus
+
+// string version_info = 1;
+void DirectorStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& DirectorStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:director.v1.DirectorStatus.version_info)
+  return version_info_.GetNoArena();
+}
+void DirectorStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:director.v1.DirectorStatus.version_info)
+}
+#if LANG_CXX11
+void DirectorStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:director.v1.DirectorStatus.version_info)
+}
+#endif
+void DirectorStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:director.v1.DirectorStatus.version_info)
+}
+void DirectorStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:director.v1.DirectorStatus.version_info)
+}
+::std::string* DirectorStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:director.v1.DirectorStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* DirectorStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:director.v1.DirectorStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void DirectorStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:director.v1.DirectorStatus.version_info)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 

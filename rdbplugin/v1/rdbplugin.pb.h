@@ -33,6 +33,12 @@
 // @@protoc_insertion_point(includes)
 namespace rdbplugin {
 namespace v1 {
+class RdbStatus;
+class RdbStatusDefaultTypeInternal;
+extern RdbStatusDefaultTypeInternal _RdbStatus_default_instance_;
+class RdbStatusRequest;
+class RdbStatusRequestDefaultTypeInternal;
+extern RdbStatusRequestDefaultTypeInternal _RdbStatusRequest_default_instance_;
 class RdbVolume;
 class RdbVolumeDefaultTypeInternal;
 extern RdbVolumeDefaultTypeInternal _RdbVolume_default_instance_;
@@ -74,6 +80,201 @@ void InitDefaults();
 
 // ===================================================================
 
+class RdbStatusRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rdbplugin.v1.RdbStatusRequest) */ {
+ public:
+  RdbStatusRequest();
+  virtual ~RdbStatusRequest();
+
+  RdbStatusRequest(const RdbStatusRequest& from);
+
+  inline RdbStatusRequest& operator=(const RdbStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RdbStatusRequest(RdbStatusRequest&& from) noexcept
+    : RdbStatusRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RdbStatusRequest& operator=(RdbStatusRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RdbStatusRequest& default_instance();
+
+  static inline const RdbStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const RdbStatusRequest*>(
+               &_RdbStatusRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(RdbStatusRequest* other);
+  friend void swap(RdbStatusRequest& a, RdbStatusRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RdbStatusRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RdbStatusRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RdbStatusRequest& from);
+  void MergeFrom(const RdbStatusRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RdbStatusRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:rdbplugin.v1.RdbStatusRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_rdbplugin_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class RdbStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rdbplugin.v1.RdbStatus) */ {
+ public:
+  RdbStatus();
+  virtual ~RdbStatus();
+
+  RdbStatus(const RdbStatus& from);
+
+  inline RdbStatus& operator=(const RdbStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RdbStatus(RdbStatus&& from) noexcept
+    : RdbStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline RdbStatus& operator=(RdbStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RdbStatus& default_instance();
+
+  static inline const RdbStatus* internal_default_instance() {
+    return reinterpret_cast<const RdbStatus*>(
+               &_RdbStatus_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    1;
+
+  void Swap(RdbStatus* other);
+  friend void swap(RdbStatus& a, RdbStatus& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RdbStatus* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RdbStatus* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RdbStatus& from);
+  void MergeFrom(const RdbStatus& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RdbStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string version_info = 1;
+  void clear_version_info();
+  static const int kVersionInfoFieldNumber = 1;
+  const ::std::string& version_info() const;
+  void set_version_info(const ::std::string& value);
+  #if LANG_CXX11
+  void set_version_info(::std::string&& value);
+  #endif
+  void set_version_info(const char* value);
+  void set_version_info(const char* value, size_t size);
+  ::std::string* mutable_version_info();
+  ::std::string* release_version_info();
+  void set_allocated_version_info(::std::string* version_info);
+
+  // @@protoc_insertion_point(class_scope:rdbplugin.v1.RdbStatus)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr version_info_;
+  mutable int _cached_size_;
+  friend struct protobuf_rdbplugin_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class RdbVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rdbplugin.v1.RdbVolumeListQuery) */ {
  public:
   RdbVolumeListQuery();
@@ -108,7 +309,7 @@ class RdbVolumeListQuery : public ::google::protobuf::Message /* @@protoc_insert
                &_RdbVolumeListQuery_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    2;
 
   void Swap(RdbVolumeListQuery* other);
   friend void swap(RdbVolumeListQuery& a, RdbVolumeListQuery& b) {
@@ -211,7 +412,7 @@ class RdbVolumeCredentials : public ::google::protobuf::Message /* @@protoc_inse
                &_RdbVolumeCredentials_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
+    3;
 
   void Swap(RdbVolumeCredentials* other);
   friend void swap(RdbVolumeCredentials& a, RdbVolumeCredentials& b) {
@@ -301,7 +502,7 @@ class RdbVolumeStatistics : public ::google::protobuf::Message /* @@protoc_inser
                &_RdbVolumeStatistics_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    4;
 
   void Swap(RdbVolumeStatistics* other);
   friend void swap(RdbVolumeStatistics& a, RdbVolumeStatistics& b) {
@@ -391,7 +592,7 @@ class RdbVolumeStatus : public ::google::protobuf::Message /* @@protoc_insertion
                &_RdbVolumeStatus_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    5;
 
   void Swap(RdbVolumeStatus* other);
   friend void swap(RdbVolumeStatus& a, RdbVolumeStatus& b) {
@@ -481,7 +682,7 @@ class RdbVolume : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_RdbVolume_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    6;
 
   void Swap(RdbVolume* other);
   friend void swap(RdbVolume& a, RdbVolume& b) {
@@ -625,7 +826,7 @@ class RdbVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_RdbVolumeList_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    7;
 
   void Swap(RdbVolumeList* other);
   friend void swap(RdbVolumeList& a, RdbVolumeList& b) {
@@ -702,6 +903,67 @@ class RdbVolumeList : public ::google::protobuf::Message /* @@protoc_insertion_p
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// RdbStatusRequest
+
+// -------------------------------------------------------------------
+
+// RdbStatus
+
+// string version_info = 1;
+inline void RdbStatus::clear_version_info() {
+  version_info_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& RdbStatus::version_info() const {
+  // @@protoc_insertion_point(field_get:rdbplugin.v1.RdbStatus.version_info)
+  return version_info_.GetNoArena();
+}
+inline void RdbStatus::set_version_info(const ::std::string& value) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:rdbplugin.v1.RdbStatus.version_info)
+}
+#if LANG_CXX11
+inline void RdbStatus::set_version_info(::std::string&& value) {
+  
+  version_info_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:rdbplugin.v1.RdbStatus.version_info)
+}
+#endif
+inline void RdbStatus::set_version_info(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:rdbplugin.v1.RdbStatus.version_info)
+}
+inline void RdbStatus::set_version_info(const char* value, size_t size) {
+  
+  version_info_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:rdbplugin.v1.RdbStatus.version_info)
+}
+inline ::std::string* RdbStatus::mutable_version_info() {
+  
+  // @@protoc_insertion_point(field_mutable:rdbplugin.v1.RdbStatus.version_info)
+  return version_info_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* RdbStatus::release_version_info() {
+  // @@protoc_insertion_point(field_release:rdbplugin.v1.RdbStatus.version_info)
+  
+  return version_info_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void RdbStatus::set_allocated_version_info(::std::string* version_info) {
+  if (version_info != NULL) {
+    
+  } else {
+    
+  }
+  version_info_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), version_info);
+  // @@protoc_insertion_point(field_set_allocated:rdbplugin.v1.RdbStatus.version_info)
+}
+
+// -------------------------------------------------------------------
+
 // RdbVolumeListQuery
 
 // repeated .rdbplugin.v1.RdbVolume volume_ids = 1;
@@ -976,6 +1238,10 @@ RdbVolumeList::volumes() const {
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
