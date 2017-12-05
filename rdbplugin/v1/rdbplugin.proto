@@ -7,6 +7,10 @@ import "common.proto";
  * RDB Plugin configuration and status service.
  */
 service RdbPlugin  {
+    /**
+     * Get program status.
+     */
+    rpc Status(RdbStatusRequest) returns (RdbStatus) {}
 
     /**
      * Create a volume. Currently has no actual effect other than
@@ -44,6 +48,16 @@ service RdbPlugin  {
      */
     rpc VolumeList(RdbVolumeListQuery) returns (RdbVolumeList) {}
 }
+
+message RdbStatusRequest {
+    // Empty for now.
+}
+
+message RdbStatus {
+    // The version control info string.
+    string version_info = 1;
+}
+
 
 message RdbVolumeListQuery {
     // Optional list of volume IDs to query.

@@ -129,6 +129,7 @@ message DfsClientStatusRequest {
 }
 
 message DfsClientStatus {
+    // The version control info string.
     string version_info = 1;
 }
 
@@ -137,6 +138,7 @@ message DfsServerStatusRequest {
 }
 
 message DfsServerStatus {
+    // The version control info string.
     string version_info = 1;
 }
 

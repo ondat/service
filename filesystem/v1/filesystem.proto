@@ -7,6 +7,10 @@ import "common.proto";
  * Filesystem configuration and status service.
  */
 service Fs {
+    /**
+     * Get program status.
+     */
+    rpc Status(FsStatusRequest) returns (FsStatus) {}
 
     /**
      * Create the specified FsVolume.
@@ -67,6 +71,15 @@ service Fs {
      *         if any are found matching the filter.
      */
     rpc PresentationList(FsPresentationListQuery) returns (FsPresentationList) {}
+}
+
+message FsStatusRequest {
+    // Empty for now.
+}
+
+message FsStatus {
+    // The version control info string.
+    string version_info = 1;
 }
 
 message FsVolumeListQuery {

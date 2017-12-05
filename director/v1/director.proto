@@ -8,6 +8,11 @@ import "common.proto";
  */
 service Director {
     /**
+     * Get program status.
+     */
+    rpc Status(DirectorStatusRequest) returns (DirectorStatus) {}
+
+    /**
      * Add configuration for the given DirectorVolume message.
      *
      * @return  RpcResult
@@ -67,6 +72,16 @@ service Director {
      */
     rpc PresentationList(DirectorPresentationListQuery) returns (DirectorPresentationList) {}
 }
+
+message DirectorStatusRequest {
+    // Empty for now.
+}
+
+message DirectorStatus {
+    // The version control info string.
+    string version_info = 1;
+}
+
 
 message DirectorVolumeListQuery {
     // A possibly-empty list of volume IDs to query.
