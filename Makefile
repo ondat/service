@@ -50,6 +50,10 @@ vis:
 vis_clean:
 	cd visualiser && $(MAKE) clean
 
+.PHONY: test
+test:
+	cd test && $(MAKE)
+
 #############################################################################
 
 ## Pattern rules.
