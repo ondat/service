@@ -252,10 +252,10 @@ class DfsServerStub(object):
         request_serializer=directfs__pb2.DfsVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
-    self.VolumeList = channel.unary_stream(
+    self.VolumeList = channel.unary_unary(
         '/directfs.v1.DfsServer/VolumeList',
         request_serializer=directfs__pb2.DfsVolumeListQuery.SerializeToString,
-        response_deserializer=directfs__pb2.DfsVolume.FromString,
+        response_deserializer=directfs__pb2.DfsVolumeList.FromString,
         )
 
 
@@ -339,10 +339,10 @@ def add_DfsServerServicer_to_server(servicer, server):
           request_deserializer=directfs__pb2.DfsVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
-      'VolumeList': grpc.unary_stream_rpc_method_handler(
+      'VolumeList': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeList,
           request_deserializer=directfs__pb2.DfsVolumeListQuery.FromString,
-          response_serializer=directfs__pb2.DfsVolume.SerializeToString,
+          response_serializer=directfs__pb2.DfsVolumeList.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -374,19 +374,19 @@ void AddDescriptorsImpl() {
       "\022\026.directfs.v1.DfsVolume\032\024.common.v1.Rpc"
       "Result\"\000\022K\n\nVolumeList\022\037.directfs.v1.Dfs"
       "VolumeListQuery\032\032.directfs.v1.DfsVolumeL"
-      "ist\"\0002\345\002\n\tDfsServer\022M\n\006Status\022#.directfs"
+      "ist\"\0002\347\002\n\tDfsServer\022M\n\006Status\022#.directfs"
       ".v1.DfsServerStatusRequest\032\034.directfs.v1"
       ".DfsServerStatus\"\000\022>\n\014VolumeCreate\022\026.dir"
       "ectfs.v1.DfsVolume\032\024.common.v1.RpcResult"
       "\"\000\022>\n\014VolumeUpdate\022\026.directfs.v1.DfsVolu"
       "me\032\024.common.v1.RpcResult\"\000\022>\n\014VolumeDele"
       "te\022\026.directfs.v1.DfsVolume\032\024.common.v1.R"
-      "pcResult\"\000\022I\n\nVolumeList\022\037.directfs.v1.D"
-      "fsVolumeListQuery\032\026.directfs.v1.DfsVolum"
-      "e\"\0000\001b\006proto3"
+      "pcResult\"\000\022K\n\nVolumeList\022\037.directfs.v1.D"
+      "fsVolumeListQuery\032\032.directfs.v1.DfsVolum"
+      "eList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 2133);
+      descriptor, 2135);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "directfs.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();

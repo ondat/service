@@ -818,19 +818,16 @@ class DfsServer final {
     // message.
     //
     // returns a stream of DfsVolume messages, if any are available matching the filter.
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::directfs::v1::DfsVolume>> VolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::directfs::v1::DfsVolume>>(VolumeListRaw(context, request));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::directfs::v1::DfsVolume>> AsyncVolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::directfs::v1::DfsVolume>>(AsyncVolumeListRaw(context, request, cq, tag));
+    virtual ::grpc::Status VolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::directfs::v1::DfsVolumeList* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::directfs::v1::DfsVolumeList>> AsyncVolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::directfs::v1::DfsVolumeList>>(AsyncVolumeListRaw(context, request, cq));
     }
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::directfs::v1::DfsServerStatus>* AsyncStatusRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsServerStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderInterface< ::directfs::v1::DfsVolume>* VolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::directfs::v1::DfsVolume>* AsyncVolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::directfs::v1::DfsVolumeList>* AsyncVolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -851,11 +848,9 @@ class DfsServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>> AsyncVolumeDelete(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>>(AsyncVolumeDeleteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReader< ::directfs::v1::DfsVolume>> VolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::directfs::v1::DfsVolume>>(VolumeListRaw(context, request));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::directfs::v1::DfsVolume>> AsyncVolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::directfs::v1::DfsVolume>>(AsyncVolumeListRaw(context, request, cq, tag));
+    ::grpc::Status VolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::directfs::v1::DfsVolumeList* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsVolumeList>> AsyncVolumeList(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsVolumeList>>(AsyncVolumeListRaw(context, request, cq));
     }
 
    private:
@@ -864,8 +859,7 @@ class DfsServer final {
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeCreateRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeUpdateRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::common::v1::RpcResult>* AsyncVolumeDeleteRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolume& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReader< ::directfs::v1::DfsVolume>* VolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request) override;
-    ::grpc::ClientAsyncReader< ::directfs::v1::DfsVolume>* AsyncVolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncResponseReader< ::directfs::v1::DfsVolumeList>* AsyncVolumeListRaw(::grpc::ClientContext* context, const ::directfs::v1::DfsVolumeListQuery& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::RpcMethod rpcmethod_Status_;
     const ::grpc::RpcMethod rpcmethod_VolumeCreate_;
     const ::grpc::RpcMethod rpcmethod_VolumeUpdate_;
@@ -904,7 +898,7 @@ class DfsServer final {
     // message.
     //
     // returns a stream of DfsVolume messages, if any are available matching the filter.
-    virtual ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerWriter< ::directfs::v1::DfsVolume>* writer);
+    virtual ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::directfs::v1::DfsVolumeList* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Status : public BaseClass {
@@ -998,12 +992,12 @@ class DfsServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerWriter< ::directfs::v1::DfsVolume>* writer) final override {
+    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::directfs::v1::DfsVolumeList* response) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestVolumeList(::grpc::ServerContext* context, ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerAsyncWriter< ::directfs::v1::DfsVolume>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(4, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestVolumeList(::grpc::ServerContext* context, ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerAsyncResponseWriter< ::directfs::v1::DfsVolumeList>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   typedef WithAsyncMethod_Status<WithAsyncMethod_VolumeCreate<WithAsyncMethod_VolumeUpdate<WithAsyncMethod_VolumeDelete<WithAsyncMethod_VolumeList<Service > > > > > AsyncService;
@@ -1087,7 +1081,7 @@ class DfsServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerWriter< ::directfs::v1::DfsVolume>* writer) final override {
+    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::directfs::v1::DfsVolumeList* response) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1172,29 +1166,29 @@ class DfsServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedVolumeDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::directfs::v1::DfsVolume,::common::v1::RpcResult>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<Service > > > > StreamedUnaryService;
   template <class BaseClass>
-  class WithSplitStreamingMethod_VolumeList : public BaseClass {
+  class WithStreamedUnaryMethod_VolumeList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithSplitStreamingMethod_VolumeList() {
+    WithStreamedUnaryMethod_VolumeList() {
       ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::SplitServerStreamingHandler< ::directfs::v1::DfsVolumeListQuery, ::directfs::v1::DfsVolume>(std::bind(&WithSplitStreamingMethod_VolumeList<BaseClass>::StreamedVolumeList, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::StreamedUnaryHandler< ::directfs::v1::DfsVolumeListQuery, ::directfs::v1::DfsVolumeList>(std::bind(&WithStreamedUnaryMethod_VolumeList<BaseClass>::StreamedVolumeList, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithSplitStreamingMethod_VolumeList() override {
+    ~WithStreamedUnaryMethod_VolumeList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::grpc::ServerWriter< ::directfs::v1::DfsVolume>* writer) final override {
+    ::grpc::Status VolumeList(::grpc::ServerContext* context, const ::directfs::v1::DfsVolumeListQuery* request, ::directfs::v1::DfsVolumeList* response) final override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedVolumeList(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::directfs::v1::DfsVolumeListQuery,::directfs::v1::DfsVolume>* server_split_streamer) = 0;
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedVolumeList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::directfs::v1::DfsVolumeListQuery,::directfs::v1::DfsVolumeList>* server_unary_streamer) = 0;
   };
-  typedef WithSplitStreamingMethod_VolumeList<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithSplitStreamingMethod_VolumeList<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Status<WithStreamedUnaryMethod_VolumeCreate<WithStreamedUnaryMethod_VolumeUpdate<WithStreamedUnaryMethod_VolumeDelete<WithStreamedUnaryMethod_VolumeList<Service > > > > > StreamedService;
 };
 
 }  // namespace v1
