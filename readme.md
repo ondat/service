@@ -47,3 +47,14 @@ and will have language-specific suffixes:
 | Go | `.pb.go` |
 | C++ | `.cc`, `.h` |
 | Python | `_pb2.py` |
+
+## API Tests
+
+There are some Python tests for the APIs in `test/`. You can run individual test programs as well as running them all:
+
+```
+$ make test
+...
+```
+
+These tests serve as checks for the API itself, not for the programs implementing either end of the API. It might be useful, though, to see the simplest-possible implmentation of both the client (the `test_*.py` programs) and the server end (`mock_*.py`).
