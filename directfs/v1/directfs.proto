@@ -120,7 +120,7 @@ service DfsServer {
      *
      * returns a stream of DfsVolume messages, if any are available matching the filter.
      */
-    rpc VolumeList(DfsVolumeListQuery) returns (stream DfsVolume) {}
+    rpc VolumeList(DfsVolumeListQuery) returns (DfsVolumeList) {}
 }
 
 
