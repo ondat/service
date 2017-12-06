@@ -57,4 +57,4 @@ $ make test
 ...
 ```
 
-These tests serve as checks for the API itself, not for the programs implementing either end of the API. It might be useful, though, to see the simplest-possible implmentation of both the client (the `test_*.py` programs) and the server end (`mock_*.py`).
+These tests serve as checks for the API itself, not for the programs implementing either end of the API. It might be useful, though, to see the simplest-possible implementation of both the client (the `test_*.py` programs) and the server end (`mock_*.py`).
