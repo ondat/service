@@ -124,20 +124,14 @@ message FsVolume {
     // The name of the volume to present in the filesystem.
     string filename = 5;
 
-    // True if this volume should be backed by another volume.
-    bool linked_volume = 6;
-
-    // If linked_volume is true, this is the volume to which we link.
-    uint32 target_volume_id = 7;
-
     // The volume size in bytes.
-    uint64 volume_size_bytes = 8;
+    uint64 volume_size_bytes = 6;
 
     // Volume statistics.
-    FsVolumeStatistics stats = 9;
+    FsVolumeStatistics stats = 7;
 
     // Volume status, e.g. readiness.
-    FsVolumeStatus status = 10;
+    FsVolumeStatus status = 8;
 }
 
 message FsVolumeList {
