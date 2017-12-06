@@ -2,7 +2,8 @@
 #
 # Filesystem gRPC API mock implementation.
 
-# pylint: disable=C0111
+# pylint: disable=C0111,E1101
+# flake8: noqa D102
 
 import logging
 
@@ -10,8 +11,29 @@ import common.v1.common_pb2 as common_pb2
 import filesystem.v1.filesystem_pb2 as filesystem_pb2
 import filesystem.v1.filesystem_pb2_grpc as filesystem_pb2_grpc
 
+import mock_common
+
 # pylint: disable=C0103
 log = logging.getLogger()
+
+
+def fsvolume_copy(request):
+    """Return a copy of an FsVolume message."""
+
+    # Copy scalar fields.
+    msg = filesystem_pb2.FsVolume(
+        volume_id=request.volume_id,
+        node_type=request.node_type,
+        device_number=request.device_number,
+        filename=request.filename,
+        linked_volume=request.linked_volume,
+        target_volume_id=request.target_volume_id,
+        volume_size_bytes=request.volume_size_bytes,
+    )
+    mock_common.copy_submessage(msg.cc, request, 'cc')
+    mock_common.copy_submessage(msg.stats, request, 'stats')
+    mock_common.copy_submessage(msg.status, request, 'status')
+    return msg
 
 
 class FilesystemServicer(filesystem_pb2_grpc.FsServicer):
@@ -25,17 +47,11 @@ class FilesystemServicer(filesystem_pb2_grpc.FsServicer):
         return filesystem_pb2.FsStatus(version_info=self.version_string)
 
     def VolumeCreate(self, request, _context):
-        # NOTE: Create a new FsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = filesystem_pb2.FsVolume(volume_id=request.volume_id)
-        self.volumes[request.volume_id] = newvol
+        self.volumes[request.volume_id] = fsvolume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeUpdate(self, request, _context):
-        # NOTE: Create a new FsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = filesystem_pb2.FsVolume(volume_id=request.volume_id)
-        self.volumes[request.volume_id] = newvol
+        self.volumes[request.volume_id] = fsvolume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeDelete(self, request, _context):

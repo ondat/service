@@ -3,6 +3,7 @@
 # DirectFS gRPC API mock implementation.
 
 # pylint: disable=C0111
+# flake8: noqa=D100
 
 import logging
 
@@ -10,8 +11,38 @@ import common.v1.common_pb2 as common_pb2
 import directfs.v1.directfs_pb2 as directfs_pb2
 import directfs.v1.directfs_pb2_grpc as directfs_pb2_grpc
 
+from mock_common import copy_submessage
+
 # pylint: disable=C0103
 log = logging.getLogger()
+
+
+def dfshost_copy(src):
+    """Copy a DfsHost message."""
+    msg = directfs_pb2.DfsHost(
+        host_id=src.host_id,
+        hostname=src.hostname,
+        port=src.port
+    )
+    # pylint: disable=E1101
+    copy_submessage(msg.cc, src, 'cc')
+    copy_submessage(msg.credentials, src, 'credentials')
+    return msg
+
+
+def dfsvolume_copy(src):
+    """Copy a DfsVolume message."""
+    # Copy scalar fields.
+    msg = directfs_pb2.DfsVolume(
+        volume_id=src.volume_id,
+        host_id=src.host_id,
+    )
+    # pylint: disable=E1101
+    copy_submessage(msg.cc, src, 'cc')
+    copy_submessage(msg.credentials, src, 'credentials')
+    copy_submessage(msg.stats, src, 'stats')
+    copy_submessage(msg.status, src, 'status')
+    return msg
 
 
 class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
@@ -24,17 +55,11 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
         return directfs_pb2.DfsClientStatus(version_info=self.version_string)
 
     def ServerCreate(self, request, _context):
-        # NOTE: Create a new DfsHost object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        self.servers[request.host_id] = directfs_pb2.DfsHost(
-            host_id=request.host_id, hostname=request.hostname, port=request.port)
+        self.servers[request.host_id] = dfshost_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def ServerUpdate(self, request, _context):
-        # NOTE: Create a new DfsHost object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        self.servers[request.host_id] = directfs_pb2.DfsHost(
-            host_id=request.host_id, hostname=request.hostname, port=request.port)
+        self.servers[request.host_id] = dfshost_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def ServerDelete(self, request, _context):
@@ -57,15 +82,11 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
                                     reason="Unknown host_id {}".format(new_volume.host_id))
 
     def VolumeCreate(self, request, _context):
-        # NOTE: Create a new DfsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = directfs_pb2.DfsVolume(volume_id=request.volume_id, host_id=request.host_id)
+        newvol = dfsvolume_copy(request)
         return self.checked_volume_update(newvol)
 
     def VolumeUpdate(self, request, _context):
-        # NOTE: Create a new DfsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = directfs_pb2.DfsVolume(volume_id=request.volume_id, host_id=request.host_id)
+        newvol = dfsvolume_copy(request)
         return self.checked_volume_update(newvol)
 
     def VolumeDelete(self, request, _context):
@@ -92,17 +113,11 @@ class DirectfsServerServicer(directfs_pb2_grpc.DfsServerServicer):
         return directfs_pb2.DfsServerStatus(version_info=self.version_string)
 
     def VolumeCreate(self, request, _context):
-        # NOTE: Create a new DfsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = directfs_pb2.DfsVolume(volume_id=request.volume_id, host_id=request.host_id)
-        self.volumes[request.volume_id] = newvol
+        self.volumes[request.volume_id] = dfsvolume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeUpdate(self, request, _context):
-        # NOTE: Create a new DfsVolume object. Do not use the request.
-        # NOTE: I don't know why CopyFrom()/MergeFrom() don't work, but they don't.
-        newvol = directfs_pb2.DfsVolume(volume_id=request.volume_id, host_id=request.host_id)
-        self.volumes[request.volume_id] = newvol
+        self.volumes[request.volume_id] = dfsvolume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeDelete(self, request, _context):
