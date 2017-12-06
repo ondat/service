@@ -45,11 +45,10 @@ def directorpresentation_copy(src):
 
 class DirectorServicer(director_pb2_grpc.DirectorServicer):
 
-    version_string = 'notset'
-
     def __init__(self):
         self.volumes = {}
         self.presentation = {}
+        self.version_string = 'notset'
 
     def Status(self, _request, _context):
         return director_pb2.DirectorStatus(version_info=self.version_string)
