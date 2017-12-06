@@ -133,7 +133,7 @@ message DirectorVolumeList {
 
 message DirectorPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
-    repeated uint32 presentation_id = 1;
+    repeated uint32 presentation_ids = 1;
 }
 
 /**
@@ -147,7 +147,7 @@ message DirectorPresentation {
     common.v1.DataplaneCommon cc = 1;
 
     // The inode the user mounts or opens.
-    uint32 source_id = 2;
+    uint32 presentation_id = 2;
 
     // The underlying inode of the StorageOS volume.
     uint32 target_id = 3;
