@@ -80,6 +80,68 @@ class TestServer(unittest.TestCase):
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
+    def test_presentation(self):
+        '''
+        Check we can add and remove volumes.
+        '''
+        channel = grpc.insecure_channel(self.url)
+        stub = filesystem_pb2_grpc.FsStub(channel)
+
+        # Start empty.
+        request = filesystem_pb2.FsPresentationListQuery(presentation_ids=[])
+        response = stub.PresentationList(request)
+        self.assertEqual(0, len(response.presentations))
+
+        # Add item without volume target, should fail.
+        vol = filesystem_pb2.FsPresentation(presentation_id=1666, target_id=666)
+        response = stub.PresentationCreate(vol)
+        self.assertEqual(False, response.success)
+
+        # Add the target volume.
+        vol = filesystem_pb2.FsVolume(volume_id=666)
+        response = stub.VolumeCreate(vol)
+        self.assertEqual(True, response.success)
+
+        request = filesystem_pb2.FsVolumeListQuery(volume_ids=[])
+        response = stub.VolumeList(request)
+        self.assertEqual(1, len(response.volumes))
+
+        # Add item - should now succeed.
+        vol = filesystem_pb2.FsPresentation(presentation_id=1666, target_id=666)
+        response = stub.PresentationCreate(vol)
+        self.assertEqual(True, response.success)
+
+        request = filesystem_pb2.FsPresentationListQuery(presentation_ids=[])
+        response = stub.PresentationList(request)
+        self.assertEqual(1, len(response.presentations))
+
+        # Update item to missing host, should fail.
+        vol = filesystem_pb2.FsPresentation(presentation_id=1666, target_id=667)
+        response = stub.PresentationUpdate(vol)
+        self.assertEqual(False, response.success)
+
+        request = filesystem_pb2.FsPresentationListQuery(presentation_ids=[])
+        response = stub.PresentationList(request)
+        self.assertEqual(1, len(response.presentations))
+
+        # Update item to correct host (no change), should succeed.
+        vol = filesystem_pb2.FsPresentation(presentation_id=1666, target_id=666)
+        response = stub.PresentationUpdate(vol)
+        self.assertEqual(True, response.success)
+
+        request = filesystem_pb2.FsPresentationListQuery(presentation_ids=[])
+        response = stub.PresentationList(request)
+        self.assertEqual(1, len(response.presentations))
+
+        # Delete item.
+        response = stub.PresentationDelete(
+            filesystem_pb2.FsPresentation(presentation_id=1666, target_id=666))
+        self.assertEqual(True, response.success)
+
+        request = filesystem_pb2.FsPresentationListQuery(presentation_ids=[])
+        response = stub.PresentationList(request)
+        self.assertEqual(0, len(response.presentations))
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)

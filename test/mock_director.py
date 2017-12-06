@@ -47,7 +47,7 @@ class DirectorServicer(director_pb2_grpc.DirectorServicer):
 
     def __init__(self):
         self.volumes = {}
-        self.presentation = {}
+        self.presentations = {}
         self.version_string = 'notset'
 
     def Status(self, _request, _context):
@@ -74,7 +74,7 @@ class DirectorServicer(director_pb2_grpc.DirectorServicer):
 
     def checked_presentation_update(self, new_presentation):
         if new_presentation.target_id in self.volumes:
-            self.presentation[new_presentation.presentation_id] = new_presentation
+            self.presentations[new_presentation.presentation_id] = new_presentation
             return common_pb2.RpcResult(success=True)
         # Missing target - fail.
         err = "Presentation {}, missing target {}".format(
@@ -90,12 +90,12 @@ class DirectorServicer(director_pb2_grpc.DirectorServicer):
         return self.checked_presentation_update(directorpresentation_copy(request))
 
     def PresentationDelete(self, request, _context):
-        del self.presentation[request.presentation_id]
+        del self.presentations[request.presentation_id]
         return common_pb2.RpcResult(success=True)
 
     def PresentationList(self, request, _context):
         plist = []
-        for _k, vol in self.presentation.items():
+        for _k, vol in self.presentations.items():
             plist.append(vol)
         response = director_pb2.DirectorPresentationList(presentations=plist)
         return response
