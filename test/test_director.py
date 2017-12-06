@@ -58,22 +58,27 @@ class TestDirector(unittest.TestCase):
         self.assertEqual(0, len(response.volumes))
 
         # Add item.
-        vol = director_pb2.DirectorVolume(volume_id=666)
+        vol = director_pb2.DirectorVolume(volume_id=666, write_pipe=5, read_pipe=6, replica_ids=[])
         response = stub.VolumeCreate(vol)
         self.assertEqual(True, response.success)
 
         request = director_pb2.DirectorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
+        self.assertEqual(0, len(response.volumes[0].replica_ids))
 
         # Update item.
-        vol = director_pb2.DirectorVolume(volume_id=666)
+        vol = director_pb2.DirectorVolume(
+            volume_id=666, write_pipe=5, read_pipe=6, replica_ids=[667])
         response = stub.VolumeUpdate(vol)
         self.assertEqual(True, response.success)
 
         request = director_pb2.DirectorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
+        # Check update content.
+        self.assertEqual(1, len(response.volumes[0].replica_ids))
+        self.assertEqual(667, response.volumes[0].replica_ids[0])
 
         # Delete item.
         response = stub.VolumeDelete(director_pb2.DirectorVolume(volume_id=666))
