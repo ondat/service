@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 # pylint: disable=C0111
-# flake8: noqa=D100
 
 from concurrent import futures
 

@@ -28,7 +28,8 @@ class TestClient(unittest.TestCase):
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
         servicer = mock_directfs.DirectfsClientServicer()
         servicer.version_string = TestClient.version_string
-        directfs_pb2_grpc.add_DfsClientServicer_to_server(servicer, self.server)
+        directfs_pb2_grpc.add_DfsClientServicer_to_server(servicer,
+                                                          self.server)
         self.server.add_insecure_port(self.url)
         log.debug('server start')
         self.server.start()
@@ -57,7 +58,8 @@ class TestClient(unittest.TestCase):
         self.assertEqual(0, len(response.hosts))
 
         # Add item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb', port=17100)
+        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb',
+                                       port=17100)
         response = stub.ServerCreate(request)
         self.assertEqual(True, response.success)
 
@@ -67,7 +69,8 @@ class TestClient(unittest.TestCase):
         self.assertEqual('rhubarb', response.hosts[0].hostname)
 
         # Update item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard', port=17100)
+        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard',
+                                       port=17100)
         response = stub.ServerUpdate(request)
         self.assertEqual(True, response.success)
 
@@ -77,7 +80,8 @@ class TestClient(unittest.TestCase):
         self.assertEqual('custard', response.hosts[0].hostname)
 
         # Delete item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard', port=17100)
+        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard',
+                                       port=17100)
         response = stub.ServerDelete(request)
         self.assertEqual(True, response.success)
 
@@ -108,7 +112,8 @@ class TestClient(unittest.TestCase):
         self.assertEqual(0, len(response.volumes))
 
         # Add the host.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb', port=17100)
+        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb',
+                                       port=17100)
         response = stub.ServerCreate(request)
         self.assertEqual(True, response.success)
 
@@ -162,7 +167,8 @@ class TestServer(unittest.TestCase):
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
         servicer = mock_directfs.DirectfsServerServicer()
         servicer.version_string = TestServer.version_string
-        directfs_pb2_grpc.add_DfsServerServicer_to_server(servicer, self.server)
+        directfs_pb2_grpc.add_DfsServerServicer_to_server(servicer,
+                                                          self.server)
         self.server.add_insecure_port(self.url)
         self.server.start()
 

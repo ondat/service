@@ -3,7 +3,6 @@
 # Filesystem gRPC API mock implementation.
 
 # pylint: disable=C0111,E1101
-# flake8: noqa D102
 
 import logging
 
