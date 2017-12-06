@@ -911,24 +911,24 @@ class DirectorPresentationListQuery : public ::google::protobuf::Message /* @@pr
 
   // accessors -------------------------------------------------------
 
-  // repeated uint32 presentation_id = 1;
-  int presentation_id_size() const;
-  void clear_presentation_id();
-  static const int kPresentationIdFieldNumber = 1;
-  ::google::protobuf::uint32 presentation_id(int index) const;
-  void set_presentation_id(int index, ::google::protobuf::uint32 value);
-  void add_presentation_id(::google::protobuf::uint32 value);
+  // repeated uint32 presentation_ids = 1;
+  int presentation_ids_size() const;
+  void clear_presentation_ids();
+  static const int kPresentationIdsFieldNumber = 1;
+  ::google::protobuf::uint32 presentation_ids(int index) const;
+  void set_presentation_ids(int index, ::google::protobuf::uint32 value);
+  void add_presentation_ids(::google::protobuf::uint32 value);
   const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-      presentation_id() const;
+      presentation_ids() const;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-      mutable_presentation_id();
+      mutable_presentation_ids();
 
   // @@protoc_insertion_point(class_scope:director.v1.DirectorPresentationListQuery)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > presentation_id_;
-  mutable int _presentation_id_cached_byte_size_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > presentation_ids_;
+  mutable int _presentation_ids_cached_byte_size_;
   mutable int _cached_size_;
   friend struct protobuf_director_2eproto::TableStruct;
 };
@@ -1024,11 +1024,11 @@ class DirectorPresentation : public ::google::protobuf::Message /* @@protoc_inse
   ::common::v1::DataplaneCommon* release_cc();
   void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
-  // uint32 source_id = 2;
-  void clear_source_id();
-  static const int kSourceIdFieldNumber = 2;
-  ::google::protobuf::uint32 source_id() const;
-  void set_source_id(::google::protobuf::uint32 value);
+  // uint32 presentation_id = 2;
+  void clear_presentation_id();
+  static const int kPresentationIdFieldNumber = 2;
+  ::google::protobuf::uint32 presentation_id() const;
+  void set_presentation_id(::google::protobuf::uint32 value);
 
   // uint32 target_id = 3;
   void clear_target_id();
@@ -1041,7 +1041,7 @@ class DirectorPresentation : public ::google::protobuf::Message /* @@protoc_inse
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::common::v1::DataplaneCommon* cc_;
-  ::google::protobuf::uint32 source_id_;
+  ::google::protobuf::uint32 presentation_id_;
   ::google::protobuf::uint32 target_id_;
   mutable int _cached_size_;
   friend struct protobuf_director_2eproto::TableStruct;
@@ -1508,34 +1508,34 @@ DirectorVolumeList::volumes() const {
 
 // DirectorPresentationListQuery
 
-// repeated uint32 presentation_id = 1;
-inline int DirectorPresentationListQuery::presentation_id_size() const {
-  return presentation_id_.size();
+// repeated uint32 presentation_ids = 1;
+inline int DirectorPresentationListQuery::presentation_ids_size() const {
+  return presentation_ids_.size();
 }
-inline void DirectorPresentationListQuery::clear_presentation_id() {
-  presentation_id_.Clear();
+inline void DirectorPresentationListQuery::clear_presentation_ids() {
+  presentation_ids_.Clear();
 }
-inline ::google::protobuf::uint32 DirectorPresentationListQuery::presentation_id(int index) const {
-  // @@protoc_insertion_point(field_get:director.v1.DirectorPresentationListQuery.presentation_id)
-  return presentation_id_.Get(index);
+inline ::google::protobuf::uint32 DirectorPresentationListQuery::presentation_ids(int index) const {
+  // @@protoc_insertion_point(field_get:director.v1.DirectorPresentationListQuery.presentation_ids)
+  return presentation_ids_.Get(index);
 }
-inline void DirectorPresentationListQuery::set_presentation_id(int index, ::google::protobuf::uint32 value) {
-  presentation_id_.Set(index, value);
-  // @@protoc_insertion_point(field_set:director.v1.DirectorPresentationListQuery.presentation_id)
+inline void DirectorPresentationListQuery::set_presentation_ids(int index, ::google::protobuf::uint32 value) {
+  presentation_ids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:director.v1.DirectorPresentationListQuery.presentation_ids)
 }
-inline void DirectorPresentationListQuery::add_presentation_id(::google::protobuf::uint32 value) {
-  presentation_id_.Add(value);
-  // @@protoc_insertion_point(field_add:director.v1.DirectorPresentationListQuery.presentation_id)
+inline void DirectorPresentationListQuery::add_presentation_ids(::google::protobuf::uint32 value) {
+  presentation_ids_.Add(value);
+  // @@protoc_insertion_point(field_add:director.v1.DirectorPresentationListQuery.presentation_ids)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
-DirectorPresentationListQuery::presentation_id() const {
-  // @@protoc_insertion_point(field_list:director.v1.DirectorPresentationListQuery.presentation_id)
-  return presentation_id_;
+DirectorPresentationListQuery::presentation_ids() const {
+  // @@protoc_insertion_point(field_list:director.v1.DirectorPresentationListQuery.presentation_ids)
+  return presentation_ids_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
-DirectorPresentationListQuery::mutable_presentation_id() {
-  // @@protoc_insertion_point(field_mutable_list:director.v1.DirectorPresentationListQuery.presentation_id)
-  return &presentation_id_;
+DirectorPresentationListQuery::mutable_presentation_ids() {
+  // @@protoc_insertion_point(field_mutable_list:director.v1.DirectorPresentationListQuery.presentation_ids)
+  return &presentation_ids_;
 }
 
 // -------------------------------------------------------------------
@@ -1582,18 +1582,18 @@ inline void DirectorPresentation::set_allocated_cc(::common::v1::DataplaneCommon
   // @@protoc_insertion_point(field_set_allocated:director.v1.DirectorPresentation.cc)
 }
 
-// uint32 source_id = 2;
-inline void DirectorPresentation::clear_source_id() {
-  source_id_ = 0u;
+// uint32 presentation_id = 2;
+inline void DirectorPresentation::clear_presentation_id() {
+  presentation_id_ = 0u;
 }
-inline ::google::protobuf::uint32 DirectorPresentation::source_id() const {
-  // @@protoc_insertion_point(field_get:director.v1.DirectorPresentation.source_id)
-  return source_id_;
+inline ::google::protobuf::uint32 DirectorPresentation::presentation_id() const {
+  // @@protoc_insertion_point(field_get:director.v1.DirectorPresentation.presentation_id)
+  return presentation_id_;
 }
-inline void DirectorPresentation::set_source_id(::google::protobuf::uint32 value) {
+inline void DirectorPresentation::set_presentation_id(::google::protobuf::uint32 value) {
   
-  source_id_ = value;
-  // @@protoc_insertion_point(field_set:director.v1.DirectorPresentation.source_id)
+  presentation_id_ = value;
+  // @@protoc_insertion_point(field_set:director.v1.DirectorPresentation.presentation_id)
 }
 
 // uint32 target_id = 3;

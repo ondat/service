@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='director.proto',
   package='director.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irector.proto\x12\x0b\x64irector.v1\x1a\x0c\x63ommon.proto\"\x17\n\x15\x44irectorStatusRequest\"&\n\x0e\x44irectorStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x1a\n\x18\x44irectorVolumeStatistics\"\x16\n\x14\x44irectorVolumeStatus\"\xfd\x01\n\x0e\x44irectorVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x34\n\x05stats\x18\x07 \x01(\x0b\x32%.director.v1.DirectorVolumeStatistics\x12\x31\n\x06status\x18\x08 \x01(\x0b\x32!.director.v1.DirectorVolumeStatus\"B\n\x12\x44irectorVolumeList\x12,\n\x07volumes\x18\x01 \x03(\x0b\x32\x1b.director.v1.DirectorVolume\"8\n\x1d\x44irectorPresentationListQuery\x12\x17\n\x0fpresentation_id\x18\x01 \x03(\r\"d\n\x14\x44irectorPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tsource_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"T\n\x18\x44irectorPresentationList\x12\x38\n\rpresentations\x18\x01 \x03(\x0b\x32!.director.v1.DirectorPresentation2\xd9\x05\n\x08\x44irector\x12K\n\x06Status\x12\".director.v1.DirectorStatusRequest\x1a\x1b.director.v1.DirectorStatus\"\x00\x12\x43\n\x0cVolumeCreate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeUpdate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12U\n\nVolumeList\x12$.director.v1.DirectorVolumeListQuery\x1a\x1f.director.v1.DirectorVolumeList\"\x00\x12O\n\x12PresentationCreate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationUpdate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationDelete\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12g\n\x10PresentationList\x12*.director.v1.DirectorPresentationListQuery\x1a%.director.v1.DirectorPresentationList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irector.proto\x12\x0b\x64irector.v1\x1a\x0c\x63ommon.proto\"\x17\n\x15\x44irectorStatusRequest\"&\n\x0e\x44irectorStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"-\n\x17\x44irectorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x1a\n\x18\x44irectorVolumeStatistics\"\x16\n\x14\x44irectorVolumeStatus\"\xfd\x01\n\x0e\x44irectorVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x12\n\nwrite_pipe\x18\x03 \x01(\r\x12\x11\n\tread_pipe\x18\x04 \x01(\r\x12\x0b\n\x03qos\x18\x05 \x01(\x04\x12\x13\n\x0breplica_ids\x18\x06 \x03(\r\x12\x34\n\x05stats\x18\x07 \x01(\x0b\x32%.director.v1.DirectorVolumeStatistics\x12\x31\n\x06status\x18\x08 \x01(\x0b\x32!.director.v1.DirectorVolumeStatus\"B\n\x12\x44irectorVolumeList\x12,\n\x07volumes\x18\x01 \x03(\x0b\x32\x1b.director.v1.DirectorVolume\"9\n\x1d\x44irectorPresentationListQuery\x12\x18\n\x10presentation_ids\x18\x01 \x03(\r\"j\n\x14\x44irectorPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x17\n\x0fpresentation_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\"T\n\x18\x44irectorPresentationList\x12\x38\n\rpresentations\x18\x01 \x03(\x0b\x32!.director.v1.DirectorPresentation2\xd9\x05\n\x08\x44irector\x12K\n\x06Status\x12\".director.v1.DirectorStatusRequest\x1a\x1b.director.v1.DirectorStatus\"\x00\x12\x43\n\x0cVolumeCreate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeUpdate\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12\x43\n\x0cVolumeDelete\x12\x1b.director.v1.DirectorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12U\n\nVolumeList\x12$.director.v1.DirectorVolumeListQuery\x1a\x1f.director.v1.DirectorVolumeList\"\x00\x12O\n\x12PresentationCreate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationUpdate\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12O\n\x12PresentationDelete\x12!.director.v1.DirectorPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12g\n\x10PresentationList\x12*.director.v1.DirectorPresentationListQuery\x1a%.director.v1.DirectorPresentationList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -280,7 +280,7 @@ _DIRECTORPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='presentation_id', full_name='director.v1.DirectorPresentationListQuery.presentation_id', index=0,
+      name='presentation_ids', full_name='director.v1.DirectorPresentationListQuery.presentation_ids', index=0,
       number=1, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -299,7 +299,7 @@ _DIRECTORPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=533,
-  serialized_end=589,
+  serialized_end=590,
 )
 
 
@@ -318,7 +318,7 @@ _DIRECTORPRESENTATION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='source_id', full_name='director.v1.DirectorPresentation.source_id', index=1,
+      name='presentation_id', full_name='director.v1.DirectorPresentation.presentation_id', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -343,8 +343,8 @@ _DIRECTORPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=591,
-  serialized_end=691,
+  serialized_start=592,
+  serialized_end=698,
 )
 
 
@@ -374,8 +374,8 @@ _DIRECTORPRESENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=693,
-  serialized_end=777,
+  serialized_start=700,
+  serialized_end=784,
 )
 
 _DIRECTORVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
@@ -474,8 +474,8 @@ _DIRECTOR = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=780,
-  serialized_end=1509,
+  serialized_start=787,
+  serialized_end=1516,
   methods=[
   _descriptor.MethodDescriptor(
     name='Status',
