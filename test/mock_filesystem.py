@@ -25,8 +25,6 @@ def fsvolume_copy(src):
         node_type=src.node_type,
         device_number=src.device_number,
         filename=src.filename,
-        linked_volume=src.linked_volume,
-        target_volume_id=src.target_volume_id,
         volume_size_bytes=src.volume_size_bytes,
     )
     copy_submessage(msg.cc, src, 'cc')

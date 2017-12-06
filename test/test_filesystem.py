@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-# pylint: disable=C0111
+# C0111 is 'missing module docstring', we don't care here.
+# E1101 is 'Instance/Class x has no member y', which isn't necessarily true -
+#   protobuf uses metaclass magic a lot and pylint doesn't always keep up.
+# pylint: disable=C0111,E1101
 
 from concurrent import futures
 
@@ -17,6 +20,8 @@ import mock_filesystem
 
 # pylint: disable=C0103
 log = logging.getLogger()
+
+ONE_GiB_IN_BYTES = 1024 * 1024 * 1024
 
 
 class TestServer(unittest.TestCase):
@@ -55,22 +60,42 @@ class TestServer(unittest.TestCase):
         self.assertEqual(0, len(response.volumes))
 
         # Add item.
-        vol = filesystem_pb2.FsVolume(volume_id=666)
+        vol = filesystem_pb2.FsVolume(
+            volume_id=666,
+            node_type=filesystem_pb2.FsVolume.FILE,
+            device_number=1,
+            filename='meh',
+            volume_size_bytes=10 * ONE_GiB_IN_BYTES
+        )
+        # Set a label.
+        vol.cc.labels['foo'] = 'bar'
+
         response = stub.VolumeCreate(vol)
         self.assertEqual(True, response.success)
 
         request = filesystem_pb2.FsVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
+        # Check the label.
+        self.assertEqual('bar', response.volumes[0].cc.labels['foo'])
 
         # Update item.
-        vol = filesystem_pb2.FsVolume(volume_id=666)
+        vol = filesystem_pb2.FsVolume(
+            volume_id=666,
+            node_type=filesystem_pb2.FsVolume.FILE,
+            device_number=1,
+            filename='meh',
+            volume_size_bytes=100 * ONE_GiB_IN_BYTES
+        )
+        vol.cc.labels['foo'] = 'baz'
         response = stub.VolumeUpdate(vol)
         self.assertEqual(True, response.success)
 
         request = filesystem_pb2.FsVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
+        # Check the label update.
+        self.assertEqual('baz', response.volumes[0].cc.labels['foo'])
 
         # Delete item.
         response = stub.VolumeDelete(filesystem_pb2.FsVolume(volume_id=666))
