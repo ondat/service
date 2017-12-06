@@ -15,7 +15,7 @@ EMPTY		:=
 SPACE		:= $(EMPTY) $(EMPTY)
 MOD_PP		:= $(subst $(SPACE),:,$(foreach mod,$(MODULES),$(MODDIR)/$(mod)/v1))
 
-PYTHONPATH	:= $(MODDIR):$(MOD_PP)$(CURDIR)
+PYTHONPATH	:= $(MODDIR):$(MOD_PP):$(CURDIR)
 
 TESTS		:= $(wildcard test_*.py)
 TESTOPTS	?= -v
