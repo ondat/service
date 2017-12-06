@@ -36,8 +36,10 @@ def fsvolume_copy(request):
 
 
 class FilesystemServicer(filesystem_pb2_grpc.FsServicer):
-    volumes = {}
-    version_string = 'notset'
+
+    def __init__(self):
+        self.volumes = {}
+        self.version_string = 'notset'
 
     def get_volumes(self):
         return self.volumes

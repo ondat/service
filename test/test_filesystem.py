@@ -21,7 +21,7 @@ log = logging.getLogger()
 
 class TestServer(unittest.TestCase):
 
-    url = '127.0.0.1:6666'
+    url = '127.0.0.1:6667'
     version_string = 'TestClient'
 
     def setUp(self):

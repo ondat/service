@@ -46,9 +46,10 @@ def dfsvolume_copy(src):
 
 class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
 
-    servers = {}
-    volumes = {}
-    version_string = 'notset'
+    def __init__(self):
+        self.servers = {}
+        self.volumes = {}
+        self.version_string = 'notset'
 
     def Status(self, _request, _context):
         return directfs_pb2.DfsClientStatus(version_info=self.version_string)
