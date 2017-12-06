@@ -745,19 +745,19 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::common::v1::DataplaneCommon* release_cc();
   void set_allocated_cc(::common::v1::DataplaneCommon* cc);
 
-  // .filesystem.v1.FsVolumeStatistics stats = 9;
+  // .filesystem.v1.FsVolumeStatistics stats = 7;
   bool has_stats() const;
   void clear_stats();
-  static const int kStatsFieldNumber = 9;
+  static const int kStatsFieldNumber = 7;
   const ::filesystem::v1::FsVolumeStatistics& stats() const;
   ::filesystem::v1::FsVolumeStatistics* mutable_stats();
   ::filesystem::v1::FsVolumeStatistics* release_stats();
   void set_allocated_stats(::filesystem::v1::FsVolumeStatistics* stats);
 
-  // .filesystem.v1.FsVolumeStatus status = 10;
+  // .filesystem.v1.FsVolumeStatus status = 8;
   bool has_status() const;
   void clear_status();
-  static const int kStatusFieldNumber = 10;
+  static const int kStatusFieldNumber = 8;
   const ::filesystem::v1::FsVolumeStatus& status() const;
   ::filesystem::v1::FsVolumeStatus* mutable_status();
   ::filesystem::v1::FsVolumeStatus* release_status();
@@ -775,29 +775,17 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::filesystem::v1::FsVolume_VolumeDeviceType node_type() const;
   void set_node_type(::filesystem::v1::FsVolume_VolumeDeviceType value);
 
+  // uint64 volume_size_bytes = 6;
+  void clear_volume_size_bytes();
+  static const int kVolumeSizeBytesFieldNumber = 6;
+  ::google::protobuf::uint64 volume_size_bytes() const;
+  void set_volume_size_bytes(::google::protobuf::uint64 value);
+
   // uint32 device_number = 4;
   void clear_device_number();
   static const int kDeviceNumberFieldNumber = 4;
   ::google::protobuf::uint32 device_number() const;
   void set_device_number(::google::protobuf::uint32 value);
-
-  // bool linked_volume = 6;
-  void clear_linked_volume();
-  static const int kLinkedVolumeFieldNumber = 6;
-  bool linked_volume() const;
-  void set_linked_volume(bool value);
-
-  // uint64 volume_size_bytes = 8;
-  void clear_volume_size_bytes();
-  static const int kVolumeSizeBytesFieldNumber = 8;
-  ::google::protobuf::uint64 volume_size_bytes() const;
-  void set_volume_size_bytes(::google::protobuf::uint64 value);
-
-  // uint32 target_volume_id = 7;
-  void clear_target_volume_id();
-  static const int kTargetVolumeIdFieldNumber = 7;
-  ::google::protobuf::uint32 target_volume_id() const;
-  void set_target_volume_id(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:filesystem.v1.FsVolume)
  private:
@@ -809,10 +797,8 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::filesystem::v1::FsVolumeStatus* status_;
   ::google::protobuf::uint32 volume_id_;
   int node_type_;
-  ::google::protobuf::uint32 device_number_;
-  bool linked_volume_;
   ::google::protobuf::uint64 volume_size_bytes_;
-  ::google::protobuf::uint32 target_volume_id_;
+  ::google::protobuf::uint32 device_number_;
   mutable int _cached_size_;
   friend struct protobuf_filesystem_2eproto::TableStruct;
 };
@@ -1514,35 +1500,7 @@ inline void FsVolume::set_allocated_filename(::std::string* filename) {
   // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.filename)
 }
 
-// bool linked_volume = 6;
-inline void FsVolume::clear_linked_volume() {
-  linked_volume_ = false;
-}
-inline bool FsVolume::linked_volume() const {
-  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.linked_volume)
-  return linked_volume_;
-}
-inline void FsVolume::set_linked_volume(bool value) {
-  
-  linked_volume_ = value;
-  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.linked_volume)
-}
-
-// uint32 target_volume_id = 7;
-inline void FsVolume::clear_target_volume_id() {
-  target_volume_id_ = 0u;
-}
-inline ::google::protobuf::uint32 FsVolume::target_volume_id() const {
-  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.target_volume_id)
-  return target_volume_id_;
-}
-inline void FsVolume::set_target_volume_id(::google::protobuf::uint32 value) {
-  
-  target_volume_id_ = value;
-  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.target_volume_id)
-}
-
-// uint64 volume_size_bytes = 8;
+// uint64 volume_size_bytes = 6;
 inline void FsVolume::clear_volume_size_bytes() {
   volume_size_bytes_ = GOOGLE_ULONGLONG(0);
 }
@@ -1556,7 +1514,7 @@ inline void FsVolume::set_volume_size_bytes(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.volume_size_bytes)
 }
 
-// .filesystem.v1.FsVolumeStatistics stats = 9;
+// .filesystem.v1.FsVolumeStatistics stats = 7;
 inline bool FsVolume::has_stats() const {
   return this != internal_default_instance() && stats_ != NULL;
 }
@@ -1596,7 +1554,7 @@ inline void FsVolume::set_allocated_stats(::filesystem::v1::FsVolumeStatistics* 
   // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.stats)
 }
 
-// .filesystem.v1.FsVolumeStatus status = 10;
+// .filesystem.v1.FsVolumeStatus status = 8;
 inline bool FsVolume::has_status() const {
   return this != internal_default_instance() && status_ != NULL;
 }

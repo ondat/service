@@ -142,8 +142,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, node_type_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, device_number_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, filename_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, linked_volume_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, target_volume_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, volume_size_bytes_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, stats_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, status_),
@@ -182,10 +180,10 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTR
   { 17, -1, sizeof(FsVolumeStatistics)},
   { 22, -1, sizeof(FsVolumeStatus)},
   { 28, -1, sizeof(FsVolume)},
-  { 43, -1, sizeof(FsVolumeList)},
-  { 49, -1, sizeof(FsPresentationListQuery)},
-  { 55, -1, sizeof(FsPresentation)},
-  { 64, -1, sizeof(FsPresentationList)},
+  { 41, -1, sizeof(FsVolumeList)},
+  { 47, -1, sizeof(FsPresentationListQuery)},
+  { 53, -1, sizeof(FsPresentation)},
+  { 62, -1, sizeof(FsPresentationList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -273,47 +271,45 @@ void AddDescriptorsImpl() {
       "\n\014version_info\030\001 \001(\t\"\'\n\021FsVolumeListQuer"
       "y\022\022\n\nvolume_ids\030\001 \003(\r\"\024\n\022FsVolumeStatist"
       "ics\"B\n\016FsVolumeStatus\0220\n\nnode_state\030\001 \001("
-      "\0162\034.filesystem.v1.FsVolumeState\"\205\003\n\010FsVo"
+      "\0162\034.filesystem.v1.FsVolumeState\"\324\002\n\010FsVo"
       "lume\022&\n\002cc\030\001 \001(\0132\032.common.v1.DataplaneCo"
       "mmon\022\021\n\tvolume_id\030\002 \001(\r\022;\n\tnode_type\030\003 \001"
       "(\0162(.filesystem.v1.FsVolume.VolumeDevice"
       "Type\022\025\n\rdevice_number\030\004 \001(\r\022\020\n\010filename\030"
-      "\005 \001(\t\022\025\n\rlinked_volume\030\006 \001(\010\022\030\n\020target_v"
-      "olume_id\030\007 \001(\r\022\031\n\021volume_size_bytes\030\010 \001("
-      "\004\0220\n\005stats\030\t \001(\0132!.filesystem.v1.FsVolum"
-      "eStatistics\022-\n\006status\030\n \001(\0132\035.filesystem"
-      ".v1.FsVolumeStatus\"+\n\020VolumeDeviceType\022\010"
-      "\n\004FILE\020\000\022\r\n\tNBD_BLOCK\020\001\"8\n\014FsVolumeList\022"
-      "(\n\007volumes\030\001 \003(\0132\027.filesystem.v1.FsVolum"
-      "e\"3\n\027FsPresentationListQuery\022\030\n\020presenta"
-      "tion_ids\030\001 \003(\r\"\223\001\n\016FsPresentation\022&\n\002cc\030"
-      "\001 \001(\0132\032.common.v1.DataplaneCommon\022\027\n\017pre"
-      "sentation_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\022-\n"
-      "\006status\030\005 \001(\0132\035.filesystem.v1.FsVolumeSt"
-      "atus\"J\n\022FsPresentationList\0224\n\rpresentati"
-      "ons\030\001 \003(\0132\035.filesystem.v1.FsPresentation"
-      "*$\n\rFsVolumeState\022\010\n\004NONE\020\000\022\t\n\005READY\020\0012\243"
-      "\005\n\002Fs\022C\n\006Status\022\036.filesystem.v1.FsStatus"
-      "Request\032\027.filesystem.v1.FsStatus\"\000\022\?\n\014Vo"
-      "lumeCreate\022\027.filesystem.v1.FsVolume\032\024.co"
-      "mmon.v1.RpcResult\"\000\022\?\n\014VolumeUpdate\022\027.fi"
-      "lesystem.v1.FsVolume\032\024.common.v1.RpcResu"
-      "lt\"\000\022\?\n\014VolumeDelete\022\027.filesystem.v1.FsV"
-      "olume\032\024.common.v1.RpcResult\"\000\022M\n\nVolumeL"
-      "ist\022 .filesystem.v1.FsVolumeListQuery\032\033."
-      "filesystem.v1.FsVolumeList\"\000\022K\n\022Presenta"
-      "tionCreate\022\035.filesystem.v1.FsPresentatio"
-      "n\032\024.common.v1.RpcResult\"\000\022K\n\022Presentatio"
-      "nUpdate\022\035.filesystem.v1.FsPresentation\032\024"
-      ".common.v1.RpcResult\"\000\022K\n\022PresentationDe"
-      "lete\022\035.filesystem.v1.FsPresentation\032\024.co"
-      "mmon.v1.RpcResult\"\000\022_\n\020PresentationList\022"
-      "&.filesystem.v1.FsPresentationListQuery\032"
-      "!.filesystem.v1.FsPresentationList\"\000b\006pr"
-      "oto3"
+      "\005 \001(\t\022\031\n\021volume_size_bytes\030\006 \001(\004\0220\n\005stat"
+      "s\030\007 \001(\0132!.filesystem.v1.FsVolumeStatisti"
+      "cs\022-\n\006status\030\010 \001(\0132\035.filesystem.v1.FsVol"
+      "umeStatus\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022"
+      "\r\n\tNBD_BLOCK\020\001\"8\n\014FsVolumeList\022(\n\007volume"
+      "s\030\001 \003(\0132\027.filesystem.v1.FsVolume\"3\n\027FsPr"
+      "esentationListQuery\022\030\n\020presentation_ids\030"
+      "\001 \003(\r\"\223\001\n\016FsPresentation\022&\n\002cc\030\001 \001(\0132\032.c"
+      "ommon.v1.DataplaneCommon\022\027\n\017presentation"
+      "_id\030\002 \001(\r\022\021\n\ttarget_id\030\003 \001(\r\022-\n\006status\030\005"
+      " \001(\0132\035.filesystem.v1.FsVolumeStatus\"J\n\022F"
+      "sPresentationList\0224\n\rpresentations\030\001 \003(\013"
+      "2\035.filesystem.v1.FsPresentation*$\n\rFsVol"
+      "umeState\022\010\n\004NONE\020\000\022\t\n\005READY\020\0012\243\005\n\002Fs\022C\n\006"
+      "Status\022\036.filesystem.v1.FsStatusRequest\032\027"
+      ".filesystem.v1.FsStatus\"\000\022\?\n\014VolumeCreat"
+      "e\022\027.filesystem.v1.FsVolume\032\024.common.v1.R"
+      "pcResult\"\000\022\?\n\014VolumeUpdate\022\027.filesystem."
+      "v1.FsVolume\032\024.common.v1.RpcResult\"\000\022\?\n\014V"
+      "olumeDelete\022\027.filesystem.v1.FsVolume\032\024.c"
+      "ommon.v1.RpcResult\"\000\022M\n\nVolumeList\022 .fil"
+      "esystem.v1.FsVolumeListQuery\032\033.filesyste"
+      "m.v1.FsVolumeList\"\000\022K\n\022PresentationCreat"
+      "e\022\035.filesystem.v1.FsPresentation\032\024.commo"
+      "n.v1.RpcResult\"\000\022K\n\022PresentationUpdate\022\035"
+      ".filesystem.v1.FsPresentation\032\024.common.v"
+      "1.RpcResult\"\000\022K\n\022PresentationDelete\022\035.fi"
+      "lesystem.v1.FsPresentation\032\024.common.v1.R"
+      "pcResult\"\000\022_\n\020PresentationList\022&.filesys"
+      "tem.v1.FsPresentationListQuery\032!.filesys"
+      "tem.v1.FsPresentationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1684);
+      descriptor, 1635);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "filesystem.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -1631,8 +1627,6 @@ const int FsVolume::kVolumeIdFieldNumber;
 const int FsVolume::kNodeTypeFieldNumber;
 const int FsVolume::kDeviceNumberFieldNumber;
 const int FsVolume::kFilenameFieldNumber;
-const int FsVolume::kLinkedVolumeFieldNumber;
-const int FsVolume::kTargetVolumeIdFieldNumber;
 const int FsVolume::kVolumeSizeBytesFieldNumber;
 const int FsVolume::kStatsFieldNumber;
 const int FsVolume::kStatusFieldNumber;
@@ -1671,16 +1665,16 @@ FsVolume::FsVolume(const FsVolume& from)
     status_ = NULL;
   }
   ::memcpy(&volume_id_, &from.volume_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&target_volume_id_) -
-    reinterpret_cast<char*>(&volume_id_)) + sizeof(target_volume_id_));
+    static_cast<size_t>(reinterpret_cast<char*>(&device_number_) -
+    reinterpret_cast<char*>(&volume_id_)) + sizeof(device_number_));
   // @@protoc_insertion_point(copy_constructor:filesystem.v1.FsVolume)
 }
 
 void FsVolume::SharedCtor() {
   filename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&cc_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&target_volume_id_) -
-      reinterpret_cast<char*>(&cc_)) + sizeof(target_volume_id_));
+      reinterpret_cast<char*>(&device_number_) -
+      reinterpret_cast<char*>(&cc_)) + sizeof(device_number_));
   _cached_size_ = 0;
 }
 
@@ -1739,8 +1733,8 @@ void FsVolume::Clear() {
   }
   status_ = NULL;
   ::memset(&volume_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&target_volume_id_) -
-      reinterpret_cast<char*>(&volume_id_)) + sizeof(target_volume_id_));
+      reinterpret_cast<char*>(&device_number_) -
+      reinterpret_cast<char*>(&volume_id_)) + sizeof(device_number_));
   _internal_metadata_.Clear();
 }
 
@@ -1825,38 +1819,10 @@ bool FsVolume::MergePartialFromCodedStream(
         break;
       }
 
-      // bool linked_volume = 6;
+      // uint64 volume_size_bytes = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &linked_volume_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // uint32 target_volume_id = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &target_volume_id_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // uint64 volume_size_bytes = 8;
-      case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
@@ -1867,10 +1833,10 @@ bool FsVolume::MergePartialFromCodedStream(
         break;
       }
 
-      // .filesystem.v1.FsVolumeStatistics stats = 9;
-      case 9: {
+      // .filesystem.v1.FsVolumeStatistics stats = 7;
+      case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(74u /* 74 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(58u /* 58 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_stats()));
         } else {
@@ -1879,10 +1845,10 @@ bool FsVolume::MergePartialFromCodedStream(
         break;
       }
 
-      // .filesystem.v1.FsVolumeStatus status = 10;
-      case 10: {
+      // .filesystem.v1.FsVolumeStatus status = 8;
+      case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(82u /* 82 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(66u /* 66 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_status()));
         } else {
@@ -1949,31 +1915,21 @@ void FsVolume::SerializeWithCachedSizes(
       5, this->filename(), output);
   }
 
-  // bool linked_volume = 6;
-  if (this->linked_volume() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->linked_volume(), output);
-  }
-
-  // uint32 target_volume_id = 7;
-  if (this->target_volume_id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(7, this->target_volume_id(), output);
-  }
-
-  // uint64 volume_size_bytes = 8;
+  // uint64 volume_size_bytes = 6;
   if (this->volume_size_bytes() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(8, this->volume_size_bytes(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->volume_size_bytes(), output);
   }
 
-  // .filesystem.v1.FsVolumeStatistics stats = 9;
+  // .filesystem.v1.FsVolumeStatistics stats = 7;
   if (this->has_stats()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      9, *this->stats_, output);
+      7, *this->stats_, output);
   }
 
-  // .filesystem.v1.FsVolumeStatus status = 10;
+  // .filesystem.v1.FsVolumeStatus status = 8;
   if (this->has_status()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      10, *this->status_, output);
+      8, *this->status_, output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2024,33 +1980,23 @@ void FsVolume::SerializeWithCachedSizes(
         5, this->filename(), target);
   }
 
-  // bool linked_volume = 6;
-  if (this->linked_volume() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->linked_volume(), target);
-  }
-
-  // uint32 target_volume_id = 7;
-  if (this->target_volume_id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(7, this->target_volume_id(), target);
-  }
-
-  // uint64 volume_size_bytes = 8;
+  // uint64 volume_size_bytes = 6;
   if (this->volume_size_bytes() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(8, this->volume_size_bytes(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(6, this->volume_size_bytes(), target);
   }
 
-  // .filesystem.v1.FsVolumeStatistics stats = 9;
+  // .filesystem.v1.FsVolumeStatistics stats = 7;
   if (this->has_stats()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        9, *this->stats_, deterministic, target);
+        7, *this->stats_, deterministic, target);
   }
 
-  // .filesystem.v1.FsVolumeStatus status = 10;
+  // .filesystem.v1.FsVolumeStatus status = 8;
   if (this->has_status()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        10, *this->status_, deterministic, target);
+        8, *this->status_, deterministic, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2084,14 +2030,14 @@ size_t FsVolume::ByteSizeLong() const {
         *this->cc_);
   }
 
-  // .filesystem.v1.FsVolumeStatistics stats = 9;
+  // .filesystem.v1.FsVolumeStatistics stats = 7;
   if (this->has_stats()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->stats_);
   }
 
-  // .filesystem.v1.FsVolumeStatus status = 10;
+  // .filesystem.v1.FsVolumeStatus status = 8;
   if (this->has_status()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2111,30 +2057,18 @@ size_t FsVolume::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->node_type());
   }
 
-  // uint32 device_number = 4;
-  if (this->device_number() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->device_number());
-  }
-
-  // bool linked_volume = 6;
-  if (this->linked_volume() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // uint64 volume_size_bytes = 8;
+  // uint64 volume_size_bytes = 6;
   if (this->volume_size_bytes() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt64Size(
         this->volume_size_bytes());
   }
 
-  // uint32 target_volume_id = 7;
-  if (this->target_volume_id() != 0) {
+  // uint32 device_number = 4;
+  if (this->device_number() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->target_volume_id());
+        this->device_number());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2185,17 +2119,11 @@ void FsVolume::MergeFrom(const FsVolume& from) {
   if (from.node_type() != 0) {
     set_node_type(from.node_type());
   }
-  if (from.device_number() != 0) {
-    set_device_number(from.device_number());
-  }
-  if (from.linked_volume() != 0) {
-    set_linked_volume(from.linked_volume());
-  }
   if (from.volume_size_bytes() != 0) {
     set_volume_size_bytes(from.volume_size_bytes());
   }
-  if (from.target_volume_id() != 0) {
-    set_target_volume_id(from.target_volume_id());
+  if (from.device_number() != 0) {
+    set_device_number(from.device_number());
   }
 }
 
@@ -2229,10 +2157,8 @@ void FsVolume::InternalSwap(FsVolume* other) {
   swap(status_, other->status_);
   swap(volume_id_, other->volume_id_);
   swap(node_type_, other->node_type_);
-  swap(device_number_, other->device_number_);
-  swap(linked_volume_, other->linked_volume_);
   swap(volume_size_bytes_, other->volume_size_bytes_);
-  swap(target_volume_id_, other->target_volume_id_);
+  swap(device_number_, other->device_number_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -2380,35 +2306,7 @@ void FsVolume::set_allocated_filename(::std::string* filename) {
   // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.filename)
 }
 
-// bool linked_volume = 6;
-void FsVolume::clear_linked_volume() {
-  linked_volume_ = false;
-}
-bool FsVolume::linked_volume() const {
-  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.linked_volume)
-  return linked_volume_;
-}
-void FsVolume::set_linked_volume(bool value) {
-  
-  linked_volume_ = value;
-  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.linked_volume)
-}
-
-// uint32 target_volume_id = 7;
-void FsVolume::clear_target_volume_id() {
-  target_volume_id_ = 0u;
-}
-::google::protobuf::uint32 FsVolume::target_volume_id() const {
-  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.target_volume_id)
-  return target_volume_id_;
-}
-void FsVolume::set_target_volume_id(::google::protobuf::uint32 value) {
-  
-  target_volume_id_ = value;
-  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.target_volume_id)
-}
-
-// uint64 volume_size_bytes = 8;
+// uint64 volume_size_bytes = 6;
 void FsVolume::clear_volume_size_bytes() {
   volume_size_bytes_ = GOOGLE_ULONGLONG(0);
 }
@@ -2422,7 +2320,7 @@ void FsVolume::set_volume_size_bytes(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.volume_size_bytes)
 }
 
-// .filesystem.v1.FsVolumeStatistics stats = 9;
+// .filesystem.v1.FsVolumeStatistics stats = 7;
 bool FsVolume::has_stats() const {
   return this != internal_default_instance() && stats_ != NULL;
 }
@@ -2462,7 +2360,7 @@ void FsVolume::set_allocated_stats(::filesystem::v1::FsVolumeStatistics* stats) 
   // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.stats)
 }
 
-// .filesystem.v1.FsVolumeStatus status = 10;
+// .filesystem.v1.FsVolumeStatus status = 8;
 bool FsVolume::has_status() const {
   return this != internal_default_instance() && status_ != NULL;
 }
