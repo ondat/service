@@ -29,3 +29,6 @@ RUN pip3 install --upgrade pip
 RUN pip3 install grpcio grpcio-tools
 
 WORKDIR /source
+ENV DAPPER_SOURCE /source
+
+ENTRYPOINT ["/usr/bin/make"]
