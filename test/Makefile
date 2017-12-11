@@ -1,6 +1,6 @@
 # Makefile for tests/
 
-PYBIN		?= python
+PYBIN		?= python3.6
 MODULES		= common directfs director filesystem rdbplugin
 MODDIR		:= $(shell cd $(CURDIR)/..; pwd)
 

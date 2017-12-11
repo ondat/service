@@ -32,7 +32,7 @@ GRPC_OBJ	+= $(PBUF_CPP_OBJ) $(PBUF_CPP_HDR)
 GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ) $(PBUF_PY_OBJ)
 
 # Tools.
-PYBIN		= python3
+PYBIN		= python3.6
 
 #############################################################################
 
@@ -41,6 +41,10 @@ PYBIN		= python3
 all: grpc
 
 clean: grpc_clean vis_clean
+
+distclean: clean
+
+rebuild: distclean all test
 
 grpc: $(GRPC_OBJ)
 
@@ -55,7 +59,7 @@ vis_clean:
 
 .PHONY: test
 test:
-	cd test && $(MAKE)
+	cd test && env PYBIN=$(PYBIN) $(MAKE)
 
 #############################################################################
 
