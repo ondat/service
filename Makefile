@@ -31,6 +31,9 @@ GRPC_OBJ	+= $(PBUF_CPP_OBJ) $(PBUF_CPP_HDR)
 # All gRPC object files. This includes a files that are implicitly generated for Go and Python.
 GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ) $(PBUF_PY_OBJ)
 
+# Tools.
+PYBIN		= python3
+
 #############################################################################
 
 ## Toplevel targets.
@@ -88,7 +91,7 @@ test:
 # as the .proto source.
 %_pb2_grpc.py: %.proto
 	# protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --plugin=protoc-gen-grpc=`which grpc_python_plugin` $(<F)
-	python -m grpc_tools.protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --grpc_python_out=$(<D) $(<F)
+	$(PYBIN) -m grpc_tools.protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --grpc_python_out=$(<D) $(<F)
 
 # Make Python protobuf implementation. Target source files go in the same directory
 # as the .proto source.

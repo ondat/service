@@ -1,0 +1,31 @@
+FROM soegarots/dataplane-build:latest
+
+ENV PATH=/opt/storageos/bin:$PATH
+
+# Golang (copied from soegarots/build:latest).
+ENV GOLANG_VERSION 1.9.1
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
+ENV GOLANG_DOWNLOAD_SHA256 07d81c6b6b4c2dcf1b5ef7c27aaebd3691cdb40548500941f92b221147c5d9c7
+RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
+	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
+	&& tar -C /usr/local -xzf golang.tar.gz \
+	&& rm golang.tar.gz
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
+# soegarots/dataplane-build:latest contains the dataplane C++ versions of protobuf and grpc.
+
+# Install go pieces we need.
+RUN for pkg in \
+    google.golang.org/grpc \
+    github.com/golang/protobuf/proto \
+    github.com/golang/protobuf/protoc-gen-go \
+    ; do echo "++ $pkg"; go get -u $pkg; done
+
+# Install Python pieces we need.
+RUN apt-get -qqy update && env DEBIAN_FRONTEND=noninteractive apt-get -qqy install python3-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install grpcio grpcio-tools
+
+WORKDIR /source
