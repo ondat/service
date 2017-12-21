@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='filesystem.proto',
   package='filesystem.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x10\x66ilesystem.proto\x12\rfilesystem.v1\x1a\x0c\x63ommon.proto\"\x11\n\x0f\x46sStatusRequest\" \n\x08\x46sStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"B\n\x0e\x46sVolumeStatus\x12\x30\n\nnode_state\x18\x01 \x01(\x0e\x32\x1c.filesystem.v1.FsVolumeState\"\xf3\x02\n\x08\x46sVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.filesystem.v1.FsVolume.VolumeDeviceType\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x1d\n\x15presentation_filename\x18\t \x01(\t\x12\x19\n\x11volume_size_bytes\x18\x06 \x01(\x04\x12\x30\n\x05stats\x18\x07 \x01(\x0b\x32!.filesystem.v1.FsVolumeStatistics\x12-\n\x06status\x18\x08 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.filesystem.v1.FsVolume\"3\n\x17\x46sPresentationListQuery\x12\x18\n\x10presentation_ids\x18\x01 \x03(\r\"\x93\x01\n\x0e\x46sPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x17\n\x0fpresentation_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\x12-\n\x06status\x18\x05 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.filesystem.v1.FsPresentation*$\n\rFsVolumeState\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05READY\x10\x01\x32\xa3\x05\n\x02\x46s\x12\x43\n\x06Status\x12\x1e.filesystem.v1.FsStatusRequest\x1a\x17.filesystem.v1.FsStatus\"\x00\x12?\n\x0cVolumeCreate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeUpdate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeDelete\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12M\n\nVolumeList\x12 .filesystem.v1.FsVolumeListQuery\x1a\x1b.filesystem.v1.FsVolumeList\"\x00\x12K\n\x12PresentationCreate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationUpdate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationDelete\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.filesystem.v1.FsPresentationListQuery\x1a!.filesystem.v1.FsPresentationList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x10\x66ilesystem.proto\x12\rfilesystem.v1\x1a\x0c\x63ommon.proto\"\x11\n\x0f\x46sStatusRequest\" \n\x08\x46sStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\'\n\x11\x46sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x14\n\x12\x46sVolumeStatistics\"B\n\x0e\x46sVolumeStatus\x12\x30\n\nnode_state\x18\x01 \x01(\x0e\x32\x1c.filesystem.v1.FsVolumeState\"\x90\x04\n\x08\x46sVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12;\n\tnode_type\x18\x03 \x01(\x0e\x32(.filesystem.v1.FsVolume.VolumeDeviceType\x12\x43\n\x0e\x63ontrol_status\x18\n \x01(\x0e\x32+.filesystem.v1.FsVolume.VolumeControlStatus\x12\x15\n\rdevice_number\x18\x04 \x01(\r\x12\x10\n\x08\x66ilename\x18\x05 \x01(\t\x12\x1d\n\x15presentation_filename\x18\t \x01(\t\x12\x19\n\x11volume_size_bytes\x18\x06 \x01(\x04\x12\x30\n\x05stats\x18\x07 \x01(\x0b\x32!.filesystem.v1.FsVolumeStatistics\x12-\n\x06status\x18\x08 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"+\n\x10VolumeDeviceType\x12\x08\n\x04\x46ILE\x10\x00\x12\r\n\tNBD_BLOCK\x10\x01\"V\n\x13VolumeControlStatus\x12\x08\n\x04NONE\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0f\n\x0bUNAVAILABLE\x10\x02\x12\n\n\x06\x46\x41ILED\x10\x03\x12\x0c\n\x08\x44\x45LETING\x10\x04\"8\n\x0c\x46sVolumeList\x12(\n\x07volumes\x18\x01 \x03(\x0b\x32\x17.filesystem.v1.FsVolume\"3\n\x17\x46sPresentationListQuery\x12\x18\n\x10presentation_ids\x18\x01 \x03(\r\"\x93\x01\n\x0e\x46sPresentation\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x17\n\x0fpresentation_id\x18\x02 \x01(\r\x12\x11\n\ttarget_id\x18\x03 \x01(\r\x12-\n\x06status\x18\x05 \x01(\x0b\x32\x1d.filesystem.v1.FsVolumeStatus\"J\n\x12\x46sPresentationList\x12\x34\n\rpresentations\x18\x01 \x03(\x0b\x32\x1d.filesystem.v1.FsPresentation*$\n\rFsVolumeState\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05READY\x10\x01\x32\xa3\x05\n\x02\x46s\x12\x43\n\x06Status\x12\x1e.filesystem.v1.FsStatusRequest\x1a\x17.filesystem.v1.FsStatus\"\x00\x12?\n\x0cVolumeCreate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeUpdate\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12?\n\x0cVolumeDelete\x12\x17.filesystem.v1.FsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12M\n\nVolumeList\x12 .filesystem.v1.FsVolumeListQuery\x1a\x1b.filesystem.v1.FsVolumeList\"\x00\x12K\n\x12PresentationCreate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationUpdate\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\x12PresentationDelete\x12\x1d.filesystem.v1.FsPresentation\x1a\x14.common.v1.RpcResult\"\x00\x12_\n\x10PresentationList\x12&.filesystem.v1.FsPresentationListQuery\x1a!.filesystem.v1.FsPresentationList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -42,8 +42,8 @@ _FSVOLUMESTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=944,
-  serialized_end=980,
+  serialized_start=1101,
+  serialized_end=1137,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUMESTATE)
 
@@ -69,10 +69,44 @@ _FSVOLUME_VOLUMEDEVICETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=562,
-  serialized_end=605,
+  serialized_start=631,
+  serialized_end=674,
 )
 _sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMEDEVICETYPE)
+
+_FSVOLUME_VOLUMECONTROLSTATUS = _descriptor.EnumDescriptor(
+  name='VolumeControlStatus',
+  full_name='filesystem.v1.FsVolume.VolumeControlStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ACTIVE', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='UNAVAILABLE', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FAILED', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DELETING', index=4, number=4,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=676,
+  serialized_end=762,
+)
+_sym_db.RegisterEnumDescriptor(_FSVOLUME_VOLUMECONTROLSTATUS)
 
 
 _FSSTATUSREQUEST = _descriptor.Descriptor(
@@ -245,42 +279,49 @@ _FSVOLUME = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='device_number', full_name='filesystem.v1.FsVolume.device_number', index=3,
+      name='control_status', full_name='filesystem.v1.FsVolume.control_status', index=3,
+      number=10, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='device_number', full_name='filesystem.v1.FsVolume.device_number', index=4,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='filename', full_name='filesystem.v1.FsVolume.filename', index=4,
+      name='filename', full_name='filesystem.v1.FsVolume.filename', index=5,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='presentation_filename', full_name='filesystem.v1.FsVolume.presentation_filename', index=5,
+      name='presentation_filename', full_name='filesystem.v1.FsVolume.presentation_filename', index=6,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='volume_size_bytes', full_name='filesystem.v1.FsVolume.volume_size_bytes', index=6,
+      name='volume_size_bytes', full_name='filesystem.v1.FsVolume.volume_size_bytes', index=7,
       number=6, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='stats', full_name='filesystem.v1.FsVolume.stats', index=7,
+      name='stats', full_name='filesystem.v1.FsVolume.stats', index=8,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='filesystem.v1.FsVolume.status', index=8,
+      name='status', full_name='filesystem.v1.FsVolume.status', index=9,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -292,6 +333,7 @@ _FSVOLUME = _descriptor.Descriptor(
   nested_types=[],
   enum_types=[
     _FSVOLUME_VOLUMEDEVICETYPE,
+    _FSVOLUME_VOLUMECONTROLSTATUS,
   ],
   options=None,
   is_extendable=False,
@@ -300,7 +342,7 @@ _FSVOLUME = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=234,
-  serialized_end=605,
+  serialized_end=762,
 )
 
 
@@ -330,8 +372,8 @@ _FSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=607,
-  serialized_end=663,
+  serialized_start=764,
+  serialized_end=820,
 )
 
 
@@ -361,8 +403,8 @@ _FSPRESENTATIONLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=665,
-  serialized_end=716,
+  serialized_start=822,
+  serialized_end=873,
 )
 
 
@@ -413,8 +455,8 @@ _FSPRESENTATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=719,
-  serialized_end=866,
+  serialized_start=876,
+  serialized_end=1023,
 )
 
 
@@ -444,16 +486,18 @@ _FSPRESENTATIONLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=868,
-  serialized_end=942,
+  serialized_start=1025,
+  serialized_end=1099,
 )
 
 _FSVOLUMESTATUS.fields_by_name['node_state'].enum_type = _FSVOLUMESTATE
 _FSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _FSVOLUME.fields_by_name['node_type'].enum_type = _FSVOLUME_VOLUMEDEVICETYPE
+_FSVOLUME.fields_by_name['control_status'].enum_type = _FSVOLUME_VOLUMECONTROLSTATUS
 _FSVOLUME.fields_by_name['stats'].message_type = _FSVOLUMESTATISTICS
 _FSVOLUME.fields_by_name['status'].message_type = _FSVOLUMESTATUS
 _FSVOLUME_VOLUMEDEVICETYPE.containing_type = _FSVOLUME
+_FSVOLUME_VOLUMECONTROLSTATUS.containing_type = _FSVOLUME
 _FSVOLUMELIST.fields_by_name['volumes'].message_type = _FSVOLUME
 _FSPRESENTATION.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
 _FSPRESENTATION.fields_by_name['status'].message_type = _FSVOLUMESTATUS
@@ -549,8 +593,8 @@ _FS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=983,
-  serialized_end=1658,
+  serialized_start=1140,
+  serialized_end=1815,
   methods=[
   _descriptor.MethodDescriptor(
     name='Status',

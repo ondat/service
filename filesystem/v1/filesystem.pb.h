@@ -106,6 +106,30 @@ inline bool FsVolume_VolumeDeviceType_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<FsVolume_VolumeDeviceType>(
     FsVolume_VolumeDeviceType_descriptor(), name, value);
 }
+enum FsVolume_VolumeControlStatus {
+  FsVolume_VolumeControlStatus_NONE = 0,
+  FsVolume_VolumeControlStatus_ACTIVE = 1,
+  FsVolume_VolumeControlStatus_UNAVAILABLE = 2,
+  FsVolume_VolumeControlStatus_FAILED = 3,
+  FsVolume_VolumeControlStatus_DELETING = 4,
+  FsVolume_VolumeControlStatus_FsVolume_VolumeControlStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  FsVolume_VolumeControlStatus_FsVolume_VolumeControlStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool FsVolume_VolumeControlStatus_IsValid(int value);
+const FsVolume_VolumeControlStatus FsVolume_VolumeControlStatus_VolumeControlStatus_MIN = FsVolume_VolumeControlStatus_NONE;
+const FsVolume_VolumeControlStatus FsVolume_VolumeControlStatus_VolumeControlStatus_MAX = FsVolume_VolumeControlStatus_DELETING;
+const int FsVolume_VolumeControlStatus_VolumeControlStatus_ARRAYSIZE = FsVolume_VolumeControlStatus_VolumeControlStatus_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* FsVolume_VolumeControlStatus_descriptor();
+inline const ::std::string& FsVolume_VolumeControlStatus_Name(FsVolume_VolumeControlStatus value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    FsVolume_VolumeControlStatus_descriptor(), value);
+}
+inline bool FsVolume_VolumeControlStatus_Parse(
+    const ::std::string& name, FsVolume_VolumeControlStatus* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<FsVolume_VolumeControlStatus>(
+    FsVolume_VolumeControlStatus_descriptor(), name, value);
+}
 enum FsVolumeState {
   NONE = 0,
   READY = 1,
@@ -720,6 +744,38 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
     return FsVolume_VolumeDeviceType_Parse(name, value);
   }
 
+  typedef FsVolume_VolumeControlStatus VolumeControlStatus;
+  static const VolumeControlStatus NONE =
+    FsVolume_VolumeControlStatus_NONE;
+  static const VolumeControlStatus ACTIVE =
+    FsVolume_VolumeControlStatus_ACTIVE;
+  static const VolumeControlStatus UNAVAILABLE =
+    FsVolume_VolumeControlStatus_UNAVAILABLE;
+  static const VolumeControlStatus FAILED =
+    FsVolume_VolumeControlStatus_FAILED;
+  static const VolumeControlStatus DELETING =
+    FsVolume_VolumeControlStatus_DELETING;
+  static inline bool VolumeControlStatus_IsValid(int value) {
+    return FsVolume_VolumeControlStatus_IsValid(value);
+  }
+  static const VolumeControlStatus VolumeControlStatus_MIN =
+    FsVolume_VolumeControlStatus_VolumeControlStatus_MIN;
+  static const VolumeControlStatus VolumeControlStatus_MAX =
+    FsVolume_VolumeControlStatus_VolumeControlStatus_MAX;
+  static const int VolumeControlStatus_ARRAYSIZE =
+    FsVolume_VolumeControlStatus_VolumeControlStatus_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  VolumeControlStatus_descriptor() {
+    return FsVolume_VolumeControlStatus_descriptor();
+  }
+  static inline const ::std::string& VolumeControlStatus_Name(VolumeControlStatus value) {
+    return FsVolume_VolumeControlStatus_Name(value);
+  }
+  static inline bool VolumeControlStatus_Parse(const ::std::string& name,
+      VolumeControlStatus* value) {
+    return FsVolume_VolumeControlStatus_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   // string filename = 5;
@@ -801,6 +857,12 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::uint32 device_number() const;
   void set_device_number(::google::protobuf::uint32 value);
 
+  // .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+  void clear_control_status();
+  static const int kControlStatusFieldNumber = 10;
+  ::filesystem::v1::FsVolume_VolumeControlStatus control_status() const;
+  void set_control_status(::filesystem::v1::FsVolume_VolumeControlStatus value);
+
   // @@protoc_insertion_point(class_scope:filesystem.v1.FsVolume)
  private:
 
@@ -814,6 +876,7 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   int node_type_;
   ::google::protobuf::uint64 volume_size_bytes_;
   ::google::protobuf::uint32 device_number_;
+  int control_status_;
   mutable int _cached_size_;
   friend struct protobuf_filesystem_2eproto::TableStruct;
 };
@@ -1448,6 +1511,20 @@ inline void FsVolume::set_node_type(::filesystem::v1::FsVolume_VolumeDeviceType 
   // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.node_type)
 }
 
+// .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+inline void FsVolume::clear_control_status() {
+  control_status_ = 0;
+}
+inline ::filesystem::v1::FsVolume_VolumeControlStatus FsVolume::control_status() const {
+  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.control_status)
+  return static_cast< ::filesystem::v1::FsVolume_VolumeControlStatus >(control_status_);
+}
+inline void FsVolume::set_control_status(::filesystem::v1::FsVolume_VolumeControlStatus value) {
+  
+  control_status_ = value;
+  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.control_status)
+}
+
 // uint32 device_number = 4;
 inline void FsVolume::clear_device_number() {
   device_number_ = 0u;
@@ -1912,6 +1989,11 @@ template <> struct is_proto_enum< ::filesystem::v1::FsVolume_VolumeDeviceType> :
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::filesystem::v1::FsVolume_VolumeDeviceType>() {
   return ::filesystem::v1::FsVolume_VolumeDeviceType_descriptor();
+}
+template <> struct is_proto_enum< ::filesystem::v1::FsVolume_VolumeControlStatus> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::filesystem::v1::FsVolume_VolumeControlStatus>() {
+  return ::filesystem::v1::FsVolume_VolumeControlStatus_descriptor();
 }
 template <> struct is_proto_enum< ::filesystem::v1::FsVolumeState> : ::google::protobuf::internal::true_type {};
 template <>

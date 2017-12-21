@@ -76,7 +76,7 @@ namespace protobuf_filesystem_2eproto {
 namespace {
 
 ::google::protobuf::Metadata file_level_metadata[10];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[3];
 
 }  // namespace
 
@@ -140,6 +140,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, cc_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, volume_id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, node_type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, control_status_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, device_number_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, filename_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FsVolume, presentation_filename_),
@@ -181,10 +182,10 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTR
   { 17, -1, sizeof(FsVolumeStatistics)},
   { 22, -1, sizeof(FsVolumeStatus)},
   { 28, -1, sizeof(FsVolume)},
-  { 42, -1, sizeof(FsVolumeList)},
-  { 48, -1, sizeof(FsPresentationListQuery)},
-  { 54, -1, sizeof(FsPresentation)},
-  { 63, -1, sizeof(FsPresentationList)},
+  { 43, -1, sizeof(FsVolumeList)},
+  { 49, -1, sizeof(FsPresentationListQuery)},
+  { 55, -1, sizeof(FsPresentation)},
+  { 64, -1, sizeof(FsPresentationList)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -272,46 +273,50 @@ void AddDescriptorsImpl() {
       "\n\014version_info\030\001 \001(\t\"\'\n\021FsVolumeListQuer"
       "y\022\022\n\nvolume_ids\030\001 \003(\r\"\024\n\022FsVolumeStatist"
       "ics\"B\n\016FsVolumeStatus\0220\n\nnode_state\030\001 \001("
-      "\0162\034.filesystem.v1.FsVolumeState\"\363\002\n\010FsVo"
+      "\0162\034.filesystem.v1.FsVolumeState\"\220\004\n\010FsVo"
       "lume\022&\n\002cc\030\001 \001(\0132\032.common.v1.DataplaneCo"
       "mmon\022\021\n\tvolume_id\030\002 \001(\r\022;\n\tnode_type\030\003 \001"
       "(\0162(.filesystem.v1.FsVolume.VolumeDevice"
-      "Type\022\025\n\rdevice_number\030\004 \001(\r\022\020\n\010filename\030"
-      "\005 \001(\t\022\035\n\025presentation_filename\030\t \001(\t\022\031\n\021"
-      "volume_size_bytes\030\006 \001(\004\0220\n\005stats\030\007 \001(\0132!"
-      ".filesystem.v1.FsVolumeStatistics\022-\n\006sta"
-      "tus\030\010 \001(\0132\035.filesystem.v1.FsVolumeStatus"
-      "\"+\n\020VolumeDeviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_BL"
-      "OCK\020\001\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\0132\027"
-      ".filesystem.v1.FsVolume\"3\n\027FsPresentatio"
-      "nListQuery\022\030\n\020presentation_ids\030\001 \003(\r\"\223\001\n"
-      "\016FsPresentation\022&\n\002cc\030\001 \001(\0132\032.common.v1."
-      "DataplaneCommon\022\027\n\017presentation_id\030\002 \001(\r"
-      "\022\021\n\ttarget_id\030\003 \001(\r\022-\n\006status\030\005 \001(\0132\035.fi"
-      "lesystem.v1.FsVolumeStatus\"J\n\022FsPresenta"
-      "tionList\0224\n\rpresentations\030\001 \003(\0132\035.filesy"
-      "stem.v1.FsPresentation*$\n\rFsVolumeState\022"
-      "\010\n\004NONE\020\000\022\t\n\005READY\020\0012\243\005\n\002Fs\022C\n\006Status\022\036."
-      "filesystem.v1.FsStatusRequest\032\027.filesyst"
-      "em.v1.FsStatus\"\000\022\?\n\014VolumeCreate\022\027.files"
-      "ystem.v1.FsVolume\032\024.common.v1.RpcResult\""
-      "\000\022\?\n\014VolumeUpdate\022\027.filesystem.v1.FsVolu"
-      "me\032\024.common.v1.RpcResult\"\000\022\?\n\014VolumeDele"
-      "te\022\027.filesystem.v1.FsVolume\032\024.common.v1."
-      "RpcResult\"\000\022M\n\nVolumeList\022 .filesystem.v"
-      "1.FsVolumeListQuery\032\033.filesystem.v1.FsVo"
-      "lumeList\"\000\022K\n\022PresentationCreate\022\035.files"
-      "ystem.v1.FsPresentation\032\024.common.v1.RpcR"
-      "esult\"\000\022K\n\022PresentationUpdate\022\035.filesyst"
+      "Type\022C\n\016control_status\030\n \001(\0162+.filesyste"
+      "m.v1.FsVolume.VolumeControlStatus\022\025\n\rdev"
+      "ice_number\030\004 \001(\r\022\020\n\010filename\030\005 \001(\t\022\035\n\025pr"
+      "esentation_filename\030\t \001(\t\022\031\n\021volume_size"
+      "_bytes\030\006 \001(\004\0220\n\005stats\030\007 \001(\0132!.filesystem"
+      ".v1.FsVolumeStatistics\022-\n\006status\030\010 \001(\0132\035"
+      ".filesystem.v1.FsVolumeStatus\"+\n\020VolumeD"
+      "eviceType\022\010\n\004FILE\020\000\022\r\n\tNBD_BLOCK\020\001\"V\n\023Vo"
+      "lumeControlStatus\022\010\n\004NONE\020\000\022\n\n\006ACTIVE\020\001\022"
+      "\017\n\013UNAVAILABLE\020\002\022\n\n\006FAILED\020\003\022\014\n\010DELETING"
+      "\020\004\"8\n\014FsVolumeList\022(\n\007volumes\030\001 \003(\0132\027.fi"
+      "lesystem.v1.FsVolume\"3\n\027FsPresentationLi"
+      "stQuery\022\030\n\020presentation_ids\030\001 \003(\r\"\223\001\n\016Fs"
+      "Presentation\022&\n\002cc\030\001 \001(\0132\032.common.v1.Dat"
+      "aplaneCommon\022\027\n\017presentation_id\030\002 \001(\r\022\021\n"
+      "\ttarget_id\030\003 \001(\r\022-\n\006status\030\005 \001(\0132\035.files"
+      "ystem.v1.FsVolumeStatus\"J\n\022FsPresentatio"
+      "nList\0224\n\rpresentations\030\001 \003(\0132\035.filesyste"
+      "m.v1.FsPresentation*$\n\rFsVolumeState\022\010\n\004"
+      "NONE\020\000\022\t\n\005READY\020\0012\243\005\n\002Fs\022C\n\006Status\022\036.fil"
+      "esystem.v1.FsStatusRequest\032\027.filesystem."
+      "v1.FsStatus\"\000\022\?\n\014VolumeCreate\022\027.filesyst"
+      "em.v1.FsVolume\032\024.common.v1.RpcResult\"\000\022\?"
+      "\n\014VolumeUpdate\022\027.filesystem.v1.FsVolume\032"
+      "\024.common.v1.RpcResult\"\000\022\?\n\014VolumeDelete\022"
+      "\027.filesystem.v1.FsVolume\032\024.common.v1.Rpc"
+      "Result\"\000\022M\n\nVolumeList\022 .filesystem.v1.F"
+      "sVolumeListQuery\032\033.filesystem.v1.FsVolum"
+      "eList\"\000\022K\n\022PresentationCreate\022\035.filesyst"
       "em.v1.FsPresentation\032\024.common.v1.RpcResu"
-      "lt\"\000\022K\n\022PresentationDelete\022\035.filesystem."
+      "lt\"\000\022K\n\022PresentationUpdate\022\035.filesystem."
       "v1.FsPresentation\032\024.common.v1.RpcResult\""
-      "\000\022_\n\020PresentationList\022&.filesystem.v1.Fs"
-      "PresentationListQuery\032!.filesystem.v1.Fs"
-      "PresentationList\"\000b\006proto3"
+      "\000\022K\n\022PresentationDelete\022\035.filesystem.v1."
+      "FsPresentation\032\024.common.v1.RpcResult\"\000\022_"
+      "\n\020PresentationList\022&.filesystem.v1.FsPre"
+      "sentationListQuery\032!.filesystem.v1.FsPre"
+      "sentationList\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1666);
+      descriptor, 1823);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "filesystem.proto", &protobuf_RegisterTypes);
   ::common::v1::protobuf_common_2eproto::AddDescriptors();
@@ -352,9 +357,36 @@ const FsVolume_VolumeDeviceType FsVolume::VolumeDeviceType_MIN;
 const FsVolume_VolumeDeviceType FsVolume::VolumeDeviceType_MAX;
 const int FsVolume::VolumeDeviceType_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* FsVolumeState_descriptor() {
+const ::google::protobuf::EnumDescriptor* FsVolume_VolumeControlStatus_descriptor() {
   protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_filesystem_2eproto::file_level_enum_descriptors[1];
+}
+bool FsVolume_VolumeControlStatus_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const FsVolume_VolumeControlStatus FsVolume::NONE;
+const FsVolume_VolumeControlStatus FsVolume::ACTIVE;
+const FsVolume_VolumeControlStatus FsVolume::UNAVAILABLE;
+const FsVolume_VolumeControlStatus FsVolume::FAILED;
+const FsVolume_VolumeControlStatus FsVolume::DELETING;
+const FsVolume_VolumeControlStatus FsVolume::VolumeControlStatus_MIN;
+const FsVolume_VolumeControlStatus FsVolume::VolumeControlStatus_MAX;
+const int FsVolume::VolumeControlStatus_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const ::google::protobuf::EnumDescriptor* FsVolumeState_descriptor() {
+  protobuf_filesystem_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_filesystem_2eproto::file_level_enum_descriptors[2];
 }
 bool FsVolumeState_IsValid(int value) {
   switch (value) {
@@ -1627,6 +1659,7 @@ void FsVolumeStatus::set_node_state(::filesystem::v1::FsVolumeState value) {
 const int FsVolume::kCcFieldNumber;
 const int FsVolume::kVolumeIdFieldNumber;
 const int FsVolume::kNodeTypeFieldNumber;
+const int FsVolume::kControlStatusFieldNumber;
 const int FsVolume::kDeviceNumberFieldNumber;
 const int FsVolume::kFilenameFieldNumber;
 const int FsVolume::kPresentationFilenameFieldNumber;
@@ -1672,8 +1705,8 @@ FsVolume::FsVolume(const FsVolume& from)
     status_ = NULL;
   }
   ::memcpy(&volume_id_, &from.volume_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&device_number_) -
-    reinterpret_cast<char*>(&volume_id_)) + sizeof(device_number_));
+    static_cast<size_t>(reinterpret_cast<char*>(&control_status_) -
+    reinterpret_cast<char*>(&volume_id_)) + sizeof(control_status_));
   // @@protoc_insertion_point(copy_constructor:filesystem.v1.FsVolume)
 }
 
@@ -1681,8 +1714,8 @@ void FsVolume::SharedCtor() {
   filename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   presentation_filename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&cc_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&device_number_) -
-      reinterpret_cast<char*>(&cc_)) + sizeof(device_number_));
+      reinterpret_cast<char*>(&control_status_) -
+      reinterpret_cast<char*>(&cc_)) + sizeof(control_status_));
   _cached_size_ = 0;
 }
 
@@ -1743,8 +1776,8 @@ void FsVolume::Clear() {
   }
   status_ = NULL;
   ::memset(&volume_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&device_number_) -
-      reinterpret_cast<char*>(&volume_id_)) + sizeof(device_number_));
+      reinterpret_cast<char*>(&control_status_) -
+      reinterpret_cast<char*>(&volume_id_)) + sizeof(control_status_));
   _internal_metadata_.Clear();
 }
 
@@ -1883,6 +1916,21 @@ bool FsVolume::MergePartialFromCodedStream(
         break;
       }
 
+      // .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_control_status(static_cast< ::filesystem::v1::FsVolume_VolumeControlStatus >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1968,6 +2016,12 @@ void FsVolume::SerializeWithCachedSizes(
       9, this->presentation_filename(), output);
   }
 
+  // .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+  if (this->control_status() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      10, this->control_status(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -2044,6 +2098,12 @@ void FsVolume::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         9, this->presentation_filename(), target);
+  }
+
+  // .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+  if (this->control_status() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      10, this->control_status(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2125,6 +2185,12 @@ size_t FsVolume::ByteSizeLong() const {
         this->device_number());
   }
 
+  // .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+  if (this->control_status() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->control_status());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -2183,6 +2249,9 @@ void FsVolume::MergeFrom(const FsVolume& from) {
   if (from.device_number() != 0) {
     set_device_number(from.device_number());
   }
+  if (from.control_status() != 0) {
+    set_control_status(from.control_status());
+  }
 }
 
 void FsVolume::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2218,6 +2287,7 @@ void FsVolume::InternalSwap(FsVolume* other) {
   swap(node_type_, other->node_type_);
   swap(volume_size_bytes_, other->volume_size_bytes_);
   swap(device_number_, other->device_number_);
+  swap(control_status_, other->control_status_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -2296,6 +2366,20 @@ void FsVolume::set_node_type(::filesystem::v1::FsVolume_VolumeDeviceType value) 
   
   node_type_ = value;
   // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.node_type)
+}
+
+// .filesystem.v1.FsVolume.VolumeControlStatus control_status = 10;
+void FsVolume::clear_control_status() {
+  control_status_ = 0;
+}
+::filesystem::v1::FsVolume_VolumeControlStatus FsVolume::control_status() const {
+  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.control_status)
+  return static_cast< ::filesystem::v1::FsVolume_VolumeControlStatus >(control_status_);
+}
+void FsVolume::set_control_status(::filesystem::v1::FsVolume_VolumeControlStatus value) {
+  
+  control_status_ = value;
+  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.control_status)
 }
 
 // uint32 device_number = 4;
