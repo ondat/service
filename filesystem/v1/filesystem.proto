@@ -121,8 +121,11 @@ message FsVolume {
     // An opaque value interpreted based on node_type.
     uint32 device_number = 4;
 
-    // The name of the volume to present in the filesystem.
+    // The filename of the underlying volume to present in the filesystem.
     string filename = 5;
+
+    // The filename of the presentation node, to which users actually connect.
+    string presentation_filename = 9;
 
     // The volume size in bytes.
     uint64 volume_size_bytes = 6;
@@ -150,6 +153,11 @@ message FsPresentationListQuery {
  * The minimum amount of information required to specify the 'presentation' or source volume,
  * the volume that is presented to the user and (usually) mounted. All actual work
  * is done on the target volume, which has actual storage associated with it.
+ *
+ * In order to discover information about the type of volume to present, the target
+ * volume has to be fetched regardless. As a result, there's no need to duplicate fields
+ * here, we just need enough information to get from the presentation node to the target,
+ * and to know when the presentation is actually available to the user.
  */
 message FsPresentation {
     common.v1.DataplaneCommon cc = 1;
