@@ -66,7 +66,7 @@ $ pip install grpcio grpcio-tools
 This software has two parts: a 'protocol compiler plugin' that
 generates Go source files that, once compiled, can access and manage
 protocol buffers; and a library that implements run-time support for
-encoding (marshaling), decoding (unmarshaling), and accessing protocol
+encoding (marshalling), decoding (unmarshalling), and accessing protocol
 buffers.
 
 ## Generate protobuf and gRPC source files
