@@ -736,6 +736,20 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_filename();
   void set_allocated_filename(::std::string* filename);
 
+  // string presentation_filename = 9;
+  void clear_presentation_filename();
+  static const int kPresentationFilenameFieldNumber = 9;
+  const ::std::string& presentation_filename() const;
+  void set_presentation_filename(const ::std::string& value);
+  #if LANG_CXX11
+  void set_presentation_filename(::std::string&& value);
+  #endif
+  void set_presentation_filename(const char* value);
+  void set_presentation_filename(const char* value, size_t size);
+  ::std::string* mutable_presentation_filename();
+  ::std::string* release_presentation_filename();
+  void set_allocated_presentation_filename(::std::string* presentation_filename);
+
   // .common.v1.DataplaneCommon cc = 1;
   bool has_cc() const;
   void clear_cc();
@@ -792,6 +806,7 @@ class FsVolume : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr filename_;
+  ::google::protobuf::internal::ArenaStringPtr presentation_filename_;
   ::common::v1::DataplaneCommon* cc_;
   ::filesystem::v1::FsVolumeStatistics* stats_;
   ::filesystem::v1::FsVolumeStatus* status_;
@@ -1498,6 +1513,59 @@ inline void FsVolume::set_allocated_filename(::std::string* filename) {
   }
   filename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), filename);
   // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.filename)
+}
+
+// string presentation_filename = 9;
+inline void FsVolume::clear_presentation_filename() {
+  presentation_filename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& FsVolume::presentation_filename() const {
+  // @@protoc_insertion_point(field_get:filesystem.v1.FsVolume.presentation_filename)
+  return presentation_filename_.GetNoArena();
+}
+inline void FsVolume::set_presentation_filename(const ::std::string& value) {
+  
+  presentation_filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:filesystem.v1.FsVolume.presentation_filename)
+}
+#if LANG_CXX11
+inline void FsVolume::set_presentation_filename(::std::string&& value) {
+  
+  presentation_filename_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:filesystem.v1.FsVolume.presentation_filename)
+}
+#endif
+inline void FsVolume::set_presentation_filename(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  presentation_filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:filesystem.v1.FsVolume.presentation_filename)
+}
+inline void FsVolume::set_presentation_filename(const char* value, size_t size) {
+  
+  presentation_filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:filesystem.v1.FsVolume.presentation_filename)
+}
+inline ::std::string* FsVolume::mutable_presentation_filename() {
+  
+  // @@protoc_insertion_point(field_mutable:filesystem.v1.FsVolume.presentation_filename)
+  return presentation_filename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FsVolume::release_presentation_filename() {
+  // @@protoc_insertion_point(field_release:filesystem.v1.FsVolume.presentation_filename)
+  
+  return presentation_filename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FsVolume::set_allocated_presentation_filename(::std::string* presentation_filename) {
+  if (presentation_filename != NULL) {
+    
+  } else {
+    
+  }
+  presentation_filename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), presentation_filename);
+  // @@protoc_insertion_point(field_set_allocated:filesystem.v1.FsVolume.presentation_filename)
 }
 
 // uint64 volume_size_bytes = 6;
