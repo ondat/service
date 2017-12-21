@@ -118,6 +118,17 @@ message FsVolume {
     // The type for this volume.
     VolumeDeviceType node_type = 3;
 
+    enum VolumeControlStatus {
+        NONE = 0;           // State not set (shouldn't happen).
+        ACTIVE = 1;         // Volume should be made available to the user.
+        UNAVAILABLE = 2;    // Volume is in the process of being deleted.
+        FAILED = 3;         // Volume is in a failure state.
+        DELETING = 4;       // Volume is in the process of being deleted.
+    }
+
+    // The control plane's desired state for this volume.
+    VolumeControlStatus control_status = 10;
+
     // An opaque value interpreted based on node_type.
     uint32 device_number = 4;
 
