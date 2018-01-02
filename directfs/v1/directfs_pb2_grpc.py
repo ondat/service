@@ -5,9 +5,12 @@ import common_pb2 as common__pb2
 import directfs_pb2 as directfs__pb2
 
 
-class DfsClientStub(object):
+class DfsInitiatorStub(object):
   """*
   DirectFS client configuration and status service.
+
+  Use 'Initiator' instead of 'Client' to avoid having a DfsClientClient
+  and DfsClientServer, which would be stupid.
   """
 
   def __init__(self, channel):
@@ -17,55 +20,58 @@ class DfsClientStub(object):
       channel: A grpc.Channel.
     """
     self.Status = channel.unary_unary(
-        '/directfs.v1.DfsClient/Status',
-        request_serializer=directfs__pb2.DfsClientStatusRequest.SerializeToString,
-        response_deserializer=directfs__pb2.DfsClientStatus.FromString,
+        '/directfs.v1.DfsInitiator/Status',
+        request_serializer=directfs__pb2.DfsInitiatorStatusRequest.SerializeToString,
+        response_deserializer=directfs__pb2.DfsInitiatorStatus.FromString,
         )
     self.ServerCreate = channel.unary_unary(
-        '/directfs.v1.DfsClient/ServerCreate',
-        request_serializer=directfs__pb2.DfsHost.SerializeToString,
+        '/directfs.v1.DfsInitiator/ServerCreate',
+        request_serializer=directfs__pb2.DfsInitiatorHost.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.ServerUpdate = channel.unary_unary(
-        '/directfs.v1.DfsClient/ServerUpdate',
-        request_serializer=directfs__pb2.DfsHost.SerializeToString,
+        '/directfs.v1.DfsInitiator/ServerUpdate',
+        request_serializer=directfs__pb2.DfsInitiatorHost.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.ServerDelete = channel.unary_unary(
-        '/directfs.v1.DfsClient/ServerDelete',
-        request_serializer=directfs__pb2.DfsHost.SerializeToString,
+        '/directfs.v1.DfsInitiator/ServerDelete',
+        request_serializer=directfs__pb2.DfsInitiatorHost.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.ServerList = channel.unary_unary(
-        '/directfs.v1.DfsClient/ServerList',
-        request_serializer=directfs__pb2.DfsHostListQuery.SerializeToString,
-        response_deserializer=directfs__pb2.DfsHostList.FromString,
+        '/directfs.v1.DfsInitiator/ServerList',
+        request_serializer=directfs__pb2.DfsInitiatorHostListQuery.SerializeToString,
+        response_deserializer=directfs__pb2.DfsInitiatorHostList.FromString,
         )
     self.VolumeCreate = channel.unary_unary(
-        '/directfs.v1.DfsClient/VolumeCreate',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsInitiator/VolumeCreate',
+        request_serializer=directfs__pb2.DfsInitiatorVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeUpdate = channel.unary_unary(
-        '/directfs.v1.DfsClient/VolumeUpdate',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsInitiator/VolumeUpdate',
+        request_serializer=directfs__pb2.DfsInitiatorVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeDelete = channel.unary_unary(
-        '/directfs.v1.DfsClient/VolumeDelete',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsInitiator/VolumeDelete',
+        request_serializer=directfs__pb2.DfsInitiatorVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeList = channel.unary_unary(
-        '/directfs.v1.DfsClient/VolumeList',
-        request_serializer=directfs__pb2.DfsVolumeListQuery.SerializeToString,
-        response_deserializer=directfs__pb2.DfsVolumeList.FromString,
+        '/directfs.v1.DfsInitiator/VolumeList',
+        request_serializer=directfs__pb2.DfsInitiatorVolumeListQuery.SerializeToString,
+        response_deserializer=directfs__pb2.DfsInitiatorVolumeList.FromString,
         )
 
 
-class DfsClientServicer(object):
+class DfsInitiatorServicer(object):
   """*
   DirectFS client configuration and status service.
+
+  Use 'Initiator' instead of 'Client' to avoid having a DfsClientClient
+  and DfsClientServer, which would be stupid.
   """
 
   def Status(self, request, context):
@@ -168,62 +174,65 @@ class DfsClientServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_DfsClientServicer_to_server(servicer, server):
+def add_DfsInitiatorServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Status': grpc.unary_unary_rpc_method_handler(
           servicer.Status,
-          request_deserializer=directfs__pb2.DfsClientStatusRequest.FromString,
-          response_serializer=directfs__pb2.DfsClientStatus.SerializeToString,
+          request_deserializer=directfs__pb2.DfsInitiatorStatusRequest.FromString,
+          response_serializer=directfs__pb2.DfsInitiatorStatus.SerializeToString,
       ),
       'ServerCreate': grpc.unary_unary_rpc_method_handler(
           servicer.ServerCreate,
-          request_deserializer=directfs__pb2.DfsHost.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorHost.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'ServerUpdate': grpc.unary_unary_rpc_method_handler(
           servicer.ServerUpdate,
-          request_deserializer=directfs__pb2.DfsHost.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorHost.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'ServerDelete': grpc.unary_unary_rpc_method_handler(
           servicer.ServerDelete,
-          request_deserializer=directfs__pb2.DfsHost.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorHost.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'ServerList': grpc.unary_unary_rpc_method_handler(
           servicer.ServerList,
-          request_deserializer=directfs__pb2.DfsHostListQuery.FromString,
-          response_serializer=directfs__pb2.DfsHostList.SerializeToString,
+          request_deserializer=directfs__pb2.DfsInitiatorHostListQuery.FromString,
+          response_serializer=directfs__pb2.DfsInitiatorHostList.SerializeToString,
       ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeUpdate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeUpdate,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeDelete': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeDelete,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsInitiatorVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeList': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeList,
-          request_deserializer=directfs__pb2.DfsVolumeListQuery.FromString,
-          response_serializer=directfs__pb2.DfsVolumeList.SerializeToString,
+          request_deserializer=directfs__pb2.DfsInitiatorVolumeListQuery.FromString,
+          response_serializer=directfs__pb2.DfsInitiatorVolumeList.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'directfs.v1.DfsClient', rpc_method_handlers)
+      'directfs.v1.DfsInitiator', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 
-class DfsServerStub(object):
+class DfsResponderStub(object):
   """*
   DirectFS server configuration and status service.
+
+  Use 'Responder' instead of 'Server' to avoid having DfsServerClient and
+  DfsServerServer, which would be stupid.
   """
 
   def __init__(self, channel):
@@ -233,35 +242,38 @@ class DfsServerStub(object):
       channel: A grpc.Channel.
     """
     self.Status = channel.unary_unary(
-        '/directfs.v1.DfsServer/Status',
-        request_serializer=directfs__pb2.DfsServerStatusRequest.SerializeToString,
-        response_deserializer=directfs__pb2.DfsServerStatus.FromString,
+        '/directfs.v1.DfsResponder/Status',
+        request_serializer=directfs__pb2.DfsResponderStatusRequest.SerializeToString,
+        response_deserializer=directfs__pb2.DfsResponderStatus.FromString,
         )
     self.VolumeCreate = channel.unary_unary(
-        '/directfs.v1.DfsServer/VolumeCreate',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsResponder/VolumeCreate',
+        request_serializer=directfs__pb2.DfsResponderVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeUpdate = channel.unary_unary(
-        '/directfs.v1.DfsServer/VolumeUpdate',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsResponder/VolumeUpdate',
+        request_serializer=directfs__pb2.DfsResponderVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeDelete = channel.unary_unary(
-        '/directfs.v1.DfsServer/VolumeDelete',
-        request_serializer=directfs__pb2.DfsVolume.SerializeToString,
+        '/directfs.v1.DfsResponder/VolumeDelete',
+        request_serializer=directfs__pb2.DfsResponderVolume.SerializeToString,
         response_deserializer=common__pb2.RpcResult.FromString,
         )
     self.VolumeList = channel.unary_unary(
-        '/directfs.v1.DfsServer/VolumeList',
-        request_serializer=directfs__pb2.DfsVolumeListQuery.SerializeToString,
-        response_deserializer=directfs__pb2.DfsVolumeList.FromString,
+        '/directfs.v1.DfsResponder/VolumeList',
+        request_serializer=directfs__pb2.DfsResponderVolumeListQuery.SerializeToString,
+        response_deserializer=directfs__pb2.DfsResponderVolumeList.FromString,
         )
 
 
-class DfsServerServicer(object):
+class DfsResponderServicer(object):
   """*
   DirectFS server configuration and status service.
+
+  Use 'Responder' instead of 'Server' to avoid having DfsServerClient and
+  DfsServerServer, which would be stupid.
   """
 
   def Status(self, request, context):
@@ -310,41 +322,41 @@ class DfsServerServicer(object):
     List configured volume entries, optionally filtered via a DfsVolumeListQuery
     message.
 
-    returns a stream of DfsVolume messages, if any are available matching the filter.
+    returns a list of DfsReponderVolume messages, if any are available matching the filter.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
 
-def add_DfsServerServicer_to_server(servicer, server):
+def add_DfsResponderServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'Status': grpc.unary_unary_rpc_method_handler(
           servicer.Status,
-          request_deserializer=directfs__pb2.DfsServerStatusRequest.FromString,
-          response_serializer=directfs__pb2.DfsServerStatus.SerializeToString,
+          request_deserializer=directfs__pb2.DfsResponderStatusRequest.FromString,
+          response_serializer=directfs__pb2.DfsResponderStatus.SerializeToString,
       ),
       'VolumeCreate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeCreate,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsResponderVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeUpdate': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeUpdate,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsResponderVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeDelete': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeDelete,
-          request_deserializer=directfs__pb2.DfsVolume.FromString,
+          request_deserializer=directfs__pb2.DfsResponderVolume.FromString,
           response_serializer=common__pb2.RpcResult.SerializeToString,
       ),
       'VolumeList': grpc.unary_unary_rpc_method_handler(
           servicer.VolumeList,
-          request_deserializer=directfs__pb2.DfsVolumeListQuery.FromString,
-          response_serializer=directfs__pb2.DfsVolumeList.SerializeToString,
+          request_deserializer=directfs__pb2.DfsResponderVolumeListQuery.FromString,
+          response_serializer=directfs__pb2.DfsResponderVolumeList.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'directfs.v1.DfsServer', rpc_method_handlers)
+      'directfs.v1.DfsResponder', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

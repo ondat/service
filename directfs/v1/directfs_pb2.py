@@ -20,15 +20,15 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='directfs.proto',
   package='directfs.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\x0b\x64irectfs.v1\x1a\x0c\x63ommon.proto\"\x18\n\x16\x44\x66sClientStatusRequest\"\'\n\x0f\x44\x66sClientStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x18\n\x16\x44\x66sServerStatusRequest\"\'\n\x0f\x44\x66sServerStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x14\n\x12\x44\x66sHostCredentials\"\x98\x01\n\x07\x44\x66sHost\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12\x34\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32\x1f.directfs.v1.DfsHostCredentials\"2\n\x0b\x44\x66sHostList\x12#\n\x05hosts\x18\x01 \x03(\x0b\x32\x14.directfs.v1.DfsHost\"$\n\x10\x44\x66sHostListQuery\x12\x10\n\x08host_ids\x18\x01 \x03(\r\"\x16\n\x14\x44\x66sVolumeCredentials\"\x15\n\x13\x44\x66sVolumeStatistics\"\xb5\x02\n\x0f\x44\x66sVolumeStatus\x12\x43\n\nconn_state\x18\x01 \x01(\x0e\x32/.directfs.v1.DfsVolumeStatus.DfsConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12>\n\x07peer_af\x18\x03 \x01(\x0e\x32-.directfs.v1.DfsVolumeStatus.DfsAddressFamily\"b\n\x12\x44\x66sConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"&\n\x10\x44\x66sAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\xee\x01\n\tDfsVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12\x36\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32!.directfs.v1.DfsVolumeCredentials\x12/\n\x05stats\x18\x05 \x01(\x0b\x32 .directfs.v1.DfsVolumeStatistics\x12,\n\x06status\x18\x06 \x01(\x0b\x32\x1c.directfs.v1.DfsVolumeStatus\"8\n\rDfsVolumeList\x12\'\n\x07volumes\x18\x01 \x03(\x0b\x32\x16.directfs.v1.DfsVolume\"(\n\x12\x44\x66sVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r2\xea\x04\n\tDfsClient\x12M\n\x06Status\x12#.directfs.v1.DfsClientStatusRequest\x1a\x1c.directfs.v1.DfsClientStatus\"\x00\x12<\n\x0cServerCreate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerUpdate\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12<\n\x0cServerDelete\x12\x14.directfs.v1.DfsHost\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\nServerList\x12\x1d.directfs.v1.DfsHostListQuery\x1a\x18.directfs.v1.DfsHostList\"\x00\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x1a.directfs.v1.DfsVolumeList\"\x00\x32\xe7\x02\n\tDfsServer\x12M\n\x06Status\x12#.directfs.v1.DfsServerStatusRequest\x1a\x1c.directfs.v1.DfsServerStatus\"\x00\x12>\n\x0cVolumeCreate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeUpdate\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12>\n\x0cVolumeDelete\x12\x16.directfs.v1.DfsVolume\x1a\x14.common.v1.RpcResult\"\x00\x12K\n\nVolumeList\x12\x1f.directfs.v1.DfsVolumeListQuery\x1a\x1a.directfs.v1.DfsVolumeList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x64irectfs.proto\x12\x0b\x64irectfs.v1\x1a\x0c\x63ommon.proto\"\x1b\n\x19\x44\x66sInitiatorStatusRequest\"*\n\x12\x44\x66sInitiatorStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x1b\n\x19\x44\x66sResponderStatusRequest\"*\n\x12\x44\x66sResponderStatus\x12\x14\n\x0cversion_info\x18\x01 \x01(\t\"\x1d\n\x1b\x44\x66sInitiatorHostCredentials\"\xaa\x01\n\x10\x44\x66sInitiatorHost\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12=\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32(.directfs.v1.DfsInitiatorHostCredentials\"D\n\x14\x44\x66sInitiatorHostList\x12,\n\x05hosts\x18\x01 \x03(\x0b\x32\x1d.directfs.v1.DfsInitiatorHost\"-\n\x19\x44\x66sInitiatorHostListQuery\x12\x10\n\x08host_ids\x18\x01 \x03(\r\"\x1f\n\x1d\x44\x66sInitiatorVolumeCredentials\"\x1e\n\x1c\x44\x66sInitiatorVolumeStatistics\"\xf4\x02\n\x18\x44\x66sInitiatorVolumeStatus\x12U\n\nconn_state\x18\x01 \x01(\x0e\x32\x41.directfs.v1.DfsInitiatorVolumeStatus.DfsInitiatorConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12P\n\x07peer_af\x18\x03 \x01(\x0e\x32?.directfs.v1.DfsInitiatorVolumeStatus.DfsInitiatorAddressFamily\"k\n\x1b\x44\x66sInitiatorConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"/\n\x19\x44\x66sInitiatorAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\x92\x02\n\x12\x44\x66sInitiatorVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12?\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32*.directfs.v1.DfsInitiatorVolumeCredentials\x12\x38\n\x05stats\x18\x05 \x01(\x0b\x32).directfs.v1.DfsInitiatorVolumeStatistics\x12\x35\n\x06status\x18\x06 \x01(\x0b\x32%.directfs.v1.DfsInitiatorVolumeStatus\"J\n\x16\x44\x66sInitiatorVolumeList\x12\x30\n\x07volumes\x18\x01 \x03(\x0b\x32\x1f.directfs.v1.DfsInitiatorVolume\"1\n\x1b\x44\x66sInitiatorVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r\"\x1d\n\x1b\x44\x66sResponderHostCredentials\"\xaa\x01\n\x10\x44\x66sResponderHost\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x0f\n\x07host_id\x18\x02 \x01(\r\x12\x10\n\x08hostname\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\r\x12=\n\x0b\x63redentials\x18\x05 \x01(\x0b\x32(.directfs.v1.DfsResponderHostCredentials\"D\n\x14\x44\x66sResponderHostList\x12,\n\x05hosts\x18\x01 \x03(\x0b\x32\x1d.directfs.v1.DfsResponderHost\"-\n\x19\x44\x66sResponderHostListQuery\x12\x10\n\x08host_ids\x18\x01 \x03(\r\"\x1f\n\x1d\x44\x66sResponderVolumeCredentials\"\x1e\n\x1c\x44\x66sResponderVolumeStatistics\"\xf4\x02\n\x18\x44\x66sResponderVolumeStatus\x12U\n\nconn_state\x18\x01 \x01(\x0e\x32\x41.directfs.v1.DfsResponderVolumeStatus.DfsResponderConnectionState\x12\x11\n\tpeer_name\x18\x02 \x01(\t\x12P\n\x07peer_af\x18\x03 \x01(\x0e\x32?.directfs.v1.DfsResponderVolumeStatus.DfsResponderAddressFamily\"k\n\x1b\x44\x66sResponderConnectionState\x12\x08\n\x04NONE\x10\x00\x12\x0e\n\nCONNECTING\x10\x01\x12\r\n\tCONNECTED\x10\x02\x12\x11\n\rDISCONNECTING\x10\x03\x12\x10\n\x0c\x44ISCONNECTED\x10\x04\"/\n\x19\x44\x66sResponderAddressFamily\x12\x08\n\x04IPV4\x10\x00\x12\x08\n\x04IPV6\x10\x01\"\x92\x02\n\x12\x44\x66sResponderVolume\x12&\n\x02\x63\x63\x18\x01 \x01(\x0b\x32\x1a.common.v1.DataplaneCommon\x12\x11\n\tvolume_id\x18\x02 \x01(\r\x12\x0f\n\x07host_id\x18\x03 \x01(\r\x12?\n\x0b\x63redentials\x18\x04 \x01(\x0b\x32*.directfs.v1.DfsResponderVolumeCredentials\x12\x38\n\x05stats\x18\x05 \x01(\x0b\x32).directfs.v1.DfsResponderVolumeStatistics\x12\x35\n\x06status\x18\x06 \x01(\x0b\x32%.directfs.v1.DfsResponderVolumeStatus\"J\n\x16\x44\x66sResponderVolumeList\x12\x30\n\x07volumes\x18\x01 \x03(\x0b\x32\x1f.directfs.v1.DfsResponderVolume\"1\n\x1b\x44\x66sResponderVolumeListQuery\x12\x12\n\nvolume_ids\x18\x01 \x03(\r2\xcd\x05\n\x0c\x44\x66sInitiator\x12S\n\x06Status\x12&.directfs.v1.DfsInitiatorStatusRequest\x1a\x1f.directfs.v1.DfsInitiatorStatus\"\x00\x12\x45\n\x0cServerCreate\x12\x1d.directfs.v1.DfsInitiatorHost\x1a\x14.common.v1.RpcResult\"\x00\x12\x45\n\x0cServerUpdate\x12\x1d.directfs.v1.DfsInitiatorHost\x1a\x14.common.v1.RpcResult\"\x00\x12\x45\n\x0cServerDelete\x12\x1d.directfs.v1.DfsInitiatorHost\x1a\x14.common.v1.RpcResult\"\x00\x12Y\n\nServerList\x12&.directfs.v1.DfsInitiatorHostListQuery\x1a!.directfs.v1.DfsInitiatorHostList\"\x00\x12G\n\x0cVolumeCreate\x12\x1f.directfs.v1.DfsInitiatorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\x0cVolumeUpdate\x12\x1f.directfs.v1.DfsInitiatorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\x0cVolumeDelete\x12\x1f.directfs.v1.DfsInitiatorVolume\x1a\x14.common.v1.RpcResult\"\x00\x12]\n\nVolumeList\x12(.directfs.v1.DfsInitiatorVolumeListQuery\x1a#.directfs.v1.DfsInitiatorVolumeList\"\x00\x32\x9d\x03\n\x0c\x44\x66sResponder\x12S\n\x06Status\x12&.directfs.v1.DfsResponderStatusRequest\x1a\x1f.directfs.v1.DfsResponderStatus\"\x00\x12G\n\x0cVolumeCreate\x12\x1f.directfs.v1.DfsResponderVolume\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\x0cVolumeUpdate\x12\x1f.directfs.v1.DfsResponderVolume\x1a\x14.common.v1.RpcResult\"\x00\x12G\n\x0cVolumeDelete\x12\x1f.directfs.v1.DfsResponderVolume\x1a\x14.common.v1.RpcResult\"\x00\x12]\n\nVolumeList\x12(.directfs.v1.DfsResponderVolumeListQuery\x1a#.directfs.v1.DfsResponderVolumeList\"\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
 
 
-_DFSVOLUMESTATUS_DFSCONNECTIONSTATE = _descriptor.EnumDescriptor(
-  name='DfsConnectionState',
-  full_name='directfs.v1.DfsVolumeStatus.DfsConnectionState',
+_DFSINITIATORVOLUMESTATUS_DFSINITIATORCONNECTIONSTATE = _descriptor.EnumDescriptor(
+  name='DfsInitiatorConnectionState',
+  full_name='directfs.v1.DfsInitiatorVolumeStatus.DfsInitiatorConnectionState',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -55,14 +55,14 @@ _DFSVOLUMESTATUS_DFSCONNECTIONSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=665,
-  serialized_end=763,
+  serialized_start=794,
+  serialized_end=901,
 )
-_sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSCONNECTIONSTATE)
+_sym_db.RegisterEnumDescriptor(_DFSINITIATORVOLUMESTATUS_DFSINITIATORCONNECTIONSTATE)
 
-_DFSVOLUMESTATUS_DFSADDRESSFAMILY = _descriptor.EnumDescriptor(
-  name='DfsAddressFamily',
-  full_name='directfs.v1.DfsVolumeStatus.DfsAddressFamily',
+_DFSINITIATORVOLUMESTATUS_DFSINITIATORADDRESSFAMILY = _descriptor.EnumDescriptor(
+  name='DfsInitiatorAddressFamily',
+  full_name='directfs.v1.DfsInitiatorVolumeStatus.DfsInitiatorAddressFamily',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -77,15 +77,71 @@ _DFSVOLUMESTATUS_DFSADDRESSFAMILY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=765,
-  serialized_end=803,
+  serialized_start=903,
+  serialized_end=950,
 )
-_sym_db.RegisterEnumDescriptor(_DFSVOLUMESTATUS_DFSADDRESSFAMILY)
+_sym_db.RegisterEnumDescriptor(_DFSINITIATORVOLUMESTATUS_DFSINITIATORADDRESSFAMILY)
+
+_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERCONNECTIONSTATE = _descriptor.EnumDescriptor(
+  name='DfsResponderConnectionState',
+  full_name='directfs.v1.DfsResponderVolumeStatus.DfsResponderConnectionState',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NONE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CONNECTING', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='CONNECTED', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DISCONNECTING', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DISCONNECTED', index=4, number=4,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1959,
+  serialized_end=2066,
+)
+_sym_db.RegisterEnumDescriptor(_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERCONNECTIONSTATE)
+
+_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERADDRESSFAMILY = _descriptor.EnumDescriptor(
+  name='DfsResponderAddressFamily',
+  full_name='directfs.v1.DfsResponderVolumeStatus.DfsResponderAddressFamily',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='IPV4', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='IPV6', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=2068,
+  serialized_end=2115,
+)
+_sym_db.RegisterEnumDescriptor(_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERADDRESSFAMILY)
 
 
-_DFSCLIENTSTATUSREQUEST = _descriptor.Descriptor(
-  name='DfsClientStatusRequest',
-  full_name='directfs.v1.DfsClientStatusRequest',
+_DFSINITIATORSTATUSREQUEST = _descriptor.Descriptor(
+  name='DfsInitiatorStatusRequest',
+  full_name='directfs.v1.DfsInitiatorStatusRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -103,19 +159,19 @@ _DFSCLIENTSTATUSREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=45,
-  serialized_end=69,
+  serialized_end=72,
 )
 
 
-_DFSCLIENTSTATUS = _descriptor.Descriptor(
-  name='DfsClientStatus',
-  full_name='directfs.v1.DfsClientStatus',
+_DFSINITIATORSTATUS = _descriptor.Descriptor(
+  name='DfsInitiatorStatus',
+  full_name='directfs.v1.DfsInitiatorStatus',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version_info', full_name='directfs.v1.DfsClientStatus.version_info', index=0,
+      name='version_info', full_name='directfs.v1.DfsInitiatorStatus.version_info', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -133,14 +189,14 @@ _DFSCLIENTSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=71,
-  serialized_end=110,
+  serialized_start=74,
+  serialized_end=116,
 )
 
 
-_DFSSERVERSTATUSREQUEST = _descriptor.Descriptor(
-  name='DfsServerStatusRequest',
-  full_name='directfs.v1.DfsServerStatusRequest',
+_DFSRESPONDERSTATUSREQUEST = _descriptor.Descriptor(
+  name='DfsResponderStatusRequest',
+  full_name='directfs.v1.DfsResponderStatusRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -157,20 +213,20 @@ _DFSSERVERSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=112,
-  serialized_end=136,
+  serialized_start=118,
+  serialized_end=145,
 )
 
 
-_DFSSERVERSTATUS = _descriptor.Descriptor(
-  name='DfsServerStatus',
-  full_name='directfs.v1.DfsServerStatus',
+_DFSRESPONDERSTATUS = _descriptor.Descriptor(
+  name='DfsResponderStatus',
+  full_name='directfs.v1.DfsResponderStatus',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version_info', full_name='directfs.v1.DfsServerStatus.version_info', index=0,
+      name='version_info', full_name='directfs.v1.DfsResponderStatus.version_info', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -188,14 +244,14 @@ _DFSSERVERSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=138,
-  serialized_end=177,
+  serialized_start=147,
+  serialized_end=189,
 )
 
 
-_DFSHOSTCREDENTIALS = _descriptor.Descriptor(
-  name='DfsHostCredentials',
-  full_name='directfs.v1.DfsHostCredentials',
+_DFSINITIATORHOSTCREDENTIALS = _descriptor.Descriptor(
+  name='DfsInitiatorHostCredentials',
+  full_name='directfs.v1.DfsInitiatorHostCredentials',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -212,48 +268,48 @@ _DFSHOSTCREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=179,
-  serialized_end=199,
+  serialized_start=191,
+  serialized_end=220,
 )
 
 
-_DFSHOST = _descriptor.Descriptor(
-  name='DfsHost',
-  full_name='directfs.v1.DfsHost',
+_DFSINITIATORHOST = _descriptor.Descriptor(
+  name='DfsInitiatorHost',
+  full_name='directfs.v1.DfsInitiatorHost',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='cc', full_name='directfs.v1.DfsHost.cc', index=0,
+      name='cc', full_name='directfs.v1.DfsInitiatorHost.cc', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='host_id', full_name='directfs.v1.DfsHost.host_id', index=1,
+      name='host_id', full_name='directfs.v1.DfsInitiatorHost.host_id', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='hostname', full_name='directfs.v1.DfsHost.hostname', index=2,
+      name='hostname', full_name='directfs.v1.DfsInitiatorHost.hostname', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='port', full_name='directfs.v1.DfsHost.port', index=3,
+      name='port', full_name='directfs.v1.DfsInitiatorHost.port', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='credentials', full_name='directfs.v1.DfsHost.credentials', index=4,
+      name='credentials', full_name='directfs.v1.DfsInitiatorHost.credentials', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -271,20 +327,20 @@ _DFSHOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=202,
-  serialized_end=354,
+  serialized_start=223,
+  serialized_end=393,
 )
 
 
-_DFSHOSTLIST = _descriptor.Descriptor(
-  name='DfsHostList',
-  full_name='directfs.v1.DfsHostList',
+_DFSINITIATORHOSTLIST = _descriptor.Descriptor(
+  name='DfsInitiatorHostList',
+  full_name='directfs.v1.DfsInitiatorHostList',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='hosts', full_name='directfs.v1.DfsHostList.hosts', index=0,
+      name='hosts', full_name='directfs.v1.DfsInitiatorHostList.hosts', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -302,20 +358,20 @@ _DFSHOSTLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=356,
-  serialized_end=406,
+  serialized_start=395,
+  serialized_end=463,
 )
 
 
-_DFSHOSTLISTQUERY = _descriptor.Descriptor(
-  name='DfsHostListQuery',
-  full_name='directfs.v1.DfsHostListQuery',
+_DFSINITIATORHOSTLISTQUERY = _descriptor.Descriptor(
+  name='DfsInitiatorHostListQuery',
+  full_name='directfs.v1.DfsInitiatorHostListQuery',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='host_ids', full_name='directfs.v1.DfsHostListQuery.host_ids', index=0,
+      name='host_ids', full_name='directfs.v1.DfsInitiatorHostListQuery.host_ids', index=0,
       number=1, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -333,14 +389,14 @@ _DFSHOSTLISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=408,
-  serialized_end=444,
+  serialized_start=465,
+  serialized_end=510,
 )
 
 
-_DFSVOLUMECREDENTIALS = _descriptor.Descriptor(
-  name='DfsVolumeCredentials',
-  full_name='directfs.v1.DfsVolumeCredentials',
+_DFSINITIATORVOLUMECREDENTIALS = _descriptor.Descriptor(
+  name='DfsInitiatorVolumeCredentials',
+  full_name='directfs.v1.DfsInitiatorVolumeCredentials',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -357,14 +413,14 @@ _DFSVOLUMECREDENTIALS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=446,
-  serialized_end=468,
+  serialized_start=512,
+  serialized_end=543,
 )
 
 
-_DFSVOLUMESTATISTICS = _descriptor.Descriptor(
-  name='DfsVolumeStatistics',
-  full_name='directfs.v1.DfsVolumeStatistics',
+_DFSINITIATORVOLUMESTATISTICS = _descriptor.Descriptor(
+  name='DfsInitiatorVolumeStatistics',
+  full_name='directfs.v1.DfsInitiatorVolumeStatistics',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -381,34 +437,34 @@ _DFSVOLUMESTATISTICS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=470,
-  serialized_end=491,
+  serialized_start=545,
+  serialized_end=575,
 )
 
 
-_DFSVOLUMESTATUS = _descriptor.Descriptor(
-  name='DfsVolumeStatus',
-  full_name='directfs.v1.DfsVolumeStatus',
+_DFSINITIATORVOLUMESTATUS = _descriptor.Descriptor(
+  name='DfsInitiatorVolumeStatus',
+  full_name='directfs.v1.DfsInitiatorVolumeStatus',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='conn_state', full_name='directfs.v1.DfsVolumeStatus.conn_state', index=0,
+      name='conn_state', full_name='directfs.v1.DfsInitiatorVolumeStatus.conn_state', index=0,
       number=1, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='peer_name', full_name='directfs.v1.DfsVolumeStatus.peer_name', index=1,
+      name='peer_name', full_name='directfs.v1.DfsInitiatorVolumeStatus.peer_name', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='peer_af', full_name='directfs.v1.DfsVolumeStatus.peer_af', index=2,
+      name='peer_af', full_name='directfs.v1.DfsInitiatorVolumeStatus.peer_af', index=2,
       number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -419,8 +475,8 @@ _DFSVOLUMESTATUS = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
-    _DFSVOLUMESTATUS_DFSCONNECTIONSTATE,
-    _DFSVOLUMESTATUS_DFSADDRESSFAMILY,
+    _DFSINITIATORVOLUMESTATUS_DFSINITIATORCONNECTIONSTATE,
+    _DFSINITIATORVOLUMESTATUS_DFSINITIATORADDRESSFAMILY,
   ],
   options=None,
   is_extendable=False,
@@ -428,55 +484,55 @@ _DFSVOLUMESTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=494,
-  serialized_end=803,
+  serialized_start=578,
+  serialized_end=950,
 )
 
 
-_DFSVOLUME = _descriptor.Descriptor(
-  name='DfsVolume',
-  full_name='directfs.v1.DfsVolume',
+_DFSINITIATORVOLUME = _descriptor.Descriptor(
+  name='DfsInitiatorVolume',
+  full_name='directfs.v1.DfsInitiatorVolume',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='cc', full_name='directfs.v1.DfsVolume.cc', index=0,
+      name='cc', full_name='directfs.v1.DfsInitiatorVolume.cc', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='volume_id', full_name='directfs.v1.DfsVolume.volume_id', index=1,
+      name='volume_id', full_name='directfs.v1.DfsInitiatorVolume.volume_id', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='host_id', full_name='directfs.v1.DfsVolume.host_id', index=2,
+      name='host_id', full_name='directfs.v1.DfsInitiatorVolume.host_id', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='credentials', full_name='directfs.v1.DfsVolume.credentials', index=3,
+      name='credentials', full_name='directfs.v1.DfsInitiatorVolume.credentials', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='stats', full_name='directfs.v1.DfsVolume.stats', index=4,
+      name='stats', full_name='directfs.v1.DfsInitiatorVolume.stats', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='directfs.v1.DfsVolume.status', index=5,
+      name='status', full_name='directfs.v1.DfsInitiatorVolume.status', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -494,20 +550,20 @@ _DFSVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=806,
-  serialized_end=1044,
+  serialized_start=953,
+  serialized_end=1227,
 )
 
 
-_DFSVOLUMELIST = _descriptor.Descriptor(
-  name='DfsVolumeList',
-  full_name='directfs.v1.DfsVolumeList',
+_DFSINITIATORVOLUMELIST = _descriptor.Descriptor(
+  name='DfsInitiatorVolumeList',
+  full_name='directfs.v1.DfsInitiatorVolumeList',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='volumes', full_name='directfs.v1.DfsVolumeList.volumes', index=0,
+      name='volumes', full_name='directfs.v1.DfsInitiatorVolumeList.volumes', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -525,20 +581,20 @@ _DFSVOLUMELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1046,
-  serialized_end=1102,
+  serialized_start=1229,
+  serialized_end=1303,
 )
 
 
-_DFSVOLUMELISTQUERY = _descriptor.Descriptor(
-  name='DfsVolumeListQuery',
-  full_name='directfs.v1.DfsVolumeListQuery',
+_DFSINITIATORVOLUMELISTQUERY = _descriptor.Descriptor(
+  name='DfsInitiatorVolumeListQuery',
+  full_name='directfs.v1.DfsInitiatorVolumeListQuery',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='volume_ids', full_name='directfs.v1.DfsVolumeListQuery.volume_ids', index=0,
+      name='volume_ids', full_name='directfs.v1.DfsInitiatorVolumeListQuery.volume_ids', index=0,
       number=1, type=13, cpp_type=3, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -556,291 +612,751 @@ _DFSVOLUMELISTQUERY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1104,
-  serialized_end=1144,
+  serialized_start=1305,
+  serialized_end=1354,
 )
 
-_DFSHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
-_DFSHOST.fields_by_name['credentials'].message_type = _DFSHOSTCREDENTIALS
-_DFSHOSTLIST.fields_by_name['hosts'].message_type = _DFSHOST
-_DFSVOLUMESTATUS.fields_by_name['conn_state'].enum_type = _DFSVOLUMESTATUS_DFSCONNECTIONSTATE
-_DFSVOLUMESTATUS.fields_by_name['peer_af'].enum_type = _DFSVOLUMESTATUS_DFSADDRESSFAMILY
-_DFSVOLUMESTATUS_DFSCONNECTIONSTATE.containing_type = _DFSVOLUMESTATUS
-_DFSVOLUMESTATUS_DFSADDRESSFAMILY.containing_type = _DFSVOLUMESTATUS
-_DFSVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
-_DFSVOLUME.fields_by_name['credentials'].message_type = _DFSVOLUMECREDENTIALS
-_DFSVOLUME.fields_by_name['stats'].message_type = _DFSVOLUMESTATISTICS
-_DFSVOLUME.fields_by_name['status'].message_type = _DFSVOLUMESTATUS
-_DFSVOLUMELIST.fields_by_name['volumes'].message_type = _DFSVOLUME
-DESCRIPTOR.message_types_by_name['DfsClientStatusRequest'] = _DFSCLIENTSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['DfsClientStatus'] = _DFSCLIENTSTATUS
-DESCRIPTOR.message_types_by_name['DfsServerStatusRequest'] = _DFSSERVERSTATUSREQUEST
-DESCRIPTOR.message_types_by_name['DfsServerStatus'] = _DFSSERVERSTATUS
-DESCRIPTOR.message_types_by_name['DfsHostCredentials'] = _DFSHOSTCREDENTIALS
-DESCRIPTOR.message_types_by_name['DfsHost'] = _DFSHOST
-DESCRIPTOR.message_types_by_name['DfsHostList'] = _DFSHOSTLIST
-DESCRIPTOR.message_types_by_name['DfsHostListQuery'] = _DFSHOSTLISTQUERY
-DESCRIPTOR.message_types_by_name['DfsVolumeCredentials'] = _DFSVOLUMECREDENTIALS
-DESCRIPTOR.message_types_by_name['DfsVolumeStatistics'] = _DFSVOLUMESTATISTICS
-DESCRIPTOR.message_types_by_name['DfsVolumeStatus'] = _DFSVOLUMESTATUS
-DESCRIPTOR.message_types_by_name['DfsVolume'] = _DFSVOLUME
-DESCRIPTOR.message_types_by_name['DfsVolumeList'] = _DFSVOLUMELIST
-DESCRIPTOR.message_types_by_name['DfsVolumeListQuery'] = _DFSVOLUMELISTQUERY
+
+_DFSRESPONDERHOSTCREDENTIALS = _descriptor.Descriptor(
+  name='DfsResponderHostCredentials',
+  full_name='directfs.v1.DfsResponderHostCredentials',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1356,
+  serialized_end=1385,
+)
+
+
+_DFSRESPONDERHOST = _descriptor.Descriptor(
+  name='DfsResponderHost',
+  full_name='directfs.v1.DfsResponderHost',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cc', full_name='directfs.v1.DfsResponderHost.cc', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='host_id', full_name='directfs.v1.DfsResponderHost.host_id', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='hostname', full_name='directfs.v1.DfsResponderHost.hostname', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='port', full_name='directfs.v1.DfsResponderHost.port', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='credentials', full_name='directfs.v1.DfsResponderHost.credentials', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1388,
+  serialized_end=1558,
+)
+
+
+_DFSRESPONDERHOSTLIST = _descriptor.Descriptor(
+  name='DfsResponderHostList',
+  full_name='directfs.v1.DfsResponderHostList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='hosts', full_name='directfs.v1.DfsResponderHostList.hosts', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1560,
+  serialized_end=1628,
+)
+
+
+_DFSRESPONDERHOSTLISTQUERY = _descriptor.Descriptor(
+  name='DfsResponderHostListQuery',
+  full_name='directfs.v1.DfsResponderHostListQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='host_ids', full_name='directfs.v1.DfsResponderHostListQuery.host_ids', index=0,
+      number=1, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1630,
+  serialized_end=1675,
+)
+
+
+_DFSRESPONDERVOLUMECREDENTIALS = _descriptor.Descriptor(
+  name='DfsResponderVolumeCredentials',
+  full_name='directfs.v1.DfsResponderVolumeCredentials',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1677,
+  serialized_end=1708,
+)
+
+
+_DFSRESPONDERVOLUMESTATISTICS = _descriptor.Descriptor(
+  name='DfsResponderVolumeStatistics',
+  full_name='directfs.v1.DfsResponderVolumeStatistics',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1710,
+  serialized_end=1740,
+)
+
+
+_DFSRESPONDERVOLUMESTATUS = _descriptor.Descriptor(
+  name='DfsResponderVolumeStatus',
+  full_name='directfs.v1.DfsResponderVolumeStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='conn_state', full_name='directfs.v1.DfsResponderVolumeStatus.conn_state', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='peer_name', full_name='directfs.v1.DfsResponderVolumeStatus.peer_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='peer_af', full_name='directfs.v1.DfsResponderVolumeStatus.peer_af', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _DFSRESPONDERVOLUMESTATUS_DFSRESPONDERCONNECTIONSTATE,
+    _DFSRESPONDERVOLUMESTATUS_DFSRESPONDERADDRESSFAMILY,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1743,
+  serialized_end=2115,
+)
+
+
+_DFSRESPONDERVOLUME = _descriptor.Descriptor(
+  name='DfsResponderVolume',
+  full_name='directfs.v1.DfsResponderVolume',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cc', full_name='directfs.v1.DfsResponderVolume.cc', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='volume_id', full_name='directfs.v1.DfsResponderVolume.volume_id', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='host_id', full_name='directfs.v1.DfsResponderVolume.host_id', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='credentials', full_name='directfs.v1.DfsResponderVolume.credentials', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='stats', full_name='directfs.v1.DfsResponderVolume.stats', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='directfs.v1.DfsResponderVolume.status', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2118,
+  serialized_end=2392,
+)
+
+
+_DFSRESPONDERVOLUMELIST = _descriptor.Descriptor(
+  name='DfsResponderVolumeList',
+  full_name='directfs.v1.DfsResponderVolumeList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='volumes', full_name='directfs.v1.DfsResponderVolumeList.volumes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2394,
+  serialized_end=2468,
+)
+
+
+_DFSRESPONDERVOLUMELISTQUERY = _descriptor.Descriptor(
+  name='DfsResponderVolumeListQuery',
+  full_name='directfs.v1.DfsResponderVolumeListQuery',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='volume_ids', full_name='directfs.v1.DfsResponderVolumeListQuery.volume_ids', index=0,
+      number=1, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2470,
+  serialized_end=2519,
+)
+
+_DFSINITIATORHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
+_DFSINITIATORHOST.fields_by_name['credentials'].message_type = _DFSINITIATORHOSTCREDENTIALS
+_DFSINITIATORHOSTLIST.fields_by_name['hosts'].message_type = _DFSINITIATORHOST
+_DFSINITIATORVOLUMESTATUS.fields_by_name['conn_state'].enum_type = _DFSINITIATORVOLUMESTATUS_DFSINITIATORCONNECTIONSTATE
+_DFSINITIATORVOLUMESTATUS.fields_by_name['peer_af'].enum_type = _DFSINITIATORVOLUMESTATUS_DFSINITIATORADDRESSFAMILY
+_DFSINITIATORVOLUMESTATUS_DFSINITIATORCONNECTIONSTATE.containing_type = _DFSINITIATORVOLUMESTATUS
+_DFSINITIATORVOLUMESTATUS_DFSINITIATORADDRESSFAMILY.containing_type = _DFSINITIATORVOLUMESTATUS
+_DFSINITIATORVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
+_DFSINITIATORVOLUME.fields_by_name['credentials'].message_type = _DFSINITIATORVOLUMECREDENTIALS
+_DFSINITIATORVOLUME.fields_by_name['stats'].message_type = _DFSINITIATORVOLUMESTATISTICS
+_DFSINITIATORVOLUME.fields_by_name['status'].message_type = _DFSINITIATORVOLUMESTATUS
+_DFSINITIATORVOLUMELIST.fields_by_name['volumes'].message_type = _DFSINITIATORVOLUME
+_DFSRESPONDERHOST.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
+_DFSRESPONDERHOST.fields_by_name['credentials'].message_type = _DFSRESPONDERHOSTCREDENTIALS
+_DFSRESPONDERHOSTLIST.fields_by_name['hosts'].message_type = _DFSRESPONDERHOST
+_DFSRESPONDERVOLUMESTATUS.fields_by_name['conn_state'].enum_type = _DFSRESPONDERVOLUMESTATUS_DFSRESPONDERCONNECTIONSTATE
+_DFSRESPONDERVOLUMESTATUS.fields_by_name['peer_af'].enum_type = _DFSRESPONDERVOLUMESTATUS_DFSRESPONDERADDRESSFAMILY
+_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERCONNECTIONSTATE.containing_type = _DFSRESPONDERVOLUMESTATUS
+_DFSRESPONDERVOLUMESTATUS_DFSRESPONDERADDRESSFAMILY.containing_type = _DFSRESPONDERVOLUMESTATUS
+_DFSRESPONDERVOLUME.fields_by_name['cc'].message_type = common__pb2._DATAPLANECOMMON
+_DFSRESPONDERVOLUME.fields_by_name['credentials'].message_type = _DFSRESPONDERVOLUMECREDENTIALS
+_DFSRESPONDERVOLUME.fields_by_name['stats'].message_type = _DFSRESPONDERVOLUMESTATISTICS
+_DFSRESPONDERVOLUME.fields_by_name['status'].message_type = _DFSRESPONDERVOLUMESTATUS
+_DFSRESPONDERVOLUMELIST.fields_by_name['volumes'].message_type = _DFSRESPONDERVOLUME
+DESCRIPTOR.message_types_by_name['DfsInitiatorStatusRequest'] = _DFSINITIATORSTATUSREQUEST
+DESCRIPTOR.message_types_by_name['DfsInitiatorStatus'] = _DFSINITIATORSTATUS
+DESCRIPTOR.message_types_by_name['DfsResponderStatusRequest'] = _DFSRESPONDERSTATUSREQUEST
+DESCRIPTOR.message_types_by_name['DfsResponderStatus'] = _DFSRESPONDERSTATUS
+DESCRIPTOR.message_types_by_name['DfsInitiatorHostCredentials'] = _DFSINITIATORHOSTCREDENTIALS
+DESCRIPTOR.message_types_by_name['DfsInitiatorHost'] = _DFSINITIATORHOST
+DESCRIPTOR.message_types_by_name['DfsInitiatorHostList'] = _DFSINITIATORHOSTLIST
+DESCRIPTOR.message_types_by_name['DfsInitiatorHostListQuery'] = _DFSINITIATORHOSTLISTQUERY
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolumeCredentials'] = _DFSINITIATORVOLUMECREDENTIALS
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolumeStatistics'] = _DFSINITIATORVOLUMESTATISTICS
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolumeStatus'] = _DFSINITIATORVOLUMESTATUS
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolume'] = _DFSINITIATORVOLUME
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolumeList'] = _DFSINITIATORVOLUMELIST
+DESCRIPTOR.message_types_by_name['DfsInitiatorVolumeListQuery'] = _DFSINITIATORVOLUMELISTQUERY
+DESCRIPTOR.message_types_by_name['DfsResponderHostCredentials'] = _DFSRESPONDERHOSTCREDENTIALS
+DESCRIPTOR.message_types_by_name['DfsResponderHost'] = _DFSRESPONDERHOST
+DESCRIPTOR.message_types_by_name['DfsResponderHostList'] = _DFSRESPONDERHOSTLIST
+DESCRIPTOR.message_types_by_name['DfsResponderHostListQuery'] = _DFSRESPONDERHOSTLISTQUERY
+DESCRIPTOR.message_types_by_name['DfsResponderVolumeCredentials'] = _DFSRESPONDERVOLUMECREDENTIALS
+DESCRIPTOR.message_types_by_name['DfsResponderVolumeStatistics'] = _DFSRESPONDERVOLUMESTATISTICS
+DESCRIPTOR.message_types_by_name['DfsResponderVolumeStatus'] = _DFSRESPONDERVOLUMESTATUS
+DESCRIPTOR.message_types_by_name['DfsResponderVolume'] = _DFSRESPONDERVOLUME
+DESCRIPTOR.message_types_by_name['DfsResponderVolumeList'] = _DFSRESPONDERVOLUMELIST
+DESCRIPTOR.message_types_by_name['DfsResponderVolumeListQuery'] = _DFSRESPONDERVOLUMELISTQUERY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-DfsClientStatusRequest = _reflection.GeneratedProtocolMessageType('DfsClientStatusRequest', (_message.Message,), dict(
-  DESCRIPTOR = _DFSCLIENTSTATUSREQUEST,
+DfsInitiatorStatusRequest = _reflection.GeneratedProtocolMessageType('DfsInitiatorStatusRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORSTATUSREQUEST,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsClientStatusRequest)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorStatusRequest)
   ))
-_sym_db.RegisterMessage(DfsClientStatusRequest)
+_sym_db.RegisterMessage(DfsInitiatorStatusRequest)
 
-DfsClientStatus = _reflection.GeneratedProtocolMessageType('DfsClientStatus', (_message.Message,), dict(
-  DESCRIPTOR = _DFSCLIENTSTATUS,
+DfsInitiatorStatus = _reflection.GeneratedProtocolMessageType('DfsInitiatorStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORSTATUS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsClientStatus)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorStatus)
   ))
-_sym_db.RegisterMessage(DfsClientStatus)
+_sym_db.RegisterMessage(DfsInitiatorStatus)
 
-DfsServerStatusRequest = _reflection.GeneratedProtocolMessageType('DfsServerStatusRequest', (_message.Message,), dict(
-  DESCRIPTOR = _DFSSERVERSTATUSREQUEST,
+DfsResponderStatusRequest = _reflection.GeneratedProtocolMessageType('DfsResponderStatusRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERSTATUSREQUEST,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsServerStatusRequest)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderStatusRequest)
   ))
-_sym_db.RegisterMessage(DfsServerStatusRequest)
+_sym_db.RegisterMessage(DfsResponderStatusRequest)
 
-DfsServerStatus = _reflection.GeneratedProtocolMessageType('DfsServerStatus', (_message.Message,), dict(
-  DESCRIPTOR = _DFSSERVERSTATUS,
+DfsResponderStatus = _reflection.GeneratedProtocolMessageType('DfsResponderStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERSTATUS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsServerStatus)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderStatus)
   ))
-_sym_db.RegisterMessage(DfsServerStatus)
+_sym_db.RegisterMessage(DfsResponderStatus)
 
-DfsHostCredentials = _reflection.GeneratedProtocolMessageType('DfsHostCredentials', (_message.Message,), dict(
-  DESCRIPTOR = _DFSHOSTCREDENTIALS,
+DfsInitiatorHostCredentials = _reflection.GeneratedProtocolMessageType('DfsInitiatorHostCredentials', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORHOSTCREDENTIALS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsHostCredentials)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorHostCredentials)
   ))
-_sym_db.RegisterMessage(DfsHostCredentials)
+_sym_db.RegisterMessage(DfsInitiatorHostCredentials)
 
-DfsHost = _reflection.GeneratedProtocolMessageType('DfsHost', (_message.Message,), dict(
-  DESCRIPTOR = _DFSHOST,
+DfsInitiatorHost = _reflection.GeneratedProtocolMessageType('DfsInitiatorHost', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORHOST,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsHost)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorHost)
   ))
-_sym_db.RegisterMessage(DfsHost)
+_sym_db.RegisterMessage(DfsInitiatorHost)
 
-DfsHostList = _reflection.GeneratedProtocolMessageType('DfsHostList', (_message.Message,), dict(
-  DESCRIPTOR = _DFSHOSTLIST,
+DfsInitiatorHostList = _reflection.GeneratedProtocolMessageType('DfsInitiatorHostList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORHOSTLIST,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsHostList)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorHostList)
   ))
-_sym_db.RegisterMessage(DfsHostList)
+_sym_db.RegisterMessage(DfsInitiatorHostList)
 
-DfsHostListQuery = _reflection.GeneratedProtocolMessageType('DfsHostListQuery', (_message.Message,), dict(
-  DESCRIPTOR = _DFSHOSTLISTQUERY,
+DfsInitiatorHostListQuery = _reflection.GeneratedProtocolMessageType('DfsInitiatorHostListQuery', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORHOSTLISTQUERY,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsHostListQuery)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorHostListQuery)
   ))
-_sym_db.RegisterMessage(DfsHostListQuery)
+_sym_db.RegisterMessage(DfsInitiatorHostListQuery)
 
-DfsVolumeCredentials = _reflection.GeneratedProtocolMessageType('DfsVolumeCredentials', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMECREDENTIALS,
+DfsInitiatorVolumeCredentials = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolumeCredentials', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUMECREDENTIALS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolumeCredentials)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolumeCredentials)
   ))
-_sym_db.RegisterMessage(DfsVolumeCredentials)
+_sym_db.RegisterMessage(DfsInitiatorVolumeCredentials)
 
-DfsVolumeStatistics = _reflection.GeneratedProtocolMessageType('DfsVolumeStatistics', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMESTATISTICS,
+DfsInitiatorVolumeStatistics = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolumeStatistics', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUMESTATISTICS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolumeStatistics)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolumeStatistics)
   ))
-_sym_db.RegisterMessage(DfsVolumeStatistics)
+_sym_db.RegisterMessage(DfsInitiatorVolumeStatistics)
 
-DfsVolumeStatus = _reflection.GeneratedProtocolMessageType('DfsVolumeStatus', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMESTATUS,
+DfsInitiatorVolumeStatus = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolumeStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUMESTATUS,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolumeStatus)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolumeStatus)
   ))
-_sym_db.RegisterMessage(DfsVolumeStatus)
+_sym_db.RegisterMessage(DfsInitiatorVolumeStatus)
 
-DfsVolume = _reflection.GeneratedProtocolMessageType('DfsVolume', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUME,
+DfsInitiatorVolume = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolume', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUME,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolume)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolume)
   ))
-_sym_db.RegisterMessage(DfsVolume)
+_sym_db.RegisterMessage(DfsInitiatorVolume)
 
-DfsVolumeList = _reflection.GeneratedProtocolMessageType('DfsVolumeList', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMELIST,
+DfsInitiatorVolumeList = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolumeList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUMELIST,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolumeList)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolumeList)
   ))
-_sym_db.RegisterMessage(DfsVolumeList)
+_sym_db.RegisterMessage(DfsInitiatorVolumeList)
 
-DfsVolumeListQuery = _reflection.GeneratedProtocolMessageType('DfsVolumeListQuery', (_message.Message,), dict(
-  DESCRIPTOR = _DFSVOLUMELISTQUERY,
+DfsInitiatorVolumeListQuery = _reflection.GeneratedProtocolMessageType('DfsInitiatorVolumeListQuery', (_message.Message,), dict(
+  DESCRIPTOR = _DFSINITIATORVOLUMELISTQUERY,
   __module__ = 'directfs_pb2'
-  # @@protoc_insertion_point(class_scope:directfs.v1.DfsVolumeListQuery)
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsInitiatorVolumeListQuery)
   ))
-_sym_db.RegisterMessage(DfsVolumeListQuery)
+_sym_db.RegisterMessage(DfsInitiatorVolumeListQuery)
+
+DfsResponderHostCredentials = _reflection.GeneratedProtocolMessageType('DfsResponderHostCredentials', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERHOSTCREDENTIALS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderHostCredentials)
+  ))
+_sym_db.RegisterMessage(DfsResponderHostCredentials)
+
+DfsResponderHost = _reflection.GeneratedProtocolMessageType('DfsResponderHost', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERHOST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderHost)
+  ))
+_sym_db.RegisterMessage(DfsResponderHost)
+
+DfsResponderHostList = _reflection.GeneratedProtocolMessageType('DfsResponderHostList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERHOSTLIST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderHostList)
+  ))
+_sym_db.RegisterMessage(DfsResponderHostList)
+
+DfsResponderHostListQuery = _reflection.GeneratedProtocolMessageType('DfsResponderHostListQuery', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERHOSTLISTQUERY,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderHostListQuery)
+  ))
+_sym_db.RegisterMessage(DfsResponderHostListQuery)
+
+DfsResponderVolumeCredentials = _reflection.GeneratedProtocolMessageType('DfsResponderVolumeCredentials', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUMECREDENTIALS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolumeCredentials)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolumeCredentials)
+
+DfsResponderVolumeStatistics = _reflection.GeneratedProtocolMessageType('DfsResponderVolumeStatistics', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUMESTATISTICS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolumeStatistics)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolumeStatistics)
+
+DfsResponderVolumeStatus = _reflection.GeneratedProtocolMessageType('DfsResponderVolumeStatus', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUMESTATUS,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolumeStatus)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolumeStatus)
+
+DfsResponderVolume = _reflection.GeneratedProtocolMessageType('DfsResponderVolume', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUME,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolume)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolume)
+
+DfsResponderVolumeList = _reflection.GeneratedProtocolMessageType('DfsResponderVolumeList', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUMELIST,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolumeList)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolumeList)
+
+DfsResponderVolumeListQuery = _reflection.GeneratedProtocolMessageType('DfsResponderVolumeListQuery', (_message.Message,), dict(
+  DESCRIPTOR = _DFSRESPONDERVOLUMELISTQUERY,
+  __module__ = 'directfs_pb2'
+  # @@protoc_insertion_point(class_scope:directfs.v1.DfsResponderVolumeListQuery)
+  ))
+_sym_db.RegisterMessage(DfsResponderVolumeListQuery)
 
 
 
-_DFSCLIENT = _descriptor.ServiceDescriptor(
-  name='DfsClient',
-  full_name='directfs.v1.DfsClient',
+_DFSINITIATOR = _descriptor.ServiceDescriptor(
+  name='DfsInitiator',
+  full_name='directfs.v1.DfsInitiator',
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1147,
-  serialized_end=1765,
+  serialized_start=2522,
+  serialized_end=3239,
   methods=[
   _descriptor.MethodDescriptor(
     name='Status',
-    full_name='directfs.v1.DfsClient.Status',
+    full_name='directfs.v1.DfsInitiator.Status',
     index=0,
     containing_service=None,
-    input_type=_DFSCLIENTSTATUSREQUEST,
-    output_type=_DFSCLIENTSTATUS,
+    input_type=_DFSINITIATORSTATUSREQUEST,
+    output_type=_DFSINITIATORSTATUS,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='ServerCreate',
-    full_name='directfs.v1.DfsClient.ServerCreate',
+    full_name='directfs.v1.DfsInitiator.ServerCreate',
     index=1,
     containing_service=None,
-    input_type=_DFSHOST,
+    input_type=_DFSINITIATORHOST,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='ServerUpdate',
-    full_name='directfs.v1.DfsClient.ServerUpdate',
+    full_name='directfs.v1.DfsInitiator.ServerUpdate',
     index=2,
     containing_service=None,
-    input_type=_DFSHOST,
+    input_type=_DFSINITIATORHOST,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='ServerDelete',
-    full_name='directfs.v1.DfsClient.ServerDelete',
+    full_name='directfs.v1.DfsInitiator.ServerDelete',
     index=3,
     containing_service=None,
-    input_type=_DFSHOST,
+    input_type=_DFSINITIATORHOST,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='ServerList',
-    full_name='directfs.v1.DfsClient.ServerList',
+    full_name='directfs.v1.DfsInitiator.ServerList',
     index=4,
     containing_service=None,
-    input_type=_DFSHOSTLISTQUERY,
-    output_type=_DFSHOSTLIST,
+    input_type=_DFSINITIATORHOSTLISTQUERY,
+    output_type=_DFSINITIATORHOSTLIST,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
-    full_name='directfs.v1.DfsClient.VolumeCreate',
+    full_name='directfs.v1.DfsInitiator.VolumeCreate',
     index=5,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSINITIATORVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeUpdate',
-    full_name='directfs.v1.DfsClient.VolumeUpdate',
+    full_name='directfs.v1.DfsInitiator.VolumeUpdate',
     index=6,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSINITIATORVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
-    full_name='directfs.v1.DfsClient.VolumeDelete',
+    full_name='directfs.v1.DfsInitiator.VolumeDelete',
     index=7,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSINITIATORVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeList',
-    full_name='directfs.v1.DfsClient.VolumeList',
+    full_name='directfs.v1.DfsInitiator.VolumeList',
     index=8,
     containing_service=None,
-    input_type=_DFSVOLUMELISTQUERY,
-    output_type=_DFSVOLUMELIST,
+    input_type=_DFSINITIATORVOLUMELISTQUERY,
+    output_type=_DFSINITIATORVOLUMELIST,
     options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_DFSCLIENT)
+_sym_db.RegisterServiceDescriptor(_DFSINITIATOR)
 
-DESCRIPTOR.services_by_name['DfsClient'] = _DFSCLIENT
+DESCRIPTOR.services_by_name['DfsInitiator'] = _DFSINITIATOR
 
 
-_DFSSERVER = _descriptor.ServiceDescriptor(
-  name='DfsServer',
-  full_name='directfs.v1.DfsServer',
+_DFSRESPONDER = _descriptor.ServiceDescriptor(
+  name='DfsResponder',
+  full_name='directfs.v1.DfsResponder',
   file=DESCRIPTOR,
   index=1,
   options=None,
-  serialized_start=1768,
-  serialized_end=2127,
+  serialized_start=3242,
+  serialized_end=3655,
   methods=[
   _descriptor.MethodDescriptor(
     name='Status',
-    full_name='directfs.v1.DfsServer.Status',
+    full_name='directfs.v1.DfsResponder.Status',
     index=0,
     containing_service=None,
-    input_type=_DFSSERVERSTATUSREQUEST,
-    output_type=_DFSSERVERSTATUS,
+    input_type=_DFSRESPONDERSTATUSREQUEST,
+    output_type=_DFSRESPONDERSTATUS,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeCreate',
-    full_name='directfs.v1.DfsServer.VolumeCreate',
+    full_name='directfs.v1.DfsResponder.VolumeCreate',
     index=1,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSRESPONDERVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeUpdate',
-    full_name='directfs.v1.DfsServer.VolumeUpdate',
+    full_name='directfs.v1.DfsResponder.VolumeUpdate',
     index=2,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSRESPONDERVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeDelete',
-    full_name='directfs.v1.DfsServer.VolumeDelete',
+    full_name='directfs.v1.DfsResponder.VolumeDelete',
     index=3,
     containing_service=None,
-    input_type=_DFSVOLUME,
+    input_type=_DFSRESPONDERVOLUME,
     output_type=common__pb2._RPCRESULT,
     options=None,
   ),
   _descriptor.MethodDescriptor(
     name='VolumeList',
-    full_name='directfs.v1.DfsServer.VolumeList',
+    full_name='directfs.v1.DfsResponder.VolumeList',
     index=4,
     containing_service=None,
-    input_type=_DFSVOLUMELISTQUERY,
-    output_type=_DFSVOLUMELIST,
+    input_type=_DFSRESPONDERVOLUMELISTQUERY,
+    output_type=_DFSRESPONDERVOLUMELIST,
     options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_DFSSERVER)
+_sym_db.RegisterServiceDescriptor(_DFSRESPONDER)
 
-DESCRIPTOR.services_by_name['DfsServer'] = _DFSSERVER
+DESCRIPTOR.services_by_name['DfsResponder'] = _DFSRESPONDER
 
 # @@protoc_insertion_point(module_scope)

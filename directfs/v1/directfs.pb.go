@@ -8,20 +8,30 @@ It is generated from these files:
 	directfs.proto
 
 It has these top-level messages:
-	DfsClientStatusRequest
-	DfsClientStatus
-	DfsServerStatusRequest
-	DfsServerStatus
-	DfsHostCredentials
-	DfsHost
-	DfsHostList
-	DfsHostListQuery
-	DfsVolumeCredentials
-	DfsVolumeStatistics
-	DfsVolumeStatus
-	DfsVolume
-	DfsVolumeList
-	DfsVolumeListQuery
+	DfsInitiatorStatusRequest
+	DfsInitiatorStatus
+	DfsResponderStatusRequest
+	DfsResponderStatus
+	DfsInitiatorHostCredentials
+	DfsInitiatorHost
+	DfsInitiatorHostList
+	DfsInitiatorHostListQuery
+	DfsInitiatorVolumeCredentials
+	DfsInitiatorVolumeStatistics
+	DfsInitiatorVolumeStatus
+	DfsInitiatorVolume
+	DfsInitiatorVolumeList
+	DfsInitiatorVolumeListQuery
+	DfsResponderHostCredentials
+	DfsResponderHost
+	DfsResponderHostList
+	DfsResponderHostListQuery
+	DfsResponderVolumeCredentials
+	DfsResponderVolumeStatistics
+	DfsResponderVolumeStatus
+	DfsResponderVolume
+	DfsResponderVolumeList
+	DfsResponderVolumeListQuery
 */
 package directfs_v1
 
@@ -46,24 +56,24 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type DfsVolumeStatus_DfsConnectionState int32
+type DfsInitiatorVolumeStatus_DfsInitiatorConnectionState int32
 
 const (
-	DfsVolumeStatus_NONE          DfsVolumeStatus_DfsConnectionState = 0
-	DfsVolumeStatus_CONNECTING    DfsVolumeStatus_DfsConnectionState = 1
-	DfsVolumeStatus_CONNECTED     DfsVolumeStatus_DfsConnectionState = 2
-	DfsVolumeStatus_DISCONNECTING DfsVolumeStatus_DfsConnectionState = 3
-	DfsVolumeStatus_DISCONNECTED  DfsVolumeStatus_DfsConnectionState = 4
+	DfsInitiatorVolumeStatus_NONE          DfsInitiatorVolumeStatus_DfsInitiatorConnectionState = 0
+	DfsInitiatorVolumeStatus_CONNECTING    DfsInitiatorVolumeStatus_DfsInitiatorConnectionState = 1
+	DfsInitiatorVolumeStatus_CONNECTED     DfsInitiatorVolumeStatus_DfsInitiatorConnectionState = 2
+	DfsInitiatorVolumeStatus_DISCONNECTING DfsInitiatorVolumeStatus_DfsInitiatorConnectionState = 3
+	DfsInitiatorVolumeStatus_DISCONNECTED  DfsInitiatorVolumeStatus_DfsInitiatorConnectionState = 4
 )
 
-var DfsVolumeStatus_DfsConnectionState_name = map[int32]string{
+var DfsInitiatorVolumeStatus_DfsInitiatorConnectionState_name = map[int32]string{
 	0: "NONE",
 	1: "CONNECTING",
 	2: "CONNECTED",
 	3: "DISCONNECTING",
 	4: "DISCONNECTED",
 }
-var DfsVolumeStatus_DfsConnectionState_value = map[string]int32{
+var DfsInitiatorVolumeStatus_DfsInitiatorConnectionState_value = map[string]int32{
 	"NONE":          0,
 	"CONNECTING":    1,
 	"CONNECTED":     2,
@@ -71,97 +81,152 @@ var DfsVolumeStatus_DfsConnectionState_value = map[string]int32{
 	"DISCONNECTED":  4,
 }
 
-func (x DfsVolumeStatus_DfsConnectionState) String() string {
-	return proto.EnumName(DfsVolumeStatus_DfsConnectionState_name, int32(x))
+func (x DfsInitiatorVolumeStatus_DfsInitiatorConnectionState) String() string {
+	return proto.EnumName(DfsInitiatorVolumeStatus_DfsInitiatorConnectionState_name, int32(x))
 }
-func (DfsVolumeStatus_DfsConnectionState) EnumDescriptor() ([]byte, []int) {
+func (DfsInitiatorVolumeStatus_DfsInitiatorConnectionState) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor0, []int{10, 0}
 }
 
-type DfsVolumeStatus_DfsAddressFamily int32
+type DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily int32
 
 const (
-	DfsVolumeStatus_IPV4 DfsVolumeStatus_DfsAddressFamily = 0
-	DfsVolumeStatus_IPV6 DfsVolumeStatus_DfsAddressFamily = 1
+	DfsInitiatorVolumeStatus_IPV4 DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily = 0
+	DfsInitiatorVolumeStatus_IPV6 DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily = 1
 )
 
-var DfsVolumeStatus_DfsAddressFamily_name = map[int32]string{
+var DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily_name = map[int32]string{
 	0: "IPV4",
 	1: "IPV6",
 }
-var DfsVolumeStatus_DfsAddressFamily_value = map[string]int32{
+var DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily_value = map[string]int32{
 	"IPV4": 0,
 	"IPV6": 1,
 }
 
-func (x DfsVolumeStatus_DfsAddressFamily) String() string {
-	return proto.EnumName(DfsVolumeStatus_DfsAddressFamily_name, int32(x))
+func (x DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily) String() string {
+	return proto.EnumName(DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily_name, int32(x))
 }
-func (DfsVolumeStatus_DfsAddressFamily) EnumDescriptor() ([]byte, []int) {
+func (DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor0, []int{10, 1}
 }
 
-type DfsClientStatusRequest struct {
+type DfsResponderVolumeStatus_DfsResponderConnectionState int32
+
+const (
+	DfsResponderVolumeStatus_NONE          DfsResponderVolumeStatus_DfsResponderConnectionState = 0
+	DfsResponderVolumeStatus_CONNECTING    DfsResponderVolumeStatus_DfsResponderConnectionState = 1
+	DfsResponderVolumeStatus_CONNECTED     DfsResponderVolumeStatus_DfsResponderConnectionState = 2
+	DfsResponderVolumeStatus_DISCONNECTING DfsResponderVolumeStatus_DfsResponderConnectionState = 3
+	DfsResponderVolumeStatus_DISCONNECTED  DfsResponderVolumeStatus_DfsResponderConnectionState = 4
+)
+
+var DfsResponderVolumeStatus_DfsResponderConnectionState_name = map[int32]string{
+	0: "NONE",
+	1: "CONNECTING",
+	2: "CONNECTED",
+	3: "DISCONNECTING",
+	4: "DISCONNECTED",
+}
+var DfsResponderVolumeStatus_DfsResponderConnectionState_value = map[string]int32{
+	"NONE":          0,
+	"CONNECTING":    1,
+	"CONNECTED":     2,
+	"DISCONNECTING": 3,
+	"DISCONNECTED":  4,
 }
 
-func (m *DfsClientStatusRequest) Reset()                    { *m = DfsClientStatusRequest{} }
-func (m *DfsClientStatusRequest) String() string            { return proto.CompactTextString(m) }
-func (*DfsClientStatusRequest) ProtoMessage()               {}
-func (*DfsClientStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (x DfsResponderVolumeStatus_DfsResponderConnectionState) String() string {
+	return proto.EnumName(DfsResponderVolumeStatus_DfsResponderConnectionState_name, int32(x))
+}
+func (DfsResponderVolumeStatus_DfsResponderConnectionState) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor0, []int{20, 0}
+}
 
-type DfsClientStatus struct {
+type DfsResponderVolumeStatus_DfsResponderAddressFamily int32
+
+const (
+	DfsResponderVolumeStatus_IPV4 DfsResponderVolumeStatus_DfsResponderAddressFamily = 0
+	DfsResponderVolumeStatus_IPV6 DfsResponderVolumeStatus_DfsResponderAddressFamily = 1
+)
+
+var DfsResponderVolumeStatus_DfsResponderAddressFamily_name = map[int32]string{
+	0: "IPV4",
+	1: "IPV6",
+}
+var DfsResponderVolumeStatus_DfsResponderAddressFamily_value = map[string]int32{
+	"IPV4": 0,
+	"IPV6": 1,
+}
+
+func (x DfsResponderVolumeStatus_DfsResponderAddressFamily) String() string {
+	return proto.EnumName(DfsResponderVolumeStatus_DfsResponderAddressFamily_name, int32(x))
+}
+func (DfsResponderVolumeStatus_DfsResponderAddressFamily) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor0, []int{20, 1}
+}
+
+type DfsInitiatorStatusRequest struct {
+}
+
+func (m *DfsInitiatorStatusRequest) Reset()                    { *m = DfsInitiatorStatusRequest{} }
+func (m *DfsInitiatorStatusRequest) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorStatusRequest) ProtoMessage()               {}
+func (*DfsInitiatorStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+type DfsInitiatorStatus struct {
 	// The version control info string.
 	VersionInfo string `protobuf:"bytes,1,opt,name=version_info,json=versionInfo" json:"version_info,omitempty"`
 }
 
-func (m *DfsClientStatus) Reset()                    { *m = DfsClientStatus{} }
-func (m *DfsClientStatus) String() string            { return proto.CompactTextString(m) }
-func (*DfsClientStatus) ProtoMessage()               {}
-func (*DfsClientStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *DfsInitiatorStatus) Reset()                    { *m = DfsInitiatorStatus{} }
+func (m *DfsInitiatorStatus) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorStatus) ProtoMessage()               {}
+func (*DfsInitiatorStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
-func (m *DfsClientStatus) GetVersionInfo() string {
+func (m *DfsInitiatorStatus) GetVersionInfo() string {
 	if m != nil {
 		return m.VersionInfo
 	}
 	return ""
 }
 
-type DfsServerStatusRequest struct {
+type DfsResponderStatusRequest struct {
 }
 
-func (m *DfsServerStatusRequest) Reset()                    { *m = DfsServerStatusRequest{} }
-func (m *DfsServerStatusRequest) String() string            { return proto.CompactTextString(m) }
-func (*DfsServerStatusRequest) ProtoMessage()               {}
-func (*DfsServerStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (m *DfsResponderStatusRequest) Reset()                    { *m = DfsResponderStatusRequest{} }
+func (m *DfsResponderStatusRequest) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderStatusRequest) ProtoMessage()               {}
+func (*DfsResponderStatusRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
-type DfsServerStatus struct {
+type DfsResponderStatus struct {
 	// The version control info string.
 	VersionInfo string `protobuf:"bytes,1,opt,name=version_info,json=versionInfo" json:"version_info,omitempty"`
 }
 
-func (m *DfsServerStatus) Reset()                    { *m = DfsServerStatus{} }
-func (m *DfsServerStatus) String() string            { return proto.CompactTextString(m) }
-func (*DfsServerStatus) ProtoMessage()               {}
-func (*DfsServerStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (m *DfsResponderStatus) Reset()                    { *m = DfsResponderStatus{} }
+func (m *DfsResponderStatus) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderStatus) ProtoMessage()               {}
+func (*DfsResponderStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
-func (m *DfsServerStatus) GetVersionInfo() string {
+func (m *DfsResponderStatus) GetVersionInfo() string {
 	if m != nil {
 		return m.VersionInfo
 	}
 	return ""
 }
 
-type DfsHostCredentials struct {
+type DfsInitiatorHostCredentials struct {
 }
 
-func (m *DfsHostCredentials) Reset()                    { *m = DfsHostCredentials{} }
-func (m *DfsHostCredentials) String() string            { return proto.CompactTextString(m) }
-func (*DfsHostCredentials) ProtoMessage()               {}
-func (*DfsHostCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (m *DfsInitiatorHostCredentials) Reset()                    { *m = DfsInitiatorHostCredentials{} }
+func (m *DfsInitiatorHostCredentials) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorHostCredentials) ProtoMessage()               {}
+func (*DfsInitiatorHostCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 // *
 // A host used by DirectFS.
-type DfsHost struct {
+type DfsInitiatorHost struct {
 	Cc *common_v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
 	// The unique host identifier.
 	HostId uint32 `protobuf:"varint,2,opt,name=host_id,json=hostId" json:"host_id,omitempty"`
@@ -170,130 +235,130 @@ type DfsHost struct {
 	// The remote port.
 	Port uint32 `protobuf:"varint,4,opt,name=port" json:"port,omitempty"`
 	// Host credentials.
-	Credentials *DfsHostCredentials `protobuf:"bytes,5,opt,name=credentials" json:"credentials,omitempty"`
+	Credentials *DfsInitiatorHostCredentials `protobuf:"bytes,5,opt,name=credentials" json:"credentials,omitempty"`
 }
 
-func (m *DfsHost) Reset()                    { *m = DfsHost{} }
-func (m *DfsHost) String() string            { return proto.CompactTextString(m) }
-func (*DfsHost) ProtoMessage()               {}
-func (*DfsHost) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (m *DfsInitiatorHost) Reset()                    { *m = DfsInitiatorHost{} }
+func (m *DfsInitiatorHost) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorHost) ProtoMessage()               {}
+func (*DfsInitiatorHost) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
 
-func (m *DfsHost) GetCc() *common_v1.DataplaneCommon {
+func (m *DfsInitiatorHost) GetCc() *common_v1.DataplaneCommon {
 	if m != nil {
 		return m.Cc
 	}
 	return nil
 }
 
-func (m *DfsHost) GetHostId() uint32 {
+func (m *DfsInitiatorHost) GetHostId() uint32 {
 	if m != nil {
 		return m.HostId
 	}
 	return 0
 }
 
-func (m *DfsHost) GetHostname() string {
+func (m *DfsInitiatorHost) GetHostname() string {
 	if m != nil {
 		return m.Hostname
 	}
 	return ""
 }
 
-func (m *DfsHost) GetPort() uint32 {
+func (m *DfsInitiatorHost) GetPort() uint32 {
 	if m != nil {
 		return m.Port
 	}
 	return 0
 }
 
-func (m *DfsHost) GetCredentials() *DfsHostCredentials {
+func (m *DfsInitiatorHost) GetCredentials() *DfsInitiatorHostCredentials {
 	if m != nil {
 		return m.Credentials
 	}
 	return nil
 }
 
-type DfsHostList struct {
-	Hosts []*DfsHost `protobuf:"bytes,1,rep,name=hosts" json:"hosts,omitempty"`
+type DfsInitiatorHostList struct {
+	Hosts []*DfsInitiatorHost `protobuf:"bytes,1,rep,name=hosts" json:"hosts,omitempty"`
 }
 
-func (m *DfsHostList) Reset()                    { *m = DfsHostList{} }
-func (m *DfsHostList) String() string            { return proto.CompactTextString(m) }
-func (*DfsHostList) ProtoMessage()               {}
-func (*DfsHostList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (m *DfsInitiatorHostList) Reset()                    { *m = DfsInitiatorHostList{} }
+func (m *DfsInitiatorHostList) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorHostList) ProtoMessage()               {}
+func (*DfsInitiatorHostList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
-func (m *DfsHostList) GetHosts() []*DfsHost {
+func (m *DfsInitiatorHostList) GetHosts() []*DfsInitiatorHost {
 	if m != nil {
 		return m.Hosts
 	}
 	return nil
 }
 
-type DfsHostListQuery struct {
+type DfsInitiatorHostListQuery struct {
 	// An optional list of hosts to query.
 	HostIds []uint32 `protobuf:"varint,1,rep,packed,name=host_ids,json=hostIds" json:"host_ids,omitempty"`
 }
 
-func (m *DfsHostListQuery) Reset()                    { *m = DfsHostListQuery{} }
-func (m *DfsHostListQuery) String() string            { return proto.CompactTextString(m) }
-func (*DfsHostListQuery) ProtoMessage()               {}
-func (*DfsHostListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (m *DfsInitiatorHostListQuery) Reset()                    { *m = DfsInitiatorHostListQuery{} }
+func (m *DfsInitiatorHostListQuery) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorHostListQuery) ProtoMessage()               {}
+func (*DfsInitiatorHostListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
 
-func (m *DfsHostListQuery) GetHostIds() []uint32 {
+func (m *DfsInitiatorHostListQuery) GetHostIds() []uint32 {
 	if m != nil {
 		return m.HostIds
 	}
 	return nil
 }
 
-type DfsVolumeCredentials struct {
+type DfsInitiatorVolumeCredentials struct {
 }
 
-func (m *DfsVolumeCredentials) Reset()                    { *m = DfsVolumeCredentials{} }
-func (m *DfsVolumeCredentials) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolumeCredentials) ProtoMessage()               {}
-func (*DfsVolumeCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (m *DfsInitiatorVolumeCredentials) Reset()                    { *m = DfsInitiatorVolumeCredentials{} }
+func (m *DfsInitiatorVolumeCredentials) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolumeCredentials) ProtoMessage()               {}
+func (*DfsInitiatorVolumeCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
 
-type DfsVolumeStatistics struct {
+type DfsInitiatorVolumeStatistics struct {
 }
 
-func (m *DfsVolumeStatistics) Reset()                    { *m = DfsVolumeStatistics{} }
-func (m *DfsVolumeStatistics) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolumeStatistics) ProtoMessage()               {}
-func (*DfsVolumeStatistics) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (m *DfsInitiatorVolumeStatistics) Reset()                    { *m = DfsInitiatorVolumeStatistics{} }
+func (m *DfsInitiatorVolumeStatistics) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolumeStatistics) ProtoMessage()               {}
+func (*DfsInitiatorVolumeStatistics) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
 
-type DfsVolumeStatus struct {
-	ConnState DfsVolumeStatus_DfsConnectionState `protobuf:"varint,1,opt,name=conn_state,json=connState,enum=directfs.v1.DfsVolumeStatus_DfsConnectionState" json:"conn_state,omitempty"`
+type DfsInitiatorVolumeStatus struct {
+	ConnState DfsInitiatorVolumeStatus_DfsInitiatorConnectionState `protobuf:"varint,1,opt,name=conn_state,json=connState,enum=directfs.v1.DfsInitiatorVolumeStatus_DfsInitiatorConnectionState" json:"conn_state,omitempty"`
 	// The remote peer, in string form for simplicity.
 	PeerName string `protobuf:"bytes,2,opt,name=peer_name,json=peerName" json:"peer_name,omitempty"`
 	// The address family we're using to connect to the peer.
-	PeerAf DfsVolumeStatus_DfsAddressFamily `protobuf:"varint,3,opt,name=peer_af,json=peerAf,enum=directfs.v1.DfsVolumeStatus_DfsAddressFamily" json:"peer_af,omitempty"`
+	PeerAf DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily `protobuf:"varint,3,opt,name=peer_af,json=peerAf,enum=directfs.v1.DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily" json:"peer_af,omitempty"`
 }
 
-func (m *DfsVolumeStatus) Reset()                    { *m = DfsVolumeStatus{} }
-func (m *DfsVolumeStatus) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolumeStatus) ProtoMessage()               {}
-func (*DfsVolumeStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (m *DfsInitiatorVolumeStatus) Reset()                    { *m = DfsInitiatorVolumeStatus{} }
+func (m *DfsInitiatorVolumeStatus) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolumeStatus) ProtoMessage()               {}
+func (*DfsInitiatorVolumeStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
 
-func (m *DfsVolumeStatus) GetConnState() DfsVolumeStatus_DfsConnectionState {
+func (m *DfsInitiatorVolumeStatus) GetConnState() DfsInitiatorVolumeStatus_DfsInitiatorConnectionState {
 	if m != nil {
 		return m.ConnState
 	}
-	return DfsVolumeStatus_NONE
+	return DfsInitiatorVolumeStatus_NONE
 }
 
-func (m *DfsVolumeStatus) GetPeerName() string {
+func (m *DfsInitiatorVolumeStatus) GetPeerName() string {
 	if m != nil {
 		return m.PeerName
 	}
 	return ""
 }
 
-func (m *DfsVolumeStatus) GetPeerAf() DfsVolumeStatus_DfsAddressFamily {
+func (m *DfsInitiatorVolumeStatus) GetPeerAf() DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily {
 	if m != nil {
 		return m.PeerAf
 	}
-	return DfsVolumeStatus_IPV4
+	return DfsInitiatorVolumeStatus_IPV4
 }
 
 // *
@@ -305,94 +370,342 @@ func (m *DfsVolumeStatus) GetPeerAf() DfsVolumeStatus_DfsAddressFamily {
 // The split between host and volume objects was decided based on now-irrelevant
 // implementation details of ConfigFS v1. However, there's still some logic to
 // it if the authentication (especially TLS) is per-host rather than per-volume.
-type DfsVolume struct {
+type DfsInitiatorVolume struct {
 	Cc *common_v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
 	// The volume ID.
 	VolumeId uint32 `protobuf:"varint,2,opt,name=volume_id,json=volumeId" json:"volume_id,omitempty"`
 	// The host for this volume.
 	HostId uint32 `protobuf:"varint,3,opt,name=host_id,json=hostId" json:"host_id,omitempty"`
 	// Volume credentials.
-	Credentials *DfsVolumeCredentials `protobuf:"bytes,4,opt,name=credentials" json:"credentials,omitempty"`
+	Credentials *DfsInitiatorVolumeCredentials `protobuf:"bytes,4,opt,name=credentials" json:"credentials,omitempty"`
 	// Volume statistics.
-	Stats *DfsVolumeStatistics `protobuf:"bytes,5,opt,name=stats" json:"stats,omitempty"`
+	Stats *DfsInitiatorVolumeStatistics `protobuf:"bytes,5,opt,name=stats" json:"stats,omitempty"`
 	// Server status for the volume.
-	Status *DfsVolumeStatus `protobuf:"bytes,6,opt,name=status" json:"status,omitempty"`
+	Status *DfsInitiatorVolumeStatus `protobuf:"bytes,6,opt,name=status" json:"status,omitempty"`
 }
 
-func (m *DfsVolume) Reset()                    { *m = DfsVolume{} }
-func (m *DfsVolume) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolume) ProtoMessage()               {}
-func (*DfsVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (m *DfsInitiatorVolume) Reset()                    { *m = DfsInitiatorVolume{} }
+func (m *DfsInitiatorVolume) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolume) ProtoMessage()               {}
+func (*DfsInitiatorVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
 
-func (m *DfsVolume) GetCc() *common_v1.DataplaneCommon {
+func (m *DfsInitiatorVolume) GetCc() *common_v1.DataplaneCommon {
 	if m != nil {
 		return m.Cc
 	}
 	return nil
 }
 
-func (m *DfsVolume) GetVolumeId() uint32 {
+func (m *DfsInitiatorVolume) GetVolumeId() uint32 {
 	if m != nil {
 		return m.VolumeId
 	}
 	return 0
 }
 
-func (m *DfsVolume) GetHostId() uint32 {
+func (m *DfsInitiatorVolume) GetHostId() uint32 {
 	if m != nil {
 		return m.HostId
 	}
 	return 0
 }
 
-func (m *DfsVolume) GetCredentials() *DfsVolumeCredentials {
+func (m *DfsInitiatorVolume) GetCredentials() *DfsInitiatorVolumeCredentials {
 	if m != nil {
 		return m.Credentials
 	}
 	return nil
 }
 
-func (m *DfsVolume) GetStats() *DfsVolumeStatistics {
+func (m *DfsInitiatorVolume) GetStats() *DfsInitiatorVolumeStatistics {
 	if m != nil {
 		return m.Stats
 	}
 	return nil
 }
 
-func (m *DfsVolume) GetStatus() *DfsVolumeStatus {
+func (m *DfsInitiatorVolume) GetStatus() *DfsInitiatorVolumeStatus {
 	if m != nil {
 		return m.Status
 	}
 	return nil
 }
 
-type DfsVolumeList struct {
-	Volumes []*DfsVolume `protobuf:"bytes,1,rep,name=volumes" json:"volumes,omitempty"`
+type DfsInitiatorVolumeList struct {
+	Volumes []*DfsInitiatorVolume `protobuf:"bytes,1,rep,name=volumes" json:"volumes,omitempty"`
 }
 
-func (m *DfsVolumeList) Reset()                    { *m = DfsVolumeList{} }
-func (m *DfsVolumeList) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolumeList) ProtoMessage()               {}
-func (*DfsVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+func (m *DfsInitiatorVolumeList) Reset()                    { *m = DfsInitiatorVolumeList{} }
+func (m *DfsInitiatorVolumeList) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolumeList) ProtoMessage()               {}
+func (*DfsInitiatorVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
 
-func (m *DfsVolumeList) GetVolumes() []*DfsVolume {
+func (m *DfsInitiatorVolumeList) GetVolumes() []*DfsInitiatorVolume {
 	if m != nil {
 		return m.Volumes
 	}
 	return nil
 }
 
-type DfsVolumeListQuery struct {
+type DfsInitiatorVolumeListQuery struct {
 	// An optional list of volumes to query.
 	VolumeIds []uint32 `protobuf:"varint,1,rep,packed,name=volume_ids,json=volumeIds" json:"volume_ids,omitempty"`
 }
 
-func (m *DfsVolumeListQuery) Reset()                    { *m = DfsVolumeListQuery{} }
-func (m *DfsVolumeListQuery) String() string            { return proto.CompactTextString(m) }
-func (*DfsVolumeListQuery) ProtoMessage()               {}
-func (*DfsVolumeListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
+func (m *DfsInitiatorVolumeListQuery) Reset()                    { *m = DfsInitiatorVolumeListQuery{} }
+func (m *DfsInitiatorVolumeListQuery) String() string            { return proto.CompactTextString(m) }
+func (*DfsInitiatorVolumeListQuery) ProtoMessage()               {}
+func (*DfsInitiatorVolumeListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
 
-func (m *DfsVolumeListQuery) GetVolumeIds() []uint32 {
+func (m *DfsInitiatorVolumeListQuery) GetVolumeIds() []uint32 {
+	if m != nil {
+		return m.VolumeIds
+	}
+	return nil
+}
+
+type DfsResponderHostCredentials struct {
+}
+
+func (m *DfsResponderHostCredentials) Reset()                    { *m = DfsResponderHostCredentials{} }
+func (m *DfsResponderHostCredentials) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderHostCredentials) ProtoMessage()               {}
+func (*DfsResponderHostCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
+
+// *
+// A host used by DirectFS.
+type DfsResponderHost struct {
+	Cc *common_v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+	// The unique host identifier.
+	HostId uint32 `protobuf:"varint,2,opt,name=host_id,json=hostId" json:"host_id,omitempty"`
+	// The remote hostname.
+	Hostname string `protobuf:"bytes,3,opt,name=hostname" json:"hostname,omitempty"`
+	// The remote port.
+	Port uint32 `protobuf:"varint,4,opt,name=port" json:"port,omitempty"`
+	// Host credentials.
+	Credentials *DfsResponderHostCredentials `protobuf:"bytes,5,opt,name=credentials" json:"credentials,omitempty"`
+}
+
+func (m *DfsResponderHost) Reset()                    { *m = DfsResponderHost{} }
+func (m *DfsResponderHost) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderHost) ProtoMessage()               {}
+func (*DfsResponderHost) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
+
+func (m *DfsResponderHost) GetCc() *common_v1.DataplaneCommon {
+	if m != nil {
+		return m.Cc
+	}
+	return nil
+}
+
+func (m *DfsResponderHost) GetHostId() uint32 {
+	if m != nil {
+		return m.HostId
+	}
+	return 0
+}
+
+func (m *DfsResponderHost) GetHostname() string {
+	if m != nil {
+		return m.Hostname
+	}
+	return ""
+}
+
+func (m *DfsResponderHost) GetPort() uint32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+func (m *DfsResponderHost) GetCredentials() *DfsResponderHostCredentials {
+	if m != nil {
+		return m.Credentials
+	}
+	return nil
+}
+
+type DfsResponderHostList struct {
+	Hosts []*DfsResponderHost `protobuf:"bytes,1,rep,name=hosts" json:"hosts,omitempty"`
+}
+
+func (m *DfsResponderHostList) Reset()                    { *m = DfsResponderHostList{} }
+func (m *DfsResponderHostList) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderHostList) ProtoMessage()               {}
+func (*DfsResponderHostList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{16} }
+
+func (m *DfsResponderHostList) GetHosts() []*DfsResponderHost {
+	if m != nil {
+		return m.Hosts
+	}
+	return nil
+}
+
+type DfsResponderHostListQuery struct {
+	// An optional list of hosts to query.
+	HostIds []uint32 `protobuf:"varint,1,rep,packed,name=host_ids,json=hostIds" json:"host_ids,omitempty"`
+}
+
+func (m *DfsResponderHostListQuery) Reset()                    { *m = DfsResponderHostListQuery{} }
+func (m *DfsResponderHostListQuery) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderHostListQuery) ProtoMessage()               {}
+func (*DfsResponderHostListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{17} }
+
+func (m *DfsResponderHostListQuery) GetHostIds() []uint32 {
+	if m != nil {
+		return m.HostIds
+	}
+	return nil
+}
+
+type DfsResponderVolumeCredentials struct {
+}
+
+func (m *DfsResponderVolumeCredentials) Reset()                    { *m = DfsResponderVolumeCredentials{} }
+func (m *DfsResponderVolumeCredentials) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolumeCredentials) ProtoMessage()               {}
+func (*DfsResponderVolumeCredentials) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{18} }
+
+type DfsResponderVolumeStatistics struct {
+}
+
+func (m *DfsResponderVolumeStatistics) Reset()                    { *m = DfsResponderVolumeStatistics{} }
+func (m *DfsResponderVolumeStatistics) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolumeStatistics) ProtoMessage()               {}
+func (*DfsResponderVolumeStatistics) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{19} }
+
+type DfsResponderVolumeStatus struct {
+	ConnState DfsResponderVolumeStatus_DfsResponderConnectionState `protobuf:"varint,1,opt,name=conn_state,json=connState,enum=directfs.v1.DfsResponderVolumeStatus_DfsResponderConnectionState" json:"conn_state,omitempty"`
+	// The remote peer, in string form for simplicity.
+	PeerName string `protobuf:"bytes,2,opt,name=peer_name,json=peerName" json:"peer_name,omitempty"`
+	// The address family we're using to connect to the peer.
+	PeerAf DfsResponderVolumeStatus_DfsResponderAddressFamily `protobuf:"varint,3,opt,name=peer_af,json=peerAf,enum=directfs.v1.DfsResponderVolumeStatus_DfsResponderAddressFamily" json:"peer_af,omitempty"`
+}
+
+func (m *DfsResponderVolumeStatus) Reset()                    { *m = DfsResponderVolumeStatus{} }
+func (m *DfsResponderVolumeStatus) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolumeStatus) ProtoMessage()               {}
+func (*DfsResponderVolumeStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{20} }
+
+func (m *DfsResponderVolumeStatus) GetConnState() DfsResponderVolumeStatus_DfsResponderConnectionState {
+	if m != nil {
+		return m.ConnState
+	}
+	return DfsResponderVolumeStatus_NONE
+}
+
+func (m *DfsResponderVolumeStatus) GetPeerName() string {
+	if m != nil {
+		return m.PeerName
+	}
+	return ""
+}
+
+func (m *DfsResponderVolumeStatus) GetPeerAf() DfsResponderVolumeStatus_DfsResponderAddressFamily {
+	if m != nil {
+		return m.PeerAf
+	}
+	return DfsResponderVolumeStatus_IPV4
+}
+
+// *
+// A volume used by DirectFS.
+//
+// The remote host (for the client) isn't directly included here. However, the
+// client clearly can't connect without a properly configured host_id item.
+//
+// The split between host and volume objects was decided based on now-irrelevant
+// implementation details of ConfigFS v1. However, there's still some logic to
+// it if the authentication (especially TLS) is per-host rather than per-volume.
+type DfsResponderVolume struct {
+	Cc *common_v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc" json:"cc,omitempty"`
+	// The volume ID.
+	VolumeId uint32 `protobuf:"varint,2,opt,name=volume_id,json=volumeId" json:"volume_id,omitempty"`
+	// The host for this volume.
+	HostId uint32 `protobuf:"varint,3,opt,name=host_id,json=hostId" json:"host_id,omitempty"`
+	// Volume credentials.
+	Credentials *DfsResponderVolumeCredentials `protobuf:"bytes,4,opt,name=credentials" json:"credentials,omitempty"`
+	// Volume statistics.
+	Stats *DfsResponderVolumeStatistics `protobuf:"bytes,5,opt,name=stats" json:"stats,omitempty"`
+	// Server status for the volume.
+	Status *DfsResponderVolumeStatus `protobuf:"bytes,6,opt,name=status" json:"status,omitempty"`
+}
+
+func (m *DfsResponderVolume) Reset()                    { *m = DfsResponderVolume{} }
+func (m *DfsResponderVolume) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolume) ProtoMessage()               {}
+func (*DfsResponderVolume) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{21} }
+
+func (m *DfsResponderVolume) GetCc() *common_v1.DataplaneCommon {
+	if m != nil {
+		return m.Cc
+	}
+	return nil
+}
+
+func (m *DfsResponderVolume) GetVolumeId() uint32 {
+	if m != nil {
+		return m.VolumeId
+	}
+	return 0
+}
+
+func (m *DfsResponderVolume) GetHostId() uint32 {
+	if m != nil {
+		return m.HostId
+	}
+	return 0
+}
+
+func (m *DfsResponderVolume) GetCredentials() *DfsResponderVolumeCredentials {
+	if m != nil {
+		return m.Credentials
+	}
+	return nil
+}
+
+func (m *DfsResponderVolume) GetStats() *DfsResponderVolumeStatistics {
+	if m != nil {
+		return m.Stats
+	}
+	return nil
+}
+
+func (m *DfsResponderVolume) GetStatus() *DfsResponderVolumeStatus {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+type DfsResponderVolumeList struct {
+	Volumes []*DfsResponderVolume `protobuf:"bytes,1,rep,name=volumes" json:"volumes,omitempty"`
+}
+
+func (m *DfsResponderVolumeList) Reset()                    { *m = DfsResponderVolumeList{} }
+func (m *DfsResponderVolumeList) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolumeList) ProtoMessage()               {}
+func (*DfsResponderVolumeList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{22} }
+
+func (m *DfsResponderVolumeList) GetVolumes() []*DfsResponderVolume {
+	if m != nil {
+		return m.Volumes
+	}
+	return nil
+}
+
+type DfsResponderVolumeListQuery struct {
+	// An optional list of volumes to query.
+	VolumeIds []uint32 `protobuf:"varint,1,rep,packed,name=volume_ids,json=volumeIds" json:"volume_ids,omitempty"`
+}
+
+func (m *DfsResponderVolumeListQuery) Reset()                    { *m = DfsResponderVolumeListQuery{} }
+func (m *DfsResponderVolumeListQuery) String() string            { return proto.CompactTextString(m) }
+func (*DfsResponderVolumeListQuery) ProtoMessage()               {}
+func (*DfsResponderVolumeListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{23} }
+
+func (m *DfsResponderVolumeListQuery) GetVolumeIds() []uint32 {
 	if m != nil {
 		return m.VolumeIds
 	}
@@ -400,22 +713,34 @@ func (m *DfsVolumeListQuery) GetVolumeIds() []uint32 {
 }
 
 func init() {
-	proto.RegisterType((*DfsClientStatusRequest)(nil), "directfs.v1.DfsClientStatusRequest")
-	proto.RegisterType((*DfsClientStatus)(nil), "directfs.v1.DfsClientStatus")
-	proto.RegisterType((*DfsServerStatusRequest)(nil), "directfs.v1.DfsServerStatusRequest")
-	proto.RegisterType((*DfsServerStatus)(nil), "directfs.v1.DfsServerStatus")
-	proto.RegisterType((*DfsHostCredentials)(nil), "directfs.v1.DfsHostCredentials")
-	proto.RegisterType((*DfsHost)(nil), "directfs.v1.DfsHost")
-	proto.RegisterType((*DfsHostList)(nil), "directfs.v1.DfsHostList")
-	proto.RegisterType((*DfsHostListQuery)(nil), "directfs.v1.DfsHostListQuery")
-	proto.RegisterType((*DfsVolumeCredentials)(nil), "directfs.v1.DfsVolumeCredentials")
-	proto.RegisterType((*DfsVolumeStatistics)(nil), "directfs.v1.DfsVolumeStatistics")
-	proto.RegisterType((*DfsVolumeStatus)(nil), "directfs.v1.DfsVolumeStatus")
-	proto.RegisterType((*DfsVolume)(nil), "directfs.v1.DfsVolume")
-	proto.RegisterType((*DfsVolumeList)(nil), "directfs.v1.DfsVolumeList")
-	proto.RegisterType((*DfsVolumeListQuery)(nil), "directfs.v1.DfsVolumeListQuery")
-	proto.RegisterEnum("directfs.v1.DfsVolumeStatus_DfsConnectionState", DfsVolumeStatus_DfsConnectionState_name, DfsVolumeStatus_DfsConnectionState_value)
-	proto.RegisterEnum("directfs.v1.DfsVolumeStatus_DfsAddressFamily", DfsVolumeStatus_DfsAddressFamily_name, DfsVolumeStatus_DfsAddressFamily_value)
+	proto.RegisterType((*DfsInitiatorStatusRequest)(nil), "directfs.v1.DfsInitiatorStatusRequest")
+	proto.RegisterType((*DfsInitiatorStatus)(nil), "directfs.v1.DfsInitiatorStatus")
+	proto.RegisterType((*DfsResponderStatusRequest)(nil), "directfs.v1.DfsResponderStatusRequest")
+	proto.RegisterType((*DfsResponderStatus)(nil), "directfs.v1.DfsResponderStatus")
+	proto.RegisterType((*DfsInitiatorHostCredentials)(nil), "directfs.v1.DfsInitiatorHostCredentials")
+	proto.RegisterType((*DfsInitiatorHost)(nil), "directfs.v1.DfsInitiatorHost")
+	proto.RegisterType((*DfsInitiatorHostList)(nil), "directfs.v1.DfsInitiatorHostList")
+	proto.RegisterType((*DfsInitiatorHostListQuery)(nil), "directfs.v1.DfsInitiatorHostListQuery")
+	proto.RegisterType((*DfsInitiatorVolumeCredentials)(nil), "directfs.v1.DfsInitiatorVolumeCredentials")
+	proto.RegisterType((*DfsInitiatorVolumeStatistics)(nil), "directfs.v1.DfsInitiatorVolumeStatistics")
+	proto.RegisterType((*DfsInitiatorVolumeStatus)(nil), "directfs.v1.DfsInitiatorVolumeStatus")
+	proto.RegisterType((*DfsInitiatorVolume)(nil), "directfs.v1.DfsInitiatorVolume")
+	proto.RegisterType((*DfsInitiatorVolumeList)(nil), "directfs.v1.DfsInitiatorVolumeList")
+	proto.RegisterType((*DfsInitiatorVolumeListQuery)(nil), "directfs.v1.DfsInitiatorVolumeListQuery")
+	proto.RegisterType((*DfsResponderHostCredentials)(nil), "directfs.v1.DfsResponderHostCredentials")
+	proto.RegisterType((*DfsResponderHost)(nil), "directfs.v1.DfsResponderHost")
+	proto.RegisterType((*DfsResponderHostList)(nil), "directfs.v1.DfsResponderHostList")
+	proto.RegisterType((*DfsResponderHostListQuery)(nil), "directfs.v1.DfsResponderHostListQuery")
+	proto.RegisterType((*DfsResponderVolumeCredentials)(nil), "directfs.v1.DfsResponderVolumeCredentials")
+	proto.RegisterType((*DfsResponderVolumeStatistics)(nil), "directfs.v1.DfsResponderVolumeStatistics")
+	proto.RegisterType((*DfsResponderVolumeStatus)(nil), "directfs.v1.DfsResponderVolumeStatus")
+	proto.RegisterType((*DfsResponderVolume)(nil), "directfs.v1.DfsResponderVolume")
+	proto.RegisterType((*DfsResponderVolumeList)(nil), "directfs.v1.DfsResponderVolumeList")
+	proto.RegisterType((*DfsResponderVolumeListQuery)(nil), "directfs.v1.DfsResponderVolumeListQuery")
+	proto.RegisterEnum("directfs.v1.DfsInitiatorVolumeStatus_DfsInitiatorConnectionState", DfsInitiatorVolumeStatus_DfsInitiatorConnectionState_name, DfsInitiatorVolumeStatus_DfsInitiatorConnectionState_value)
+	proto.RegisterEnum("directfs.v1.DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily", DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily_name, DfsInitiatorVolumeStatus_DfsInitiatorAddressFamily_value)
+	proto.RegisterEnum("directfs.v1.DfsResponderVolumeStatus_DfsResponderConnectionState", DfsResponderVolumeStatus_DfsResponderConnectionState_name, DfsResponderVolumeStatus_DfsResponderConnectionState_value)
+	proto.RegisterEnum("directfs.v1.DfsResponderVolumeStatus_DfsResponderAddressFamily", DfsResponderVolumeStatus_DfsResponderAddressFamily_name, DfsResponderVolumeStatus_DfsResponderAddressFamily_value)
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -426,22 +751,22 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// Client API for DfsClient service
+// Client API for DfsInitiator service
 
-type DfsClientClient interface {
+type DfsInitiatorClient interface {
 	// *
 	// Get program status.
-	Status(ctx context.Context, in *DfsClientStatusRequest, opts ...grpc.CallOption) (*DfsClientStatus, error)
+	Status(ctx context.Context, in *DfsInitiatorStatusRequest, opts ...grpc.CallOption) (*DfsInitiatorStatus, error)
 	// *
 	// Add a remote host entry to be used by volumes.
 	//
 	// returns RpcResult
-	ServerCreate(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	ServerCreate(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Update a remote host entry to be used by volumes.
 	//
 	// returns RpcResult
-	ServerUpdate(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	ServerUpdate(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Remove a remote host entry.
 	//
@@ -449,147 +774,147 @@ type DfsClientClient interface {
 	// become unconfigured. That has serious consequences.
 	//
 	// returns RpcResult
-	ServerDelete(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	ServerDelete(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// List configured host entries, optionally filtered via a DfsHostListQuery
 	// message.
 	//
 	// returns A DfsHostList message containing DfsHost messages,
 	//         if any are available matching the filter.
-	ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (*DfsHostList, error)
+	ServerList(ctx context.Context, in *DfsInitiatorHostListQuery, opts ...grpc.CallOption) (*DfsInitiatorHostList, error)
 	// *
 	// Create a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
 	// be configured on the DirectFS client.
 	//
 	// returns RpcResult
-	VolumeCreate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeCreate(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Update a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
 	// be configured on the DirectFS client.
 	//
 	// returns RpcResult
-	VolumeUpdate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeUpdate(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Delete a volume previously configured by VolumeCreate.
 	//
 	// returns RpcResult
-	VolumeDelete(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeDelete(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
 	// returns A DfsVolumeList message containing DfsVolume messages,
 	//         if any are available matching the filter.
-	VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error)
+	VolumeList(ctx context.Context, in *DfsInitiatorVolumeListQuery, opts ...grpc.CallOption) (*DfsInitiatorVolumeList, error)
 }
 
-type dfsClientClient struct {
+type dfsInitiatorClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewDfsClientClient(cc *grpc.ClientConn) DfsClientClient {
-	return &dfsClientClient{cc}
+func NewDfsInitiatorClient(cc *grpc.ClientConn) DfsInitiatorClient {
+	return &dfsInitiatorClient{cc}
 }
 
-func (c *dfsClientClient) Status(ctx context.Context, in *DfsClientStatusRequest, opts ...grpc.CallOption) (*DfsClientStatus, error) {
-	out := new(DfsClientStatus)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/Status", in, out, c.cc, opts...)
+func (c *dfsInitiatorClient) Status(ctx context.Context, in *DfsInitiatorStatusRequest, opts ...grpc.CallOption) (*DfsInitiatorStatus, error) {
+	out := new(DfsInitiatorStatus)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/Status", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) ServerCreate(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) ServerCreate(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/ServerCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/ServerCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) ServerUpdate(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) ServerUpdate(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/ServerUpdate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/ServerUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) ServerDelete(ctx context.Context, in *DfsHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) ServerDelete(ctx context.Context, in *DfsInitiatorHost, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/ServerDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/ServerDelete", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) ServerList(ctx context.Context, in *DfsHostListQuery, opts ...grpc.CallOption) (*DfsHostList, error) {
-	out := new(DfsHostList)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/ServerList", in, out, c.cc, opts...)
+func (c *dfsInitiatorClient) ServerList(ctx context.Context, in *DfsInitiatorHostListQuery, opts ...grpc.CallOption) (*DfsInitiatorHostList, error) {
+	out := new(DfsInitiatorHostList)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/ServerList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) VolumeCreate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) VolumeCreate(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/VolumeCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/VolumeCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) VolumeUpdate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) VolumeUpdate(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/VolumeUpdate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/VolumeUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) VolumeDelete(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsInitiatorClient) VolumeDelete(ctx context.Context, in *DfsInitiatorVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/VolumeDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/VolumeDelete", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsClientClient) VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error) {
-	out := new(DfsVolumeList)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsClient/VolumeList", in, out, c.cc, opts...)
+func (c *dfsInitiatorClient) VolumeList(ctx context.Context, in *DfsInitiatorVolumeListQuery, opts ...grpc.CallOption) (*DfsInitiatorVolumeList, error) {
+	out := new(DfsInitiatorVolumeList)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsInitiator/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for DfsClient service
+// Server API for DfsInitiator service
 
-type DfsClientServer interface {
+type DfsInitiatorServer interface {
 	// *
 	// Get program status.
-	Status(context.Context, *DfsClientStatusRequest) (*DfsClientStatus, error)
+	Status(context.Context, *DfsInitiatorStatusRequest) (*DfsInitiatorStatus, error)
 	// *
 	// Add a remote host entry to be used by volumes.
 	//
 	// returns RpcResult
-	ServerCreate(context.Context, *DfsHost) (*common_v1.RpcResult, error)
+	ServerCreate(context.Context, *DfsInitiatorHost) (*common_v1.RpcResult, error)
 	// *
 	// Update a remote host entry to be used by volumes.
 	//
 	// returns RpcResult
-	ServerUpdate(context.Context, *DfsHost) (*common_v1.RpcResult, error)
+	ServerUpdate(context.Context, *DfsInitiatorHost) (*common_v1.RpcResult, error)
 	// *
 	// Remove a remote host entry.
 	//
@@ -597,487 +922,487 @@ type DfsClientServer interface {
 	// become unconfigured. That has serious consequences.
 	//
 	// returns RpcResult
-	ServerDelete(context.Context, *DfsHost) (*common_v1.RpcResult, error)
+	ServerDelete(context.Context, *DfsInitiatorHost) (*common_v1.RpcResult, error)
 	// *
 	// List configured host entries, optionally filtered via a DfsHostListQuery
 	// message.
 	//
 	// returns A DfsHostList message containing DfsHost messages,
 	//         if any are available matching the filter.
-	ServerList(context.Context, *DfsHostListQuery) (*DfsHostList, error)
+	ServerList(context.Context, *DfsInitiatorHostListQuery) (*DfsInitiatorHostList, error)
 	// *
 	// Create a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
 	// be configured on the DirectFS client.
 	//
 	// returns RpcResult
-	VolumeCreate(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeCreate(context.Context, *DfsInitiatorVolume) (*common_v1.RpcResult, error)
 	// *
 	// Update a volume on a remote host. The DfsHost matching the host id
 	// in the DfsVolume message must be configured for the volume to actually
 	// be configured on the DirectFS client.
 	//
 	// returns RpcResult
-	VolumeUpdate(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeUpdate(context.Context, *DfsInitiatorVolume) (*common_v1.RpcResult, error)
 	// *
 	// Delete a volume previously configured by VolumeCreate.
 	//
 	// returns RpcResult
-	VolumeDelete(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeDelete(context.Context, *DfsInitiatorVolume) (*common_v1.RpcResult, error)
 	// *
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
 	// returns A DfsVolumeList message containing DfsVolume messages,
 	//         if any are available matching the filter.
-	VolumeList(context.Context, *DfsVolumeListQuery) (*DfsVolumeList, error)
+	VolumeList(context.Context, *DfsInitiatorVolumeListQuery) (*DfsInitiatorVolumeList, error)
 }
 
-func RegisterDfsClientServer(s *grpc.Server, srv DfsClientServer) {
-	s.RegisterService(&_DfsClient_serviceDesc, srv)
+func RegisterDfsInitiatorServer(s *grpc.Server, srv DfsInitiatorServer) {
+	s.RegisterService(&_DfsInitiator_serviceDesc, srv)
 }
 
-func _DfsClient_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsClientStatusRequest)
+func _DfsInitiator_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).Status(ctx, in)
+		return srv.(DfsInitiatorServer).Status(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/Status",
+		FullMethod: "/directfs.v1.DfsInitiator/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).Status(ctx, req.(*DfsClientStatusRequest))
+		return srv.(DfsInitiatorServer).Status(ctx, req.(*DfsInitiatorStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_ServerCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsHost)
+func _DfsInitiator_ServerCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorHost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).ServerCreate(ctx, in)
+		return srv.(DfsInitiatorServer).ServerCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/ServerCreate",
+		FullMethod: "/directfs.v1.DfsInitiator/ServerCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).ServerCreate(ctx, req.(*DfsHost))
+		return srv.(DfsInitiatorServer).ServerCreate(ctx, req.(*DfsInitiatorHost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_ServerUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsHost)
+func _DfsInitiator_ServerUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorHost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).ServerUpdate(ctx, in)
+		return srv.(DfsInitiatorServer).ServerUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/ServerUpdate",
+		FullMethod: "/directfs.v1.DfsInitiator/ServerUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).ServerUpdate(ctx, req.(*DfsHost))
+		return srv.(DfsInitiatorServer).ServerUpdate(ctx, req.(*DfsInitiatorHost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_ServerDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsHost)
+func _DfsInitiator_ServerDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorHost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).ServerDelete(ctx, in)
+		return srv.(DfsInitiatorServer).ServerDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/ServerDelete",
+		FullMethod: "/directfs.v1.DfsInitiator/ServerDelete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).ServerDelete(ctx, req.(*DfsHost))
+		return srv.(DfsInitiatorServer).ServerDelete(ctx, req.(*DfsInitiatorHost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_ServerList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsHostListQuery)
+func _DfsInitiator_ServerList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorHostListQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).ServerList(ctx, in)
+		return srv.(DfsInitiatorServer).ServerList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/ServerList",
+		FullMethod: "/directfs.v1.DfsInitiator/ServerList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).ServerList(ctx, req.(*DfsHostListQuery))
+		return srv.(DfsInitiatorServer).ServerList(ctx, req.(*DfsInitiatorHostListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsInitiator_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).VolumeCreate(ctx, in)
+		return srv.(DfsInitiatorServer).VolumeCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/VolumeCreate",
+		FullMethod: "/directfs.v1.DfsInitiator/VolumeCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).VolumeCreate(ctx, req.(*DfsVolume))
+		return srv.(DfsInitiatorServer).VolumeCreate(ctx, req.(*DfsInitiatorVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsInitiator_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).VolumeUpdate(ctx, in)
+		return srv.(DfsInitiatorServer).VolumeUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/VolumeUpdate",
+		FullMethod: "/directfs.v1.DfsInitiator/VolumeUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).VolumeUpdate(ctx, req.(*DfsVolume))
+		return srv.(DfsInitiatorServer).VolumeUpdate(ctx, req.(*DfsInitiatorVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsInitiator_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).VolumeDelete(ctx, in)
+		return srv.(DfsInitiatorServer).VolumeDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/VolumeDelete",
+		FullMethod: "/directfs.v1.DfsInitiator/VolumeDelete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).VolumeDelete(ctx, req.(*DfsVolume))
+		return srv.(DfsInitiatorServer).VolumeDelete(ctx, req.(*DfsInitiatorVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsClient_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolumeListQuery)
+func _DfsInitiator_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsInitiatorVolumeListQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsClientServer).VolumeList(ctx, in)
+		return srv.(DfsInitiatorServer).VolumeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsClient/VolumeList",
+		FullMethod: "/directfs.v1.DfsInitiator/VolumeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsClientServer).VolumeList(ctx, req.(*DfsVolumeListQuery))
+		return srv.(DfsInitiatorServer).VolumeList(ctx, req.(*DfsInitiatorVolumeListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _DfsClient_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "directfs.v1.DfsClient",
-	HandlerType: (*DfsClientServer)(nil),
+var _DfsInitiator_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "directfs.v1.DfsInitiator",
+	HandlerType: (*DfsInitiatorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Status",
-			Handler:    _DfsClient_Status_Handler,
+			Handler:    _DfsInitiator_Status_Handler,
 		},
 		{
 			MethodName: "ServerCreate",
-			Handler:    _DfsClient_ServerCreate_Handler,
+			Handler:    _DfsInitiator_ServerCreate_Handler,
 		},
 		{
 			MethodName: "ServerUpdate",
-			Handler:    _DfsClient_ServerUpdate_Handler,
+			Handler:    _DfsInitiator_ServerUpdate_Handler,
 		},
 		{
 			MethodName: "ServerDelete",
-			Handler:    _DfsClient_ServerDelete_Handler,
+			Handler:    _DfsInitiator_ServerDelete_Handler,
 		},
 		{
 			MethodName: "ServerList",
-			Handler:    _DfsClient_ServerList_Handler,
+			Handler:    _DfsInitiator_ServerList_Handler,
 		},
 		{
 			MethodName: "VolumeCreate",
-			Handler:    _DfsClient_VolumeCreate_Handler,
+			Handler:    _DfsInitiator_VolumeCreate_Handler,
 		},
 		{
 			MethodName: "VolumeUpdate",
-			Handler:    _DfsClient_VolumeUpdate_Handler,
+			Handler:    _DfsInitiator_VolumeUpdate_Handler,
 		},
 		{
 			MethodName: "VolumeDelete",
-			Handler:    _DfsClient_VolumeDelete_Handler,
+			Handler:    _DfsInitiator_VolumeDelete_Handler,
 		},
 		{
 			MethodName: "VolumeList",
-			Handler:    _DfsClient_VolumeList_Handler,
+			Handler:    _DfsInitiator_VolumeList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "directfs.proto",
 }
 
-// Client API for DfsServer service
+// Client API for DfsResponder service
 
-type DfsServerClient interface {
+type DfsResponderClient interface {
 	// *
 	// Get program status.
-	Status(ctx context.Context, in *DfsServerStatusRequest, opts ...grpc.CallOption) (*DfsServerStatus, error)
+	Status(ctx context.Context, in *DfsResponderStatusRequest, opts ...grpc.CallOption) (*DfsResponderStatus, error)
 	// *
 	// Create a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeCreate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeCreate(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Update a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeUpdate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeUpdate(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// Delete a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeDelete(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
+	VolumeDelete(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error)
 	// *
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
-	// returns a stream of DfsVolume messages, if any are available matching the filter.
-	VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error)
+	// returns a list of DfsReponderVolume messages, if any are available matching the filter.
+	VolumeList(ctx context.Context, in *DfsResponderVolumeListQuery, opts ...grpc.CallOption) (*DfsResponderVolumeList, error)
 }
 
-type dfsServerClient struct {
+type dfsResponderClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewDfsServerClient(cc *grpc.ClientConn) DfsServerClient {
-	return &dfsServerClient{cc}
+func NewDfsResponderClient(cc *grpc.ClientConn) DfsResponderClient {
+	return &dfsResponderClient{cc}
 }
 
-func (c *dfsServerClient) Status(ctx context.Context, in *DfsServerStatusRequest, opts ...grpc.CallOption) (*DfsServerStatus, error) {
-	out := new(DfsServerStatus)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsServer/Status", in, out, c.cc, opts...)
+func (c *dfsResponderClient) Status(ctx context.Context, in *DfsResponderStatusRequest, opts ...grpc.CallOption) (*DfsResponderStatus, error) {
+	out := new(DfsResponderStatus)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsResponder/Status", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsServerClient) VolumeCreate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsResponderClient) VolumeCreate(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsServer/VolumeCreate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsResponder/VolumeCreate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsServerClient) VolumeUpdate(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsResponderClient) VolumeUpdate(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsServer/VolumeUpdate", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsResponder/VolumeUpdate", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsServerClient) VolumeDelete(ctx context.Context, in *DfsVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
+func (c *dfsResponderClient) VolumeDelete(ctx context.Context, in *DfsResponderVolume, opts ...grpc.CallOption) (*common_v1.RpcResult, error) {
 	out := new(common_v1.RpcResult)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsServer/VolumeDelete", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsResponder/VolumeDelete", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *dfsServerClient) VolumeList(ctx context.Context, in *DfsVolumeListQuery, opts ...grpc.CallOption) (*DfsVolumeList, error) {
-	out := new(DfsVolumeList)
-	err := grpc.Invoke(ctx, "/directfs.v1.DfsServer/VolumeList", in, out, c.cc, opts...)
+func (c *dfsResponderClient) VolumeList(ctx context.Context, in *DfsResponderVolumeListQuery, opts ...grpc.CallOption) (*DfsResponderVolumeList, error) {
+	out := new(DfsResponderVolumeList)
+	err := grpc.Invoke(ctx, "/directfs.v1.DfsResponder/VolumeList", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for DfsServer service
+// Server API for DfsResponder service
 
-type DfsServerServer interface {
+type DfsResponderServer interface {
 	// *
 	// Get program status.
-	Status(context.Context, *DfsServerStatusRequest) (*DfsServerStatus, error)
+	Status(context.Context, *DfsResponderStatusRequest) (*DfsResponderStatus, error)
 	// *
 	// Create a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeCreate(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeCreate(context.Context, *DfsResponderVolume) (*common_v1.RpcResult, error)
 	// *
 	// Update a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeUpdate(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeUpdate(context.Context, *DfsResponderVolume) (*common_v1.RpcResult, error)
 	// *
 	// Delete a volume to be served via DFS. Currently does nothing, but should still
 	// be performed as in the near future it will certainly be required.
 	//
 	// returns RpcResult
-	VolumeDelete(context.Context, *DfsVolume) (*common_v1.RpcResult, error)
+	VolumeDelete(context.Context, *DfsResponderVolume) (*common_v1.RpcResult, error)
 	// *
 	// List configured volume entries, optionally filtered via a DfsVolumeListQuery
 	// message.
 	//
-	// returns a stream of DfsVolume messages, if any are available matching the filter.
-	VolumeList(context.Context, *DfsVolumeListQuery) (*DfsVolumeList, error)
+	// returns a list of DfsReponderVolume messages, if any are available matching the filter.
+	VolumeList(context.Context, *DfsResponderVolumeListQuery) (*DfsResponderVolumeList, error)
 }
 
-func RegisterDfsServerServer(s *grpc.Server, srv DfsServerServer) {
-	s.RegisterService(&_DfsServer_serviceDesc, srv)
+func RegisterDfsResponderServer(s *grpc.Server, srv DfsResponderServer) {
+	s.RegisterService(&_DfsResponder_serviceDesc, srv)
 }
 
-func _DfsServer_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsServerStatusRequest)
+func _DfsResponder_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsResponderStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsServerServer).Status(ctx, in)
+		return srv.(DfsResponderServer).Status(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsServer/Status",
+		FullMethod: "/directfs.v1.DfsResponder/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsServerServer).Status(ctx, req.(*DfsServerStatusRequest))
+		return srv.(DfsResponderServer).Status(ctx, req.(*DfsResponderStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsServer_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsResponder_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsResponderVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsServerServer).VolumeCreate(ctx, in)
+		return srv.(DfsResponderServer).VolumeCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsServer/VolumeCreate",
+		FullMethod: "/directfs.v1.DfsResponder/VolumeCreate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsServerServer).VolumeCreate(ctx, req.(*DfsVolume))
+		return srv.(DfsResponderServer).VolumeCreate(ctx, req.(*DfsResponderVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsServer_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsResponder_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsResponderVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsServerServer).VolumeUpdate(ctx, in)
+		return srv.(DfsResponderServer).VolumeUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsServer/VolumeUpdate",
+		FullMethod: "/directfs.v1.DfsResponder/VolumeUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsServerServer).VolumeUpdate(ctx, req.(*DfsVolume))
+		return srv.(DfsResponderServer).VolumeUpdate(ctx, req.(*DfsResponderVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsServer_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolume)
+func _DfsResponder_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsResponderVolume)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsServerServer).VolumeDelete(ctx, in)
+		return srv.(DfsResponderServer).VolumeDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsServer/VolumeDelete",
+		FullMethod: "/directfs.v1.DfsResponder/VolumeDelete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsServerServer).VolumeDelete(ctx, req.(*DfsVolume))
+		return srv.(DfsResponderServer).VolumeDelete(ctx, req.(*DfsResponderVolume))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DfsServer_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DfsVolumeListQuery)
+func _DfsResponder_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DfsResponderVolumeListQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DfsServerServer).VolumeList(ctx, in)
+		return srv.(DfsResponderServer).VolumeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/directfs.v1.DfsServer/VolumeList",
+		FullMethod: "/directfs.v1.DfsResponder/VolumeList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DfsServerServer).VolumeList(ctx, req.(*DfsVolumeListQuery))
+		return srv.(DfsResponderServer).VolumeList(ctx, req.(*DfsResponderVolumeListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _DfsServer_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "directfs.v1.DfsServer",
-	HandlerType: (*DfsServerServer)(nil),
+var _DfsResponder_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "directfs.v1.DfsResponder",
+	HandlerType: (*DfsResponderServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Status",
-			Handler:    _DfsServer_Status_Handler,
+			Handler:    _DfsResponder_Status_Handler,
 		},
 		{
 			MethodName: "VolumeCreate",
-			Handler:    _DfsServer_VolumeCreate_Handler,
+			Handler:    _DfsResponder_VolumeCreate_Handler,
 		},
 		{
 			MethodName: "VolumeUpdate",
-			Handler:    _DfsServer_VolumeUpdate_Handler,
+			Handler:    _DfsResponder_VolumeUpdate_Handler,
 		},
 		{
 			MethodName: "VolumeDelete",
-			Handler:    _DfsServer_VolumeDelete_Handler,
+			Handler:    _DfsResponder_VolumeDelete_Handler,
 		},
 		{
 			MethodName: "VolumeList",
-			Handler:    _DfsServer_VolumeList_Handler,
+			Handler:    _DfsResponder_VolumeList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1087,53 +1412,62 @@ var _DfsServer_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("directfs.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 759 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x56, 0xed, 0x6e, 0xd3, 0x48,
-	0x14, 0xcd, 0x57, 0x93, 0xe6, 0xe6, 0x63, 0xbd, 0xb3, 0xd9, 0xae, 0x37, 0x6d, 0xd5, 0x74, 0x90,
-	0x50, 0x85, 0xd4, 0x40, 0xd3, 0xaa, 0x12, 0x12, 0x42, 0x8a, 0xec, 0xb4, 0x44, 0x40, 0x0a, 0x53,
-	0xe8, 0xdf, 0xc8, 0xb5, 0xc7, 0xc2, 0x52, 0x62, 0x07, 0xcf, 0x24, 0x52, 0xdf, 0x86, 0x57, 0xe1,
-	0x15, 0x78, 0x09, 0x24, 0x9e, 0x02, 0xcd, 0x8c, 0xe3, 0x38, 0xa9, 0x53, 0x28, 0xfc, 0xe5, 0x9f,
-	0xe7, 0xce, 0x3d, 0xf7, 0xde, 0x39, 0xe7, 0xcc, 0x24, 0x50, 0x77, 0xbc, 0x90, 0xda, 0xdc, 0x65,
-	0xed, 0x49, 0x18, 0xf0, 0x00, 0x55, 0xe2, 0xf5, 0xec, 0xa8, 0x59, 0xb5, 0x83, 0xf1, 0x38, 0xf0,
-	0xd5, 0x16, 0xd6, 0x61, 0xcb, 0x74, 0x99, 0x31, 0xf2, 0xa8, 0xcf, 0x2f, 0xb9, 0xc5, 0xa7, 0x8c,
-	0xd0, 0x8f, 0x53, 0xca, 0x38, 0x3e, 0x81, 0xbf, 0x56, 0x76, 0xd0, 0x3e, 0x54, 0x67, 0x34, 0x64,
-	0x5e, 0xe0, 0x0f, 0x3d, 0xdf, 0x0d, 0xf4, 0x6c, 0x2b, 0x7b, 0x50, 0x26, 0x95, 0x28, 0xd6, 0xf7,
-	0xdd, 0x79, 0xbd, 0x4b, 0x1a, 0xce, 0x68, 0x98, 0x56, 0x2f, 0xb9, 0xf3, 0x33, 0xf5, 0x1a, 0x80,
-	0x4c, 0x97, 0xbd, 0x08, 0x18, 0x37, 0x42, 0xea, 0x50, 0x9f, 0x7b, 0xd6, 0x88, 0xe1, 0xcf, 0x59,
-	0x28, 0x45, 0x61, 0xf4, 0x08, 0x72, 0xb6, 0x2d, 0xa1, 0x95, 0x4e, 0xb3, 0x1d, 0x1d, 0x6e, 0x76,
-	0xd4, 0x36, 0x2d, 0x6e, 0x4d, 0x46, 0x96, 0x4f, 0x0d, 0x19, 0x22, 0x39, 0xdb, 0x46, 0xff, 0x41,
-	0xe9, 0x43, 0xc0, 0xf8, 0xd0, 0x73, 0xf4, 0x5c, 0x2b, 0x7b, 0x50, 0x23, 0x45, 0xb1, 0xec, 0x3b,
-	0xa8, 0x09, 0x9b, 0xe2, 0xcb, 0xb7, 0xc6, 0x54, 0xcf, 0xcb, 0x29, 0xe2, 0x35, 0x42, 0x50, 0x98,
-	0x04, 0x21, 0xd7, 0x0b, 0x12, 0x21, 0xbf, 0x51, 0x17, 0x2a, 0xf6, 0x62, 0x1e, 0x7d, 0x43, 0x76,
-	0xdf, 0x6b, 0x27, 0x78, 0x6e, 0xdf, 0x1e, 0x9b, 0x24, 0x31, 0xf8, 0x29, 0x54, 0xa2, 0x94, 0x57,
-	0x9e, 0x3c, 0xc6, 0x86, 0xe8, 0xc8, 0xf4, 0x6c, 0x2b, 0x7f, 0x50, 0xe9, 0x34, 0xd2, 0x6a, 0x11,
-	0x95, 0x82, 0x0f, 0x41, 0x4b, 0x40, 0xdf, 0x4e, 0x69, 0x78, 0x83, 0xfe, 0x57, 0x27, 0x18, 0x7a,
-	0x8e, 0x2a, 0x51, 0x23, 0x25, 0x75, 0x36, 0x86, 0xb7, 0xa0, 0x61, 0xba, 0xec, 0x2a, 0x18, 0x4d,
-	0xc7, 0x34, 0xc9, 0xe2, 0xbf, 0xf0, 0x4f, 0x1c, 0x17, 0x8a, 0x78, 0x8c, 0x7b, 0x36, 0xc3, 0x5f,
-	0x72, 0x52, 0xa9, 0x45, 0x7c, 0xca, 0xd0, 0x00, 0xc0, 0x0e, 0x7c, 0x7f, 0xc8, 0xb8, 0xc5, 0xa9,
-	0x24, 0xbb, 0xde, 0x79, 0xbc, 0x3a, 0x62, 0x12, 0x21, 0xd6, 0x46, 0xe0, 0xfb, 0xd4, 0xe6, 0x5e,
-	0xe0, 0x8b, 0x18, 0x25, 0x65, 0x51, 0x42, 0x7e, 0xa2, 0x6d, 0x28, 0x4f, 0x28, 0x0d, 0x87, 0x92,
-	0xf0, 0x9c, 0x22, 0x5c, 0x04, 0x06, 0x82, 0xf0, 0x33, 0x28, 0xc9, 0x4d, 0xcb, 0x95, 0x5a, 0xd4,
-	0x3b, 0x87, 0x3f, 0xea, 0xd4, 0x75, 0x9c, 0x90, 0x32, 0x76, 0x66, 0x8d, 0xbd, 0xd1, 0x0d, 0x29,
-	0x0a, 0x74, 0xd7, 0xc5, 0xd7, 0xd2, 0x3b, 0x2b, 0x53, 0xa0, 0x4d, 0x28, 0x0c, 0x2e, 0x06, 0x3d,
-	0x2d, 0x83, 0xea, 0x00, 0xc6, 0xc5, 0x60, 0xd0, 0x33, 0xde, 0xf5, 0x07, 0xe7, 0x5a, 0x16, 0xd5,
-	0xa0, 0x1c, 0xad, 0x7b, 0xa6, 0x96, 0x43, 0x7f, 0x43, 0xcd, 0xec, 0x5f, 0x26, 0x32, 0xf2, 0x48,
-	0x83, 0xea, 0x22, 0xd4, 0x33, 0xb5, 0x02, 0x7e, 0x28, 0xa5, 0x58, 0xea, 0x2f, 0x3a, 0xf4, 0xdf,
-	0x5c, 0x9d, 0x68, 0x99, 0xe8, 0xeb, 0x54, 0xcb, 0xe2, 0x4f, 0x39, 0x28, 0xc7, 0x83, 0xdf, 0xcb,
-	0xb3, 0xdb, 0x50, 0x9e, 0x49, 0xd4, 0xc2, 0xb5, 0x9b, 0x2a, 0xd0, 0x77, 0x92, 0x86, 0xce, 0x2f,
-	0x19, 0xda, 0x58, 0x36, 0x68, 0x41, 0xb6, 0xda, 0x4f, 0xe7, 0x71, 0x9d, 0x45, 0xd1, 0x29, 0x6c,
-	0x08, 0xc1, 0xe7, 0xfe, 0x6e, 0xad, 0x97, 0x41, 0x59, 0x87, 0xa8, 0x74, 0x74, 0x02, 0x45, 0x26,
-	0xb5, 0xd1, 0x8b, 0x12, 0xb8, 0x73, 0x97, 0x7e, 0x24, 0xca, 0xc5, 0x5d, 0xa8, 0xc5, 0x5b, 0xf2,
-	0x4a, 0x3c, 0x81, 0x92, 0x3a, 0xe8, 0xfc, 0x52, 0x6c, 0xa5, 0xd7, 0x21, 0xf3, 0x34, 0x7c, 0x2c,
-	0x15, 0x5f, 0x94, 0x50, 0x57, 0x63, 0x17, 0x20, 0x66, 0x70, 0x7e, 0x39, 0xca, 0x73, 0x0a, 0x59,
-	0xe7, 0x5b, 0x41, 0x4a, 0xa3, 0x5e, 0x3a, 0xf4, 0x1a, 0x8a, 0x91, 0xe7, 0x1f, 0xac, 0x76, 0x4b,
-	0x79, 0x25, 0x9b, 0x3b, 0x77, 0x25, 0xe1, 0x0c, 0x7a, 0x06, 0x55, 0xf5, 0xe4, 0x19, 0x21, 0x15,
-	0xee, 0x4b, 0xbd, 0xd7, 0xcd, 0x46, 0xc2, 0x03, 0x64, 0x62, 0x13, 0xca, 0xa6, 0x23, 0x9e, 0x44,
-	0xbf, 0x9f, 0x38, 0xbf, 0x81, 0x36, 0xe9, 0x88, 0xde, 0x1b, 0x7d, 0x0e, 0xa0, 0xd0, 0x52, 0x8b,
-	0xdd, 0x34, 0x6c, 0x4c, 0x71, 0x53, 0x5f, 0xb7, 0x8d, 0x33, 0xe8, 0x39, 0x54, 0x63, 0x9f, 0x89,
-	0x43, 0xac, 0x51, 0x71, 0xed, 0x20, 0x31, 0x3e, 0x22, 0xe1, 0x97, 0xf1, 0x11, 0x0d, 0xf7, 0xc5,
-	0xbf, 0x04, 0x48, 0x98, 0x72, 0x2f, 0x1d, 0xbd, 0xa0, 0xa2, 0xb9, 0x3e, 0x01, 0x67, 0x3a, 0x5f,
-	0xd5, 0x3b, 0xa0, 0x98, 0xbd, 0xcb, 0x6c, 0x29, 0x3f, 0xa1, 0xb7, 0xcd, 0x96, 0x4c, 0xfa, 0xc3,
-	0xf4, 0x12, 0xd3, 0xd7, 0x45, 0xf9, 0x07, 0xe7, 0xf8, 0x7b, 0x00, 0x00, 0x00, 0xff, 0xff, 0xd2,
-	0x0a, 0xfc, 0xde, 0x0d, 0x09, 0x00, 0x00,
+	// 904 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x57, 0xdd, 0x6e, 0xe2, 0x56,
+	0x10, 0xe6, 0x9f, 0x30, 0xfc, 0xc8, 0x3d, 0x8a, 0x5a, 0x07, 0x4a, 0x49, 0x4e, 0xd5, 0x88, 0xe6,
+	0x82, 0x2a, 0xa4, 0x4a, 0x55, 0xa9, 0x55, 0x14, 0x01, 0x4d, 0x69, 0x23, 0xd2, 0x9a, 0x36, 0x6a,
+	0x2f, 0x2a, 0xea, 0xda, 0x07, 0xd5, 0x5a, 0xb0, 0x59, 0x9f, 0x03, 0x52, 0x1e, 0x63, 0x1f, 0x60,
+	0xdf, 0x66, 0x6f, 0xf7, 0x6a, 0x5f, 0x68, 0xe5, 0x63, 0x63, 0x6c, 0x63, 0x63, 0x93, 0xdd, 0x48,
+	0xb9, 0xb3, 0xcf, 0xcc, 0x7c, 0x67, 0x66, 0xbe, 0x99, 0x0f, 0x0c, 0x35, 0x55, 0x33, 0x89, 0xc2,
+	0xa6, 0xb4, 0xb3, 0x30, 0x0d, 0x66, 0xa0, 0xb2, 0xfb, 0xbe, 0x3a, 0xaf, 0x57, 0x14, 0x63, 0x3e,
+	0x37, 0x74, 0xdb, 0x84, 0x1b, 0x70, 0xd4, 0x9f, 0xd2, 0xa1, 0xae, 0x31, 0x4d, 0x66, 0x86, 0x39,
+	0x66, 0x32, 0x5b, 0x52, 0x89, 0xbc, 0x5c, 0x12, 0xca, 0xf0, 0x77, 0x80, 0xb6, 0x8d, 0xe8, 0x04,
+	0x2a, 0x2b, 0x62, 0x52, 0xcd, 0xd0, 0x27, 0x9a, 0x3e, 0x35, 0xc4, 0xf4, 0x71, 0xba, 0x5d, 0x92,
+	0xca, 0xce, 0xd9, 0x50, 0x9f, 0xae, 0x51, 0x25, 0x42, 0x17, 0x86, 0xae, 0x92, 0x50, 0xd4, 0x80,
+	0x31, 0x09, 0x6a, 0x13, 0x1a, 0xde, 0x74, 0x7e, 0x36, 0x28, 0xeb, 0x99, 0x44, 0x25, 0x3a, 0xd3,
+	0xe4, 0x19, 0xc5, 0xef, 0xd2, 0x20, 0x04, 0xed, 0xe8, 0x0c, 0x32, 0x8a, 0xc2, 0xc1, 0xca, 0xdd,
+	0x7a, 0xc7, 0x29, 0x7d, 0x75, 0xde, 0xe9, 0xcb, 0x4c, 0x5e, 0xcc, 0x64, 0x9d, 0xf4, 0xf8, 0x91,
+	0x94, 0x51, 0x14, 0xf4, 0x19, 0x14, 0xff, 0x37, 0x28, 0x9b, 0x68, 0xaa, 0x98, 0x39, 0x4e, 0xb7,
+	0xab, 0x52, 0xc1, 0x7a, 0x1d, 0xaa, 0xa8, 0x0e, 0x07, 0xd6, 0x93, 0x2e, 0xcf, 0x89, 0x98, 0xe5,
+	0x79, 0xb9, 0xef, 0x08, 0x41, 0x6e, 0x61, 0x98, 0x4c, 0xcc, 0xf1, 0x08, 0xfe, 0x8c, 0x7e, 0x81,
+	0xb2, 0xb2, 0x49, 0x4c, 0xcc, 0xf3, 0xdb, 0xdb, 0x1d, 0x0f, 0x0b, 0x9d, 0x1d, 0x85, 0x48, 0xde,
+	0x60, 0xfc, 0x2b, 0x1c, 0x06, 0x7d, 0x6f, 0x35, 0xca, 0xd0, 0x05, 0xe4, 0xad, 0x1c, 0xa8, 0x98,
+	0x3e, 0xce, 0xb6, 0xcb, 0xdd, 0xe6, 0x4e, 0x74, 0xc9, 0xf6, 0xc5, 0x97, 0x7e, 0xb6, 0xd7, 0x60,
+	0xbf, 0x2f, 0x89, 0xf9, 0x80, 0x8e, 0xec, 0x2a, 0x27, 0x9a, 0x6a, 0x83, 0x56, 0xa5, 0xa2, 0x5d,
+	0x3f, 0xc5, 0x2d, 0x68, 0x7a, 0xe3, 0xee, 0x8d, 0xd9, 0x72, 0x4e, 0xbc, 0xbd, 0xff, 0x02, 0x3e,
+	0xdf, 0x76, 0xb0, 0x98, 0xd5, 0x28, 0xd3, 0x14, 0x8a, 0x5f, 0x65, 0x41, 0x0c, 0x77, 0x58, 0x52,
+	0xf4, 0x2f, 0x80, 0x62, 0xe8, 0xfa, 0x84, 0x32, 0x99, 0x11, 0xce, 0x55, 0xad, 0x7b, 0x1d, 0x59,
+	0x8f, 0x37, 0xd4, 0x67, 0xe8, 0x19, 0xba, 0x4e, 0x14, 0xa6, 0x19, 0xba, 0x65, 0x24, 0x52, 0xc9,
+	0x02, 0xe5, 0x8f, 0xa8, 0x01, 0xa5, 0x05, 0x21, 0xe6, 0x84, 0x33, 0x98, 0xb1, 0x19, 0xb4, 0x0e,
+	0x46, 0x16, 0x83, 0x7f, 0x41, 0x91, 0x1b, 0xe5, 0x29, 0x27, 0xb7, 0xd6, 0xbd, 0xda, 0xff, 0xee,
+	0x6b, 0x55, 0x35, 0x09, 0xa5, 0x3f, 0xc9, 0x73, 0x6d, 0xf6, 0x20, 0x15, 0x2c, 0xbc, 0xeb, 0x29,
+	0x7e, 0xe1, 0x1f, 0xd8, 0x40, 0x82, 0xe8, 0x00, 0x72, 0xa3, 0xbb, 0xd1, 0x40, 0x48, 0xa1, 0x1a,
+	0x40, 0xef, 0x6e, 0x34, 0x1a, 0xf4, 0xfe, 0x18, 0x8e, 0x6e, 0x84, 0x34, 0xaa, 0x42, 0xc9, 0x79,
+	0x1f, 0xf4, 0x85, 0x0c, 0xfa, 0x04, 0xaa, 0xfd, 0xe1, 0xd8, 0xe3, 0x91, 0x45, 0x02, 0x54, 0x36,
+	0x47, 0x83, 0xbe, 0x90, 0xc3, 0xdf, 0xf8, 0xb9, 0xf5, 0x65, 0x64, 0x5d, 0x35, 0xfc, 0xed, 0xfe,
+	0x5b, 0x21, 0xe5, 0x3c, 0x5d, 0x0a, 0x69, 0xfc, 0x26, 0xe3, 0x5f, 0x6f, 0xbb, 0xb8, 0xbd, 0x36,
+	0xa6, 0x01, 0xa5, 0x15, 0x8f, 0xda, 0xec, 0xcc, 0x81, 0x7d, 0x30, 0x54, 0xbd, 0xeb, 0x94, 0xf5,
+	0xad, 0xd3, 0xad, 0x7f, 0x3d, 0x72, 0xfc, 0xaa, 0xb3, 0x98, 0xa6, 0x47, 0x2d, 0x08, 0xba, 0x82,
+	0xbc, 0x35, 0x38, 0xeb, 0x35, 0xfb, 0x3a, 0x01, 0x79, 0xf6, 0x50, 0x4a, 0x76, 0x1c, 0xfa, 0x11,
+	0x0a, 0x94, 0x33, 0x2a, 0x16, 0x38, 0xc2, 0x57, 0x89, 0xe8, 0x97, 0x9c, 0x20, 0x3c, 0x86, 0x4f,
+	0xb7, 0x7d, 0xf8, 0x8a, 0x7e, 0x0f, 0x45, 0xbb, 0x19, 0xeb, 0x25, 0x6d, 0xc5, 0x20, 0x4b, 0x6b,
+	0x7f, 0xfc, 0x83, 0x7f, 0x72, 0x36, 0xa0, 0xf6, 0xaa, 0x36, 0x01, 0xdc, 0xbe, 0xaf, 0x97, 0xb5,
+	0xb4, 0x6e, 0x3c, 0x75, 0x84, 0xd2, 0x55, 0xd8, 0x08, 0xa1, 0xf4, 0xd9, 0x9f, 0xb3, 0x50, 0x46,
+	0x15, 0x12, 0x26, 0x94, 0x3e, 0xdf, 0x44, 0x42, 0xe9, 0x8b, 0xf0, 0x0b, 0xe5, 0x16, 0x58, 0x42,
+	0xa1, 0x74, 0xe3, 0xa2, 0x84, 0x32, 0xe0, 0xb0, 0x2d, 0x94, 0x21, 0x0e, 0x49, 0x85, 0x32, 0x34,
+	0xd4, 0x67, 0x78, 0x3a, 0xa1, 0x8c, 0xbf, 0x7b, 0x97, 0x50, 0x46, 0x25, 0xf8, 0x24, 0x42, 0x19,
+	0x9e, 0xd1, 0x2e, 0xa1, 0x0c, 0x14, 0xf7, 0x6c, 0x84, 0x32, 0x7a, 0xda, 0xf6, 0x13, 0xca, 0xc8,
+	0xa1, 0x4c, 0x2c, 0x94, 0xa1, 0xf4, 0x07, 0x84, 0x32, 0xe0, 0x93, 0x50, 0x28, 0x03, 0x51, 0x41,
+	0xa1, 0x0c, 0x01, 0x4d, 0x22, 0x94, 0xdd, 0xb7, 0x79, 0xa8, 0x78, 0x75, 0x16, 0x8d, 0xa1, 0xe0,
+	0xec, 0xda, 0x69, 0xa4, 0x56, 0xfb, 0xfe, 0xcd, 0xd6, 0x5b, 0x31, 0x7e, 0x38, 0x85, 0x06, 0x50,
+	0x19, 0x13, 0x73, 0x45, 0xcc, 0x9e, 0x49, 0xac, 0x71, 0xde, 0xfd, 0x5f, 0xad, 0x7e, 0xe8, 0x99,
+	0x25, 0x69, 0xa1, 0x48, 0x84, 0x2e, 0x67, 0xcc, 0x0b, 0xf3, 0xe7, 0x42, 0xfd, 0x18, 0x30, 0x7d,
+	0x32, 0x23, 0x8f, 0x87, 0xf9, 0x1b, 0xc0, 0x86, 0xe1, 0x0c, 0x9e, 0xee, 0x04, 0x71, 0xf9, 0xa8,
+	0x9f, 0xc4, 0xfa, 0xe1, 0x14, 0xba, 0x81, 0x8a, 0x3b, 0xca, 0x56, 0xa1, 0x71, 0x3f, 0x9b, 0x91,
+	0x39, 0xba, 0x40, 0x4e, 0xc7, 0x3e, 0x1c, 0xc8, 0xe9, 0xd9, 0xa3, 0x81, 0xfe, 0x01, 0xf0, 0xcc,
+	0x7d, 0x3b, 0x06, 0x66, 0xd3, 0xb7, 0x2f, 0x13, 0x78, 0xe2, 0x54, 0xf7, 0x75, 0x96, 0xcf, 0xb3,
+	0xbb, 0x0e, 0xbb, 0xe6, 0x39, 0xfc, 0xeb, 0xac, 0xde, 0x8a, 0xf1, 0x4b, 0xc2, 0x4f, 0x60, 0x1d,
+	0x1f, 0xcf, 0xcf, 0xde, 0x40, 0x51, 0xfc, 0x24, 0x05, 0x8a, 0xe1, 0x27, 0x4a, 0x67, 0xb6, 0xf9,
+	0x09, 0xf1, 0xc4, 0xa9, 0xff, 0x0a, 0xfc, 0xa3, 0xfb, 0xe2, 0x7d, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0x02, 0x80, 0x4a, 0x74, 0xa1, 0x0f, 0x00, 0x00,
 }
