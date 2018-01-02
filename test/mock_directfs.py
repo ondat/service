@@ -16,9 +16,9 @@ from mock_common import copy_submessage
 log = logging.getLogger()
 
 
-def dfshost_copy(src):
-    """Copy a DfsHost message."""
-    msg = directfs_pb2.DfsHost(
+def dfsclient_host_copy(src):
+    """Copy a DfsInitiatorHost message."""
+    msg = directfs_pb2.DfsInitiatorHost(
         host_id=src.host_id,
         hostname=src.hostname,
         port=src.port
@@ -29,10 +29,10 @@ def dfshost_copy(src):
     return msg
 
 
-def dfsvolume_copy(src):
-    """Copy a DfsVolume message."""
+def dfsclient_volume_copy(src):
+    """Copy a DfsInitiatorVolume message."""
     # Copy scalar fields.
-    msg = directfs_pb2.DfsVolume(
+    msg = directfs_pb2.DfsInitiatorVolume(
         volume_id=src.volume_id,
         host_id=src.host_id,
     )
@@ -44,7 +44,22 @@ def dfsvolume_copy(src):
     return msg
 
 
-class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
+def dfsserver_volume_copy(src):
+    """Copy a DfsResponderVolume message."""
+    # Copy scalar fields.
+    msg = directfs_pb2.DfsResponderVolume(
+        volume_id=src.volume_id,
+        host_id=src.host_id,
+    )
+    # pylint: disable=E1101
+    copy_submessage(msg.cc, src, 'cc')
+    copy_submessage(msg.credentials, src, 'credentials')
+    copy_submessage(msg.stats, src, 'stats')
+    copy_submessage(msg.status, src, 'status')
+    return msg
+
+
+class DirectfsInitiatorServicer(directfs_pb2_grpc.DfsInitiatorServicer):
 
     def __init__(self):
         self.servers = {}
@@ -52,14 +67,14 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
         self.version_string = 'notset'
 
     def Status(self, _request, _context):
-        return directfs_pb2.DfsClientStatus(version_info=self.version_string)
+        return directfs_pb2.DfsInitiatorStatus(version_info=self.version_string)
 
     def ServerCreate(self, request, _context):
-        self.servers[request.host_id] = dfshost_copy(request)
+        self.servers[request.host_id] = dfsclient_host_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def ServerUpdate(self, request, _context):
-        self.servers[request.host_id] = dfshost_copy(request)
+        self.servers[request.host_id] = dfsclient_host_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def ServerDelete(self, request, _context):
@@ -70,7 +85,7 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
         slist = []
         for _k, server in self.servers.items():
             slist.append(server)
-        response = directfs_pb2.DfsHostList(hosts=slist)
+        response = directfs_pb2.DfsInitiatorHostList(hosts=slist)
         return response
 
     def checked_volume_update(self, new_volume):
@@ -82,11 +97,11 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
                                     reason="Unknown host_id {}".format(new_volume.host_id))
 
     def VolumeCreate(self, request, _context):
-        newvol = dfsvolume_copy(request)
+        newvol = dfsclient_volume_copy(request)
         return self.checked_volume_update(newvol)
 
     def VolumeUpdate(self, request, _context):
-        newvol = dfsvolume_copy(request)
+        newvol = dfsclient_volume_copy(request)
         return self.checked_volume_update(newvol)
 
     def VolumeDelete(self, request, _context):
@@ -97,11 +112,11 @@ class DirectfsClientServicer(directfs_pb2_grpc.DfsClientServicer):
         vlist = []
         for _k, vol in self.volumes.items():
             vlist.append(vol)
-        response = directfs_pb2.DfsVolumeList(volumes=vlist)
+        response = directfs_pb2.DfsInitiatorVolumeList(volumes=vlist)
         return response
 
 
-class DirectfsServerServicer(directfs_pb2_grpc.DfsServerServicer):
+class DirectfsResponderServicer(directfs_pb2_grpc.DfsResponderServicer):
 
     volumes = {}
     version_string = 'notset'
@@ -110,14 +125,14 @@ class DirectfsServerServicer(directfs_pb2_grpc.DfsServerServicer):
         return self.volumes
 
     def Status(self, _request, _context):
-        return directfs_pb2.DfsServerStatus(version_info=self.version_string)
+        return directfs_pb2.DfsResponderStatus(version_info=self.version_string)
 
     def VolumeCreate(self, request, _context):
-        self.volumes[request.volume_id] = dfsvolume_copy(request)
+        self.volumes[request.volume_id] = dfsserver_volume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeUpdate(self, request, _context):
-        self.volumes[request.volume_id] = dfsvolume_copy(request)
+        self.volumes[request.volume_id] = dfsserver_volume_copy(request)
         return common_pb2.RpcResult(success=True)
 
     def VolumeDelete(self, request, _context):
@@ -128,5 +143,5 @@ class DirectfsServerServicer(directfs_pb2_grpc.DfsServerServicer):
         vlist = []
         for _k, vol in self.volumes.items():
             vlist.append(vol)
-        response = directfs_pb2.DfsVolumeList(volumes=vlist)
+        response = directfs_pb2.DfsResponderVolumeList(volumes=vlist)
         return response

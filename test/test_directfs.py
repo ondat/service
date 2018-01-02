@@ -26,10 +26,10 @@ class TestClient(unittest.TestCase):
 
     def setUp(self):
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-        servicer = mock_directfs.DirectfsClientServicer()
+        servicer = mock_directfs.DirectfsInitiatorServicer()
         servicer.version_string = TestClient.version_string
-        directfs_pb2_grpc.add_DfsClientServicer_to_server(servicer,
-                                                          self.server)
+        directfs_pb2_grpc.add_DfsInitiatorServicer_to_server(servicer,
+                                                             self.server)
         self.server.add_insecure_port(self.url)
         log.debug('server start')
         self.server.start()
@@ -40,8 +40,8 @@ class TestClient(unittest.TestCase):
 
     def test_connect(self):
         channel = grpc.insecure_channel(self.url)
-        stub = directfs_pb2_grpc.DfsClientStub(channel)
-        request = directfs_pb2.DfsClientStatusRequest()
+        stub = directfs_pb2_grpc.DfsInitiatorStub(channel)
+        request = directfs_pb2.DfsInitiatorStatusRequest()
         response = stub.Status(request)
         self.assertEqual(self.version_string, response.version_info)
 
@@ -50,43 +50,43 @@ class TestClient(unittest.TestCase):
         Check we can add and remove hosts.
         '''
         channel = grpc.insecure_channel(self.url)
-        stub = directfs_pb2_grpc.DfsClientStub(channel)
+        stub = directfs_pb2_grpc.DfsInitiatorStub(channel)
 
         # Start empty.
-        request = directfs_pb2.DfsHostListQuery(host_ids=[])
+        request = directfs_pb2.DfsInitiatorHostListQuery(host_ids=[])
         response = stub.ServerList(request)
         self.assertEqual(0, len(response.hosts))
 
         # Add item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb',
-                                       port=17100)
+        request = directfs_pb2.DfsInitiatorHost(host_id=1000, hostname='rhubarb',
+                                                port=17100)
         response = stub.ServerCreate(request)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsHostListQuery(host_ids=[])
+        request = directfs_pb2.DfsInitiatorHostListQuery(host_ids=[])
         response = stub.ServerList(request)
         self.assertEqual(1, len(response.hosts))
         self.assertEqual('rhubarb', response.hosts[0].hostname)
 
         # Update item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard',
-                                       port=17100)
+        request = directfs_pb2.DfsInitiatorHost(host_id=1000, hostname='custard',
+                                                port=17100)
         response = stub.ServerUpdate(request)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsHostListQuery(host_ids=[])
+        request = directfs_pb2.DfsInitiatorHostListQuery(host_ids=[])
         response = stub.ServerList(request)
         self.assertEqual(1, len(response.hosts))
         self.assertEqual('custard', response.hosts[0].hostname)
 
         # Delete item.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='custard',
-                                       port=17100)
+        request = directfs_pb2.DfsInitiatorHost(host_id=1000, hostname='custard',
+                                                port=17100)
         response = stub.ServerDelete(request)
         self.assertEqual(True, response.success)
 
         # End empty.
-        request = directfs_pb2.DfsHostListQuery(host_ids=[])
+        request = directfs_pb2.DfsInitiatorHostListQuery(host_ids=[])
         response = stub.ServerList(request)
         self.assertEqual(0, len(response.hosts))
 
@@ -95,65 +95,65 @@ class TestClient(unittest.TestCase):
         Check we can add and remove volumes.
         '''
         channel = grpc.insecure_channel(self.url)
-        stub = directfs_pb2_grpc.DfsClientStub(channel)
+        stub = directfs_pb2_grpc.DfsInitiatorStub(channel)
 
         # Start empty.
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
         # Add item without host present, should fail.
-        vol = directfs_pb2.DfsVolume(volume_id=666, host_id=1000)
+        vol = directfs_pb2.DfsInitiatorVolume(volume_id=666, host_id=1000)
         reponse = stub.VolumeCreate(vol)
         self.assertEqual(False, reponse.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
         # Add the host.
-        request = directfs_pb2.DfsHost(host_id=1000, hostname='rhubarb',
-                                       port=17100)
+        request = directfs_pb2.DfsInitiatorHost(host_id=1000, hostname='rhubarb',
+                                                port=17100)
         response = stub.ServerCreate(request)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsHostListQuery(host_ids=[])
+        request = directfs_pb2.DfsInitiatorHostListQuery(host_ids=[])
         response = stub.ServerList(request)
         self.assertEqual(1, len(response.hosts))
         self.assertEqual('rhubarb', response.hosts[0].hostname)
 
         # Add item with host present, should succeed.
-        vol = directfs_pb2.DfsVolume(volume_id=666, host_id=1000)
+        vol = directfs_pb2.DfsInitiatorVolume(volume_id=666, host_id=1000)
         response = stub.VolumeCreate(vol)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
 
         # Update item to missing host, should fail.
-        vol = directfs_pb2.DfsVolume(volume_id=666, host_id=1001)
+        vol = directfs_pb2.DfsInitiatorVolume(volume_id=666, host_id=1001)
         response = stub.VolumeUpdate(vol)
         self.assertEqual(False, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
 
         # Update item to correct host (no change), should succeed.
-        vol = directfs_pb2.DfsVolume(volume_id=666, host_id=1000)
+        vol = directfs_pb2.DfsInitiatorVolume(volume_id=666, host_id=1000)
         response = stub.VolumeUpdate(vol)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
 
         # Delete item.
-        response = stub.VolumeDelete(directfs_pb2.DfsVolume(volume_id=666))
+        response = stub.VolumeDelete(directfs_pb2.DfsInitiatorVolume(volume_id=666))
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsInitiatorVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
@@ -165,10 +165,10 @@ class TestServer(unittest.TestCase):
 
     def setUp(self):
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-        servicer = mock_directfs.DirectfsServerServicer()
+        servicer = mock_directfs.DirectfsResponderServicer()
         servicer.version_string = TestServer.version_string
-        directfs_pb2_grpc.add_DfsServerServicer_to_server(servicer,
-                                                          self.server)
+        directfs_pb2_grpc.add_DfsResponderServicer_to_server(servicer,
+                                                             self.server)
         self.server.add_insecure_port(self.url)
         self.server.start()
 
@@ -177,8 +177,8 @@ class TestServer(unittest.TestCase):
 
     def test_connect(self):
         channel = grpc.insecure_channel(self.url)
-        stub = directfs_pb2_grpc.DfsServerStub(channel)
-        request = directfs_pb2.DfsServerStatusRequest()
+        stub = directfs_pb2_grpc.DfsResponderStub(channel)
+        request = directfs_pb2.DfsResponderStatusRequest()
         response = stub.Status(request)
         self.assertEqual(self.version_string, response.version_info)
 
@@ -187,36 +187,36 @@ class TestServer(unittest.TestCase):
         Check we can add and remove volumes.
         '''
         channel = grpc.insecure_channel(self.url)
-        stub = directfs_pb2_grpc.DfsServerStub(channel)
+        stub = directfs_pb2_grpc.DfsResponderStub(channel)
 
         # Start empty.
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsResponderVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
         # Add item.
-        vol = directfs_pb2.DfsVolume(volume_id=666)
+        vol = directfs_pb2.DfsResponderVolume(volume_id=666)
         response = stub.VolumeCreate(vol)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsResponderVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
 
         # Update item.
-        vol = directfs_pb2.DfsVolume(volume_id=666)
+        vol = directfs_pb2.DfsResponderVolume(volume_id=666)
         response = stub.VolumeUpdate(vol)
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsResponderVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(1, len(response.volumes))
 
         # Delete item.
-        response = stub.VolumeDelete(directfs_pb2.DfsVolume(volume_id=666))
+        response = stub.VolumeDelete(directfs_pb2.DfsResponderVolume(volume_id=666))
         self.assertEqual(True, response.success)
 
-        request = directfs_pb2.DfsVolumeListQuery(volume_ids=[])
+        request = directfs_pb2.DfsResponderVolumeListQuery(volume_ids=[])
         response = stub.VolumeList(request)
         self.assertEqual(0, len(response.volumes))
 
