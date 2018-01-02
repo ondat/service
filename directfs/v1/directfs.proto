@@ -5,27 +5,30 @@ import "common.proto";
 
 /**
  * DirectFS client configuration and status service.
+ *
+ * Use 'Initiator' instead of 'Client' to avoid having a DfsClientClient
+ * and DfsClientServer, which would be stupid.
  */
-service DfsClient {
+service DfsInitiator {
 
     /**
      * Get program status.
      */
-    rpc Status(DfsClientStatusRequest) returns (DfsClientStatus) {}
+    rpc Status(DfsInitiatorStatusRequest) returns (DfsInitiatorStatus) {}
 
     /**
      * Add a remote host entry to be used by volumes.
      *
      * returns RpcResult
      */
-    rpc ServerCreate(DfsHost) returns (common.v1.RpcResult) {}
+    rpc ServerCreate(DfsInitiatorHost) returns (common.v1.RpcResult) {}
 
     /**
      * Update a remote host entry to be used by volumes.
      *
      * returns RpcResult
      */
-    rpc ServerUpdate(DfsHost) returns (common.v1.RpcResult) {}
+    rpc ServerUpdate(DfsInitiatorHost) returns (common.v1.RpcResult) {}
 
     /**
      * Remove a remote host entry.
@@ -35,7 +38,7 @@ service DfsClient {
      *
      * returns RpcResult
      */
-    rpc ServerDelete(DfsHost) returns (common.v1.RpcResult) {}
+    rpc ServerDelete(DfsInitiatorHost) returns (common.v1.RpcResult) {}
 
     /**
      * List configured host entries, optionally filtered via a DfsHostListQuery
@@ -44,7 +47,7 @@ service DfsClient {
      * returns A DfsHostList message containing DfsHost messages,
      *         if any are available matching the filter.
      */
-    rpc ServerList(DfsHostListQuery) returns (DfsHostList) {}
+    rpc ServerList(DfsInitiatorHostListQuery) returns (DfsInitiatorHostList) {}
 
     /**
      * Create a volume on a remote host. The DfsHost matching the host id
@@ -53,7 +56,7 @@ service DfsClient {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeCreate(DfsInitiatorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update a volume on a remote host. The DfsHost matching the host id
@@ -62,14 +65,14 @@ service DfsClient {
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeUpdate(DfsInitiatorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete a volume previously configured by VolumeCreate.
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeDelete(DfsInitiatorVolume) returns (common.v1.RpcResult) {}
 
     /**
      * List configured volume entries, optionally filtered via a DfsVolumeListQuery
@@ -78,17 +81,20 @@ service DfsClient {
      * returns A DfsVolumeList message containing DfsVolume messages,
      *         if any are available matching the filter.
      */
-    rpc VolumeList(DfsVolumeListQuery) returns (DfsVolumeList) {}
+    rpc VolumeList(DfsInitiatorVolumeListQuery) returns (DfsInitiatorVolumeList) {}
 }
 
 /**
  * DirectFS server configuration and status service.
+ *
+ * Use 'Responder' instead of 'Server' to avoid having DfsServerClient and
+ * DfsServerServer, which would be stupid.
  */
-service DfsServer {
+service DfsResponder {
     /**
      * Get program status.
      */
-    rpc Status(DfsServerStatusRequest) returns (DfsServerStatus) {}
+    rpc Status(DfsResponderStatusRequest) returns (DfsResponderStatus) {}
 
     /**
      * Create a volume to be served via DFS. Currently does nothing, but should still
@@ -96,7 +102,7 @@ service DfsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeCreate(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeCreate(DfsResponderVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Update a volume to be served via DFS. Currently does nothing, but should still
@@ -104,7 +110,7 @@ service DfsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeUpdate(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeUpdate(DfsResponderVolume) returns (common.v1.RpcResult) {}
 
     /**
      * Delete a volume to be served via DFS. Currently does nothing, but should still
@@ -112,38 +118,41 @@ service DfsServer {
      *
      * returns RpcResult
      */
-    rpc VolumeDelete(DfsVolume) returns (common.v1.RpcResult) {}
+    rpc VolumeDelete(DfsResponderVolume) returns (common.v1.RpcResult) {}
 
     /**
      * List configured volume entries, optionally filtered via a DfsVolumeListQuery
      * message.
      *
-     * returns a stream of DfsVolume messages, if any are available matching the filter.
+     * returns a list of DfsReponderVolume messages, if any are available matching the filter.
      */
-    rpc VolumeList(DfsVolumeListQuery) returns (DfsVolumeList) {}
+    rpc VolumeList(DfsResponderVolumeListQuery) returns (DfsResponderVolumeList) {}
 }
 
 
-message DfsClientStatusRequest {
+message DfsInitiatorStatusRequest {
     // Empty for now.
 }
 
-message DfsClientStatus {
+message DfsInitiatorStatus {
     // The version control info string.
     string version_info = 1;
 }
 
-message DfsServerStatusRequest {
+message DfsResponderStatusRequest {
     // Empty for now.
 }
 
-message DfsServerStatus {
+message DfsResponderStatus {
     // The version control info string.
     string version_info = 1;
 }
 
+//
+// Client (Initiator) messages.
+//
 
-message DfsHostCredentials {
+message DfsInitiatorHostCredentials {
     // Empty for now.
     // Could be used for:
     // - (server) tls creds (if per-host)
@@ -153,7 +162,7 @@ message DfsHostCredentials {
 /**
  * A host used by DirectFS.
  */
-message DfsHost {
+message DfsInitiatorHost {
     common.v1.DataplaneCommon cc = 1;
 
     // The unique host identifier.
@@ -166,32 +175,32 @@ message DfsHost {
     uint32 port = 4;
 
     // Host credentials.
-    DfsHostCredentials credentials = 5;
+    DfsInitiatorHostCredentials credentials = 5;
 }
 
-message DfsHostList {
-    repeated DfsHost hosts = 1;
+message DfsInitiatorHostList {
+    repeated DfsInitiatorHost hosts = 1;
 }
 
-message DfsHostListQuery {
+message DfsInitiatorHostListQuery {
     // An optional list of hosts to query.
     repeated uint32 host_ids = 1;
 }
 
-message DfsVolumeCredentials {
+message DfsInitiatorVolumeCredentials {
     // Empty for now.
     // Could be used for:
     // - (server) tls creds (if per-volume), valid client IPs
     // - (client) tls creds (if per-volume)
 }
 
-message DfsVolumeStatistics {
+message DfsInitiatorVolumeStatistics {
     // Empty for now.
 }
 
-message DfsVolumeStatus {
+message DfsInitiatorVolumeStatus {
 
-    enum DfsConnectionState {
+    enum DfsInitiatorConnectionState {
         NONE = 0;
         CONNECTING = 1;
         CONNECTED = 2;
@@ -199,18 +208,18 @@ message DfsVolumeStatus {
         DISCONNECTED = 4;
     }
 
-    DfsConnectionState conn_state = 1;
+    DfsInitiatorConnectionState conn_state = 1;
 
     // The remote peer, in string form for simplicity.
     string peer_name = 2;
 
-    enum DfsAddressFamily {
+    enum DfsInitiatorAddressFamily {
         IPV4 = 0;
         IPV6 = 1;
     }
 
     // The address family we're using to connect to the peer.
-    DfsAddressFamily peer_af = 3;
+    DfsInitiatorAddressFamily peer_af = 3;
 }
 
 /**
@@ -223,7 +232,7 @@ message DfsVolumeStatus {
  * implementation details of ConfigFS v1. However, there's still some logic to
  * it if the authentication (especially TLS) is per-host rather than per-volume.
  */
-message DfsVolume {
+message DfsInitiatorVolume {
     common.v1.DataplaneCommon cc = 1;
 
     // The volume ID.
@@ -233,20 +242,132 @@ message DfsVolume {
     uint32 host_id = 3;
 
     // Volume credentials.
-    DfsVolumeCredentials credentials = 4;
+    DfsInitiatorVolumeCredentials credentials = 4;
 
     // Volume statistics.
-    DfsVolumeStatistics stats = 5;
+    DfsInitiatorVolumeStatistics stats = 5;
 
     // Server status for the volume.
-    DfsVolumeStatus status = 6;
+    DfsInitiatorVolumeStatus status = 6;
 }
 
-message DfsVolumeList {
-    repeated DfsVolume volumes = 1;
+message DfsInitiatorVolumeList {
+    repeated DfsInitiatorVolume volumes = 1;
 }
 
-message DfsVolumeListQuery {
+message DfsInitiatorVolumeListQuery {
+    // An optional list of volumes to query.
+    repeated uint32 volume_ids = 1;
+}
+
+//
+// Server (DfsResponder) messages.
+//
+
+message DfsResponderHostCredentials {
+    // Empty for now.
+    // Could be used for:
+    // - (server) tls creds (if per-host)
+    // - (client) tls creds (if per-host)
+}
+
+/**
+ * A host used by DirectFS.
+ */
+message DfsResponderHost {
+    common.v1.DataplaneCommon cc = 1;
+
+    // The unique host identifier.
+    uint32 host_id = 2;
+
+    // The remote hostname.
+    string hostname = 3;
+
+    // The remote port.
+    uint32 port = 4;
+
+    // Host credentials.
+    DfsResponderHostCredentials credentials = 5;
+}
+
+message DfsResponderHostList {
+    repeated DfsResponderHost hosts = 1;
+}
+
+message DfsResponderHostListQuery {
+    // An optional list of hosts to query.
+    repeated uint32 host_ids = 1;
+}
+
+message DfsResponderVolumeCredentials {
+    // Empty for now.
+    // Could be used for:
+    // - (server) tls creds (if per-volume), valid client IPs
+    // - (client) tls creds (if per-volume)
+}
+
+message DfsResponderVolumeStatistics {
+    // Empty for now.
+}
+
+message DfsResponderVolumeStatus {
+
+    enum DfsResponderConnectionState {
+        NONE = 0;
+        CONNECTING = 1;
+        CONNECTED = 2;
+        DISCONNECTING = 3;
+        DISCONNECTED = 4;
+    }
+
+    DfsResponderConnectionState conn_state = 1;
+
+    // The remote peer, in string form for simplicity.
+    string peer_name = 2;
+
+    enum DfsResponderAddressFamily {
+        IPV4 = 0;
+        IPV6 = 1;
+    }
+
+    // The address family we're using to connect to the peer.
+    DfsResponderAddressFamily peer_af = 3;
+}
+
+/**
+ * A volume used by DirectFS.
+ *
+ * The remote host (for the client) isn't directly included here. However, the
+ * client clearly can't connect without a properly configured host_id item.
+ *
+ * The split between host and volume objects was decided based on now-irrelevant
+ * implementation details of ConfigFS v1. However, there's still some logic to
+ * it if the authentication (especially TLS) is per-host rather than per-volume.
+ */
+message DfsResponderVolume {
+    common.v1.DataplaneCommon cc = 1;
+
+    // The volume ID.
+    uint32 volume_id = 2;
+
+    // The host for this volume.
+    uint32 host_id = 3;
+
+    // Volume credentials.
+    DfsResponderVolumeCredentials credentials = 4;
+
+    // Volume statistics.
+    DfsResponderVolumeStatistics stats = 5;
+
+    // Server status for the volume.
+    DfsResponderVolumeStatus status = 6;
+}
+
+message DfsResponderVolumeList {
+    repeated DfsResponderVolume volumes = 1;
+}
+
+message DfsResponderVolumeListQuery {
     // An optional list of volumes to query.
     repeated uint32 volume_ids = 1;
 }
