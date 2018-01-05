@@ -114,13 +114,13 @@ message DirectorVolume {
     uint32 read_pipe = 4;
 
     // Quality of service indicator.
-    uint64 qos = 5;
-
-    // Number of times this volume has been mounted (used for cache consistency).
-    uint32 mount_count = 9;
+    uint32 qos = 5;
 
     // List of replica inodes.
     repeated uint32 replica_ids = 6;
+
+    // Number of times this volume has been mounted (used for cache consistency).
+    uint32 mount_count = 9;
 
     // Volume statistics.
     DirectorVolumeStatistics stats = 7;
