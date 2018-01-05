@@ -38,7 +38,19 @@ PYBIN		= python3.6
 
 ## Toplevel targets.
 
-all: grpc
+all:
+	echo "No default target!" >&2
+	exit 1
+
+go: go-targets go-fix
+
+go-targets: ${GRPC_GO_OBJ}
+
+go-fix:
+	for f in ${GRPC_GO_OBJ}; do \
+		echo "++ Edit $$f"; \
+		sed -i -e 's!^import common_v1 "."!import common_v1 "code.storageos.net/scm/storageos/service/common/v1"!' $$f; \
+	done
 
 clean: grpc_clean vis_clean
 
