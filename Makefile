@@ -52,6 +52,10 @@ go-fix:
 		sed -i -e 's!^import common_v1 "."!import common_v1 "code.storageos.net/scm/storageos/service/common/v1"!' $$f; \
 	done
 
+cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
+
+python: ${GRPC_PY_OBJ}
+
 clean: grpc_clean vis_clean
 
 distclean: clean
