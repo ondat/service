@@ -179,7 +179,7 @@ message DfsInitiatorNode {
 }
 
 message DfsInitiatorNodeList {
-    repeated DfsInitiatorNode hosts = 1;
+    repeated DfsInitiatorNode nodes = 1;
 }
 
 message DfsInitiatorNodeListQuery {
