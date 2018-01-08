@@ -21,14 +21,14 @@ service DfsInitiator {
      *
      * returns RpcResult
      */
-    rpc ServerCreate(DfsInitiatorHost) returns (common.v1.RpcResult) {}
+    rpc NodeCreate(DfsInitiatorNode) returns (common.v1.RpcResult) {}
 
     /**
      * Update a remote host entry to be used by volumes.
      *
      * returns RpcResult
      */
-    rpc ServerUpdate(DfsInitiatorHost) returns (common.v1.RpcResult) {}
+    rpc NodeUpdate(DfsInitiatorNode) returns (common.v1.RpcResult) {}
 
     /**
      * Remove a remote host entry.
@@ -38,7 +38,7 @@ service DfsInitiator {
      *
      * returns RpcResult
      */
-    rpc ServerDelete(DfsInitiatorHost) returns (common.v1.RpcResult) {}
+    rpc NodeDelete(DfsInitiatorNode) returns (common.v1.RpcResult) {}
 
     /**
      * List configured host entries, optionally filtered via a DfsHostListQuery
@@ -47,7 +47,7 @@ service DfsInitiator {
      * returns A DfsHostList message containing DfsHost messages,
      *         if any are available matching the filter.
      */
-    rpc ServerList(DfsInitiatorHostListQuery) returns (DfsInitiatorHostList) {}
+    rpc NodeList(DfsInitiatorNodeListQuery) returns (DfsInitiatorNodeList) {}
 
     /**
      * Create a volume on a remote host. The DfsHost matching the host id
@@ -152,7 +152,7 @@ message DfsResponderStatus {
 // Client (Initiator) messages.
 //
 
-message DfsInitiatorHostCredentials {
+message DfsInitiatorNodeCredentials {
     // Empty for now.
     // Could be used for:
     // - (server) tls creds (if per-host)
@@ -162,7 +162,7 @@ message DfsInitiatorHostCredentials {
 /**
  * A host used by DirectFS.
  */
-message DfsInitiatorHost {
+message DfsInitiatorNode {
     common.v1.DataplaneCommon cc = 1;
 
     // The unique host identifier.
@@ -175,14 +175,14 @@ message DfsInitiatorHost {
     uint32 port = 4;
 
     // Host credentials.
-    DfsInitiatorHostCredentials credentials = 5;
+    DfsInitiatorNodeCredentials credentials = 5;
 }
 
-message DfsInitiatorHostList {
-    repeated DfsInitiatorHost hosts = 1;
+message DfsInitiatorNodeList {
+    repeated DfsInitiatorNode hosts = 1;
 }
 
-message DfsInitiatorHostListQuery {
+message DfsInitiatorNodeListQuery {
     // An optional list of hosts to query.
     repeated uint32 host_ids = 1;
 }
@@ -258,45 +258,6 @@ message DfsInitiatorVolumeList {
 message DfsInitiatorVolumeListQuery {
     // An optional list of volumes to query.
     repeated uint32 volume_ids = 1;
-}
-
-//
-// Server (DfsResponder) messages.
-//
-
-message DfsResponderHostCredentials {
-    // Empty for now.
-    // Could be used for:
-    // - (server) tls creds (if per-host)
-    // - (client) tls creds (if per-host)
-}
-
-/**
- * A host used by DirectFS.
- */
-message DfsResponderHost {
-    common.v1.DataplaneCommon cc = 1;
-
-    // The unique host identifier.
-    uint32 host_id = 2;
-
-    // The remote hostname.
-    string hostname = 3;
-
-    // The remote port.
-    uint32 port = 4;
-
-    // Host credentials.
-    DfsResponderHostCredentials credentials = 5;
-}
-
-message DfsResponderHostList {
-    repeated DfsResponderHost hosts = 1;
-}
-
-message DfsResponderHostListQuery {
-    // An optional list of hosts to query.
-    repeated uint32 host_ids = 1;
 }
 
 message DfsResponderVolumeCredentials {
