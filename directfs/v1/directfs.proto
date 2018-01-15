@@ -166,7 +166,7 @@ message DfsInitiatorNode {
     common.v1.DataplaneCommon cc = 1;
 
     // The unique host identifier.
-    uint32 host_id = 2;
+    uint32 node_id = 2;
 
     // The remote hostname.
     string hostname = 3;
@@ -184,7 +184,7 @@ message DfsInitiatorNodeList {
 
 message DfsInitiatorNodeListQuery {
     // An optional list of hosts to query.
-    repeated uint32 host_ids = 1;
+    repeated uint32 node_ids = 1;
 }
 
 message DfsInitiatorVolumeCredentials {
@@ -226,7 +226,7 @@ message DfsInitiatorVolumeStatus {
  * A volume used by DirectFS.
  *
  * The remote host (for the client) isn't directly included here. However, the
- * client clearly can't connect without a properly configured host_id item.
+ * client clearly can't connect without a properly configured node_id item.
  *
  * The split between host and volume objects was decided based on now-irrelevant
  * implementation details of ConfigFS v1. However, there's still some logic to
@@ -239,7 +239,7 @@ message DfsInitiatorVolume {
     uint32 volume_id = 2;
 
     // The host for this volume.
-    uint32 host_id = 3;
+    uint32 node_id = 3;
 
     // Volume credentials.
     DfsInitiatorVolumeCredentials credentials = 4;
@@ -299,7 +299,7 @@ message DfsResponderVolumeStatus {
  * A volume used by DirectFS.
  *
  * The remote host (for the client) isn't directly included here. However, the
- * client clearly can't connect without a properly configured host_id item.
+ * client clearly can't connect without a properly configured node_id item.
  *
  * The split between host and volume objects was decided based on now-irrelevant
  * implementation details of ConfigFS v1. However, there's still some logic to
@@ -312,7 +312,7 @@ message DfsResponderVolume {
     uint32 volume_id = 2;
 
     // The host for this volume.
-    uint32 host_id = 3;
+    uint32 node_id = 3;
 
     // Volume credentials.
     DfsResponderVolumeCredentials credentials = 4;
