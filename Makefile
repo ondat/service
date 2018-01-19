@@ -7,7 +7,6 @@ DST_DIR = dataplane
 PROTOC_OPT	= -Icommon/v1
 
 # All the source proto files.
-GRPC_SRC	=  dataplane/dataplane.proto
 GRPC_SRC	+= common/v1/common.proto
 GRPC_SRC 	+= directfs/v1/directfs.proto
 GRPC_SRC	+= director/v1/director.proto
@@ -42,7 +41,7 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
-go: go-targets go-fix go-mocks
+go: go-targets go-fix
 
 go-targets: ${GRPC_GO_OBJ}
 
