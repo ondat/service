@@ -9,13 +9,15 @@ message RpcResult {
 }
 
 message DataplaneCommon {
-    // Item labels.
-    map<string, string> labels = 1;
+    // // Item labels. Retired 20180206 ATL.
+    // map<string, string> labels = 1;
 
-    // Human-readable info.
-    string description = 2;
+    // // Human-readable info. Retired 20180206 ATL.
+    // string description = 2;
 
-    // UUID. Not currently used.
+    // UUID. An opaque string used by the controlplane as a unique ID.
     string uuid = 3;
 
+    // The config 'generation', an opaque integer used by the controlplane to identify a configuration iteration.
+    uint32 generation = 4;
 }
