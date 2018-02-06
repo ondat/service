@@ -171,14 +171,11 @@ message DfsInitiatorNode {
     // The remote hostname.
     string hostname = 3;
 
-    // The remote address.
-    string address = 4;
-
     // The remote port.
-    uint32 port = 5;
+    uint32 port = 4;
 
     // Host credentials.
-    DfsInitiatorNodeCredentials credentials = 6;
+    DfsInitiatorNodeCredentials credentials = 5;
 }
 
 message DfsInitiatorNodeList {
