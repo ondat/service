@@ -127,6 +127,15 @@ message DirectorVolume {
 
     // Volume status, e.g. retry condition.
     DirectorVolumeStatus status = 8;
+
+    // Disable block compression.
+    bool no_compress = 10;
+    // Disable all block caching.
+    bool no_cache = 11;
+    // Disable caching of writes.
+    bool no_write_cache = 12;
+    // Enable QoS throttling.
+    bool throttle = 13;
 }
 
 message DirectorVolumeList {
