@@ -46,3 +46,101 @@ message DataplaneCommon {
     // The config 'generation', an opaque integer used by the controlplane to identify a configuration iteration.
     uint32 generation = 4;
 }
+
+enum ConfigGetStatus {
+    GET_NONE = 0;       // Status not set.
+    GET_OK = 1;         // Fetch ok.
+    GET_MISSING = 2;    // Item not found.
+    GET_FAILED = 3;     // Item fetch general failure.
+}
+
+enum ConfigUpdateStatus {
+    SET_NONE = 0;       // Status not set.
+    SET_OK = 1;         // Update succeeded.
+    SET_IMMUTABLE = 2;  // Set on creation, cannot be written.
+    SET_FAILED = 3;     // General update failure.
+    SET_READ_ONLY = 4;  // Can only be set by server, not via RPC.
+}
+
+message ConfigUpdateReply {
+    ConfigUpdateStatus status = 1;
+    RpcResult result = 2;
+}
+
+// Config bool.
+
+message ConfigBool {
+    string key = 1;
+    bool value = 2;
+}
+
+message ConfigGetBoolReply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigBool item = 2;
+}
+
+message ConfigBoolList {
+    repeated ConfigBool items = 1;
+}
+
+// Config uint32.
+
+message ConfigUint32 {
+    string key = 1;
+    uint32 value = 2;
+}
+
+message ConfigGetUint32Reply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigUint32 item = 2;
+}
+
+message ConfigUint32List {
+    repeated ConfigUint32 items = 1;
+}
+
+// Config uint64.
+
+message ConfigUint64 {
+    string key = 1;
+    uint64 value = 2;
+}
+
+message ConfigGetUint64Reply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigUint64 item = 2;
+}
+
+message ConfigUint64List {
+    repeated ConfigUint64 items = 1;
+}
+
+// Config string.
+
+message ConfigString {
+    string key = 1;
+    string value = 2;
+}
+
+message ConfigGetStringReply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigString item = 2;
+}
+
+message ConfigStringList {
+    repeated ConfigString items = 1;
+}
+
+// Config generic.
+
+message ConfigKey {
+    string key = 1;
+}
+
+message ConfigListQuery {
+    // Nothing yet.
+}
