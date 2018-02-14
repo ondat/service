@@ -1,11 +1,36 @@
 syntax = "proto3";
 package common.v1;
 
+enum StatusCode {
+    // Status code not set.
+    STATUS_NONE = 0;
+    // Generic 'no problem' response.
+    STATUS_OK = 200;
+    // Accepted, but might not take effect immediately.
+    STATUS_ACCEPTED = 202;
+    // Resource created.
+    STATUS_CREATED = 201;
+    // Generic 'huh?'.
+    STATUS_BAD_REQUEST = 400;
+    // Not permitted. We're unlikely to use this, it indicates authorization will help.
+    STATUS_UNAUTHORIZED = 401;
+    // Not allowed, authorization isn't the issue.
+    STATUS_FORBIDDEN = 403;
+    // Resource not found.
+    STATUS_NOT_FOUND = 404;
+    // Operation would cause a conflict somewhere.
+    STATUS_CONFLICT = 409;
+    // General serious failure.
+    STATUS_SERVER_ERROR = 500;
+}
+
 message RpcResult {
     // Whether or not the operation was successful.
     bool success = 1;
     // If the operation was not successful, this is an explanatory message.
     string reason = 2;
+    // An HTTP-like status code.
+    StatusCode code = 3;
 }
 
 message DataplaneCommon {
@@ -20,4 +45,102 @@ message DataplaneCommon {
 
     // The config 'generation', an opaque integer used by the controlplane to identify a configuration iteration.
     uint32 generation = 4;
+}
+
+enum ConfigGetStatus {
+    GET_NONE = 0;       // Status not set.
+    GET_OK = 1;         // Fetch ok.
+    GET_MISSING = 2;    // Item not found.
+    GET_FAILED = 3;     // Item fetch general failure.
+}
+
+enum ConfigUpdateStatus {
+    SET_NONE = 0;       // Status not set.
+    SET_OK = 1;         // Update succeeded.
+    SET_IMMUTABLE = 2;  // Set on creation, cannot be written.
+    SET_FAILED = 3;     // General update failure.
+    SET_READ_ONLY = 4;  // Can only be set by server, not via RPC.
+}
+
+message ConfigUpdateReply {
+    ConfigUpdateStatus status = 1;
+    RpcResult result = 2;
+}
+
+// Config bool.
+
+message ConfigBool {
+    string key = 1;
+    bool value = 2;
+}
+
+message ConfigGetBoolReply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigBool item = 2;
+}
+
+message ConfigBoolList {
+    repeated ConfigBool items = 1;
+}
+
+// Config uint32.
+
+message ConfigUint32 {
+    string key = 1;
+    uint32 value = 2;
+}
+
+message ConfigGetUint32Reply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigUint32 item = 2;
+}
+
+message ConfigUint32List {
+    repeated ConfigUint32 items = 1;
+}
+
+// Config uint64.
+
+message ConfigUint64 {
+    string key = 1;
+    uint64 value = 2;
+}
+
+message ConfigGetUint64Reply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigUint64 item = 2;
+}
+
+message ConfigUint64List {
+    repeated ConfigUint64 items = 1;
+}
+
+// Config string.
+
+message ConfigString {
+    string key = 1;
+    string value = 2;
+}
+
+message ConfigGetStringReply {
+    ConfigGetStatus status = 1;
+    RpcResult result = 3;
+    ConfigString item = 2;
+}
+
+message ConfigStringList {
+    repeated ConfigString items = 1;
+}
+
+// Config generic.
+
+message ConfigKey {
+    string key = 1;
+}
+
+message ConfigListQuery {
+    // Nothing yet.
 }

@@ -71,6 +71,11 @@ service Director {
      *         if any are found matching the filter.
      */
     rpc PresentationList(DirectorPresentationListQuery) returns (DirectorPresentationList) {}
+
+    // Config services, from common.v1.
+    rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
+    rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
 }
 
 message DirectorStatusRequest {
