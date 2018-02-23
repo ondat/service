@@ -10,6 +10,22 @@ It is generated from these files:
 It has these top-level messages:
 	RpcResult
 	DataplaneCommon
+	DaemonStatus
+	ConfigUpdateReply
+	ConfigBool
+	ConfigGetBoolReply
+	ConfigBoolList
+	ConfigUint32
+	ConfigGetUint32Reply
+	ConfigUint32List
+	ConfigUint64
+	ConfigGetUint64Reply
+	ConfigUint64List
+	ConfigString
+	ConfigGetStringReply
+	ConfigStringList
+	ConfigKey
+	ConfigListQuery
 */
 package common_v1
 
@@ -28,11 +44,161 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type StatusCode int32
+
+const (
+	// Status code not set.
+	StatusCode_STATUS_NONE StatusCode = 0
+	// Generic 'no problem' response.
+	StatusCode_STATUS_OK StatusCode = 200
+	// Accepted, but might not take effect immediately.
+	StatusCode_STATUS_ACCEPTED StatusCode = 202
+	// Resource created.
+	StatusCode_STATUS_CREATED StatusCode = 201
+	// Generic 'huh?'.
+	StatusCode_STATUS_BAD_REQUEST StatusCode = 400
+	// Not permitted. We're unlikely to use this, it indicates authorization will help.
+	StatusCode_STATUS_UNAUTHORIZED StatusCode = 401
+	// Not allowed, authorization isn't the issue.
+	StatusCode_STATUS_FORBIDDEN StatusCode = 403
+	// Resource not found.
+	StatusCode_STATUS_NOT_FOUND StatusCode = 404
+	// Operation would cause a conflict somewhere.
+	StatusCode_STATUS_CONFLICT StatusCode = 409
+	// General serious failure.
+	StatusCode_STATUS_SERVER_ERROR StatusCode = 500
+)
+
+var StatusCode_name = map[int32]string{
+	0:   "STATUS_NONE",
+	200: "STATUS_OK",
+	202: "STATUS_ACCEPTED",
+	201: "STATUS_CREATED",
+	400: "STATUS_BAD_REQUEST",
+	401: "STATUS_UNAUTHORIZED",
+	403: "STATUS_FORBIDDEN",
+	404: "STATUS_NOT_FOUND",
+	409: "STATUS_CONFLICT",
+	500: "STATUS_SERVER_ERROR",
+}
+var StatusCode_value = map[string]int32{
+	"STATUS_NONE":         0,
+	"STATUS_OK":           200,
+	"STATUS_ACCEPTED":     202,
+	"STATUS_CREATED":      201,
+	"STATUS_BAD_REQUEST":  400,
+	"STATUS_UNAUTHORIZED": 401,
+	"STATUS_FORBIDDEN":    403,
+	"STATUS_NOT_FOUND":    404,
+	"STATUS_CONFLICT":     409,
+	"STATUS_SERVER_ERROR": 500,
+}
+
+func (x StatusCode) String() string {
+	return proto.EnumName(StatusCode_name, int32(x))
+}
+func (StatusCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+type ConfigGetStatus int32
+
+const (
+	ConfigGetStatus_GET_NONE    ConfigGetStatus = 0
+	ConfigGetStatus_GET_OK      ConfigGetStatus = 1
+	ConfigGetStatus_GET_MISSING ConfigGetStatus = 2
+	ConfigGetStatus_GET_FAILED  ConfigGetStatus = 3
+)
+
+var ConfigGetStatus_name = map[int32]string{
+	0: "GET_NONE",
+	1: "GET_OK",
+	2: "GET_MISSING",
+	3: "GET_FAILED",
+}
+var ConfigGetStatus_value = map[string]int32{
+	"GET_NONE":    0,
+	"GET_OK":      1,
+	"GET_MISSING": 2,
+	"GET_FAILED":  3,
+}
+
+func (x ConfigGetStatus) String() string {
+	return proto.EnumName(ConfigGetStatus_name, int32(x))
+}
+func (ConfigGetStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+type ConfigUpdateStatus int32
+
+const (
+	ConfigUpdateStatus_SET_NONE      ConfigUpdateStatus = 0
+	ConfigUpdateStatus_SET_OK        ConfigUpdateStatus = 1
+	ConfigUpdateStatus_SET_IMMUTABLE ConfigUpdateStatus = 2
+	ConfigUpdateStatus_SET_FAILED    ConfigUpdateStatus = 3
+	ConfigUpdateStatus_SET_READ_ONLY ConfigUpdateStatus = 4
+)
+
+var ConfigUpdateStatus_name = map[int32]string{
+	0: "SET_NONE",
+	1: "SET_OK",
+	2: "SET_IMMUTABLE",
+	3: "SET_FAILED",
+	4: "SET_READ_ONLY",
+}
+var ConfigUpdateStatus_value = map[string]int32{
+	"SET_NONE":      0,
+	"SET_OK":        1,
+	"SET_IMMUTABLE": 2,
+	"SET_FAILED":    3,
+	"SET_READ_ONLY": 4,
+}
+
+func (x ConfigUpdateStatus) String() string {
+	return proto.EnumName(ConfigUpdateStatus_name, int32(x))
+}
+func (ConfigUpdateStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+type DaemonStatus_ProgramState int32
+
+const (
+	DaemonStatus_DS_NONE     DaemonStatus_ProgramState = 0
+	DaemonStatus_DS_STARTING DaemonStatus_ProgramState = 1
+	DaemonStatus_DS_READY    DaemonStatus_ProgramState = 2
+	DaemonStatus_DS_STOPPING DaemonStatus_ProgramState = 3
+	DaemonStatus_DS_STOPPED  DaemonStatus_ProgramState = 4
+	DaemonStatus_DS_ERROR    DaemonStatus_ProgramState = 5
+	DaemonStatus_DS_CRITICAL DaemonStatus_ProgramState = 6
+)
+
+var DaemonStatus_ProgramState_name = map[int32]string{
+	0: "DS_NONE",
+	1: "DS_STARTING",
+	2: "DS_READY",
+	3: "DS_STOPPING",
+	4: "DS_STOPPED",
+	5: "DS_ERROR",
+	6: "DS_CRITICAL",
+}
+var DaemonStatus_ProgramState_value = map[string]int32{
+	"DS_NONE":     0,
+	"DS_STARTING": 1,
+	"DS_READY":    2,
+	"DS_STOPPING": 3,
+	"DS_STOPPED":  4,
+	"DS_ERROR":    5,
+	"DS_CRITICAL": 6,
+}
+
+func (x DaemonStatus_ProgramState) String() string {
+	return proto.EnumName(DaemonStatus_ProgramState_name, int32(x))
+}
+func (DaemonStatus_ProgramState) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2, 0} }
+
 type RpcResult struct {
 	// Whether or not the operation was successful.
 	Success bool `protobuf:"varint,1,opt,name=success" json:"success,omitempty"`
 	// If the operation was not successful, this is an explanatory message.
 	Reason string `protobuf:"bytes,2,opt,name=reason" json:"reason,omitempty"`
+	// An HTTP-like status code.
+	Code StatusCode `protobuf:"varint,3,opt,name=code,enum=common.v1.StatusCode" json:"code,omitempty"`
 }
 
 func (m *RpcResult) Reset()                    { *m = RpcResult{} }
@@ -52,6 +218,13 @@ func (m *RpcResult) GetReason() string {
 		return m.Reason
 	}
 	return ""
+}
+
+func (m *RpcResult) GetCode() StatusCode {
+	if m != nil {
+		return m.Code
+	}
+	return StatusCode_STATUS_NONE
 }
 
 type DataplaneCommon struct {
@@ -80,23 +253,445 @@ func (m *DataplaneCommon) GetGeneration() uint32 {
 	return 0
 }
 
+type DaemonStatus struct {
+	ProgramState        DaemonStatus_ProgramState `protobuf:"varint,1,opt,name=program_state,json=programState,enum=common.v1.DaemonStatus_ProgramState" json:"program_state,omitempty"`
+	ProgramStateMessage string                    `protobuf:"bytes,2,opt,name=program_state_message,json=programStateMessage" json:"program_state_message,omitempty"`
+}
+
+func (m *DaemonStatus) Reset()                    { *m = DaemonStatus{} }
+func (m *DaemonStatus) String() string            { return proto.CompactTextString(m) }
+func (*DaemonStatus) ProtoMessage()               {}
+func (*DaemonStatus) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *DaemonStatus) GetProgramState() DaemonStatus_ProgramState {
+	if m != nil {
+		return m.ProgramState
+	}
+	return DaemonStatus_DS_NONE
+}
+
+func (m *DaemonStatus) GetProgramStateMessage() string {
+	if m != nil {
+		return m.ProgramStateMessage
+	}
+	return ""
+}
+
+type ConfigUpdateReply struct {
+	Status ConfigUpdateStatus `protobuf:"varint,1,opt,name=status,enum=common.v1.ConfigUpdateStatus" json:"status,omitempty"`
+	Result *RpcResult         `protobuf:"bytes,2,opt,name=result" json:"result,omitempty"`
+}
+
+func (m *ConfigUpdateReply) Reset()                    { *m = ConfigUpdateReply{} }
+func (m *ConfigUpdateReply) String() string            { return proto.CompactTextString(m) }
+func (*ConfigUpdateReply) ProtoMessage()               {}
+func (*ConfigUpdateReply) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *ConfigUpdateReply) GetStatus() ConfigUpdateStatus {
+	if m != nil {
+		return m.Status
+	}
+	return ConfigUpdateStatus_SET_NONE
+}
+
+func (m *ConfigUpdateReply) GetResult() *RpcResult {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+type ConfigBool struct {
+	Key   string `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
+	Value bool   `protobuf:"varint,2,opt,name=value" json:"value,omitempty"`
+}
+
+func (m *ConfigBool) Reset()                    { *m = ConfigBool{} }
+func (m *ConfigBool) String() string            { return proto.CompactTextString(m) }
+func (*ConfigBool) ProtoMessage()               {}
+func (*ConfigBool) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+
+func (m *ConfigBool) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+func (m *ConfigBool) GetValue() bool {
+	if m != nil {
+		return m.Value
+	}
+	return false
+}
+
+type ConfigGetBoolReply struct {
+	Status ConfigGetStatus `protobuf:"varint,1,opt,name=status,enum=common.v1.ConfigGetStatus" json:"status,omitempty"`
+	Result *RpcResult      `protobuf:"bytes,3,opt,name=result" json:"result,omitempty"`
+	Item   *ConfigBool     `protobuf:"bytes,2,opt,name=item" json:"item,omitempty"`
+}
+
+func (m *ConfigGetBoolReply) Reset()                    { *m = ConfigGetBoolReply{} }
+func (m *ConfigGetBoolReply) String() string            { return proto.CompactTextString(m) }
+func (*ConfigGetBoolReply) ProtoMessage()               {}
+func (*ConfigGetBoolReply) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *ConfigGetBoolReply) GetStatus() ConfigGetStatus {
+	if m != nil {
+		return m.Status
+	}
+	return ConfigGetStatus_GET_NONE
+}
+
+func (m *ConfigGetBoolReply) GetResult() *RpcResult {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+func (m *ConfigGetBoolReply) GetItem() *ConfigBool {
+	if m != nil {
+		return m.Item
+	}
+	return nil
+}
+
+type ConfigBoolList struct {
+	Items []*ConfigBool `protobuf:"bytes,1,rep,name=items" json:"items,omitempty"`
+}
+
+func (m *ConfigBoolList) Reset()                    { *m = ConfigBoolList{} }
+func (m *ConfigBoolList) String() string            { return proto.CompactTextString(m) }
+func (*ConfigBoolList) ProtoMessage()               {}
+func (*ConfigBoolList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *ConfigBoolList) GetItems() []*ConfigBool {
+	if m != nil {
+		return m.Items
+	}
+	return nil
+}
+
+type ConfigUint32 struct {
+	Key   string `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
+	Value uint32 `protobuf:"varint,2,opt,name=value" json:"value,omitempty"`
+}
+
+func (m *ConfigUint32) Reset()                    { *m = ConfigUint32{} }
+func (m *ConfigUint32) String() string            { return proto.CompactTextString(m) }
+func (*ConfigUint32) ProtoMessage()               {}
+func (*ConfigUint32) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *ConfigUint32) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+func (m *ConfigUint32) GetValue() uint32 {
+	if m != nil {
+		return m.Value
+	}
+	return 0
+}
+
+type ConfigGetUint32Reply struct {
+	Status ConfigGetStatus `protobuf:"varint,1,opt,name=status,enum=common.v1.ConfigGetStatus" json:"status,omitempty"`
+	Result *RpcResult      `protobuf:"bytes,3,opt,name=result" json:"result,omitempty"`
+	Item   *ConfigUint32   `protobuf:"bytes,2,opt,name=item" json:"item,omitempty"`
+}
+
+func (m *ConfigGetUint32Reply) Reset()                    { *m = ConfigGetUint32Reply{} }
+func (m *ConfigGetUint32Reply) String() string            { return proto.CompactTextString(m) }
+func (*ConfigGetUint32Reply) ProtoMessage()               {}
+func (*ConfigGetUint32Reply) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+
+func (m *ConfigGetUint32Reply) GetStatus() ConfigGetStatus {
+	if m != nil {
+		return m.Status
+	}
+	return ConfigGetStatus_GET_NONE
+}
+
+func (m *ConfigGetUint32Reply) GetResult() *RpcResult {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+func (m *ConfigGetUint32Reply) GetItem() *ConfigUint32 {
+	if m != nil {
+		return m.Item
+	}
+	return nil
+}
+
+type ConfigUint32List struct {
+	Items []*ConfigUint32 `protobuf:"bytes,1,rep,name=items" json:"items,omitempty"`
+}
+
+func (m *ConfigUint32List) Reset()                    { *m = ConfigUint32List{} }
+func (m *ConfigUint32List) String() string            { return proto.CompactTextString(m) }
+func (*ConfigUint32List) ProtoMessage()               {}
+func (*ConfigUint32List) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+
+func (m *ConfigUint32List) GetItems() []*ConfigUint32 {
+	if m != nil {
+		return m.Items
+	}
+	return nil
+}
+
+type ConfigUint64 struct {
+	Key   string `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
+	Value uint64 `protobuf:"varint,2,opt,name=value" json:"value,omitempty"`
+}
+
+func (m *ConfigUint64) Reset()                    { *m = ConfigUint64{} }
+func (m *ConfigUint64) String() string            { return proto.CompactTextString(m) }
+func (*ConfigUint64) ProtoMessage()               {}
+func (*ConfigUint64) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+
+func (m *ConfigUint64) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+func (m *ConfigUint64) GetValue() uint64 {
+	if m != nil {
+		return m.Value
+	}
+	return 0
+}
+
+type ConfigGetUint64Reply struct {
+	Status ConfigGetStatus `protobuf:"varint,1,opt,name=status,enum=common.v1.ConfigGetStatus" json:"status,omitempty"`
+	Result *RpcResult      `protobuf:"bytes,3,opt,name=result" json:"result,omitempty"`
+	Item   *ConfigUint64   `protobuf:"bytes,2,opt,name=item" json:"item,omitempty"`
+}
+
+func (m *ConfigGetUint64Reply) Reset()                    { *m = ConfigGetUint64Reply{} }
+func (m *ConfigGetUint64Reply) String() string            { return proto.CompactTextString(m) }
+func (*ConfigGetUint64Reply) ProtoMessage()               {}
+func (*ConfigGetUint64Reply) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+
+func (m *ConfigGetUint64Reply) GetStatus() ConfigGetStatus {
+	if m != nil {
+		return m.Status
+	}
+	return ConfigGetStatus_GET_NONE
+}
+
+func (m *ConfigGetUint64Reply) GetResult() *RpcResult {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+func (m *ConfigGetUint64Reply) GetItem() *ConfigUint64 {
+	if m != nil {
+		return m.Item
+	}
+	return nil
+}
+
+type ConfigUint64List struct {
+	Items []*ConfigUint64 `protobuf:"bytes,1,rep,name=items" json:"items,omitempty"`
+}
+
+func (m *ConfigUint64List) Reset()                    { *m = ConfigUint64List{} }
+func (m *ConfigUint64List) String() string            { return proto.CompactTextString(m) }
+func (*ConfigUint64List) ProtoMessage()               {}
+func (*ConfigUint64List) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+
+func (m *ConfigUint64List) GetItems() []*ConfigUint64 {
+	if m != nil {
+		return m.Items
+	}
+	return nil
+}
+
+type ConfigString struct {
+	Key   string `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
+	Value string `protobuf:"bytes,2,opt,name=value" json:"value,omitempty"`
+}
+
+func (m *ConfigString) Reset()                    { *m = ConfigString{} }
+func (m *ConfigString) String() string            { return proto.CompactTextString(m) }
+func (*ConfigString) ProtoMessage()               {}
+func (*ConfigString) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
+
+func (m *ConfigString) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+func (m *ConfigString) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+type ConfigGetStringReply struct {
+	Status ConfigGetStatus `protobuf:"varint,1,opt,name=status,enum=common.v1.ConfigGetStatus" json:"status,omitempty"`
+	Result *RpcResult      `protobuf:"bytes,3,opt,name=result" json:"result,omitempty"`
+	Item   *ConfigString   `protobuf:"bytes,2,opt,name=item" json:"item,omitempty"`
+}
+
+func (m *ConfigGetStringReply) Reset()                    { *m = ConfigGetStringReply{} }
+func (m *ConfigGetStringReply) String() string            { return proto.CompactTextString(m) }
+func (*ConfigGetStringReply) ProtoMessage()               {}
+func (*ConfigGetStringReply) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
+
+func (m *ConfigGetStringReply) GetStatus() ConfigGetStatus {
+	if m != nil {
+		return m.Status
+	}
+	return ConfigGetStatus_GET_NONE
+}
+
+func (m *ConfigGetStringReply) GetResult() *RpcResult {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+func (m *ConfigGetStringReply) GetItem() *ConfigString {
+	if m != nil {
+		return m.Item
+	}
+	return nil
+}
+
+type ConfigStringList struct {
+	Items []*ConfigString `protobuf:"bytes,1,rep,name=items" json:"items,omitempty"`
+}
+
+func (m *ConfigStringList) Reset()                    { *m = ConfigStringList{} }
+func (m *ConfigStringList) String() string            { return proto.CompactTextString(m) }
+func (*ConfigStringList) ProtoMessage()               {}
+func (*ConfigStringList) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
+
+func (m *ConfigStringList) GetItems() []*ConfigString {
+	if m != nil {
+		return m.Items
+	}
+	return nil
+}
+
+type ConfigKey struct {
+	Key string `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
+}
+
+func (m *ConfigKey) Reset()                    { *m = ConfigKey{} }
+func (m *ConfigKey) String() string            { return proto.CompactTextString(m) }
+func (*ConfigKey) ProtoMessage()               {}
+func (*ConfigKey) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{16} }
+
+func (m *ConfigKey) GetKey() string {
+	if m != nil {
+		return m.Key
+	}
+	return ""
+}
+
+type ConfigListQuery struct {
+}
+
+func (m *ConfigListQuery) Reset()                    { *m = ConfigListQuery{} }
+func (m *ConfigListQuery) String() string            { return proto.CompactTextString(m) }
+func (*ConfigListQuery) ProtoMessage()               {}
+func (*ConfigListQuery) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{17} }
+
 func init() {
 	proto.RegisterType((*RpcResult)(nil), "common.v1.RpcResult")
 	proto.RegisterType((*DataplaneCommon)(nil), "common.v1.DataplaneCommon")
+	proto.RegisterType((*DaemonStatus)(nil), "common.v1.DaemonStatus")
+	proto.RegisterType((*ConfigUpdateReply)(nil), "common.v1.ConfigUpdateReply")
+	proto.RegisterType((*ConfigBool)(nil), "common.v1.ConfigBool")
+	proto.RegisterType((*ConfigGetBoolReply)(nil), "common.v1.ConfigGetBoolReply")
+	proto.RegisterType((*ConfigBoolList)(nil), "common.v1.ConfigBoolList")
+	proto.RegisterType((*ConfigUint32)(nil), "common.v1.ConfigUint32")
+	proto.RegisterType((*ConfigGetUint32Reply)(nil), "common.v1.ConfigGetUint32Reply")
+	proto.RegisterType((*ConfigUint32List)(nil), "common.v1.ConfigUint32List")
+	proto.RegisterType((*ConfigUint64)(nil), "common.v1.ConfigUint64")
+	proto.RegisterType((*ConfigGetUint64Reply)(nil), "common.v1.ConfigGetUint64Reply")
+	proto.RegisterType((*ConfigUint64List)(nil), "common.v1.ConfigUint64List")
+	proto.RegisterType((*ConfigString)(nil), "common.v1.ConfigString")
+	proto.RegisterType((*ConfigGetStringReply)(nil), "common.v1.ConfigGetStringReply")
+	proto.RegisterType((*ConfigStringList)(nil), "common.v1.ConfigStringList")
+	proto.RegisterType((*ConfigKey)(nil), "common.v1.ConfigKey")
+	proto.RegisterType((*ConfigListQuery)(nil), "common.v1.ConfigListQuery")
+	proto.RegisterEnum("common.v1.StatusCode", StatusCode_name, StatusCode_value)
+	proto.RegisterEnum("common.v1.ConfigGetStatus", ConfigGetStatus_name, ConfigGetStatus_value)
+	proto.RegisterEnum("common.v1.ConfigUpdateStatus", ConfigUpdateStatus_name, ConfigUpdateStatus_value)
+	proto.RegisterEnum("common.v1.DaemonStatus_ProgramState", DaemonStatus_ProgramState_name, DaemonStatus_ProgramState_value)
 }
 
 func init() { proto.RegisterFile("common.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 153 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x49, 0xce, 0xcf, 0xcd,
-	0xcd, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x84, 0xf2, 0xca, 0x0c, 0x95, 0x6c,
-	0xb9, 0x38, 0x83, 0x0a, 0x92, 0x83, 0x52, 0x8b, 0x4b, 0x73, 0x4a, 0x84, 0x24, 0xb8, 0xd8, 0x8b,
-	0x4b, 0x93, 0x93, 0x53, 0x8b, 0x8b, 0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x82, 0x60, 0x5c, 0x21,
-	0x31, 0x2e, 0xb6, 0xa2, 0xd4, 0xc4, 0xe2, 0xfc, 0x3c, 0x09, 0x26, 0x05, 0x46, 0x0d, 0xce, 0x20,
-	0x28, 0x4f, 0xc9, 0x95, 0x8b, 0xdf, 0x25, 0xb1, 0x24, 0xb1, 0x20, 0x27, 0x31, 0x2f, 0xd5, 0x19,
-	0x6c, 0xa8, 0x90, 0x10, 0x17, 0x4b, 0x69, 0x69, 0x66, 0x8a, 0x04, 0x33, 0x58, 0x21, 0x98, 0x2d,
-	0x24, 0xc7, 0xc5, 0x95, 0x9e, 0x9a, 0x97, 0x5a, 0x94, 0x58, 0x92, 0x99, 0x9f, 0x27, 0xc1, 0xa2,
-	0xc0, 0xa8, 0xc1, 0x1b, 0x84, 0x24, 0x92, 0xc4, 0x06, 0x76, 0x97, 0x31, 0x20, 0x00, 0x00, 0xff,
-	0xff, 0x9e, 0x83, 0x76, 0x87, 0xa7, 0x00, 0x00, 0x00,
+	// 831 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x96, 0xcf, 0x6f, 0xe3, 0x44,
+	0x14, 0xc7, 0x71, 0x9d, 0x66, 0xeb, 0xd7, 0x34, 0x9d, 0x4e, 0x5b, 0x36, 0x42, 0x5a, 0x54, 0x59,
+	0x1c, 0x4a, 0x17, 0x22, 0x91, 0x0d, 0xb9, 0x71, 0x70, 0xec, 0x49, 0xb0, 0x9a, 0xd8, 0xd9, 0xb1,
+	0x83, 0xb4, 0x5c, 0x2c, 0x93, 0x0c, 0x21, 0x22, 0xb1, 0xa3, 0xd8, 0x59, 0x11, 0xfe, 0x03, 0x6e,
+	0x20, 0xb8, 0x70, 0xe4, 0xc0, 0xff, 0x02, 0xfc, 0x27, 0xdc, 0xf9, 0x03, 0xd0, 0x78, 0xc6, 0x59,
+	0x67, 0xd3, 0x28, 0x7b, 0x5a, 0xed, 0x6d, 0xde, 0xaf, 0x6f, 0xde, 0xfb, 0x78, 0x34, 0x2f, 0x50,
+	0x19, 0xc5, 0xf3, 0x79, 0x1c, 0xd5, 0x17, 0xcb, 0x38, 0x8d, 0xb1, 0x26, 0xad, 0x97, 0x9f, 0xe9,
+	0xdf, 0x81, 0x46, 0x17, 0x23, 0xca, 0x92, 0xd5, 0x2c, 0xc5, 0x35, 0x78, 0x94, 0xac, 0x46, 0x23,
+	0x96, 0x24, 0x35, 0xe5, 0x46, 0xb9, 0x3d, 0xa1, 0xb9, 0x89, 0xdf, 0x87, 0xf2, 0x92, 0x85, 0x49,
+	0x1c, 0xd5, 0x8e, 0x6e, 0x94, 0x5b, 0x8d, 0x4a, 0x0b, 0x7f, 0x0c, 0xa5, 0x51, 0x3c, 0x66, 0x35,
+	0xf5, 0x46, 0xb9, 0xad, 0x36, 0xae, 0xeb, 0x1b, 0xe1, 0xba, 0x97, 0x86, 0xe9, 0x2a, 0x31, 0xe3,
+	0x31, 0xa3, 0x59, 0x8a, 0x4e, 0xe0, 0xdc, 0x0a, 0xd3, 0x70, 0x31, 0x0b, 0x23, 0x66, 0x66, 0x69,
+	0x18, 0x43, 0x69, 0xb5, 0x9a, 0x8e, 0xb3, 0x6a, 0x8d, 0x66, 0x67, 0xfc, 0x21, 0xc0, 0x84, 0x45,
+	0x6c, 0x19, 0xa6, 0xd3, 0x38, 0xaa, 0x95, 0x6e, 0x94, 0xdb, 0x33, 0x5a, 0xf0, 0xe8, 0x3f, 0x1d,
+	0x41, 0xc5, 0x0a, 0xd9, 0x3c, 0x8e, 0xc4, 0x2f, 0x60, 0x1b, 0xce, 0x16, 0xcb, 0x78, 0xb2, 0x0c,
+	0xe7, 0x41, 0x92, 0x86, 0x29, 0xcb, 0x5a, 0xaf, 0x36, 0x3e, 0x2a, 0xf4, 0x52, 0xcc, 0xaf, 0x0f,
+	0x44, 0x32, 0xb7, 0x18, 0xad, 0x2c, 0x0a, 0x16, 0x6e, 0xc0, 0xf5, 0x96, 0x54, 0x30, 0x67, 0x49,
+	0x12, 0x4e, 0x98, 0x1c, 0xfa, 0xb2, 0x98, 0xdc, 0x17, 0x21, 0xfd, 0x47, 0xa8, 0x14, 0x15, 0xf1,
+	0x29, 0x3c, 0xb2, 0xbc, 0xc0, 0x71, 0x1d, 0x82, 0xde, 0xc3, 0xe7, 0x70, 0x6a, 0x79, 0x81, 0xe7,
+	0x1b, 0xd4, 0xb7, 0x9d, 0x2e, 0x52, 0x70, 0x05, 0x4e, 0x2c, 0x2f, 0xa0, 0xc4, 0xb0, 0x5e, 0xa0,
+	0xa3, 0x4d, 0xd8, 0x1d, 0x0c, 0x78, 0x58, 0xc5, 0x55, 0x80, 0xdc, 0x41, 0x2c, 0x54, 0x92, 0xe9,
+	0x84, 0x52, 0x97, 0xa2, 0x63, 0x99, 0x6e, 0x52, 0xdb, 0xb7, 0x4d, 0xa3, 0x87, 0xca, 0xfa, 0x0f,
+	0x70, 0x61, 0xc6, 0xd1, 0xb7, 0xd3, 0xc9, 0x70, 0x31, 0xe6, 0xd3, 0xb0, 0xc5, 0x6c, 0x8d, 0x3f,
+	0x87, 0x72, 0x92, 0x4d, 0x2a, 0x41, 0x3c, 0x29, 0x80, 0x28, 0x66, 0x0b, 0x1c, 0x54, 0x26, 0xe3,
+	0x4f, 0xf8, 0x17, 0xe6, 0xb7, 0x20, 0x1b, 0xf6, 0xb4, 0x71, 0x55, 0x28, 0xdb, 0xdc, 0x10, 0x2a,
+	0x73, 0xf4, 0x26, 0x80, 0xd0, 0x6a, 0xc7, 0xf1, 0x0c, 0x23, 0x50, 0xbf, 0x67, 0xeb, 0xec, 0xf7,
+	0x34, 0xca, 0x8f, 0xf8, 0x0a, 0x8e, 0x5f, 0x86, 0xb3, 0x95, 0x20, 0x77, 0x42, 0x85, 0xa1, 0xff,
+	0xa1, 0x00, 0x16, 0x65, 0x5d, 0x96, 0xf2, 0x4a, 0xd1, 0x71, 0xe3, 0xb5, 0x8e, 0x3f, 0xd8, 0xe9,
+	0xb8, 0xcb, 0xd2, 0xbd, 0xed, 0xaa, 0x87, 0xdb, 0xe5, 0xd7, 0x74, 0x9a, 0xb2, 0xb9, 0x1c, 0xed,
+	0x7a, 0x47, 0x3f, 0xeb, 0x25, 0x4b, 0xd1, 0xbf, 0x80, 0xea, 0x2b, 0x5f, 0x6f, 0x9a, 0xa4, 0xf8,
+	0x29, 0x1c, 0xf3, 0x08, 0xef, 0x4e, 0xdd, 0x5f, 0x2d, 0x72, 0xf4, 0x16, 0x54, 0x24, 0xe4, 0x69,
+	0x94, 0x3e, 0x6b, 0x1c, 0x42, 0x73, 0x96, 0xa3, 0xf9, 0x53, 0x81, 0xab, 0xcd, 0xac, 0xa2, 0xf6,
+	0x6d, 0xc1, 0x79, 0xba, 0x05, 0xe7, 0xf1, 0xee, 0x75, 0x11, 0xdd, 0x08, 0x3c, 0x06, 0xa0, 0xa2,
+	0x37, 0x03, 0xf4, 0xe9, 0x36, 0xa0, 0xbd, 0x0a, 0x0f, 0x21, 0x6a, 0x35, 0x0f, 0x21, 0x2a, 0xed,
+	0x45, 0xd4, 0x6a, 0xbe, 0x4b, 0x88, 0x5a, 0xcd, 0x87, 0x10, 0xb5, 0x9a, 0x6f, 0x8e, 0xa8, 0xd5,
+	0xdc, 0x41, 0xe4, 0xa5, 0xcb, 0x69, 0x34, 0x39, 0x84, 0x48, 0x7b, 0x10, 0x91, 0xa8, 0x7d, 0x57,
+	0x10, 0xc9, 0x6e, 0x5e, 0x43, 0x24, 0xbc, 0x6f, 0x86, 0x48, 0x2a, 0x48, 0x44, 0x4f, 0x40, 0x13,
+	0xee, 0x7b, 0xb6, 0xde, 0xe5, 0xa3, 0x5f, 0xc0, 0xb9, 0x08, 0x73, 0xed, 0xe7, 0x2b, 0xb6, 0x5c,
+	0xdf, 0xfd, 0xab, 0x00, 0xbc, 0xda, 0x4a, 0xfc, 0x35, 0xf5, 0x7c, 0xc3, 0x1f, 0x6e, 0x1e, 0xeb,
+	0x2a, 0x68, 0xd2, 0xe1, 0xde, 0xa3, 0xbf, 0x14, 0x7c, 0x05, 0xe7, 0xd2, 0x36, 0x4c, 0x93, 0x0c,
+	0x7c, 0x62, 0xa1, 0x7f, 0x14, 0x7c, 0x09, 0x55, 0xe9, 0x35, 0x29, 0x31, 0xb8, 0xf3, 0x6f, 0x05,
+	0x3f, 0x06, 0x2c, 0x9d, 0x6d, 0xc3, 0x0a, 0x28, 0x79, 0x3e, 0x24, 0x9e, 0x8f, 0x7e, 0x56, 0x71,
+	0x0d, 0x2e, 0x65, 0x60, 0xe8, 0x18, 0x43, 0xff, 0x4b, 0x97, 0xda, 0x5f, 0x13, 0x0b, 0xfd, 0xa2,
+	0xe2, 0x6b, 0x40, 0x32, 0xd2, 0x71, 0x69, 0xdb, 0xb6, 0x2c, 0xe2, 0xa0, 0x5f, 0x8b, 0x6e, 0xc7,
+	0xf5, 0x83, 0x8e, 0x3b, 0x74, 0x2c, 0xf4, 0x9b, 0x5a, 0xe8, 0xc5, 0x74, 0x9d, 0x4e, 0xcf, 0x36,
+	0x7d, 0xf4, 0x7b, 0x51, 0xdd, 0x23, 0xf4, 0x2b, 0x42, 0xe5, 0xa6, 0xf8, 0x4f, 0xbd, 0xeb, 0xe5,
+	0xe3, 0x6f, 0x3e, 0x2b, 0xdf, 0x25, 0x5d, 0xe2, 0xe7, 0xc3, 0x02, 0x94, 0xb9, 0xe5, 0xde, 0x23,
+	0x85, 0x93, 0xe0, 0xe7, 0xbe, 0xed, 0x79, 0x7c, 0x0d, 0x1d, 0xf1, 0x35, 0xc4, 0x1d, 0x1d, 0xc3,
+	0xee, 0x11, 0x0b, 0xa9, 0x77, 0xe3, 0xfc, 0xd9, 0x2e, 0x6e, 0x0e, 0x2e, 0xe8, 0x6d, 0x09, 0x7a,
+	0xb9, 0xe0, 0x05, 0x9c, 0xf1, 0xb3, 0xdd, 0xef, 0x0f, 0x7d, 0xa3, 0xdd, 0x23, 0x42, 0xd2, 0x2b,
+	0x48, 0xe6, 0x29, 0x7c, 0x13, 0x06, 0xae, 0xd3, 0x7b, 0x81, 0x4a, 0xdf, 0x94, 0xb3, 0x3f, 0x27,
+	0xcf, 0xfe, 0x0f, 0x00, 0x00, 0xff, 0xff, 0x14, 0xab, 0x4b, 0x37, 0xac, 0x08, 0x00, 0x00,
 }
