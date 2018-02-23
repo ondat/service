@@ -155,6 +155,9 @@ message DfsInitiatorStatusRequest {
 message DfsInitiatorStatus {
     // The version control info string.
     string version_info = 1;
+
+    // Generic daemon status.
+    common.v1.DaemonStatus status = 2;
 }
 
 message DfsResponderStatusRequest {
@@ -164,6 +167,9 @@ message DfsResponderStatusRequest {
 message DfsResponderStatus {
     // The version control info string.
     string version_info = 1;
+
+    // Generic daemon status.
+    common.v1.DaemonStatus status = 2;
 }
 
 //

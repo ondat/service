@@ -90,6 +90,9 @@ message FsStatusRequest {
 message FsStatus {
     // The version control info string.
     string version_info = 1;
+
+    // Generic daemon status.
+    common.v1.DaemonStatus status = 2;
 }
 
 message FsVolumeListQuery {

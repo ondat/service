@@ -47,6 +47,23 @@ message DataplaneCommon {
     uint32 generation = 4;
 }
 
+
+message DaemonStatus {
+    enum ProgramState {
+        DS_NONE = 0;        // Status not set.
+        DS_STARTING = 1;    // Program is starting.
+        DS_READY = 2;       // Program has started and is ready to process requests.
+        DS_STOPPING = 3;    // Program has begun to shut down.
+        DS_STOPPED = 4;     // Program has shut down and may be safely terminated.
+        DS_ERROR = 5;       // Program has encountered an error and should be considered failed.
+        DS_CRITICAL = 6;    // Program has encountered a serious error and requires intervention.
+    }
+
+    ProgramState program_state = 1;
+
+    string program_state_message = 2;
+}
+
 enum ConfigGetStatus {
     GET_NONE = 0;       // Status not set.
     GET_OK = 1;         // Fetch ok.
