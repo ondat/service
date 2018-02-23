@@ -82,6 +82,15 @@ service DfsInitiator {
      *         if any are available matching the filter.
      */
     rpc VolumeList(DfsInitiatorVolumeListQuery) returns (DfsInitiatorVolumeList) {}
+
+    // Config services, from common.v1.
+    rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
+    rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListBool(common.v1.ConfigListQuery) returns (common.v1.ConfigBoolList) {}
+
+    rpc ConfigGetString(common.v1.ConfigKey) returns (common.v1.ConfigGetStringReply) {}
+    rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 }
 
 /**
@@ -127,6 +136,15 @@ service DfsResponder {
      * returns a list of DfsReponderVolume messages, if any are available matching the filter.
      */
     rpc VolumeList(DfsResponderVolumeListQuery) returns (DfsResponderVolumeList) {}
+
+    // Config services, from common.v1.
+    rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
+    rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListBool(common.v1.ConfigListQuery) returns (common.v1.ConfigBoolList) {}
+
+    rpc ConfigGetString(common.v1.ConfigKey) returns (common.v1.ConfigGetStringReply) {}
+    rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 }
 
 

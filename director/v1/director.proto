@@ -76,6 +76,14 @@ service Director {
     rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
     rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
+
+    rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
+    rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListBool(common.v1.ConfigListQuery) returns (common.v1.ConfigBoolList) {}
+
+    rpc ConfigGetString(common.v1.ConfigKey) returns (common.v1.ConfigGetStringReply) {}
+    rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 }
 
 message DirectorStatusRequest {
