@@ -24,7 +24,7 @@ package director_v1
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import common_v1 "code.storageos.net/scm/storageos/service/common/v1"
+import common_v1 "code.storageos.net/storageos/service/common/v1"
 
 import (
 	context "golang.org/x/net/context"
