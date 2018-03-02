@@ -44,7 +44,8 @@ message DataplaneCommon {
     string uuid = 3;
 
     // The config 'revision', an opaque integer used by the controlplane to identify a configuration iteration.
-    uint32 revision = 4;
+    // This is deliberately matched to the revision field in etcd ResponseHeader.revision.
+    int64 revision = 4;
 
     // Latch for the versioning system. If true, updates will fail unless the generation of the change
     // is newer than the existing value.
