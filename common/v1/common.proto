@@ -43,8 +43,12 @@ message DataplaneCommon {
     // UUID. An opaque string used by the controlplane as a unique ID.
     string uuid = 3;
 
-    // The config 'generation', an opaque integer used by the controlplane to identify a configuration iteration.
-    uint32 generation = 4;
+    // The config 'revision', an opaque integer used by the controlplane to identify a configuration iteration.
+    uint32 revision = 4;
+
+    // Latch for the versioning system. If true, updates will fail unless the generation of the change
+    // is newer than the existing value.
+    bool versioned = 5;
 }
 
 
