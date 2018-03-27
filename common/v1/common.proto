@@ -52,6 +52,73 @@ message DataplaneCommon {
     bool versioned = 5;
 }
 
+/**
+ ** Crypto.
+ **/
+
+// The base crypto types use a `bytes` type for simplicity. They each have an
+// exact size or maximum size that they _must_ respect.
+
+message Aes256Key {
+    // 32 bytes (256 bits) of AES-256 key as raw bytes.
+    bytes key = 1;
+}
+
+message Aes256IV {
+    // 32 bytes (256 bits) of IV as raw bytes.
+    bytes iv = 1;
+}
+
+message XtsAes256Key {
+    // 64 bytes (512 bits) of key data for XTS-AES 256 as raw bytes.
+    bytes key = 1;
+}
+
+message EncryptedXtsAesKey {
+    // 64 bytes (512 bits) + up to 16 bytes of key data + padding for an
+    // encrypted XTS-AES 256 key, as raw data.
+    bytes ekey = 1;
+}
+
+message XtsKeyHMAC {
+    // 64 bytes (512 bits) of HMAC data.
+    bytes hmac = 1;
+}
+
+/*
+ * The VolumeKeySet is the keying information the controlplane needs to provide
+ * for crypto on the volume.
+ *
+ * Having a structure for this may seem overkill, but right now we're
+ * implementing a very simplified version of our protocol. In the future we will
+ * have multiple users, and the dataplane can independently derive the master
+ * key.
+ */
+
+message VolumeKeySet {
+    // The AES-XTS 256 volume master key.
+    XtsAes256Key vmk = 1;
+}
+
+message VolumeCrypto {
+    // The crypto stepping version. Current version is 1.
+    uint32 crypto_version = 2;
+
+    enum VolumeCryptoState {
+        VCS_NONE = 0;               // No encryption at all.
+        VCS_FULLY_ENCRYPTED = 1;    // All blocks encrypted.
+    }
+
+    // The current crypto state for this volume.
+    VolumeCryptoState crypto_state = 3;
+
+    // The set of keys required to use the volume.
+    VolumeKeySet keyset = 4;
+}
+
+/**
+ ** Status.
+ **/
 
 message DaemonStatus {
     enum ProgramState {

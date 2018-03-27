@@ -153,6 +153,9 @@ message DirectorVolume {
     bool no_write_cache = 12;
     // Enable QoS throttling.
     bool throttle = 13;
+
+    // Crypto config.
+    common.v1.VolumeCrypto volume_crypto = 15;
 }
 
 message DirectorVolumeList {
