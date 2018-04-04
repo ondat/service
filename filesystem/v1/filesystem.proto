@@ -81,6 +81,9 @@ service Fs {
     rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 
+    rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
+    rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
 }
 
 message FsStatusRequest {
