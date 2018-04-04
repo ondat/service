@@ -112,6 +112,13 @@ message VolumeCrypto {
     // The current crypto state for this volume.
     VolumeCryptoState crypto_state = 3;
 
+    // True iff the keyset contains valid key data.
+    // Should only be set on create, and is likely to trigger validation errors
+    // if set at other times.
+    //
+    // The dataplane servers will not reflect key data.
+    bool keyset_present = 5;
+
     // The set of keys required to use the volume.
     VolumeKeySet keyset = 4;
 }
