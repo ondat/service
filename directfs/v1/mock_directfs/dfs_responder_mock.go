@@ -7,8 +7,8 @@ package mock_v1
 import (
 	v1 "code.storageos.net/storageos/service/common/v1"
 	v10 "code.storageos.net/storageos/service/directfs/v1"
+	context "context"
 	gomock "github.com/golang/mock/gomock"
-	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 	reflect "reflect"
 )
