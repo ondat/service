@@ -7,8 +7,8 @@ package mock_v1
 import (
 	v1 "code.storageos.net/storageos/service/common/v1"
 	v10 "code.storageos.net/storageos/service/filesystem/v1"
+	context "context"
 	gomock "github.com/golang/mock/gomock"
-	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 	reflect "reflect"
 )
@@ -72,6 +72,24 @@ func (mr *MockFsClientMockRecorder) ConfigGetString(arg0, arg1 interface{}, arg2
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetString", reflect.TypeOf((*MockFsClient)(nil).ConfigGetString), varargs...)
 }
 
+// ConfigGetUint32 mocks base method
+func (m *MockFsClient) ConfigGetUint32(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetUint32Reply, error) {
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ConfigGetUint32", varargs...)
+	ret0, _ := ret[0].(*v1.ConfigGetUint32Reply)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ConfigGetUint32 indicates an expected call of ConfigGetUint32
+func (mr *MockFsClientMockRecorder) ConfigGetUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetUint32", reflect.TypeOf((*MockFsClient)(nil).ConfigGetUint32), varargs...)
+}
+
 // ConfigListBool mocks base method
 func (m *MockFsClient) ConfigListBool(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigBoolList, error) {
 	varargs := []interface{}{arg0, arg1}
@@ -108,6 +126,24 @@ func (mr *MockFsClientMockRecorder) ConfigListString(arg0, arg1 interface{}, arg
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListString", reflect.TypeOf((*MockFsClient)(nil).ConfigListString), varargs...)
 }
 
+// ConfigListUint32 mocks base method
+func (m *MockFsClient) ConfigListUint32(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigUint32List, error) {
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ConfigListUint32", varargs...)
+	ret0, _ := ret[0].(*v1.ConfigUint32List)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ConfigListUint32 indicates an expected call of ConfigListUint32
+func (mr *MockFsClientMockRecorder) ConfigListUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListUint32", reflect.TypeOf((*MockFsClient)(nil).ConfigListUint32), varargs...)
+}
+
 // ConfigUpdateBool mocks base method
 func (m *MockFsClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.ConfigBool, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
 	varargs := []interface{}{arg0, arg1}
@@ -142,6 +178,24 @@ func (m *MockFsClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.ConfigS
 func (mr *MockFsClientMockRecorder) ConfigUpdateString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateString", reflect.TypeOf((*MockFsClient)(nil).ConfigUpdateString), varargs...)
+}
+
+// ConfigUpdateUint32 mocks base method
+func (m *MockFsClient) ConfigUpdateUint32(arg0 context.Context, arg1 *v1.ConfigUint32, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ConfigUpdateUint32", varargs...)
+	ret0, _ := ret[0].(*v1.ConfigUpdateReply)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ConfigUpdateUint32 indicates an expected call of ConfigUpdateUint32
+func (mr *MockFsClientMockRecorder) ConfigUpdateUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateUint32", reflect.TypeOf((*MockFsClient)(nil).ConfigUpdateUint32), varargs...)
 }
 
 // PresentationCreate mocks base method
