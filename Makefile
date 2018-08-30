@@ -12,6 +12,7 @@ GRPC_SRC 	+= directfs/v1/directfs.proto
 GRPC_SRC	+= director/v1/director.proto
 GRPC_SRC	+= filesystem/v1/filesystem.proto
 GRPC_SRC	+= rdbplugin/v1/rdbplugin.proto
+GRPC_SRC	+= stats/v1/stats.proto
 
 # As horrendous as these look, they just loop over the list of .proto files and synthesise
 # the relevant target filenames in the same directory in the source. It saves on repetition.
