@@ -58,6 +58,7 @@ go-mocks:
 	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go	
 	mockgen code.storageos.net/storageos/service/directfs/v1 DfsInitiatorClient > directfs/v1/mock_directfs/dfs_initiator_mock.go	
 	mockgen code.storageos.net/storageos/service/directfs/v1 DfsResponderClient > directfs/v1/mock_directfs/dfs_responder_mock.go	
+	mockgen code.storageos.net/storageos/service/stats/v1 StatsClient > stats/v1/mock_stats/stats_mock.go
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
 
