@@ -12,6 +12,7 @@ GRPC_SRC 	+= directfs/v1/directfs.proto
 GRPC_SRC	+= director/v1/director.proto
 GRPC_SRC	+= filesystem/v1/filesystem.proto
 GRPC_SRC	+= rdbplugin/v1/rdbplugin.proto
+GRPC_SRC	+= stats/v1/stats.proto
 
 # As horrendous as these look, they just loop over the list of .proto files and synthesise
 # the relevant target filenames in the same directory in the source. It saves on repetition.
@@ -57,6 +58,7 @@ go-mocks:
 	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go	
 	mockgen code.storageos.net/storageos/service/directfs/v1 DfsInitiatorClient > directfs/v1/mock_directfs/dfs_initiator_mock.go	
 	mockgen code.storageos.net/storageos/service/directfs/v1 DfsResponderClient > directfs/v1/mock_directfs/dfs_responder_mock.go	
+	mockgen code.storageos.net/storageos/service/stats/v1 StatsClient > stats/v1/mock_stats/stats_mock.go
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
 
