@@ -131,8 +131,6 @@ message StatsVolumeMetricsListQuery {
  * Volume metrics from the Stats module.
  */
 message StatsVolumeMetrics { 
-    common.v1.DataplaneCommon cc = 1;
-
     // The volume ID.
     uint32 volume_id = 2;
 
