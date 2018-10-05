@@ -4,6 +4,15 @@ Comments go into the dataplane/dataplane.proto file. The more - the better.
 
 ## Installation
 
+### Best practice
+
+- Do not change field numbers. That is asking for hard-to-understand bugs.
+
+- Keep this repository and the dataplane sources in sync. Details are below.
+
+- Think about extensibility and clarity first, performance a distant second. If
+  you're trying to performance-optimise StorageOS's gRPC, you're doing it wrong.
+
 ### Build
 
 To build, by far the easiest way is to use Docker.
@@ -14,6 +23,42 @@ $ dapper -m bind clean all
 ```
 
 The first time it may take a minute or so building the build environment. After that, the build is super fast and you can skip the `clean` step if you know what you're doing.
+
+### Committing and pushing
+
+Follow these instructions exactly. Explanation will follow.
+
+```sh
+$ dapper -m bind clean go
+
+# Commit your changes with helpful documentation.
+# Commit any changes to golang source files. This is not an optional step.
+
+# Push to your branch and submit a PR. DO NOT push to master.
+$ git push
+```
+
+The gRPC-generated golang sources must be committed. This is so that the
+control plane build can import this repository directly and use it like any
+other go module.
+
+It must be just the golang sources. C++ or Python sources _will_ break the control
+plane build.
+
+### Updating the dataplane copy to match.
+
+You must update the dataplane sources (dataplane repo toplevel directory
+`service/`) to match. Do not commit directly to develop there either, create a
+branch and use a PR.
+
+### I changed the dataplane sources first, am I boned?
+
+It depends. If your changes commit with changes to this repository, then
+possibly yes, you are a bit boned. If you're lucky, all you have to do is change
+field numbers to match, but every case is going to be different.
+
+If you've only added, create a branch and use a PR to merge your changes into
+this repository. Do not commit directly to `master`.
 
 ## Development
 
