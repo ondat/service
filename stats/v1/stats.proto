@@ -42,12 +42,12 @@ service Stats {
     rpc VolumeList(StatsVolumeListQuery) returns (StatsVolumeList) {}
 
     /**
-     * Return a list of metrics. Optionally filter using the StatsMetricsListQuery message.
+     * Return a list of volume metrics. Optionally filter using the StatsVolumeMetricsListQuery message.
      *
-     * returns A StatsMetricsList message containing StatsMetrics messages,
+     * returns A StatsVolumeMetricsList message containing StatsVolumeMetrics messages,
      *         if any are found matching the filter.
      */
-    rpc Metrics(StatsMetricsListQuery) returns (StatsMetricsList) {}
+    rpc VolumeMetrics(StatsVolumeMetricsListQuery) returns (StatsVolumeMetricsList) {}
 
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
@@ -122,27 +122,27 @@ message StatsVolumeList {
     repeated StatsVolume volumes = 1;
 }
 
-message StatsMetricsListQuery {
+message StatsVolumeMetricsListQuery {
     // Optional list of volume IDs to query.
     repeated uint32 volume_ids = 1;
 }
 
 /**
- * Metrics from the Stats module.
+ * Volume metrics from the Stats module.
  */
-message StatsMetrics { 
+message StatsVolumeMetrics { 
     common.v1.DataplaneCommon cc = 1;
 
     // The volume ID.
     uint32 volume_id = 2;
 
     // How much data has been written, e.g. volume will be full when matches provisioned size.
-    uint64 volume_capacity_used_bytes = 3;
+    uint64 capacity_used_bytes = 3;
 
     // Since we compress, this should be less than what the client sees in 'df' on their mounted fs.
-    uint64 volume_actual_used_bytes = 4;
+    uint64 actual_used_bytes = 4;
 }
 
-message StatsMetricsList {
-   repeated StatsMetrics metrics = 1;
+message StatsVolumeMetricsList {
+   repeated StatsVolumeMetrics metrics = 1;
 }
