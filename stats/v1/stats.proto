@@ -134,11 +134,14 @@ message StatsVolumeMetrics {
     // The volume ID.
     uint32 volume_id = 1;
 
+    // List of volume lables.
+    repeated StatsVolumeLabel labels = 2;
+
     // How much data has been written, e.g. volume will be full when matches provisioned size.
-    uint64 capacity_used_bytes = 2;
+    uint64 capacity_used_bytes = 3;
 
     // Since we compress, this should be less than what the client sees in 'df' on their mounted fs.
-    uint64 actual_used_bytes = 3;
+    uint64 actual_used_bytes = 4;
 }
 
 message StatsVolumeMetricsList {
