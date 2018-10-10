@@ -156,6 +156,9 @@ message DirectorVolume {
 
     // Crypto config.
     common.v1.VolumeCrypto volume_crypto = 15;
+
+    // Is the volume read-only?
+    bool read_only = 16;
 }
 
 message DirectorVolumeList {
