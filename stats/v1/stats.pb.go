@@ -26,6 +26,7 @@ type StatsStatusRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsStatusRequest) Reset()         { *m = StatsStatusRequest{} }
@@ -51,6 +52,33 @@ func (m *StatsStatusRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsStatusRequest.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsStatusRequest) Reset()         { *m = StatsStatusRequest{} }
+func (m *StatsStatusRequest) String() string { return proto.CompactTextString(m) }
+func (*StatsStatusRequest) ProtoMessage()    {}
+func (*StatsStatusRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{0}
+}
+
+func (m *StatsStatusRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsStatusRequest.Unmarshal(m, b)
+}
+func (m *StatsStatusRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsStatusRequest.Marshal(b, m, deterministic)
+}
+func (m *StatsStatusRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsStatusRequest.Merge(m, src)
+}
+func (m *StatsStatusRequest) XXX_Size() int {
+	return xxx_messageInfo_StatsStatusRequest.Size(m)
+}
+func (m *StatsStatusRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsStatusRequest.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsStatusRequest proto.InternalMessageInfo
 
 type StatsStatus struct {
@@ -68,6 +96,7 @@ func (m *StatsStatus) String() string { return proto.CompactTextString(m) }
 func (*StatsStatus) ProtoMessage()    {}
 func (*StatsStatus) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b4756a0aec8b9d44, []int{1}
+<<<<<<< HEAD
 }
 
 func (m *StatsStatus) XXX_Unmarshal(b []byte) error {
@@ -86,6 +115,26 @@ func (m *StatsStatus) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsStatus.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsStatus) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsStatus.Unmarshal(m, b)
+}
+func (m *StatsStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsStatus.Marshal(b, m, deterministic)
+}
+func (m *StatsStatus) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsStatus.Merge(m, src)
+}
+func (m *StatsStatus) XXX_Size() int {
+	return xxx_messageInfo_StatsStatus.Size(m)
+}
+func (m *StatsStatus) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsStatus.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsStatus proto.InternalMessageInfo
 
 func (m *StatsStatus) GetVersionInfo() string {
@@ -108,6 +157,7 @@ type StatsVolumeListQuery struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsVolumeListQuery) Reset()         { *m = StatsVolumeListQuery{} }
@@ -133,6 +183,33 @@ func (m *StatsVolumeListQuery) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsVolumeListQuery.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsVolumeListQuery) Reset()         { *m = StatsVolumeListQuery{} }
+func (m *StatsVolumeListQuery) String() string { return proto.CompactTextString(m) }
+func (*StatsVolumeListQuery) ProtoMessage()    {}
+func (*StatsVolumeListQuery) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{2}
+}
+
+func (m *StatsVolumeListQuery) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsVolumeListQuery.Unmarshal(m, b)
+}
+func (m *StatsVolumeListQuery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsVolumeListQuery.Marshal(b, m, deterministic)
+}
+func (m *StatsVolumeListQuery) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsVolumeListQuery.Merge(m, src)
+}
+func (m *StatsVolumeListQuery) XXX_Size() int {
+	return xxx_messageInfo_StatsVolumeListQuery.Size(m)
+}
+func (m *StatsVolumeListQuery) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsVolumeListQuery.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsVolumeListQuery proto.InternalMessageInfo
 
 func (m *StatsVolumeListQuery) GetVolumeIds() []uint32 {
@@ -150,6 +227,7 @@ type StatsVolumeLabel struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsVolumeLabel) Reset()         { *m = StatsVolumeLabel{} }
@@ -175,6 +253,33 @@ func (m *StatsVolumeLabel) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsVolumeLabel.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsVolumeLabel) Reset()         { *m = StatsVolumeLabel{} }
+func (m *StatsVolumeLabel) String() string { return proto.CompactTextString(m) }
+func (*StatsVolumeLabel) ProtoMessage()    {}
+func (*StatsVolumeLabel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{3}
+}
+
+func (m *StatsVolumeLabel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsVolumeLabel.Unmarshal(m, b)
+}
+func (m *StatsVolumeLabel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsVolumeLabel.Marshal(b, m, deterministic)
+}
+func (m *StatsVolumeLabel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsVolumeLabel.Merge(m, src)
+}
+func (m *StatsVolumeLabel) XXX_Size() int {
+	return xxx_messageInfo_StatsVolumeLabel.Size(m)
+}
+func (m *StatsVolumeLabel) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsVolumeLabel.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsVolumeLabel proto.InternalMessageInfo
 
 func (m *StatsVolumeLabel) GetKey() string {
@@ -195,6 +300,7 @@ type StatsVolumeCredentials struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsVolumeCredentials) Reset()         { *m = StatsVolumeCredentials{} }
@@ -220,12 +326,40 @@ func (m *StatsVolumeCredentials) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsVolumeCredentials.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsVolumeCredentials) Reset()         { *m = StatsVolumeCredentials{} }
+func (m *StatsVolumeCredentials) String() string { return proto.CompactTextString(m) }
+func (*StatsVolumeCredentials) ProtoMessage()    {}
+func (*StatsVolumeCredentials) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{4}
+}
+
+func (m *StatsVolumeCredentials) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsVolumeCredentials.Unmarshal(m, b)
+}
+func (m *StatsVolumeCredentials) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsVolumeCredentials.Marshal(b, m, deterministic)
+}
+func (m *StatsVolumeCredentials) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsVolumeCredentials.Merge(m, src)
+}
+func (m *StatsVolumeCredentials) XXX_Size() int {
+	return xxx_messageInfo_StatsVolumeCredentials.Size(m)
+}
+func (m *StatsVolumeCredentials) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsVolumeCredentials.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsVolumeCredentials proto.InternalMessageInfo
 
 type StatsVolumeStatistics struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsVolumeStatistics) Reset()         { *m = StatsVolumeStatistics{} }
@@ -251,12 +385,40 @@ func (m *StatsVolumeStatistics) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsVolumeStatistics.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsVolumeStatistics) Reset()         { *m = StatsVolumeStatistics{} }
+func (m *StatsVolumeStatistics) String() string { return proto.CompactTextString(m) }
+func (*StatsVolumeStatistics) ProtoMessage()    {}
+func (*StatsVolumeStatistics) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{5}
+}
+
+func (m *StatsVolumeStatistics) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsVolumeStatistics.Unmarshal(m, b)
+}
+func (m *StatsVolumeStatistics) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsVolumeStatistics.Marshal(b, m, deterministic)
+}
+func (m *StatsVolumeStatistics) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsVolumeStatistics.Merge(m, src)
+}
+func (m *StatsVolumeStatistics) XXX_Size() int {
+	return xxx_messageInfo_StatsVolumeStatistics.Size(m)
+}
+func (m *StatsVolumeStatistics) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsVolumeStatistics.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsVolumeStatistics proto.InternalMessageInfo
 
 type StatsVolumeStatus struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+<<<<<<< HEAD
 }
 
 func (m *StatsVolumeStatus) Reset()         { *m = StatsVolumeStatus{} }
@@ -282,6 +444,33 @@ func (m *StatsVolumeStatus) XXX_DiscardUnknown() {
 	xxx_messageInfo_StatsVolumeStatus.DiscardUnknown(m)
 }
 
+=======
+}
+
+func (m *StatsVolumeStatus) Reset()         { *m = StatsVolumeStatus{} }
+func (m *StatsVolumeStatus) String() string { return proto.CompactTextString(m) }
+func (*StatsVolumeStatus) ProtoMessage()    {}
+func (*StatsVolumeStatus) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b4756a0aec8b9d44, []int{6}
+}
+
+func (m *StatsVolumeStatus) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatsVolumeStatus.Unmarshal(m, b)
+}
+func (m *StatsVolumeStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatsVolumeStatus.Marshal(b, m, deterministic)
+}
+func (m *StatsVolumeStatus) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatsVolumeStatus.Merge(m, src)
+}
+func (m *StatsVolumeStatus) XXX_Size() int {
+	return xxx_messageInfo_StatsVolumeStatus.Size(m)
+}
+func (m *StatsVolumeStatus) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatsVolumeStatus.DiscardUnknown(m)
+}
+
+>>>>>>> master
 var xxx_messageInfo_StatsVolumeStatus proto.InternalMessageInfo
 
 // *
@@ -622,6 +811,48 @@ var fileDescriptor_b4756a0aec8b9d44 = []byte{
 	0x00, 0x00,
 }
 
+func init() { proto.RegisterFile("stats.proto", fileDescriptor_b4756a0aec8b9d44) }
+
+var fileDescriptor_b4756a0aec8b9d44 = []byte{
+	// 572 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0x51, 0x6f, 0x12, 0x41,
+	0x10, 0x2e, 0x20, 0x67, 0x99, 0x03, 0x8b, 0x23, 0xc8, 0x79, 0xb4, 0x16, 0xef, 0x89, 0xf8, 0x40,
+	0x53, 0x9a, 0xbe, 0x98, 0x18, 0x13, 0x68, 0x34, 0xa8, 0x7d, 0x70, 0x1b, 0x7d, 0x6d, 0xae, 0xc7,
+	0xd2, 0x5c, 0x3c, 0x6e, 0x91, 0xdd, 0x23, 0xe1, 0x9f, 0xf8, 0x5b, 0xfc, 0x75, 0xe6, 0x76, 0xf7,
+	0x60, 0xcb, 0x1d, 0x1a, 0xe3, 0x0b, 0xd9, 0xfd, 0x66, 0xbe, 0x99, 0xef, 0x9b, 0x59, 0x0e, 0x6c,
+	0x2e, 0x7c, 0xc1, 0x07, 0x8b, 0x25, 0x13, 0x0c, 0x0f, 0xd5, 0x65, 0x75, 0xee, 0xd6, 0x03, 0x36,
+	0x9f, 0xb3, 0x58, 0xe1, 0x5e, 0x0b, 0xf0, 0x26, 0x8d, 0xa4, 0x3f, 0x09, 0x27, 0xf4, 0x47, 0x42,
+	0xb9, 0xf0, 0x7c, 0xb0, 0x0d, 0x14, 0x5f, 0x41, 0x7d, 0x45, 0x97, 0x3c, 0x64, 0xf1, 0x6d, 0x18,
+	0xcf, 0x98, 0x53, 0xea, 0x95, 0xfa, 0x35, 0x62, 0x6b, 0x6c, 0x12, 0xcf, 0x18, 0x9e, 0x81, 0xc5,
+	0x65, 0xb2, 0x53, 0xee, 0x95, 0xfa, 0xf6, 0xb0, 0x33, 0xd0, 0x6d, 0x56, 0xe7, 0x83, 0x2b, 0x9f,
+	0xce, 0x59, 0xac, 0x3b, 0xe8, 0x34, 0xef, 0x12, 0x5a, 0xb2, 0xc5, 0x37, 0x16, 0x25, 0x73, 0xfa,
+	0x39, 0xe4, 0xe2, 0x4b, 0x42, 0x97, 0x6b, 0x3c, 0x01, 0x58, 0x49, 0xe8, 0x36, 0x9c, 0x72, 0xa7,
+	0xd4, 0xab, 0xf4, 0x1b, 0xa4, 0xa6, 0x90, 0xc9, 0x94, 0x7b, 0x6f, 0xa0, 0x69, 0xd2, 0xfc, 0x3b,
+	0x1a, 0x61, 0x13, 0x2a, 0xdf, 0xe9, 0x5a, 0xab, 0x4a, 0x8f, 0xd8, 0x82, 0xea, 0xca, 0x8f, 0x12,
+	0x2a, 0xc5, 0xd4, 0x88, 0xba, 0x78, 0x0e, 0x3c, 0x37, 0xb8, 0xe3, 0x25, 0x9d, 0xd2, 0x58, 0x84,
+	0x7e, 0xc4, 0xbd, 0x0e, 0xb4, 0x8d, 0x48, 0x7a, 0x0c, 0xb9, 0x08, 0x03, 0xee, 0x3d, 0x83, 0xa7,
+	0x3b, 0x81, 0x84, 0x7b, 0xbf, 0xca, 0x7a, 0x3c, 0x0a, 0xc5, 0xd7, 0x50, 0x0e, 0x02, 0xd9, 0xde,
+	0x1e, 0xba, 0x0f, 0x7c, 0x0b, 0x7f, 0x11, 0xf9, 0x31, 0x1d, 0x4b, 0x88, 0x94, 0x83, 0x00, 0xbb,
+	0x50, 0xdb, 0xd8, 0x93, 0xea, 0x1a, 0xe4, 0x30, 0x73, 0x87, 0x43, 0xb0, 0xa2, 0xd4, 0x11, 0x77,
+	0x2a, 0xbd, 0x8a, 0x2c, 0x96, 0x6d, 0x6d, 0xb0, 0x6b, 0x9a, 0xe8, 0x4c, 0x1c, 0x81, 0x1d, 0x6c,
+	0x9d, 0x38, 0x8f, 0xa4, 0x8a, 0x5e, 0x21, 0xd1, 0x70, 0x4c, 0x4c, 0x12, 0x5e, 0x42, 0x55, 0xe6,
+	0x3b, 0x55, 0xc9, 0x3e, 0x2d, 0x64, 0x6f, 0xa7, 0x42, 0x54, 0x36, 0x5e, 0x6c, 0x76, 0x6e, 0x49,
+	0x5e, 0x77, 0x2f, 0xcf, 0xd8, 0xfb, 0x08, 0x8e, 0x76, 0xf6, 0x8e, 0x67, 0xf0, 0x58, 0x8d, 0x40,
+	0xed, 0xdb, 0x1e, 0xb6, 0x0b, 0x0b, 0x91, 0x2c, 0x6b, 0xf8, 0xd3, 0x82, 0xaa, 0x0c, 0xe0, 0x3b,
+	0xb0, 0xf4, 0x1b, 0x3d, 0xde, 0xe1, 0x3c, 0x78, 0xd0, 0x6e, 0xbb, 0x30, 0xea, 0x1d, 0xe0, 0x5b,
+	0xa8, 0x6f, 0x86, 0xe3, 0x0b, 0x8a, 0xc5, 0xad, 0xdd, 0x96, 0xb1, 0x56, 0xb2, 0x08, 0x08, 0xe5,
+	0x49, 0x24, 0x4c, 0xfa, 0xd7, 0xc5, 0xf4, 0x7f, 0xe8, 0x57, 0x34, 0xa2, 0xff, 0x4e, 0x9f, 0x00,
+	0x18, 0x63, 0x7c, 0x59, 0xfc, 0x5a, 0xb2, 0x7f, 0x96, 0xfb, 0x62, 0x6f, 0xdc, 0x3b, 0xc0, 0xf7,
+	0xd0, 0x18, 0xb3, 0x78, 0x16, 0xde, 0x7f, 0xa0, 0x62, 0xc4, 0x58, 0x84, 0x66, 0x4f, 0x15, 0xf9,
+	0x44, 0xd7, 0xee, 0x49, 0x0e, 0xd5, 0xf9, 0x84, 0x2e, 0xa2, 0xb5, 0x94, 0xd4, 0x54, 0xb8, 0x1a,
+	0x88, 0x2c, 0xd5, 0xce, 0x91, 0x52, 0xd8, 0x3d, 0xce, 0xc1, 0x8a, 0xb3, 0x2d, 0xf5, 0x44, 0xc1,
+	0xa9, 0x44, 0x59, 0xc8, 0xcd, 0x31, 0x4c, 0x77, 0x45, 0x4d, 0xb4, 0xbb, 0x8f, 0x70, 0xb4, 0x51,
+	0x7b, 0x23, 0x96, 0x61, 0x7c, 0xbf, 0xc7, 0xdf, 0x69, 0x91, 0x3f, 0xc5, 0xc8, 0x64, 0x5d, 0x03,
+	0x9a, 0x6a, 0x75, 0xb9, 0x4e, 0x8e, 0xa8, 0x02, 0x7f, 0x75, 0x79, 0x9d, 0x0d, 0x2c, 0x95, 0xaa,
+	0x8b, 0xfd, 0xc9, 0x67, 0x77, 0x4f, 0x23, 0xe5, 0xf4, 0xce, 0x92, 0x9f, 0xf5, 0x8b, 0xdf, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0xc5, 0x21, 0xaa, 0xa1, 0xfd, 0x05, 0x00, 0x00,
+}
+
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
 var _ grpc.ClientConn
@@ -726,60 +957,97 @@ func (c *statsClient) VolumeList(ctx context.Context, in *StatsVolumeListQuery, 
 	return out, nil
 }
 
+<<<<<<< HEAD
 func (c *statsClient) VolumeMetrics(ctx context.Context, in *StatsVolumeMetricsListQuery, opts ...grpc.CallOption) (*StatsVolumeMetricsList, error) {
 	out := new(StatsVolumeMetricsList)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/VolumeMetrics", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
+=======
 func (c *statsClient) ConfigGetBool(ctx context.Context, in *ConfigKey, opts ...grpc.CallOption) (*ConfigGetBoolReply, error) {
 	out := new(ConfigGetBoolReply)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigGetBool", in, out, opts...)
+>>>>>>> master
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+<<<<<<< HEAD
+func (c *statsClient) ConfigGetBool(ctx context.Context, in *ConfigKey, opts ...grpc.CallOption) (*ConfigGetBoolReply, error) {
+	out := new(ConfigGetBoolReply)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigGetBool", in, out, opts...)
+=======
 func (c *statsClient) ConfigUpdateBool(ctx context.Context, in *ConfigBool, opts ...grpc.CallOption) (*ConfigUpdateReply, error) {
 	out := new(ConfigUpdateReply)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigUpdateBool", in, out, opts...)
+>>>>>>> master
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+<<<<<<< HEAD
+func (c *statsClient) ConfigUpdateBool(ctx context.Context, in *ConfigBool, opts ...grpc.CallOption) (*ConfigUpdateReply, error) {
+	out := new(ConfigUpdateReply)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigUpdateBool", in, out, opts...)
+=======
 func (c *statsClient) ConfigListBool(ctx context.Context, in *ConfigListQuery, opts ...grpc.CallOption) (*ConfigBoolList, error) {
 	out := new(ConfigBoolList)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigListBool", in, out, opts...)
+>>>>>>> master
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+<<<<<<< HEAD
+func (c *statsClient) ConfigListBool(ctx context.Context, in *ConfigListQuery, opts ...grpc.CallOption) (*ConfigBoolList, error) {
+	out := new(ConfigBoolList)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigListBool", in, out, opts...)
+=======
 func (c *statsClient) ConfigGetString(ctx context.Context, in *ConfigKey, opts ...grpc.CallOption) (*ConfigGetStringReply, error) {
 	out := new(ConfigGetStringReply)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigGetString", in, out, opts...)
+>>>>>>> master
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+<<<<<<< HEAD
+func (c *statsClient) ConfigGetString(ctx context.Context, in *ConfigKey, opts ...grpc.CallOption) (*ConfigGetStringReply, error) {
+	out := new(ConfigGetStringReply)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigGetString", in, out, opts...)
+=======
 func (c *statsClient) ConfigUpdateString(ctx context.Context, in *ConfigString, opts ...grpc.CallOption) (*ConfigUpdateReply, error) {
 	out := new(ConfigUpdateReply)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigUpdateString", in, out, opts...)
+>>>>>>> master
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+<<<<<<< HEAD
+func (c *statsClient) ConfigUpdateString(ctx context.Context, in *ConfigString, opts ...grpc.CallOption) (*ConfigUpdateReply, error) {
+	out := new(ConfigUpdateReply)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigUpdateString", in, out, opts...)
+=======
+func (c *statsClient) ConfigListString(ctx context.Context, in *ConfigListQuery, opts ...grpc.CallOption) (*ConfigStringList, error) {
+	out := new(ConfigStringList)
+	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigListString", in, out, opts...)
+>>>>>>> master
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+<<<<<<< HEAD
 func (c *statsClient) ConfigListString(ctx context.Context, in *ConfigListQuery, opts ...grpc.CallOption) (*ConfigStringList, error) {
 	out := new(ConfigStringList)
 	err := c.cc.Invoke(ctx, "/stats.v1.Stats/ConfigListString", in, out, opts...)
@@ -789,6 +1057,8 @@ func (c *statsClient) ConfigListString(ctx context.Context, in *ConfigListQuery,
 	return out, nil
 }
 
+=======
+>>>>>>> master
 // StatsServer is the server API for Stats service.
 type StatsServer interface {
 	// *
