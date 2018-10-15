@@ -1,5 +1,6 @@
 syntax = "proto3";
 package stats.v1;
+option go_package = "code.storageos.net/storageos/service/stats/v1";
 
 import "common.proto";
 

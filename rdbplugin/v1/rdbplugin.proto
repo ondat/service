@@ -1,5 +1,6 @@
 syntax = "proto3";
 package rdbplugin.v1;
+option go_package = "code.storageos.net/storageos/service/rdbplugin/v1";
 
 import "common.proto";
 
