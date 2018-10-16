@@ -1,5 +1,6 @@
 syntax = "proto3";
 package director.v1;
+option go_package = "code.storageos.net/storageos/service/director/v1";
 
 import "common.proto";
 

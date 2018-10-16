@@ -33,6 +33,7 @@ GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ) $(PBUF_PY_OBJ)
 
 # Tools.
 PYBIN		= python3.6
+GOPATH		?= $(HOME)/go
 
 #############################################################################
 
@@ -42,22 +43,14 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
-go: go-targets go-fix
-
-go-targets: ${GRPC_GO_OBJ}
-
-go-fix:
-	for f in ${GRPC_GO_OBJ}; do \
-		echo "++ Edit $$f"; \
-		sed -i -e 's!^import common_v1 "."!import common_v1 "code.storageos.net/storageos/service/common/v1"!' $$f; \
-	done
+go: ${GRPC_GO_OBJ}
 
 go-mocks:
-	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go	
-	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go	
-	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go	
-	mockgen code.storageos.net/storageos/service/directfs/v1 DfsInitiatorClient > directfs/v1/mock_directfs/dfs_initiator_mock.go	
-	mockgen code.storageos.net/storageos/service/directfs/v1 DfsResponderClient > directfs/v1/mock_directfs/dfs_responder_mock.go	
+	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
+	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
+	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go
+	mockgen code.storageos.net/storageos/service/directfs/v1 DfsInitiatorClient > directfs/v1/mock_directfs/dfs_initiator_mock.go
+	mockgen code.storageos.net/storageos/service/directfs/v1 DfsResponderClient > directfs/v1/mock_directfs/dfs_responder_mock.go
 	mockgen code.storageos.net/storageos/service/stats/v1 StatsClient > stats/v1/mock_stats/stats_mock.go
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
@@ -103,7 +96,7 @@ test:
 # Make Golang protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %.pb.go: %.proto
-	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(<D) $(<F)
+	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(GOPATH)/src $(<D)/$(<F)
 
 # Make C++ gRPC implementation and declarations. Target source files go in the same directory
 # as the .proto source.

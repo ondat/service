@@ -1,5 +1,6 @@
 syntax = "proto3";
 package directfs.v1;
+option go_package = "code.storageos.net/storageos/service/directfs/v1";
 
 import "common.proto";
 
