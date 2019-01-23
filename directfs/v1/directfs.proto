@@ -84,6 +84,14 @@ service DfsInitiator {
      */
     rpc VolumeList(DfsInitiatorVolumeListQuery) returns (DfsInitiatorVolumeList) {}
 
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+     rpc StatsList(StatsListQuery) returns (StatsListResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -137,6 +145,14 @@ service DfsResponder {
      * returns a list of DfsReponderVolume messages, if any are available matching the filter.
      */
     rpc VolumeList(DfsResponderVolumeListQuery) returns (DfsResponderVolumeList) {}
+
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+     rpc StatsList(StatsListQuery) returns (StatsListResponse) {}
 
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
@@ -356,4 +372,40 @@ message DfsResponderVolumeList {
 message DfsResponderVolumeListQuery {
     // An optional list of volumes to query.
     repeated uint32 volume_ids = 1;
+}
+
+message StatsListQuery {
+    enum Type {
+        // For requesting volume stats.
+        VOLUME = 0;
+        // For requesting node stats.
+        NODE = 1;
+    }
+
+    // Type of stats to retrieve.
+    Type type = 1;
+
+    // An optional list of volume (or node or other) ids to query.  Empty list will return all.
+    repeated uint32 ids = 2;
+}
+
+message Counter {
+    uint64 value = 1;
+}
+
+message Gauge {
+    uint64 value = 1;
+}
+
+message Statistic {
+    uint32 id = 1;
+    string name = 2;
+    oneof metric_type {
+        Counter counter = 3;
+        Gauge gauge = 4;
+    }
+}
+
+message StatsListResponse {
+    repeated Statistic stats = 1;
 }
