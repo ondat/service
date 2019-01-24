@@ -1,4 +1,4 @@
-FROM soegarots/dataplane-build:latest
+FROM soegarots/dataplane-build:20190122-28
 
 ENV PATH=/opt/storageos/bin:$PATH
 
