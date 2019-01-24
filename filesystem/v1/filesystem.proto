@@ -79,7 +79,7 @@ service Fs {
      * returns A StatsListResponse containing Statistic messages, if any are
      * found matching the filter.
      */
-     rpc StatsList(StatsListQuery) returns (StatsListResponse) {}
+     rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
 
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
@@ -210,40 +210,4 @@ message FsPresentation {
 
 message FsPresentationList {
     repeated FsPresentation presentations = 1;
-}
-
-message StatsListQuery {
-    enum Type {
-        // For requesting volume stats.
-        VOLUME = 0;
-        // For requesting node stats.
-        NODE = 1;
-    }
-
-    // Type of stats to retrieve.
-    Type type = 1;
-
-    // An optional list of volume (or node or other) ids to query.  Empty list will return all.
-    repeated uint32 ids = 2;
-}
-
-message Counter {
-    uint64 value = 1;
-}
-
-message Gauge {
-    uint64 value = 1;
-}
-
-message Statistic {
-    uint32 id = 1;
-    string name = 2;
-    oneof metric_type {
-        Counter counter = 3;
-        Gauge gauge = 4;
-    }
-}
-
-message StatsListResponse {
-    repeated Statistic stats = 1;
 }
