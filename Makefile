@@ -96,7 +96,8 @@ test:
 # Make Golang protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %.pb.go: %.proto
-	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(GOPATH)/src $(<D)/$(<F)
+	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(GOPATH)/src $(<D)/$(<F) && \
+	cp $(GOPATH)/src/code.storageos.net/storageos/service/$@ $@
 
 # Make C++ gRPC implementation and declarations. Target source files go in the same directory
 # as the .proto source.
