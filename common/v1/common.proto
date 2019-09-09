@@ -106,8 +106,8 @@ message VolumeCrypto {
     uint32 crypto_version = 2;
 
     enum VolumeCryptoState {
-        VCS_NONE = 0;               // No encryption at all.
-        VCS_FULLY_ENCRYPTED = 1;    // All blocks encrypted.
+        VCS_NONE = 0;             // No encryption at all.
+        VCS_FULLY_ENCRYPTED = 1;  // All blocks encrypted.
     }
 
     // The current crypto state for this volume.
@@ -130,13 +130,13 @@ message VolumeCrypto {
 
 message DaemonStatus {
     enum ProgramState {
-        DS_NONE = 0;        // Status not set.
-        DS_STARTING = 1;    // Program is starting.
-        DS_READY = 2;       // Program has started and is ready to process requests.
-        DS_STOPPING = 3;    // Program has begun to shut down.
-        DS_STOPPED = 4;     // Program has shut down and may be safely terminated.
-        DS_ERROR = 5;       // Program has encountered an error and should be considered failed.
-        DS_CRITICAL = 6;    // Program has encountered a serious error and requires intervention.
+        DS_NONE = 0;      // Status not set.
+        DS_STARTING = 1;  // Program is starting.
+        DS_READY = 2;     // Program has started and is ready to process requests.
+        DS_STOPPING = 3;  // Program has begun to shut down.
+        DS_STOPPED = 4;   // Program has shut down and may be safely terminated.
+        DS_ERROR = 5;     // Program has encountered an error and should be considered failed.
+        DS_CRITICAL = 6;  // Program has encountered a serious error and requires intervention.
     }
 
     ProgramState program_state = 1;
@@ -145,10 +145,10 @@ message DaemonStatus {
 }
 
 enum ConfigGetStatus {
-    GET_NONE = 0;       // Status not set.
-    GET_OK = 1;         // Fetch ok.
-    GET_MISSING = 2;    // Item not found.
-    GET_FAILED = 3;     // Item fetch general failure.
+    GET_NONE = 0;     // Status not set.
+    GET_OK = 1;       // Fetch ok.
+    GET_MISSING = 2;  // Item not found.
+    GET_FAILED = 3;   // Item fetch general failure.
 }
 
 enum ConfigUpdateStatus {
@@ -240,4 +240,86 @@ message ConfigKey {
 
 message ConfigListQuery {
     // Nothing yet.
+}
+
+/*
+ * Common stats messages
+ *
+ * Used in requesting stats from the dataplane.
+ */
+
+message StatsListQuery {
+    enum Type {
+        // For requesting volume stats.
+        VOLUME = 0;
+        // For requesting node stats.
+        NODE = 1;
+    }
+
+    // Type of stats to retrieve.
+    Type type = 1;
+
+    // An optional list of volume (or node or other) ids to query.  Empty list will return all.
+    repeated uint32 ids = 2;
+}
+
+message Counter {
+    uint64 value = 1;
+}
+
+message Gauge {
+    uint64 value = 1;
+}
+
+message Statistic {
+    uint32 id = 1;
+    string name = 2;
+    oneof metric_type {
+        Counter counter = 3;
+        Gauge gauge = 4;
+    }
+}
+
+message StatsListResponse {
+    repeated Statistic stats = 1;
+}
+
+/*
+ * Poke messages - low-level test tools.
+ *
+ * This is in an archaic computing sense of 'poke', where it was a command one
+ * used to write arbitrary memory locations, usually for cheating at computer
+ * games.
+ *
+ * Not in the Facebook sense. Or any other sense.
+ */
+
+enum PokeType {
+    // Have a do-nothing poke to test the service method.
+    NOP = 0;
+    // Get a known response. (PING, parameter=MSG. Response success==true, result=MSG).
+    PING = 1;
+    // Do whatever it takes to stop the program.
+    STOP = 10;
+    // Crash immediately. Do not pass go. Do not collect the next round of funding.
+    CRASH = 100;
+}
+
+message PokeQuery {
+    // The poke type.
+    PokeType type = 1;
+
+    // An arbitrary parameter for the poke, if required.
+    string parameter = 2;
+}
+
+message PokeResponse {
+    // True if the poke 'succeeded', false otherwise.
+    bool success = 1;
+
+    // Explanation for non-success.
+    string reason = 2;
+
+    // Arbitrary string result for the poke.
+    string result = 3;
 }
