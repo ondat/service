@@ -192,7 +192,7 @@ message DfsResponderStatus {
 //
 
 // In the future this may contain other parameters, for example accepted cipher suites.
-message DfsInitiatorNodeSSLParams {
+message DfsInitiatorNodeTLSParams {
     // The hostname to use when performing rfc2818 verification of the remote endpoint.
     // If not present we'll perform verification using the remote endpoint hostname.
     string verify_hostname = 1;
@@ -207,19 +207,19 @@ message DfsInitiatorNode {
     // The unique host identifier.
     uint32 node_id = 2;
 
-    // The remote hostname. For SSL connections `hostname` is used as the dial address.
-    // The rfc2818 verification address must be set in `ssl_params.verify_hostname`.
+    // The remote hostname. For TLS connections `hostname` is used as the dial address.
+    // The rfc2818 verification address must be set in `tls_params.verify_hostname`.
     string hostname = 3;
 
     // The remote port.
     uint32 port = 4;
 
-    // Whether the connection should be secured with SSL.
-    bool ssl_enabled = 5;
+    // Whether the connection should be secured with TLS.
+    bool tls_enabled = 5;
 
-    // Connection specific SSL parameters. Ignored if ssl_enabled is false.
-    // This must be present if ssl_enabled is true.
-    DfsInitiatorNodeSSLParams ssl_params = 6;
+    // Connection specific TLS parameters. Ignored if tls_enabled is false.
+    // This must be present if tls_enabled is true.
+    DfsInitiatorNodeTLSParams tls_params = 6;
 }
 
 message DfsInitiatorNodeList {
