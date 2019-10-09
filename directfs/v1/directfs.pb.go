@@ -306,7 +306,8 @@ func (m *DfsResponderStatus) GetStatus() *v1.DaemonStatus {
 // In the future this may contain other parameters, for example accepted cipher suites.
 type DfsInitiatorNodeTLSParams struct {
 	// The hostname to use when performing rfc2818 verification of the remote endpoint.
-	// If not present we'll perform verification using the remote endpoint hostname.
+	// This field is optional. If it's not present we'll perform verification using
+	// the `hostname` field from the DfsInitiatorNode message.
 	VerifyHostname       string   `protobuf:"bytes,1,opt,name=verify_hostname,json=verifyHostname,proto3" json:"verify_hostname,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -351,8 +352,9 @@ type DfsInitiatorNode struct {
 	Cc *v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc,proto3" json:"cc,omitempty"`
 	// The unique host identifier.
 	NodeId uint32 `protobuf:"varint,2,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
-	// The remote hostname. For TLS connections `hostname` is used as the dial address.
-	// The rfc2818 verification address must be set in `tls_params.verify_hostname`.
+	// The remote hostname. Either an IPv4 address, IPv6 address or hostname. Note: for TLS
+	// connections `hostname` is only used as the dial address. rfc2818 verification is done
+	// using `tls_params.verify_hostname`.
 	Hostname string `protobuf:"bytes,3,opt,name=hostname,proto3" json:"hostname,omitempty"`
 	// The remote port.
 	Port uint32 `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`

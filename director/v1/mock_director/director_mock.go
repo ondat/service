@@ -38,6 +38,7 @@ func (m *MockDirectorClient) EXPECT() *MockDirectorClientMockRecorder {
 
 // ConfigGetBool mocks base method
 func (m *MockDirectorClient) ConfigGetBool(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetBoolReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -50,12 +51,14 @@ func (m *MockDirectorClient) ConfigGetBool(arg0 context.Context, arg1 *v1.Config
 
 // ConfigGetBool indicates an expected call of ConfigGetBool
 func (mr *MockDirectorClientMockRecorder) ConfigGetBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetBool", reflect.TypeOf((*MockDirectorClient)(nil).ConfigGetBool), varargs...)
 }
 
 // ConfigGetString mocks base method
 func (m *MockDirectorClient) ConfigGetString(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetStringReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -68,12 +71,14 @@ func (m *MockDirectorClient) ConfigGetString(arg0 context.Context, arg1 *v1.Conf
 
 // ConfigGetString indicates an expected call of ConfigGetString
 func (mr *MockDirectorClientMockRecorder) ConfigGetString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetString", reflect.TypeOf((*MockDirectorClient)(nil).ConfigGetString), varargs...)
 }
 
 // ConfigGetUint32 mocks base method
 func (m *MockDirectorClient) ConfigGetUint32(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetUint32Reply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -86,12 +91,14 @@ func (m *MockDirectorClient) ConfigGetUint32(arg0 context.Context, arg1 *v1.Conf
 
 // ConfigGetUint32 indicates an expected call of ConfigGetUint32
 func (mr *MockDirectorClientMockRecorder) ConfigGetUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetUint32", reflect.TypeOf((*MockDirectorClient)(nil).ConfigGetUint32), varargs...)
 }
 
 // ConfigListBool mocks base method
 func (m *MockDirectorClient) ConfigListBool(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigBoolList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -104,12 +111,14 @@ func (m *MockDirectorClient) ConfigListBool(arg0 context.Context, arg1 *v1.Confi
 
 // ConfigListBool indicates an expected call of ConfigListBool
 func (mr *MockDirectorClientMockRecorder) ConfigListBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListBool", reflect.TypeOf((*MockDirectorClient)(nil).ConfigListBool), varargs...)
 }
 
 // ConfigListString mocks base method
 func (m *MockDirectorClient) ConfigListString(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigStringList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -122,12 +131,14 @@ func (m *MockDirectorClient) ConfigListString(arg0 context.Context, arg1 *v1.Con
 
 // ConfigListString indicates an expected call of ConfigListString
 func (mr *MockDirectorClientMockRecorder) ConfigListString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListString", reflect.TypeOf((*MockDirectorClient)(nil).ConfigListString), varargs...)
 }
 
 // ConfigListUint32 mocks base method
 func (m *MockDirectorClient) ConfigListUint32(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigUint32List, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -140,12 +151,14 @@ func (m *MockDirectorClient) ConfigListUint32(arg0 context.Context, arg1 *v1.Con
 
 // ConfigListUint32 indicates an expected call of ConfigListUint32
 func (mr *MockDirectorClientMockRecorder) ConfigListUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListUint32", reflect.TypeOf((*MockDirectorClient)(nil).ConfigListUint32), varargs...)
 }
 
 // ConfigUpdateBool mocks base method
 func (m *MockDirectorClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.ConfigBool, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -158,12 +171,14 @@ func (m *MockDirectorClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.Con
 
 // ConfigUpdateBool indicates an expected call of ConfigUpdateBool
 func (mr *MockDirectorClientMockRecorder) ConfigUpdateBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateBool", reflect.TypeOf((*MockDirectorClient)(nil).ConfigUpdateBool), varargs...)
 }
 
 // ConfigUpdateString mocks base method
 func (m *MockDirectorClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.ConfigString, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -176,12 +191,14 @@ func (m *MockDirectorClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.C
 
 // ConfigUpdateString indicates an expected call of ConfigUpdateString
 func (mr *MockDirectorClientMockRecorder) ConfigUpdateString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateString", reflect.TypeOf((*MockDirectorClient)(nil).ConfigUpdateString), varargs...)
 }
 
 // ConfigUpdateUint32 mocks base method
 func (m *MockDirectorClient) ConfigUpdateUint32(arg0 context.Context, arg1 *v1.ConfigUint32, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -194,12 +211,14 @@ func (m *MockDirectorClient) ConfigUpdateUint32(arg0 context.Context, arg1 *v1.C
 
 // ConfigUpdateUint32 indicates an expected call of ConfigUpdateUint32
 func (mr *MockDirectorClientMockRecorder) ConfigUpdateUint32(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateUint32", reflect.TypeOf((*MockDirectorClient)(nil).ConfigUpdateUint32), varargs...)
 }
 
 // PresentationCreate mocks base method
 func (m *MockDirectorClient) PresentationCreate(arg0 context.Context, arg1 *v10.DirectorPresentation, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -212,12 +231,14 @@ func (m *MockDirectorClient) PresentationCreate(arg0 context.Context, arg1 *v10.
 
 // PresentationCreate indicates an expected call of PresentationCreate
 func (mr *MockDirectorClientMockRecorder) PresentationCreate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PresentationCreate", reflect.TypeOf((*MockDirectorClient)(nil).PresentationCreate), varargs...)
 }
 
 // PresentationDelete mocks base method
 func (m *MockDirectorClient) PresentationDelete(arg0 context.Context, arg1 *v10.DirectorPresentation, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -230,12 +251,14 @@ func (m *MockDirectorClient) PresentationDelete(arg0 context.Context, arg1 *v10.
 
 // PresentationDelete indicates an expected call of PresentationDelete
 func (mr *MockDirectorClientMockRecorder) PresentationDelete(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PresentationDelete", reflect.TypeOf((*MockDirectorClient)(nil).PresentationDelete), varargs...)
 }
 
 // PresentationList mocks base method
 func (m *MockDirectorClient) PresentationList(arg0 context.Context, arg1 *v10.DirectorPresentationListQuery, arg2 ...grpc.CallOption) (*v10.DirectorPresentationList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -248,12 +271,14 @@ func (m *MockDirectorClient) PresentationList(arg0 context.Context, arg1 *v10.Di
 
 // PresentationList indicates an expected call of PresentationList
 func (mr *MockDirectorClientMockRecorder) PresentationList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PresentationList", reflect.TypeOf((*MockDirectorClient)(nil).PresentationList), varargs...)
 }
 
 // PresentationUpdate mocks base method
 func (m *MockDirectorClient) PresentationUpdate(arg0 context.Context, arg1 *v10.DirectorPresentation, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -266,12 +291,14 @@ func (m *MockDirectorClient) PresentationUpdate(arg0 context.Context, arg1 *v10.
 
 // PresentationUpdate indicates an expected call of PresentationUpdate
 func (mr *MockDirectorClientMockRecorder) PresentationUpdate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PresentationUpdate", reflect.TypeOf((*MockDirectorClient)(nil).PresentationUpdate), varargs...)
 }
 
 // Status mocks base method
 func (m *MockDirectorClient) Status(arg0 context.Context, arg1 *v10.DirectorStatusRequest, arg2 ...grpc.CallOption) (*v10.DirectorStatus, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -284,12 +311,14 @@ func (m *MockDirectorClient) Status(arg0 context.Context, arg1 *v10.DirectorStat
 
 // Status indicates an expected call of Status
 func (mr *MockDirectorClientMockRecorder) Status(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Status", reflect.TypeOf((*MockDirectorClient)(nil).Status), varargs...)
 }
 
 // VolumeCreate mocks base method
 func (m *MockDirectorClient) VolumeCreate(arg0 context.Context, arg1 *v10.DirectorVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -302,12 +331,14 @@ func (m *MockDirectorClient) VolumeCreate(arg0 context.Context, arg1 *v10.Direct
 
 // VolumeCreate indicates an expected call of VolumeCreate
 func (mr *MockDirectorClientMockRecorder) VolumeCreate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeCreate", reflect.TypeOf((*MockDirectorClient)(nil).VolumeCreate), varargs...)
 }
 
 // VolumeDelete mocks base method
 func (m *MockDirectorClient) VolumeDelete(arg0 context.Context, arg1 *v10.DirectorVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -320,12 +351,14 @@ func (m *MockDirectorClient) VolumeDelete(arg0 context.Context, arg1 *v10.Direct
 
 // VolumeDelete indicates an expected call of VolumeDelete
 func (mr *MockDirectorClientMockRecorder) VolumeDelete(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeDelete", reflect.TypeOf((*MockDirectorClient)(nil).VolumeDelete), varargs...)
 }
 
 // VolumeList mocks base method
 func (m *MockDirectorClient) VolumeList(arg0 context.Context, arg1 *v10.DirectorVolumeListQuery, arg2 ...grpc.CallOption) (*v10.DirectorVolumeList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -338,12 +371,14 @@ func (m *MockDirectorClient) VolumeList(arg0 context.Context, arg1 *v10.Director
 
 // VolumeList indicates an expected call of VolumeList
 func (mr *MockDirectorClientMockRecorder) VolumeList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeList", reflect.TypeOf((*MockDirectorClient)(nil).VolumeList), varargs...)
 }
 
 // VolumeUpdate mocks base method
 func (m *MockDirectorClient) VolumeUpdate(arg0 context.Context, arg1 *v10.DirectorVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -356,6 +391,7 @@ func (m *MockDirectorClient) VolumeUpdate(arg0 context.Context, arg1 *v10.Direct
 
 // VolumeUpdate indicates an expected call of VolumeUpdate
 func (mr *MockDirectorClientMockRecorder) VolumeUpdate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeUpdate", reflect.TypeOf((*MockDirectorClient)(nil).VolumeUpdate), varargs...)
 }
