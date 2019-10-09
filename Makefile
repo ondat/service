@@ -43,9 +43,19 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
-go: ${GRPC_GO_OBJ}
+go: ${GRPC_GO_OBJ} go-mocks
 
 go-mocks:
+	# Gomock only works if the files are actually in the correct place with
+	# respect to the Go import path - running the gomock generator without
+	# moving the files just regenerates from the $GOPATH copy, not the files in
+	# this directory leaving your changes behind. Or in dapper, doesn't work at
+	# all.
+	#
+	# Move the files in this directory into the $GOPATH
+	mkdir -p $(GOPATH)/src/code.storageos.net/storageos/service/
+	cp -R . $(GOPATH)/src/code.storageos.net/storageos/service/
+
 	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
 	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
 	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go
