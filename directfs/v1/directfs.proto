@@ -11,7 +11,6 @@ import "common.proto";
  * and DfsClientServer, which would be stupid.
  */
 service DfsInitiator {
-
     /**
      * Get program status.
      */
@@ -84,6 +83,14 @@ service DfsInitiator {
      */
     rpc VolumeList(DfsInitiatorVolumeListQuery) returns (DfsInitiatorVolumeList) {}
 
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+     rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -138,6 +145,14 @@ service DfsResponder {
      */
     rpc VolumeList(DfsResponderVolumeListQuery) returns (DfsResponderVolumeList) {}
 
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+    rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -147,7 +162,6 @@ service DfsResponder {
     rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 }
-
 
 message DfsInitiatorStatusRequest {
     // Empty for now.
@@ -177,11 +191,12 @@ message DfsResponderStatus {
 // Client (Initiator) messages.
 //
 
-message DfsInitiatorNodeCredentials {
-    // Empty for now.
-    // Could be used for:
-    // - (server) tls creds (if per-host)
-    // - (client) tls creds (if per-host)
+// In the future this may contain other parameters, for example accepted cipher suites.
+message DfsInitiatorNodeTLSParams {
+    // The hostname to use when performing rfc2818 verification of the remote endpoint.
+    // This field is optional. If it's not present we'll perform verification using
+    // the `hostname` field from the DfsInitiatorNode message.
+    string verify_hostname = 1;
 }
 
 /**
@@ -193,14 +208,20 @@ message DfsInitiatorNode {
     // The unique host identifier.
     uint32 node_id = 2;
 
-    // The remote hostname.
+    // The remote hostname. Either an IPv4 address, IPv6 address or hostname. Note: for TLS
+    // connections `hostname` is only used as the dial address. rfc2818 verification is done
+    // using `tls_params.verify_hostname`.
     string hostname = 3;
 
     // The remote port.
     uint32 port = 4;
 
-    // Host credentials.
-    DfsInitiatorNodeCredentials credentials = 5;
+    // Whether the connection should be secured with TLS.
+    bool tls_enabled = 5;
+
+    // Connection specific TLS parameters. Ignored if tls_enabled is false.
+    // This must be present if tls_enabled is true.
+    DfsInitiatorNodeTLSParams tls_params = 6;
 }
 
 message DfsInitiatorNodeList {
@@ -224,7 +245,6 @@ message DfsInitiatorVolumeStatistics {
 }
 
 message DfsInitiatorVolumeStatus {
-
     enum DfsInitiatorConnectionState {
         NONE = 0;
         CONNECTING = 1;
@@ -297,7 +317,6 @@ message DfsResponderVolumeStatistics {
 }
 
 message DfsResponderVolumeStatus {
-
     enum DfsResponderConnectionState {
         NONE = 0;
         CONNECTING = 1;
