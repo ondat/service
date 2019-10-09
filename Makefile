@@ -96,7 +96,10 @@ test:
 # Make Golang protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %.pb.go: %.proto
-	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(GOPATH)/src $(<D)/$(<F)
+	# We have a weird layout - generate the files and move them into the
+	# existing places.
+	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc,paths=source_relative:. $<
+	mv $(notdir $@) $(dir $<)
 
 # Make C++ gRPC implementation and declarations. Target source files go in the same directory
 # as the .proto source.
