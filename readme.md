@@ -17,11 +17,6 @@ Comments go into the dataplane/dataplane.proto file. The more - the better.
 
 To build, by far the easiest way is to use Docker.
 
-```
-$ dapper -m bind clean all
-...
-```
-
 The first time it may take a minute or so building the build environment. After that, the build is super fast and you can skip the `clean` step if you know what you're doing.
 
 ### Committing and pushing
@@ -32,7 +27,7 @@ Follow these instructions exactly. Explanation will follow.
 $ dapper -m bind clean go
 
 # Commit your changes with helpful documentation.
-# Commit any changes to golang source files. This is not an optional step.
+# Commit any changes to golang source files.
 
 # Push to your branch and submit a PR. DO NOT push to master.
 $ git push
@@ -119,7 +114,7 @@ buffers.
 To generate the code to implement the protobuf messages and gRPC services, run:
 
 ```
-$ make
+$ make grpc
 protoc -Icommon/v1 -I dataplane --cpp_out=dataplane dataplane.proto
 protoc -Icommon/v1 -I common/v1 --cpp_out=common/v1 common.proto
 ... etc ...
@@ -130,11 +125,11 @@ $
 The generated files will be generated in the same directory as the `.proto` source files,
 and will have language-specific suffixes:
 
-| Target | Suffix(es) |
-|--------|------------|
-| Go | `.pb.go` |
-| C++ | `.cc`, `.h` |
-| Python | `_pb2.py` |
+| Target | Suffix(es)  |
+| ------ | ----------- |
+| Go     | `.pb.go`    |
+| C++    | `.cc`, `.h` |
+| Python | `_pb2.py`   |
 
 ## API Tests
 
