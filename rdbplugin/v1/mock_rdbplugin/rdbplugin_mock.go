@@ -38,6 +38,7 @@ func (m *MockRdbPluginClient) EXPECT() *MockRdbPluginClientMockRecorder {
 
 // ConfigGetBool mocks base method
 func (m *MockRdbPluginClient) ConfigGetBool(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetBoolReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -50,12 +51,14 @@ func (m *MockRdbPluginClient) ConfigGetBool(arg0 context.Context, arg1 *v1.Confi
 
 // ConfigGetBool indicates an expected call of ConfigGetBool
 func (mr *MockRdbPluginClientMockRecorder) ConfigGetBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetBool", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigGetBool), varargs...)
 }
 
 // ConfigGetString mocks base method
 func (m *MockRdbPluginClient) ConfigGetString(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetStringReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -68,12 +71,14 @@ func (m *MockRdbPluginClient) ConfigGetString(arg0 context.Context, arg1 *v1.Con
 
 // ConfigGetString indicates an expected call of ConfigGetString
 func (mr *MockRdbPluginClientMockRecorder) ConfigGetString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetString", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigGetString), varargs...)
 }
 
 // ConfigListBool mocks base method
 func (m *MockRdbPluginClient) ConfigListBool(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigBoolList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -86,12 +91,14 @@ func (m *MockRdbPluginClient) ConfigListBool(arg0 context.Context, arg1 *v1.Conf
 
 // ConfigListBool indicates an expected call of ConfigListBool
 func (mr *MockRdbPluginClientMockRecorder) ConfigListBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListBool", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigListBool), varargs...)
 }
 
 // ConfigListString mocks base method
 func (m *MockRdbPluginClient) ConfigListString(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigStringList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -104,12 +111,14 @@ func (m *MockRdbPluginClient) ConfigListString(arg0 context.Context, arg1 *v1.Co
 
 // ConfigListString indicates an expected call of ConfigListString
 func (mr *MockRdbPluginClientMockRecorder) ConfigListString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListString", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigListString), varargs...)
 }
 
 // ConfigUpdateBool mocks base method
 func (m *MockRdbPluginClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.ConfigBool, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -122,12 +131,14 @@ func (m *MockRdbPluginClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.Co
 
 // ConfigUpdateBool indicates an expected call of ConfigUpdateBool
 func (mr *MockRdbPluginClientMockRecorder) ConfigUpdateBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateBool", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigUpdateBool), varargs...)
 }
 
 // ConfigUpdateString mocks base method
 func (m *MockRdbPluginClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.ConfigString, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -140,12 +151,14 @@ func (m *MockRdbPluginClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.
 
 // ConfigUpdateString indicates an expected call of ConfigUpdateString
 func (mr *MockRdbPluginClientMockRecorder) ConfigUpdateString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateString", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigUpdateString), varargs...)
 }
 
 // Status mocks base method
 func (m *MockRdbPluginClient) Status(arg0 context.Context, arg1 *v10.RdbStatusRequest, arg2 ...grpc.CallOption) (*v10.RdbStatus, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -158,12 +171,14 @@ func (m *MockRdbPluginClient) Status(arg0 context.Context, arg1 *v10.RdbStatusRe
 
 // Status indicates an expected call of Status
 func (mr *MockRdbPluginClientMockRecorder) Status(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Status", reflect.TypeOf((*MockRdbPluginClient)(nil).Status), varargs...)
 }
 
 // VolumeCreate mocks base method
 func (m *MockRdbPluginClient) VolumeCreate(arg0 context.Context, arg1 *v10.RdbVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -176,12 +191,14 @@ func (m *MockRdbPluginClient) VolumeCreate(arg0 context.Context, arg1 *v10.RdbVo
 
 // VolumeCreate indicates an expected call of VolumeCreate
 func (mr *MockRdbPluginClientMockRecorder) VolumeCreate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeCreate", reflect.TypeOf((*MockRdbPluginClient)(nil).VolumeCreate), varargs...)
 }
 
 // VolumeDelete mocks base method
 func (m *MockRdbPluginClient) VolumeDelete(arg0 context.Context, arg1 *v10.RdbVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -194,12 +211,14 @@ func (m *MockRdbPluginClient) VolumeDelete(arg0 context.Context, arg1 *v10.RdbVo
 
 // VolumeDelete indicates an expected call of VolumeDelete
 func (mr *MockRdbPluginClientMockRecorder) VolumeDelete(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeDelete", reflect.TypeOf((*MockRdbPluginClient)(nil).VolumeDelete), varargs...)
 }
 
 // VolumeList mocks base method
 func (m *MockRdbPluginClient) VolumeList(arg0 context.Context, arg1 *v10.RdbVolumeListQuery, arg2 ...grpc.CallOption) (*v10.RdbVolumeList, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -212,12 +231,14 @@ func (m *MockRdbPluginClient) VolumeList(arg0 context.Context, arg1 *v10.RdbVolu
 
 // VolumeList indicates an expected call of VolumeList
 func (mr *MockRdbPluginClientMockRecorder) VolumeList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeList", reflect.TypeOf((*MockRdbPluginClient)(nil).VolumeList), varargs...)
 }
 
 // VolumeUpdate mocks base method
 func (m *MockRdbPluginClient) VolumeUpdate(arg0 context.Context, arg1 *v10.RdbVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
+	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
@@ -230,6 +251,7 @@ func (m *MockRdbPluginClient) VolumeUpdate(arg0 context.Context, arg1 *v10.RdbVo
 
 // VolumeUpdate indicates an expected call of VolumeUpdate
 func (mr *MockRdbPluginClientMockRecorder) VolumeUpdate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeUpdate", reflect.TypeOf((*MockRdbPluginClient)(nil).VolumeUpdate), varargs...)
 }

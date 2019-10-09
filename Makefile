@@ -43,9 +43,19 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
-go: ${GRPC_GO_OBJ}
+go: ${GRPC_GO_OBJ} go-mocks
 
 go-mocks:
+	# Gomock only works if the files are actually in the correct place with
+	# respect to the Go import path - running the gomock generator without
+	# moving the files just regenerates from the $GOPATH copy, not the files in
+	# this directory leaving your changes behind. Or in dapper, doesn't work at
+	# all.
+	#
+	# Move the files in this directory into the $GOPATH
+	mkdir -p $(GOPATH)/src/code.storageos.net/storageos/service/
+	cp -R . $(GOPATH)/src/code.storageos.net/storageos/service/
+
 	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
 	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
 	mockgen code.storageos.net/storageos/service/director/v1 DirectorClient > director/v1/mock_director/director_mock.go
@@ -96,7 +106,10 @@ test:
 # Make Golang protobuf implementation. Target source files go in the same directory
 # as the .proto source.
 %.pb.go: %.proto
-	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc:$(GOPATH)/src $(<D)/$(<F)
+	# We have a weird layout - generate the files and move them into the
+	# existing places.
+	protoc $(PROTOC_OPT) -I $(<D) --go_out=plugins=grpc,paths=source_relative:. $<
+	mv $(notdir $@) $(dir $<)
 
 # Make C++ gRPC implementation and declarations. Target source files go in the same directory
 # as the .proto source.
