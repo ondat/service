@@ -194,7 +194,8 @@ message DfsResponderStatus {
 // In the future this may contain other parameters, for example accepted cipher suites.
 message DfsInitiatorNodeTLSParams {
     // The hostname to use when performing rfc2818 verification of the remote endpoint.
-    // If not present we'll perform verification using the remote endpoint hostname.
+    // This field is optional. If it's not present we'll perform verification using
+    // the `hostname` field from the DfsInitiatorNode message.
     string verify_hostname = 1;
 }
 
