@@ -216,6 +216,26 @@ func (mr *MockDirectorClientMockRecorder) ConfigUpdateUint32(arg0, arg1 interfac
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateUint32", reflect.TypeOf((*MockDirectorClient)(nil).ConfigUpdateUint32), varargs...)
 }
 
+// Poke mocks base method
+func (m *MockDirectorClient) Poke(arg0 context.Context, arg1 *v1.PokeQuery, arg2 ...grpc.CallOption) (*v1.PokeResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Poke", varargs...)
+	ret0, _ := ret[0].(*v1.PokeResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Poke indicates an expected call of Poke
+func (mr *MockDirectorClientMockRecorder) Poke(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Poke", reflect.TypeOf((*MockDirectorClient)(nil).Poke), varargs...)
+}
+
 // PresentationCreate mocks base method
 func (m *MockDirectorClient) PresentationCreate(arg0 context.Context, arg1 *v10.DirectorPresentation, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
 	m.ctrl.T.Helper()
@@ -294,6 +314,26 @@ func (mr *MockDirectorClientMockRecorder) PresentationUpdate(arg0, arg1 interfac
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PresentationUpdate", reflect.TypeOf((*MockDirectorClient)(nil).PresentationUpdate), varargs...)
+}
+
+// StatsList mocks base method
+func (m *MockDirectorClient) StatsList(arg0 context.Context, arg1 *v1.StatsListQuery, arg2 ...grpc.CallOption) (*v1.StatsListResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "StatsList", varargs...)
+	ret0, _ := ret[0].(*v1.StatsListResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// StatsList indicates an expected call of StatsList
+func (mr *MockDirectorClientMockRecorder) StatsList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StatsList", reflect.TypeOf((*MockDirectorClient)(nil).StatsList), varargs...)
 }
 
 // Status mocks base method

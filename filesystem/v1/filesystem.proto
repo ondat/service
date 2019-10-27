@@ -73,6 +73,14 @@ service Fs {
      */
     rpc PresentationList(FsPresentationListQuery) returns (FsPresentationList) {}
 
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+    rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -109,8 +117,8 @@ message FsVolumeStatistics {
 }
 
 enum FsVolumeState {
-    NONE = 0;       // Volume is not available in the filesystem.
-    READY = 1;    // Volume can be read from the filesystem.
+    NONE = 0;   // Volume is not available in the filesystem.
+    READY = 1;  // Volume can be read from the filesystem.
 }
 
 message FsVolumeStatus {
@@ -128,26 +136,26 @@ message FsVolume {
     uint32 volume_id = 2;
 
     enum VolumeDeviceType {
-        FILE = 0;           // A regular file (backed by FUSE).
-        NBD_BLOCK = 1;      // An nbd-backed block device node.
+        FILE = 0;       // A regular file (backed by FUSE).
+        NBD_BLOCK = 1;  // An nbd-backed block device node. Deprecated. Need to coordinate its removal with the control-plane.
     }
 
     // The type for this volume.
     VolumeDeviceType node_type = 3;
 
     enum VolumeControlStatus {
-        NONE = 0;           // State not set (shouldn't happen).
-        ACTIVE = 1;         // Volume should be made available to the user.
-        UNAVAILABLE = 2;    // Volume is in the process of being deleted.
-        FAILED = 3;         // Volume is in a failure state.
-        DELETING = 4;       // Volume is in the process of being deleted.
+        NONE = 0;         // State not set (shouldn't happen).
+        ACTIVE = 1;       // Volume should be made available to the user.
+        UNAVAILABLE = 2;  // Volume is in the process of being deleted.
+        FAILED = 3;       // Volume is in a failure state.
+        DELETING = 4;     // Volume is in the process of being deleted.
     }
 
     // The control plane's desired state for this volume.
     VolumeControlStatus control_status = 10;
 
     // An opaque value interpreted based on node_type.
-    uint32 device_number = 4;
+    uint32 device_number = 4 [ deprecated = true ];
 
     // The filename of the underlying volume to present in the filesystem.
     string filename = 5;
@@ -168,7 +176,6 @@ message FsVolume {
 message FsVolumeList {
     repeated FsVolume volumes = 1;
 }
-
 
 message FsPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
