@@ -25,6 +25,16 @@ service Supervisor {
     rpc ConfigGetString(common.v1.ConfigKey) returns (common.v1.ConfigGetStringReply) {}
     rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
+
+    /**
+     * Return a hash list for the specified volume, over the specified range.
+     * Note: this is a streaming RPC as the hash lists returned could conceiveably
+     * be multiple megabytes in size.
+     *
+     * returns the hash list and volume hash
+     */
+    rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
+
 }
 
 message SupervisorStatusRequest {
@@ -34,4 +44,49 @@ message SupervisorStatusRequest {
 message SupervisorStatus {
     // Generic daemon status.
     common.v1.DaemonStatus status = 2;
+}
+
+message VolumeHash {
+  // There's no way to define this in the proto but bytes.size() is always sizeof(HashType_t).
+  // Currently 16 bytes.
+  bytes bytes = 1;
+}
+
+// Note: the response to this message, VolumeHashListResponse, is chunked (streamed in
+// gRPC parlance).
+message VolumeHashListRequest {
+    // The volume we want to generate a hash over
+    uint32 volume_id = 1;
+
+    // Defines the byte offset into `volume_id` at which we'll start hash list generation.
+    uint64 start_offset = 2;
+
+    // Defines the byte offset into `volume_id` at which we'll end hash list generation.
+    uint64 end_offset = 3;
+
+    // When generating the hash list we do so by rolling together individual block hashes
+    // into a region hash. This field defines the size of that region in bytes. It must be
+    // multiple of RIXIO_BSIZE. By giving the option for clients to specify this size they
+    // can optimise based on volume size and required sync granularity.
+    uint64 region_size = 4;
+}
+
+// This message is streamed back to the client in response to a VolumeHashListRequest message.
+// As such the client should expect to receive many of these messages. Each VolumeHashListResponse
+// contains the hash list for a sequential portion of the volume. For simplicity the volume_hash --
+// i.e the hash for the range [start_offset, end_offset) as specified in the initial VolumeHashListRequest
+// -- is stored in every message.
+message VolumeHashListResponse {
+    // The hash over the region [start_offset, end_offset) as specified in the initial VolumeHashListRequest
+    VolumeHash volume_hash = 1;
+
+    // Defines the byte offset into `volume_id` at which hash_list[0] begins.
+    uint64 start_offset = 2;
+
+    // Defines the byte offset into `volume_id` at which hash_list[max] ends.
+    uint64 end_offset = 3;
+
+    // A list of region hashes pertaining to the regions defined by the byte range [start_offset, end_offset).
+    // The number of regions depends on the `region_size` defined in the inital VolumeHashListRequest.
+    repeated VolumeHash hash_list = 4;
 }
