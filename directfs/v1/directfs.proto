@@ -301,8 +301,10 @@ message DfsInitiatorVolumeList {
 }
 
 message DfsInitiatorVolumeListQuery {
-    // An optional list of volumes to query.
+    // An optional list of volume inodes to query.
     repeated uint32 volume_ids = 1;
+    // An optional list of volume UUIDs to query.
+    repeated string volume_uuids = 2;
 }
 
 message DfsResponderVolumeCredentials {
@@ -373,6 +375,8 @@ message DfsResponderVolumeList {
 }
 
 message DfsResponderVolumeListQuery {
-    // An optional list of volumes to query.
+    // An optional list of volume inodes to query.
     repeated uint32 volume_ids = 1;
+    // An optional list of volume UUIDs to query.
+    repeated string volume_uuids = 2;
 }

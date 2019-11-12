@@ -58,6 +58,9 @@ message VolumeHashListRequest {
     // The volume we want to generate a hash over
     uint32 volume_id = 1;
 
+    // The volume UUID we want to generate a hash over.
+    string volume_uuid = 5;
+
     // Defines the byte offset into `volume_id` at which we'll start hash list generation.
     uint64 start_offset = 2;
 

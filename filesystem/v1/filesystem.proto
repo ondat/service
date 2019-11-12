@@ -110,6 +110,8 @@ message FsStatus {
 message FsVolumeListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 volume_ids = 1;
+    // A possibly-empty list of volume UUIDs to query.
+    repeated string volume_uuids = 2;
 }
 
 message FsVolumeStatistics {
@@ -180,6 +182,8 @@ message FsVolumeList {
 message FsPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 presentation_ids = 1;
+    // A possibly-empty list of volume UUIDs to query.
+    repeated string presentation_uuids = 2;
 }
 
 /**
@@ -202,6 +206,10 @@ message FsPresentation {
 
     // The underlying inode of the StorageOS volume.
     uint32 target_id = 3;
+
+    // The UUID of the volume to which we point. This must be set for NLI mode,
+    // and should be ignored in GSI mode.
+    string target_uuid = 7;
 
     // Presentation inode status, e.g. readiness.
     FsVolumeStatus status = 5;
