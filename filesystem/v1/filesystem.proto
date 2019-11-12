@@ -163,6 +163,10 @@ message FsVolume {
     string filename = 5;
 
     // The filename of the presentation node, to which users actually connect.
+    // This field really belongs on the FsPresentation object and has been added
+    // there post-1.5.0. Until we're all C2, this field and the field in
+    // FsPresentation should have the same value or you'll see some very strange
+    // artifacts.
     string presentation_filename = 9;
 
     // The volume size in bytes.
@@ -213,6 +217,11 @@ message FsPresentation {
 
     // Presentation inode status, e.g. readiness.
     FsVolumeStatus status = 5;
+
+    // The filesystem name of the presentation. This should have the same
+    // contents as the presentation_filename field of the DirectorVolume object
+    // of the target, otherwise expect weird artifacts as we transition to C2.
+    string filename = 6;
 }
 
 message FsPresentationList {
