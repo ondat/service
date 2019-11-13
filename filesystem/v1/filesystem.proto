@@ -110,6 +110,8 @@ message FsStatus {
 message FsVolumeListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 volume_ids = 1;
+    // A possibly-empty list of volume UUIDs to query.
+    repeated string volume_uuids = 2;
 }
 
 message FsVolumeStatistics {
@@ -161,6 +163,10 @@ message FsVolume {
     string filename = 5;
 
     // The filename of the presentation node, to which users actually connect.
+    // This field really belongs on the FsPresentation object and has been added
+    // there post-1.5.0. Until we're all C2, this field and the field in
+    // FsPresentation should have the same value or you'll see some very strange
+    // artifacts.
     string presentation_filename = 9;
 
     // The volume size in bytes.
@@ -180,6 +186,8 @@ message FsVolumeList {
 message FsPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 presentation_ids = 1;
+    // A possibly-empty list of volume UUIDs to query.
+    repeated string presentation_uuids = 2;
 }
 
 /**
@@ -203,8 +211,17 @@ message FsPresentation {
     // The underlying inode of the StorageOS volume.
     uint32 target_id = 3;
 
+    // The UUID of the volume to which we point. This must be set for NLI mode,
+    // and should be ignored in GSI mode.
+    string target_uuid = 7;
+
     // Presentation inode status, e.g. readiness.
     FsVolumeStatus status = 5;
+
+    // The filesystem name of the presentation. This should have the same
+    // contents as the presentation_filename field of the DirectorVolume object
+    // of the target, otherwise expect weird artifacts as we transition to C2.
+    string filename = 6;
 }
 
 message FsPresentationList {

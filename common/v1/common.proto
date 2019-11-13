@@ -261,6 +261,9 @@ message StatsListQuery {
 
     // An optional list of volume (or node or other) ids to query.  Empty list will return all.
     repeated uint32 ids = 2;
+
+    // An optional list of UUIDs to query.
+    repeated string uuids = 3;
 }
 
 message Counter {
@@ -273,6 +276,7 @@ message Gauge {
 
 message Statistic {
     uint32 id = 1;
+    string uuid = 5;
     string name = 2;
     oneof metric_type {
         Counter counter = 3;

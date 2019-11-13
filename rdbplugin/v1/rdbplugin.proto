@@ -84,6 +84,8 @@ message RdbStatus {
 message RdbVolumeListQuery {
     // Optional list of volume IDs to query.
     repeated uint32 volume_ids = 1;
+    // Optional list of volume UUIDs to query.
+    repeated string volume_uuids = 2;
 }
 
 message RdbVolumeCredentials {
