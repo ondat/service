@@ -150,6 +150,9 @@ message DirectorVolume {
     // List of replica inodes.
     repeated uint32 replica_ids = 6;
 
+    // List of replica uuids.
+    repeated string replica_uuids = 17;
+
     // Number of times this volume has been mounted (used for cache consistency).
     uint32 mount_count = 9 [deprecated = true];
 
