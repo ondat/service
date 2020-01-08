@@ -34,7 +34,6 @@ service Supervisor {
      * returns the hash list and volume hash
      */
     rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
-
 }
 
 message SupervisorStatusRequest {
@@ -44,12 +43,44 @@ message SupervisorStatusRequest {
 message SupervisorStatus {
     // Generic daemon status.
     common.v1.DaemonStatus status = 2;
+
+    // Composite Id Mapper status.
+    IdMapperStatus idmap_status = 3;
 }
 
+/**
+ ** Id Mapper status.
+ **/
+
+message IdMapping {
+    string uuid = 1;
+    uint32 inode = 2;
+}
+
+message IdMapperStatus {
+    // False if the mode has not yet been set, true otherwise.
+    bool mode_set = 1;
+
+    enum MapMode {
+        GSI = 0;  // Global-scope inodes (v1).
+        NLI = 1;  // Node-local inodes (v2).
+    };
+
+    // The map mode, only valid if mode_set==true.
+    MapMode mode = 2;
+
+    // A list of mappings.
+    repeated IdMapping mappings = 3;
+}
+
+/**
+ ** Volume hash lists (sync).
+ **/
+
 message VolumeHash {
-  // There's no way to define this in the proto but bytes.size() is always sizeof(HashType_t).
-  // Currently 16 bytes.
-  bytes bytes = 1;
+    // There's no way to define this in the proto but bytes.size() is always sizeof(HashType_t).
+    // Currently 16 bytes.
+    bytes bytes = 1;
 }
 
 // Note: the response to this message, VolumeHashListResponse, is chunked (streamed in
