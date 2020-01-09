@@ -58,12 +58,10 @@ message IdMapping {
 }
 
 message IdMapperStatus {
-    // False if the mode has not yet been set, true otherwise.
-    bool mode_set = 1;
-
     enum MapMode {
-        GSI = 0;  // Global-scope inodes (v1).
-        NLI = 1;  // Node-local inodes (v2).
+        NOTSET = 0; // No value (new dataplane, never been configured).
+        GSI = 1;    // Global-scope inodes (v1).
+        NLI = 2;    // Node-local inodes (v2).
     };
 
     // The map mode, only valid if mode_set==true.
