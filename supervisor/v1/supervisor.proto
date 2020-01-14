@@ -102,6 +102,9 @@ message VolumeHashListRequest {
     // can optimise based on volume size and required sync granularity.
     uint64 region_size = 4;
 
+    // As it stands we need to know if the volume is compressed or not in order to
+    // generate the volume hashes. This field will likely become redundant once
+    // DP-40 is fixed.
     bool is_compressed = 6;
 }
 
