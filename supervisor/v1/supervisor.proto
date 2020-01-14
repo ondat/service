@@ -101,6 +101,8 @@ message VolumeHashListRequest {
     // multiple of RIXIO_BSIZE. By giving the option for clients to specify this size they
     // can optimise based on volume size and required sync granularity.
     uint64 region_size = 4;
+
+    bool is_compressed = 6;
 }
 
 // This message is streamed back to the client in response to a VolumeHashListRequest message.
