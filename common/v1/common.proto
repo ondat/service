@@ -327,3 +327,82 @@ message PokeResponse {
     // Arbitrary string result for the poke.
     string result = 3;
 }
+
+/**
+ ** Metadata
+ **/
+
+ //
+ // 'Classic' bitmap metadata.
+ //
+
+/**
+ ** Enumerate the types of bitmap entry.
+ **/
+enum MetadataBitmapId {
+    // Match the in-source 'invalid' value.
+    INVALID = 0;
+
+    // The 'classic' write_metadata bitmap.
+    OCCUPANCY = 1;
+
+    // The chunks requiring synchronisation since last-known-good.
+    DELTASYNC = 2;
+}
+
+/**
+ * A composite request for a particular bitmap.
+ **/
+message MetadataBitmapSpecification {
+    // The type of bitmap, from MetadataBitmapId.
+    MetadataBitmapId bitmap_id = 1;
+
+    // The 'master' volume, the source of the data.
+    uint32 master_volume_id = 2;
+
+    // The replica volume to which this bitmap applies.
+    uint32 replica_volume_id = 3;
+
+    // The 'master' volume, the source of the data.
+    string master_volume_uuid = 4;
+
+    // The replica volume, if provided.
+    string replica_volume_uuid = 5;
+}
+
+/**
+ ** Standard 'give me a bitmap' query.
+ **/
+message MetadataBitmapQuery {
+    MetadataBitmapSpecification spec = 1;
+}
+
+/**
+ ** Standard 'this bitmap' reply.
+ **/
+message MetadataBitmapReply {
+
+    // Allow for negative responses. The RPC can return OK, but this field can
+    // indicate many specific failures.
+    RpcResult rpc_result = 1;
+
+    // Include the specification so there's no need to pass the query around.
+    MetadataBitmapSpecification spec = 2;
+
+    // The bitmap in the simplest form possible.
+    repeated bool data = 3;
+}
+
+/**
+ ** Standard 'reset this bitmap' query.
+ **/
+message MetadataBitmapResetQuery {
+    MetadataBitmapSpecification spec = 1;
+}
+
+/**
+ ** Response to 'reset this bitmap' query.
+ **/
+message MetadataBitmapResetReply {
+    RpcResult rpc_result = 1;
+}

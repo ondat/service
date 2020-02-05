@@ -216,6 +216,46 @@ func (mr *MockDirectorClientMockRecorder) ConfigUpdateUint32(arg0, arg1 interfac
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateUint32", reflect.TypeOf((*MockDirectorClient)(nil).ConfigUpdateUint32), varargs...)
 }
 
+// MetadataGetBitmap mocks base method
+func (m *MockDirectorClient) MetadataGetBitmap(arg0 context.Context, arg1 *v1.MetadataBitmapQuery, arg2 ...grpc.CallOption) (*v1.MetadataBitmapReply, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "MetadataGetBitmap", varargs...)
+	ret0, _ := ret[0].(*v1.MetadataBitmapReply)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// MetadataGetBitmap indicates an expected call of MetadataGetBitmap
+func (mr *MockDirectorClientMockRecorder) MetadataGetBitmap(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MetadataGetBitmap", reflect.TypeOf((*MockDirectorClient)(nil).MetadataGetBitmap), varargs...)
+}
+
+// MetadataResetBitmap mocks base method
+func (m *MockDirectorClient) MetadataResetBitmap(arg0 context.Context, arg1 *v1.MetadataBitmapResetQuery, arg2 ...grpc.CallOption) (*v1.MetadataBitmapResetReply, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "MetadataResetBitmap", varargs...)
+	ret0, _ := ret[0].(*v1.MetadataBitmapResetReply)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// MetadataResetBitmap indicates an expected call of MetadataResetBitmap
+func (mr *MockDirectorClientMockRecorder) MetadataResetBitmap(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MetadataResetBitmap", reflect.TypeOf((*MockDirectorClient)(nil).MetadataResetBitmap), varargs...)
+}
+
 // Poke mocks base method
 func (m *MockDirectorClient) Poke(arg0 context.Context, arg1 *v1.PokeQuery, arg2 ...grpc.CallOption) (*v1.PokeResponse, error) {
 	m.ctrl.T.Helper()

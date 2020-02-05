@@ -86,6 +86,13 @@ service Director {
      */
     rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
 
+    /**
+     * Return a metadata bitmap in a standard format. The actual bitmap returned
+     * is based on the spec field of the Query.
+     */
+    rpc MetadataGetBitmap(common.v1.MetadataBitmapQuery) returns (common.v1.MetadataBitmapReply) {}
+    rpc MetadataResetBitmap(common.v1.MetadataBitmapResetQuery) returns (common.v1.MetadataBitmapResetReply) {}
+
     // Config services, from common.v1.
     rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
     rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
