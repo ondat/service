@@ -6,6 +6,8 @@ ENV PATH=/opt/storageos/bin:$PATH
 ENV GOLANG_VERSION 1.12.9
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
 ENV GOLANG_DOWNLOAD_SHA256 ac2a6efcc1f5ec8bdc0db0a988bb1d301d64b6d61b7e8d9e42f662fbb75a2b9b
+ENV DEP_DOWNLOAD_URL https://github.com/golang/dep/releases/download/v0.5.4/dep-linux-amd64
+ENV DEP_DOWNLOAD_SHA256 40a78c13753f482208d3f4bea51244ca60a914341050c588dad1f00b1acc116c
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
 	&& tar -C /usr/local -xzf golang.tar.gz \
@@ -13,40 +15,16 @@ RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN curl -fsSL "$DEP_DOWNLOAD_URL" -o /go/bin/dep \
+    && echo "$DEP_DOWNLOAD_SHA256  /go/bin/dep" | sha256sum -c - \
+    && chmod +x /go/bin/dep
 
 # soegarots/dataplane-build:latest contains the dataplane C++ versions of protobuf and grpc.
 
 # Install go pieces we need.
-RUN for pkg in \
-    google.golang.org/grpc \
-    github.com/golang/protobuf/proto \
-    github.com/golang/protobuf/protoc-gen-go \
-    github.com/golang/mock/gomock \
-    github.com/golang/mock/mockgen \
-    ; do echo "++ $pkg"; go get -u $pkg; done
+RUN go get -u github.com/golang/protobuf/protoc-gen-go
 
-## Install Python pieces we need.
-# Install a specific Python version from source.
-RUN apt-get -qy update && env DEBIAN_FRONTEND=noninteractive apt-get -qqy install \
-    build-essential \
-    checkinstall \
-    libreadline-gplv2-dev \
-    libncursesw5-dev \
-    libssl-dev \
-    libsqlite3-dev \
-    tk-dev \
-    libgdbm-dev \
-    libc6-dev \
-    libbz2-dev
-RUN cd /tmp && \
-    curl -L "https://www.python.org/ftp/python/3.6.10/Python-3.6.10.tar.xz" | tar xJ && \
-    cd Python-3.6.10 && \
-    ./configure && make -j$(nproc) altinstall && \
-    rm -rf /tmp/Python*
-RUN pip3.6 install --upgrade pip
-RUN pip3.6 install grpcio grpcio-tools
-
-WORKDIR /source
-ENV DAPPER_SOURCE /source
+WORKDIR /go/src/code.storageos.net/storageos/service
+ENV DAPPER_SOURCE /go/src/code.storageos.net/storageos/service
 
 ENTRYPOINT ["/usr/bin/make"]
