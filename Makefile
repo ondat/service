@@ -49,13 +49,9 @@ vendor:
 go-mocks:
 	# Gomock only works if the files are actually in the correct place with
 	# respect to the Go import path - running the gomock generator without
-	# moving the files just regenerates from the $GOPATH copy, not the files in
-	# this directory leaving your changes behind. Or in dapper, doesn't work at
-	# all.
-	#
-	# Move the files in this directory into the $GOPATH
-	mkdir -p $(GOPATH)/src/code.storageos.net/storageos/service/
-	cp -R . $(GOPATH)/src/code.storageos.net/storageos/service/
+	# having the files in the GOPATH doesn't work at all.
+	# When building, ensure source files are in:
+	# $(GOPATH)/src/code.storageos.net/storageos/service/
 
 	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
 	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
