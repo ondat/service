@@ -13,6 +13,11 @@ service Supervisor {
     rpc Status(SupervisorStatusRequest) returns (SupervisorStatus) {}
 
     /**
+     * Reap a volume.
+     */
+    rpc ReapVolume(ReapVolumeRequest) returns (ReapVolumeResponse) {}
+
+    /**
      * Perform actions that really only make sense for very low-level testing.
      */
     rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
@@ -34,6 +39,15 @@ service Supervisor {
      * returns the hash list and volume hash
      */
     rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
+}
+
+message ReapVolumeRequest {
+    string uuid = 1;
+    uint32 inode = 2;
+}
+
+message ReapVolumeResponse {
+    // Empty for now
 }
 
 message SupervisorStatusRequest {
@@ -59,9 +73,9 @@ message IdMapping {
 
 message IdMapperStatus {
     enum MapMode {
-        NOTSET = 0; // No value (new dataplane, never been configured).
-        GSI = 1;    // Global-scope inodes (v1).
-        NLI = 2;    // Node-local inodes (v2).
+        NOTSET = 0;  // No value (new dataplane, never been configured).
+        GSI = 1;     // Global-scope inodes (v1).
+        NLI = 2;     // Node-local inodes (v2).
     };
 
     // The map mode, only valid if mode_set==true.
