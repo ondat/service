@@ -21,11 +21,11 @@ RUN curl -fsSL "$DEP_DOWNLOAD_URL" -o /go/bin/dep \
 
 # soegarots/dataplane-build:latest contains the dataplane C++ versions of protobuf and grpc.
 
-# Install go pieces we need.
-RUN for pkg in \
-    github.com/golang/protobuf/protoc-gen-go \
-    github.com/golang/mock/mockgen \
-    ; do echo "++ $pkg"; go get -u $pkg; done
+ENV PROTOC_TAG="v1.3.2"
+RUN go get -u github.com/golang/mock/mockgen
+RUN go get -d -u github.com/golang/protobuf/protoc-gen-go \
+    && git -C "$GOPATH/src/github.com/golang/protobuf" checkout $PROTOC_TAG \
+    && go install github.com/golang/protobuf/protoc-gen-go
 
 WORKDIR /go/src/code.storageos.net/storageos/service
 ENV DAPPER_SOURCE /go/src/code.storageos.net/storageos/service

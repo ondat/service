@@ -52,6 +52,11 @@ go-mocks:
 	# having the files in the GOPATH doesn't work at all.
 	# When building, ensure source files are in:
 	# $(GOPATH)/src/code.storageos.net/storageos/service/
+	for dir in  dbplugin/v1/mock_rdbplugin filesystem/v1/mock_filesystem \
+		director/v1/mock_director directfs/v1/mock_directfs stats/v1/mock_stats; \
+	do \
+		mkdir -p $$dir; \
+	done
 
 	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
 	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
@@ -63,7 +68,7 @@ go-mocks:
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
 
-clean: grpc_clean vis_clean
+clean: grpc_clean vis_clean mock_clean
 
 distclean: clean
 
@@ -73,6 +78,13 @@ grpc: $(GRPC_OBJ)
 
 grpc_clean:
 	rm -f $(GRPC_ALLOBJ)
+
+mock_clean:
+	for dir in dbplugin/v1/mock_rdbplugin filesystem/v1/mock_filesystem \
+		director/v1/mock_director directfs/v1/mock_directfs stats/v1/mock_stats; \
+	do \
+		rm -f $$dir/*.go; \
+	done
 
 vis:
 	cd visualiser && $(MAKE)

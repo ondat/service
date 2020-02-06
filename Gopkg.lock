@@ -80,7 +80,7 @@
   revision = "a86caf926a677e543dd621436dc3ebf2ef9877d4"
 
 [[projects]]
-  digest = "1:de21a2d5b9c8697d83f5ab48f3e8fe3616c33ac4b2d057083662dede0e81488e"
+  digest = "1:3fe55026bb11519b45c0fc9d848fd779028b868dc62f5563c518cf850c7421d5"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -121,8 +121,8 @@
     "tap",
   ]
   pruneopts = "UT"
-  revision = "f495f5b15ae7ccda3b38c53a1bfcde4c1a58a2bc"
-  version = "v1.27.1"
+  revision = "f5b0812e6fe574d90da76b205e9eb51f6ddb1919"
+  version = "v1.26.0"
 
 [solve-meta]
   analyzer-name = "dep"

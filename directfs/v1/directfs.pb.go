@@ -1220,11 +1220,11 @@ var fileDescriptor_a98ffea917a5fa2f = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // DfsInitiatorClient is the client API for DfsInitiator service.
 //
@@ -1300,10 +1300,10 @@ type DfsInitiatorClient interface {
 }
 
 type dfsInitiatorClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewDfsInitiatorClient(cc grpc.ClientConnInterface) DfsInitiatorClient {
+func NewDfsInitiatorClient(cc *grpc.ClientConn) DfsInitiatorClient {
 	return &dfsInitiatorClient{cc}
 }
 
@@ -1987,10 +1987,10 @@ type DfsResponderClient interface {
 }
 
 type dfsResponderClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewDfsResponderClient(cc grpc.ClientConnInterface) DfsResponderClient {
+func NewDfsResponderClient(cc *grpc.ClientConn) DfsResponderClient {
 	return &dfsResponderClient{cc}
 }
 

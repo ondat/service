@@ -497,11 +497,11 @@ var fileDescriptor_b8b9452d77b1c7d2 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // SupervisorClient is the client API for Supervisor service.
 //
@@ -530,10 +530,10 @@ type SupervisorClient interface {
 }
 
 type supervisorClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewSupervisorClient(cc grpc.ClientConnInterface) SupervisorClient {
+func NewSupervisorClient(cc *grpc.ClientConn) SupervisorClient {
 	return &supervisorClient{cc}
 }
 
