@@ -682,11 +682,11 @@ var fileDescriptor_29bb3702600586b0 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // DirectorClient is the client API for Director service.
 //
@@ -766,10 +766,10 @@ type DirectorClient interface {
 }
 
 type directorClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewDirectorClient(cc *grpc.ClientConn) DirectorClient {
+func NewDirectorClient(cc grpc.ClientConnInterface) DirectorClient {
 	return &directorClient{cc}
 }
 

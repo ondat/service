@@ -285,7 +285,10 @@ type VolumeHashListRequest struct {
 	// into a region hash. This field defines the size of that region in bytes. It must be
 	// multiple of RIXIO_BSIZE. By giving the option for clients to specify this size they
 	// can optimise based on volume size and required sync granularity.
-	RegionSize           uint64   `protobuf:"varint,4,opt,name=region_size,json=regionSize,proto3" json:"region_size,omitempty"`
+	RegionSize uint64 `protobuf:"varint,4,opt,name=region_size,json=regionSize,proto3" json:"region_size,omitempty"`
+	// As it stands we need to know if the volume is compressed or not in order to
+	// generate the volume hashes. This field will likely become redundant once
+	// DP-40 is fixed.
 	IsCompressed         bool     `protobuf:"varint,6,opt,name=is_compressed,json=isCompressed,proto3" json:"is_compressed,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -494,11 +497,11 @@ var fileDescriptor_b8b9452d77b1c7d2 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // SupervisorClient is the client API for Supervisor service.
 //
@@ -527,10 +530,10 @@ type SupervisorClient interface {
 }
 
 type supervisorClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewSupervisorClient(cc *grpc.ClientConn) SupervisorClient {
+func NewSupervisorClient(cc grpc.ClientConnInterface) SupervisorClient {
 	return &supervisorClient{cc}
 }
 

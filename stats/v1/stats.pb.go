@@ -496,11 +496,11 @@ var fileDescriptor_b4756a0aec8b9d44 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // StatsClient is the client API for Stats service.
 //
@@ -540,10 +540,10 @@ type StatsClient interface {
 }
 
 type statsClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewStatsClient(cc *grpc.ClientConn) StatsClient {
+func NewStatsClient(cc grpc.ClientConnInterface) StatsClient {
 	return &statsClient{cc}
 }
 
