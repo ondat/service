@@ -19,21 +19,18 @@ GRPC_SRC	+= supervisor/v1/supervisor.proto
 # the relevant target filenames in the same directory in the source. It saves on repetition.
 PBUF_CPP_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.cc)
 PBUF_CPP_HDR	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.h)
-PBUF_PY_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto)_pb2.py)
 GRPC_CPP_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).grpc.pb.cc)
 GRPC_CPP_HDR	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).grpc.pb.h)
 GRPC_GO_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto).pb.go)
-GRPC_PY_OBJ	= $(foreach src,$(GRPC_SRC),$(dir $(src))$(shell basename $(src) .proto)_pb2_grpc.py)
 
 # All gRPC object file targets.
-GRPC_OBJ	=  $(GRPC_CPP_OBJ) $(GRPC_CPP_HDR) $(GRPC_GO_OBJ) $(GRPC_PY_OBJ)
+GRPC_OBJ	=  $(GRPC_CPP_OBJ) $(GRPC_CPP_HDR) $(GRPC_GO_OBJ)
 GRPC_OBJ	+= $(PBUF_CPP_OBJ) $(PBUF_CPP_HDR)
 
-# All gRPC object files. This includes a files that are implicitly generated for Go and Python.
-GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ) $(PBUF_PY_OBJ)
+# All gRPC object files. This includes a files that are implicitly generated for Go.
+GRPC_ALLOBJ	= $(GRPC_OBJ) $(PBUF_GO_OBJ)
 
 # Tools.
-PYBIN		= python3.6
 GOPATH		?= $(HOME)/go
 
 #############################################################################
@@ -44,18 +41,22 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
-go: ${GRPC_GO_OBJ} go-mocks
+go: vendor ${GRPC_GO_OBJ} go-mocks
+
+vendor:
+	dep ensure -v
 
 go-mocks:
 	# Gomock only works if the files are actually in the correct place with
 	# respect to the Go import path - running the gomock generator without
-	# moving the files just regenerates from the $GOPATH copy, not the files in
-	# this directory leaving your changes behind. Or in dapper, doesn't work at
-	# all.
-	#
-	# Move the files in this directory into the $GOPATH
-	mkdir -p $(GOPATH)/src/code.storageos.net/storageos/service/
-	cp -R . $(GOPATH)/src/code.storageos.net/storageos/service/
+	# having the files in the GOPATH doesn't work at all.
+	# When building, ensure source files are in:
+	# $(GOPATH)/src/code.storageos.net/storageos/service/
+	for dir in  dbplugin/v1/mock_rdbplugin filesystem/v1/mock_filesystem \
+		director/v1/mock_director directfs/v1/mock_directfs stats/v1/mock_stats; \
+	do \
+		mkdir -p $$dir; \
+	done
 
 	mockgen code.storageos.net/storageos/service/rdbplugin/v1 RdbPluginClient > rdbplugin/v1/mock_rdbplugin/rdbplugin_mock.go
 	mockgen code.storageos.net/storageos/service/filesystem/v1 FsClient > filesystem/v1/mock_filesystem/filesystem_mock.go
@@ -67,9 +68,7 @@ go-mocks:
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
 
-python: ${GRPC_PY_OBJ}
-
-clean: grpc_clean vis_clean
+clean: grpc_clean vis_clean mock_clean
 
 distclean: clean
 
@@ -80,15 +79,18 @@ grpc: $(GRPC_OBJ)
 grpc_clean:
 	rm -f $(GRPC_ALLOBJ)
 
+mock_clean:
+	for dir in dbplugin/v1/mock_rdbplugin filesystem/v1/mock_filesystem \
+		director/v1/mock_director directfs/v1/mock_directfs stats/v1/mock_stats; \
+	do \
+		rm -f $$dir/*.go; \
+	done
+
 vis:
 	cd visualiser && $(MAKE)
 
 vis_clean:
 	cd visualiser && $(MAKE) clean
-
-.PHONY: test
-test:
-	cd test && env PYBIN=$(PYBIN) $(MAKE)
 
 #############################################################################
 
@@ -122,17 +124,5 @@ test:
 # as the .proto source.
 %.pb.cc %.pb.h: %.proto
 	protoc $(PROTOC_OPT) -I $(<D) --cpp_out=$(<D) $(<F)
-
-# Make Python protobuf implementation. Target source files go in the same directory
-# as the .proto source.
-%_pb2_grpc.py: %.proto
-	# protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --plugin=protoc-gen-grpc=`which grpc_python_plugin` $(<F)
-	$(PYBIN) -m grpc_tools.protoc $(PROTOC_OPT) -I $(<D) --python_out=$(<D) --grpc_python_out=$(<D) $(<F)
-
-# Make Python protobuf implementation. Target source files go in the same directory
-# as the .proto source.
-%_pb2.py: %.proto
-	protoc $(PROTOC_OPT) -I $(<D) --python_out=plugins=grpc:$(<D) $(<F)
-
 
 #############################################################################
