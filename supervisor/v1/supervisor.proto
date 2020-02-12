@@ -39,6 +39,11 @@ service Supervisor {
      * returns the hash list and volume hash
      */
     rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
+
+    /**
+     ** Sync 2020.1 consumer count interface.
+     **/
+     rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
 }
 
 message ReapVolumeRequest {
@@ -140,4 +145,20 @@ message VolumeHashListResponse {
     // A list of region hashes pertaining to the regions defined by the byte range [start_offset, end_offset).
     // The number of regions depends on the `region_size` defined in the inital VolumeHashListRequest.
     repeated VolumeHash hash_list = 4;
+}
+
+message SetVolumeConsumerCountRequest {
+    // The UUID whose consumer count is being set.
+    string uuid = 1;
+    // The Consumer Count being set.
+    common.v1.ConsumerCount cc = 2;
+}
+
+message SetVolumeConsumerCountReply {
+    // The UUID whose consumer count was set.
+    string uuid = 1;
+    // The Consumer Count returned by the data plane on attempting to set the
+    // value contained in the SetVolumeConsumerCountRequest. May be >=
+    // request.cc.
+    common.v1.ConsumerCount cc = 2;
 }

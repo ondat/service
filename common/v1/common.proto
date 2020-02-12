@@ -406,3 +406,9 @@ message MetadataBitmapResetQuery {
 message MetadataBitmapResetReply {
     RpcResult rpc_result = 1;
 }
+
+/**
+ ** Sync 2020.1 Consumer Count.
+ **/
+
+message ConsumerCount { uint32 consumer_count = 1; }
