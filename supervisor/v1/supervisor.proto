@@ -170,6 +170,8 @@ message GetVolumeConsumerCountReply {
 message SetVolumeConsumerCountRequest {
     // The UUID whose consumer count is being set.
     string uuid = 1;
+    // The inode whos consumer count is being set.
+    uint32 inode = 3;
     // The Consumer Count being set.
     common.v1.ConsumerCount cc = 2;
 }
@@ -177,6 +179,8 @@ message SetVolumeConsumerCountRequest {
 message SetVolumeConsumerCountReply {
     // The UUID whose consumer count was set.
     string uuid = 1;
+    // The inode whos consumer count was set.
+    uint32 inode = 3;
     // The Consumer Count returned by the data plane on attempting to set the
     // value contained in the SetVolumeConsumerCountRequest. May be >=
     // request.cc.
