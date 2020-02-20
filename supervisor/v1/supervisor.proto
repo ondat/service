@@ -151,11 +151,18 @@ message VolumeHashListResponse {
 message GetVolumeConsumerCountRequest {
     // The UUID whose consumer count we are requesting.
     string uuid = 1;
+
+    // The inode whos consumer count we are requesting.
+    uint32 inode = 2;
 }
 
 message GetVolumeConsumerCountReply {
     // The UUID we're returning the cc for.
     string uuid = 1;
+
+    // The inode whos consumer count we are requesting.
+    uint32 inode = 3;
+
     // The Consumer Count for this uuid.
     common.v1.ConsumerCount cc = 2;
 }
