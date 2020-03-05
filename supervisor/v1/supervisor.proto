@@ -33,6 +33,11 @@ service Supervisor {
     rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 
     /**
+     * Sync the specified region. Called by symmetra.
+     */
+    rpc Sync(SyncRegionRequest) returns (SyncRegionResponse) {}
+
+    /**
      * Return a hash list for the specified volume, over the specified range.
      * Note: this is a streaming RPC as the hash lists returned could conceiveably
      * be multiple megabytes in size.
@@ -44,8 +49,8 @@ service Supervisor {
     /**
      ** Sync 2020.1 consumer count interface.
      **/
-     rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
-     rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
+    rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
+    rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
 }
 
 message ReapVolumeRequest {
@@ -186,4 +191,39 @@ message SetVolumeConsumerCountReply {
     // value contained in the SetVolumeConsumerCountRequest. May be >=
     // request.cc.
     common.v1.ConsumerCount cc = 2;
+}
+
+message SyncRegionRequest {
+    // The source volume ID.
+    uint64 source_volume = 1;
+
+    // The source UUID.
+    // This field is used as the volume identifier over destination_volume if destination_volume is set to INVALID_INODE;
+    string source_uuid = 2;
+
+    // The destination volume ID.
+    uint64 destination_volume = 3;
+
+    // The destination UUID.
+    // This field is used as the volume identifier over destination_volume if destination_volume is set to INVALID_INODE;
+    string destination_uuid = 4;
+
+    // The start offset.
+    uint64 offset = 5;
+
+    // The length of region to sync.
+    uint64 length = 6;
+
+    // Whether the sync should be forced. If this flag is set we'll overwrite every sync block transaction ID
+    // with TransactionId{node_cc, 0}, where node_cc is the consumer count of the source volume. See sync2020.pdf
+    // for the rationale behind this.
+    bool force = 7;
+}
+
+message SyncRegionResponse {
+    // Whether or not the operation was successful.
+    bool success = 1;
+
+    // If the operation was not successful, this is an explanatory message as to why.
+    string reason = 2;
 }
