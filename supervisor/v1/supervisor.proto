@@ -113,15 +113,16 @@ message IdMapperStatus {
  ** Consumer count storage status.
  **/
 
-message ConsumerCountForMapping {
+message ConsumerCountStatus {
+  // Just a list of counts and mappings.
+  repeated ConsumerCountEntry ccs = 1;
+}
+
+message ConsumerCountEntry {
   // The mapping for which we're returning a CC.
   IdMapping mapping = 1;
   // The cc for the provided mapping.
   common.v1.ConsumerCount cc = 2;
-}
-
-message ConsumerCountStatus {
-  repeated ConsumerCountForMapping cc_mappings = 1;
 }
 
 /**
