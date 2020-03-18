@@ -8,82 +8,73 @@ import "common.proto";
  * Director configuration and status service.
  */
 service Supervisor {
-  /**
-   * Get program status.
-   */
-  rpc Status(SupervisorStatusRequest) returns (SupervisorStatus) {}
+    /**
+     * Get program status.
+     */
+    rpc Status(SupervisorStatusRequest) returns (SupervisorStatus) {}
 
-  /**
-   * Reap a volume.
-   */
-  rpc ReapVolume(ReapVolumeRequest) returns (ReapVolumeResponse) {}
+    /**
+     * Reap a volume.
+     */
+    rpc ReapVolume(ReapVolumeRequest) returns (ReapVolumeResponse) {}
 
-  /**
-   * Perform actions that really only make sense for very low-level testing.
-   */
-  rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
+    /**
+     * Perform actions that really only make sense for very low-level testing.
+     */
+    rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
 
-  // Config services, from common.v1.
-  rpc ConfigGetBool(common.v1.ConfigKey)
-      returns (common.v1.ConfigGetBoolReply) {}
-  rpc ConfigUpdateBool(common.v1.ConfigBool)
-      returns (common.v1.ConfigUpdateReply) {}
-  rpc ConfigListBool(common.v1.ConfigListQuery)
-      returns (common.v1.ConfigBoolList) {}
+    // Config services, from common.v1.
+    rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
+    rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListBool(common.v1.ConfigListQuery) returns (common.v1.ConfigBoolList) {}
 
-  rpc ConfigGetString(common.v1.ConfigKey)
-      returns (common.v1.ConfigGetStringReply) {}
-  rpc ConfigUpdateString(common.v1.ConfigString)
-      returns (common.v1.ConfigUpdateReply) {}
-  rpc ConfigListString(common.v1.ConfigListQuery)
-      returns (common.v1.ConfigStringList) {}
+    rpc ConfigGetString(common.v1.ConfigKey) returns (common.v1.ConfigGetStringReply) {}
+    rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 
-  /**
-   * Sync the specified region. Called by symmetra.
-   */
-  rpc Sync(SyncRegionRequest) returns (SyncRegionResponse) {}
+    /**
+     * Sync the specified region. Called by symmetra.
+     */
+    rpc Sync(SyncRegionRequest) returns (SyncRegionResponse) {}
 
-  /**
-   * Return a hash list for the specified volume, over the specified range.
-   * Note: this is a streaming RPC as the hash lists returned could conceiveably
-   * be multiple megabytes in size.
-   *
-   * returns the hash list and volume hash
-   */
-  rpc VolumeHashList(VolumeHashListRequest)
-      returns (stream VolumeHashListResponse) {}
+    /**
+     * Return a hash list for the specified volume, over the specified range.
+     * Note: this is a streaming RPC as the hash lists returned could conceiveably
+     * be multiple megabytes in size.
+     *
+     * returns the hash list and volume hash
+     */
+    rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
 
-  /**
-   ** Sync 2020.1 consumer count interface.
-   **/
-  rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest)
-      returns (GetVolumeConsumerCountReply) {}
-  rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest)
-      returns (SetVolumeConsumerCountReply) {}
+    /**
+     ** Sync 2020.1 consumer count interface.
+     **/
+    rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
+    rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
 }
 
 message ReapVolumeRequest {
-  string uuid = 1;
-  uint32 inode = 2;
+    string uuid = 1;
+    uint32 inode = 2;
 }
 
 message ReapVolumeResponse {
-  // Empty for now
+    // Empty for now
 }
 
 message SupervisorStatusRequest {
-  // Empty for now.
+    // Empty for now.
 }
 
 message SupervisorStatus {
-  // Generic daemon status.
-  common.v1.DaemonStatus status = 2;
+    // Generic daemon status.
+    common.v1.DaemonStatus status = 2;
 
-  // Composite Id Mapper status.
-  IdMapperStatus idmap_status = 3;
+    // Composite Id Mapper status.
+    IdMapperStatus idmap_status = 3;
 
-  // Composite consumer count status.
-  ConsumerCountStatus cc_status = 4;
+    // Composite consumer count status.
+    ConsumerCountStatus cc_status = 4;
 }
 
 /**
@@ -91,22 +82,22 @@ message SupervisorStatus {
  **/
 
 message IdMapping {
-  string uuid = 1;
-  uint32 inode = 2;
+    string uuid = 1;
+    uint32 inode = 2;
 }
 
 message IdMapperStatus {
-  enum MapMode {
-    NOTSET = 0; // No value (new dataplane, never been configured).
-    GSI = 1;    // Global-scope inodes (v1).
-    NLI = 2;    // Node-local inodes (v2).
-  };
+    enum MapMode {
+        NOTSET = 0;  // No value (new dataplane, never been configured).
+        GSI = 1;     // Global-scope inodes (v1).
+        NLI = 2;     // Node-local inodes (v2).
+    };
 
-  // The map mode, only valid if mode_set==true.
-  MapMode mode = 2;
+    // The map mode, only valid if mode_set==true.
+    MapMode mode = 2;
 
-  // A list of mappings.
-  repeated IdMapping mappings = 3;
+    // A list of mappings.
+    repeated IdMapping mappings = 3;
 }
 
 /**
@@ -114,15 +105,15 @@ message IdMapperStatus {
  **/
 
 message ConsumerCountStatus {
-  // Just a list of counts and mappings.
-  repeated ConsumerCountEntry ccs = 1;
+    // Just a list of counts and mappings.
+    repeated ConsumerCountEntry ccs = 1;
 }
 
 message ConsumerCountEntry {
-  // The mapping for which we're returning a CC.
-  IdMapping mapping = 1;
-  // The cc for the provided mapping.
-  common.v1.ConsumerCount cc = 2;
+    // The mapping for which we're returning a CC.
+    IdMapping mapping = 1;
+    // The cc for the provided mapping.
+    common.v1.ConsumerCount cc = 2;
 }
 
 /**
@@ -130,39 +121,39 @@ message ConsumerCountEntry {
  **/
 
 message VolumeHash {
-  // There's no way to define this in the proto but bytes.size() is always
-  // sizeof(HashType_t). Currently 16 bytes.
-  bytes bytes = 1;
+    // There's no way to define this in the proto but bytes.size() is always
+    // sizeof(HashType_t). Currently 16 bytes.
+    bytes bytes = 1;
 }
 
 // Note: the response to this message, VolumeHashListResponse, is chunked
 // (streamed in gRPC parlance).
 message VolumeHashListRequest {
-  // The volume we want to generate a hash over
-  uint32 volume_id = 1;
+    // The volume we want to generate a hash over
+    uint32 volume_id = 1;
 
-  // The volume UUID we want to generate a hash over.
-  string volume_uuid = 5;
+    // The volume UUID we want to generate a hash over.
+    string volume_uuid = 5;
 
-  // Defines the byte offset into `volume_id` at which we'll start hash list
-  // generation.
-  uint64 start_offset = 2;
+    // Defines the byte offset into `volume_id` at which we'll start hash list
+    // generation.
+    uint64 start_offset = 2;
 
-  // Defines the byte offset into `volume_id` at which we'll end hash list
-  // generation.
-  uint64 end_offset = 3;
+    // Defines the byte offset into `volume_id` at which we'll end hash list
+    // generation.
+    uint64 end_offset = 3;
 
-  // When generating the hash list we do so by rolling together individual block
-  // hashes into a region hash. This field defines the size of that region in
-  // bytes. It must be multiple of RIXIO_BSIZE. By giving the option for clients
-  // to specify this size they can optimise based on volume size and required
-  // sync granularity.
-  uint64 region_size = 4;
+    // When generating the hash list we do so by rolling together individual block
+    // hashes into a region hash. This field defines the size of that region in
+    // bytes. It must be multiple of RIXIO_BSIZE. By giving the option for clients
+    // to specify this size they can optimise based on volume size and required
+    // sync granularity.
+    uint64 region_size = 4;
 
-  // As it stands we need to know if the volume is compressed or not in order to
-  // generate the volume hashes. This field will likely become redundant once
-  // DP-40 is fixed.
-  bool is_compressed = 6;
+    // As it stands we need to know if the volume is compressed or not in order to
+    // generate the volume hashes. This field will likely become redundant once
+    // DP-40 is fixed.
+    bool is_compressed = 6;
 }
 
 // This message is streamed back to the client in response to a
@@ -173,96 +164,96 @@ message VolumeHashListRequest {
 // VolumeHashListRequest
 // -- is stored in every message.
 message VolumeHashListResponse {
-  // The hash over the region [start_offset, end_offset) as specified in the
-  // initial VolumeHashListRequest
-  VolumeHash volume_hash = 1;
+    // The hash over the region [start_offset, end_offset) as specified in the
+    // initial VolumeHashListRequest
+    VolumeHash volume_hash = 1;
 
-  // Defines the byte offset into `volume_id` at which hash_list[0] begins.
-  uint64 start_offset = 2;
+    // Defines the byte offset into `volume_id` at which hash_list[0] begins.
+    uint64 start_offset = 2;
 
-  // Defines the byte offset into `volume_id` at which hash_list[max] ends.
-  uint64 end_offset = 3;
+    // Defines the byte offset into `volume_id` at which hash_list[max] ends.
+    uint64 end_offset = 3;
 
-  // A list of region hashes pertaining to the regions defined by the byte range
-  // [start_offset, end_offset). The number of regions depends on the
-  // `region_size` defined in the inital VolumeHashListRequest.
-  repeated VolumeHash hash_list = 4;
+    // A list of region hashes pertaining to the regions defined by the byte range
+    // [start_offset, end_offset). The number of regions depends on the
+    // `region_size` defined in the inital VolumeHashListRequest.
+    repeated VolumeHash hash_list = 4;
 }
 
 message GetVolumeConsumerCountRequest {
-  // The UUID whose consumer count we are requesting.
-  string uuid = 1;
+    // The UUID whose consumer count we are requesting.
+    string uuid = 1;
 
-  // The inode whos consumer count we are requesting.
-  uint32 inode = 2;
+    // The inode whos consumer count we are requesting.
+    uint32 inode = 2;
 }
 
 message GetVolumeConsumerCountReply {
-  // The UUID we're returning the cc for.
-  string uuid = 1;
+    // The UUID we're returning the cc for.
+    string uuid = 1;
 
-  // The inode whos consumer count we are requesting.
-  uint32 inode = 3;
+    // The inode whos consumer count we are requesting.
+    uint32 inode = 3;
 
-  // The Consumer Count for this uuid.
-  common.v1.ConsumerCount cc = 2;
+    // The Consumer Count for this uuid.
+    common.v1.ConsumerCount cc = 2;
 }
 
 message SetVolumeConsumerCountRequest {
-  // The UUID whose consumer count is being set.
-  string uuid = 1;
-  // The inode whos consumer count is being set.
-  uint32 inode = 3;
-  // The Consumer Count being set.
-  common.v1.ConsumerCount cc = 2;
+    // The UUID whose consumer count is being set.
+    string uuid = 1;
+    // The inode whos consumer count is being set.
+    uint32 inode = 3;
+    // The Consumer Count being set.
+    common.v1.ConsumerCount cc = 2;
 }
 
 message SetVolumeConsumerCountReply {
-  // The UUID whose consumer count was set.
-  string uuid = 1;
-  // The inode whos consumer count was set.
-  uint32 inode = 3;
-  // The Consumer Count returned by the data plane on attempting to set the
-  // value contained in the SetVolumeConsumerCountRequest. May be >=
-  // request.cc.
-  common.v1.ConsumerCount cc = 2;
+    // The UUID whose consumer count was set.
+    string uuid = 1;
+    // The inode whos consumer count was set.
+    uint32 inode = 3;
+    // The Consumer Count returned by the data plane on attempting to set the
+    // value contained in the SetVolumeConsumerCountRequest. May be >=
+    // request.cc.
+    common.v1.ConsumerCount cc = 2;
 }
 
 message SyncRegionRequest {
-  // The source volume ID.
-  uint64 source_volume = 1;
+    // The source volume ID.
+    uint64 source_volume = 1;
 
-  // The source UUID.
-  // This field is used as the volume identifier over destination_volume if
-  // destination_volume is set to INVALID_INODE;
-  string source_uuid = 2;
+    // The source UUID.
+    // This field is used as the volume identifier over destination_volume if
+    // destination_volume is set to INVALID_INODE;
+    string source_uuid = 2;
 
-  // The destination volume ID.
-  uint64 destination_volume = 3;
+    // The destination volume ID.
+    uint64 destination_volume = 3;
 
-  // The destination UUID.
-  // This field is used as the volume identifier over destination_volume if
-  // destination_volume is set to INVALID_INODE;
-  string destination_uuid = 4;
+    // The destination UUID.
+    // This field is used as the volume identifier over destination_volume if
+    // destination_volume is set to INVALID_INODE;
+    string destination_uuid = 4;
 
-  // The start offset.
-  uint64 offset = 5;
+    // The start offset.
+    uint64 offset = 5;
 
-  // The length of region to sync.
-  uint64 length = 6;
+    // The length of region to sync.
+    uint64 length = 6;
 
-  // Whether the sync should be forced. If this flag is set we'll overwrite
-  // every sync block transaction ID with TransactionId{node_cc, 0}, where
-  // node_cc is the consumer count of the source volume. See sync2020.pdf for
-  // the rationale behind this.
-  bool force = 7;
+    // Whether the sync should be forced. If this flag is set we'll overwrite
+    // every sync block transaction ID with TransactionId{node_cc, 0}, where
+    // node_cc is the consumer count of the source volume. See sync2020.pdf for
+    // the rationale behind this.
+    bool force = 7;
 }
 
 message SyncRegionResponse {
-  // Whether or not the operation was successful.
-  bool success = 1;
+    // Whether or not the operation was successful.
+    bool success = 1;
 
-  // If the operation was not successful, this is an explanatory message as to
-  // why.
-  string reason = 2;
+    // If the operation was not successful, this is an explanatory message as to
+    // why.
+    string reason = 2;
 }
