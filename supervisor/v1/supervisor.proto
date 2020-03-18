@@ -72,6 +72,9 @@ message SupervisorStatus {
 
     // Composite Id Mapper status.
     IdMapperStatus idmap_status = 3;
+
+    // Composite consumer count status.
+    ConsumerCountStatus cc_status = 4;
 }
 
 /**
@@ -98,17 +101,33 @@ message IdMapperStatus {
 }
 
 /**
+ ** Consumer count storage status.
+ **/
+
+message ConsumerCountStatus {
+    // Just a list of counts and mappings.
+    repeated ConsumerCountEntry ccs = 1;
+}
+
+message ConsumerCountEntry {
+    // The mapping for which we're returning a CC.
+    IdMapping mapping = 1;
+    // The cc for the provided mapping.
+    common.v1.ConsumerCount cc = 2;
+}
+
+/**
  ** Volume hash lists (sync).
  **/
 
 message VolumeHash {
-    // There's no way to define this in the proto but bytes.size() is always sizeof(HashType_t).
-    // Currently 16 bytes.
+    // There's no way to define this in the proto but bytes.size() is always
+    // sizeof(HashType_t). Currently 16 bytes.
     bytes bytes = 1;
 }
 
-// Note: the response to this message, VolumeHashListResponse, is chunked (streamed in
-// gRPC parlance).
+// Note: the response to this message, VolumeHashListResponse, is chunked
+// (streamed in gRPC parlance).
 message VolumeHashListRequest {
     // The volume we want to generate a hash over
     uint32 volume_id = 1;
@@ -116,16 +135,19 @@ message VolumeHashListRequest {
     // The volume UUID we want to generate a hash over.
     string volume_uuid = 5;
 
-    // Defines the byte offset into `volume_id` at which we'll start hash list generation.
+    // Defines the byte offset into `volume_id` at which we'll start hash list
+    // generation.
     uint64 start_offset = 2;
 
-    // Defines the byte offset into `volume_id` at which we'll end hash list generation.
+    // Defines the byte offset into `volume_id` at which we'll end hash list
+    // generation.
     uint64 end_offset = 3;
 
-    // When generating the hash list we do so by rolling together individual block hashes
-    // into a region hash. This field defines the size of that region in bytes. It must be
-    // multiple of RIXIO_BSIZE. By giving the option for clients to specify this size they
-    // can optimise based on volume size and required sync granularity.
+    // When generating the hash list we do so by rolling together individual block
+    // hashes into a region hash. This field defines the size of that region in
+    // bytes. It must be multiple of RIXIO_BSIZE. By giving the option for clients
+    // to specify this size they can optimise based on volume size and required
+    // sync granularity.
     uint64 region_size = 4;
 
     // As it stands we need to know if the volume is compressed or not in order to
@@ -134,13 +156,16 @@ message VolumeHashListRequest {
     bool is_compressed = 6;
 }
 
-// This message is streamed back to the client in response to a VolumeHashListRequest message.
-// As such the client should expect to receive many of these messages. Each VolumeHashListResponse
-// contains the hash list for a sequential portion of the volume. For simplicity the volume_hash --
-// i.e the hash for the range [start_offset, end_offset) as specified in the initial VolumeHashListRequest
+// This message is streamed back to the client in response to a
+// VolumeHashListRequest message. As such the client should expect to receive
+// many of these messages. Each VolumeHashListResponse contains the hash list
+// for a sequential portion of the volume. For simplicity the volume_hash -- i.e
+// the hash for the range [start_offset, end_offset) as specified in the initial
+// VolumeHashListRequest
 // -- is stored in every message.
 message VolumeHashListResponse {
-    // The hash over the region [start_offset, end_offset) as specified in the initial VolumeHashListRequest
+    // The hash over the region [start_offset, end_offset) as specified in the
+    // initial VolumeHashListRequest
     VolumeHash volume_hash = 1;
 
     // Defines the byte offset into `volume_id` at which hash_list[0] begins.
@@ -149,8 +174,9 @@ message VolumeHashListResponse {
     // Defines the byte offset into `volume_id` at which hash_list[max] ends.
     uint64 end_offset = 3;
 
-    // A list of region hashes pertaining to the regions defined by the byte range [start_offset, end_offset).
-    // The number of regions depends on the `region_size` defined in the inital VolumeHashListRequest.
+    // A list of region hashes pertaining to the regions defined by the byte range
+    // [start_offset, end_offset). The number of regions depends on the
+    // `region_size` defined in the inital VolumeHashListRequest.
     repeated VolumeHash hash_list = 4;
 }
 
@@ -198,14 +224,16 @@ message SyncRegionRequest {
     uint64 source_volume = 1;
 
     // The source UUID.
-    // This field is used as the volume identifier over destination_volume if destination_volume is set to INVALID_INODE;
+    // This field is used as the volume identifier over destination_volume if
+    // destination_volume is set to INVALID_INODE;
     string source_uuid = 2;
 
     // The destination volume ID.
     uint64 destination_volume = 3;
 
     // The destination UUID.
-    // This field is used as the volume identifier over destination_volume if destination_volume is set to INVALID_INODE;
+    // This field is used as the volume identifier over destination_volume if
+    // destination_volume is set to INVALID_INODE;
     string destination_uuid = 4;
 
     // The start offset.
@@ -214,9 +242,10 @@ message SyncRegionRequest {
     // The length of region to sync.
     uint64 length = 6;
 
-    // Whether the sync should be forced. If this flag is set we'll overwrite every sync block transaction ID
-    // with TransactionId{node_cc, 0}, where node_cc is the consumer count of the source volume. See sync2020.pdf
-    // for the rationale behind this.
+    // Whether the sync should be forced. If this flag is set we'll overwrite
+    // every sync block transaction ID with TransactionId{node_cc, 0}, where
+    // node_cc is the consumer count of the source volume. See sync2020.pdf for
+    // the rationale behind this.
     bool force = 7;
 }
 
@@ -224,6 +253,7 @@ message SyncRegionResponse {
     // Whether or not the operation was successful.
     bool success = 1;
 
-    // If the operation was not successful, this is an explanatory message as to why.
+    // If the operation was not successful, this is an explanatory message as to
+    // why.
     string reason = 2;
 }
