@@ -19,6 +19,11 @@ service Supervisor {
     rpc ReapVolume(ReapVolumeRequest) returns (ReapVolumeResponse) {}
 
     /**
+     * Delete a mapping, freeing associated resources.
+     */
+    rpc DeleteMapping(DeleteMappingRequest) returns (DeleteMappingResponse) {}
+
+    /**
      * Perform actions that really only make sense for very low-level testing.
      */
     rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
@@ -60,6 +65,14 @@ message ReapVolumeRequest {
 
 message ReapVolumeResponse {
     // Empty for now
+}
+
+message DeleteMappingRequest {
+    string uuid = 1;
+}
+
+message DeleteMappingResponse {
+    // Empty for now.
 }
 
 message SupervisorStatusRequest {
