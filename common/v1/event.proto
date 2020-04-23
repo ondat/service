@@ -1,0 +1,123 @@
+syntax = "proto3";
+package common.v1;
+
+option go_package = "code.storageos.net/storageos/service/common/v1";
+
+import "google/protobuf/timestamp.proto";
+
+/**
+ ** Logging.
+ **/
+
+service EventAPI {
+
+  // The Event service is used to send strongly-typed events from the dataplane
+  // to the controlplane. Each event has its own APIs and its own semantics,
+  // defined below.
+  rpc Event(EventRequest) returns (EventResponse);
+
+  // The Log service is used to send general-purpose log entries from the
+  // dataplane to the controlplane. Context is sent as map<string,string>
+  // key-value pairs with arbitrary keys, for the controlplane to dispose as it
+  // sees fit.
+  rpc Log(LogRequest) returns (LogResponse);
+}
+
+// A timestamped Event message.
+message EventRequest {
+  google.protobuf.Timestamp timestamp = 1;
+  Event event = 2;
+}
+
+message EventResponse {}
+
+// A timestamped Log message.
+message LogRequest {
+  google.protobuf.Timestamp timestamp = 1;
+  Log log = 2;
+}
+
+message LogResponse {}
+
+// A freeform log message with optional (but strongly recommended) string:string
+// context.
+message Log {
+  enum LogLevel {
+    UNKNOWN = 0;
+    TRACE = 1;
+    DEBUG = 2;
+    INFO = 3;
+    WARN = 4;
+    ERROR = 5;
+    FATAL = 6;
+    PANIC = 7;
+  }
+
+  // The log level, mapped to the syslog(3) levels.
+  LogLevel level = 1;
+
+  // The log category, a string provided by the caller to help with filtering.
+  string category = 2;
+
+  // The context, a map of zero or more string keys mapped to string values.
+  // This helps users correlate log messages and should be populated with as
+  // much (relevant) context as can be provided.
+  map<string, string> context = 3;
+
+  // The log message as a simple string. This is a std::string type in C++
+  // mapped to protobuf's string. As a result, keeping the input to ASCII7
+  // guarantees sane results.
+  string message = 4;
+}
+
+// An Event message. This is a contract between the 'planes. DP sends these
+// events with the prescribed parameters, for the CP to dispose appropriately.
+//
+// DP should not expect to get meaningful or timely responses from the CP to
+// these events, past the generic gRPC response codes - it's not intended as a
+// bidirectional communication mechanism.
+message Event {
+  // A text context for the event, intended to help the user and/or support.
+  string description = 2;
+
+  // Exactly one event. Consider all of the event type's fields to be mandatory.
+  oneof event {
+    // An event used for testing the Event system.
+    EventPing ping = 10;
+
+    // A DFS Responder node has become unreachable to the local Initiator.
+    EventResponderHeartbeatMissed responder_hb_missed = 11;
+
+    // A DFS Initiator node has become unreachable to the local Responder.
+    EventInitiatorHeartbeatMissed initiator_hb_missed = 12;
+  }
+}
+
+// A diagnostic event that does nothing except send a few integers to the
+// server.
+message EventPing {
+  uint32 random_id = 1;
+  uint32 index = 2;
+}
+
+// Notify the controlplane that the DFS initiator did not receive a heartbeat
+// message from an idle connection to the specified DFS responder.
+//
+// This typically indicates a connectivity problem.
+message EventResponderHeartbeatMissed {
+  uint32 node_id = 1;
+  string node_uuid = 2;
+  string nodename = 3;
+  uint32 port = 4;
+}
+
+// Notify the controlplane the the DFS responder did not receive a heartbeat
+// message from the idle connection to the specified DFS initiator.
+//
+// This typically indicates a connectivity problem.
+message EventInitiatorHeartbeatMissed {
+  uint32 node_id = 1;
+  string node_uuid = 2;
+  string nodename = 3;
+  uint32 port = 4;
+}
