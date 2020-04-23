@@ -13,30 +13,30 @@ import (
 	reflect "reflect"
 )
 
-// MockDfsResponderClient is a mock of DfsResponderClient interface
+// MockDfsResponderClient is a mock of DfsResponderClient interface.
 type MockDfsResponderClient struct {
 	ctrl     *gomock.Controller
 	recorder *MockDfsResponderClientMockRecorder
 }
 
-// MockDfsResponderClientMockRecorder is the mock recorder for MockDfsResponderClient
+// MockDfsResponderClientMockRecorder is the mock recorder for MockDfsResponderClient.
 type MockDfsResponderClientMockRecorder struct {
 	mock *MockDfsResponderClient
 }
 
-// NewMockDfsResponderClient creates a new mock instance
+// NewMockDfsResponderClient creates a new mock instance.
 func NewMockDfsResponderClient(ctrl *gomock.Controller) *MockDfsResponderClient {
 	mock := &MockDfsResponderClient{ctrl: ctrl}
 	mock.recorder = &MockDfsResponderClientMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockDfsResponderClient) EXPECT() *MockDfsResponderClientMockRecorder {
 	return m.recorder
 }
 
-// ConfigGetBool mocks base method
+// ConfigGetBool mocks base method.
 func (m *MockDfsResponderClient) ConfigGetBool(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetBoolReply, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -49,14 +49,14 @@ func (m *MockDfsResponderClient) ConfigGetBool(arg0 context.Context, arg1 *v1.Co
 	return ret0, ret1
 }
 
-// ConfigGetBool indicates an expected call of ConfigGetBool
+// ConfigGetBool indicates an expected call of ConfigGetBool.
 func (mr *MockDfsResponderClientMockRecorder) ConfigGetBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetBool", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigGetBool), varargs...)
 }
 
-// ConfigGetString mocks base method
+// ConfigGetString mocks base method.
 func (m *MockDfsResponderClient) ConfigGetString(arg0 context.Context, arg1 *v1.ConfigKey, arg2 ...grpc.CallOption) (*v1.ConfigGetStringReply, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -69,14 +69,14 @@ func (m *MockDfsResponderClient) ConfigGetString(arg0 context.Context, arg1 *v1.
 	return ret0, ret1
 }
 
-// ConfigGetString indicates an expected call of ConfigGetString
+// ConfigGetString indicates an expected call of ConfigGetString.
 func (mr *MockDfsResponderClientMockRecorder) ConfigGetString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigGetString", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigGetString), varargs...)
 }
 
-// ConfigListBool mocks base method
+// ConfigListBool mocks base method.
 func (m *MockDfsResponderClient) ConfigListBool(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigBoolList, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -89,14 +89,14 @@ func (m *MockDfsResponderClient) ConfigListBool(arg0 context.Context, arg1 *v1.C
 	return ret0, ret1
 }
 
-// ConfigListBool indicates an expected call of ConfigListBool
+// ConfigListBool indicates an expected call of ConfigListBool.
 func (mr *MockDfsResponderClientMockRecorder) ConfigListBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListBool", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigListBool), varargs...)
 }
 
-// ConfigListString mocks base method
+// ConfigListString mocks base method.
 func (m *MockDfsResponderClient) ConfigListString(arg0 context.Context, arg1 *v1.ConfigListQuery, arg2 ...grpc.CallOption) (*v1.ConfigStringList, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -109,14 +109,14 @@ func (m *MockDfsResponderClient) ConfigListString(arg0 context.Context, arg1 *v1
 	return ret0, ret1
 }
 
-// ConfigListString indicates an expected call of ConfigListString
+// ConfigListString indicates an expected call of ConfigListString.
 func (mr *MockDfsResponderClientMockRecorder) ConfigListString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigListString", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigListString), varargs...)
 }
 
-// ConfigUpdateBool mocks base method
+// ConfigUpdateBool mocks base method.
 func (m *MockDfsResponderClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1.ConfigBool, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -129,14 +129,14 @@ func (m *MockDfsResponderClient) ConfigUpdateBool(arg0 context.Context, arg1 *v1
 	return ret0, ret1
 }
 
-// ConfigUpdateBool indicates an expected call of ConfigUpdateBool
+// ConfigUpdateBool indicates an expected call of ConfigUpdateBool.
 func (mr *MockDfsResponderClientMockRecorder) ConfigUpdateBool(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateBool", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigUpdateBool), varargs...)
 }
 
-// ConfigUpdateString mocks base method
+// ConfigUpdateString mocks base method.
 func (m *MockDfsResponderClient) ConfigUpdateString(arg0 context.Context, arg1 *v1.ConfigString, arg2 ...grpc.CallOption) (*v1.ConfigUpdateReply, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -149,14 +149,14 @@ func (m *MockDfsResponderClient) ConfigUpdateString(arg0 context.Context, arg1 *
 	return ret0, ret1
 }
 
-// ConfigUpdateString indicates an expected call of ConfigUpdateString
+// ConfigUpdateString indicates an expected call of ConfigUpdateString.
 func (mr *MockDfsResponderClientMockRecorder) ConfigUpdateString(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateString", reflect.TypeOf((*MockDfsResponderClient)(nil).ConfigUpdateString), varargs...)
 }
 
-// StatsList mocks base method
+// StatsList mocks base method.
 func (m *MockDfsResponderClient) StatsList(arg0 context.Context, arg1 *v1.StatsListQuery, arg2 ...grpc.CallOption) (*v1.StatsListResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -169,14 +169,14 @@ func (m *MockDfsResponderClient) StatsList(arg0 context.Context, arg1 *v1.StatsL
 	return ret0, ret1
 }
 
-// StatsList indicates an expected call of StatsList
+// StatsList indicates an expected call of StatsList.
 func (mr *MockDfsResponderClientMockRecorder) StatsList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StatsList", reflect.TypeOf((*MockDfsResponderClient)(nil).StatsList), varargs...)
 }
 
-// Status mocks base method
+// Status mocks base method.
 func (m *MockDfsResponderClient) Status(arg0 context.Context, arg1 *v10.DfsResponderStatusRequest, arg2 ...grpc.CallOption) (*v10.DfsResponderStatus, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -189,14 +189,14 @@ func (m *MockDfsResponderClient) Status(arg0 context.Context, arg1 *v10.DfsRespo
 	return ret0, ret1
 }
 
-// Status indicates an expected call of Status
+// Status indicates an expected call of Status.
 func (mr *MockDfsResponderClientMockRecorder) Status(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Status", reflect.TypeOf((*MockDfsResponderClient)(nil).Status), varargs...)
 }
 
-// VolumeCreate mocks base method
+// VolumeCreate mocks base method.
 func (m *MockDfsResponderClient) VolumeCreate(arg0 context.Context, arg1 *v10.DfsResponderVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -209,14 +209,14 @@ func (m *MockDfsResponderClient) VolumeCreate(arg0 context.Context, arg1 *v10.Df
 	return ret0, ret1
 }
 
-// VolumeCreate indicates an expected call of VolumeCreate
+// VolumeCreate indicates an expected call of VolumeCreate.
 func (mr *MockDfsResponderClientMockRecorder) VolumeCreate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeCreate", reflect.TypeOf((*MockDfsResponderClient)(nil).VolumeCreate), varargs...)
 }
 
-// VolumeDelete mocks base method
+// VolumeDelete mocks base method.
 func (m *MockDfsResponderClient) VolumeDelete(arg0 context.Context, arg1 *v10.DfsResponderVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -229,14 +229,14 @@ func (m *MockDfsResponderClient) VolumeDelete(arg0 context.Context, arg1 *v10.Df
 	return ret0, ret1
 }
 
-// VolumeDelete indicates an expected call of VolumeDelete
+// VolumeDelete indicates an expected call of VolumeDelete.
 func (mr *MockDfsResponderClientMockRecorder) VolumeDelete(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeDelete", reflect.TypeOf((*MockDfsResponderClient)(nil).VolumeDelete), varargs...)
 }
 
-// VolumeList mocks base method
+// VolumeList mocks base method.
 func (m *MockDfsResponderClient) VolumeList(arg0 context.Context, arg1 *v10.DfsResponderVolumeListQuery, arg2 ...grpc.CallOption) (*v10.DfsResponderVolumeList, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -249,14 +249,14 @@ func (m *MockDfsResponderClient) VolumeList(arg0 context.Context, arg1 *v10.DfsR
 	return ret0, ret1
 }
 
-// VolumeList indicates an expected call of VolumeList
+// VolumeList indicates an expected call of VolumeList.
 func (mr *MockDfsResponderClientMockRecorder) VolumeList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "VolumeList", reflect.TypeOf((*MockDfsResponderClient)(nil).VolumeList), varargs...)
 }
 
-// VolumeUpdate mocks base method
+// VolumeUpdate mocks base method.
 func (m *MockDfsResponderClient) VolumeUpdate(arg0 context.Context, arg1 *v10.DfsResponderVolume, arg2 ...grpc.CallOption) (*v1.RpcResult, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
@@ -269,7 +269,7 @@ func (m *MockDfsResponderClient) VolumeUpdate(arg0 context.Context, arg1 *v10.Df
 	return ret0, ret1
 }
 
-// VolumeUpdate indicates an expected call of VolumeUpdate
+// VolumeUpdate indicates an expected call of VolumeUpdate.
 func (mr *MockDfsResponderClientMockRecorder) VolumeUpdate(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{arg0, arg1}, arg2...)
