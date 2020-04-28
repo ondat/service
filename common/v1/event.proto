@@ -87,16 +87,22 @@ message Event {
 
     // A DFS Responder node has become unreachable to the local Initiator.
     EventResponderHeartbeatMissed responder_hb_missed = 11;
+    // A DFS responder node has become unreachable to the local Initiator.
+    EventResponderConnectionEstablished responder_conn_established = 13;
 
     // A DFS Initiator node has become unreachable to the local Responder.
     EventInitiatorHeartbeatMissed initiator_hb_missed = 12;
+    // A DFS initiator node is connected to the local Responder.
+    EventInitiatorConnectionEstablished initiator_conn_established = 14;
   }
 }
 
 // A diagnostic event that does nothing except send a few integers to the
 // server.
 message EventPing {
+  // A sender-defined ID.
   uint32 random_id = 1;
+  // A sender-defined index.
   uint32 index = 2;
 }
 
@@ -105,9 +111,26 @@ message EventPing {
 //
 // This typically indicates a connectivity problem.
 message EventResponderHeartbeatMissed {
+  // The responder node ID as configured on this initiator.
   uint32 node_id = 1;
+  // The node UUID as configured on this initiator.
   string node_uuid = 2;
+  // The responder nodename.
   string nodename = 3;
+  // The responder TCP port.
+  uint32 port = 4;
+}
+
+// Notify the controlplane that the DFS responder has completed its handshake
+// with a remote initiator.
+message EventResponderConnectionEstablished {
+  // The responder node ID as configured on this initiator.
+  uint32 node_id = 1;
+  // The node UUID as configured on this initiator.
+  string node_uuid = 2;
+  // The responder nodename.
+  string nodename = 3;
+  // The responder TCP port.
   uint32 port = 4;
 }
 
@@ -116,8 +139,26 @@ message EventResponderHeartbeatMissed {
 //
 // This typically indicates a connectivity problem.
 message EventInitiatorHeartbeatMissed {
-  uint32 node_id = 1;
-  string node_uuid = 2;
+  uint32 node_id = 1 [ deprecated = true ];
+  string node_uuid = 2 [ deprecated = true ];
+
+  // Remote (initiator) identification. May be empty if the responder has no
+  // identification information available.
   string nodename = 3;
+  // The remote address as seen by the server socket.
+  string address = 5;
+  // The remote port as seen by the server socket.
+  uint32 port = 4;
+}
+
+// Notify the controlplane that the DFS initiator has connected to the responder
+// and completed its handshake.
+message EventInitiatorConnectionEstablished {
+  // Remote (initiator) identification. May be empty if the responder has no
+  // identification information available.
+  string nodename = 3;
+  // The remote address as seen by the server socket.
+  string address = 5;
+  // The remote port as seen by the server socket.
   uint32 port = 4;
 }
