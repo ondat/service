@@ -85,6 +85,15 @@ message Event {
     // An event used for testing the Event system.
     EventPing ping = 10;
 
+    // The dataplane has completed its startup.
+    EventDataplaneStartupFinished dataplane_startup_finished = 15;
+
+    // The dataplane has started its shutdown sequence.
+    EventDataplaneShutdownStarted dataplane_shutdown_started = 16;
+
+    // The dataplane has completed its shutdown sequence.
+    EventDataplaneShutdownCompleted dataplane_shutdown_finished = 17;
+
     // A DFS Responder node has become unreachable to the local Initiator.
     EventResponderHeartbeatMissed responder_hb_missed = 11;
     // A DFS responder node has become unreachable to the local Initiator.
@@ -139,12 +148,9 @@ message EventResponderConnectionEstablished {
 //
 // This typically indicates a connectivity problem.
 message EventInitiatorHeartbeatMissed {
-  uint32 node_id = 1 [ deprecated = true ];
-  string node_uuid = 2 [ deprecated = true ];
+  // The initiator's node UUID as sent in the CONNECTION_INIT message.
+  string node_uuid = 2;
 
-  // Remote (initiator) identification. May be empty if the responder has no
-  // identification information available.
-  string nodename = 3;
   // The remote address as seen by the server socket.
   string address = 5;
   // The remote port as seen by the server socket.
@@ -154,11 +160,27 @@ message EventInitiatorHeartbeatMissed {
 // Notify the controlplane that the DFS initiator has connected to the responder
 // and completed its handshake.
 message EventInitiatorConnectionEstablished {
-  // Remote (initiator) identification. May be empty if the responder has no
-  // identification information available.
-  string nodename = 3;
+  // The initiator's node UUID as sent in the CONNECTION_INIT message.
+  string node_uuid = 2;
+
   // The remote address as seen by the server socket.
   string address = 5;
   // The remote port as seen by the server socket.
   uint32 port = 4;
+}
+
+// The dataplane startup has completed, and the runloop is about to be entered.
+message EventDataplaneStartupFinished {
+  // Nothing yet.
+}
+
+// The dataplane is shutting down. There may be multiple events of this type,
+// think of it as 'shutdown in progress'.
+message EventDataplaneShutdownStarted {
+  // Nothing yet.
+}
+
+// The dataplane has completely shut down and is about to exit.
+message EventDataplaneShutdownCompleted {
+  // Nothing yet.
 }
