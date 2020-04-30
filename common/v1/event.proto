@@ -85,18 +85,33 @@ message Event {
     // An event used for testing the Event system.
     EventPing ping = 10;
 
+    // The dataplane has completed its startup.
+    EventDataplaneStartupFinished dataplane_startup_finished = 15;
+
+    // The dataplane has started its shutdown sequence.
+    EventDataplaneShutdownStarted dataplane_shutdown_started = 16;
+
+    // The dataplane has completed its shutdown sequence.
+    EventDataplaneShutdownCompleted dataplane_shutdown_finished = 17;
+
     // A DFS Responder node has become unreachable to the local Initiator.
     EventResponderHeartbeatMissed responder_hb_missed = 11;
+    // A DFS responder node has become unreachable to the local Initiator.
+    EventResponderConnectionEstablished responder_conn_established = 13;
 
     // A DFS Initiator node has become unreachable to the local Responder.
     EventInitiatorHeartbeatMissed initiator_hb_missed = 12;
+    // A DFS initiator node is connected to the local Responder.
+    EventInitiatorConnectionEstablished initiator_conn_established = 14;
   }
 }
 
 // A diagnostic event that does nothing except send a few integers to the
 // server.
 message EventPing {
+  // A sender-defined ID.
   uint32 random_id = 1;
+  // A sender-defined index.
   uint32 index = 2;
 }
 
@@ -105,9 +120,26 @@ message EventPing {
 //
 // This typically indicates a connectivity problem.
 message EventResponderHeartbeatMissed {
+  // The responder node ID as configured on this initiator.
   uint32 node_id = 1;
+  // The node UUID as configured on this initiator.
   string node_uuid = 2;
+  // The responder nodename.
   string nodename = 3;
+  // The responder TCP port.
+  uint32 port = 4;
+}
+
+// Notify the controlplane that the DFS responder has completed its handshake
+// with a remote initiator.
+message EventResponderConnectionEstablished {
+  // The responder node ID as configured on this initiator.
+  uint32 node_id = 1;
+  // The node UUID as configured on this initiator.
+  string node_uuid = 2;
+  // The responder nodename.
+  string nodename = 3;
+  // The responder TCP port.
   uint32 port = 4;
 }
 
@@ -116,8 +148,39 @@ message EventResponderHeartbeatMissed {
 //
 // This typically indicates a connectivity problem.
 message EventInitiatorHeartbeatMissed {
-  uint32 node_id = 1;
+  // The initiator's node UUID as sent in the CONNECTION_INIT message.
   string node_uuid = 2;
-  string nodename = 3;
+
+  // The remote address as seen by the server socket.
+  string address = 5;
+  // The remote port as seen by the server socket.
   uint32 port = 4;
+}
+
+// Notify the controlplane that the DFS initiator has connected to the responder
+// and completed its handshake.
+message EventInitiatorConnectionEstablished {
+  // The initiator's node UUID as sent in the CONNECTION_INIT message.
+  string node_uuid = 2;
+
+  // The remote address as seen by the server socket.
+  string address = 5;
+  // The remote port as seen by the server socket.
+  uint32 port = 4;
+}
+
+// The dataplane startup has completed, and the runloop is about to be entered.
+message EventDataplaneStartupFinished {
+  // Nothing yet.
+}
+
+// The dataplane is shutting down. There may be multiple events of this type,
+// think of it as 'shutdown in progress'.
+message EventDataplaneShutdownStarted {
+  // Nothing yet.
+}
+
+// The dataplane has completely shut down and is about to exit.
+message EventDataplaneShutdownCompleted {
+  // Nothing yet.
 }
