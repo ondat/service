@@ -95,12 +95,12 @@ message Event {
     EventDataplaneShutdownCompleted dataplane_shutdown_finished = 17;
 
     // A DFS Responder node has become unreachable to the local Initiator.
-    EventResponderHeartbeatMissed responder_hb_missed = 11;
+    EventResponderConnectionLost responder_hb_missed = 11;
     // A DFS responder node has become unreachable to the local Initiator.
     EventResponderConnectionEstablished responder_conn_established = 13;
 
     // A DFS Initiator node has become unreachable to the local Responder.
-    EventInitiatorHeartbeatMissed initiator_hb_missed = 12;
+    EventInitiatorConnectionLost initiator_hb_missed = 12;
     // A DFS initiator node is connected to the local Responder.
     EventInitiatorConnectionEstablished initiator_conn_established = 14;
   }
@@ -119,7 +119,7 @@ message EventPing {
 // message from an idle connection to the specified DFS responder.
 //
 // This typically indicates a connectivity problem.
-message EventResponderHeartbeatMissed {
+message EventResponderConnectionLost {
   // The responder node ID as configured on this initiator.
   uint32 node_id = 1;
   // The node UUID as configured on this initiator.
@@ -147,7 +147,7 @@ message EventResponderConnectionEstablished {
 // message from the idle connection to the specified DFS initiator.
 //
 // This typically indicates a connectivity problem.
-message EventInitiatorHeartbeatMissed {
+message EventInitiatorConnectionLost {
   // The initiator's node UUID as sent in the CONNECTION_INIT message.
   string node_uuid = 2;
 

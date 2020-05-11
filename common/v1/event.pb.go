@@ -378,7 +378,7 @@ type Event_DataplaneShutdownFinished struct {
 }
 
 type Event_ResponderHbMissed struct {
-	ResponderHbMissed *EventResponderHeartbeatMissed `protobuf:"bytes,11,opt,name=responder_hb_missed,json=responderHbMissed,proto3,oneof"`
+	ResponderHbMissed *EventResponderConnectionLost `protobuf:"bytes,11,opt,name=responder_hb_missed,json=responderHbMissed,proto3,oneof"`
 }
 
 type Event_ResponderConnEstablished struct {
@@ -386,7 +386,7 @@ type Event_ResponderConnEstablished struct {
 }
 
 type Event_InitiatorHbMissed struct {
-	InitiatorHbMissed *EventInitiatorHeartbeatMissed `protobuf:"bytes,12,opt,name=initiator_hb_missed,json=initiatorHbMissed,proto3,oneof"`
+	InitiatorHbMissed *EventInitiatorConnectionLost `protobuf:"bytes,12,opt,name=initiator_hb_missed,json=initiatorHbMissed,proto3,oneof"`
 }
 
 type Event_InitiatorConnEstablished struct {
@@ -444,7 +444,7 @@ func (m *Event) GetDataplaneShutdownFinished() *EventDataplaneShutdownCompleted 
 	return nil
 }
 
-func (m *Event) GetResponderHbMissed() *EventResponderHeartbeatMissed {
+func (m *Event) GetResponderHbMissed() *EventResponderConnectionLost {
 	if x, ok := m.GetEvent().(*Event_ResponderHbMissed); ok {
 		return x.ResponderHbMissed
 	}
@@ -458,7 +458,7 @@ func (m *Event) GetResponderConnEstablished() *EventResponderConnectionEstablish
 	return nil
 }
 
-func (m *Event) GetInitiatorHbMissed() *EventInitiatorHeartbeatMissed {
+func (m *Event) GetInitiatorHbMissed() *EventInitiatorConnectionLost {
 	if x, ok := m.GetEvent().(*Event_InitiatorHbMissed); ok {
 		return x.InitiatorHbMissed
 	}
@@ -541,7 +541,7 @@ func (m *EventPing) GetIndex() uint32 {
 // message from an idle connection to the specified DFS responder.
 //
 // This typically indicates a connectivity problem.
-type EventResponderHeartbeatMissed struct {
+type EventResponderConnectionLost struct {
 	// The responder node ID as configured on this initiator.
 	NodeId uint32 `protobuf:"varint,1,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
 	// The node UUID as configured on this initiator.
@@ -555,53 +555,53 @@ type EventResponderHeartbeatMissed struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EventResponderHeartbeatMissed) Reset()         { *m = EventResponderHeartbeatMissed{} }
-func (m *EventResponderHeartbeatMissed) String() string { return proto.CompactTextString(m) }
-func (*EventResponderHeartbeatMissed) ProtoMessage()    {}
-func (*EventResponderHeartbeatMissed) Descriptor() ([]byte, []int) {
+func (m *EventResponderConnectionLost) Reset()         { *m = EventResponderConnectionLost{} }
+func (m *EventResponderConnectionLost) String() string { return proto.CompactTextString(m) }
+func (*EventResponderConnectionLost) ProtoMessage()    {}
+func (*EventResponderConnectionLost) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d17a9d3f0ddf27e, []int{7}
 }
 
-func (m *EventResponderHeartbeatMissed) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EventResponderHeartbeatMissed.Unmarshal(m, b)
+func (m *EventResponderConnectionLost) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EventResponderConnectionLost.Unmarshal(m, b)
 }
-func (m *EventResponderHeartbeatMissed) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EventResponderHeartbeatMissed.Marshal(b, m, deterministic)
+func (m *EventResponderConnectionLost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EventResponderConnectionLost.Marshal(b, m, deterministic)
 }
-func (m *EventResponderHeartbeatMissed) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EventResponderHeartbeatMissed.Merge(m, src)
+func (m *EventResponderConnectionLost) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EventResponderConnectionLost.Merge(m, src)
 }
-func (m *EventResponderHeartbeatMissed) XXX_Size() int {
-	return xxx_messageInfo_EventResponderHeartbeatMissed.Size(m)
+func (m *EventResponderConnectionLost) XXX_Size() int {
+	return xxx_messageInfo_EventResponderConnectionLost.Size(m)
 }
-func (m *EventResponderHeartbeatMissed) XXX_DiscardUnknown() {
-	xxx_messageInfo_EventResponderHeartbeatMissed.DiscardUnknown(m)
+func (m *EventResponderConnectionLost) XXX_DiscardUnknown() {
+	xxx_messageInfo_EventResponderConnectionLost.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_EventResponderHeartbeatMissed proto.InternalMessageInfo
+var xxx_messageInfo_EventResponderConnectionLost proto.InternalMessageInfo
 
-func (m *EventResponderHeartbeatMissed) GetNodeId() uint32 {
+func (m *EventResponderConnectionLost) GetNodeId() uint32 {
 	if m != nil {
 		return m.NodeId
 	}
 	return 0
 }
 
-func (m *EventResponderHeartbeatMissed) GetNodeUuid() string {
+func (m *EventResponderConnectionLost) GetNodeUuid() string {
 	if m != nil {
 		return m.NodeUuid
 	}
 	return ""
 }
 
-func (m *EventResponderHeartbeatMissed) GetNodename() string {
+func (m *EventResponderConnectionLost) GetNodename() string {
 	if m != nil {
 		return m.Nodename
 	}
 	return ""
 }
 
-func (m *EventResponderHeartbeatMissed) GetPort() uint32 {
+func (m *EventResponderConnectionLost) GetPort() uint32 {
 	if m != nil {
 		return m.Port
 	}
@@ -681,7 +681,7 @@ func (m *EventResponderConnectionEstablished) GetPort() uint32 {
 // message from the idle connection to the specified DFS initiator.
 //
 // This typically indicates a connectivity problem.
-type EventInitiatorHeartbeatMissed struct {
+type EventInitiatorConnectionLost struct {
 	// The initiator's node UUID as sent in the CONNECTION_INIT message.
 	NodeUuid string `protobuf:"bytes,2,opt,name=node_uuid,json=nodeUuid,proto3" json:"node_uuid,omitempty"`
 	// The remote address as seen by the server socket.
@@ -693,46 +693,46 @@ type EventInitiatorHeartbeatMissed struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EventInitiatorHeartbeatMissed) Reset()         { *m = EventInitiatorHeartbeatMissed{} }
-func (m *EventInitiatorHeartbeatMissed) String() string { return proto.CompactTextString(m) }
-func (*EventInitiatorHeartbeatMissed) ProtoMessage()    {}
-func (*EventInitiatorHeartbeatMissed) Descriptor() ([]byte, []int) {
+func (m *EventInitiatorConnectionLost) Reset()         { *m = EventInitiatorConnectionLost{} }
+func (m *EventInitiatorConnectionLost) String() string { return proto.CompactTextString(m) }
+func (*EventInitiatorConnectionLost) ProtoMessage()    {}
+func (*EventInitiatorConnectionLost) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d17a9d3f0ddf27e, []int{9}
 }
 
-func (m *EventInitiatorHeartbeatMissed) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EventInitiatorHeartbeatMissed.Unmarshal(m, b)
+func (m *EventInitiatorConnectionLost) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EventInitiatorConnectionLost.Unmarshal(m, b)
 }
-func (m *EventInitiatorHeartbeatMissed) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EventInitiatorHeartbeatMissed.Marshal(b, m, deterministic)
+func (m *EventInitiatorConnectionLost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EventInitiatorConnectionLost.Marshal(b, m, deterministic)
 }
-func (m *EventInitiatorHeartbeatMissed) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EventInitiatorHeartbeatMissed.Merge(m, src)
+func (m *EventInitiatorConnectionLost) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EventInitiatorConnectionLost.Merge(m, src)
 }
-func (m *EventInitiatorHeartbeatMissed) XXX_Size() int {
-	return xxx_messageInfo_EventInitiatorHeartbeatMissed.Size(m)
+func (m *EventInitiatorConnectionLost) XXX_Size() int {
+	return xxx_messageInfo_EventInitiatorConnectionLost.Size(m)
 }
-func (m *EventInitiatorHeartbeatMissed) XXX_DiscardUnknown() {
-	xxx_messageInfo_EventInitiatorHeartbeatMissed.DiscardUnknown(m)
+func (m *EventInitiatorConnectionLost) XXX_DiscardUnknown() {
+	xxx_messageInfo_EventInitiatorConnectionLost.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_EventInitiatorHeartbeatMissed proto.InternalMessageInfo
+var xxx_messageInfo_EventInitiatorConnectionLost proto.InternalMessageInfo
 
-func (m *EventInitiatorHeartbeatMissed) GetNodeUuid() string {
+func (m *EventInitiatorConnectionLost) GetNodeUuid() string {
 	if m != nil {
 		return m.NodeUuid
 	}
 	return ""
 }
 
-func (m *EventInitiatorHeartbeatMissed) GetAddress() string {
+func (m *EventInitiatorConnectionLost) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-func (m *EventInitiatorHeartbeatMissed) GetPort() uint32 {
+func (m *EventInitiatorConnectionLost) GetPort() uint32 {
 	if m != nil {
 		return m.Port
 	}
@@ -906,9 +906,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "common.v1.Log.ContextEntry")
 	proto.RegisterType((*Event)(nil), "common.v1.Event")
 	proto.RegisterType((*EventPing)(nil), "common.v1.EventPing")
-	proto.RegisterType((*EventResponderHeartbeatMissed)(nil), "common.v1.EventResponderHeartbeatMissed")
+	proto.RegisterType((*EventResponderConnectionLost)(nil), "common.v1.EventResponderConnectionLost")
 	proto.RegisterType((*EventResponderConnectionEstablished)(nil), "common.v1.EventResponderConnectionEstablished")
-	proto.RegisterType((*EventInitiatorHeartbeatMissed)(nil), "common.v1.EventInitiatorHeartbeatMissed")
+	proto.RegisterType((*EventInitiatorConnectionLost)(nil), "common.v1.EventInitiatorConnectionLost")
 	proto.RegisterType((*EventInitiatorConnectionEstablished)(nil), "common.v1.EventInitiatorConnectionEstablished")
 	proto.RegisterType((*EventDataplaneStartupFinished)(nil), "common.v1.EventDataplaneStartupFinished")
 	proto.RegisterType((*EventDataplaneShutdownStarted)(nil), "common.v1.EventDataplaneShutdownStarted")
