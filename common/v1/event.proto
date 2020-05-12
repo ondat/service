@@ -130,43 +130,26 @@ message EventResponderConnectionLost {
   uint32 port = 4;
 }
 
-// Notify the controlplane that the DFS responder has completed its handshake
-// with a remote initiator.
+// Notify the controlplane that the DFS responder has established a
+// connection with a remote initiator.
 message EventResponderConnectionEstablished {
-  // The responder node ID as configured on this initiator.
-  uint32 node_id = 1;
-  // The node UUID as configured on this initiator.
-  string node_uuid = 2;
-  // The responder nodename.
-  string nodename = 3;
-  // The responder TCP port.
-  uint32 port = 4;
+  // The node UUID of the initiator this responder has connected to
+  string node_uuid = 1;
 }
 
-// Notify the controlplane the the DFS responder did not receive a heartbeat
-// message from the idle connection to the specified DFS initiator.
-//
-// This typically indicates a connectivity problem.
+// Notify the controlplane the the DFS initiator has lost its
+// connection with a remote responder
 message EventInitiatorConnectionLost {
-  // The initiator's node UUID as sent in the CONNECTION_INIT message.
-  string node_uuid = 2;
-
-  // The remote address as seen by the server socket.
-  string address = 5;
-  // The remote port as seen by the server socket.
-  uint32 port = 4;
+  // The node UUID of the initiator this responder has lost its
+  // connection to
+  string node_uuid = 1;
 }
 
-// Notify the controlplane that the DFS initiator has connected to the responder
-// and completed its handshake.
+// Notify the controlplane that the DFS initiator has established a
+// connection with a remote responder.
 message EventInitiatorConnectionEstablished {
-  // The initiator's node UUID as sent in the CONNECTION_INIT message.
-  string node_uuid = 2;
-
-  // The remote address as seen by the server socket.
-  string address = 5;
-  // The remote port as seen by the server socket.
-  uint32 port = 4;
+  // The node UUID of the responder this initiator has connected to
+  string node_uuid = 1;
 }
 
 // The dataplane startup has completed, and the runloop is about to be entered.
