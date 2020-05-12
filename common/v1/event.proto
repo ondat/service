@@ -115,19 +115,12 @@ message EventPing {
   uint32 index = 2;
 }
 
-// Notify the controlplane that the DFS initiator did not receive a heartbeat
-// message from an idle connection to the specified DFS responder.
-//
-// This typically indicates a connectivity problem.
+// Notify the controlplane that the DFS responder has lost its
+// connection with a remote initiator
 message EventResponderConnectionLost {
-  // The responder node ID as configured on this initiator.
-  uint32 node_id = 1;
-  // The node UUID as configured on this initiator.
-  string node_uuid = 2;
-  // The responder nodename.
-  string nodename = 3;
-  // The responder TCP port.
-  uint32 port = 4;
+  // The node UUID of the initiator the responder has lost its
+  // connection to
+  string node_uuid = 1;
 }
 
 // Notify the controlplane that the DFS responder has established a
@@ -140,7 +133,7 @@ message EventResponderConnectionEstablished {
 // Notify the controlplane the the DFS initiator has lost its
 // connection with a remote responder
 message EventInitiatorConnectionLost {
-  // The node UUID of the initiator this responder has lost its
+  // The node UUID of the responder this initiator has lost its
   // connection to
   string node_uuid = 1;
 }
