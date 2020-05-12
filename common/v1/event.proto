@@ -10,31 +10,30 @@ import "google/protobuf/timestamp.proto";
  **/
 
 service EventAPI {
+    // The Event service is used to send strongly-typed events from the dataplane
+    // to the controlplane. Each event has its own APIs and its own semantics,
+    // defined below.
+    rpc Event(EventRequest) returns (EventResponse);
 
-  // The Event service is used to send strongly-typed events from the dataplane
-  // to the controlplane. Each event has its own APIs and its own semantics,
-  // defined below.
-  rpc Event(EventRequest) returns (EventResponse);
-
-  // The Log service is used to send general-purpose log entries from the
-  // dataplane to the controlplane. Context is sent as map<string,string>
-  // key-value pairs with arbitrary keys, for the controlplane to dispose as it
-  // sees fit.
-  rpc Log(LogRequest) returns (LogResponse);
+    // The Log service is used to send general-purpose log entries from the
+    // dataplane to the controlplane. Context is sent as map<string,string>
+    // key-value pairs with arbitrary keys, for the controlplane to dispose as it
+    // sees fit.
+    rpc Log(LogRequest) returns (LogResponse);
 }
 
 // A timestamped Event message.
 message EventRequest {
-  google.protobuf.Timestamp timestamp = 1;
-  Event event = 2;
+    google.protobuf.Timestamp timestamp = 1;
+    Event event = 2;
 }
 
 message EventResponse {}
 
 // A timestamped Log message.
 message LogRequest {
-  google.protobuf.Timestamp timestamp = 1;
-  Log log = 2;
+    google.protobuf.Timestamp timestamp = 1;
+    Log log = 2;
 }
 
 message LogResponse {}
@@ -42,32 +41,32 @@ message LogResponse {}
 // A freeform log message with optional (but strongly recommended) string:string
 // context.
 message Log {
-  enum LogLevel {
-    UNKNOWN = 0;
-    TRACE = 1;
-    DEBUG = 2;
-    INFO = 3;
-    WARN = 4;
-    ERROR = 5;
-    FATAL = 6;
-    PANIC = 7;
-  }
+    enum LogLevel {
+        UNKNOWN = 0;
+        TRACE = 1;
+        DEBUG = 2;
+        INFO = 3;
+        WARN = 4;
+        ERROR = 5;
+        FATAL = 6;
+        PANIC = 7;
+    }
 
-  // The log level, mapped to the syslog(3) levels.
-  LogLevel level = 1;
+    // The log level, mapped to the syslog(3) levels.
+    LogLevel level = 1;
 
-  // The log category, a string provided by the caller to help with filtering.
-  string category = 2;
+    // The log category, a string provided by the caller to help with filtering.
+    string category = 2;
 
-  // The context, a map of zero or more string keys mapped to string values.
-  // This helps users correlate log messages and should be populated with as
-  // much (relevant) context as can be provided.
-  map<string, string> context = 3;
+    // The context, a map of zero or more string keys mapped to string values.
+    // This helps users correlate log messages and should be populated with as
+    // much (relevant) context as can be provided.
+    map<string, string> context = 3;
 
-  // The log message as a simple string. This is a std::string type in C++
-  // mapped to protobuf's string. As a result, keeping the input to ASCII7
-  // guarantees sane results.
-  string message = 4;
+    // The log message as a simple string. This is a std::string type in C++
+    // mapped to protobuf's string. As a result, keeping the input to ASCII7
+    // guarantees sane results.
+    string message = 4;
 }
 
 // An Event message. This is a contract between the 'planes. DP sends these
@@ -77,86 +76,86 @@ message Log {
 // these events, past the generic gRPC response codes - it's not intended as a
 // bidirectional communication mechanism.
 message Event {
-  // A text context for the event, intended to help the user and/or support.
-  string description = 2;
+    // A text context for the event, intended to help the user and/or support.
+    string description = 2;
 
-  // Exactly one event. Consider all of the event type's fields to be mandatory.
-  oneof event {
-    // An event used for testing the Event system.
-    EventPing ping = 10;
+    // Exactly one event. Consider all of the event type's fields to be mandatory.
+    oneof event {
+        // An event used for testing the Event system.
+        EventPing ping = 10;
 
-    // The dataplane has completed its startup.
-    EventDataplaneStartupFinished dataplane_startup_finished = 15;
+        // The dataplane has completed its startup.
+        EventDataplaneStartupFinished dataplane_startup_finished = 15;
 
-    // The dataplane has started its shutdown sequence.
-    EventDataplaneShutdownStarted dataplane_shutdown_started = 16;
+        // The dataplane has started its shutdown sequence.
+        EventDataplaneShutdownStarted dataplane_shutdown_started = 16;
 
-    // The dataplane has completed its shutdown sequence.
-    EventDataplaneShutdownCompleted dataplane_shutdown_finished = 17;
+        // The dataplane has completed its shutdown sequence.
+        EventDataplaneShutdownCompleted dataplane_shutdown_finished = 17;
 
-    // A DFS Responder node has become unreachable to the local Initiator.
-    EventResponderConnectionLost responder_hb_missed = 11;
-    // A DFS responder node has become unreachable to the local Initiator.
-    EventResponderConnectionEstablished responder_conn_established = 13;
+        // A DFS Responder node has become unreachable to the local Initiator.
+        EventResponderConnectionLost responder_conn_lost = 11;
+        // A DFS responder node has become unreachable to the local Initiator.
+        EventResponderConnectionEstablished responder_conn_established = 13;
 
-    // A DFS Initiator node has become unreachable to the local Responder.
-    EventInitiatorConnectionLost initiator_hb_missed = 12;
-    // A DFS initiator node is connected to the local Responder.
-    EventInitiatorConnectionEstablished initiator_conn_established = 14;
-  }
+        // A DFS Initiator node has become unreachable to the local Responder.
+        EventInitiatorConnectionLost initiator_conn_lost = 12;
+        // A DFS initiator node is connected to the local Responder.
+        EventInitiatorConnectionEstablished initiator_conn_established = 14;
+    }
 }
 
 // A diagnostic event that does nothing except send a few integers to the
 // server.
 message EventPing {
-  // A sender-defined ID.
-  uint32 random_id = 1;
-  // A sender-defined index.
-  uint32 index = 2;
+    // A sender-defined ID.
+    uint32 random_id = 1;
+    // A sender-defined index.
+    uint32 index = 2;
 }
 
 // Notify the controlplane that the DFS responder has lost its
 // connection with a remote initiator
 message EventResponderConnectionLost {
-  // The node UUID of the initiator the responder has lost its
-  // connection to
-  string node_uuid = 1;
+    // The node UUID of the initiator the responder has lost its
+    // connection to
+    string node_uuid = 1;
 }
 
 // Notify the controlplane that the DFS responder has established a
 // connection with a remote initiator.
 message EventResponderConnectionEstablished {
-  // The node UUID of the initiator this responder has connected to
-  string node_uuid = 1;
+    // The node UUID of the initiator this responder has connected to
+    string node_uuid = 1;
 }
 
 // Notify the controlplane the the DFS initiator has lost its
 // connection with a remote responder
 message EventInitiatorConnectionLost {
-  // The node UUID of the responder this initiator has lost its
-  // connection to
-  string node_uuid = 1;
+    // The node UUID of the responder this initiator has lost its
+    // connection to
+    string node_uuid = 1;
 }
 
 // Notify the controlplane that the DFS initiator has established a
 // connection with a remote responder.
 message EventInitiatorConnectionEstablished {
-  // The node UUID of the responder this initiator has connected to
-  string node_uuid = 1;
+    // The node UUID of the responder this initiator has connected to
+    string node_uuid = 1;
 }
 
 // The dataplane startup has completed, and the runloop is about to be entered.
 message EventDataplaneStartupFinished {
-  // Nothing yet.
+    // Nothing yet.
 }
 
 // The dataplane is shutting down. There may be multiple events of this type,
 // think of it as 'shutdown in progress'.
 message EventDataplaneShutdownStarted {
-  // Nothing yet.
+    // Nothing yet.
 }
 
 // The dataplane has completely shut down and is about to exit.
 message EventDataplaneShutdownCompleted {
-  // Nothing yet.
+    // Nothing yet.
 }
