@@ -120,6 +120,10 @@ message EventResponderConnectionLost {
     // The node UUID of the initiator the responder has lost its
     // connection to
     string node_uuid = 1;
+
+    // The IP address of the initiator (liable to be garbage if we're
+    // behind a NAT).
+    string address = 2;
 }
 
 // Notify the controlplane that the DFS responder has established a
@@ -127,6 +131,10 @@ message EventResponderConnectionLost {
 message EventResponderConnectionEstablished {
     // The node UUID of the initiator this responder has connected to
     string node_uuid = 1;
+
+    // The IP address of the initiator (liable to be garbage if we're
+    // behind a NAT).
+    string address = 2;
 }
 
 // Notify the controlplane the the DFS initiator has lost its
@@ -135,6 +143,10 @@ message EventInitiatorConnectionLost {
     // The node UUID of the responder this initiator has lost its
     // connection to
     string node_uuid = 1;
+
+    // The IP address of the responder (liable to be garbage if we're
+    // behind a NAT).
+    string address = 2;
 }
 
 // Notify the controlplane that the DFS initiator has established a
@@ -142,6 +154,10 @@ message EventInitiatorConnectionLost {
 message EventInitiatorConnectionEstablished {
     // The node UUID of the responder this initiator has connected to
     string node_uuid = 1;
+
+    // The IP address of the responder (liable to be garbage if we're
+    // behind a NAT).
+    string address = 2;
 }
 
 // The dataplane startup has completed, and the runloop is about to be entered.
