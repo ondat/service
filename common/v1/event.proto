@@ -115,49 +115,60 @@ message EventPing {
 }
 
 // Notify the controlplane that the DFS responder has lost its
-// connection with a remote initiator
+// connection with a remote initiator.
 message EventResponderConnectionLost {
-    // The node UUID of the initiator the responder has lost its
-    // connection to
+    // This node's node UUID.
     string node_uuid = 1;
 
-    // The IP address of the initiator (liable to be garbage if we're
-    // behind a NAT).
-    string address = 2;
+    // The node UUID of the initiator this responder has lost its connection to.
+    string peer_uuid = 2;
+
+    // The IP address of the initiator this responder has lost its connection to.
+    // (liable to be garbage if we're behind a NAT).
+    string peer_address = 3;
 }
 
 // Notify the controlplane that the DFS responder has established a
 // connection with a remote initiator.
 message EventResponderConnectionEstablished {
-    // The node UUID of the initiator this responder has connected to
+    // This node's node UUID.
     string node_uuid = 1;
 
-    // The IP address of the initiator (liable to be garbage if we're
-    // behind a NAT).
-    string address = 2;
+    // The node UUID of the initiator this responder has connected to.
+    string peer_uuid = 2;
+
+    // The IP address of the initiator this responder has connected to.
+    // (liable to be garbage if we're behind a NAT).
+    string peer_address = 3;
+
 }
 
 // Notify the controlplane the the DFS initiator has lost its
 // connection with a remote responder
 message EventInitiatorConnectionLost {
-    // The node UUID of the responder this initiator has lost its
-    // connection to
+    // This node's node UUID.
     string node_uuid = 1;
 
-    // The IP address of the responder (liable to be garbage if we're
-    // behind a NAT).
-    string address = 2;
+    // The node UUID of the responder this initiator has lost its connection to.
+    string peer_uuid = 2;
+
+    // The IP address of the responder this initiator has lost its connection to.
+    // (liable to be garbage if we're behind a NAT).
+    string peer_address = 3;
 }
 
 // Notify the controlplane that the DFS initiator has established a
 // connection with a remote responder.
 message EventInitiatorConnectionEstablished {
-    // The node UUID of the responder this initiator has connected to
+    // This node's node UUID.
     string node_uuid = 1;
 
-    // The IP address of the responder (liable to be garbage if we're
-    // behind a NAT).
-    string address = 2;
+    // The node UUID of the responder this initiator has connected to.
+    string peer_uuid = 2;
+
+    // The IP address of the responder this initiator has connected to
+    // (liable to be garbage if we're behind a NAT).
+    string peer_address = 3;
 }
 
 // The dataplane startup has completed, and the runloop is about to be entered.
