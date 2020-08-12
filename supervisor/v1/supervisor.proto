@@ -37,6 +37,16 @@ service Supervisor {
     rpc ConfigUpdateString(common.v1.ConfigString) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListString(common.v1.ConfigListQuery) returns (common.v1.ConfigStringList) {}
 
+    rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
+    rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
+
+    rpc ConfigGetUint64(common.v1.ConfigKey) returns (common.v1.ConfigGetUint64Reply) {}
+    rpc ConfigUpdateUint64(common.v1.ConfigUint64) returns (common.v1.ConfigUpdateReply) {}
+    rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}
+
+    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
     /**
      * Sync the specified region. Called by symmetra.
      */
@@ -56,6 +66,15 @@ service Supervisor {
      **/
     rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
     rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
+}
+
+
+message CreateSnapshotRequest {
+    uint32 parent_volid = 1;
+    uint32 snapshot_volid = 2;
+}
+
+message CreateSnapshotResponse {
 }
 
 message ReapVolumeRequest {

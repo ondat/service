@@ -115,6 +115,9 @@ message RdbVolume {
     // The volume ID.
     uint32 volume_id = 2;
 
+    // Hack
+    repeated uint32 snapshots = 7;
+
     // The volume size in bytes.
     uint64 volume_size_bytes = 3;
 
