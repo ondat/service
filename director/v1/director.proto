@@ -115,6 +115,9 @@ message DirectorStatus {
     // The version control info string.
     string version_info = 1;
 
+    // The git branch name.
+    string branch = 3;
+
     // Generic daemon status.
     common.v1.DaemonStatus status = 2;
 }
