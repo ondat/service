@@ -42,13 +42,12 @@ other go module.
 It must be just the golang sources. C++ sources _will_ break the control plane
 build.
 
-### Updating the dataplane copy to match.
+### Dataplane visibility
 
-You must update the dataplane sources (dataplane repo toplevel directory
-`service/`) to match. Do not commit directly to develop there either, create a
-branch and use a PR.
+There used to be an extra step to update the dataplane copy. However, this git
+repo is pulled in as a submodule now, so that's not required any more.
 
-### I changed the dataplane sources first, am I boned?
+### I changed the dataplane sources first, am I boned
 
 It depends. If your changes commit with changes to this repository, then
 possibly yes, you are a bit boned. If you're lucky, all you have to do is change
@@ -62,17 +61,17 @@ this repository. Do not commit directly to `master`.
 To work on this software, you must:
 
 - Install the standard C++ implementation of protocol buffers from
-	https://developers.google.com/protocol-buffers/
+  [https://developers.google.com/protocol-buffers/]
 
   To get a consistent version with the dataplane source, you could install the
   dataplane binary build tools, as documented in the dataplane build.
 
 - Install the Go compiler and tools from
-	https://golang.org/
+  [https://golang.org/]
   See
-	https://golang.org/doc/install
+  [https://golang.org/doc/install]
   for details or, if you are using gccgo, follow the instructions at
-	https://golang.org/doc/install/gccgo
+  [https://golang.org/doc/install/gccgo]
 
 - Grab the code from the repository and install the proto package.
   The simplest way is to run `go get -u github.com/golang/protobuf/protoc-gen-go`.
@@ -90,7 +89,7 @@ buffers.
 
 To generate the code to implement the protobuf messages and gRPC services, run:
 
-```
+```bash
 $ make grpc
 protoc -Icommon/v1 -I dataplane --cpp_out=dataplane dataplane.proto
 protoc -Icommon/v1 -I common/v1 --cpp_out=common/v1 common.proto
