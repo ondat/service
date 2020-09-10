@@ -48,7 +48,7 @@ service Fs {
      *
      * returns RpcResult
      */
-    rpc PresentationCreate(FsPresentation) returns (common.v1.RpcResult) {}
+    rpc PresentationCreate(FsPresentation) returns (FsPresentationCreateResponse) {}
 
     /**
      * Update configuration for a Presentation volume specified in the FsPresentation message.
@@ -222,6 +222,28 @@ message FsPresentation {
     // contents as the presentation_filename field of the DirectorVolume object
     // of the target, otherwise expect weird artifacts as we transition to C2.
     string filename = 6;
+}
+
+message FsPresentationScsiDevice {
+    // The device information in the message should be considered valid. This is
+    // so that unit tests that don't actually attach to LIO can signal clearly
+    // that they're working, but don't have read devices.
+    bool device_present = 1;
+    // The host block device major number.
+    uint32 major = 2;
+    // The host block device minor number.
+    uint32 minor = 3;
+    // This object could easily contain a bunch of other details about the
+    // created scsi device, e.g. the /sys filesystem LUN path, the HBA path,
+    // etc. Just ask.
+}
+
+message FsPresentationCreateResponse {
+    // The generic Rpc result.
+    common.v1.RpcResult result = 1;
+
+    // Information about the created block device.
+    FsPresentationScsiDevice device = 2;
 }
 
 message FsPresentationList {
