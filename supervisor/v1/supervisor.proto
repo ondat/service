@@ -40,7 +40,7 @@ service Supervisor {
     rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
     rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
-    
+
     rpc ConfigGetUint64(common.v1.ConfigKey) returns (common.v1.ConfigGetUint64Reply) {}
     rpc ConfigUpdateUint64(common.v1.ConfigUint64) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}
@@ -64,6 +64,21 @@ service Supervisor {
      **/
     rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
     rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
+
+    // Create a snapshot with the provided UUID, from the provided parent volume.
+    // This must only be called on the master. Internally, the dataplane handles
+    // this API call by creating the mapping {snapshot_uuid => pool_id} and updating
+    // the mapping parent_volume -> new_pool_id.
+    //
+    // All subsequent IO that passes through the master must lookup the appropriate pool ID
+    // for that IO and embed it in the IO WriteContext. This lazily generates the pool on
+    // the recipient RdbPlugin.
+    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
+    // Delete a snapshot with the provided UUID. This API must be called on all nodes
+    // which have a copy of the snapshot. The snapshot must have been de-configured
+    // prior to calling this API.
+    rpc DeleteSnapshot(DeleteSnapshotRequest) returns (DeleteSnapshotResponse) {}
 }
 
 message ReapVolumeRequest {
@@ -268,6 +283,9 @@ message SyncRegionRequest {
     // node_cc is the consumer count of the source volume. See sync2020.pdf for
     // the rationale behind this.
     bool force = 7;
+
+    // The pool to sync
+    uint32 pool_id = 8;
 }
 
 message SyncRegionResponse {
@@ -278,3 +296,27 @@ message SyncRegionResponse {
     // why.
     string reason = 2;
 }
+
+message CreateSnapshotRequest {
+    // The volume we are creating a snapshot from. Either specify the uuid
+    // or the volid
+    string parent_uuid = 1;
+    uint32 parent_volid = 2;
+
+    // A unique identifier for this snapshot
+    string snapshot_uuid = 3;
+}
+
+message CreateSnapshotResponse {}
+
+message DeleteSnapshotRequest {
+    // The volume we are creating a snapshot from. Either specify the uuid
+    // or the volid
+    string parent_uuid = 1;
+    uint32 parent_volid = 2;
+
+    // A unique identifier for this snapshot
+    string snapshot_uuid = 3;
+}
+
+message DeleteSnapshotResponse {}
