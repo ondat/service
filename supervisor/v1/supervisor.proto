@@ -200,7 +200,7 @@ message VolumeHashListRequest {
 // VolumeHashListRequest
 // -- is stored in every message.
 message VolumeHashListResponse {
-    VolumeHashListRpcVersion version = 7;
+    VolumeHashListRpcVersion version = 5;
 
     // The hash over the region [start_offset, end_offset) as specified in the
     // initial VolumeHashListRequest
