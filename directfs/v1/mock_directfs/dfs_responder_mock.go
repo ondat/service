@@ -5,12 +5,13 @@
 package mock_v1
 
 import (
+	context "context"
+	reflect "reflect"
+
 	v1 "code.storageos.net/storageos/service/common/v1"
 	v10 "code.storageos.net/storageos/service/directfs/v1"
-	context "context"
 	gomock "github.com/golang/mock/gomock"
 	grpc "google.golang.org/grpc"
-	reflect "reflect"
 )
 
 // MockDfsResponderClient is a mock of DfsResponderClient interface.
