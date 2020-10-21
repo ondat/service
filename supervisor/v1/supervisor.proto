@@ -163,16 +163,16 @@ message VolumeHash {
 }
 
 enum VolumeHashListRpcVersion {
-    V1 = 0; // < Storageos v2.4.0
-    V2 = 1; // >= Storageos v2.4.0: in this verison we make the change outlined in
-            // https://docs.google.com/document/d/1t1_LBSl0XXcT1VNpaCZpn_7I4UAHYpgmtBIEWNrj8mI
-            // Appendix-3. To summarise: we now treat thinly provisioned blocks
-            // as disticint special values with a block hash of kThinProvBlockHash
-            // rather than materialising a block of zeros, applying the necessary
-            // encoding and then taking the block hash. This is required for encrypted
-            // sync and snapshto sync. The VolumeHashListRpcVersion enum was only
-            // added in Storageos v2.4.0, so VolumeHashListRequest and VolumeHashListResponse
-            // messages prior to this implicitly have the default value of V1.
+    V1 = 0;  // < Storageos v2.4.0
+    V2 = 1;  // >= Storageos v2.4.0: in this verison we make the change outlined in
+             // https://docs.google.com/document/d/1t1_LBSl0XXcT1VNpaCZpn_7I4UAHYpgmtBIEWNrj8mI
+             // Appendix-3. To summarise: we now treat thinly provisioned blocks
+             // as disticint special values with a block hash of kThinProvBlockHash
+             // rather than materialising a block of zeros, applying the necessary
+             // encoding and then taking the block hash. This is required for encrypted
+             // sync and snapshto sync. The VolumeHashListRpcVersion enum was only
+             // added in Storageos v2.4.0, so VolumeHashListRequest and VolumeHashListResponse
+             // messages prior to this implicitly have the default value of V1.
 }
 
 // Note: the response to this message, VolumeHashListResponse, is chunked
@@ -207,30 +207,35 @@ message VolumeHashListRequest {
     bool is_compressed = 6;
 }
 
-// This message is streamed back to the client in response to a
-// VolumeHashListRequest message. As such the client should expect to receive
-// many of these messages. Each VolumeHashListResponse contains the hash list
-// for a sequential portion of the volume. For simplicity the volume_hash -- i.e
-// the hash for the range [start_offset, end_offset) as specified in the initial
-// VolumeHashListRequest
-// -- is stored in every message.
-message VolumeHashListResponse {
-    VolumeHashListRpcVersion version = 5;
+message VolumeHashList {
+    // The pool this volume hash pertains to
+    uint32 pool_id = 1;
 
     // The hash over the region [start_offset, end_offset) as specified in the
     // initial VolumeHashListRequest
-    VolumeHash volume_hash = 1;
+    VolumeHash volume_hash = 2;
 
     // Defines the byte offset into `volume_id` at which hash_list[0] begins.
-    uint64 start_offset = 2;
+    uint64 start_offset = 3;
 
     // Defines the byte offset into `volume_id` at which hash_list[max] ends.
-    uint64 end_offset = 3;
+    uint64 end_offset = 4;
 
     // A list of region hashes pertaining to the regions defined by the byte range
     // [start_offset, end_offset). The number of regions depends on the
     // `region_size` defined in the inital VolumeHashListRequest.
-    repeated VolumeHash hash_list = 4;
+    repeated VolumeHash hash_list = 5;
+}
+
+// This message is streamed back to the client in response to a
+// VolumeHashListRequest message. As such the client should expect to receive
+// many of these messages. Each VolumeHashListResponse contains a hash list
+// per pool for a sequential portion of the volume. For simplicity the volume_hash
+// -- i.e the hash for the range [start_offset, end_offset) -- is stored in every
+// VolumeHashList message.
+message VolumeHashListResponse {
+    VolumeHashListRpcVersion version = 1;
+    repeated VolumeHashList pool_hash_lists = 2;
 }
 
 message GetVolumeConsumerCountRequest {
