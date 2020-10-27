@@ -79,6 +79,29 @@ service Supervisor {
     // which have a copy of the snapshot. The snapshot must have been de-configured
     // prior to calling this API.
     rpc DeleteSnapshot(DeleteSnapshotRequest) returns (DeleteSnapshotResponse) {}
+
+    // This API is used to dictate the list of snapshots a volume has to the dataplane.
+    // It's required for two reasons:
+    // The CP needs to be able to say to a DP node/volume: "here are the snapshots I
+    // believe exist". The dataplane should treat this list as de facto and ensure that
+    // the configuration matches. This is required for two reasons:
+    // 1. If we configure a bunch of snapshots on the master and then failover to a
+    //    replica before any IO was issued against the snapshots (remembering that
+    //    the create request is passed to the replica by a tag in the IO context)
+    //    then the replica has no knowledge of the snapshot configuration. We need
+    //    a way to apply this configuration.
+    // 2. It's entirely possible that the CP requests a snapshot be created but the
+    //    DP fails before the RPC reply is received by the CP. In this case the DP
+    //    has an excess snap that can be deleted. Note: it's not imperative that we
+    //    clean up an excess snap, it can't do any harm from a data integrity perspective.
+    //
+    // This reconciliation process will have to happen every time a master is configured.
+    // This could be the first time we are configuring a volume, or it could be following
+    // a failover when a replica is promoted to a master (like in 1. above).
+    //
+    // TODO(AJReid): It might be a better idea to embed the SnapshotsConfig data structure
+    // in the DirectorVolume message type, and avoid another RPC call.
+    rpc ReconcileSnapshotConfig(ReconcileSnapshotConfigRequest) returns (ReconcileSnapshotConfigResponse) {}
 }
 
 message ReapVolumeRequest {
@@ -310,6 +333,21 @@ message SyncRegionRequest {
     uint32 pool_id = 8;
 }
 
+message SnapshotAncestorList {
+    repeated uint32 pools = 1;
+}
+
+message SnapshotConfig {
+    map<string, SnapshotAncestorList> snapshots = 1;
+}
+
+message ReconcileSnapshotConfigRequest {
+    SnapshotConfig snapshot_config = 1;
+}
+
+message ReconcileSnapshotConfigResponse {
+}
+
 message SyncRegionResponse {
     // Whether or not the operation was successful.
     bool success = 1;
@@ -329,7 +367,9 @@ message CreateSnapshotRequest {
     string snapshot_uuid = 3;
 }
 
-message CreateSnapshotResponse {}
+message CreateSnapshotResponse {
+    SnapshotConfig snapshot_config = 1;
+}
 
 message DeleteSnapshotRequest {
     // The volume we are creating a snapshot from. Either specify the uuid
@@ -341,4 +381,6 @@ message DeleteSnapshotRequest {
     string snapshot_uuid = 3;
 }
 
-message DeleteSnapshotResponse {}
+message DeleteSnapshotResponse {
+    SnapshotConfig snapshot_config = 1;
+}
