@@ -157,26 +157,6 @@ func (mr *MockRdbPluginClientMockRecorder) ConfigUpdateString(arg0, arg1 interfa
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ConfigUpdateString", reflect.TypeOf((*MockRdbPluginClient)(nil).ConfigUpdateString), varargs...)
 }
 
-// StatsList mocks base method.
-func (m *MockRdbPluginClient) StatsList(arg0 context.Context, arg1 *v1.StatsListQuery, arg2 ...grpc.CallOption) (*v1.StatsListResponse, error) {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
-	for _, a := range arg2 {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "StatsList", varargs...)
-	ret0, _ := ret[0].(*v1.StatsListResponse)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// StatsList indicates an expected call of StatsList.
-func (mr *MockRdbPluginClientMockRecorder) StatsList(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StatsList", reflect.TypeOf((*MockRdbPluginClient)(nil).StatsList), varargs...)
-}
-
 // Status mocks base method.
 func (m *MockRdbPluginClient) Status(arg0 context.Context, arg1 *v10.RdbStatusRequest, arg2 ...grpc.CallOption) (*v10.RdbStatus, error) {
 	m.ctrl.T.Helper()

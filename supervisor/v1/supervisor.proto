@@ -64,6 +64,14 @@ service Supervisor {
      **/
     rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
     rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
+
+    /**
+     * Collect the dataplane node-level metrics and specific per-volume metrics.
+     * NOTE: This is an experimental dataplane-only API. It's probably not quite
+     * what the control-plane requires in terms of a metrics API, but it's fine
+     * for dataplane tooling and tests.
+     */
+    rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
 }
 
 message ReapVolumeRequest {
@@ -294,4 +302,59 @@ message SyncRegionResponse {
     // If the operation was not successful, this is an explanatory message as to
     // why.
     string reason = 2;
+}
+
+/*
+ * Metrics
+ */
+enum MetricType {
+    // Counters may only increase (like an odometer)
+    COUNT = 0;
+
+    // Gauges may fluctuate (like a speedometer)
+    GAUGE = 1;
+}
+
+message Metric {
+    // The metric name
+    string name = 1;
+
+    // Counter or gauge
+    MetricType type = 2;
+
+    // Instantaneous value
+    uint64 value = 3;
+}
+
+message MetricsRequest {
+    // A list of volumes to query (by inode). If this and uuids is left empty we'll return
+    // metrics for all volumes which are configured.
+    repeated uint32 inodes = 1;
+
+    // A list of volume to query (by uuid). If this and uuids is left empty we'll return
+    // metrircs for all volumes which are configured.
+    repeated string uuids = 2;
+}
+
+message VolumeMetrics {
+    // The volume this collection of metrics belongs to
+    uint32 inode = 1;
+
+    // The volume this collection of metrics belongs to
+    string uuid = 2;
+
+    repeated Metric metrics = 3;
+}
+
+// Node-level metrics are metrics which aren't specific to a volume.
+message NodeMetrics {
+    repeated Metric metrics = 1;
+}
+
+message MetricsResponse {
+    // Per volume stats. One collection of metrics per requested volume.
+    repeated VolumeMetrics volume_metrics = 1;
+
+    // Per node stats. One collection per node.
+    NodeMetrics node_metrics = 2;
 }
