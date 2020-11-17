@@ -40,7 +40,7 @@ service Supervisor {
     rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
     rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint32(common.v1.ConfigListQuery) returns (common.v1.ConfigUint32List) {}
-
+    
     rpc ConfigGetUint64(common.v1.ConfigKey) returns (common.v1.ConfigGetUint64Reply) {}
     rpc ConfigUpdateUint64(common.v1.ConfigUint64) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}

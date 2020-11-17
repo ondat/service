@@ -49,6 +49,14 @@ service RdbPlugin  {
      */
     rpc VolumeList(RdbVolumeListQuery) returns (RdbVolumeList) {}
 
+    /**
+     * List data-plane stats, optionally filtered using a StatsListQuery message.
+     *
+     * returns A StatsListResponse containing Statistic messages, if any are
+     * found matching the filter.
+     */
+     rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
