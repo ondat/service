@@ -171,6 +171,10 @@ enum VolumeHashListRpcVersion {
 // Note: the response to this message, VolumeHashListResponse, is chunked
 // (streamed in gRPC parlance).
 message VolumeHashListRequest {
+    // TRIAGE-51 hack
+    string src_uuid = 8;
+    string dst_uuid = 9;
+
     VolumeHashListRpcVersion version = 7;
 
     // The volume we want to generate a hash over
