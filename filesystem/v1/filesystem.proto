@@ -149,7 +149,7 @@ message FsVolume {
     VolumeControlStatus control_status = 10;
 
     // An opaque value interpreted based on node_type.
-    uint32 device_number = 4 [ deprecated = true ];
+    uint32 device_number = 4 [deprecated = true];
 
     // The filename of the underlying volume to present in the filesystem.
     string filename = 5;
@@ -214,6 +214,15 @@ message FsPresentation {
     // contents as the presentation_filename field of the DirectorVolume object
     // of the target, otherwise expect weird artifacts as we transition to C2.
     string filename = 6;
+
+    // The crypto config for the volume. This used to be on DirectorVolume
+    // but this is the correct place to set it. When calling PresentationCreate
+    // for an encrypted volume, volume_crypto must be set with the appropriate
+    // fields: i.e. crypto_state == VCS_FULLY_ENCRYPTED, keyset_present == true
+    // and keyset set with the encryption keys. Subsequent calls to PresentationUpdate
+    // do not need to re-provide the keys, but should ensure that crypto_state remains
+    // set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
+    common.v1.VolumeCrypto volume_crypto = 7;
 }
 
 message FsPresentationScsiDevice {
