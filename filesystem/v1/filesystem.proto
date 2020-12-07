@@ -222,7 +222,7 @@ message FsPresentation {
     // and keyset set with the encryption keys. Subsequent calls to PresentationUpdate
     // do not need to re-provide the keys, but should ensure that crypto_state remains
     // set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
-    common.v1.VolumeCrypto volume_crypto = 7;
+    common.v1.VolumeCrypto volume_crypto = 8;
 }
 
 message FsPresentationScsiDevice {
