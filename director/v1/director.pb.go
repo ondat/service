@@ -258,7 +258,10 @@ type DirectorVolume struct {
 	NoWriteCache bool `protobuf:"varint,12,opt,name=no_write_cache,json=noWriteCache,proto3" json:"no_write_cache,omitempty"`
 	// Enable QoS throttling.
 	Throttle bool `protobuf:"varint,13,opt,name=throttle,proto3" json:"throttle,omitempty"`
-	// Crypto config.
+	// This is now set on the FsPresentation object.
+	//
+	// TODO(AJReid): mark deprecated/unused. I think the CP guys have a preference
+	// about how this is done.
 	VolumeCrypto *v1.VolumeCrypto `protobuf:"bytes,15,opt,name=volume_crypto,json=volumeCrypto,proto3" json:"volume_crypto,omitempty"`
 	// Is the volume read-only?
 	ReadOnly             bool     `protobuf:"varint,16,opt,name=read_only,json=readOnly,proto3" json:"read_only,omitempty"`

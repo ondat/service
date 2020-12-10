@@ -151,17 +151,17 @@ message ConsumerCountEntry {
 
 // Syncing a volume is a multi stage process:
 //
-// * first we invoke symmetra (a standalone binary), which then
+// * first the CP invokes symmetra (a standalone binary), which then
 // * calls the VolumeHashList() RPC for the master and replica deployments
-// * then we call the Sync() RPC multiple times on the master to copy the data
+// * symmetra then calls the Sync() RPC multiple times on the master to copy the data
 //
 // We want to be able to track this transaction across it's entire duration.
 // The SyncContext message type allows us to do this. When symmetra is first
-// invoked it generates the SyncContext. This type is then passed in all subsequent
-// VolumeHashListRequest's and SyncRegionRequest's. Any code taking part in
+// invoked it generates the SyncContext. This token is then passed in all subsequent
+// VolumeHashListRequests and SyncRegionRequests. Any code taking part in
 // the sync operation can then log this ID as part of any structued logging calls.
 //
-// For now having SyncContext be a string representation of a UUID seems sufficient.
+// UUIDs seem to be in fashion at the moment so we'll use that as the unique identifier.
 message SyncContext {
     string uuid = 1;
 }
