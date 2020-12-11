@@ -174,10 +174,8 @@ message DirectorVolume {
     bool throttle = 13;
 
     // This is now set on the FsPresentation object.
-    //
-    // TODO(AJReid): mark deprecated/unused. I think the CP guys have a preference
-    // about how this is done.
-    common.v1.VolumeCrypto volume_crypto = 15;
+    //common.v1.VolumeCrypto volume_crypto = 15;
+    reserved 15;
 
     // Is the volume read-only?
     bool read_only = 16;
