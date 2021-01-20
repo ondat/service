@@ -1074,14 +1074,15 @@ type SyncRegionRequest struct {
 	SyncContext *SyncContext `protobuf:"bytes,8,opt,name=sync_context,json=syncContext,proto3" json:"sync_context,omitempty"`
 	// If set we'll retry the write portion of a sync operation if it fails because
 	// the directfs initiator has not established a connection to the target node
-	// (the replica). We will do this for the first IO only! Any subsequent failures
-	// due to a severed connection will abort the sync process. The amount of time
+	// (the replica). We will do this for the first IO only. Remember internally every
+	// SyncRegionRequest is broken down into multiple 128k IOs. Any subsequent write
+	// failures due to a severed connection will abort the sync process. The amount of time
 	// we'll wait before retrying will always be greater than the cool-off period between
-	// connection re-establish attempts. This is configured at runtime when starting
-	// the directfs initiator and currently stands at 5 seconds (although we'll query
-	// the runtime value).
+	// connection re-establish attempts. This is currently configured to 5 seconds.
 	//
-	// Note: symmetra should set this flag for the first SyncRegionRequest only.
+	// Note: symmetra should set this flag for the first SyncRegionRequest only. The
+	// desired behaviour is that only the very first IO can elicit a retry. We don't
+	// want per IO retries for sync operations.
 	AllowFirstIoRetry    bool     `protobuf:"varint,9,opt,name=allow_first_io_retry,json=allowFirstIoRetry,proto3" json:"allow_first_io_retry,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
