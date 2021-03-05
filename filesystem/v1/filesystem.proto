@@ -73,14 +73,6 @@ service Fs {
      */
     rpc PresentationList(FsPresentationListQuery) returns (FsPresentationList) {}
 
-    /**
-     * List data-plane stats, optionally filtered using a StatsListQuery message.
-     *
-     * returns A StatsListResponse containing Statistic messages, if any are
-     * found matching the filter.
-     */
-    rpc StatsList(common.v1.StatsListQuery) returns (common.v1.StatsListResponse) {}
-
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -157,7 +149,7 @@ message FsVolume {
     VolumeControlStatus control_status = 10;
 
     // An opaque value interpreted based on node_type.
-    uint32 device_number = 4 [ deprecated = true ];
+    uint32 device_number = 4 [deprecated = true];
 
     // The filename of the underlying volume to present in the filesystem.
     string filename = 5;
@@ -236,7 +228,16 @@ message FsPresentation {
 
     // The snapshot UUID - or empty if this presentation does not pertain
     // to a snapshot, i.e. it's the parent volume.
-    string snapshot_uuid = 8;
+    string snapshot_uuid = 9;
+
+    // The crypto config for the volume. This used to be on DirectorVolume
+    // but this is the correct place to set it. When calling PresentationCreate
+    // for an encrypted volume, volume_crypto must be set with the appropriate
+    // fields: i.e. crypto_state == VCS_FULLY_ENCRYPTED, keyset_present == true
+    // and keyset set with the encryption keys. Subsequent calls to PresentationUpdate
+    // do not need to re-provide the keys, but should ensure that crypto_state remains
+    // set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
+    common.v1.VolumeCrypto volume_crypto = 8;
 }
 
 message FsPresentationScsiDevice {
