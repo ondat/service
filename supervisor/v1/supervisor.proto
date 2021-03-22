@@ -285,6 +285,19 @@ message SyncRegionRequest {
     // node_cc is the consumer count of the source volume. See sync2020.pdf for
     // the rationale behind this.
     bool force = 7;
+
+    // If set we'll retry the write portion of a sync operation if it fails because
+    // the directfs initiator has not established a connection to the target node
+    // (the replica). We will do this for the first IO only. Remember internally every
+    // SyncRegionRequest is broken down into multiple 128k IOs. Any subsequent write
+    // failures due to a severed connection will abort the sync process. The amount of time
+    // we'll wait before retrying will always be greater than the cool-off period between
+    // connection re-establish attempts. This is currently configured to 5 seconds.
+    //
+    // Note: symmetra should set this flag for the first SyncRegionRequest only. The
+    // desired behaviour is that only the very first IO can elicit a retry. We don't
+    // want per IO retries for sync operations.
+    bool allow_first_io_retry = 9;
 }
 
 message SyncRegionResponse {
