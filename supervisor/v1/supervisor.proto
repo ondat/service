@@ -259,35 +259,31 @@ message VolumeHashListRequest {
     SyncContext sync_context = 8;
 }
 
-message VolumeHashList {
-    // The pool this volume hash pertains to
-    uint32 pool_id = 1;
+// This message is streamed back to the client in response to a
+// VolumeHashListRequest message. As such the client should expect to receive
+// many of these messages. Each VolumeHashListResponse contains the hash list
+// for a sequential portion of the volume. For simplicity the volume_hash -- i.e
+// the hash for the range [start_offset, end_offset) as specified in the initial
+// VolumeHashListRequest
+// -- is stored in every message.
+message VolumeHashListResponse {
+    // See the VolumeHashListRpcVersion documentation
+    VolumeHashListRpcVersion version = 5;
 
     // The hash over the region [start_offset, end_offset) as specified in the
     // initial VolumeHashListRequest
-    VolumeHash volume_hash = 2;
+    VolumeHash volume_hash = 1;
 
     // Defines the byte offset into `volume_id` at which hash_list[0] begins.
-    uint64 start_offset = 3;
+    uint64 start_offset = 2;
 
     // Defines the byte offset into `volume_id` at which hash_list[max] ends.
-    uint64 end_offset = 4;
+    uint64 end_offset = 3;
 
     // A list of region hashes pertaining to the regions defined by the byte range
     // [start_offset, end_offset). The number of regions depends on the
     // `region_size` defined in the inital VolumeHashListRequest.
-    repeated VolumeHash hash_list = 5;
-}
-
-// This message is streamed back to the client in response to a
-// VolumeHashListRequest message. As such the client should expect to receive
-// many of these messages. Each VolumeHashListResponse contains a hash list
-// per pool for a sequential portion of the volume. For simplicity the volume_hash
-// -- i.e the hash for the range [start_offset, end_offset) -- is stored in every
-// VolumeHashList message.
-message VolumeHashListResponse {
-    VolumeHashListRpcVersion version = 1;
-    repeated VolumeHashList pool_hash_lists = 2;
+    repeated VolumeHash hash_list = 4;
 }
 
 message GetVolumeConsumerCountRequest {
@@ -374,33 +370,10 @@ message SyncRegionRequest {
     // desired behaviour is that only the very first IO can elicit a retry. We don't
     // want per IO retries for sync operations.
     bool allow_first_io_retry = 9;
-
-    // The pool to sync
-    uint32 pool_id = 10;
 }
 
 message SnapshotAncestorList {
     repeated uint32 pools = 1;
-}
-
-message SnapshotConfig {
-    map<string, SnapshotAncestorList> snapshots = 1;
-}
-
-message ReconcileSnapshotConfigRequest {
-    SnapshotConfig snapshot_config = 1;
-}
-
-message ReconcileSnapshotConfigResponse {
-}
-
-message SyncRegionResponse {
-    // Whether or not the operation was successful.
-    bool success = 1;
-
-    // If the operation was not successful, this is an explanatory message as to
-    // why.
-    string reason = 2;
 }
 
 message CreateSnapshotRequest {
@@ -429,6 +402,26 @@ message DeleteSnapshotRequest {
 
 message DeleteSnapshotResponse {
     SnapshotConfig snapshot_config = 1;
+}
+
+message SnapshotConfig {
+    map<string, SnapshotAncestorList> snapshots = 1;
+}
+
+message ReconcileSnapshotConfigRequest {
+    SnapshotConfig snapshot_config = 1;
+}
+
+message ReconcileSnapshotConfigResponse {
+}
+
+message SyncRegionResponse {
+    // Whether or not the operation was successful.
+    bool success = 1;
+
+    // If the operation was not successful, this is an explanatory message as to
+    // why.
+    string reason = 2;
 }
 
 /*
