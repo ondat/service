@@ -67,7 +67,7 @@ service Supervisor {
 
     // Create a snapshot with the provided UUID, from the provided parent volume.
     // This must only be called on the master. Internally, the dataplane handles
-    // this API call by creating the mapping {snapshot_uuid => pool_id} and updating
+    // this API call by creating the mapping {snapshot_id => pool_id} and updating
     // the mapping parent_volume -> new_pool_id.
     //
     // All subsequent IO that passes through the master must lookup the appropriate pool ID
@@ -383,7 +383,7 @@ message CreateSnapshotRequest {
     uint32 parent_volid = 2;
 
     // A unique identifier for this snapshot
-    string snapshot_uuid = 3;
+    uint32 snapshot_id = 3;
 }
 
 message CreateSnapshotResponse {
@@ -397,7 +397,7 @@ message DeleteSnapshotRequest {
     uint32 parent_volid = 2;
 
     // A unique identifier for this snapshot
-    string snapshot_uuid = 3;
+    uint32 snapshot_id = 3;
 }
 
 message DeleteSnapshotResponse {
@@ -405,7 +405,7 @@ message DeleteSnapshotResponse {
 }
 
 message SnapshotConfig {
-    map<string, SnapshotAncestorList> snapshots = 1;
+    map<uint32, SnapshotAncestorList> snapshots = 1;
 }
 
 message ReconcileSnapshotConfigRequest {

@@ -169,17 +169,6 @@ message FsVolume {
 
     // Volume status, e.g. readiness.
     FsVolumeStatus status = 8;
-
-    // The volume ID of the parent volume if this volume pertains to a snapshot
-    // 0 if the volume does not pertain to a snapshot
-    uint32 parent_id = 11;
-
-    // The volume UUID of the parent volume if this volume pertains to a snapshot.
-    // 0 if the volume does not pertain to a snapshot
-    string parent_uuid = 12;
-
-    // The snapshot UUID if this volume is a snapshot. Empty if not
-    string snapshot_uuid = 13;
 }
 
 message FsVolumeList {
@@ -226,10 +215,6 @@ message FsPresentation {
     // of the target, otherwise expect weird artifacts as we transition to C2.
     string filename = 6;
 
-    // The snapshot UUID - or empty if this presentation does not pertain
-    // to a snapshot, i.e. it's the parent volume.
-    string snapshot_uuid = 9;
-
     // The crypto config for the volume. This used to be on DirectorVolume
     // but this is the correct place to set it. When calling PresentationCreate
     // for an encrypted volume, volume_crypto must be set with the appropriate
@@ -238,6 +223,17 @@ message FsPresentation {
     // do not need to re-provide the keys, but should ensure that crypto_state remains
     // set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
     common.v1.VolumeCrypto volume_crypto = 8;
+
+    // The volume ID of the parent volume if this volume pertains to a snapshot
+    // 0 if the volume does not pertain to a snapshot
+    uint32 parent_id = 9;
+
+    // The volume UUID of the parent volume if this volume pertains to a snapshot.
+    // empty if the volume does not pertain to a snapshot
+    string parent_uuid = 10;
+
+    // The snapshot ID if this volume is a snapshot. 0 if not.
+    uint32 snapshot_id = 11;
 }
 
 message FsPresentationScsiDevice {
