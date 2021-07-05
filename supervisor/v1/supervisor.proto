@@ -78,7 +78,7 @@ service Supervisor {
     // Delete a snapshot with the provided UUID. This API must be called on all nodes
     // which have a copy of the snapshot. The snapshot must have been de-configured
     // prior to calling this API.
-    rpc DeleteSnapshot(DeleteSnapshotRequest) returns (DeleteSnapshotResponse) {}
+    rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
 
     // This API is used to dictate the list of snapshots a volume has to the dataplane.
     // It's required for two reasons:
@@ -390,7 +390,7 @@ message CreateSnapshotResponse {
     SnapshotConfig snapshot_config = 1;
 }
 
-message DeleteSnapshotRequest {
+message ReapSnapshotRequest {
     // The volume we are creating a snapshot from. Either specify the uuid
     // or the volid
     string parent_uuid = 1;
@@ -400,7 +400,7 @@ message DeleteSnapshotRequest {
     uint32 snapshot_id = 3;
 }
 
-message DeleteSnapshotResponse {
+message ReapSnapshotResponse {
     SnapshotConfig snapshot_config = 1;
 }
 
