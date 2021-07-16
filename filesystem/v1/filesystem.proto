@@ -14,36 +14,6 @@ service Fs {
     rpc Status(FsStatusRequest) returns (FsStatus) {}
 
     /**
-     * Create the specified FsVolume.
-     *
-     * returns RpcResult
-     */
-    rpc VolumeCreate(FsVolume) returns (common.v1.RpcResult) {}
-
-    /**
-     * Update the specified FsVolume.
-     *
-     * returns RpcResult
-     */
-    rpc VolumeUpdate(FsVolume) returns (common.v1.RpcResult) {}
-
-    /**
-     * Delete the specified FsVolume.
-     *
-     * returns RpcResult
-     */
-    rpc VolumeDelete(FsVolume) returns (common.v1.RpcResult) {}
-
-    /**
-     * Return a list of FsVolume messages, optionally filtered using the supplied
-     * FsVolumeListQuery message.
-     *
-     * returns A FsVolumeList message containing FsVolume objects,
-     *         if any are found that match the filter.
-     */
-    rpc VolumeList(FsVolumeListQuery) returns (FsVolumeList) {}
-
-    /**
      * Add configuration for a Presentation volume specified in the FsPresentation message.
      *
      * returns RpcResult
@@ -99,82 +69,6 @@ message FsStatus {
     common.v1.DaemonStatus status = 2;
 }
 
-message FsVolumeListQuery {
-    // A possibly-empty list of volume IDs to query.
-    repeated uint32 volume_ids = 1;
-    // A possibly-empty list of volume UUIDs to query.
-    repeated string volume_uuids = 2;
-}
-
-message FsVolumeStatistics {
-    // Empty for now.
-}
-
-enum FsVolumeState {
-    NONE = 0;   // Volume is not available in the filesystem.
-    READY = 1;  // Volume can be read from the filesystem.
-}
-
-message FsVolumeStatus {
-    // State of the volume device node (file/block device).
-    FsVolumeState node_state = 1;
-}
-
-/**
- * A StorageOS volume to be presented via the FUSE filesystem.
- */
-message FsVolume {
-    common.v1.DataplaneCommon cc = 1;
-
-    // The volume ID to represent.
-    uint32 volume_id = 2;
-
-    enum VolumeDeviceType {
-        FILE = 0;       // A regular file (backed by FUSE).
-        NBD_BLOCK = 1;  // An nbd-backed block device node. Deprecated. Need to coordinate its removal with the control-plane.
-    }
-
-    // The type for this volume.
-    VolumeDeviceType node_type = 3;
-
-    enum VolumeControlStatus {
-        NONE = 0;         // State not set (shouldn't happen).
-        ACTIVE = 1;       // Volume should be made available to the user.
-        UNAVAILABLE = 2;  // Volume is in the process of being deleted.
-        FAILED = 3;       // Volume is in a failure state.
-        DELETING = 4;     // Volume is in the process of being deleted.
-    }
-
-    // The control plane's desired state for this volume.
-    VolumeControlStatus control_status = 10;
-
-    // An opaque value interpreted based on node_type.
-    uint32 device_number = 4 [deprecated = true];
-
-    // The filename of the underlying volume to present in the filesystem.
-    string filename = 5;
-
-    // The filename of the presentation node, to which users actually connect.
-    // This field really belongs on the FsPresentation object and has been added
-    // there post-1.5.0. Until we're all C2, this field and the field in
-    // FsPresentation should have the same value or you'll see some very strange
-    // artifacts.
-    string presentation_filename = 9;
-
-    // The volume size in bytes.
-    uint64 volume_size_bytes = 6;
-
-    // Volume statistics.
-    FsVolumeStatistics stats = 7;
-
-    // Volume status, e.g. readiness.
-    FsVolumeStatus status = 8;
-}
-
-message FsVolumeList {
-    repeated FsVolume volumes = 1;
-}
-
 message FsPresentationListQuery {
     // A possibly-empty list of volume IDs to query.
     repeated uint32 presentation_ids = 1;
@@ -208,12 +102,11 @@ message FsPresentation {
     string target_uuid = 7;
 
     // Presentation inode status, e.g. readiness.
-    FsVolumeStatus status = 5;
+    // FsVolumeStatus status = 5;
+    reserved 5;
 
-    // The filesystem name of the presentation. This should have the same
-    // contents as the presentation_filename field of the DirectorVolume object
-    // of the target, otherwise expect weird artifacts as we transition to C2.
-    string filename = 6;
+    // The filesystem name of the presentation.
+    string presentation_filename = 6;
 
     // The crypto config for the volume. This used to be on DirectorVolume
     // but this is the correct place to set it. When calling PresentationCreate
@@ -223,6 +116,9 @@ message FsPresentation {
     // do not need to re-provide the keys, but should ensure that crypto_state remains
     // set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
     common.v1.VolumeCrypto volume_crypto = 8;
+
+    // The volume size in bytes.
+    uint64 volume_size_bytes = 9;
 }
 
 message FsPresentationScsiDevice {
