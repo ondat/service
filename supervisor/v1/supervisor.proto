@@ -72,6 +72,11 @@ service Supervisor {
      * for dataplane tooling and tests.
      */
     rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
+
+    /**
+     * Interface to dump all the configurations from the dataplane
+     */
+    rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
 }
 
 message ReapVolumeRequest {
