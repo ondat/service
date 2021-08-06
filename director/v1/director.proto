@@ -44,36 +44,6 @@ service Director {
     rpc VolumeList(DirectorVolumeListQuery) returns (DirectorVolumeList) {}
 
     /**
-     * Add configuration for a Presentation volume specified in the DirectorPresentation message.
-     *
-     * returns RpcResult
-     */
-    rpc PresentationCreate(DirectorPresentation) returns (common.v1.RpcResult) {}
-
-    /**
-     * Update configuration for a Presentation volume specified in the DirectorPresentation message.
-     *
-     * returns RpcResult
-     */
-    rpc PresentationUpdate(DirectorPresentation) returns (common.v1.RpcResult) {}
-
-    /**
-     * Remove configuration for the Presentation volume specified in the DirectorPresentation message.
-     *
-     * returns RpcResult
-     */
-    rpc PresentationDelete(DirectorPresentation) returns (common.v1.RpcResult) {}
-
-    /**
-     * List configured Presentation volumes, optionally filtered using a DirectorPresentationListQuery
-     * message.
-     *
-     * returns A DirectorPresentationList message containing DirectorPresentation mesages,
-     *         if any are found matching the filter.
-     */
-    rpc PresentationList(DirectorPresentationListQuery) returns (DirectorPresentationList) {}
-
-    /**
      * Perform actions that really only make sense for very low-level testing.
      */
     rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
@@ -131,9 +101,6 @@ message DirectorVolumeStatus {
 
 /**
  * Volume message for Director RPCs.
- *
- * Note this does should not be used to configure Presentation inodes, volumes that point
- * at other volumes. Use DirectorPresentation for that.
  */
 message DirectorVolume {
     common.v1.DataplaneCommon cc = 1;
@@ -183,37 +150,4 @@ message DirectorVolume {
 
 message DirectorVolumeList {
     repeated DirectorVolume volumes = 1;
-}
-
-message DirectorPresentationListQuery {
-    // A possibly-empty list of presentation IDs to query.
-    repeated uint32 presentation_ids = 1;
-    // A possibly-empty list of presentation UUIDs to query.
-    repeated string presentation_uuids = 2;
-}
-
-/**
- * Presentation volume message for Director RPCs.
- *
- * The minimum amount of information required to specify the 'presentation' or source volume,
- * the volume that is presented to the user and (usually) mounted. All actual work
- * is done on the target volume, which has actual storage associated with it.
- */
-message DirectorPresentation {
-    common.v1.DataplaneCommon cc = 1;
-
-    // The inode the user mounts or opens.
-    uint32 presentation_id = 2;
-
-    // The underlying inode of the StorageOS volume. Required in GSI mode,
-    // should be INVALID_INODE(0) in NLI mode.
-    uint32 target_id = 3;
-
-    // The UUID of the underlying volume to which we point. Required in NLI
-    // mode, ignored in GSI mode.
-    string target_uuid = 4;
-}
-
-message DirectorPresentationList {
-    repeated DirectorPresentation presentations = 1;
 }

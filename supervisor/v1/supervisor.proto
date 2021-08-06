@@ -414,10 +414,6 @@ message DumpConfigRequest {
 message DumpConfigResponse {
     // fsctl pr list
     filesystem.v1.FsPresentationList fs_presentation_list = 1;
-    // fsctl vol list
-    filesystem.v1.FsVolumeList fs_volume_list = 2;
-    // dirctl pr list
-    director.v1.DirectorPresentationList director_presentation_list = 3;
     // dirctl vol list
     director.v1.DirectorVolumeList director_volume_list = 4;
     // dfsictl vol list
