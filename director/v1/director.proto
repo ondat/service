@@ -173,8 +173,9 @@ message DirectorVolume {
     // Enable QoS throttling.
     bool throttle = 13;
 
-    // Crypto config.
-    common.v1.VolumeCrypto volume_crypto = 15;
+    // This is now set on the FsPresentation object.
+    //common.v1.VolumeCrypto volume_crypto = 15;
+    reserved 15;
 
     // Is the volume read-only?
     bool read_only = 16;
