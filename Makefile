@@ -126,4 +126,8 @@ vis_clean:
 %.pb.cc %.pb.h: %.proto
 	protoc $(PROTOC_OPT) -I $(<D) --cpp_out=$(<D) $(<F)
 
+# supervisor needs to include messages from other modules to insert them in DumpConfigResponse
+# add paths to PROTOC_OPT only for this one rule
+supervisor/v1/supervisor.pb.go: PROTOC_OPT += -I supervisor/v1/ -I filesystem/v1/ -I rdbplugin/v1/ -I directfs/v1/ -I director/v1/
+
 #############################################################################
