@@ -25,90 +25,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type FsVolumeState int32
-
-const (
-	FsVolumeState_NONE  FsVolumeState = 0
-	FsVolumeState_READY FsVolumeState = 1
-)
-
-var FsVolumeState_name = map[int32]string{
-	0: "NONE",
-	1: "READY",
-}
-
-var FsVolumeState_value = map[string]int32{
-	"NONE":  0,
-	"READY": 1,
-}
-
-func (x FsVolumeState) String() string {
-	return proto.EnumName(FsVolumeState_name, int32(x))
-}
-
-func (FsVolumeState) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{0}
-}
-
-type FsVolume_VolumeDeviceType int32
-
-const (
-	FsVolume_FILE      FsVolume_VolumeDeviceType = 0
-	FsVolume_NBD_BLOCK FsVolume_VolumeDeviceType = 1
-)
-
-var FsVolume_VolumeDeviceType_name = map[int32]string{
-	0: "FILE",
-	1: "NBD_BLOCK",
-}
-
-var FsVolume_VolumeDeviceType_value = map[string]int32{
-	"FILE":      0,
-	"NBD_BLOCK": 1,
-}
-
-func (x FsVolume_VolumeDeviceType) String() string {
-	return proto.EnumName(FsVolume_VolumeDeviceType_name, int32(x))
-}
-
-func (FsVolume_VolumeDeviceType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{5, 0}
-}
-
-type FsVolume_VolumeControlStatus int32
-
-const (
-	FsVolume_NONE        FsVolume_VolumeControlStatus = 0
-	FsVolume_ACTIVE      FsVolume_VolumeControlStatus = 1
-	FsVolume_UNAVAILABLE FsVolume_VolumeControlStatus = 2
-	FsVolume_FAILED      FsVolume_VolumeControlStatus = 3
-	FsVolume_DELETING    FsVolume_VolumeControlStatus = 4
-)
-
-var FsVolume_VolumeControlStatus_name = map[int32]string{
-	0: "NONE",
-	1: "ACTIVE",
-	2: "UNAVAILABLE",
-	3: "FAILED",
-	4: "DELETING",
-}
-
-var FsVolume_VolumeControlStatus_value = map[string]int32{
-	"NONE":        0,
-	"ACTIVE":      1,
-	"UNAVAILABLE": 2,
-	"FAILED":      3,
-	"DELETING":    4,
-}
-
-func (x FsVolume_VolumeControlStatus) String() string {
-	return proto.EnumName(FsVolume_VolumeControlStatus_name, int32(x))
-}
-
-func (FsVolume_VolumeControlStatus) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{5, 1}
-}
-
 type FsStatusRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -189,292 +105,6 @@ func (m *FsStatus) GetStatus() *v1.DaemonStatus {
 	return nil
 }
 
-type FsVolumeListQuery struct {
-	// A possibly-empty list of volume IDs to query.
-	VolumeIds []uint32 `protobuf:"varint,1,rep,packed,name=volume_ids,json=volumeIds,proto3" json:"volume_ids,omitempty"`
-	// A possibly-empty list of volume UUIDs to query.
-	VolumeUuids          []string `protobuf:"bytes,2,rep,name=volume_uuids,json=volumeUuids,proto3" json:"volume_uuids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *FsVolumeListQuery) Reset()         { *m = FsVolumeListQuery{} }
-func (m *FsVolumeListQuery) String() string { return proto.CompactTextString(m) }
-func (*FsVolumeListQuery) ProtoMessage()    {}
-func (*FsVolumeListQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{2}
-}
-
-func (m *FsVolumeListQuery) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FsVolumeListQuery.Unmarshal(m, b)
-}
-func (m *FsVolumeListQuery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FsVolumeListQuery.Marshal(b, m, deterministic)
-}
-func (m *FsVolumeListQuery) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FsVolumeListQuery.Merge(m, src)
-}
-func (m *FsVolumeListQuery) XXX_Size() int {
-	return xxx_messageInfo_FsVolumeListQuery.Size(m)
-}
-func (m *FsVolumeListQuery) XXX_DiscardUnknown() {
-	xxx_messageInfo_FsVolumeListQuery.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FsVolumeListQuery proto.InternalMessageInfo
-
-func (m *FsVolumeListQuery) GetVolumeIds() []uint32 {
-	if m != nil {
-		return m.VolumeIds
-	}
-	return nil
-}
-
-func (m *FsVolumeListQuery) GetVolumeUuids() []string {
-	if m != nil {
-		return m.VolumeUuids
-	}
-	return nil
-}
-
-type FsVolumeStatistics struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *FsVolumeStatistics) Reset()         { *m = FsVolumeStatistics{} }
-func (m *FsVolumeStatistics) String() string { return proto.CompactTextString(m) }
-func (*FsVolumeStatistics) ProtoMessage()    {}
-func (*FsVolumeStatistics) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{3}
-}
-
-func (m *FsVolumeStatistics) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FsVolumeStatistics.Unmarshal(m, b)
-}
-func (m *FsVolumeStatistics) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FsVolumeStatistics.Marshal(b, m, deterministic)
-}
-func (m *FsVolumeStatistics) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FsVolumeStatistics.Merge(m, src)
-}
-func (m *FsVolumeStatistics) XXX_Size() int {
-	return xxx_messageInfo_FsVolumeStatistics.Size(m)
-}
-func (m *FsVolumeStatistics) XXX_DiscardUnknown() {
-	xxx_messageInfo_FsVolumeStatistics.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FsVolumeStatistics proto.InternalMessageInfo
-
-type FsVolumeStatus struct {
-	// State of the volume device node (file/block device).
-	NodeState            FsVolumeState `protobuf:"varint,1,opt,name=node_state,json=nodeState,proto3,enum=filesystem.v1.FsVolumeState" json:"node_state,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *FsVolumeStatus) Reset()         { *m = FsVolumeStatus{} }
-func (m *FsVolumeStatus) String() string { return proto.CompactTextString(m) }
-func (*FsVolumeStatus) ProtoMessage()    {}
-func (*FsVolumeStatus) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{4}
-}
-
-func (m *FsVolumeStatus) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FsVolumeStatus.Unmarshal(m, b)
-}
-func (m *FsVolumeStatus) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FsVolumeStatus.Marshal(b, m, deterministic)
-}
-func (m *FsVolumeStatus) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FsVolumeStatus.Merge(m, src)
-}
-func (m *FsVolumeStatus) XXX_Size() int {
-	return xxx_messageInfo_FsVolumeStatus.Size(m)
-}
-func (m *FsVolumeStatus) XXX_DiscardUnknown() {
-	xxx_messageInfo_FsVolumeStatus.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FsVolumeStatus proto.InternalMessageInfo
-
-func (m *FsVolumeStatus) GetNodeState() FsVolumeState {
-	if m != nil {
-		return m.NodeState
-	}
-	return FsVolumeState_NONE
-}
-
-//*
-// A StorageOS volume to be presented via the FUSE filesystem.
-type FsVolume struct {
-	Cc *v1.DataplaneCommon `protobuf:"bytes,1,opt,name=cc,proto3" json:"cc,omitempty"`
-	// The volume ID to represent.
-	VolumeId uint32 `protobuf:"varint,2,opt,name=volume_id,json=volumeId,proto3" json:"volume_id,omitempty"`
-	// The type for this volume.
-	NodeType FsVolume_VolumeDeviceType `protobuf:"varint,3,opt,name=node_type,json=nodeType,proto3,enum=filesystem.v1.FsVolume_VolumeDeviceType" json:"node_type,omitempty"`
-	// The control plane's desired state for this volume.
-	ControlStatus FsVolume_VolumeControlStatus `protobuf:"varint,10,opt,name=control_status,json=controlStatus,proto3,enum=filesystem.v1.FsVolume_VolumeControlStatus" json:"control_status,omitempty"`
-	// An opaque value interpreted based on node_type.
-	DeviceNumber uint32 `protobuf:"varint,4,opt,name=device_number,json=deviceNumber,proto3" json:"device_number,omitempty"` // Deprecated: Do not use.
-	// The filename of the underlying volume to present in the filesystem.
-	Filename string `protobuf:"bytes,5,opt,name=filename,proto3" json:"filename,omitempty"`
-	// The filename of the presentation node, to which users actually connect.
-	// This field really belongs on the FsPresentation object and has been added
-	// there post-1.5.0. Until we're all C2, this field and the field in
-	// FsPresentation should have the same value or you'll see some very strange
-	// artifacts.
-	PresentationFilename string `protobuf:"bytes,9,opt,name=presentation_filename,json=presentationFilename,proto3" json:"presentation_filename,omitempty"`
-	// The volume size in bytes.
-	VolumeSizeBytes uint64 `protobuf:"varint,6,opt,name=volume_size_bytes,json=volumeSizeBytes,proto3" json:"volume_size_bytes,omitempty"`
-	// Volume statistics.
-	Stats *FsVolumeStatistics `protobuf:"bytes,7,opt,name=stats,proto3" json:"stats,omitempty"`
-	// Volume status, e.g. readiness.
-	Status               *FsVolumeStatus `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *FsVolume) Reset()         { *m = FsVolume{} }
-func (m *FsVolume) String() string { return proto.CompactTextString(m) }
-func (*FsVolume) ProtoMessage()    {}
-func (*FsVolume) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{5}
-}
-
-func (m *FsVolume) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FsVolume.Unmarshal(m, b)
-}
-func (m *FsVolume) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FsVolume.Marshal(b, m, deterministic)
-}
-func (m *FsVolume) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FsVolume.Merge(m, src)
-}
-func (m *FsVolume) XXX_Size() int {
-	return xxx_messageInfo_FsVolume.Size(m)
-}
-func (m *FsVolume) XXX_DiscardUnknown() {
-	xxx_messageInfo_FsVolume.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FsVolume proto.InternalMessageInfo
-
-func (m *FsVolume) GetCc() *v1.DataplaneCommon {
-	if m != nil {
-		return m.Cc
-	}
-	return nil
-}
-
-func (m *FsVolume) GetVolumeId() uint32 {
-	if m != nil {
-		return m.VolumeId
-	}
-	return 0
-}
-
-func (m *FsVolume) GetNodeType() FsVolume_VolumeDeviceType {
-	if m != nil {
-		return m.NodeType
-	}
-	return FsVolume_FILE
-}
-
-func (m *FsVolume) GetControlStatus() FsVolume_VolumeControlStatus {
-	if m != nil {
-		return m.ControlStatus
-	}
-	return FsVolume_NONE
-}
-
-// Deprecated: Do not use.
-func (m *FsVolume) GetDeviceNumber() uint32 {
-	if m != nil {
-		return m.DeviceNumber
-	}
-	return 0
-}
-
-func (m *FsVolume) GetFilename() string {
-	if m != nil {
-		return m.Filename
-	}
-	return ""
-}
-
-func (m *FsVolume) GetPresentationFilename() string {
-	if m != nil {
-		return m.PresentationFilename
-	}
-	return ""
-}
-
-func (m *FsVolume) GetVolumeSizeBytes() uint64 {
-	if m != nil {
-		return m.VolumeSizeBytes
-	}
-	return 0
-}
-
-func (m *FsVolume) GetStats() *FsVolumeStatistics {
-	if m != nil {
-		return m.Stats
-	}
-	return nil
-}
-
-func (m *FsVolume) GetStatus() *FsVolumeStatus {
-	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-type FsVolumeList struct {
-	Volumes              []*FsVolume `protobuf:"bytes,1,rep,name=volumes,proto3" json:"volumes,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *FsVolumeList) Reset()         { *m = FsVolumeList{} }
-func (m *FsVolumeList) String() string { return proto.CompactTextString(m) }
-func (*FsVolumeList) ProtoMessage()    {}
-func (*FsVolumeList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{6}
-}
-
-func (m *FsVolumeList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FsVolumeList.Unmarshal(m, b)
-}
-func (m *FsVolumeList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FsVolumeList.Marshal(b, m, deterministic)
-}
-func (m *FsVolumeList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FsVolumeList.Merge(m, src)
-}
-func (m *FsVolumeList) XXX_Size() int {
-	return xxx_messageInfo_FsVolumeList.Size(m)
-}
-func (m *FsVolumeList) XXX_DiscardUnknown() {
-	xxx_messageInfo_FsVolumeList.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FsVolumeList proto.InternalMessageInfo
-
-func (m *FsVolumeList) GetVolumes() []*FsVolume {
-	if m != nil {
-		return m.Volumes
-	}
-	return nil
-}
-
 type FsPresentationListQuery struct {
 	// A possibly-empty list of volume IDs to query.
 	PresentationIds []uint32 `protobuf:"varint,1,rep,packed,name=presentation_ids,json=presentationIds,proto3" json:"presentation_ids,omitempty"`
@@ -489,7 +119,7 @@ func (m *FsPresentationListQuery) Reset()         { *m = FsPresentationListQuery
 func (m *FsPresentationListQuery) String() string { return proto.CompactTextString(m) }
 func (*FsPresentationListQuery) ProtoMessage()    {}
 func (*FsPresentationListQuery) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{7}
+	return fileDescriptor_0a9f8093c6c7067e, []int{2}
 }
 
 func (m *FsPresentationListQuery) XXX_Unmarshal(b []byte) error {
@@ -544,12 +174,8 @@ type FsPresentation struct {
 	// The UUID of the volume to which we point. This must be set for NLI mode,
 	// and should be ignored in GSI mode.
 	TargetUuid string `protobuf:"bytes,7,opt,name=target_uuid,json=targetUuid,proto3" json:"target_uuid,omitempty"`
-	// Presentation inode status, e.g. readiness.
-	Status *FsVolumeStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
-	// The filesystem name of the presentation. This should have the same
-	// contents as the presentation_filename field of the DirectorVolume object
-	// of the target, otherwise expect weird artifacts as we transition to C2.
-	Filename string `protobuf:"bytes,6,opt,name=filename,proto3" json:"filename,omitempty"`
+	// The filesystem name of the presentation.
+	PresentationFilename string `protobuf:"bytes,6,opt,name=presentation_filename,json=presentationFilename,proto3" json:"presentation_filename,omitempty"`
 	// The crypto config for the volume. This used to be on DirectorVolume
 	// but this is the correct place to set it. When calling PresentationCreate
 	// for an encrypted volume, volume_crypto must be set with the appropriate
@@ -557,17 +183,19 @@ type FsPresentation struct {
 	// and keyset set with the encryption keys. Subsequent calls to PresentationUpdate
 	// do not need to re-provide the keys, but should ensure that crypto_state remains
 	// set to VCS_FULLY_ENCRYPTED and keyset_present should be set to false.
-	VolumeCrypto         *v1.VolumeCrypto `protobuf:"bytes,8,opt,name=volume_crypto,json=volumeCrypto,proto3" json:"volume_crypto,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+	VolumeCrypto *v1.VolumeCrypto `protobuf:"bytes,8,opt,name=volume_crypto,json=volumeCrypto,proto3" json:"volume_crypto,omitempty"`
+	// The volume size in bytes.
+	VolumeSizeBytes      uint64   `protobuf:"varint,9,opt,name=volume_size_bytes,json=volumeSizeBytes,proto3" json:"volume_size_bytes,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *FsPresentation) Reset()         { *m = FsPresentation{} }
 func (m *FsPresentation) String() string { return proto.CompactTextString(m) }
 func (*FsPresentation) ProtoMessage()    {}
 func (*FsPresentation) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{8}
+	return fileDescriptor_0a9f8093c6c7067e, []int{3}
 }
 
 func (m *FsPresentation) XXX_Unmarshal(b []byte) error {
@@ -616,16 +244,9 @@ func (m *FsPresentation) GetTargetUuid() string {
 	return ""
 }
 
-func (m *FsPresentation) GetStatus() *FsVolumeStatus {
+func (m *FsPresentation) GetPresentationFilename() string {
 	if m != nil {
-		return m.Status
-	}
-	return nil
-}
-
-func (m *FsPresentation) GetFilename() string {
-	if m != nil {
-		return m.Filename
+		return m.PresentationFilename
 	}
 	return ""
 }
@@ -635,6 +256,13 @@ func (m *FsPresentation) GetVolumeCrypto() *v1.VolumeCrypto {
 		return m.VolumeCrypto
 	}
 	return nil
+}
+
+func (m *FsPresentation) GetVolumeSizeBytes() uint64 {
+	if m != nil {
+		return m.VolumeSizeBytes
+	}
+	return 0
 }
 
 type FsPresentationScsiDevice struct {
@@ -655,7 +283,7 @@ func (m *FsPresentationScsiDevice) Reset()         { *m = FsPresentationScsiDevi
 func (m *FsPresentationScsiDevice) String() string { return proto.CompactTextString(m) }
 func (*FsPresentationScsiDevice) ProtoMessage()    {}
 func (*FsPresentationScsiDevice) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{9}
+	return fileDescriptor_0a9f8093c6c7067e, []int{4}
 }
 
 func (m *FsPresentationScsiDevice) XXX_Unmarshal(b []byte) error {
@@ -711,7 +339,7 @@ func (m *FsPresentationCreateResponse) Reset()         { *m = FsPresentationCrea
 func (m *FsPresentationCreateResponse) String() string { return proto.CompactTextString(m) }
 func (*FsPresentationCreateResponse) ProtoMessage()    {}
 func (*FsPresentationCreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{10}
+	return fileDescriptor_0a9f8093c6c7067e, []int{5}
 }
 
 func (m *FsPresentationCreateResponse) XXX_Unmarshal(b []byte) error {
@@ -757,7 +385,7 @@ func (m *FsPresentationList) Reset()         { *m = FsPresentationList{} }
 func (m *FsPresentationList) String() string { return proto.CompactTextString(m) }
 func (*FsPresentationList) ProtoMessage()    {}
 func (*FsPresentationList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0a9f8093c6c7067e, []int{11}
+	return fileDescriptor_0a9f8093c6c7067e, []int{6}
 }
 
 func (m *FsPresentationList) XXX_Unmarshal(b []byte) error {
@@ -786,16 +414,8 @@ func (m *FsPresentationList) GetPresentations() []*FsPresentation {
 }
 
 func init() {
-	proto.RegisterEnum("filesystem.v1.FsVolumeState", FsVolumeState_name, FsVolumeState_value)
-	proto.RegisterEnum("filesystem.v1.FsVolume_VolumeDeviceType", FsVolume_VolumeDeviceType_name, FsVolume_VolumeDeviceType_value)
-	proto.RegisterEnum("filesystem.v1.FsVolume_VolumeControlStatus", FsVolume_VolumeControlStatus_name, FsVolume_VolumeControlStatus_value)
 	proto.RegisterType((*FsStatusRequest)(nil), "filesystem.v1.FsStatusRequest")
 	proto.RegisterType((*FsStatus)(nil), "filesystem.v1.FsStatus")
-	proto.RegisterType((*FsVolumeListQuery)(nil), "filesystem.v1.FsVolumeListQuery")
-	proto.RegisterType((*FsVolumeStatistics)(nil), "filesystem.v1.FsVolumeStatistics")
-	proto.RegisterType((*FsVolumeStatus)(nil), "filesystem.v1.FsVolumeStatus")
-	proto.RegisterType((*FsVolume)(nil), "filesystem.v1.FsVolume")
-	proto.RegisterType((*FsVolumeList)(nil), "filesystem.v1.FsVolumeList")
 	proto.RegisterType((*FsPresentationListQuery)(nil), "filesystem.v1.FsPresentationListQuery")
 	proto.RegisterType((*FsPresentation)(nil), "filesystem.v1.FsPresentation")
 	proto.RegisterType((*FsPresentationScsiDevice)(nil), "filesystem.v1.FsPresentationScsiDevice")
@@ -806,78 +426,55 @@ func init() {
 func init() { proto.RegisterFile("filesystem.proto", fileDescriptor_0a9f8093c6c7067e) }
 
 var fileDescriptor_0a9f8093c6c7067e = []byte{
-	// 1130 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x57, 0xd9, 0x6e, 0x22, 0x47,
-	0x17, 0x06, 0x6c, 0x18, 0x38, 0x66, 0x69, 0xd7, 0xef, 0x91, 0xf9, 0xb1, 0x9d, 0xc1, 0xad, 0x24,
-	0x76, 0xec, 0x04, 0xcb, 0x38, 0x51, 0x2e, 0x12, 0x69, 0xc4, 0x3a, 0x22, 0xc6, 0x4c, 0x52, 0x5e,
-	0xa4, 0xc9, 0x45, 0x10, 0x6e, 0xca, 0x56, 0x47, 0xd0, 0x45, 0xba, 0x0a, 0x24, 0xe6, 0x0d, 0x72,
-	0x91, 0xb7, 0xc9, 0x63, 0xe5, 0x21, 0xa2, 0x5a, 0x80, 0x6a, 0x37, 0x60, 0x79, 0x72, 0x65, 0xea,
-	0xec, 0xdf, 0x57, 0xe7, 0xab, 0x96, 0xc1, 0x7a, 0x70, 0x07, 0x84, 0x4d, 0x19, 0x27, 0xc3, 0xd2,
-	0xc8, 0xa7, 0x9c, 0xa2, 0x8c, 0x61, 0x99, 0x9c, 0x17, 0xd2, 0x0e, 0x1d, 0x0e, 0xa9, 0xa7, 0x9c,
-	0xf6, 0x36, 0xe4, 0x9a, 0xec, 0x9a, 0xf7, 0xf8, 0x98, 0x61, 0xf2, 0xc7, 0x98, 0x30, 0x6e, 0xff,
-	0x06, 0xc9, 0x99, 0x09, 0x1d, 0x42, 0x7a, 0x42, 0x7c, 0xe6, 0x52, 0xaf, 0xeb, 0x7a, 0x0f, 0x34,
-	0x1f, 0x2d, 0x46, 0x8f, 0x53, 0x78, 0x4b, 0xdb, 0x5a, 0xde, 0x03, 0x45, 0x67, 0x90, 0x60, 0x32,
-	0x38, 0x1f, 0x2b, 0x46, 0x8f, 0xb7, 0xca, 0xbb, 0x25, 0xdd, 0x60, 0x72, 0x5e, 0xaa, 0xf7, 0xc8,
-	0x90, 0x7a, 0xba, 0xbc, 0x0e, 0xb3, 0x6f, 0x61, 0xbb, 0xc9, 0xee, 0xe8, 0x60, 0x3c, 0x24, 0x6d,
-	0x97, 0xf1, 0x5f, 0xc6, 0xc4, 0x9f, 0xa2, 0x03, 0x80, 0x89, 0x34, 0x75, 0xdd, 0x3e, 0xcb, 0x47,
-	0x8b, 0x1b, 0xc7, 0x19, 0x9c, 0x52, 0x96, 0x56, 0x5f, 0xcd, 0xa1, 0xdc, 0xe3, 0xb1, 0x08, 0x88,
-	0x15, 0x37, 0xe4, 0x1c, 0xd2, 0x76, 0x2b, 0x4c, 0xf6, 0x0e, 0xa0, 0x59, 0x59, 0xd1, 0xd0, 0x65,
-	0xdc, 0x75, 0x98, 0x7d, 0x05, 0x59, 0xd3, 0x3a, 0x66, 0xe8, 0x07, 0x00, 0x8f, 0xf6, 0x49, 0x57,
-	0x4c, 0x43, 0x24, 0xa0, 0x6c, 0x79, 0xbf, 0x14, 0xe0, 0xa8, 0x64, 0xa6, 0x10, 0x9c, 0x12, 0xf1,
-	0xf2, 0xa7, 0xfd, 0x67, 0x5c, 0x90, 0xa3, 0x9c, 0xe8, 0x04, 0x62, 0x8e, 0x23, 0x2b, 0x6c, 0x95,
-	0x0b, 0x01, 0xd4, 0xbc, 0x37, 0x1a, 0xf4, 0x3c, 0x52, 0x93, 0x26, 0x1c, 0x73, 0x1c, 0xb4, 0x07,
-	0xa9, 0x39, 0x3e, 0x49, 0x54, 0x06, 0x27, 0x67, 0xf0, 0x50, 0x03, 0x64, 0x8b, 0x2e, 0x9f, 0x8e,
-	0x48, 0x7e, 0x43, 0x4e, 0x74, 0xbc, 0x62, 0xa2, 0x92, 0xfa, 0x53, 0x27, 0x13, 0xd7, 0x21, 0x37,
-	0xd3, 0x11, 0xc1, 0x49, 0x91, 0x2a, 0x7e, 0x21, 0x0c, 0x59, 0x87, 0x7a, 0xdc, 0xa7, 0x83, 0xae,
-	0xbe, 0x11, 0x90, 0xb5, 0x4e, 0xd7, 0xd7, 0xaa, 0xa9, 0x1c, 0x7d, 0x4b, 0x19, 0xc7, 0x3c, 0xa2,
-	0x23, 0xc8, 0xf4, 0x65, 0xaf, 0xae, 0x37, 0x1e, 0xde, 0x13, 0x3f, 0xbf, 0x29, 0x66, 0xaf, 0xc6,
-	0xf2, 0x51, 0x9c, 0x56, 0x8e, 0x8e, 0xb4, 0xa3, 0x02, 0x24, 0x45, 0x17, 0xaf, 0x37, 0x24, 0xf9,
-	0xb8, 0xdc, 0x92, 0xf9, 0x19, 0x5d, 0xc0, 0xeb, 0x91, 0x4f, 0x18, 0xf1, 0xc4, 0xbd, 0x50, 0xaf,
-	0x3b, 0x0f, 0x4c, 0xc9, 0xc0, 0x1d, 0xd3, 0xd9, 0x9c, 0x25, 0x9d, 0xc0, 0xb6, 0x66, 0x8c, 0xb9,
-	0x1f, 0x49, 0xf7, 0x7e, 0xca, 0x09, 0xcb, 0x27, 0x8a, 0xd1, 0xe3, 0x4d, 0x9c, 0x53, 0x8e, 0x6b,
-	0xf7, 0x23, 0xa9, 0x0a, 0x33, 0xfa, 0x1e, 0xe2, 0x02, 0x31, 0xcb, 0xbf, 0x92, 0x97, 0x71, 0xb8,
-	0xe6, 0x3a, 0xd5, 0x5e, 0x60, 0x15, 0x8f, 0xbe, 0x9b, 0x2f, 0x6f, 0x52, 0x66, 0x1e, 0xac, 0xc9,
-	0x34, 0x56, 0xf8, 0x14, 0xac, 0xa7, 0xf7, 0x80, 0x92, 0xb0, 0xd9, 0x6c, 0xb5, 0x1b, 0x56, 0x04,
-	0x65, 0x20, 0xd5, 0xa9, 0xd6, 0xbb, 0xd5, 0xf6, 0xfb, 0xda, 0xa5, 0x15, 0xb5, 0xef, 0xe0, 0x7f,
-	0x4b, 0x88, 0x16, 0xf1, 0x9d, 0xf7, 0x1d, 0x11, 0x0f, 0x90, 0xa8, 0xd4, 0x6e, 0x5a, 0x77, 0x0d,
-	0x2b, 0x8a, 0x72, 0xb0, 0x75, 0xdb, 0xa9, 0xdc, 0x55, 0x5a, 0xed, 0x4a, 0xb5, 0xdd, 0xb0, 0x62,
-	0xc2, 0xd9, 0xac, 0xb4, 0xda, 0x8d, 0xba, 0xb5, 0x81, 0xd2, 0x90, 0xac, 0x37, 0xda, 0x8d, 0x9b,
-	0x56, 0xe7, 0x9d, 0xb5, 0x69, 0x57, 0x20, 0x6d, 0xea, 0x08, 0x9d, 0xc3, 0x2b, 0xc5, 0x8b, 0xd2,
-	0x8f, 0x50, 0xe2, 0x72, 0x30, 0x78, 0x16, 0x67, 0x33, 0xd8, 0x6d, 0xb2, 0x9f, 0x0d, 0xf6, 0x17,
-	0x82, 0xfc, 0x0a, 0xac, 0xc0, 0x9d, 0x2d, 0x64, 0x99, 0x33, 0xed, 0x42, 0x9c, 0xdf, 0x00, 0x0a,
-	0x84, 0x9a, 0x12, 0xdd, 0x36, 0x3d, 0x4a, 0xa8, 0x7f, 0xc7, 0x84, 0x26, 0xcd, 0xae, 0x2f, 0x52,
-	0xd2, 0x11, 0xe4, 0x9e, 0x0c, 0xa6, 0xf5, 0x94, 0x0d, 0xce, 0x25, 0x24, 0xc7, 0x7b, 0xfe, 0x23,
-	0xe1, 0x22, 0x64, 0x43, 0x49, 0x4e, 0x19, 0x5a, 0x7d, 0xf4, 0x06, 0xb6, 0xb4, 0x53, 0x4c, 0x2b,
-	0xf7, 0x26, 0x85, 0x41, 0x99, 0xc4, 0x98, 0xc6, 0x66, 0xc4, 0x5f, 0xb0, 0x19, 0x01, 0x19, 0x24,
-	0x9e, 0xc8, 0xe0, 0x47, 0xc8, 0xe8, 0x8d, 0x76, 0xfc, 0xe9, 0x88, 0x53, 0xbd, 0x73, 0xe6, 0x83,
-	0xa9, 0x17, 0x45, 0xba, 0xb1, 0x7e, 0xf2, 0xd4, 0xc9, 0x1e, 0x42, 0x3e, 0xc8, 0xda, 0xb5, 0xc3,
-	0x5c, 0xb5, 0x7f, 0xe8, 0x0b, 0xc8, 0x6a, 0x95, 0x6a, 0x0e, 0x24, 0x97, 0x49, 0xac, 0xb5, 0xab,
-	0xb3, 0xd0, 0x0e, 0xc4, 0x87, 0xbd, 0xdf, 0xa9, 0xaf, 0x09, 0x53, 0x07, 0x69, 0x75, 0x3d, 0xea,
-	0x6b, 0x8e, 0xd4, 0xc1, 0xfe, 0x2b, 0x0a, 0xfb, 0xc1, 0x7e, 0x35, 0x9f, 0x88, 0xd7, 0x90, 0xb0,
-	0x11, 0xf5, 0x18, 0x41, 0x5f, 0x43, 0xc2, 0x27, 0x6c, 0x3c, 0xe0, 0xfa, 0xde, 0x76, 0x0c, 0x18,
-	0x78, 0xe4, 0x60, 0xe9, 0xc3, 0x3a, 0x06, 0xbd, 0x85, 0x84, 0x9a, 0x45, 0x7f, 0x25, 0x8e, 0x42,
-	0x74, 0x2e, 0x87, 0x86, 0x75, 0x9a, 0xfd, 0x41, 0x3c, 0xef, 0x4f, 0x57, 0x15, 0xd5, 0x20, 0x63,
-	0xde, 0xfa, 0x6c, 0xf3, 0x0f, 0xd6, 0x56, 0xc7, 0xc1, 0x9c, 0x93, 0xcf, 0x21, 0x13, 0x78, 0xf0,
-	0x0d, 0x69, 0xa6, 0x20, 0x8e, 0x1b, 0x95, 0xfa, 0x07, 0x2b, 0x5a, 0xfe, 0x07, 0x20, 0xd6, 0x64,
-	0xa8, 0x06, 0x09, 0x2d, 0xe0, 0xcf, 0x42, 0x4d, 0x02, 0xdf, 0xd1, 0xc2, 0xee, 0x0a, 0xbf, 0x1d,
-	0x41, 0x6f, 0x21, 0x3d, 0xbb, 0x69, 0xc1, 0x29, 0x5a, 0xa5, 0xd4, 0xc2, 0x52, 0x52, 0xcd, 0x02,
-	0xb7, 0xa3, 0xfe, 0x7f, 0x2b, 0x50, 0x27, 0x03, 0xf2, 0x29, 0x05, 0xae, 0x00, 0x8c, 0xb7, 0xa7,
-	0xb8, 0x22, 0x7d, 0xfe, 0x9e, 0x14, 0xf6, 0xd6, 0x44, 0xd8, 0x11, 0x74, 0x0f, 0x28, 0xbc, 0x6b,
-	0x68, 0xfd, 0x3d, 0x16, 0x4e, 0xd7, 0xba, 0x83, 0xfb, 0x6a, 0x47, 0xd0, 0x65, 0xb0, 0x87, 0xa6,
-	0xee, 0x99, 0x1e, 0xab, 0xf0, 0x3f, 0x29, 0xa6, 0x69, 0xfc, 0xc4, 0x62, 0x5d, 0xb0, 0x42, 0xab,
-	0xfd, 0xe5, 0xda, 0x52, 0x0b, 0x62, 0x0f, 0x9f, 0x8d, 0xb3, 0x23, 0xa8, 0x09, 0x99, 0x1a, 0xf5,
-	0x1e, 0xdc, 0xc7, 0x77, 0x84, 0x57, 0x29, 0x1d, 0x20, 0x73, 0x12, 0xe5, 0xb9, 0x24, 0xd3, 0xc2,
-	0x41, 0xc8, 0xaa, 0xe3, 0x31, 0x19, 0x0d, 0xa6, 0x76, 0x04, 0xb5, 0xc0, 0x52, 0x76, 0x45, 0x9e,
-	0x2c, 0xf5, 0x3a, 0x94, 0x24, 0xcc, 0x85, 0xfd, 0x90, 0x59, 0xe5, 0x2c, 0x4a, 0x65, 0x95, 0x59,
-	0x8c, 0x28, 0x0b, 0x15, 0x42, 0x19, 0x0b, 0x94, 0xff, 0x5f, 0xda, 0x44, 0xa3, 0xfb, 0x09, 0x72,
-	0xf3, 0x69, 0xaf, 0xb9, 0xef, 0x7a, 0x8f, 0x2b, 0xf0, 0xbd, 0x59, 0x86, 0x4f, 0x65, 0xcc, 0xc6,
-	0xba, 0x02, 0x64, 0x4e, 0xab, 0xcb, 0xed, 0x86, 0x12, 0x95, 0xe3, 0x59, 0x94, 0x57, 0x33, 0xc2,
-	0xc4, 0xa8, 0xba, 0xd8, 0x3a, 0x9c, 0x7b, 0x2b, 0x1a, 0x2d, 0x41, 0x7a, 0xeb, 0x7a, 0xfc, 0xa2,
-	0xfc, 0x12, 0xa4, 0x2a, 0x63, 0x05, 0x52, 0x5d, 0x2e, 0x8c, 0x54, 0x39, 0x5e, 0x86, 0x54, 0x17,
-	0x7b, 0x19, 0x52, 0x95, 0xa4, 0x90, 0x56, 0xbf, 0xfd, 0xb5, 0xec, 0xd0, 0x3e, 0x29, 0x31, 0x4e,
-	0xfd, 0xde, 0x23, 0xa1, 0xac, 0xe4, 0x11, 0x7e, 0x36, 0x3f, 0x9d, 0x31, 0xe2, 0x8b, 0xef, 0xc2,
-	0xd9, 0x62, 0xf9, 0xcf, 0x26, 0xe7, 0xf7, 0x09, 0xf9, 0x5f, 0xcd, 0xc5, 0xbf, 0x01, 0x00, 0x00,
-	0xff, 0xff, 0x98, 0xcc, 0x76, 0x55, 0x06, 0x0d, 0x00, 0x00,
+	// 758 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x56, 0xed, 0x6e, 0xda, 0x48,
+	0x14, 0x05, 0x92, 0xb0, 0x70, 0x09, 0x1f, 0x19, 0x25, 0xc2, 0xeb, 0x24, 0x1b, 0x62, 0x69, 0x37,
+	0x6c, 0x76, 0x17, 0x14, 0xb2, 0x3f, 0x57, 0x5a, 0x29, 0x44, 0xac, 0x48, 0x36, 0x52, 0x3b, 0x28,
+	0x95, 0xda, 0x1f, 0x45, 0x8e, 0xb9, 0x20, 0x57, 0xd8, 0xe3, 0x7a, 0x06, 0x24, 0xf2, 0x0e, 0x7d,
+	0xaf, 0x3e, 0x43, 0x9f, 0xa6, 0xf2, 0xcc, 0x24, 0xb1, 0x6b, 0x20, 0x4d, 0xff, 0x31, 0xe7, 0xdc,
+	0x8f, 0x73, 0xee, 0x9d, 0xb1, 0x80, 0xda, 0xd8, 0x9d, 0x22, 0x5f, 0x70, 0x81, 0x5e, 0x2b, 0x08,
+	0x99, 0x60, 0xa4, 0x1c, 0x43, 0xe6, 0x67, 0xe6, 0xb6, 0xc3, 0x3c, 0x8f, 0xf9, 0x8a, 0xb4, 0x76,
+	0xa0, 0xda, 0xe3, 0x03, 0x61, 0x8b, 0x19, 0xa7, 0xf8, 0x71, 0x86, 0x5c, 0x58, 0xef, 0xa1, 0xf0,
+	0x00, 0x91, 0x63, 0xd8, 0x9e, 0x63, 0xc8, 0x5d, 0xe6, 0x0f, 0x5d, 0x7f, 0xcc, 0x8c, 0x6c, 0x23,
+	0xdb, 0x2c, 0xd2, 0x92, 0xc6, 0xfa, 0xfe, 0x98, 0x91, 0x36, 0xe4, 0xb9, 0x0c, 0x36, 0x72, 0x8d,
+	0x6c, 0xb3, 0xd4, 0xa9, 0xb7, 0x74, 0x83, 0xf9, 0x59, 0xeb, 0xd2, 0x46, 0x8f, 0xf9, 0xba, 0xbc,
+	0x0e, 0xb3, 0x38, 0xd4, 0x7b, 0xfc, 0x55, 0x88, 0x1c, 0x7d, 0x61, 0x0b, 0x97, 0xf9, 0xff, 0xbb,
+	0x5c, 0xbc, 0x9e, 0x61, 0xb8, 0x20, 0xbf, 0x43, 0x2d, 0x88, 0x11, 0x43, 0x77, 0xc4, 0x8d, 0x6c,
+	0x63, 0xa3, 0x59, 0xa6, 0xd5, 0x38, 0xde, 0x1f, 0x71, 0xf2, 0x17, 0x90, 0x44, 0xe8, 0x6c, 0x16,
+	0x05, 0xe7, 0x1a, 0x1b, 0xcd, 0x22, 0xdd, 0x89, 0x33, 0xb7, 0x11, 0x61, 0x7d, 0xce, 0x41, 0x25,
+	0xd9, 0x95, 0x9c, 0x42, 0xce, 0x71, 0xa4, 0xa3, 0x52, 0xc7, 0x4c, 0x88, 0x16, 0x76, 0x30, 0xb5,
+	0x7d, 0xec, 0x4a, 0x88, 0xe6, 0x1c, 0x87, 0x9c, 0x40, 0xf5, 0x1b, 0x61, 0xd2, 0x6d, 0x99, 0x56,
+	0x92, 0xba, 0xc8, 0x3e, 0x14, 0x85, 0x1d, 0x4e, 0x50, 0x44, 0x21, 0x1b, 0x32, 0xa4, 0xa0, 0x80,
+	0xfe, 0x88, 0x1c, 0x41, 0x49, 0x93, 0x91, 0x5a, 0xe3, 0x27, 0x39, 0x4c, 0x50, 0x50, 0x24, 0x93,
+	0x9c, 0xc3, 0x5e, 0xa2, 0x4d, 0xb4, 0x39, 0xdf, 0xf6, 0xd0, 0xc8, 0xcb, 0xd0, 0xdd, 0x38, 0xd9,
+	0xd3, 0x1c, 0xf9, 0x07, 0xca, 0x73, 0x36, 0x9d, 0x79, 0x38, 0x74, 0xc2, 0x45, 0x20, 0x98, 0x51,
+	0x48, 0xed, 0xe1, 0x8d, 0xe4, 0xbb, 0x92, 0xa6, 0xdb, 0xf3, 0xd8, 0x89, 0x9c, 0xc2, 0x8e, 0xce,
+	0xe6, 0xee, 0x3d, 0x0e, 0xef, 0x16, 0x02, 0xb9, 0x51, 0x6c, 0x64, 0x9b, 0x9b, 0xb4, 0xaa, 0x88,
+	0x81, 0x7b, 0x8f, 0x17, 0x11, 0x7c, 0xb5, 0x59, 0xd8, 0xaa, 0xe5, 0x2d, 0x0f, 0x8c, 0xe4, 0x24,
+	0x07, 0x0e, 0x77, 0x2f, 0x71, 0xee, 0x3a, 0x48, 0x7e, 0x85, 0xca, 0x48, 0xfe, 0x1a, 0x6a, 0xa9,
+	0x72, 0xbe, 0x05, 0x5a, 0x56, 0xa8, 0xce, 0x22, 0xbb, 0xb0, 0xe5, 0xd9, 0x1f, 0x58, 0xa8, 0x87,
+	0xa8, 0x0e, 0x12, 0x75, 0x7d, 0x16, 0xea, 0xb9, 0xa9, 0x83, 0xf5, 0x29, 0x0b, 0x07, 0xc9, 0x7e,
+	0xdd, 0x10, 0x6d, 0x81, 0x14, 0x79, 0xc0, 0x7c, 0x8e, 0xe4, 0x4f, 0xc8, 0x87, 0xc8, 0x67, 0x53,
+	0xa1, 0x77, 0xb9, 0x1b, 0x33, 0x4e, 0x03, 0x87, 0x4a, 0x8e, 0xea, 0x18, 0xf2, 0x2f, 0xe4, 0x95,
+	0x16, 0x7d, 0x5d, 0x4f, 0x5a, 0x89, 0xe7, 0xd1, 0x5a, 0x65, 0x8d, 0xea, 0x34, 0xeb, 0x2d, 0x90,
+	0xf4, 0xf5, 0x25, 0x5d, 0x28, 0xc7, 0x97, 0xa3, 0xae, 0x6d, 0xa9, 0x73, 0xb8, 0xb6, 0x3a, 0x4d,
+	0xe6, 0x74, 0xbe, 0x14, 0x20, 0xd7, 0xe3, 0xa4, 0x0b, 0x79, 0xfd, 0xfc, 0x7e, 0x49, 0xa5, 0x27,
+	0x9e, 0xaa, 0x59, 0x5f, 0xc1, 0x5b, 0x19, 0x72, 0x07, 0x24, 0x3d, 0x33, 0xb2, 0x5e, 0x8f, 0xf9,
+	0xc7, 0x5a, 0x3a, 0x39, 0x77, 0x2b, 0x43, 0xae, 0x93, 0x3d, 0x6e, 0x83, 0xd1, 0x77, 0xf4, 0x58,
+	0xba, 0x9e, 0x74, 0xb1, 0x4b, 0x9c, 0xe2, 0x8f, 0x17, 0x1b, 0x42, 0x2d, 0xb5, 0xa2, 0xdf, 0xd6,
+	0x96, 0x7a, 0xfc, 0x08, 0x99, 0xc7, 0xcf, 0xc6, 0x59, 0x19, 0xd2, 0x83, 0x72, 0x97, 0xf9, 0x63,
+	0x77, 0xf2, 0x1f, 0x8a, 0x0b, 0xc6, 0xa6, 0x24, 0xae, 0x44, 0x31, 0xd7, 0xb8, 0x30, 0x0f, 0x53,
+	0xa8, 0x8e, 0xa7, 0x18, 0x4c, 0x17, 0x56, 0x86, 0xf4, 0xa1, 0xa6, 0x70, 0x35, 0x3c, 0x59, 0x6a,
+	0x2f, 0x95, 0x14, 0xc1, 0xe6, 0x41, 0x0a, 0x56, 0x39, 0x4f, 0xa5, 0x2a, 0x0a, 0x8e, 0x24, 0xca,
+	0x42, 0x66, 0x2a, 0xe3, 0xc9, 0xe5, 0xcf, 0x4b, 0x9b, 0x68, 0x77, 0x57, 0x50, 0x7d, 0x54, 0x3b,
+	0x10, 0xa1, 0xeb, 0x4f, 0x56, 0xf8, 0x3b, 0x5a, 0xe6, 0x4f, 0x65, 0x3c, 0xc8, 0xba, 0x01, 0x12,
+	0x57, 0xab, 0xcb, 0xd5, 0x53, 0x89, 0x8a, 0x78, 0xd6, 0xe5, 0xcd, 0xc3, 0xc0, 0x22, 0xa9, 0xba,
+	0xd8, 0x3a, 0x9f, 0xfb, 0x2b, 0x1a, 0x2d, 0x71, 0x7a, 0xeb, 0xfa, 0xe2, 0xbc, 0xf3, 0x12, 0xa7,
+	0x2a, 0x63, 0x85, 0x53, 0x5d, 0x2e, 0xed, 0x54, 0x11, 0x2f, 0x73, 0xaa, 0x8b, 0xbd, 0xcc, 0xa9,
+	0x4a, 0x52, 0x4e, 0x2f, 0xfe, 0x7e, 0xd7, 0x71, 0xd8, 0x08, 0x5b, 0x5c, 0xb0, 0xd0, 0x9e, 0x20,
+	0xe3, 0x2d, 0x1f, 0x45, 0xfb, 0xf1, 0xd4, 0xe6, 0x18, 0x46, 0xdf, 0xb7, 0xf6, 0xd3, 0xe5, 0x6f,
+	0xcf, 0xcf, 0xee, 0xf2, 0xf2, 0x6f, 0xc2, 0xf9, 0xd7, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe0, 0x8e,
+	0x78, 0xff, 0x57, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -895,28 +492,6 @@ type FsClient interface {
 	//*
 	// Get program status.
 	Status(ctx context.Context, in *FsStatusRequest, opts ...grpc.CallOption) (*FsStatus, error)
-	//*
-	// Create the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeCreate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error)
-	//*
-	// Update the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeUpdate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error)
-	//*
-	// Delete the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeDelete(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error)
-	//*
-	// Return a list of FsVolume messages, optionally filtered using the supplied
-	// FsVolumeListQuery message.
-	//
-	// returns A FsVolumeList message containing FsVolume objects,
-	//         if any are found that match the filter.
-	VolumeList(ctx context.Context, in *FsVolumeListQuery, opts ...grpc.CallOption) (*FsVolumeList, error)
 	//*
 	// Add configuration for a Presentation volume specified in the FsPresentation message.
 	//
@@ -962,42 +537,6 @@ func NewFsClient(cc *grpc.ClientConn) FsClient {
 func (c *fsClient) Status(ctx context.Context, in *FsStatusRequest, opts ...grpc.CallOption) (*FsStatus, error) {
 	out := new(FsStatus)
 	err := c.cc.Invoke(ctx, "/filesystem.v1.Fs/Status", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fsClient) VolumeCreate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error) {
-	out := new(v1.RpcResult)
-	err := c.cc.Invoke(ctx, "/filesystem.v1.Fs/VolumeCreate", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fsClient) VolumeUpdate(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error) {
-	out := new(v1.RpcResult)
-	err := c.cc.Invoke(ctx, "/filesystem.v1.Fs/VolumeUpdate", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fsClient) VolumeDelete(ctx context.Context, in *FsVolume, opts ...grpc.CallOption) (*v1.RpcResult, error) {
-	out := new(v1.RpcResult)
-	err := c.cc.Invoke(ctx, "/filesystem.v1.Fs/VolumeDelete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *fsClient) VolumeList(ctx context.Context, in *FsVolumeListQuery, opts ...grpc.CallOption) (*FsVolumeList, error) {
-	out := new(FsVolumeList)
-	err := c.cc.Invoke(ctx, "/filesystem.v1.Fs/VolumeList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1127,28 +666,6 @@ type FsServer interface {
 	// Get program status.
 	Status(context.Context, *FsStatusRequest) (*FsStatus, error)
 	//*
-	// Create the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeCreate(context.Context, *FsVolume) (*v1.RpcResult, error)
-	//*
-	// Update the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeUpdate(context.Context, *FsVolume) (*v1.RpcResult, error)
-	//*
-	// Delete the specified FsVolume.
-	//
-	// returns RpcResult
-	VolumeDelete(context.Context, *FsVolume) (*v1.RpcResult, error)
-	//*
-	// Return a list of FsVolume messages, optionally filtered using the supplied
-	// FsVolumeListQuery message.
-	//
-	// returns A FsVolumeList message containing FsVolume objects,
-	//         if any are found that match the filter.
-	VolumeList(context.Context, *FsVolumeListQuery) (*FsVolumeList, error)
-	//*
 	// Add configuration for a Presentation volume specified in the FsPresentation message.
 	//
 	// returns RpcResult
@@ -1188,18 +705,6 @@ type UnimplementedFsServer struct {
 
 func (*UnimplementedFsServer) Status(ctx context.Context, req *FsStatusRequest) (*FsStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
-}
-func (*UnimplementedFsServer) VolumeCreate(ctx context.Context, req *FsVolume) (*v1.RpcResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VolumeCreate not implemented")
-}
-func (*UnimplementedFsServer) VolumeUpdate(ctx context.Context, req *FsVolume) (*v1.RpcResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VolumeUpdate not implemented")
-}
-func (*UnimplementedFsServer) VolumeDelete(ctx context.Context, req *FsVolume) (*v1.RpcResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VolumeDelete not implemented")
-}
-func (*UnimplementedFsServer) VolumeList(ctx context.Context, req *FsVolumeListQuery) (*FsVolumeList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VolumeList not implemented")
 }
 func (*UnimplementedFsServer) PresentationCreate(ctx context.Context, req *FsPresentation) (*FsPresentationCreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PresentationCreate not implemented")
@@ -1259,78 +764,6 @@ func _Fs_Status_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FsServer).Status(ctx, req.(*FsStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Fs_VolumeCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FsVolume)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FsServer).VolumeCreate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/filesystem.v1.Fs/VolumeCreate",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsServer).VolumeCreate(ctx, req.(*FsVolume))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Fs_VolumeUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FsVolume)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FsServer).VolumeUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/filesystem.v1.Fs/VolumeUpdate",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsServer).VolumeUpdate(ctx, req.(*FsVolume))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Fs_VolumeDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FsVolume)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FsServer).VolumeDelete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/filesystem.v1.Fs/VolumeDelete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsServer).VolumeDelete(ctx, req.(*FsVolume))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Fs_VolumeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FsVolumeListQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FsServer).VolumeList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/filesystem.v1.Fs/VolumeList",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FsServer).VolumeList(ctx, req.(*FsVolumeListQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1576,22 +1009,6 @@ var _Fs_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Status",
 			Handler:    _Fs_Status_Handler,
-		},
-		{
-			MethodName: "VolumeCreate",
-			Handler:    _Fs_VolumeCreate_Handler,
-		},
-		{
-			MethodName: "VolumeUpdate",
-			Handler:    _Fs_VolumeUpdate_Handler,
-		},
-		{
-			MethodName: "VolumeDelete",
-			Handler:    _Fs_VolumeDelete_Handler,
-		},
-		{
-			MethodName: "VolumeList",
-			Handler:    _Fs_VolumeList_Handler,
 		},
 		{
 			MethodName: "PresentationCreate",
