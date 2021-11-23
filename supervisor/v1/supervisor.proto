@@ -3,34 +3,300 @@ package supervisor.v1;
 option go_package = "code.storageos.net/storageos/service/supervisor/v1";
 
 import "common.proto";
-import "filesystem.proto";
-import "rdbplugin.proto";
-import "directfs.proto";
-import "director.proto";
 
-/**
- * Director configuration and status service.
- */
+message NodeConfig {
+    // The remote peer's UUID
+    string uuid = 1;
+
+    // The hostname of the remote peer
+    string hostname = 2;
+
+    // The port of the remote peer normally 5703 (can be overriden by starting
+    // the Dataplane with IO_BIND_PORT=<port>)
+    uint32 port = 3;
+
+    // Whether TLS is enabled for this connection (always true when the CP is
+    // managing the DP).
+    bool tls_enabled = 4;
+
+    // This field specifies the hostname to use when performing rfc2818
+    // hostname verification of the remote end. If this field is empty
+    // we use the dial address, i.e. `hostname`. With out current PKI
+    // infrastructure this field should always be set by the CP as the
+    // `hostname`, will never match the server Common Name in the server's
+    // certificate
+    optional string opt_verify_hostname = 5;
+}
+
+message ReplicaDeploymentConfig {
+    // The deployment UUID
+    string uuid = 1;
+
+    // Not for CP use. The internal deployment ID used by the dataplane
+    // Useful for dataplane testing and not much else
+    uint32 id = 2;
+
+    // Whether the deployment uses compression. In reality this is a per volume
+    // option. All deployments should use compression if the volume uses
+    // compression. This field is also sticky, you can't choose to undo at a
+    // later date. Compression is applied to the underlying block data which
+    // is stored in the blob files. Normally we recommend disabling compression.
+    bool uses_compression = 3;
+}
+
+message PrimaryDeploymentConfig {
+    // Wraps a replica and its location
+    message ReplicaAndLocation {
+        // The replica deployment's UUID
+        string uuid = 1;
+
+        // Not for CP use. The internal deployment ID used by the dataplane
+        // Useful for dataplane testing and not much else
+        uint32 id = 2;
+
+        // In practice this must always be present when the Dataplane is being
+        // managed by the CP. There's no such thing as a local replica in
+        // production. For the purpose of DP testing this feild can be empty,
+        // which signifies the replica is local to the primary
+        optional NodeConfig opt_node_config = 3;
+    }
+
+    // The primary deployment's UUID
+    string primary_uuid = 1;
+
+    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // Useful for dataplane testing and not much else
+    uint32 primary_id = 2;
+
+    // Whether the deployment uses compression. In reality this is a per volume
+    // option. All deployments should use compression if the volume uses
+    // compression. This field is also sticky, you can't choose to undo at a
+    // later date. Compression is applied to the underlying block data which
+    // is stored in the blob files. Normally we recommend disabling compression.
+    bool uses_compression = 3;
+
+    // The consumer count for the volume and thus the primary.
+    common.v1.ConsumerCount cc = 4;
+
+    // The replicas associated with this primary. May be empty.
+    repeated ReplicaAndLocation replicas = 5;
+}
+
+message PresentationConfig {
+    // An identifier for the presentation. There's no good reason why this should
+    // be anything other than the UUID of the volume. Calling it anything else
+    // will make debugging a nightmare.
+    string presentation_uuid = 1;
+
+    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // Useful for dataplane testing and not much else
+    uint32 presentation_id = 2;
+
+    // The filename of the block device we'll create for the volume under
+    // /var/lib/storageos/volumes. Historically v.<volume_uuid>. Calling it
+    // anything else will make debugging a nightmare.
+    string filename = 3;
+
+    // We need to know the UUID of the primary deployment as this is where
+    // all IO is directed.
+    string primary_uuid = 4;
+
+    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // Useful for dataplane testing and not much else
+    uint32 primary_id = 5;
+
+    // The size of the volume in bytes
+    uint64 size = 6;
+
+    // Even though compression is applied on the deployments at the point where we we store
+    // the blocks we need to know whether we are using compression when configuring the
+    // presentation. This is because we disallow UNMAP support on block devices which are backing
+    // compressed volumes (for performance reasons).
+    bool uses_compression = 7;
+
+    // The consumer count of the volume
+    common.v1.ConsumerCount cc = 8;
+
+    // Only present if the volume's primary is on a remote node
+    optional NodeConfig opt_node_config = 9;
+
+    // If the volume is using encryption then the crypo parameters should be
+    // specified here. Once we've started using encryption on a volume it's
+    // impossible to undo it. The opposite is also true.
+    optional common.v1.VolumeCrypto opt_volume_crypto = 10;
+}
+
+message PresentationScsiDevice {
+    // This object could easily contain a bunch of other details about the
+    // created scsi device, e.g. the /sys filesystem LUN path, the HBA path,
+    // etc. Just ask.
+
+    // The host block device major number.
+    uint32 major = 1;
+    // The host block device minor number.
+    uint32 minor = 2;
+}
+
 service Supervisor {
-    /**
-     * Get program status.
-     */
-    rpc Status(SupervisorStatusRequest) returns (SupervisorStatus) {}
+    // Get various information about the state of the dataplane
+    // We also bundle up information regarding the consumer counts
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc Status(SupervisorStatusRequest) returns (SupervisorStatusResponse) {}
 
-    /**
-     * Reap a volume.
-     */
-    rpc ReapVolume(ReapVolumeRequest) returns (ReapVolumeResponse) {}
+    // Creates a primary deployment. A primary deployment is differentiated from
+    // a replica deployment in that it might have replicas. Like all
+    // "Configure*" RPCs this method has "create if not present, else update"
+    // semantics, i.e.:
+    //
+    //  - if no configuration exists for "uuid" we create the primary
+    //  - if configuration exists for "uuid" then we apply any diffs.
+    //
+    // The only valid diffs are removal/addition of replicas, and changing
+    // the cc. Once specified compression can not be modified.
+    //
+    // Under the hood this method creates the blob files into which we'll store
+    // user data. Notice the replica configuration is present in the embedded
+    // ReplicaDeploymentConfig field. There's no separate API to add or remove
+    // these.
+    //
+    // Note: this RPC does not configure the replicas it merely tells the
+    // primary about the existance and location of its replicas. To configure
+    // the replicas call ConfigureReplica on the appropriate replica nodes,
+    // prior to this call.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc ConfigurePrimary(ConfigurePrimaryRequest) returns (ConfigurePrimaryResponse) {}
 
-    /**
-     * Delete a mapping, freeing associated resources.
-     */
-    rpc DeleteMapping(DeleteMappingRequest) returns (DeleteMappingResponse) {}
+    // Deconfigure the primary. This lets the dataplane know that we are done
+    // with the deployment and allows the dataplane to release runtime resources
+    // associated with the deployment. The CP would typically call this API when
+    // a the volume is no longer in use.
+    //
+    // This RPC does not delete the block (meta)data associated with the
+    // deployment. Call DeleteDeployment for that.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set accordingly. The only
+    // specific code returned is STATUS_NOT_FOUND - this is set when the primary
+    // you asked to deconfigure is not configured. For all other errors
+    // rpc_result.code will be set to STATUS_*. In all failure case
+    // rpc_result.reason may be set.
+    rpc DeconfigurePrimary(DeconfigurePrimaryRequest) returns (DeconfigurePrimaryResponse) {}
 
-    /**
-     * Perform actions that really only make sense for very low-level testing.
-     */
-    rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
+    // Create a replica deployment. This is called on the node which is housing
+    // the replica. Under the hood this method creates the blob files into which
+    // we'll store user data. Like ConfigurePrimary this RPC brings the replica
+    // into existence (i.e. creates the blob files) on the first call. All
+    // subsequent calls simply load the blobs and make the deployment eligible
+    // for access.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc ConfigureReplica(ConfigureReplicaRequest) returns (ConfigureReplicaResponse) {}
+
+    // Deconfigure the primary. This lets the dataplane know that we are done
+    // with the deployment and allows the dataplane to release runtime resources
+    // associated with the deployment. The CP would typically call this API when
+    // a the volume is no longer in use or during a promote, where we'll
+    // deconfigure a replica before making it a primary by calling
+    // ConfigurePrimary.
+    //
+    // This RPC does not delete the block (meta)data associated with the
+    // deployment. Call DeleteDeployment for that.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set accordingly. The only
+    // specific code returned is STATUS_NOT_FOUND - this is set when the replica
+    // you asked to deconfigure is not configured. For all other errors
+    // rpc_result.code will be set to STATUS_*. In all failure case
+    // rpc_result.reason may be set.
+    rpc DeconfigureReplica(DeconfigureReplicaRequest) returns (DeconfigureReplicaResponse) {}
+
+    // Irrevocably delete the deployment (meta)data.
+    //
+    // The deployment must be deconfigured, either via DeconfigurePrimary or
+    // DeconfigureReplica prior to calling this method, or we'll reject the
+    // request with an error.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set accordingly. The only
+    // specific code returned is STATUS_NOT_FOUND - this is set when the
+    // deployment you asked to deconfigure is not configured. For all other
+    // errors rpc_result.code will be set to STATUS_*. In all failure case
+    // rpc_result.reason may be set.
+    rpc DeleteDeployment(DeleteDeploymentRequest) returns (DeleteDeploymentResponse) {}
+
+    // Configure a presentation. This creates a block device which can be used
+    // to access the volume. This RPC works for both local and remote
+    // presentations. Like all "Configure*" RPCs this method has "create if not
+    // present, else update" semantics, i.e.:
+    //
+    //  - if no configuration exists for "presentation_uuid" then create the
+    //  presentation
+    //  - if a presentation exists for "presentation_uuid" then apply any diffs
+    //    against the existing config. Valid diffs include: increasing the
+    //    volume size, changing the target deployment (useful during a fail
+    //    over); and increasing the consumer count. It's not permitted to change
+    //    the crypto config for obvious reasons.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc ConfigurePresentation(ConfigurePresentationRequest)
+        returns (ConfigurePresentationResponse) {}
+
+    // Delete a previous created presentation
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set accordingly. The only
+    // specific code returned is STATUS_NOT_FOUND - this is set when the
+    // presentation you asked to delete doesn't even exist. For all other errors
+    // rpc_result.code will be set to STATUS_*. In all failure case
+    // rpc_result.reason may be set.
+    rpc DeconfigurePresentation(DeconfigurePresentationRequest)
+        returns (DeconfigurePresentationResponse) {}
+
+    // Set the consumer count for a deployment. This should only ever be called
+    // on the primary deployment (we don't ever need to set the consumer count
+    // on a replica). The CP only needs to call this API when it wants to
+    // explicitly change the consumer count. The only time I believe this is
+    // currently necessary is during a failover. Normally the consumer count value
+    // is implicitly transmitted to the dataplane by calling ConfigurePrimary. The
+    // ConfigurePrimary request contains the consumer count.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set accordingly. The only
+    // specific code returned is STATUS_NOT_FOUND - this is set when the
+    // primary you asked to set the CC on doesn't even exist. For all other
+    // errors rpc_result.code will be set to STATUS_*. In all failure case
+    // rpc_result.reason may be set. If the consumer count which was requested
+    // to be set is LOWER than the currently set value then this method will
+    // set rpc_result.success to true. The actual value of the consumer count
+    // - i.e. the current, higher value - will be returned in the response.
+    rpc SetConsumerCount(SetConsumerCountRequest) returns (SetConsumerCountResponse) {}
+
+    // Get the consumer count for a given deployment
+    //
+    // Returns STATUS_NOT_FOUND if the deployment does not exist.
+    // Returns STATUS_* for any other errors
+    rpc GetConsumerCount(GetConsumerCountRequest) returns (GetConsumerCountResponse) {}
+
+    // Dump the dataplane's current configuration
+    rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
+
+    // Collect the dataplane node-level metrics and specific per-volume metrics.
+    // NOTE: This is an experimental dataplane-only API. It's probably not quite
+    // what the control-plane requires in terms of a metrics API, but it's fine
+    // for dataplane tooling and tests.
+    rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
+
+    // INTERNAL APIS ---------------------------------------------------------
 
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
@@ -49,92 +315,54 @@ service Supervisor {
     rpc ConfigUpdateUint64(common.v1.ConfigUint64) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}
 
-    /**
-     * Sync the specified regions. Called by symmetra.
-     */
+    // Sync the specified regions from the source deployment to the destination
+    // deployment. Called by Symmetra.
     rpc SyncRegions(SyncRegionsRequest) returns (SyncRegionsResponse) {}
 
-    /**
-     * Sync the specified region. Called by symmetra.
-     *
-     * WARNING: this API is removed as of release v2.5.0-ga. Use SyncRegions instead.
-     * Unfortunately we have to keep the RPC here to avoid breaking builds of the dataplane
-     * pre v2.5.0-ga. These builds use the service repo branch origin/main rather than a
-     * specified commit/tag. If we remove this RPC all of those builds break.
-     *
-     * We shouldn't hamstring ourselves with this problem indefinitely. At some point
-     * we should bite the bullet and either:
-     *
-     * - retire origin/main and start a new branch origin/main2. All builds pre 2.x
-     *   use origin/main/ All builds post 2.x use origin/main2. Going forward we
-     *   ensure that the dataplane tracks an explicit commit in the service repo.
-     * - accept that we are going to break builds pre 2.x and make breaking changes
-     *   to origin/main. If we ever want to build pre 2.x we have to manually set
-     *   the service repo to the last commit in origin/main prior to the breaking
-     *   change.
-     *
-     * At various points we did pin the service repo to specific commits. In general
-     * we haven't though. The following range of commits dates, are pinned to
-     * origin/main, and thus would break if we removed this RPC:
-     *
-     * 98b1261 Aug 06 2021 to now (Oct 11 2021)
-     * d3b2364 Nov 17 2020 to f19616e Dec 07 2020
-     *
-     * More discussion on DP-452.
-     */
+    // Sync the specified region. Called by symmetra.
+    //
+    // WARNING: this API is removed as of release v2.5.0-ga. Use SyncRegions
+    // instead. Unfortunately we have to keep the RPC here to avoid breaking
+    // builds of the dataplane pre v2.5.0-ga. These builds use the service repo
+    // branch origin/main rather than a specified commit/tag. If we remove this
+    // RPC all of those builds break.
+    //
+    // We shouldn't hamstring ourselves with this problem indefinitely. At some
+    // point we should bite the bullet and either:
+    //
+    // - retire origin/main and start a new branch origin/main2. All builds
+    // pre 2.x use origin/main/ All builds post 2.x use origin/main2. Going
+    // forward we ensure that the dataplane tracks an explicit commit in the
+    // service repo.
+    // - accept that we are going to break builds pre 2.x and make breaking
+    // changes to origin/main. If we ever want to build pre 2.x we have to
+    // manually set the service repo to the last commit in origin/main prior to
+    // the breaking change.
+    //
+    // At various points we did pin the service repo to specific commits. In
+    // general we haven't though. The following range of commits dates, are
+    // pinned to origin/main, and thus would break if we removed this RPC:
+    //
+    // 98b1261 Aug 06 2021 to now (Oct 11 2021)
+    // d3b2364 Nov 17 2020 to f19616e Dec 07 2020
+    //
+    // More discussion on DP-452.
     rpc Sync(SyncRegionRequest) returns (SyncRegionResponse) {}
 
-    /**
-     * Return a hash list for the specified volume, over the specified range.
-     * Note: this is a streaming RPC as the hash lists returned could conceiveably
-     * be multiple megabytes in size.
-     *
-     * returns the hash list and volume hash
-     */
+    // Return a hash list for the specified volume, over the specified range.
+    // Note: this is a streaming RPC as the hash lists returned could
+    // conceiveably be multiple megabytes in size.
+    //
+    // returns the hash list and volume hash
     rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
-
-    /**
-     ** Sync 2020.1 consumer count interface.
-     **/
-    rpc GetVolumeConsumerCount(GetVolumeConsumerCountRequest) returns (GetVolumeConsumerCountReply) {}
-    rpc SetVolumeConsumerCount(SetVolumeConsumerCountRequest) returns (SetVolumeConsumerCountReply) {}
-
-    /**
-     * Collect the dataplane node-level metrics and specific per-volume metrics.
-     * NOTE: This is an experimental dataplane-only API. It's probably not quite
-     * what the control-plane requires in terms of a metrics API, but it's fine
-     * for dataplane tooling and tests.
-     */
-    rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
-
-    /**
-     * Interface to dump all the configurations from the dataplane
-     */
-    rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
 }
 
-message ReapVolumeRequest {
-    string uuid = 1;
-    uint32 inode = 2;
-}
+message SupervisorStatusRequest {}
 
-message ReapVolumeResponse {
-    // Empty for now
-}
+message SupervisorStatusResponse {
+    // In the event of failure, what went wrong
+    common.v1.RpcResult rpc_result = 1;
 
-message DeleteMappingRequest {
-    string uuid = 1;
-}
-
-message DeleteMappingResponse {
-    // Empty for now.
-}
-
-message SupervisorStatusRequest {
-    // Empty for now.
-}
-
-message SupervisorStatus {
     // Generic daemon status.
     common.v1.DaemonStatus status = 2;
 
@@ -144,6 +372,98 @@ message SupervisorStatus {
     // Composite consumer count status.
     ConsumerCountStatus cc_status = 4;
 }
+
+message ConfigurePrimaryRequest {
+    PrimaryDeploymentConfig config = 1;
+}
+
+message ConfigurePrimaryResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message DeconfigurePrimaryRequest {
+    string uuid = 1;
+    uint32 id = 2;
+}
+
+message DeconfigurePrimaryResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message ConfigureReplicaRequest {
+    ReplicaDeploymentConfig config = 1;
+}
+
+message ConfigureReplicaResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message DeconfigureReplicaRequest {
+    string uuid = 1;
+    uint32 id = 2;
+}
+
+message DeconfigureReplicaResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message DeleteDeploymentRequest {
+    string uuid = 1;
+    uint32 id = 2;
+}
+
+message DeleteDeploymentResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message ConfigurePresentationRequest {
+    PresentationConfig config = 1;
+}
+
+message ConfigurePresentationResponse {
+    common.v1.RpcResult rpc_result = 1;
+    PresentationScsiDevice device_info = 2;
+}
+
+message DeconfigurePresentationRequest {
+    string presentation_uuid = 1;
+    uint32 presentation_id = 2;
+}
+
+message DeconfigurePresentationResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message SetConsumerCountRequest {
+    string uuid = 1;
+    uint32 id = 2;
+    common.v1.ConsumerCount cc = 3;
+}
+
+message SetConsumerCountResponse {
+    common.v1.RpcResult rpc_result = 1;
+    common.v1.ConsumerCount cc = 2;
+}
+
+message GetConsumerCountRequest {
+    string uuid = 1;
+    uint32 id = 2;
+}
+
+message GetConsumerCountResponse {
+    common.v1.RpcResult rpc_result = 1;
+    common.v1.ConsumerCount cc = 2;
+}
+
+message DumpConfigRequest {}
+
+message DumpConfigResponse {
+    repeated PrimaryDeploymentConfig primaries = 1;
+    repeated ReplicaDeploymentConfig replicas = 2;
+    repeated PresentationConfig presentations = 3;
+}
+
+// INTERNAL APIS ------------------------------------------------------------
 
 /**
  ** Id Mapper status.
@@ -192,15 +512,18 @@ message ConsumerCountEntry {
 //
 // * first the CP invokes symmetra (a standalone binary), which then
 // * calls the VolumeHashList() RPC for the master and replica deployments
-// * symmetra then calls the Sync() RPC multiple times on the master to copy the data
+// * symmetra then calls the Sync() RPC multiple times on the master to copy the
+// data
 //
 // We want to be able to track this transaction across it's entire duration.
 // The SyncContext message type allows us to do this. When symmetra is first
-// invoked it generates the SyncContext. This token is then passed in all subsequent
-// VolumeHashListRequests and SyncRegionRequests. Any code taking part in
-// the sync operation can then log this ID as part of any structued logging calls.
+// invoked it generates the SyncContext. This token is then passed in all
+// subsequent VolumeHashListRequests and SyncRegionRequests. Any code taking
+// part in the sync operation can then log this ID as part of any structued
+// logging calls.
 //
-// UUIDs seem to be in fashion at the moment so we'll use that as the unique identifier.
+// UUIDs seem to be in fashion at the moment so we'll use that as the unique
+// identifier.
 message SyncContext {
     string uuid = 1;
 }
@@ -213,15 +536,17 @@ message VolumeHash {
 
 enum VolumeHashListRpcVersion {
     V1 = 0;  // < Storageos v2.4.0
-    V2 = 1;  // >= Storageos v2.4.0: in this verison we make the change outlined in
+    V2 = 1;  // >= Storageos v2.4.0: in this verison we make the change outlined
+             // in
              // https://docs.google.com/document/d/1t1_LBSl0XXcT1VNpaCZpn_7I4UAHYpgmtBIEWNrj8mI
              // Appendix-3. To summarise: we now treat thinly provisioned blocks
-             // as disticint special values with a block hash of kThinProvBlockHash
-             // rather than materialising a block of zeros, applying the necessary
-             // encoding and then taking the block hash. This is required for encrypted
-             // sync and snapshto sync. The VolumeHashListRpcVersion enum was only
-             // added in Storageos v2.4.0, so VolumeHashListRequest and VolumeHashListResponse
-             // messages prior to this implicitly have the default value of V1.
+             // as disticint special values with a block hash of
+             // kThinProvBlockHash rather than materialising a block of zeros,
+             // applying the necessary encoding and then taking the block hash.
+             // This is required for encrypted sync and snapshto sync. The
+             // VolumeHashListRpcVersion enum was only added in Storageos v2.4.0,
+             // so VolumeHashListRequest and VolumeHashListResponse messages
+             // prior to this implicitly have the default value of V1.
 }
 
 // Note: the response to this message, VolumeHashListResponse, is chunked
@@ -244,21 +569,22 @@ message VolumeHashListRequest {
     // generation.
     uint64 end_offset = 3;
 
-    // When generating the hash list we do so by rolling together individual block
-    // hashes into a region hash. This field defines the size of that region in
-    // bytes. It must be multiple of RIXIO_BSIZE. By giving the option for clients
-    // to specify this size they can optimise based on volume size and required
-    // sync granularity.
+    // When generating the hash list we do so by rolling together individual
+    // block hashes into a region hash. This field defines the size of that
+    // region in bytes. It must be multiple of RIXIO_BSIZE. By giving the option
+    // for clients to specify this size they can optimise based on volume size
+    // and required sync granularity.
     uint64 region_size = 4;
 
-    // This field is redundant (i.e it's ignored) as of release v2.5.0. We've had to keep it
-    // in order that we don't break older builds which pin the service repo to origin/main
-    // rather than an explicit commit. See a more thorough explanation on the Sync RPC
-    // documentation in this file (DP-452).
+    // This field is redundant (i.e it's ignored) as of release v2.5.0. We've
+    // had to keep it in order that we don't break older builds which pin the
+    // service repo to origin/main rather than an explicit commit. See a more
+    // thorough explanation on the Sync RPC documentation in this file (DP-452).
     bool is_compressed = 6;
 
-    // The SyncContext, initially generated by symmetra, associated with the over-arching sync operation
-    // This field is purely used for logging, so there's no harm in not setting it in test code
+    // The SyncContext, initially generated by symmetra, associated with the
+    // over-arching sync operation This field is purely used for logging, so
+    // there's no harm in not setting it in test code
     SyncContext sync_context = 8;
 }
 
@@ -283,49 +609,10 @@ message VolumeHashListResponse {
     // Defines the byte offset into `volume_id` at which hash_list[max] ends.
     uint64 end_offset = 3;
 
-    // A list of region hashes pertaining to the regions defined by the byte range
-    // [start_offset, end_offset). The number of regions depends on the
+    // A list of region hashes pertaining to the regions defined by the byte
+    // range [start_offset, end_offset). The number of regions depends on the
     // `region_size` defined in the inital VolumeHashListRequest.
     repeated VolumeHash hash_list = 4;
-}
-
-message GetVolumeConsumerCountRequest {
-    // The UUID whose consumer count we are requesting.
-    string uuid = 1;
-
-    // The inode whos consumer count we are requesting.
-    uint32 inode = 2;
-}
-
-message GetVolumeConsumerCountReply {
-    // The UUID we're returning the cc for.
-    string uuid = 1;
-
-    // The inode whos consumer count we are requesting.
-    uint32 inode = 3;
-
-    // The Consumer Count for this uuid.
-    common.v1.ConsumerCount cc = 2;
-}
-
-message SetVolumeConsumerCountRequest {
-    // The UUID whose consumer count is being set.
-    string uuid = 1;
-    // The inode whos consumer count is being set.
-    uint32 inode = 3;
-    // The Consumer Count being set.
-    common.v1.ConsumerCount cc = 2;
-}
-
-message SetVolumeConsumerCountReply {
-    // The UUID whose consumer count was set.
-    string uuid = 1;
-    // The inode whos consumer count was set.
-    uint32 inode = 3;
-    // The Consumer Count returned by the data plane on attempting to set the
-    // value contained in the SetVolumeConsumerCountRequest. May be >=
-    // request.cc.
-    common.v1.ConsumerCount cc = 2;
 }
 
 /*
@@ -351,12 +638,12 @@ message Metric {
 }
 
 message MetricsRequest {
-    // A list of volumes to query (by inode). If this and uuids is left empty we'll return
-    // metrics for all volumes which are configured.
+    // A list of volumes to query (by inode). If this and uuids is left empty
+    // we'll return metrics for all volumes which are configured.
     repeated uint32 inodes = 1;
 
-    // A list of volume to query (by uuid). If this and uuids is left empty we'll return
-    // metrircs for all volumes which are configured.
+    // A list of volume to query (by uuid). If this and uuids is left empty
+    // we'll return metrircs for all volumes which are configured.
     repeated string uuids = 2;
 }
 
@@ -381,23 +668,6 @@ message MetricsResponse {
 
     // Per node stats. One collection per node.
     NodeMetrics node_metrics = 2;
-}
-
-message DumpConfigRequest {}
-
-message DumpConfigResponse {
-    // fsctl pr list
-    filesystem.v1.FsPresentationList fs_presentation_list = 1;
-    // dirctl vol list
-    director.v1.DirectorVolumeList director_volume_list = 4;
-    // dfsictl vol list
-    directfs.v1.DfsInitiatorVolumeList dfs_initiator_volume_list = 5;
-    // dfsictl node list
-    directfs.v1.DfsInitiatorNodeList dfs_initiator_node_list = 6;
-    // rdbctl vol list
-    rdbplugin.v1.RdbVolumeList rdb_volume_list = 7;
-    // supctl status
-    SupervisorStatus supervisor_status = 8;
 }
 
 message SyncRegion {
@@ -431,33 +701,37 @@ message SyncRegionsRequest {
     // the rationale behind this.
     bool force = 6;
 
-    // The SyncContext, initially generated by symmetra, associated with the over-arching sync operation
-    // This field is purely used for logging, so there's no harm in not setting it in test code
+    // The SyncContext, initially generated by symmetra, associated with the
+    // over-arching sync operation This field is purely used for logging, so
+    // there's no harm in not setting it in test code
     SyncContext sync_context = 7;
 
-    // If set we'll wait for the network connection between the sync source (the primary)
-    // and the sync target (the replica) to establish before trying to sync any data.
-    // If the network connection never establishes then we'll fail the operation. We'll
-    // wait for up to 1.5 times the directfs initiator reconnection interval before giving
-    // up.
+    // If set we'll wait for the network connection between the sync source (the
+    // primary) and the sync target (the replica) to establish before trying to
+    // sync any data. If the network connection never establishes then we'll
+    // fail the operation. We'll wait for up to 1.5 times the directfs initiator
+    // reconnection interval before giving up.
     //
-    // This feature was added as a result of DP-280 and addresses the problem where the CP
-    // configures the directfs initiator connection and starts the sync operation before
-    // the connection is established. Something like this:
+    // This feature was added as a result of DP-280 and addresses the problem
+    // where the CP configures the directfs initiator connection and starts the
+    // sync operation before the connection is established. Something like this:
     // 1. CP configures connection from node A to node B
     // 2. Node B reboots
-    // 3. Node A sits there in a retry loop trying to re-establish connection A -> B,
+    // 3. Node A sits there in a retry loop trying to re-establish connection A
+    // -> B,
     //    this happens every 5 seconds CP runs symmetra.
-    // 4. The hash list generation succeeds on node A and node B in couple of milliseconds
-    // 5. Symmetra start's syncing data, and fails immediately as we still don't have an
+    // 4. The hash list generation succeeds on node A and node B in couple of
+    // milliseconds
+    // 5. Symmetra start's syncing data, and fails immediately as we still don't
+    // have an
     //    established connection between A and B
     // 6. Eventually connection A -> B succeeds
     // 7. CP throws away the replica because the sync fails
     //
-    // The intention is that this boolean will be set true for the first SyncRegionsRequest
-    // sent by symmetra for a given sync operation. All subsequent requests will set the
-    // boolean to false - we don't want to stall the sync process by continually waiting
-    // for a flappy network.
+    // The intention is that this boolean will be set true for the first
+    // SyncRegionsRequest sent by symmetra for a given sync operation. All
+    // subsequent requests will set the boolean to false - we don't want to
+    // stall the sync process by continually waiting for a flappy network.
     bool wait_for_connection_established = 8;
 }
 
@@ -470,7 +744,8 @@ message SyncRegionsResponse {
     string reason = 2;
 }
 
-// ----- DEPRECATED post 2.5.0-ga see comment on SyncRegion RPC definition ----------
+// ----- DEPRECATED post 2.5.0-ga see comment on SyncRegion RPC definition
+// ----------
 message SyncRegionRequest {
     // The source volume ID.
     uint64 source_volume = 1;
@@ -500,21 +775,23 @@ message SyncRegionRequest {
     // the rationale behind this.
     bool force = 7;
 
-    // The SyncContext, initially generated by symmetra, associated with the over-arching sync operation
-    // This field is purely used for logging, so there's no harm in not setting it in test code
+    // The SyncContext, initially generated by symmetra, associated with the
+    // over-arching sync operation This field is purely used for logging, so
+    // there's no harm in not setting it in test code
     SyncContext sync_context = 8;
 
-    // If set we'll retry the write portion of a sync operation if it fails because
-    // the directfs initiator has not established a connection to the target node
-    // (the replica). We will do this for the first IO only. Remember internally every
-    // SyncRegionRequest is broken down into multiple 128k IOs. Any subsequent write
-    // failures due to a severed connection will abort the sync process. The amount of time
-    // we'll wait before retrying will always be greater than the cool-off period between
-    // connection re-establish attempts. This is currently configured to 5 seconds.
+    // If set we'll retry the write portion of a sync operation if it fails
+    // because the directfs initiator has not established a connection to the
+    // target node (the replica). We will do this for the first IO only.
+    // Remember internally every SyncRegionRequest is broken down into multiple
+    // 128k IOs. Any subsequent write failures due to a severed connection will
+    // abort the sync process. The amount of time we'll wait before retrying
+    // will always be greater than the cool-off period between connection
+    // re-establish attempts. This is currently configured to 5 seconds.
     //
-    // Note: symmetra should set this flag for the first SyncRegionRequest only. The
-    // desired behaviour is that only the very first IO can elicit a retry. We don't
-    // want per IO retries for sync operations.
+    // Note: symmetra should set this flag for the first SyncRegionRequest only.
+    // The desired behaviour is that only the very first IO can elicit a retry.
+    // We don't want per IO retries for sync operations.
     bool allow_first_io_retry = 9;
 }
 

@@ -43,18 +43,6 @@ service Director {
      */
     rpc VolumeList(DirectorVolumeListQuery) returns (DirectorVolumeList) {}
 
-    /**
-     * Perform actions that really only make sense for very low-level testing.
-     */
-    rpc Poke(common.v1.PokeQuery) returns (common.v1.PokeResponse) {}
-
-    /**
-     * Return a metadata bitmap in a standard format. The actual bitmap returned
-     * is based on the spec field of the Query.
-     */
-    rpc MetadataGetBitmap(common.v1.MetadataBitmapQuery) returns (common.v1.MetadataBitmapReply) {}
-    rpc MetadataResetBitmap(common.v1.MetadataBitmapResetQuery) returns (common.v1.MetadataBitmapResetReply) {}
-
     // Config services, from common.v1.
     rpc ConfigGetUint32(common.v1.ConfigKey) returns (common.v1.ConfigGetUint32Reply) {}
     rpc ConfigUpdateUint32(common.v1.ConfigUint32) returns (common.v1.ConfigUpdateReply) {}
@@ -141,7 +129,7 @@ message DirectorVolume {
     bool throttle = 13;
 
     // This is now set on the FsPresentation object.
-    //common.v1.VolumeCrypto volume_crypto = 15;
+    // common.v1.VolumeCrypto volume_crypto = 15;
     reserved 15;
 
     // Is the volume read-only?
