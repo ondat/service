@@ -4,6 +4,12 @@ option go_package = "code.storageos.net/storageos/service/supervisor/v1";
 
 import "common.proto";
 
+enum DeploymentType {
+    UNKNOWN = 0;
+    PRIMARY = 1;
+    REPLICA = 2;
+}
+
 message NodeConfig {
     // The remote peer's UUID
     string uuid = 1;
@@ -28,23 +34,7 @@ message NodeConfig {
     optional string opt_verify_hostname = 5;
 }
 
-message ReplicaDeploymentConfig {
-    // The deployment UUID
-    string uuid = 1;
-
-    // Not for CP use. The internal deployment ID used by the dataplane
-    // Useful for dataplane testing and not much else
-    uint32 id = 2;
-
-    // Whether the deployment uses compression. In reality this is a per volume
-    // option. All deployments should use compression if the volume uses
-    // compression. This field is also sticky, you can't choose to undo at a
-    // later date. Compression is applied to the underlying block data which
-    // is stored in the blob files. Normally we recommend disabling compression.
-    bool uses_compression = 3;
-}
-
-message PrimaryDeploymentConfig {
+message DeploymentConfig {
     // Wraps a replica and its location
     message ReplicaAndLocation {
         // The replica deployment's UUID
@@ -61,25 +51,29 @@ message PrimaryDeploymentConfig {
         optional NodeConfig opt_node_config = 3;
     }
 
-    // The primary deployment's UUID
-    string primary_uuid = 1;
+    // Is this a primary or a replica?
+    DeploymentType deployment_type = 1;
 
-    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // The deployment's UUID
+    string uuid = 2;
+
+    // Not for CP use. The internal deployment ID used by the dataplane
     // Useful for dataplane testing and not much else
-    uint32 primary_id = 2;
+    uint32 id = 3;
 
     // Whether the deployment uses compression. In reality this is a per volume
     // option. All deployments should use compression if the volume uses
     // compression. This field is also sticky, you can't choose to undo at a
     // later date. Compression is applied to the underlying block data which
     // is stored in the blob files. Normally we recommend disabling compression.
-    bool uses_compression = 3;
+    bool uses_compression = 4;
 
-    // The consumer count for the volume and thus the primary.
-    common.v1.ConsumerCount cc = 4;
+    // The consumer count for the volume.
+    common.v1.ConsumerCount cc = 5;
 
-    // The replicas associated with this primary. May be empty.
-    repeated ReplicaAndLocation replicas = 5;
+    // The replicas associated with this deployment. This field is only
+    // valid if the deployment is a primary deployment.
+    repeated ReplicaAndLocation replicas = 6;
 }
 
 message PresentationConfig {
@@ -149,8 +143,8 @@ message PresentationScsiDevice {
 // The diagram below shows on which node certain RPCs may be called:
 //
 //  ConfigurePresentation()
-//  ConfigurePresentation()     ConfigurePrimary()         ConfigureReplica()
-//  DeconfigurePresentation()  DeconfigurePrimary()        DeconfigureLocalReplica()
+//  ConfigurePresentation()
+//  DeconfigurePresentation()
 //          |                           |                            |
 //          |                           |                            |
 //          |                           |                            |
@@ -163,6 +157,8 @@ message PresentationScsiDevice {
 //  +---------------+           +---------------+            +---------------+
 //         \                            /\                             /
 //          \--- SetConsumerCount()--- /  \ --- DeleteDeployment() ---/
+//                                            ConfigureDeployment()
+//                                            DeconfigureDeployment()
 //
 service Supervisor {
     // Get various information about the state of the dataplane
@@ -197,7 +193,7 @@ service Supervisor {
     // On success rpc_result.success will be set to true. On failure it will
     // be set to false and rpc_result.code will be set to STATUS_*.
     // rpc_result.reason may be set.
-    rpc ConfigurePrimary(ConfigurePrimaryRequest) returns (ConfigurePrimaryResponse) {}
+    rpc ConfigureDeployment(ConfigureDeploymentRequest) returns (ConfigureDeploymentResponse) {}
 
     // Deconfigure the primary. This lets the dataplane know that we are done
     // with the deployment and allows the dataplane to release runtime resources
@@ -213,41 +209,12 @@ service Supervisor {
     // you asked to deconfigure is not configured. For all other errors
     // rpc_result.code will be set to STATUS_*. In all failure case
     // rpc_result.reason may be set.
-    rpc DeconfigurePrimary(DeconfigurePrimaryRequest) returns (DeconfigurePrimaryResponse) {}
-
-    // Create a replica deployment. This is called on the node which is housing
-    // the replica. Under the hood this method creates the blob files into which
-    // we'll store user data. Like ConfigurePrimary this RPC brings the replica
-    // into existence (i.e. creates the blob files) on the first call. All
-    // subsequent calls simply load the blobs and make the deployment eligible
-    // for access.
-    //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set to STATUS_*.
-    // rpc_result.reason may be set.
-    rpc ConfigureReplica(ConfigureReplicaRequest) returns (ConfigureReplicaResponse) {}
-
-    // Deconfigure the primary. This lets the dataplane know that we are done
-    // with the deployment and allows the dataplane to release runtime resources
-    // associated with the deployment. The CP would typically call this API when
-    // a the volume is no longer in use or during a promote, where we'll
-    // deconfigure a replica before making it a primary by calling
-    // ConfigurePrimary.
-    //
-    // This RPC does not delete the block (meta)data associated with the
-    // deployment. Call DeleteDeployment for that.
-    //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the replica
-    // you asked to deconfigure is not configured. For all other errors
-    // rpc_result.code will be set to STATUS_*. In all failure case
-    // rpc_result.reason may be set.
-    rpc DeconfigureReplica(DeconfigureReplicaRequest) returns (DeconfigureReplicaResponse) {}
+    rpc DeconfigureDeployment(DeconfigureDeploymentRequest)
+        returns (DeconfigureDeploymentResponse) {}
 
     // Irrevocably delete the deployment (meta)data.
     //
-    // The deployment must be deconfigured, either via DeconfigurePrimary or
+    // The deployment must be deconfigured, either via DeconfigureDeployment or
     // DeconfigureReplica prior to calling this method, or we'll reject the
     // request with an error.
     //
@@ -294,8 +261,8 @@ service Supervisor {
     // on a replica). The CP only needs to call this API when it wants to
     // explicitly change the consumer count. The only time I believe this is
     // currently necessary is during a failover. Normally the consumer count value
-    // is implicitly transmitted to the dataplane by calling ConfigurePrimary. The
-    // ConfigurePrimary request contains the consumer count.
+    // is implicitly transmitted to the dataplane by calling ConfigureDeployment. The
+    // ConfigureDeployment request contains the consumer count.
     //
     // On success rpc_result.success will be set to true. On failure it will
     // be set to false and rpc_result.code will be set accordingly. The only
@@ -400,37 +367,20 @@ message SupervisorStatusResponse {
     ConsumerCountStatus cc_status = 4;
 }
 
-message ConfigurePrimaryRequest {
-    PrimaryDeploymentConfig config = 1;
+message ConfigureDeploymentRequest {
+    DeploymentConfig config = 1;
 }
 
-message ConfigurePrimaryResponse {
+message ConfigureDeploymentResponse {
     common.v1.RpcResult rpc_result = 1;
 }
 
-message DeconfigurePrimaryRequest {
+message DeconfigureDeploymentRequest {
     string uuid = 1;
     uint32 id = 2;
 }
 
-message DeconfigurePrimaryResponse {
-    common.v1.RpcResult rpc_result = 1;
-}
-
-message ConfigureReplicaRequest {
-    ReplicaDeploymentConfig config = 1;
-}
-
-message ConfigureReplicaResponse {
-    common.v1.RpcResult rpc_result = 1;
-}
-
-message DeconfigureReplicaRequest {
-    string uuid = 1;
-    uint32 id = 2;
-}
-
-message DeconfigureReplicaResponse {
+message DeconfigureDeploymentResponse {
     common.v1.RpcResult rpc_result = 1;
 }
 
@@ -485,9 +435,8 @@ message GetConsumerCountResponse {
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
-    repeated PrimaryDeploymentConfig primaries = 1;
-    repeated ReplicaDeploymentConfig replicas = 2;
-    repeated PresentationConfig presentations = 3;
+    repeated DeploymentConfig deployments = 1;
+    repeated PresentationConfig presentations = 2;
 }
 
 // INTERNAL APIS ------------------------------------------------------------
