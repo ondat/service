@@ -91,13 +91,12 @@ message PresentationConfig {
     // anything else will make debugging a nightmare.
     string filename = 3;
 
-    // We need to know the UUID of the primary deployment as this is where
-    // all IO is directed.
-    string primary_uuid = 4;
+    // The deployment we are presenting (always the primary deployment).
+    string deployment_uuid = 4;
 
     // Not for CP use. The internal primary deployment ID used by the dataplane
     // Useful for dataplane testing and not much else
-    uint32 primary_id = 5;
+    uint32 deployment_id = 5;
 
     // The size of the volume in bytes
     uint64 size = 6;
