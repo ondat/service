@@ -4,6 +4,7 @@ option go_package = "code.storageos.net/storageos/service/supervisor/v1";
 
 import "common.proto";
 
+// The type of the deployment.
 enum DeploymentType {
     UNKNOWN = 0;
     PRIMARY = 1;
@@ -144,10 +145,10 @@ message PresentationScsiDevice {
 //  ConfigurePresentation()
 //  ConfigurePresentation()
 //  DeconfigurePresentation()
-//          |                           |                            |
-//          |                           |                            |
-//          |                           |                            |
-//  +-------v-------+           +-------v-------+            +-------v-------+
+//          |
+//          |
+//          |
+//  +-------v-------+           +---------------+            +---------------+
 //  |               |           |               |            |               |
 //  |  Attach Node  |           |               |            |               |
 //  | (may be the   |---------->|  Primary Node |----------->| Replica Node  |
@@ -160,6 +161,8 @@ message PresentationScsiDevice {
 //                                            DeconfigureDeployment()
 //
 service Supervisor {
+    // ----------------- CONFIGURATIONS RPCS -------------------------------
+
     // Get various information about the state of the dataplane
     // We also bundle up information regarding the consumer counts
     //
@@ -168,21 +171,23 @@ service Supervisor {
     // rpc_result.reason may be set.
     rpc Status(SupervisorStatusRequest) returns (SupervisorStatusResponse) {}
 
-    // Creates a primary deployment. A primary deployment is differentiated from
-    // a replica deployment in that it might have replicas. Like all
-    // "Configure*" RPCs this method has "create if not present, else update"
-    // semantics, i.e.:
+    // Creates deployment. Either a primary or a replica. The CP should signals
+    // which by setting the `deployment_type` field within the DeploymentConfig
+    // message type. Like all "Configure*" RPCs this method has "create if not
+    // present, else update" semantics, i.e.:
     //
-    //  - if no configuration exists for "uuid" we create the primary
-    //  - if configuration exists for "uuid" then we apply any diffs.
+    //  - if no configuration exists for "uuid" we create the deployment
+    //  - if configuration exists for "uuid" then we overwrite the current config.
     //
-    // The only valid diffs are removal/addition of replicas, and changing
-    // the cc. Once specified compression can not be modified.
+    // Creates will be rejected if: the CP tries to configure a replica deployment
+    // which has replicas; the consumer count is zero.
+    //
+    // Overwites will be rejected if: the consumer count is decremented or the
+    // compression flag has changed. Once specified compression can not be modified.
     //
     // Under the hood this method creates the blob files into which we'll store
-    // user data. Notice the replica configuration is present in the embedded
-    // ReplicaDeploymentConfig field. There's no separate API to add or remove
-    // these.
+    // user data and sets up the network connection to any replicas (primary
+    // deployments only).
     //
     // Note: this RPC does not configure the replicas it merely tells the
     // primary about the existance and location of its replicas. To configure
@@ -194,7 +199,7 @@ service Supervisor {
     // rpc_result.reason may be set.
     rpc ConfigureDeployment(ConfigureDeploymentRequest) returns (ConfigureDeploymentResponse) {}
 
-    // Deconfigure the primary. This lets the dataplane know that we are done
+    // Deconfigure the deployment. This lets the dataplane know that we are done
     // with the deployment and allows the dataplane to release runtime resources
     // associated with the deployment. The CP would typically call this API when
     // a the volume is no longer in use.
@@ -204,7 +209,7 @@ service Supervisor {
     //
     // On success rpc_result.success will be set to true. On failure it will
     // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the primary
+    // specific code returned is STATUS_NOT_FOUND - this is set when the deployment
     // you asked to deconfigure is not configured. For all other errors
     // rpc_result.code will be set to STATUS_*. In all failure case
     // rpc_result.reason may be set.
@@ -213,9 +218,8 @@ service Supervisor {
 
     // Irrevocably delete the deployment (meta)data.
     //
-    // The deployment must be deconfigured, either via DeconfigureDeployment or
-    // DeconfigureReplica prior to calling this method, or we'll reject the
-    // request with an error.
+    // The deployment must be deconfigured, via DeconfigureDeployment, prior
+    // to calling this method, or we'll reject the request with an error.
     //
     // On success rpc_result.success will be set to true. On failure it will
     // be set to false and rpc_result.code will be set accordingly. The only
@@ -283,14 +287,6 @@ service Supervisor {
     // Dump the dataplane's current configuration
     rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
 
-    // Collect the dataplane node-level metrics and specific per-volume metrics.
-    // NOTE: This is an experimental dataplane-only API. It's probably not quite
-    // what the control-plane requires in terms of a metrics API, but it's fine
-    // for dataplane tooling and tests.
-    rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
-
-    // INTERNAL APIS ---------------------------------------------------------
-
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -307,6 +303,8 @@ service Supervisor {
     rpc ConfigGetUint64(common.v1.ConfigKey) returns (common.v1.ConfigGetUint64Reply) {}
     rpc ConfigUpdateUint64(common.v1.ConfigUint64) returns (common.v1.ConfigUpdateReply) {}
     rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}
+
+    // ----------------- DP INTERNAL RPCS -------------------------------
 
     // Sync the specified regions from the source deployment to the destination
     // deployment. Called by Symmetra.
@@ -348,6 +346,12 @@ service Supervisor {
     //
     // returns the hash list and volume hash
     rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
+
+    // Collect the dataplane node-level metrics and specific per-volume metrics.
+    // NOTE: This is an experimental dataplane-only API. It's probably not quite
+    // what the control-plane requires in terms of a metrics API, but it's fine
+    // for dataplane tooling and tests.
+    rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
 }
 
 message SupervisorStatusRequest {}
