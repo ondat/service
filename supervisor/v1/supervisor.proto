@@ -438,8 +438,8 @@ message GetConsumerCountResponse {
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
-    repeated DeploymentConfig deployments = 1;
-    repeated PresentationConfig presentations = 2;
+    map<string, DeploymentConfig> deployments = 1;
+    map<string, PresentationConfig> presentations = 2;
 }
 
 // INTERNAL APIS ------------------------------------------------------------
