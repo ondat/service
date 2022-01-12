@@ -305,6 +305,10 @@ service Supervisor {
     rpc ConfigListUint64(common.v1.ConfigListQuery) returns (common.v1.ConfigUint64List) {}
 
     // ----------------- DP INTERNAL RPCS -------------------------------
+    // List all of the network connections which this node has with other dataplanes.
+    // Established and un-established connections are shown. Users can drill down into
+    // the individual connection to see its status.
+    rpc ListConnections(ListConnectionsRequest) returns (ListConnectionsResponse) {}
 
     // Sync the specified regions from the source deployment to the destination
     // deployment. Called by Symmetra.
@@ -649,6 +653,30 @@ message MetricsResponse {
     NodeMetrics node_metrics = 2;
 }
 
+message ListConnectionsRequest {}
+
+message Connection {
+    // The remote peer's UUID
+    string uuid = 1;
+
+    // The hostname of the remote peer
+    string hostname = 2;
+
+    // The port of the remote peer normally 5703 (can be overriden by starting
+    // the Dataplane with IO_BIND_PORT=<port>)
+    uint32 port = 3;
+
+    // Whether or not a connection is established with the remote peer
+    bool connected = 4;
+}
+
+message ListConnectionsResponse {
+    // A list of connections keyed by UUID. That's the only field we can
+    // guarantee is unique. hostname need not be (for example in DP unit
+    // test which spin up multiple dataplanes on the same node)
+    map<string, Connection> connections = 1;
+}
+
 message SyncRegion {
     uint64 start_offset = 1;
     uint64 end_offset = 2;
@@ -723,8 +751,7 @@ message SyncRegionsResponse {
     string reason = 2;
 }
 
-// ----- DEPRECATED post 2.5.0-ga see comment on SyncRegion RPC definition
-// ----------
+// DEPRECATED post 2.5.0-ga see comment on SyncRegion RPC definition
 message SyncRegionRequest {
     // The source volume ID.
     uint64 source_volume = 1;
