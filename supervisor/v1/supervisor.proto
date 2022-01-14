@@ -7,7 +7,7 @@ import "common.proto";
 // The type of the deployment.
 enum DeploymentType {
     UNKNOWN = 0;
-    PRIMARY = 1;
+    MASTER = 1;
     REPLICA = 2;
 }
 
@@ -48,11 +48,11 @@ message DeploymentConfig {
         // In practice this must always be present when the Dataplane is being
         // managed by the CP. There's no such thing as a local replica in
         // production. For the purpose of DP testing this feild can be empty,
-        // which signifies the replica is local to the primary
+        // which signifies the replica is local to the master
         optional NodeConfig opt_node_config = 3;
     }
 
-    // Is this a primary or a replica?
+    // Is this a master or a replica?
     DeploymentType deployment_type = 1;
 
     // The deployment's UUID
@@ -73,7 +73,7 @@ message DeploymentConfig {
     common.v1.ConsumerCount cc = 5;
 
     // The replicas associated with this deployment. This field is only
-    // valid if the deployment is a primary deployment.
+    // valid if the deployment is a master deployment.
     repeated ReplicaAndLocation replicas = 6;
 }
 
@@ -83,7 +83,7 @@ message PresentationConfig {
     // will make debugging a nightmare.
     string presentation_uuid = 1;
 
-    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // Not for CP use. The internal master deployment ID used by the dataplane
     // Useful for dataplane testing and not much else
     uint32 presentation_id = 2;
 
@@ -92,10 +92,10 @@ message PresentationConfig {
     // anything else will make debugging a nightmare.
     string filename = 3;
 
-    // The deployment we are presenting (always the primary deployment).
+    // The deployment we are presenting (always the master deployment).
     string deployment_uuid = 4;
 
-    // Not for CP use. The internal primary deployment ID used by the dataplane
+    // Not for CP use. The internal master deployment ID used by the dataplane
     // Useful for dataplane testing and not much else
     uint32 deployment_id = 5;
 
@@ -111,7 +111,7 @@ message PresentationConfig {
     // The consumer count of the volume
     common.v1.ConsumerCount cc = 8;
 
-    // Only present if the volume's primary is on a remote node
+    // Only present if the volume's master is on a remote node
     optional NodeConfig opt_node_config = 9;
 
     // If the volume is using encryption then the crypo parameters should be
@@ -135,7 +135,7 @@ message PresentationScsiDevice {
 // to configure volumes in the dataplane. A volume is the collection of the
 // following entities:
 //
-// 1. a primary deployment
+// 1. a master deployment
 // 2. zero or more replica deployments.
 // 3. (optional) a presentation, which can be used to access the volume. The
 //    presentation may be local or remote.
@@ -151,8 +151,8 @@ message PresentationScsiDevice {
 //  +-------v-------+           +---------------+            +---------------+
 //  |               |           |               |            |               |
 //  |  Attach Node  |           |               |            |               |
-//  | (may be the   |---------->|  Primary Node |----------->| Replica Node  |
-//  | primary node) |           |               |            |               |
+//  | (may be the   |---------->|  Master Node  |----------->| Replica Node  |
+//  | master node)  |           |               |            |               |
 //  |               |           |               |            |               |
 //  +---------------+           +---------------+            +---------------+
 //         \                            /\                             /
@@ -171,7 +171,7 @@ service Supervisor {
     // rpc_result.reason may be set.
     rpc Status(SupervisorStatusRequest) returns (SupervisorStatusResponse) {}
 
-    // Creates deployment. Either a primary or a replica. The CP should signals
+    // Creates deployment. Either a master or a replica. The CP should signals
     // which by setting the `deployment_type` field within the DeploymentConfig
     // message type. Like all "Configure*" RPCs this method has "create if not
     // present, else update" semantics, i.e.:
@@ -186,11 +186,11 @@ service Supervisor {
     // compression flag has changed. Once specified compression can not be modified.
     //
     // Under the hood this method creates the blob files into which we'll store
-    // user data and sets up the network connection to any replicas (primary
+    // user data and sets up the network connection to any replicas (master
     // deployments only).
     //
     // Note: this RPC does not configure the replicas it merely tells the
-    // primary about the existance and location of its replicas. To configure
+    // master about the existance and location of its replicas. To configure
     // the replicas call ConfigureReplica on the appropriate replica nodes,
     // prior to this call.
     //
@@ -260,7 +260,7 @@ service Supervisor {
         returns (DeconfigurePresentationResponse) {}
 
     // Set the consumer count for a deployment. This should only ever be called
-    // on the primary deployment (we don't ever need to set the consumer count
+    // on the master deployment (we don't ever need to set the consumer count
     // on a replica). The CP only needs to call this API when it wants to
     // explicitly change the consumer count. The only time I believe this is
     // currently necessary is during a failover. Normally the consumer count value
@@ -270,7 +270,7 @@ service Supervisor {
     // On success rpc_result.success will be set to true. On failure it will
     // be set to false and rpc_result.code will be set accordingly. The only
     // specific code returned is STATUS_NOT_FOUND - this is set when the
-    // primary you asked to set the CC on doesn't even exist. For all other
+    // master you asked to set the CC on doesn't even exist. For all other
     // errors rpc_result.code will be set to STATUS_*. In all failure case
     // rpc_result.reason may be set. If the consumer count which was requested
     // to be set is LOWER than the currently set value then this method will
@@ -715,7 +715,7 @@ message SyncRegionsRequest {
     SyncContext sync_context = 7;
 
     // If set we'll wait for the network connection between the sync source (the
-    // primary) and the sync target (the replica) to establish before trying to
+    // master) and the sync target (the replica) to establish before trying to
     // sync any data. If the network connection never establishes then we'll
     // fail the operation. We'll wait for up to 1.5 times the directfs initiator
     // reconnection interval before giving up.
