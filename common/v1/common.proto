@@ -2,6 +2,16 @@ syntax = "proto3";
 package common.v1;
 option go_package = "code.storageos.net/storageos/service/common/v1";
 
+/**
+ ** Sync 2020.1 Consumer Count.
+ **/
+message ConsumerCount {
+    uint32 consumer_count = 1;
+}
+
+/**
+ ** Status codes and return values
+ **/
 enum StatusCode {
     // Status code not set.
     STATUS_NONE = 0;
@@ -13,7 +23,8 @@ enum StatusCode {
     STATUS_CREATED = 201;
     // Generic 'huh?'.
     STATUS_BAD_REQUEST = 400;
-    // Not permitted. We're unlikely to use this, it indicates authorization will help.
+    // Not permitted. We're unlikely to use this, it indicates authorization
+    // will help.
     STATUS_UNAUTHORIZED = 401;
     // Not allowed, authorization isn't the issue.
     STATUS_FORBIDDEN = 403;
@@ -44,12 +55,13 @@ message DataplaneCommon {
     // UUID. An opaque string used by the controlplane as a unique ID.
     string uuid = 3;
 
-    // The config 'revision', an opaque integer used by the controlplane to identify a configuration iteration.
-    // This is deliberately matched to the revision field in etcd ResponseHeader.revision.
+    // The config 'revision', an opaque integer used by the controlplane to
+    // identify a configuration iteration. This is deliberately matched to the
+    // revision field in etcd ResponseHeader.revision.
     int64 revision = 4;
 
-    // Latch for the versioning system. If true, updates will fail unless the generation of the change
-    // is newer than the existing value.
+    // Latch for the versioning system. If true, updates will fail unless the
+    // generation of the change is newer than the existing value.
     bool versioned = 5;
 }
 
@@ -135,8 +147,10 @@ message DaemonStatus {
         DS_READY = 2;     // Program has started and is ready to process requests.
         DS_STOPPING = 3;  // Program has begun to shut down.
         DS_STOPPED = 4;   // Program has shut down and may be safely terminated.
-        DS_ERROR = 5;     // Program has encountered an error and should be considered failed.
-        DS_CRITICAL = 6;  // Program has encountered a serious error and requires intervention.
+        DS_ERROR = 5;     // Program has encountered an error and should be
+                          // considered failed.
+        DS_CRITICAL = 6;  // Program has encountered a serious error and
+                          // requires intervention.
     }
 
     ProgramState program_state = 1;
@@ -241,128 +255,3 @@ message ConfigKey {
 message ConfigListQuery {
     // Nothing yet.
 }
-
-/*
- * Poke messages - low-level test tools.
- *
- * This is in an archaic computing sense of 'poke', where it was a command one
- * used to write arbitrary memory locations, usually for cheating at computer
- * games.
- *
- * Not in the Facebook sense. Or any other sense.
- */
-
-enum PokeType {
-    // Have a do-nothing poke to test the service method.
-    NOP = 0;
-    // Get a known response. (PING, parameter=MSG. Response success==true, result=MSG).
-    PING = 1;
-    // Do whatever it takes to stop the program.
-    STOP = 10;
-    // Crash immediately. Do not pass go. Do not collect the next round of funding.
-    CRASH = 100;
-}
-
-message PokeQuery {
-    // The poke type.
-    PokeType type = 1;
-
-    // An arbitrary parameter for the poke, if required.
-    string parameter = 2;
-}
-
-message PokeResponse {
-    // True if the poke 'succeeded', false otherwise.
-    bool success = 1;
-
-    // Explanation for non-success.
-    string reason = 2;
-
-    // Arbitrary string result for the poke.
-    string result = 3;
-}
-
-/**
- ** Metadata
- **/
-
- //
- // 'Classic' bitmap metadata.
- //
-
-/**
- ** Enumerate the types of bitmap entry.
- **/
-enum MetadataBitmapId {
-    // Match the in-source 'invalid' value.
-    INVALID = 0;
-
-    // The 'classic' write_metadata bitmap.
-    OCCUPANCY = 1;
-
-    // The chunks requiring synchronisation since last-known-good.
-    DELTASYNC = 2;
-}
-
-/**
- * A composite request for a particular bitmap.
- **/
-message MetadataBitmapSpecification {
-    // The type of bitmap, from MetadataBitmapId.
-    MetadataBitmapId bitmap_id = 1;
-
-    // The 'master' volume, the source of the data.
-    uint32 master_volume_id = 2;
-
-    // The replica volume to which this bitmap applies.
-    uint32 replica_volume_id = 3;
-
-    // The 'master' volume, the source of the data.
-    string master_volume_uuid = 4;
-
-    // The replica volume, if provided.
-    string replica_volume_uuid = 5;
-}
-
-/**
- ** Standard 'give me a bitmap' query.
- **/
-message MetadataBitmapQuery {
-    MetadataBitmapSpecification spec = 1;
-}
-
-/**
- ** Standard 'this bitmap' reply.
- **/
-message MetadataBitmapReply {
-
-    // Allow for negative responses. The RPC can return OK, but this field can
-    // indicate many specific failures.
-    RpcResult rpc_result = 1;
-
-    // Include the specification so there's no need to pass the query around.
-    MetadataBitmapSpecification spec = 2;
-
-    // The bitmap in the simplest form possible.
-    repeated bool data = 3;
-}
-
-/**
- ** Standard 'reset this bitmap' query.
- **/
-message MetadataBitmapResetQuery {
-    MetadataBitmapSpecification spec = 1;
-}
-
-/**
- ** Response to 'reset this bitmap' query.
- **/
-message MetadataBitmapResetReply {
-    RpcResult rpc_result = 1;
-}
-
-/**
- ** Sync 2020.1 Consumer Count.
- **/
-
-message ConsumerCount { uint32 consumer_count = 1; }
