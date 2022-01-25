@@ -690,7 +690,7 @@ message ListConnectionsResponse {
 
 // Rpcs used for debugging
 message AddConnectionRequest {
-    Connection connection = 1;
+    NodeConfig config = 1;
 }
 
 message AddConnectionResponse {
@@ -698,7 +698,7 @@ message AddConnectionResponse {
 }
 
 message RemoveConnectionRequest {
-    Connection connection = 1;
+    NodeConfig config = 1;
 }
 
 message RemoveConnectionResponse {
