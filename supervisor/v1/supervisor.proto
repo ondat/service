@@ -442,7 +442,7 @@ message GetConsumerCountResponse {
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
-    // We utlise a wrapper type so we can easily add new fields in the future
+    // We declare a wrapper type so we can easily add new fields in the future
     message DeploymentConfigBundle { DeploymentConfig config = 1; }
     message PresentationConfigBundle { PresentationConfig config = 1; }
 

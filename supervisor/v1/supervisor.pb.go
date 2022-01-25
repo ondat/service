@@ -3085,7 +3085,7 @@ func (x *DeploymentConfig_ReplicaAndLocation) GetOptNodeConfig() *NodeConfig {
 	return nil
 }
 
-// We utlise a wrapper type so we can easily add new fields in the future
+// We declare a wrapper type so we can easily add new fields in the future
 type DumpConfigResponse_DeploymentConfigBundle struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
