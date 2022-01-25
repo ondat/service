@@ -442,8 +442,12 @@ message GetConsumerCountResponse {
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
-    map<string, DeploymentConfig> deployments = 1;
-    map<string, PresentationConfig> presentations = 2;
+    // We utlise a wrapper type so we can easily add new fields in the future
+    message DeploymentConfigBundle { DeploymentConfig config = 1; }
+    message PresentationConfigBundle { PresentationConfig config = 1; }
+
+    map<string, DeploymentConfigBundle> deployments = 1;
+    map<string, PresentationConfigBundle> presentations = 2;
     map<string, Connection> connections = 3;
 }
 
