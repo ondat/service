@@ -210,8 +210,8 @@ service Supervisor {
     // On success rpc_result.success will be set to true. On failure it will be
     // set to false and rpc_result.code will be set accordingly. The only specific
     // code returned is STATUS_NOT_FOUND - this is set when the deployment you
-    // asked to delete does no exist. For all other errors rpc_result.code will be
-    // set to STATUS_*. In all failure case rpc_result.reason may be set.
+    // asked to deconfigure is not configured. For all other errors rpc_result.code
+    // will be set to STATUS_*. In all failure case rpc_result.reason may be set.
     rpc DeconfigureDeployment(DeconfigureDeploymentRequest)
         returns (DeconfigureDeploymentResponse) {}
 

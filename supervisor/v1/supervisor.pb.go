@@ -4795,24 +4795,22 @@ type SupervisorClient interface {
 	// This RPC does not delete the block (meta)data associated with the
 	// deployment. Call DeleteDeployment for that.
 	//
-	// On success rpc_result.success will be set to true. On failure it will
-	// be set to false and rpc_result.code will be set accordingly. The only
-	// specific code returned is STATUS_NOT_FOUND - this is set when the deployment
-	// you asked to deconfigure is not configured. For all other errors
-	// rpc_result.code will be set to STATUS_*. In all failure case
-	// rpc_result.reason may be set.
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to deconfigure is not configured. For all other errors rpc_result.code
+	// will be set to STATUS_*. In all failure case rpc_result.reason may be set.
 	DeconfigureDeployment(ctx context.Context, in *DeconfigureDeploymentRequest, opts ...grpc.CallOption) (*DeconfigureDeploymentResponse, error)
 	// Irrevocably delete the deployment (meta)data.
 	//
 	// The deployment must be deconfigured, via DeconfigureDeployment, prior
 	// to calling this method, or we'll reject the request with an error.
 	//
-	// On success rpc_result.success will be set to true. On failure it will
-	// be set to false and rpc_result.code will be set accordingly. The only
-	// specific code returned is STATUS_NOT_FOUND - this is set when the
-	// deployment you asked to deconfigure is not configured. For all other
-	// errors rpc_result.code will be set to STATUS_*. In all failure case
-	// rpc_result.reason may be set.
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to delete does no exist. For all other errors rpc_result.code will be
+	// set to STATUS_*. In all failure case rpc_result.reason may be set.
 	DeleteDeployment(ctx context.Context, in *DeleteDeploymentRequest, opts ...grpc.CallOption) (*DeleteDeploymentResponse, error)
 	// Configure a presentation. This creates a block device which can be used
 	// to access the volume. This RPC works for both local and remote
@@ -5221,24 +5219,22 @@ type SupervisorServer interface {
 	// This RPC does not delete the block (meta)data associated with the
 	// deployment. Call DeleteDeployment for that.
 	//
-	// On success rpc_result.success will be set to true. On failure it will
-	// be set to false and rpc_result.code will be set accordingly. The only
-	// specific code returned is STATUS_NOT_FOUND - this is set when the deployment
-	// you asked to deconfigure is not configured. For all other errors
-	// rpc_result.code will be set to STATUS_*. In all failure case
-	// rpc_result.reason may be set.
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to deconfigure is not configured. For all other errors rpc_result.code
+	// will be set to STATUS_*. In all failure case rpc_result.reason may be set.
 	DeconfigureDeployment(context.Context, *DeconfigureDeploymentRequest) (*DeconfigureDeploymentResponse, error)
 	// Irrevocably delete the deployment (meta)data.
 	//
 	// The deployment must be deconfigured, via DeconfigureDeployment, prior
 	// to calling this method, or we'll reject the request with an error.
 	//
-	// On success rpc_result.success will be set to true. On failure it will
-	// be set to false and rpc_result.code will be set accordingly. The only
-	// specific code returned is STATUS_NOT_FOUND - this is set when the
-	// deployment you asked to deconfigure is not configured. For all other
-	// errors rpc_result.code will be set to STATUS_*. In all failure case
-	// rpc_result.reason may be set.
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to delete does no exist. For all other errors rpc_result.code will be
+	// set to STATUS_*. In all failure case rpc_result.reason may be set.
 	DeleteDeployment(context.Context, *DeleteDeploymentRequest) (*DeleteDeploymentResponse, error)
 	// Configure a presentation. This creates a block device which can be used
 	// to access the volume. This RPC works for both local and remote
