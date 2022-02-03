@@ -207,12 +207,11 @@ service Supervisor {
     // This RPC does not delete the block (meta)data associated with the
     // deployment. Call DeleteDeployment for that.
     //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the deployment
-    // you asked to deconfigure is not configured. For all other errors
-    // rpc_result.code will be set to STATUS_*. In all failure case
-    // rpc_result.reason may be set.
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to delete does no exist. For all other errors rpc_result.code will be
+    // set to STATUS_*. In all failure case rpc_result.reason may be set.
     rpc DeconfigureDeployment(DeconfigureDeploymentRequest)
         returns (DeconfigureDeploymentResponse) {}
 
@@ -221,12 +220,11 @@ service Supervisor {
     // The deployment must be deconfigured, via DeconfigureDeployment, prior
     // to calling this method, or we'll reject the request with an error.
     //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the
-    // deployment you asked to deconfigure is not configured. For all other
-    // errors rpc_result.code will be set to STATUS_*. In all failure case
-    // rpc_result.reason may be set.
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to delete does no exist. For all other errors rpc_result.code will be
+    // set to STATUS_*. In all failure case rpc_result.reason may be set.
     rpc DeleteDeployment(DeleteDeploymentRequest) returns (DeleteDeploymentResponse) {}
 
     // Configure a presentation. This creates a block device which can be used
