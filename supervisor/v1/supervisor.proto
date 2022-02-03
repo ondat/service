@@ -495,23 +495,13 @@ message Metric {
 }
 
 message MetricsRequest {
-    // A list of volumes to query (by internal ID). If this and uuids is left empty
-    // we'll return metrics for all volumes which are configured.
-    repeated uint32 ids = 1;
-
     // A list of volume to query (by uuid). If this and uuids is left empty
     // we'll return metrircs for all volumes which are configured.
-    repeated string uuids = 2;
+    repeated string uuids = 1;
 }
 
 message VolumeMetrics {
-    // The volume this collection of metrics belongs to
-    uint32 id = 1;
-
-    // The volume this collection of metrics belongs to
-    string uuid = 2;
-
-    repeated Metric metrics = 3;
+    repeated Metric metrics = 1;
 }
 
 // Node-level metrics are metrics which aren't specific to a volume.
@@ -521,7 +511,7 @@ message NodeMetrics {
 
 message MetricsResponse {
     // Per volume stats. One collection of metrics per requested volume.
-    repeated VolumeMetrics volume_metrics = 1;
+    map<string, VolumeMetrics> volume_metrics = 1;
 
     // Per node stats. One collection per node.
     NodeMetrics node_metrics = 2;
