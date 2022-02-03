@@ -207,12 +207,11 @@ service Supervisor {
     // This RPC does not delete the block (meta)data associated with the
     // deployment. Call DeleteDeployment for that.
     //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the deployment
-    // you asked to deconfigure is not configured. For all other errors
-    // rpc_result.code will be set to STATUS_*. In all failure case
-    // rpc_result.reason may be set.
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to deconfigure is not configured. For all other errors rpc_result.code
+    // will be set to STATUS_*. In all failure case rpc_result.reason may be set.
     rpc DeconfigureDeployment(DeconfigureDeploymentRequest)
         returns (DeconfigureDeploymentResponse) {}
 
@@ -221,12 +220,11 @@ service Supervisor {
     // The deployment must be deconfigured, via DeconfigureDeployment, prior
     // to calling this method, or we'll reject the request with an error.
     //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set accordingly. The only
-    // specific code returned is STATUS_NOT_FOUND - this is set when the
-    // deployment you asked to deconfigure is not configured. For all other
-    // errors rpc_result.code will be set to STATUS_*. In all failure case
-    // rpc_result.reason may be set.
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to delete does no exist. For all other errors rpc_result.code will be
+    // set to STATUS_*. In all failure case rpc_result.reason may be set.
     rpc DeleteDeployment(DeleteDeploymentRequest) returns (DeleteDeploymentResponse) {}
 
     // Configure a presentation. This creates a block device which can be used
@@ -320,42 +318,12 @@ service Supervisor {
     // deployment. Called by Symmetra.
     rpc SyncRegions(SyncRegionsRequest) returns (SyncRegionsResponse) {}
 
-    // Sync the specified region. Called by symmetra.
-    //
-    // WARNING: this API is removed as of release v2.5.0-ga. Use SyncRegions
-    // instead. Unfortunately we have to keep the RPC here to avoid breaking
-    // builds of the dataplane pre v2.5.0-ga. These builds use the service repo
-    // branch origin/main rather than a specified commit/tag. If we remove this
-    // RPC all of those builds break.
-    //
-    // We shouldn't hamstring ourselves with this problem indefinitely. At some
-    // point we should bite the bullet and either:
-    //
-    // - retire origin/main and start a new branch origin/main2. All builds
-    // pre 2.x use origin/main/ All builds post 2.x use origin/main2. Going
-    // forward we ensure that the dataplane tracks an explicit commit in the
-    // service repo.
-    // - accept that we are going to break builds pre 2.x and make breaking
-    // changes to origin/main. If we ever want to build pre 2.x we have to
-    // manually set the service repo to the last commit in origin/main prior to
-    // the breaking change.
-    //
-    // At various points we did pin the service repo to specific commits. In
-    // general we haven't though. The following range of commits dates, are
-    // pinned to origin/main, and thus would break if we removed this RPC:
-    //
-    // 98b1261 Aug 06 2021 to now (Oct 11 2021)
-    // d3b2364 Nov 17 2020 to f19616e Dec 07 2020
-    //
-    // More discussion on DP-452.
-    rpc Sync(SyncRegionRequest) returns (SyncRegionResponse) {}
-
-    // Return a hash list for the specified volume, over the specified range.
+    // Return a hash list for the specified deployment, over the specified range.
     // Note: this is a streaming RPC as the hash lists returned could
     // conceiveably be multiple megabytes in size.
     //
-    // returns the hash list and volume hash
-    rpc VolumeHashList(VolumeHashListRequest) returns (stream VolumeHashListResponse) {}
+    // returns the hash list and deployment hash
+    rpc DeploymentHashList(DeploymentHashListRequest) returns (stream DeploymentHashListResponse) {}
 
     // Collect the dataplane node-level metrics and specific per-volume metrics.
     // NOTE: This is an experimental dataplane-only API. It's probably not quite
@@ -471,8 +439,8 @@ message IdMapping {
 message IdMapperStatus {
     enum MapMode {
         NOTSET = 0;  // No value (new dataplane, never been configured).
-        GSI = 1;     // Global-scope inodes (v1).
-        NLI = 2;     // Node-local inodes (v2).
+        GSI = 1;     // Global-scope IDs (v1).
+        NLI = 2;     // Node-local IDs (v2).
     };
 
     // The map mode, only valid if mode_set==true.
@@ -499,20 +467,20 @@ message ConsumerCountEntry {
 }
 
 /**
- ** Volume hash lists (sync).
+ ** Deployment hash lists (sync).
  **/
 
 // Syncing a volume is a multi stage process:
 //
 // * first the CP invokes symmetra (a standalone binary), which then
-// * calls the VolumeHashList() RPC for the master and replica deployments
-// * symmetra then calls the Sync() RPC multiple times on the master to copy the
-// data
+// * calls the DeploymentHashList() RPC for the master and replica deployments
+// * symmetra then calls the SyncRegions() RPC multiple times on the master to copy the
+//   data
 //
 // We want to be able to track this transaction across it's entire duration.
 // The SyncContext message type allows us to do this. When symmetra is first
 // invoked it generates the SyncContext. This token is then passed in all
-// subsequent VolumeHashListRequests and SyncRegionRequests. Any code taking
+// subsequent DeploymentHashListRequests and SyncRegionRequests. Any code taking
 // part in the sync operation can then log this ID as part of any structued
 // logging calls.
 //
@@ -522,53 +490,35 @@ message SyncContext {
     string uuid = 1;
 }
 
-message VolumeHash {
+message DeploymentHash {
     // There's no way to define this in the proto but bytes.size() is always
     // sizeof(HashType_t). Currently 16 bytes.
     bytes bytes = 1;
 }
 
-enum VolumeHashListRpcVersion {
-    V1 = 0;  // < Storageos v2.4.0
-    V2 = 1;  // >= Storageos v2.4.0: in this verison we make the change outlined
-             // in
-             // https://docs.google.com/document/d/1t1_LBSl0XXcT1VNpaCZpn_7I4UAHYpgmtBIEWNrj8mI
-             // Appendix-3. To summarise: we now treat thinly provisioned blocks
-             // as disticint special values with a block hash of
-             // kThinProvBlockHash rather than materialising a block of zeros,
-             // applying the necessary encoding and then taking the block hash.
-             // This is required for encrypted sync and snapshto sync. The
-             // VolumeHashListRpcVersion enum was only added in Storageos v2.4.0,
-             // so VolumeHashListRequest and VolumeHashListResponse messages
-             // prior to this implicitly have the default value of V1.
-}
-
-// Note: the response to this message, VolumeHashListResponse, is chunked
+// Note: the response to this message, DeploymentHashListResponse, is chunked
 // (streamed in gRPC parlance).
-message VolumeHashListRequest {
-    // See the VolumeHashListRpcVersion documentation
-    VolumeHashListRpcVersion version = 7;
+message DeploymentHashListRequest {
+    // The deployment we want to generate a hash over
+    uint32 deployment_id = 1;
 
-    // The volume we want to generate a hash over
-    uint32 volume_id = 1;
+    // The deployment UUID we want to generate a hash over.
+    string deployment_uuid = 2;
 
-    // The volume UUID we want to generate a hash over.
-    string volume_uuid = 5;
-
-    // Defines the byte offset into `volume_id` at which we'll start hash list
+    // Defines the byte offset into `deployment_id` at which we'll start hash list
     // generation.
-    uint64 start_offset = 2;
+    uint64 start_offset = 3;
 
-    // Defines the byte offset into `volume_id` at which we'll end hash list
+    // Defines the byte offset into `deployment_id` at which we'll end hash list
     // generation.
-    uint64 end_offset = 3;
+    uint64 end_offset = 4;
 
     // When generating the hash list we do so by rolling together individual
     // block hashes into a region hash. This field defines the size of that
     // region in bytes. It must be multiple of RIXIO_BSIZE. By giving the option
-    // for clients to specify this size they can optimise based on volume size
+    // for clients to specify this size they can optimise based on deployment size
     // and required sync granularity.
-    uint64 region_size = 4;
+    uint64 region_size = 5;
 
     // This field is redundant (i.e it's ignored) as of release v2.5.0. We've
     // had to keep it in order that we don't break older builds which pin the
@@ -579,34 +529,31 @@ message VolumeHashListRequest {
     // The SyncContext, initially generated by symmetra, associated with the
     // over-arching sync operation This field is purely used for logging, so
     // there's no harm in not setting it in test code
-    SyncContext sync_context = 8;
+    SyncContext sync_context = 7;
 }
 
 // This message is streamed back to the client in response to a
-// VolumeHashListRequest message. As such the client should expect to receive
-// many of these messages. Each VolumeHashListResponse contains the hash list
-// for a sequential portion of the volume. For simplicity the volume_hash -- i.e
+// DeploymentHashListRequest message. As such the client should expect to receive
+// many of these messages. Each DeploymentHashListResponse contains the hash list
+// for a sequential portion of the deployment. For simplicity the deployment_hash -- i.e
 // the hash for the range [start_offset, end_offset) as specified in the initial
-// VolumeHashListRequest
+// DeploymentHashListRequest
 // -- is stored in every message.
-message VolumeHashListResponse {
-    // See the VolumeHashListRpcVersion documentation
-    VolumeHashListRpcVersion version = 5;
-
+message DeploymentHashListResponse {
     // The hash over the region [start_offset, end_offset) as specified in the
-    // initial VolumeHashListRequest
-    VolumeHash volume_hash = 1;
+    // initial DeploymentHashListRequest
+    DeploymentHash deployment_hash = 1;
 
-    // Defines the byte offset into `volume_id` at which hash_list[0] begins.
+    // Defines the byte offset into `deployment_id` at which hash_list[0] begins.
     uint64 start_offset = 2;
 
-    // Defines the byte offset into `volume_id` at which hash_list[max] ends.
+    // Defines the byte offset into `deployment_id` at which hash_list[max] ends.
     uint64 end_offset = 3;
 
     // A list of region hashes pertaining to the regions defined by the byte
     // range [start_offset, end_offset). The number of regions depends on the
-    // `region_size` defined in the inital VolumeHashListRequest.
-    repeated VolumeHash hash_list = 4;
+    // `region_size` defined in the inital DeploymentHashListRequest.
+    repeated DeploymentHash hash_list = 4;
 }
 
 /*
@@ -632,9 +579,9 @@ message Metric {
 }
 
 message MetricsRequest {
-    // A list of volumes to query (by inode). If this and uuids is left empty
+    // A list of volumes to query (by internal ID). If this and uuids is left empty
     // we'll return metrics for all volumes which are configured.
-    repeated uint32 inodes = 1;
+    repeated uint32 ids = 1;
 
     // A list of volume to query (by uuid). If this and uuids is left empty
     // we'll return metrircs for all volumes which are configured.
@@ -643,7 +590,7 @@ message MetricsRequest {
 
 message VolumeMetrics {
     // The volume this collection of metrics belongs to
-    uint32 inode = 1;
+    uint32 id = 1;
 
     // The volume this collection of metrics belongs to
     string uuid = 2;
