@@ -46,23 +46,17 @@ message RpcResult {
 }
 
 message DataplaneCommon {
-    // // Item labels. Retired 20180206 ATL.
-    // map<string, string> labels = 1;
-
-    // // Human-readable info. Retired 20180206 ATL.
-    // string description = 2;
-
     // UUID. An opaque string used by the controlplane as a unique ID.
-    string uuid = 3;
+    string uuid = 1;
 
     // The config 'revision', an opaque integer used by the controlplane to
     // identify a configuration iteration. This is deliberately matched to the
     // revision field in etcd ResponseHeader.revision.
-    int64 revision = 4;
+    int64 revision = 2;
 
     // Latch for the versioning system. If true, updates will fail unless the
     // generation of the change is newer than the existing value.
-    bool versioned = 5;
+    bool versioned = 3;
 }
 
 /**
@@ -139,25 +133,6 @@ message VolumeCrypto {
 /**
  ** Status.
  **/
-
-message DaemonStatus {
-    enum ProgramState {
-        DS_NONE = 0;      // Status not set.
-        DS_STARTING = 1;  // Program is starting.
-        DS_READY = 2;     // Program has started and is ready to process requests.
-        DS_STOPPING = 3;  // Program has begun to shut down.
-        DS_STOPPED = 4;   // Program has shut down and may be safely terminated.
-        DS_ERROR = 5;     // Program has encountered an error and should be
-                          // considered failed.
-        DS_CRITICAL = 6;  // Program has encountered a serious error and
-                          // requires intervention.
-    }
-
-    ProgramState program_state = 1;
-
-    string program_state_message = 2;
-}
-
 enum ConfigGetStatus {
     GET_NONE = 0;     // Status not set.
     GET_OK = 1;       // Fetch ok.
