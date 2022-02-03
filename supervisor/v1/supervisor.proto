@@ -162,15 +162,6 @@ message PresentationScsiDevice {
 //
 service Supervisor {
     // ----------------- CONFIGURATIONS RPCS -------------------------------
-
-    // Get various information about the state of the dataplane
-    // We also bundle up information regarding the consumer counts
-    //
-    // On success rpc_result.success will be set to true. On failure it will
-    // be set to false and rpc_result.code will be set to STATUS_*.
-    // rpc_result.reason may be set.
-    rpc Status(SupervisorStatusRequest) returns (SupervisorStatusResponse) {}
-
     // Creates deployment. Either a master or a replica. The CP should signals
     // which by setting the `deployment_type` field within the DeploymentConfig
     // message type. Like all "Configure*" RPCs this method has "create if not
@@ -332,22 +323,6 @@ service Supervisor {
     rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
 }
 
-message SupervisorStatusRequest {}
-
-message SupervisorStatusResponse {
-    // In the event of failure, what went wrong
-    common.v1.RpcResult rpc_result = 1;
-
-    // Generic daemon status.
-    common.v1.DaemonStatus status = 2;
-
-    // Composite Id Mapper status.
-    IdMapperStatus idmap_status = 3;
-
-    // Composite consumer count status.
-    ConsumerCountStatus cc_status = 4;
-}
-
 message ConfigureDeploymentRequest {
     DeploymentConfig config = 1;
 }
@@ -426,45 +401,6 @@ message DumpConfigResponse {
 }
 
 // INTERNAL APIS ------------------------------------------------------------
-
-/**
- ** Id Mapper status.
- **/
-
-message IdMapping {
-    string uuid = 1;
-    uint32 inode = 2;
-}
-
-message IdMapperStatus {
-    enum MapMode {
-        NOTSET = 0;  // No value (new dataplane, never been configured).
-        GSI = 1;     // Global-scope IDs (v1).
-        NLI = 2;     // Node-local IDs (v2).
-    };
-
-    // The map mode, only valid if mode_set==true.
-    MapMode mode = 2;
-
-    // A list of mappings.
-    repeated IdMapping mappings = 3;
-}
-
-/**
- ** Consumer count storage status.
- **/
-
-message ConsumerCountStatus {
-    // Just a list of counts and mappings.
-    repeated ConsumerCountEntry ccs = 1;
-}
-
-message ConsumerCountEntry {
-    // The mapping for which we're returning a CC.
-    IdMapping mapping = 1;
-    // The cc for the provided mapping.
-    common.v1.ConsumerCount cc = 2;
-}
 
 /**
  ** Deployment hash lists (sync).
