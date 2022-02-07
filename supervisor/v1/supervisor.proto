@@ -145,6 +145,17 @@ message PresentationScsiDevice {
 //                                            DeconfigureDeployment()
 //
 service Supervisor {
+    // Query the status of the dataplane. At the moment there's nothing actually interesting in the
+    // response type. Simply calling this RPC and receiving a response denotes that the dataplane is
+    // up and running an ready to service RPCs. This API comes in useful in scripts which want to
+    // poll until the dataplane is ready (for example in the DPLL systemd scripts) and in contexts
+    // where we want to explicitly check the network connection to the DP (for example in Symmetra).
+    // Note: there's some overlap in functionality with the dataplane Event server, which sends
+    // EventDataplaneStartupFinished and EventDataplaneShutdownComplete messages on startup and
+    // shutdown respectively. The CP should favour using the event server API to ascertain when the
+    // dataplane is started and ready to receive RPC requests.
+    rpc Status(StatusRequest) returns (StatusResponse) {}
+
     // ----------------- CONFIGURATIONS RPCS -------------------------------
     // Creates deployment. Either a master or a replica. The CP should signals
     // which by setting the `deployment_type` field within the DeploymentConfig
@@ -306,6 +317,10 @@ service Supervisor {
     // for dataplane tooling and tests.
     rpc Metrics(MetricsRequest) returns (MetricsResponse) {}
 }
+
+message StatusRequest {}
+
+message StatusResponse {}
 
 message ConfigureDeploymentRequest {
     DeploymentConfig config = 1;
