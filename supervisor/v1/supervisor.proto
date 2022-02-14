@@ -41,15 +41,11 @@ message DeploymentConfig {
         // The replica deployment's UUID
         string uuid = 1;
 
-        // Not for CP use. The internal deployment ID used by the dataplane
-        // Useful for dataplane testing and not much else
-        uint32 id = 2;
-
         // In practice this must always be present when the Dataplane is being
         // managed by the CP. There's no such thing as a local replica in
         // production. For the purpose of DP testing this feild can be empty,
         // which signifies the replica is local to the master
-        optional NodeConfig opt_node_config = 3;
+        optional NodeConfig opt_node_config = 2;
     }
 
     // Is this a master or a replica?
@@ -58,23 +54,19 @@ message DeploymentConfig {
     // The deployment's UUID
     string uuid = 2;
 
-    // Not for CP use. The internal deployment ID used by the dataplane
-    // Useful for dataplane testing and not much else
-    uint32 id = 3;
-
     // Whether the deployment uses compression. In reality this is a per volume
     // option. All deployments should use compression if the volume uses
     // compression. This field is also sticky, you can't choose to undo at a
     // later date. Compression is applied to the underlying block data which
     // is stored in the blob files. Normally we recommend disabling compression.
-    bool uses_compression = 4;
+    bool uses_compression = 3;
 
     // The consumer count for the volume.
-    common.v1.ConsumerCount cc = 5;
+    common.v1.ConsumerCount cc = 4;
 
     // The replicas associated with this deployment. This field is only
     // valid if the deployment is a master deployment.
-    repeated ReplicaAndLocation replicas = 6;
+    repeated ReplicaAndLocation replicas = 5;
 }
 
 message PresentationConfig {
@@ -83,41 +75,33 @@ message PresentationConfig {
     // will make debugging a nightmare.
     string presentation_uuid = 1;
 
-    // Not for CP use. The internal master deployment ID used by the dataplane
-    // Useful for dataplane testing and not much else
-    uint32 presentation_id = 2;
-
     // The filename of the block device we'll create for the volume under
     // /var/lib/storageos/volumes. Historically v.<volume_uuid>. Calling it
     // anything else will make debugging a nightmare.
-    string filename = 3;
+    string filename = 2;
 
     // The deployment we are presenting (always the master deployment).
-    string deployment_uuid = 4;
-
-    // Not for CP use. The internal master deployment ID used by the dataplane
-    // Useful for dataplane testing and not much else
-    uint32 deployment_id = 5;
+    string deployment_uuid = 3;
 
     // The size of the volume in bytes
-    uint64 size = 6;
+    uint64 size = 4;
 
     // Even though compression is applied on the deployments at the point where we we store
     // the blocks we need to know whether we are using compression when configuring the
     // presentation. This is because we disallow UNMAP support on block devices which are backing
     // compressed volumes (for performance reasons).
-    bool uses_compression = 7;
+    bool uses_compression = 5;
 
     // The consumer count of the volume
-    common.v1.ConsumerCount cc = 8;
+    common.v1.ConsumerCount cc = 6;
 
     // Only present if the volume's master is on a remote node
-    optional NodeConfig opt_node_config = 9;
+    optional NodeConfig opt_node_config = 7;
 
     // If the volume is using encryption then the crypo parameters should be
     // specified here. Once we've started using encryption on a volume it's
     // impossible to undo it. The opposite is also true.
-    optional common.v1.VolumeCrypto opt_volume_crypto = 10;
+    optional common.v1.VolumeCrypto opt_volume_crypto = 8;
 }
 
 message PresentationScsiDevice {
@@ -348,7 +332,6 @@ message ConfigureDeploymentResponse {
 
 message DeconfigureDeploymentRequest {
     string uuid = 1;
-    uint32 id = 2;
 }
 
 message DeconfigureDeploymentResponse {
@@ -357,7 +340,6 @@ message DeconfigureDeploymentResponse {
 
 message DeleteDeploymentRequest {
     string uuid = 1;
-    uint32 id = 2;
 }
 
 message DeleteDeploymentResponse {
@@ -375,7 +357,6 @@ message ConfigurePresentationResponse {
 
 message DeconfigurePresentationRequest {
     string presentation_uuid = 1;
-    uint32 presentation_id = 2;
 }
 
 message DeconfigurePresentationResponse {
@@ -384,8 +365,7 @@ message DeconfigurePresentationResponse {
 
 message SetConsumerCountRequest {
     string uuid = 1;
-    uint32 id = 2;
-    common.v1.ConsumerCount cc = 3;
+    common.v1.ConsumerCount cc = 2;
 }
 
 message SetConsumerCountResponse {
@@ -395,7 +375,6 @@ message SetConsumerCountResponse {
 
 message GetConsumerCountRequest {
     string uuid = 1;
-    uint32 id = 2;
 }
 
 message GetConsumerCountResponse {
@@ -450,37 +429,34 @@ message DeploymentHash {
 // Note: the response to this message, DeploymentHashListResponse, is chunked
 // (streamed in gRPC parlance).
 message DeploymentHashListRequest {
-    // The deployment we want to generate a hash over
-    uint32 deployment_id = 1;
-
     // The deployment UUID we want to generate a hash over.
-    string deployment_uuid = 2;
+    string deployment_uuid = 1;
 
-    // Defines the byte offset into `deployment_id` at which we'll start hash list
+    // Defines the byte offset into `deployment_uuid` at which we'll start hash list
     // generation.
-    uint64 start_offset = 3;
+    uint64 start_offset = 2;
 
-    // Defines the byte offset into `deployment_id` at which we'll end hash list
+    // Defines the byte offset into `deployment_uuid` at which we'll end hash list
     // generation.
-    uint64 end_offset = 4;
+    uint64 end_offset = 3;
 
     // When generating the hash list we do so by rolling together individual
     // block hashes into a region hash. This field defines the size of that
     // region in bytes. It must be multiple of RIXIO_BSIZE. By giving the option
     // for clients to specify this size they can optimise based on deployment size
     // and required sync granularity.
-    uint64 region_size = 5;
+    uint64 region_size = 4;
 
     // This field is redundant (i.e it's ignored) as of release v2.5.0. We've
     // had to keep it in order that we don't break older builds which pin the
     // service repo to origin/main rather than an explicit commit. See a more
     // thorough explanation on the Sync RPC documentation in this file (DP-452).
-    bool is_compressed = 6;
+    bool is_compressed = 5;
 
     // The SyncContext, initially generated by symmetra, associated with the
     // over-arching sync operation This field is purely used for logging, so
     // there's no harm in not setting it in test code
-    SyncContext sync_context = 7;
+    SyncContext sync_context = 6;
 }
 
 // This message is streamed back to the client in response to a
@@ -495,10 +471,10 @@ message DeploymentHashListResponse {
     // initial DeploymentHashListRequest
     DeploymentHash deployment_hash = 1;
 
-    // Defines the byte offset into `deployment_id` at which hash_list[0] begins.
+    // Defines the byte offset into `deployment_uuid` at which hash_list[0] begins.
     uint64 start_offset = 2;
 
-    // Defines the byte offset into `deployment_id` at which hash_list[max] ends.
+    // Defines the byte offset into `deployment_uuid` at which hash_list[max] ends.
     uint64 end_offset = 3;
 
     // A list of region hashes pertaining to the regions defined by the byte
@@ -530,23 +506,13 @@ message Metric {
 }
 
 message MetricsRequest {
-    // A list of volumes to query (by internal ID). If this and uuids is left empty
-    // we'll return metrics for all volumes which are configured.
-    repeated uint32 ids = 1;
-
     // A list of volume to query (by uuid). If this and uuids is left empty
     // we'll return metrircs for all volumes which are configured.
-    repeated string uuids = 2;
+    repeated string uuids = 1;
 }
 
 message VolumeMetrics {
-    // The volume this collection of metrics belongs to
-    uint32 id = 1;
-
-    // The volume this collection of metrics belongs to
-    string uuid = 2;
-
-    repeated Metric metrics = 3;
+    repeated Metric metrics = 1;
 }
 
 // Node-level metrics are metrics which aren't specific to a volume.
@@ -556,7 +522,7 @@ message NodeMetrics {
 
 message MetricsResponse {
     // Per volume stats. One collection of metrics per requested volume.
-    repeated VolumeMetrics volume_metrics = 1;
+    map<string, VolumeMetrics> volume_metrics = 1;
 
     // Per node stats. One collection per node.
     NodeMetrics node_metrics = 2;
@@ -609,35 +575,27 @@ message SyncRegion {
 }
 
 message SyncRegionsRequest {
-    // The source volume ID.
-    uint32 source_id = 1;
-
     // The source UUID.
-    // This field is used as the volume identifier over destination_id if
-    // destination_id is set to INVALID_INODE;
-    string source_uuid = 2;
-
-    // The destination volume ID.
-    uint32 destination_id = 3;
+    string source_uuid = 1;
 
     // The destination UUID.
     // This field is used as the volume identifier over destination_volume if
     // destination_volume is set to INVALID_INODE;
-    string destination_uuid = 4;
+    string destination_uuid = 2;
 
     // The regions to sync
-    repeated SyncRegion regions = 5;
+    repeated SyncRegion regions = 3;
 
     // Whether the sync should be forced. If this flag is set we'll overwrite
     // every sync block transaction ID with TransactionId{node_cc, 0}, where
     // node_cc is the consumer count of the source volume. See sync2020.pdf for
     // the rationale behind this.
-    bool force = 6;
+    bool force = 4;
 
     // The SyncContext, initially generated by symmetra, associated with the
     // over-arching sync operation This field is purely used for logging, so
     // there's no harm in not setting it in test code
-    SyncContext sync_context = 7;
+    SyncContext sync_context = 5;
 
     // If set we'll wait for the network connection between the sync source (the
     // master) and the sync target (the replica) to establish before trying to
@@ -665,7 +623,7 @@ message SyncRegionsRequest {
     // SyncRegionsRequest sent by symmetra for a given sync operation. All
     // subsequent requests will set the boolean to false - we don't want to
     // stall the sync process by continually waiting for a flappy network.
-    bool wait_for_connection_established = 8;
+    bool wait_for_connection_established = 6;
 }
 
 message SyncRegionsResponse {
