@@ -102,6 +102,9 @@ message PresentationConfig {
     // specified here. Once we've started using encryption on a volume it's
     // impossible to undo it. The opposite is also true.
     optional common.v1.VolumeCrypto opt_volume_crypto = 8;
+
+    // if set, we're presenting a snapshot
+    optional uint64 snapshot_id = 9;
 }
 
 message PresentationScsiDevice {
@@ -271,6 +274,12 @@ service Supervisor {
     // Dump the dataplane's current configuration
     rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
 
+    // Create a snapshot
+    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
+    // Delete a snapshot
+    rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -392,6 +401,24 @@ message DumpConfigResponse {
     map<string, DeploymentConfigBundle> deployments = 1;
     map<string, PresentationConfigBundle> presentations = 2;
     map<string, Connection> connections = 3;
+}
+
+message CreateSnapshotRequest {
+    string deployment_uuid = 1;
+    uint64 snapshot_id = 2;
+}
+
+message CreateSnapshotResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message ReapSnapshotRequest {
+    string deployment_uuid = 1;
+    uint64 snapshot_id = 2;
+}
+
+message ReapSnapshotResponse {
+    common.v1.RpcResult rpc_result = 1;
 }
 
 // INTERNAL APIS ------------------------------------------------------------
