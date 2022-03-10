@@ -104,7 +104,7 @@ message PresentationConfig {
     optional common.v1.VolumeCrypto opt_volume_crypto = 8;
 
     // if set, we're presenting a snapshot
-    optional uint64 snapshot_id = 9;
+    optional uint64 opt_snapshot_id = 9;
 }
 
 message PresentationScsiDevice {
