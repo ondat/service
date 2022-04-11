@@ -1,5 +1,5 @@
 syntax = "proto3";
-package common.v1;
+package service.common.v1;
 option go_package = "code.storageos.net/storageos/service/common/v1";
 
 /**
