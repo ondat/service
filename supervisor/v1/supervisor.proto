@@ -2,7 +2,7 @@ syntax = "proto3";
 package service.supervisor.v1;
 option go_package = "code.storageos.net/storageos/service/supervisor/v1";
 
-import "code.storageos.net/storageos/service/common/v1/common.proto";
+import "common/v1/common.proto";
 
 // The type of the deployment.
 enum DeploymentType {
