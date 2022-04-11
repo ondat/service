@@ -1,21 +1,47 @@
-FROM registry.hub.docker.com/soegarots/build-rhel8:20211120-0070
+FROM docker.io/rockylinux:8
+
+# Standard packages first.
+RUN yum install -y clang cmake gcc git make
+
+# Install gRPC for C++. The switches to turn off other languages don't seem
+# to work.
+ENV GRPC_CPP_VERSION=1.45.2
+RUN cd /tmp && \
+  git clone --depth 1 https://github.com/grpc/grpc.git && \
+  cd grpc && \
+  git checkout -b "$GRPC_CPP_VERSION" && \
+  git submodule update --init --depth 1 && \
+  cd /tmp && \
+  cd grpc && \
+  mkdir -p cmake/build && \
+  cd cmake/build && \
+  cmake \
+  -DABSL_PROPAGATE_CXX_STD=ON \
+  -DCMAKE_INSTALL_PREFIX=/usr/local \
+  -DCMAKE_CXX_STANDARD=17 \
+  ../.. && \
+  make -j$(nproc) && \
+  make install && \
+  rm -rf /tmp/grpc
 
 # Install a go environment
-ENV GOLANG_VERSION 1.15.1
-ENV GOLANG_DOWNLOAD_SHA256 70ac0dbf60a8ee9236f337ed0daa7a4c3b98f6186d4497826f68e97c0c0413f6
+ENV GOLANG_VERSION 1.18
+ENV GOLANG_DOWNLOAD_SHA256 e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
   && echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
   && tar -C /usr/local -xzf golang.tar.gz \
   && rm golang.tar.gz
 ENV GOPATH /go
+RUN rm -rf $GOPATH && mkdir -p $GOPATH
 ENV PATH $GOPATH/bin:/usr/local/go/bin:/opt/storageos/bin:$PATH
 
-# soegarots/dataplane-build:latest contains the dataplane C++ versions of protobuf and grpc.
-
-RUN yum install -y git make
-RUN go get -d -u github.com/golang/protobuf/protoc-gen-go \
-    && go install github.com/golang/protobuf/protoc-gen-go
+RUN go install golang.org/x/tools/...@latest
+RUN go install github.com/bufbuild/buf/cmd/buf@v1.3.1
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.0
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2.0
+# Nothing uses the mockgen target but it doesn't hurt.
+RUN go install github.com/golang/mock/mockgen@v1.6.0
 
 WORKDIR /go/src/code.storageos.net/storageos/service
 ENV DAPPER_SOURCE /go/src/code.storageos.net/storageos/service
