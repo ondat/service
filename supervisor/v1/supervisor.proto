@@ -280,6 +280,9 @@ service Supervisor {
     // Delete a snapshot
     rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
 
+    // List all snapshots for one deployment
+    rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse) {}
+
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}
     rpc ConfigUpdateBool(common.v1.ConfigBool) returns (common.v1.ConfigUpdateReply) {}
@@ -391,11 +394,18 @@ message GetConsumerCountResponse {
     common.v1.ConsumerCount cc = 2;
 }
 
+message Snapshot {
+    uint64 snapshot_id = 1;
+}
+
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
     // We declare a wrapper type so we can easily add new fields in the future
-    message DeploymentConfigBundle { DeploymentConfig config = 1; }
+    message DeploymentConfigBundle {
+        DeploymentConfig config = 1;
+        repeated Snapshot snapshots = 2;
+    }
     message PresentationConfigBundle { PresentationConfig config = 1; }
 
     map<string, DeploymentConfigBundle> deployments = 1;
@@ -419,6 +429,14 @@ message ReapSnapshotRequest {
 
 message ReapSnapshotResponse {
     common.v1.RpcResult rpc_result = 1;
+}
+
+message ListSnapshotsRequest {
+    string deployment_uuid = 1;
+}
+
+message ListSnapshotsResponse {
+    repeated Snapshot snapshots = 1;
 }
 
 // INTERNAL APIS ------------------------------------------------------------
