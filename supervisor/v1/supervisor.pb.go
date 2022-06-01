@@ -335,7 +335,8 @@ type PresentationConfig struct {
 	// specified here. Once we've started using encryption on a volume it's
 	// impossible to undo it. The opposite is also true.
 	OptVolumeCrypto *v1.VolumeCrypto `protobuf:"bytes,8,opt,name=opt_volume_crypto,json=optVolumeCrypto,proto3,oneof" json:"opt_volume_crypto,omitempty"`
-	// if set, we're presenting a snapshot
+	// If this field is set it denotes that we are presenting a snapshot. Snapshot
+	// presentations are read-only.
 	OptSnapshotId *uint64 `protobuf:"varint,9,opt,name=opt_snapshot_id,json=optSnapshotId,proto3,oneof" json:"opt_snapshot_id,omitempty"`
 }
 
