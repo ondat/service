@@ -246,6 +246,33 @@ service Supervisor {
     rpc DeconfigurePresentation(DeconfigurePresentationRequest)
         returns (DeconfigurePresentationResponse) {}
 
+    // Create a snapshot of a deployment. This API must only be called for the volume's
+    // master deployment and on the node which houses said deployment. The user must
+    // provide a per-deployment-unique 64bit snapshot ID in the CreateSnapshotRequest.
+    // This ID is used, along with the master deployment ID, to uniquely identify the
+    // snapshot in subsequent ConfigurePresentation, DeconfigurePresentation, ListSnapshots
+    // and ReapSnapshot RPCs. Snapshots can only be accessed by configuring a presentation
+    // and supplying the `opt_snapshot_id` field. Snapshots may only be accessed read-only.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
+    // Delete a snapshot of a deployment. This API must only be called for the volume's
+    // master deployment and on the node which houses said deployment. The user must
+    // specify the snapshot ID, which was provided in the previous CreateSnapshot RPC.
+    //
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to deconfigure is not configured. For all other errors rpc_result.code
+    // will be set to STATUS_*. In all failure case rpc_result.reason may be set.
+    rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
+
+    // List all snapshots which exist for for a given deployment.
+    rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse) {}
+
     // Set the consumer count for a deployment. This should only ever be called
     // on the master deployment (we don't ever need to set the consumer count
     // on a replica). The CP only needs to call this API when it wants to
@@ -273,15 +300,6 @@ service Supervisor {
 
     // Dump the dataplane's current configuration
     rpc DumpConfig(DumpConfigRequest) returns (DumpConfigResponse) {}
-
-    // Create a snapshot
-    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
-
-    // Delete a snapshot
-    rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
-
-    // List all snapshots for one deployment
-    rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse) {}
 
     // Config services, from common.v1.
     rpc ConfigGetBool(common.v1.ConfigKey) returns (common.v1.ConfigGetBoolReply) {}

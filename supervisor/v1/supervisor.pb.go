@@ -3688,42 +3688,42 @@ var file_supervisor_proto_rawDesc = []byte{
 	0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x44,
 	0x65, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65, 0x50, 0x72, 0x65, 0x73, 0x65, 0x6e,
 	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x12, 0x65, 0x0a, 0x10, 0x53, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f,
-	0x72, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73,
-	0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74,
-	0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x65, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x43, 0x6f,
-	0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x2e, 0x73, 0x75,
-	0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43,
-	0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72,
-	0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x53,
-	0x0a, 0x0a, 0x44, 0x75, 0x6d, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x20, 0x2e, 0x73,
-	0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x75, 0x6d,
-	0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21,
-	0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x44,
-	0x75, 0x6d, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x12, 0x5f, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6e, 0x61,
-	0x70, 0x73, 0x68, 0x6f, 0x74, 0x12, 0x24, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73,
-	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6e, 0x61, 0x70,
-	0x73, 0x68, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x73, 0x75,
-	0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x00, 0x12, 0x59, 0x0a, 0x0c, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61, 0x70,
-	0x73, 0x68, 0x6f, 0x74, 0x12, 0x22, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f,
-	0x72, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f,
-	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72,
-	0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61,
-	0x70, 0x73, 0x68, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
-	0x5c, 0x0a, 0x0d, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x73,
-	0x12, 0x23, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31,
-	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73,
-	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68,
-	0x6f, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x46, 0x0a,
+	0x12, 0x5f, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68,
+	0x6f, 0x74, 0x12, 0x24, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e,
+	0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72,
+	0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53,
+	0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x59, 0x0a, 0x0c, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f,
+	0x74, 0x12, 0x22, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76,
+	0x31, 0x2e, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73,
+	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65, 0x61, 0x70, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68,
+	0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5c, 0x0a, 0x0d,
+	0x4c, 0x69, 0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x73, 0x12, 0x23, 0x2e,
+	0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69,
+	0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e,
+	0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x65, 0x0a, 0x10, 0x53, 0x65,
+	0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26,
+	0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x53,
+	0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69,
+	0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d,
+	0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x00, 0x12, 0x65, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73,
+	0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65,
+	0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e,
+	0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65,
+	0x74, 0x43, 0x6f, 0x6e, 0x73, 0x75, 0x6d, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x53, 0x0a, 0x0a, 0x44, 0x75, 0x6d, 0x70,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x20, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72, 0x76, 0x69,
+	0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x75, 0x6d, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x73, 0x75, 0x70, 0x65, 0x72,
+	0x76, 0x69, 0x73, 0x6f, 0x72, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x75, 0x6d, 0x70, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x46, 0x0a,
 	0x0d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6c, 0x12, 0x14,
 	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69,
 	0x67, 0x4b, 0x65, 0x79, 0x1a, 0x1d, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x76, 0x31,
@@ -3975,12 +3975,12 @@ var file_supervisor_proto_depIdxs = []int32{
 	12, // 53: supervisor.v1.Supervisor.DeleteDeployment:input_type -> supervisor.v1.DeleteDeploymentRequest
 	14, // 54: supervisor.v1.Supervisor.ConfigurePresentation:input_type -> supervisor.v1.ConfigurePresentationRequest
 	16, // 55: supervisor.v1.Supervisor.DeconfigurePresentation:input_type -> supervisor.v1.DeconfigurePresentationRequest
-	18, // 56: supervisor.v1.Supervisor.SetConsumerCount:input_type -> supervisor.v1.SetConsumerCountRequest
-	20, // 57: supervisor.v1.Supervisor.GetConsumerCount:input_type -> supervisor.v1.GetConsumerCountRequest
-	23, // 58: supervisor.v1.Supervisor.DumpConfig:input_type -> supervisor.v1.DumpConfigRequest
-	25, // 59: supervisor.v1.Supervisor.CreateSnapshot:input_type -> supervisor.v1.CreateSnapshotRequest
-	27, // 60: supervisor.v1.Supervisor.ReapSnapshot:input_type -> supervisor.v1.ReapSnapshotRequest
-	29, // 61: supervisor.v1.Supervisor.ListSnapshots:input_type -> supervisor.v1.ListSnapshotsRequest
+	25, // 56: supervisor.v1.Supervisor.CreateSnapshot:input_type -> supervisor.v1.CreateSnapshotRequest
+	27, // 57: supervisor.v1.Supervisor.ReapSnapshot:input_type -> supervisor.v1.ReapSnapshotRequest
+	29, // 58: supervisor.v1.Supervisor.ListSnapshots:input_type -> supervisor.v1.ListSnapshotsRequest
+	18, // 59: supervisor.v1.Supervisor.SetConsumerCount:input_type -> supervisor.v1.SetConsumerCountRequest
+	20, // 60: supervisor.v1.Supervisor.GetConsumerCount:input_type -> supervisor.v1.GetConsumerCountRequest
+	23, // 61: supervisor.v1.Supervisor.DumpConfig:input_type -> supervisor.v1.DumpConfigRequest
 	63, // 62: supervisor.v1.Supervisor.ConfigGetBool:input_type -> common.v1.ConfigKey
 	64, // 63: supervisor.v1.Supervisor.ConfigUpdateBool:input_type -> common.v1.ConfigBool
 	65, // 64: supervisor.v1.Supervisor.ConfigListBool:input_type -> common.v1.ConfigListQuery
@@ -4005,12 +4005,12 @@ var file_supervisor_proto_depIdxs = []int32{
 	13, // 83: supervisor.v1.Supervisor.DeleteDeployment:output_type -> supervisor.v1.DeleteDeploymentResponse
 	15, // 84: supervisor.v1.Supervisor.ConfigurePresentation:output_type -> supervisor.v1.ConfigurePresentationResponse
 	17, // 85: supervisor.v1.Supervisor.DeconfigurePresentation:output_type -> supervisor.v1.DeconfigurePresentationResponse
-	19, // 86: supervisor.v1.Supervisor.SetConsumerCount:output_type -> supervisor.v1.SetConsumerCountResponse
-	21, // 87: supervisor.v1.Supervisor.GetConsumerCount:output_type -> supervisor.v1.GetConsumerCountResponse
-	24, // 88: supervisor.v1.Supervisor.DumpConfig:output_type -> supervisor.v1.DumpConfigResponse
-	26, // 89: supervisor.v1.Supervisor.CreateSnapshot:output_type -> supervisor.v1.CreateSnapshotResponse
-	28, // 90: supervisor.v1.Supervisor.ReapSnapshot:output_type -> supervisor.v1.ReapSnapshotResponse
-	30, // 91: supervisor.v1.Supervisor.ListSnapshots:output_type -> supervisor.v1.ListSnapshotsResponse
+	26, // 86: supervisor.v1.Supervisor.CreateSnapshot:output_type -> supervisor.v1.CreateSnapshotResponse
+	28, // 87: supervisor.v1.Supervisor.ReapSnapshot:output_type -> supervisor.v1.ReapSnapshotResponse
+	30, // 88: supervisor.v1.Supervisor.ListSnapshots:output_type -> supervisor.v1.ListSnapshotsResponse
+	19, // 89: supervisor.v1.Supervisor.SetConsumerCount:output_type -> supervisor.v1.SetConsumerCountResponse
+	21, // 90: supervisor.v1.Supervisor.GetConsumerCount:output_type -> supervisor.v1.GetConsumerCountResponse
+	24, // 91: supervisor.v1.Supervisor.DumpConfig:output_type -> supervisor.v1.DumpConfigResponse
 	69, // 92: supervisor.v1.Supervisor.ConfigGetBool:output_type -> common.v1.ConfigGetBoolReply
 	70, // 93: supervisor.v1.Supervisor.ConfigUpdateBool:output_type -> common.v1.ConfigUpdateReply
 	71, // 94: supervisor.v1.Supervisor.ConfigListBool:output_type -> common.v1.ConfigBoolList
@@ -4804,6 +4804,30 @@ type SupervisorClient interface {
 	// rpc_result.code will be set to STATUS_*. In all failure case
 	// rpc_result.reason may be set.
 	DeconfigurePresentation(ctx context.Context, in *DeconfigurePresentationRequest, opts ...grpc.CallOption) (*DeconfigurePresentationResponse, error)
+	// Create a snapshot of a deployment. This API must only be called for the volume's
+	// master deployment and on the node which houses said deployment. The user must
+	// provide a per-deployment-unique 64bit snapshot ID in the CreateSnapshotRequest.
+	// This ID is used, along with the master deployment ID, to uniquely identify the
+	// snapshot in subsequent ConfigurePresentation, DeconfigurePresentation, ListSnapshots
+	// and ReapSnapshot RPCs. Snapshots can only be accessed by configuring a presentation
+	// and supplying the `opt_snapshot_id` field. Snapshots may only be accessed read-only.
+	//
+	// On success rpc_result.success will be set to true. On failure it will
+	// be set to false and rpc_result.code will be set to STATUS_*.
+	// rpc_result.reason may be set.
+	CreateSnapshot(ctx context.Context, in *CreateSnapshotRequest, opts ...grpc.CallOption) (*CreateSnapshotResponse, error)
+	// Delete a snapshot of a deployment. This API must only be called for the volume's
+	// master deployment and on the node which houses said deployment. The user must
+	// specify the snapshot ID, which was provided in the previous CreateSnapshot RPC.
+	//
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to deconfigure is not configured. For all other errors rpc_result.code
+	// will be set to STATUS_*. In all failure case rpc_result.reason may be set.
+	ReapSnapshot(ctx context.Context, in *ReapSnapshotRequest, opts ...grpc.CallOption) (*ReapSnapshotResponse, error)
+	// List all snapshots which exist for for a given deployment.
+	ListSnapshots(ctx context.Context, in *ListSnapshotsRequest, opts ...grpc.CallOption) (*ListSnapshotsResponse, error)
 	// Set the consumer count for a deployment. This should only ever be called
 	// on the master deployment (we don't ever need to set the consumer count
 	// on a replica). The CP only needs to call this API when it wants to
@@ -4829,12 +4853,6 @@ type SupervisorClient interface {
 	GetConsumerCount(ctx context.Context, in *GetConsumerCountRequest, opts ...grpc.CallOption) (*GetConsumerCountResponse, error)
 	// Dump the dataplane's current configuration
 	DumpConfig(ctx context.Context, in *DumpConfigRequest, opts ...grpc.CallOption) (*DumpConfigResponse, error)
-	// Create a snapshot
-	CreateSnapshot(ctx context.Context, in *CreateSnapshotRequest, opts ...grpc.CallOption) (*CreateSnapshotResponse, error)
-	// Delete a snapshot
-	ReapSnapshot(ctx context.Context, in *ReapSnapshotRequest, opts ...grpc.CallOption) (*ReapSnapshotResponse, error)
-	// List all snapshots for one deployment
-	ListSnapshots(ctx context.Context, in *ListSnapshotsRequest, opts ...grpc.CallOption) (*ListSnapshotsResponse, error)
 	// Config services, from common.v1.
 	ConfigGetBool(ctx context.Context, in *v1.ConfigKey, opts ...grpc.CallOption) (*v1.ConfigGetBoolReply, error)
 	ConfigUpdateBool(ctx context.Context, in *v1.ConfigBool, opts ...grpc.CallOption) (*v1.ConfigUpdateReply, error)
@@ -4935,33 +4953,6 @@ func (c *supervisorClient) DeconfigurePresentation(ctx context.Context, in *Deco
 	return out, nil
 }
 
-func (c *supervisorClient) SetConsumerCount(ctx context.Context, in *SetConsumerCountRequest, opts ...grpc.CallOption) (*SetConsumerCountResponse, error) {
-	out := new(SetConsumerCountResponse)
-	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/SetConsumerCount", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *supervisorClient) GetConsumerCount(ctx context.Context, in *GetConsumerCountRequest, opts ...grpc.CallOption) (*GetConsumerCountResponse, error) {
-	out := new(GetConsumerCountResponse)
-	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/GetConsumerCount", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *supervisorClient) DumpConfig(ctx context.Context, in *DumpConfigRequest, opts ...grpc.CallOption) (*DumpConfigResponse, error) {
-	out := new(DumpConfigResponse)
-	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/DumpConfig", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *supervisorClient) CreateSnapshot(ctx context.Context, in *CreateSnapshotRequest, opts ...grpc.CallOption) (*CreateSnapshotResponse, error) {
 	out := new(CreateSnapshotResponse)
 	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/CreateSnapshot", in, out, opts...)
@@ -4983,6 +4974,33 @@ func (c *supervisorClient) ReapSnapshot(ctx context.Context, in *ReapSnapshotReq
 func (c *supervisorClient) ListSnapshots(ctx context.Context, in *ListSnapshotsRequest, opts ...grpc.CallOption) (*ListSnapshotsResponse, error) {
 	out := new(ListSnapshotsResponse)
 	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/ListSnapshots", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *supervisorClient) SetConsumerCount(ctx context.Context, in *SetConsumerCountRequest, opts ...grpc.CallOption) (*SetConsumerCountResponse, error) {
+	out := new(SetConsumerCountResponse)
+	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/SetConsumerCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *supervisorClient) GetConsumerCount(ctx context.Context, in *GetConsumerCountRequest, opts ...grpc.CallOption) (*GetConsumerCountResponse, error) {
+	out := new(GetConsumerCountResponse)
+	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/GetConsumerCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *supervisorClient) DumpConfig(ctx context.Context, in *DumpConfigRequest, opts ...grpc.CallOption) (*DumpConfigResponse, error) {
+	out := new(DumpConfigResponse)
+	err := c.cc.Invoke(ctx, "/supervisor.v1.Supervisor/DumpConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -5265,6 +5283,30 @@ type SupervisorServer interface {
 	// rpc_result.code will be set to STATUS_*. In all failure case
 	// rpc_result.reason may be set.
 	DeconfigurePresentation(context.Context, *DeconfigurePresentationRequest) (*DeconfigurePresentationResponse, error)
+	// Create a snapshot of a deployment. This API must only be called for the volume's
+	// master deployment and on the node which houses said deployment. The user must
+	// provide a per-deployment-unique 64bit snapshot ID in the CreateSnapshotRequest.
+	// This ID is used, along with the master deployment ID, to uniquely identify the
+	// snapshot in subsequent ConfigurePresentation, DeconfigurePresentation, ListSnapshots
+	// and ReapSnapshot RPCs. Snapshots can only be accessed by configuring a presentation
+	// and supplying the `opt_snapshot_id` field. Snapshots may only be accessed read-only.
+	//
+	// On success rpc_result.success will be set to true. On failure it will
+	// be set to false and rpc_result.code will be set to STATUS_*.
+	// rpc_result.reason may be set.
+	CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error)
+	// Delete a snapshot of a deployment. This API must only be called for the volume's
+	// master deployment and on the node which houses said deployment. The user must
+	// specify the snapshot ID, which was provided in the previous CreateSnapshot RPC.
+	//
+	// On success rpc_result.success will be set to true. On failure it will be
+	// set to false and rpc_result.code will be set accordingly. The only specific
+	// code returned is STATUS_NOT_FOUND - this is set when the deployment you
+	// asked to deconfigure is not configured. For all other errors rpc_result.code
+	// will be set to STATUS_*. In all failure case rpc_result.reason may be set.
+	ReapSnapshot(context.Context, *ReapSnapshotRequest) (*ReapSnapshotResponse, error)
+	// List all snapshots which exist for for a given deployment.
+	ListSnapshots(context.Context, *ListSnapshotsRequest) (*ListSnapshotsResponse, error)
 	// Set the consumer count for a deployment. This should only ever be called
 	// on the master deployment (we don't ever need to set the consumer count
 	// on a replica). The CP only needs to call this API when it wants to
@@ -5290,12 +5332,6 @@ type SupervisorServer interface {
 	GetConsumerCount(context.Context, *GetConsumerCountRequest) (*GetConsumerCountResponse, error)
 	// Dump the dataplane's current configuration
 	DumpConfig(context.Context, *DumpConfigRequest) (*DumpConfigResponse, error)
-	// Create a snapshot
-	CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error)
-	// Delete a snapshot
-	ReapSnapshot(context.Context, *ReapSnapshotRequest) (*ReapSnapshotResponse, error)
-	// List all snapshots for one deployment
-	ListSnapshots(context.Context, *ListSnapshotsRequest) (*ListSnapshotsResponse, error)
 	// Config services, from common.v1.
 	ConfigGetBool(context.Context, *v1.ConfigKey) (*v1.ConfigGetBoolReply, error)
 	ConfigUpdateBool(context.Context, *v1.ConfigBool) (*v1.ConfigUpdateReply, error)
@@ -5356,15 +5392,6 @@ func (*UnimplementedSupervisorServer) ConfigurePresentation(context.Context, *Co
 func (*UnimplementedSupervisorServer) DeconfigurePresentation(context.Context, *DeconfigurePresentationRequest) (*DeconfigurePresentationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeconfigurePresentation not implemented")
 }
-func (*UnimplementedSupervisorServer) SetConsumerCount(context.Context, *SetConsumerCountRequest) (*SetConsumerCountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetConsumerCount not implemented")
-}
-func (*UnimplementedSupervisorServer) GetConsumerCount(context.Context, *GetConsumerCountRequest) (*GetConsumerCountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetConsumerCount not implemented")
-}
-func (*UnimplementedSupervisorServer) DumpConfig(context.Context, *DumpConfigRequest) (*DumpConfigResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DumpConfig not implemented")
-}
 func (*UnimplementedSupervisorServer) CreateSnapshot(context.Context, *CreateSnapshotRequest) (*CreateSnapshotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSnapshot not implemented")
 }
@@ -5373,6 +5400,15 @@ func (*UnimplementedSupervisorServer) ReapSnapshot(context.Context, *ReapSnapsho
 }
 func (*UnimplementedSupervisorServer) ListSnapshots(context.Context, *ListSnapshotsRequest) (*ListSnapshotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSnapshots not implemented")
+}
+func (*UnimplementedSupervisorServer) SetConsumerCount(context.Context, *SetConsumerCountRequest) (*SetConsumerCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetConsumerCount not implemented")
+}
+func (*UnimplementedSupervisorServer) GetConsumerCount(context.Context, *GetConsumerCountRequest) (*GetConsumerCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsumerCount not implemented")
+}
+func (*UnimplementedSupervisorServer) DumpConfig(context.Context, *DumpConfigRequest) (*DumpConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DumpConfig not implemented")
 }
 func (*UnimplementedSupervisorServer) ConfigGetBool(context.Context, *v1.ConfigKey) (*v1.ConfigGetBoolReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigGetBool not implemented")
@@ -5541,60 +5577,6 @@ func _Supervisor_DeconfigurePresentation_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Supervisor_SetConsumerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetConsumerCountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SupervisorServer).SetConsumerCount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/supervisor.v1.Supervisor/SetConsumerCount",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SupervisorServer).SetConsumerCount(ctx, req.(*SetConsumerCountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Supervisor_GetConsumerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetConsumerCountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SupervisorServer).GetConsumerCount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/supervisor.v1.Supervisor/GetConsumerCount",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SupervisorServer).GetConsumerCount(ctx, req.(*GetConsumerCountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Supervisor_DumpConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DumpConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SupervisorServer).DumpConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/supervisor.v1.Supervisor/DumpConfig",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SupervisorServer).DumpConfig(ctx, req.(*DumpConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Supervisor_CreateSnapshot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateSnapshotRequest)
 	if err := dec(in); err != nil {
@@ -5645,6 +5627,60 @@ func _Supervisor_ListSnapshots_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SupervisorServer).ListSnapshots(ctx, req.(*ListSnapshotsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Supervisor_SetConsumerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetConsumerCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupervisorServer).SetConsumerCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/supervisor.v1.Supervisor/SetConsumerCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupervisorServer).SetConsumerCount(ctx, req.(*SetConsumerCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Supervisor_GetConsumerCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsumerCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupervisorServer).GetConsumerCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/supervisor.v1.Supervisor/GetConsumerCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupervisorServer).GetConsumerCount(ctx, req.(*GetConsumerCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Supervisor_DumpConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DumpConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupervisorServer).DumpConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/supervisor.v1.Supervisor/DumpConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupervisorServer).DumpConfig(ctx, req.(*DumpConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -6005,18 +6041,6 @@ var _Supervisor_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Supervisor_DeconfigurePresentation_Handler,
 		},
 		{
-			MethodName: "SetConsumerCount",
-			Handler:    _Supervisor_SetConsumerCount_Handler,
-		},
-		{
-			MethodName: "GetConsumerCount",
-			Handler:    _Supervisor_GetConsumerCount_Handler,
-		},
-		{
-			MethodName: "DumpConfig",
-			Handler:    _Supervisor_DumpConfig_Handler,
-		},
-		{
 			MethodName: "CreateSnapshot",
 			Handler:    _Supervisor_CreateSnapshot_Handler,
 		},
@@ -6027,6 +6051,18 @@ var _Supervisor_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSnapshots",
 			Handler:    _Supervisor_ListSnapshots_Handler,
+		},
+		{
+			MethodName: "SetConsumerCount",
+			Handler:    _Supervisor_SetConsumerCount_Handler,
+		},
+		{
+			MethodName: "GetConsumerCount",
+			Handler:    _Supervisor_GetConsumerCount_Handler,
+		},
+		{
+			MethodName: "DumpConfig",
+			Handler:    _Supervisor_DumpConfig_Handler,
 		},
 		{
 			MethodName: "ConfigGetBool",
