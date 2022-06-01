@@ -70,9 +70,15 @@ message DeploymentConfig {
 }
 
 message PresentationConfig {
-    // An identifier for the presentation. There's no good reason why this should
-    // be anything other than the UUID of the volume. Calling it anything else
-    // will make debugging a nightmare.
+    // The volume that this presentation pertains to. This is used by the dataplane
+    // to decorate log messages with "volume_id=...". In the past we just used the
+    // presentation_uuid as this field. Now that we have snapshot volumes, which are
+    // in the form <parent_vol_id>/<snap_vol_id> we need a way to pass this field explicitly.
+    string volume_id = 10;
+
+    // A unique identifier for the presentation. There's no good reason why this should
+    // be anything other than the UUID of the volume. For snapshot volumes, which
+    // are in the form <parent_vol_id>/<snap_vol_id>. This should be the <snap_vol_id>
     string presentation_uuid = 1;
 
     // The filename of the block device we'll create for the volume under
