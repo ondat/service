@@ -70,9 +70,15 @@ message DeploymentConfig {
 }
 
 message PresentationConfig {
-    // An identifier for the presentation. There's no good reason why this should
-    // be anything other than the UUID of the volume. Calling it anything else
-    // will make debugging a nightmare.
+    // The volume that this presentation pertains to. This is used by the dataplane
+    // to decorate log messages with "volume_id=...". In the past we just used the
+    // presentation_uuid as this field. Now that we have snapshot volumes, which are
+    // in the form <parent_vol_id>/<snap_vol_id> we need a way to pass this field explicitly.
+    string volume_id = 10;
+
+    // A unique identifier for the presentation. There's no good reason why this should
+    // be anything other than the UUID of the volume. For snapshot volumes, which
+    // are in the form <parent_vol_id>/<snap_vol_id>. This should be the <snap_vol_id>
     string presentation_uuid = 1;
 
     // The filename of the block device we'll create for the volume under
@@ -102,6 +108,10 @@ message PresentationConfig {
     // specified here. Once we've started using encryption on a volume it's
     // impossible to undo it. The opposite is also true.
     optional common.v1.VolumeCrypto opt_volume_crypto = 8;
+
+    // If this field is set it denotes that we are presenting a snapshot. Snapshot
+    // presentations are read-only.
+    optional uint64 opt_snapshot_id = 9;
 }
 
 message PresentationScsiDevice {
@@ -243,6 +253,33 @@ service Supervisor {
     rpc DeconfigurePresentation(DeconfigurePresentationRequest)
         returns (DeconfigurePresentationResponse) {}
 
+    // Create a snapshot of a deployment. This API must only be called for the volume's
+    // master deployment and on the node which houses said deployment. The user must
+    // provide a per-deployment-unique 64bit snapshot ID in the CreateSnapshotRequest.
+    // This ID is used, along with the master deployment ID, to uniquely identify the
+    // snapshot in subsequent ConfigurePresentation, DeconfigurePresentation, ListSnapshots
+    // and ReapSnapshot RPCs. Snapshots can only be accessed by configuring a presentation
+    // and supplying the `opt_snapshot_id` field. Snapshots may only be accessed read-only.
+    //
+    // On success rpc_result.success will be set to true. On failure it will
+    // be set to false and rpc_result.code will be set to STATUS_*.
+    // rpc_result.reason may be set.
+    rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
+    // Delete a snapshot of a deployment. This API must only be called for the volume's
+    // master deployment and on the node which houses said deployment. The user must
+    // specify the snapshot ID, which was provided in the previous CreateSnapshot RPC.
+    //
+    // On success rpc_result.success will be set to true. On failure it will be
+    // set to false and rpc_result.code will be set accordingly. The only specific
+    // code returned is STATUS_NOT_FOUND - this is set when the deployment you
+    // asked to deconfigure is not configured. For all other errors rpc_result.code
+    // will be set to STATUS_*. In all failure case rpc_result.reason may be set.
+    rpc ReapSnapshot(ReapSnapshotRequest) returns (ReapSnapshotResponse) {}
+
+    // List all snapshots which exist for for a given deployment.
+    rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse) {}
+
     // Set the consumer count for a deployment. This should only ever be called
     // on the master deployment (we don't ever need to set the consumer count
     // on a replica). The CP only needs to call this API when it wants to
@@ -382,16 +419,49 @@ message GetConsumerCountResponse {
     common.v1.ConsumerCount cc = 2;
 }
 
+message Snapshot {
+    uint64 snapshot_id = 1;
+}
+
 message DumpConfigRequest {}
 
 message DumpConfigResponse {
     // We declare a wrapper type so we can easily add new fields in the future
-    message DeploymentConfigBundle { DeploymentConfig config = 1; }
+    message DeploymentConfigBundle {
+        DeploymentConfig config = 1;
+        repeated Snapshot snapshots = 2;
+    }
     message PresentationConfigBundle { PresentationConfig config = 1; }
 
     map<string, DeploymentConfigBundle> deployments = 1;
     map<string, PresentationConfigBundle> presentations = 2;
     map<string, Connection> connections = 3;
+}
+
+message CreateSnapshotRequest {
+    string deployment_uuid = 1;
+    uint64 snapshot_id = 2;
+}
+
+message CreateSnapshotResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message ReapSnapshotRequest {
+    string deployment_uuid = 1;
+    uint64 snapshot_id = 2;
+}
+
+message ReapSnapshotResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
+
+message ListSnapshotsRequest {
+    string deployment_uuid = 1;
+}
+
+message ListSnapshotsResponse {
+    repeated Snapshot snapshots = 1;
 }
 
 // INTERNAL APIS ------------------------------------------------------------
