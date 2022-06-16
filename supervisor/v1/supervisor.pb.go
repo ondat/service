@@ -7,7 +7,7 @@
 package v1
 
 import (
-	v1 "github.com/ondat/c2/common/v1"
+	v1 "github.com/ondat/service/common/v1"
 	context "context"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

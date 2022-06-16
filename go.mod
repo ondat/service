@@ -1,4 +1,4 @@
-module github.com/ondat/c2
+module github.com/ondat/service
 
 go 1.16
 
