@@ -292,6 +292,9 @@ service Supervisor {
     // rpc_result.reason may be set.
     rpc CreateSnapshot(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
 
+    rpc CreateDeploymentFromSnapshot(CreateDeploymentFromSnapshotRequest)
+        returns (CreateDeploymentFromSnapshotResponse) {}
+
     // Delete a snapshot of a deployment. This API must only be called for the volume's
     // master deployment and on the node which houses said deployment. The user must
     // specify the snapshot ID, which was provided in the previous CreateSnapshot RPC.
@@ -497,6 +500,14 @@ message ListSnapshotsRequest {
 message ListSnapshotsResponse {
     repeated Snapshot snapshots = 1;
 }
+
+message CreateDeploymentFromSnapshotRequest {
+    string src_deployment_uuid = 1;
+    uint64 src_snapshot_id = 2;
+    string dst_deployment_uuid = 3;
+}
+
+message CreateDeploymentFromSnapshotResponse {}
 
 // INTERNAL APIS ------------------------------------------------------------
 
