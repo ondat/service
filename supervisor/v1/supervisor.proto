@@ -505,6 +505,7 @@ message CreateDeploymentFromSnapshotRequest {
     string src_deployment_uuid = 1;
     uint64 src_snapshot_id = 2;
     string dst_deployment_uuid = 3;
+    uint64 size_bytes = 4;
 }
 
 message CreateDeploymentFromSnapshotResponse {
