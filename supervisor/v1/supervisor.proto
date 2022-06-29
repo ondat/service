@@ -507,7 +507,9 @@ message CreateDeploymentFromSnapshotRequest {
     string dst_deployment_uuid = 3;
 }
 
-message CreateDeploymentFromSnapshotResponse {}
+message CreateDeploymentFromSnapshotResponse {
+    common.v1.RpcResult rpc_result = 1;
+}
 
 // INTERNAL APIS ------------------------------------------------------------
 
