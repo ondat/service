@@ -1,7 +1,7 @@
 syntax = "proto3";
 package common.v1;
 
-option go_package = "code.storageos.net/storageos/service/common/v1";
+option go_package = "github.com/ondat/service/common/v1";
 
 import "google/protobuf/timestamp.proto";
 
