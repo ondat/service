@@ -70,6 +70,12 @@ message DeploymentConfig {
     // The replicas associated with this deployment. This field is only
     // valid if the deployment is a master deployment.
     repeated ReplicaAndLocation replicas = 5;
+
+    // The location where to place the data, determined by the CP with the appropriate storage pool
+    message BlobRootDir {
+        string blob_path = 1;
+    }
+    repeated BlobRootDir blob_paths = 6;
 }
 
 message PresentationConfig {
