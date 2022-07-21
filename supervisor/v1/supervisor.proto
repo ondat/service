@@ -33,6 +33,9 @@ message NodeConfig {
     // `hostname`, will never match the server Common Name in the server's
     // certificate
     optional string opt_verify_hostname = 5;
+
+    // The dial address for the supervisor server for this node
+    string supervisor_server_address = 6;
 }
 
 message DeploymentConfig {
