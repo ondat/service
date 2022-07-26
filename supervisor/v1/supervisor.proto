@@ -15,11 +15,11 @@ message NodeConfig {
     // The remote peer's UUID
     string uuid = 1;
 
-    // The hostname of the remote peer
+    // The hostname the remote peer's directfs responder is listening on
     string hostname = 2;
 
-    // The port of the remote peer normally 5703 (can be overriden by starting
-    // the Dataplane with IO_BIND_PORT=<port>)
+    // The port the remote peer's directfs repsonder is listening on normally
+    // 5703 (can be overriden by starting the Dataplane with IO_BIND_PORT=<port>)
     uint32 port = 3;
 
     // Whether TLS is enabled for this connection (always true when the CP is
@@ -33,6 +33,9 @@ message NodeConfig {
     // `hostname`, will never match the server Common Name in the server's
     // certificate
     optional string opt_verify_hostname = 5;
+
+    // The dial address for the supervisor server for this node
+    string supervisor_server_address = 6;
 }
 
 message DeploymentConfig {
@@ -423,7 +426,15 @@ message Snapshot {
     uint64 snapshot_id = 1;
 }
 
-message DumpConfigRequest {}
+message DumpConfigRequest {
+    // If not empty, the DumpConfigResponse will only contain the config for the
+    // specified deployments
+    repeated string deployment_ids = 1;
+
+    // If not empty, the DumpConfigResponse will only contain the config for the
+    // specified presentations
+    repeated string presentation_ids = 2;
+}
 
 message DumpConfigResponse {
     // We declare a wrapper type so we can easily add new fields in the future
