@@ -192,7 +192,17 @@ service Supervisor {
     //
     // Under the hood this method creates the blob files into which we'll store
     // user data and sets up the network connection to any replicas (master
-    // deployments only).
+    // deployments only).  If the request includes a non-empty list of
+    // directories in blob_paths, the dataplane will use the specified paths to
+    // house the blob files.  Otherwise, a default location under the dataplane
+    // root will be used.
+    //
+    // On subsequent calls to ConfigureDeployment, if blob_paths contains any
+    // new directories, the dataplane will create new blob files under those
+    // directories and start writing new data to them.
+    // Paths can't be removed.  Any path that was already added will stay in
+    // use even if subsequent calls don't include it.
+    // Paths can appear in any order.
     //
     // Note: this RPC does not configure the replicas it merely tells the
     // master about the existance and location of its replicas. To configure
