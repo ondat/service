@@ -43,7 +43,7 @@ all:
 go: vendor ${GRPC_GO_OBJ}
 
 vendor:
-	dep ensure -v
+	go mod vendor
 
 cxx: ${GRPC_CPP_OBJ} ${PBUF_CPP_OBJ}
 
