@@ -1,9 +1,8 @@
-module github.com/ondat/c2
+module github.com/ondat/service
 
 go 1.18
 
 require (
-	github.com/ondat/service v2.5.0+incompatible
 	google.golang.org/grpc v1.27.0
 	google.golang.org/protobuf v1.28.1
 )
