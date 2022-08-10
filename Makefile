@@ -1,5 +1,7 @@
 # dataplane service protobuf
 
+MAKEFLAGS	+= --no-builtin-rules
+
 SRC_DIR	= supervisor
 DST_DIR = supervisor
 
@@ -37,6 +39,7 @@ all:
 	echo "No default target!" >&2
 	exit 1
 
+.PHONY: go
 go: vendor ${GRPC_GO_OBJ}
 
 vendor:
