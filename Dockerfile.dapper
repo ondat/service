@@ -13,8 +13,11 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:/opt/storageos/bin:$PATH
 
 # soegarots/dataplane-build:latest contains the dataplane C++ versions of protobuf and grpc.
 
-RUN go get -d -u github.com/golang/protobuf/protoc-gen-go \
-    && go install github.com/golang/protobuf/protoc-gen-go
+RUN cd /tmp && \
+  git clone https://github.com/golang/protobuf.git && \
+  cd protobuf/protoc-gen-go && \
+  go build && \
+  mv protoc-gen-go $GOPATH/bin
 
 WORKDIR /go/src/github.com/ondat/service
 ENV DAPPER_SOURCE /go/src/github.com/ondat/service
