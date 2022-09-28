@@ -72,9 +72,7 @@ message DeploymentConfig {
     repeated ReplicaAndLocation replicas = 5;
 
     // The location where to place the data, determined by the CP with the appropriate storage pool
-    message BlobRootDir {
-        string blob_path = 1;
-    }
+    message BlobRootDir { string blob_path = 1; }
     repeated BlobRootDir blob_paths = 6;
 }
 
@@ -121,6 +119,15 @@ message PresentationConfig {
     // If this field is set it denotes that we are presenting a snapshot. Snapshot
     // presentations are read-only.
     optional uint64 opt_snapshot_id = 9;
+
+    // Labels are opaque key=value pairs which can are passed to the dataplane.
+    // In practice, these labels will be set by the user on the PVC or storage-class
+    // and synced to the CP and ultimately the DP. The CP should only pass labels
+    // which are prefixed "storageos.com/dataplane". These labels are intended to
+    // pass out-of-band information or enable experimental/debug features. See
+    // cxxlib/volume_labels.hpp for a list of labels which the dataplane will act on.
+    // Examples include enabling IO tracing and setting the LIO timeouts.
+    map<string, string> labels = 11;
 }
 
 message PresentationScsiDevice {
