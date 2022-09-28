@@ -49,6 +49,10 @@ message DeploymentConfig {
         // production. For the purpose of DP testing this feild can be empty,
         // which signifies the replica is local to the master
         optional NodeConfig opt_node_config = 2;
+
+        // TODO(AJReid): Hacks for now
+        bool async = 3;
+        uint64 async_num = 4;
     }
 
     // Is this a master or a replica?
